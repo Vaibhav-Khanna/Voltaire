@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using voltaire.Views;
+using Xamarin.Forms;
 
 namespace voltaire
 {
@@ -8,7 +9,7 @@ namespace voltaire
         {
             InitializeComponent();
 
-            MainPage = new voltairePage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()

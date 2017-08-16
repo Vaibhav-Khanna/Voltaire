@@ -1,6 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="voltaire.App">
 	<Application.Resources>
-		<!-- Application resource dictionary -->
+		<ResourceDictionary>
+        <Color x:Key="PinkishGrey">#bababa</Color>
+        <Color x:Key="AquaBlue">#00c9e6</Color>
+        <Color x:Key="GreyishBrown">#595959</Color>
+        <Color x:Key="GreyBack">#f0f0f0</Color>
+        <Style x:Key="EntryLogin" TargetType="Entry">
+            <Setter Property="FontFamily" Value="Raleway-Regular" />
+            <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource GreyBack}" />
+            <Setter Property="PlaceholderColor" Value="{StaticResource PinkishGrey}" />        
+        </Style>  
+        <Style x:Key="EntryButton" TargetType="Button">
+            <Setter Property="FontFamily" Value="Raleway-Regular" />
+             <Setter Property="BackgroundColor"    Value="{StaticResource AquaBlue}" />
+            <Setter Property="TextColor" Value="#ffffff" />
+        </Style>
+        </ResourceDictionary>    
 	</Application.Resources>
 </Application>
