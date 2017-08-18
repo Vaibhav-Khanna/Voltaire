@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                x:Class="voltaire.Controls.TToolBar">
+        
+    <Grid BackgroundColor="{StaticResource turquoiseBlue}"
+          ColumnSpacing="0"
+          HeightRequest="100"
+          Padding="0,20,0,0"
+          RowSpacing="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <StackLayout x:Name="LeftToolBarItemsContainer"
+                     Grid.Column="0"
+                     HorizontalOptions="StartAndExpand"
+                     Orientation="Horizontal"
+                     Padding="20,0,0,0"
+                     VerticalOptions="Center" />
+
+        <StackLayout x:Name="CentralToolBarItemsContainer"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="3"
+                     HorizontalOptions="CenterAndExpand"
+                     Padding="0"
+                     VerticalOptions="CenterAndExpand">
+
+            <Label   x:Name="TitleLabel"
+                                     HorizontalOptions="Center"
+                                     HorizontalTextAlignment="Center"
+                                     Style="{StaticResource ToolbarTitleLabelStyle}"
+                                     VerticalOptions="Center"
+                                     VerticalTextAlignment="Center" />
+
+        </StackLayout>
+
+        <StackLayout x:Name="RightToolBarItemsContainer"
+                     Grid.Column="2"
+                     HorizontalOptions="EndAndExpand"
+                     Orientation="Horizontal"
+                     Padding="0,0,20,0"
+                     VerticalOptions="Center" />
+    </Grid>
+</ContentView>

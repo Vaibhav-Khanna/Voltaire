@@ -6,6 +6,15 @@
         <Color x:Key="AquaBlue">#00c9e6</Color>
         <Color x:Key="GreyishBrown">#595959</Color>
         <Color x:Key="GreyBack">#f0f0f0</Color>
+        <Color x:Key="Black">#333333</Color>
+        <Color x:Key="WarmGrey">#858585</Color>
+        <Color x:Key="turquoiseBlue">#01abc4</Color>
+        <Color x:Key="turquoiseBlue2">#02abc4</Color>    
+        <Color x:Key="GreyBox">#818181</Color> 
+        <Color x:Key="frogGreen">#38d700</Color>
+        <Color x:Key="GreyPlaceholder">#b3b3b3</Color>
+            
+       <!-- LOGIN PAGE -->
         <Style x:Key="EntryLogin" TargetType="Entry">
             <Setter Property="FontFamily" Value="Raleway-Regular" />
             <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
@@ -17,6 +26,118 @@
              <Setter Property="BackgroundColor"    Value="{StaticResource AquaBlue}" />
             <Setter Property="TextColor" Value="#ffffff" />
         </Style>
+        <!-- TOOLBAR -->
+        <Style x:Key="ToolbarTitleLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Raleway-Regular" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="TextColor" Value="White" />
+         </Style>
+         <!-- HOME PAGE -->
+         <Style x:Key="BaseBoldLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Bold</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Bold.ttf#Raleway-Bold</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+         </Style>   
+         <Style x:Key="CircleMenuStyle" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Vertical" />
+                <Setter Property="Spacing" Value="15" />
+         </Style>
+         <Style x:Key="CircleMenuIconStyle" TargetType="Image">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="WidthRequest" Value="150" />
+                <Setter Property="HeightRequest" Value="150" />
+         </Style>
+         <Style x:Key="CircleMenuSecondLineStyle" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Vertical" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="Spacing" Value="15" />
+          </Style>  
+         <Style x:Key="BaseLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Regular.ttf#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+         </Style>
+         <Style x:Key="MenuItemLabelStyle"
+                   BasedOn="{StaticResource BaseLabelStyle}"
+                   TargetType="Label">
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="TextColor" Value="{StaticResource WarmGrey}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+          </Style>
+          <Style x:Key="GreenPerCent" TargetType="Label">
+                <Setter Property="FontFamily" Value="SanFranciscoDisplay-Semibold" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="{StaticResource frogGreen}" />
+          </Style>
+          <Style x:Key="SalesmanName" TargetType="Label">
+                <Setter Property="FontFamily" Value="Raleway-Medium" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="{StaticResource turquoiseBlue2}" />
+          </Style>  
+          <Style x:Key="SalesmanDetail" TargetType="Label">
+                <Setter Property="FontFamily" Value="SanFranciscoDisplay-Light" />
+                <Setter Property="FontSize" Value="8" />
+                <Setter Property="TextColor" Value="{StaticResource turquoiseBlue2}" />
+          </Style>
+          <Style x:Key="UserName" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Heavy</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Heavy.ttf#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="White" />
+          </Style>
+          <Style x:Key="UserFunction" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Heavy</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Heavy.ttf#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FontFamily" Value="Raleway-Regular" />
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="TextColor" Value="White" />
+          </Style>
+          <Style x:Key="CircleNumber1" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Bold</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Bold.ttf#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FontSize" Value="21" />
+                <Setter Property="TextColor" Value="White" />
+          </Style>
+          <Style x:Key="CircleNumber2" TargetType="Label" BasedOn="{StaticResource CircleNumber1}">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Regular</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Regular.ttf#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FontSize" Value="6" />
+          </Style>  
         </ResourceDictionary>    
 	</Application.Resources>
 </Application>

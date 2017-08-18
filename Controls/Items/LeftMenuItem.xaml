@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<items:BaseLeftMenuItem x:Class="voltaire.Controls.Items.LeftMenuItem"
+                              xmlns="http://xamarin.com/schemas/2014/forms"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:items="clr-namespace:voltaire.Controls.Items;assembly=voltaire">
+    
+    <!-- 
+    BackgroundColor="{Binding IsSelected,
+                                           Converter={StaticResource SelectableCellBoolToColorConverter}}"
+    -->
+    <StackLayout x:Name="ItemLayout"
+                 
+                 HeightRequest="80"
+                 HorizontalOptions="CenterAndExpand"
+                 Orientation="Horizontal"
+                 Spacing="0"
+                 WidthRequest="80"
+                   >
+
+        <Image Aspect="AspectFit"
+               HorizontalOptions="CenterAndExpand"
+               Source="{Binding IconSource}"
+               VerticalOptions="CenterAndExpand"
+                HeightRequest="70"
+                WidthRequest="70">
+            <Image.Margin>
+                <OnPlatform x:TypeArguments="Thickness"
+                            iOS="0,0,0,0" />
+            </Image.Margin>
+        </Image>
+
+    </StackLayout>
+</items:BaseLeftMenuItem>

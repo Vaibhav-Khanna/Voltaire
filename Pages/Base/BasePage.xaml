@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseDisposePage x:Class="voltaire.Pages.Base.BasePage"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire"
+                      xmlns:freshMvvm="clr-namespace:FreshMvvm;assembly=FreshMvvm">
+    <ContentPage.Behaviors>
+        <!--<behaviors:HideNavigationBehavior />-->
+    </ContentPage.Behaviors>
+</base:BaseDisposePage>
