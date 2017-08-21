@@ -64,5 +64,35 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("Login", resourceCulture);
             }
         }
+        
+        internal static string Dashboard {
+            get {
+                return ResourceManager.GetString("Dashboard", resourceCulture);
+            }
+        }
+        
+        internal static string Goals {
+            get {
+                return ResourceManager.GetString("Goals", resourceCulture);
+            }
+        }
+        
+        internal static string TopSalesman {
+            get {
+                return ResourceManager.GetString("TopSalesman", resourceCulture);
+            }
+        }
+        
+        internal static string Sales {
+            get {
+                return ResourceManager.GetString("Sales", resourceCulture);
+            }
+        }
+        
+        internal static string CheckIn {
+            get {
+                return ResourceManager.GetString("CheckIn", resourceCulture);
+            }
+        }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-namespace voltaire.Views
+namespace voltaire.Pages
 {
     public partial class LoginPage : ContentPage
     {

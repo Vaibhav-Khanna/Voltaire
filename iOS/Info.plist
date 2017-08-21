@@ -41,5 +41,17 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Raleway-Bold.ttf</string>
+		<string>Raleway-Heavy.ttf</string>
+		<string>Raleway-Medium.ttf</string>
+		<string>Raleway-Regular.ttf</string>
+		<string>Raleway-SemiBold.ttf</string>
+		<string>SFNSDisplay.ttf</string>
+		<string>SFNS-SemiBold.ttf</string>
+		<string>SFUIText-Bold.otf</string>
+		<string>SFUIText-Regular.otf</string>
+	</array>
 </dict>
 </plist>

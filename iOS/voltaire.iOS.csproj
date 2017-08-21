@@ -81,20 +81,20 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="Xamarin.Forms.Core">
-      <HintPath>..\packages\Xamarin.Forms.2.3.4.247\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Platform">
-      <HintPath>..\packages\Xamarin.Forms.2.3.4.247\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Platform.iOS">
-      <HintPath>..\packages\Xamarin.Forms.2.3.4.247\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Xaml">
-      <HintPath>..\packages\Xamarin.Forms.2.3.4.247\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
-    </Reference>
     <Reference Include="Calabash">
       <HintPath>..\packages\Xamarin.TestCloud.Agent.0.20.7\lib\Xamarin.iOS10\Calabash.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\packages\Xamarin.Forms.2.3.4.267\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>..\packages\Xamarin.Forms.2.3.4.267\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform.iOS">
+      <HintPath>..\packages\Xamarin.Forms.2.3.4.267\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\packages\Xamarin.Forms.2.3.4.267\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Renderers\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -130,12 +131,76 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderers\CustomProgressBarRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.png" />
     <BundleResource Include="Resources\logo%402x.png" />
     <BundleResource Include="Resources\logo%403x.png" />
+    <BundleResource Include="Resources\agenda.png" />
+    <BundleResource Include="Resources\agenda%402x.png" />
+    <BundleResource Include="Resources\agenda%403x.png" />
+    <BundleResource Include="Resources\agendaBig.png" />
+    <BundleResource Include="Resources\agendaBig%402x.png" />
+    <BundleResource Include="Resources\agendaBig%403x.png" />
+    <BundleResource Include="Resources\contact.png" />
+    <BundleResource Include="Resources\contact%402x.png" />
+    <BundleResource Include="Resources\contact%403x.png" />
+    <BundleResource Include="Resources\contactsBig.png" />
+    <BundleResource Include="Resources\contactsBig%402x.png" />
+    <BundleResource Include="Resources\contactsBig%403x.png" />
+    <BundleResource Include="Resources\contract.png" />
+    <BundleResource Include="Resources\contract%402x.png" />
+    <BundleResource Include="Resources\contract%403x.png" />
+    <BundleResource Include="Resources\contractsBig.png" />
+    <BundleResource Include="Resources\contractsBig%402x.png" />
+    <BundleResource Include="Resources\contractsBig%403x.png" />
+    <BundleResource Include="Resources\goals.png" />
+    <BundleResource Include="Resources\goals%402x.png" />
+    <BundleResource Include="Resources\goals%403x.png" />
+    <BundleResource Include="Resources\goalsBig.png" />
+    <BundleResource Include="Resources\goalsBig%402x.png" />
+    <BundleResource Include="Resources\goalsBig%403x.png" />
+    <BundleResource Include="Resources\home.png" />
+    <BundleResource Include="Resources\home%402x.png" />
+    <BundleResource Include="Resources\home%403x.png" />
+    <BundleResource Include="Resources\map.png" />
+    <BundleResource Include="Resources\map%402x.png" />
+    <BundleResource Include="Resources\map%403x.png" />
+    <BundleResource Include="Resources\mapBig.png" />
+    <BundleResource Include="Resources\mapBig%402x.png" />
+    <BundleResource Include="Resources\mapBig%403x.png" />
+    <BundleResource Include="Resources\podiums.png" />
+    <BundleResource Include="Resources\podiums%402x.png" />
+    <BundleResource Include="Resources\podiums%403x.png" />
+    <BundleResource Include="Resources\profile.png" />
+    <BundleResource Include="Resources\profile%402x.png" />
+    <BundleResource Include="Resources\profile%403x.png" />
+    <BundleResource Include="Resources\quotation.png" />
+    <BundleResource Include="Resources\quotation%402x.png" />
+    <BundleResource Include="Resources\quotation%403x.png" />
+    <BundleResource Include="Resources\quotationsBig.png" />
+    <BundleResource Include="Resources\quotationsBig%402x.png" />
+    <BundleResource Include="Resources\quotationsBig%403x.png" />
+    <BundleResource Include="Resources\report.png" />
+    <BundleResource Include="Resources\report%402x.png" />
+    <BundleResource Include="Resources\report%403x.png" />
+    <BundleResource Include="Resources\reportsBig.png" />
+    <BundleResource Include="Resources\reportsBig%402x.png" />
+    <BundleResource Include="Resources\reportsBig%403x.png" />
+    <BundleResource Include="Resources\todo.png" />
+    <BundleResource Include="Resources\todo%402x.png" />
+    <BundleResource Include="Resources\todo%403x.png" />
+    <BundleResource Include="Resources\todoBig.png" />
+    <BundleResource Include="Resources\todoBig%402x.png" />
+    <BundleResource Include="Resources\todoBig%403x.png" />
+    <BundleResource Include="Resources\up.png" />
+    <BundleResource Include="Resources\up%402x.png" />
+    <BundleResource Include="Resources\up%403x.png" />
+    <BundleResource Include="Resources\circleblue.png" />
+    <BundleResource Include="Resources\circleblue%402x.png" />
+    <BundleResource Include="Resources\circleblue%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <Import Project="..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
+  <Import Project="..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
 </Project>
