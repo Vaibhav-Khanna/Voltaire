@@ -41,12 +41,12 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="150" />
+                <RowDefinition Height="170" />
                 <RowDefinition Height="250" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <!--  Goals and Top Salesman Bloc  -->
-            <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="#ffffff">
+            <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="#ffffff" Padding="0,0,0,20">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -132,66 +132,66 @@
                        </Grid>
             </StackLayout> 
             <!--  Contacts  -->
-            <StackLayout Grid.Row="1" Grid.Column="0" Style="{StaticResource CircleMenuStyle}">
-                <!--     <StackLayout.GestureRecognizers>
+            <StackLayout Grid.Row="1" Grid.Column="0" Margin="0,50,0,0"  Style="{StaticResource CircleMenuStyle}">
+                     <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToContacts" />
-                </StackLayout.GestureRecognizers> -->
+                </StackLayout.GestureRecognizers> 
                 <Image Source="contactsBig" Style="{StaticResource CircleMenuIconStyle}" />
                 <Label Style="{StaticResource MenuItemLabelStyle}" Text="Contacts" />
             </StackLayout>
             <!--  Map  -->
-            <StackLayout Grid.Row="1" Grid.Column="1" Style="{StaticResource CircleMenuStyle}">
-                <!--     <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToInterventions" />
-                </StackLayout.GestureRecognizers> -->
+            <StackLayout Grid.Row="1"  Grid.Column="1" Margin="0,50,0,0"  Style="{StaticResource CircleMenuStyle}">
+               <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToMap" />
+                </StackLayout.GestureRecognizers> 
                 <Image Source="mapBig" Style="{StaticResource CircleMenuIconStyle}" />
                 <Label Style="{StaticResource MenuItemLabelStyle}" Text="Map" />
             </StackLayout>
             <!--  Todo  -->
-            <StackLayout Grid.Row="1" Grid.Column="2" Style="{StaticResource CircleMenuStyle}">
-                <!--  <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToQuotations" />
-                </StackLayout.GestureRecognizers> -->
+            <StackLayout Grid.Row="1" Grid.Column="2" Margin="0,50,0,0" Style="{StaticResource CircleMenuStyle}">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToTodo" />
+                </StackLayout.GestureRecognizers> 
                 <Image Source="todoBig" Style="{StaticResource CircleMenuIconStyle}" />
                 <Label Style="{StaticResource MenuItemLabelStyle}" Text="Todo list" />
             </StackLayout>
             <!--  Agenda  -->
-            <StackLayout Grid.Row="1" Grid.Column="3" Style="{StaticResource CircleMenuStyle}">
-                <!--     <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToInvoices" />
-                </StackLayout.GestureRecognizers> -->
+            <StackLayout Grid.Row="1" Grid.Column="3" Margin="0,50,0,0" Style="{StaticResource CircleMenuStyle}">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToAgenda" />
+                </StackLayout.GestureRecognizers> 
                 <Image Source="agendaBig" Style="{StaticResource CircleMenuIconStyle}" />
                 <Label Style="{StaticResource MenuItemLabelStyle}" Text="Retrospective agenda" />
             </StackLayout>
             <!--  Reports  -->
-            <StackLayout Grid.Row="2" Grid.Column="0" Style="{StaticResource CircleMenuSecondLineStyle}">
-                <!--   <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToMyAccount" />
-                </StackLayout.GestureRecognizers> -->
+            <StackLayout Grid.Row="2" Grid.Column="0" Margin="0,50,0,0"  Style="{StaticResource CircleMenuSecondLineStyle}">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToReport" />
+                </StackLayout.GestureRecognizers> 
                 <Image Source="reportsBig" Style="{StaticResource CircleMenuIconStyle}" />
                 <Label Style="{StaticResource MenuItemLabelStyle}" Text="Reports" />
             </StackLayout>
             <!--  Manage users  -->
-            <StackLayout Grid.Row="2" Grid.Column="1" Style="{StaticResource CircleMenuSecondLineStyle}">
-                <!--   <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToManageUsers" />
-                </StackLayout.GestureRecognizers> -->
+            <StackLayout Grid.Row="2" Grid.Column="1" Margin="0,50,0,0" Style="{StaticResource CircleMenuSecondLineStyle}">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToQuotations" />
+                </StackLayout.GestureRecognizers>
                 <Image Source="quotationsBig" Style="{StaticResource CircleMenuIconStyle}" />
                 <Label Style="{StaticResource MenuItemLabelStyle}" Text="Quotations" />
             </StackLayout>
             <!--  Contract  -->
-            <StackLayout Grid.Row="2" Grid.Column="2" Style="{StaticResource CircleMenuSecondLineStyle}">
-                <!--   <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToSettings" />
-                </StackLayout.GestureRecognizers> -->
+            <StackLayout Grid.Row="2" Grid.Column="2" Margin="0,50,0,0" Style="{StaticResource CircleMenuSecondLineStyle}">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToContract" />
+                </StackLayout.GestureRecognizers> 
                 <Image Source="contractsBig" Style="{StaticResource CircleMenuIconStyle}" />
                 <Label Style="{StaticResource MenuItemLabelStyle}" Text="Contracts" />
             </StackLayout>
             <!--  Goals  -->
-            <StackLayout Grid.Row="2" Grid.Column="3" Style="{StaticResource CircleMenuSecondLineStyle}">
-                <!--  <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToSettings" />
-                </StackLayout.GestureRecognizers> -->
+            <StackLayout Grid.Row="2" Grid.Column="3" Margin="0,50,0,0" Style="{StaticResource CircleMenuSecondLineStyle}">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToGoals" />
+                </StackLayout.GestureRecognizers>
                 <Image Source="goalsBig" Style="{StaticResource CircleMenuIconStyle}" />
                 <Label Style="{StaticResource MenuItemLabelStyle}" Text="Goals" />
             </StackLayout>

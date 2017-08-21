@@ -49,7 +49,7 @@ namespace voltaire.Pages.Base
             {
                 var cell = new LeftMenuItem();
                 cell.BindingContext = item;
-                //  cell.ItemClicked += ItemClicked;
+                //cell.ItemClicked += ItemClicked;
                 view.Children.Add(cell);
             }
         }
@@ -58,7 +58,7 @@ namespace voltaire.Pages.Base
         {
             // change view
             Page page = null;
-            /*
+
             switch (pageName)
             {
                 case "home":
@@ -92,7 +92,7 @@ namespace voltaire.Pages.Base
                     page = FreshPageModelResolver.ResolvePageModel<PodiumsPageModel>();
                     break;
 
-            }*/
+            }
 
             if (page != null)
             {

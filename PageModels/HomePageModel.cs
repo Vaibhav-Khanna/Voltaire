@@ -1,7 +1,9 @@
 ﻿using System;
+using voltaire.PageModels.Base;
+
 namespace voltaire.PageModels
 {
-    public class HomePageModel
+    public class HomePageModel : BasePageModel
     {
         public HomePageModel()
         {

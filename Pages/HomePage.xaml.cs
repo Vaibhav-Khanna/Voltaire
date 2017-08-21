@@ -1,4 +1,5 @@
-﻿using voltaire.Pages.Base;
+﻿using System;
+using voltaire.Pages.Base;
 namespace voltaire.Pages
 {
 
@@ -16,42 +17,38 @@ namespace voltaire.Pages
         }
 
 
-        /*  public void ChangeToContacts()
-          {
-              changeCurrentView("contact");
-          }
-          public void ChangeToMap()
-          {
-              changeCurrentView("map");
-          }
-          public void ChangeToTodo()
-          {
-              changeCurrentView("todo");
-          }
-          public void ChangeToAgenda()
-          {
-              changeCurrentView("agenda");
-          }
-          public void ChangeToReport()
-          {
-              changeCurrentView("report");
-          }
-          public void ChangeToQuotations()
-          {
-              changeCurrentView("quotations");
-          }
-          public void ChangeToContract()
-          {
-              changeCurrentView("contract");
-          }
-          public void ChangeToGoals()
-          {
-              changeCurrentView("goals");
-          }
-          public void ChangeToPodiums()
-          {
-              changeCurrentView("podiums");
-          }
-          */
+        public void ChangeToContacts(object sender, EventArgs e)
+        {
+            changeCurrentView("contact");
+        }
+        public void ChangeToMap(object sender, EventArgs e)
+        {
+            changeCurrentView("map");
+        }
+        public void ChangeToTodo(object sender, EventArgs e)
+        {
+            changeCurrentView("todo");
+        }
+        public void ChangeToAgenda(object sender, EventArgs e)
+        {
+            changeCurrentView("agenda");
+        }
+        public void ChangeToReport(object sender, EventArgs e)
+        {
+            changeCurrentView("report");
+        }
+        public void ChangeToQuotations(object sender, EventArgs e)
+        {
+            changeCurrentView("quotations");
+        }
+        public void ChangeToContract(object sender, EventArgs e)
+        {
+            changeCurrentView("contract");
+        }
+        public void ChangeToGoals(object sender, EventArgs e)
+        {
+            changeCurrentView("goals");
+        }
+
     }
 }
