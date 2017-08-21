@@ -17,6 +17,7 @@
         <Color x:Key="GreyBox">#818181</Color> 
         <Color x:Key="frogGreen">#38d700</Color>
         <Color x:Key="GreyPlaceholder">#b3b3b3</Color>
+        <Color x:Key="White">#f0f0f0</Color>
             
        <!-- LOGIN PAGE -->
         <Style x:Key="EntryLogin" TargetType="Entry">
@@ -66,7 +67,7 @@
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
-                            <OnPlatform.iOS>Raleway</OnPlatform.iOS>
+                            <OnPlatform.iOS>Raleway-Regular</OnPlatform.iOS>
                             <OnPlatform.Android>fonts/Raleway-Regular.ttf#Raleway</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
@@ -142,6 +143,15 @@
                 </Setter>
                 <Setter Property="FontSize" Value="6" />
           </Style>
+          <!-- CONTACTS PAGE -->
+          <Style x:Key="CommonLabelStyle"
+                   BasedOn="{StaticResource BaseLabelStyle}"
+                   TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource White}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="17" />
+            </Style>
+            
           <!--CONVERTERS -->
           <converters:BoolToColorConverter x:Key="SelectableCellBoolToColorConverter"
                                              ColorFalse="Transparent"

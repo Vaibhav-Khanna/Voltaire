@@ -48,6 +48,9 @@
     <EmbeddedResource Include="Controls\Items\LeftMenuItem.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ContactsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -90,6 +93,9 @@
     <Compile Include="Renderers\CustomProgressBar.cs" />
     <Compile Include="Behaviors\HideNavigationBehavior.cs" />
     <Compile Include="Converters\BoolToColorConverter.cs" />
+    <Compile Include="Pages\ContactsPage.xaml.cs">
+      <DependentUpon>ContactsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

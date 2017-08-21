@@ -9,7 +9,7 @@ namespace voltaire
         {
             InitializeComponent();
 
-            MainPage = new HomePage();
+            MainPage = new ContactsPage();
         }
 
         protected override void OnStart()

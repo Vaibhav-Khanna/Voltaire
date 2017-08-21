@@ -84,4 +84,11 @@
 	<data name="CheckIn" xml:space="preserve">
         <value>Check-In :</value>
     </data>
+	<!-- CONTACTS PAGE -->
+	<data name="Contacts" xml:space="preserve">
+        <value>Contacts</value>
+    </data>
+	<data name="Filters" xml:space="preserve">
+        <value>Filtres</value>
+    </data>
 </root>

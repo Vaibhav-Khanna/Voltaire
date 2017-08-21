@@ -94,5 +94,17 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("CheckIn", resourceCulture);
             }
         }
+        
+        internal static string Contacts {
+            get {
+                return ResourceManager.GetString("Contacts", resourceCulture);
+            }
+        }
+        
+        internal static string Filters {
+            get {
+                return ResourceManager.GetString("Filters", resourceCulture);
+            }
+        }
     }
 }
