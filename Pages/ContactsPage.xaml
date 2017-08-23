@@ -6,7 +6,8 @@
     xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
     xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire" 
     xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
-    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire">
+    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire">
     <ContentPage.Behaviors>
         <behaviors:HideNavigationBehavior />
     </ContentPage.Behaviors>
@@ -63,7 +64,7 @@
                                          Margin="80,0,0,0"   
                                          HorizontalOptions="CenterAndExpand"
                                          Style="{StaticResource CommonLabelStyle}"
-                                         Text="293 Contacts"
+                                         Text="{Binding CustomersCount}"
                                          TextColor="{StaticResource GreyishBrown}"
                                          VerticalOptions="Center" />
                                         
@@ -89,9 +90,9 @@
              
 
             </StackLayout>
-            </Grid>
-            <!--
-            <controls:ExtendedListView attachedProperties:ListViewItemTappedAttached.Command="{Binding ItemTapCommand}"
+
+
+            <ListView Grid.Row="1" 
                                        GroupDisplayBinding="{Binding Key}"
                                        HasUnevenRows="True"
                                        IsGroupingEnabled="True"
@@ -99,7 +100,7 @@
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <ViewCell Height="25">
-                            <StackLayout BackgroundColor="#c8c7cc" VerticalOptions="FillAndExpand">
+                            <StackLayout BackgroundColor="{StaticResource BlueKeyList}" VerticalOptions="FillAndExpand">
                                 <Label Margin="10,0,0,0"
                                        Text="{Binding Key}"
                                        TextColor="White"
@@ -113,7 +114,8 @@
                         <cells:ContactCell />
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </controls:ExtendedListView> -->
+            </ListView> 
         
     </Grid>
+        </Grid>
 </base:BasePage>

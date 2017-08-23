@@ -51,6 +51,9 @@
     <EmbeddedResource Include="Pages\ContactsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Cells\ContactCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -74,7 +77,7 @@
     </Compile>
     <Compile Include="Pages\Base\BaseDisposePage.cs" />
     <Compile Include="PageModels\HomePageModel.cs" />
-    <Compile Include="PageModels\ContactPageModel.cs" />
+    <Compile Include="PageModels\ContactsPageModel.cs" />
     <Compile Include="PageModels\MapPageModel.cs" />
     <Compile Include="PageModels\TodoPageModel.cs" />
     <Compile Include="PageModels\AgendaPageModel.cs" />
@@ -96,6 +99,14 @@
     <Compile Include="Pages\ContactsPage.xaml.cs">
       <DependentUpon>ContactsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Helpers\Collections\Grouping.cs" />
+    <Compile Include="Controls\Cells\ContactCell.xaml.cs">
+      <DependentUpon>ContactCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomerModel.cs" />
+    <Compile Include="Converters\StringNullableToBooleanConverter.cs" />
+    <Compile Include="Converters\DateNullableToBooleanConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
@@ -129,6 +140,9 @@
     <Folder Include="Renderers\" />
     <Folder Include="Behaviors\" />
     <Folder Include="Converters\" />
+    <Folder Include="Controls\Cells\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Helpers\Collections\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

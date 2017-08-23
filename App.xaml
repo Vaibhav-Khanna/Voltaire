@@ -10,6 +10,7 @@
         <Color x:Key="AquaBlue">#00c9e6</Color>
         <Color x:Key="GreyishBrown">#595959</Color>
         <Color x:Key="GreyBack">#f0f0f0</Color>
+        <Color x:Key="GreyBack2">#d4d4d4</Color>
         <Color x:Key="Black">#333333</Color>
         <Color x:Key="WarmGrey">#858585</Color>
         <Color x:Key="turquoiseBlue">#01abc4</Color>
@@ -18,6 +19,7 @@
         <Color x:Key="frogGreen">#38d700</Color>
         <Color x:Key="GreyPlaceholder">#b3b3b3</Color>
         <Color x:Key="White">#f0f0f0</Color>
+        <Color x:Key="BlueKeyList">#aad0d6</Color>   
             
        <!-- LOGIN PAGE -->
         <Style x:Key="EntryLogin" TargetType="Entry">
@@ -151,13 +153,46 @@
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="FontSize" Value="17" />
             </Style>
-            
+           <!-- CONTROLS CELLS CONTACTCELL --> 
+           <Style x:Key="CellLabelDescriptionStyle"
+                   BasedOn="{StaticResource BaseLabelStyle}"
+                   TargetType="Label">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
+            </Style>
+            <Style x:Key="CellButtonGradeStyle"
+                   TargetType="Button">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Regular</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Regular.ttf#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="BorderRadius" Value="10" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="{StaticResource GreyPlaceholder}" />
+            </Style>
+            <Style x:Key="CellButtonWeightStyle"
+                   BasedOn="{StaticResource CellButtonGradeStyle}"
+                   TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource GreyBack2}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="BorderRadius" Value="15" />
+                <Setter Property="WidthRequest" Value="30"  />
+                <Setter Property="HeightRequest" Value="30"  />
+            </Style>    
           <!--CONVERTERS -->
           <converters:BoolToColorConverter x:Key="SelectableCellBoolToColorConverter"
                                              ColorFalse="Transparent"
                                              ColorTrue="{StaticResource turquoiseBlue}" />
             
-            
+          <converters:StringNullableToBooleanConverter x:Key="StringNullableToBooleanConverter" />
+          <converters:DateNullableToBooleanConverter x:Key="DateNullableToBooleanConverter" />
         </ResourceDictionary>    
 	</Application.Resources>
 </Application>

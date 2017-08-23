@@ -206,6 +206,15 @@
     <BundleResource Include="Resources\filters.png" />
     <BundleResource Include="Resources\filters%402x.png" />
     <BundleResource Include="Resources\filters%403x.png" />
+    <BundleResource Include="Resources\forange.png" />
+    <BundleResource Include="Resources\forange%402x.png" />
+    <BundleResource Include="Resources\forange%403x.png" />
+    <BundleResource Include="Resources\fgreen.png" />
+    <BundleResource Include="Resources\fgreen%402x.png" />
+    <BundleResource Include="Resources\fgreen%403x.png" />
+    <BundleResource Include="Resources\fred.png" />
+    <BundleResource Include="Resources\fred%402x.png" />
+    <BundleResource Include="Resources\fred%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
