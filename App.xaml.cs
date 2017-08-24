@@ -1,5 +1,8 @@
 ﻿using voltaire.Pages;
 using Xamarin.Forms;
+using Microsoft.Azure.Mobile;
+using Microsoft.Azure.Mobile.Analytics;
+using Microsoft.Azure.Mobile.Crashes;
 
 namespace voltaire
 {
@@ -15,6 +18,9 @@ namespace voltaire
         protected override void OnStart()
         {
             // Handle when your app starts
+            MobileCenter.Start("ios=3d0ef256-3c90-4860-b789-63ff7e930523;" +
+                               "android=c1308239-5175-41b4-a352-61530846726e;",
+                   typeof(Analytics), typeof(Crashes));
         }
 
         protected override void OnSleep()
