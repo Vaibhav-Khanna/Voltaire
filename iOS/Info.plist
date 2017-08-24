@@ -53,5 +53,14 @@
 		<string>SFUIText-Bold.otf</string>
 		<string>SFUIText-Regular.otf</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>mobilecenter-3d0ef256-3c90-4860-b789-63ff7e930523</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
