@@ -11,6 +11,8 @@
         <Color x:Key="GreyishBrown">#595959</Color>
         <Color x:Key="GreyBack">#f0f0f0</Color>
         <Color x:Key="GreyBack2">#d4d4d4</Color>
+        <Color x:Key="GreyBack3">#cdcdcd</Color>
+        <Color x:Key="GreyLine">#d8d8d8</Color>    
         <Color x:Key="Black">#333333</Color>
         <Color x:Key="WarmGrey">#858585</Color>
         <Color x:Key="turquoiseBlue">#01abc4</Color>
@@ -19,7 +21,8 @@
         <Color x:Key="frogGreen">#38d700</Color>
         <Color x:Key="GreyPlaceholder">#b3b3b3</Color>
         <Color x:Key="White">#f0f0f0</Color>
-        <Color x:Key="BlueKeyList">#aad0d6</Color>   
+        <Color x:Key="BlueKeyList">#aad0d6</Color> 
+        <Color x:Key="MaroonReset">#595959</Color>    
             
        <!-- LOGIN PAGE -->
         <Style x:Key="EntryLogin" TargetType="Entry">

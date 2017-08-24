@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using voltaire.PageModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace voltaire.Pages
@@ -15,6 +16,8 @@ namespace voltaire.Pages
         {
             base.OnAppearing();
             SetMenu(MenuLayout, 1);
+
         }
+
     }
 }

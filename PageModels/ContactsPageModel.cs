@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Windows.Input;
 using voltaire.Helpers.Collections;
 using voltaire.Models;
 using voltaire.PageModels.Base;
+using Xamarin.Forms;
 
 namespace voltaire.PageModels
 {
@@ -15,12 +16,62 @@ namespace voltaire.PageModels
 
         public ObservableCollection<ObservableGroupCollection<string, CustomerModel>> CustomersItems { get; set; }
 
+        public ICommand FiltersLayoutCommand => new Command(FiltersLayoutAppearing);
+
+        private int? _listColumnSpan;
+
+        public int? listColumnSpan
+        {
+
+            get { return _listColumnSpan; }
+
+            set { _listColumnSpan = value; RaisePropertyChanged("listColumnSpan"); }
+        }
+
+        private bool _filterLayoutVisibility;
+
+        public bool filterLayoutVisibility
+        {
+
+            get { return _filterLayoutVisibility; }
+
+            set { _filterLayoutVisibility = value; RaisePropertyChanged("filterLayoutVisibility"); }
+        }
+
+        private string _filterImage;
+
+        public string filterImage
+        {
+
+            get { return _filterImage; }
+
+            set { _filterImage = value; RaisePropertyChanged("filterImage"); }
+        }
+
         public ContactsPageModel()
         {
 
+        }
+
+        private void FiltersLayoutAppearing()
+        {
+            if (listColumnSpan == 2)
+            {
+                listColumnSpan = 1;
+                filterLayoutVisibility = true;
+                filterImage = "close";
+            }
+            else if (listColumnSpan == 1)
+            {
+                listColumnSpan = 2;
+                filterLayoutVisibility = false;
+                filterImage = "filters";
+            }
 
         }
 
+
+        //INIT data form page  freshmvvm
         public override void Init(object initData)
         {
             customers = new ObservableCollection<Customer>
@@ -29,7 +80,8 @@ namespace voltaire.PageModels
                     FirstName= "Bill",
                     LastName="Anderson",
                     Grade="Pro",
-                    Weight=5
+                    Weight=5,
+                    LastVisit=new DateTime(2017, 6, 3)
                 },
                 new Customer {
                     FirstName= "Milton",
@@ -142,13 +194,15 @@ namespace voltaire.PageModels
 
             CustomersItems = new ObservableCollection<ObservableGroupCollection<string, CustomerModel>>(groupedData);
 
-
+            //columnSpan for listview
+            _listColumnSpan = 2;
+            //filters view
+            _filterLayoutVisibility = false;
+            //filter frame image 
+            _filterImage = "filters";
 
 
         }
-
-
-
 
 
     }

@@ -7,8 +7,7 @@ namespace voltaire.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value.Equals("01/01/0001 00:00:00")) { return false; } else { return value != null; }
-
+            return value != null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -23,7 +23,7 @@ namespace voltaire.Models
 
         public string Grade { get; set; }
 
-        public DateTime LastVisit { get; set; }
+        public Nullable<DateTime> LastVisit { get; set; }
 
     }
 
