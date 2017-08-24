@@ -65,7 +65,7 @@ namespace voltaire.Pages.Base
                     page = FreshPageModelResolver.ResolvePageModel<HomePageModel>();
                     break;
                 case "contact":
-                    page = FreshPageModelResolver.ResolvePageModel<ContactPageModel>();
+                    page = FreshPageModelResolver.ResolvePageModel<ContactsPageModel>();
                     break;
                 case "map":
                     page = FreshPageModelResolver.ResolvePageModel<MapPageModel>();

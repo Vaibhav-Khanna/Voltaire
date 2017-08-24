@@ -1,4 +1,6 @@
-﻿using voltaire.Pages;
+﻿using FreshMvvm;
+using voltaire.PageModels;
+using voltaire.Pages;
 using Xamarin.Forms;
 using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Analytics;
@@ -13,7 +15,7 @@ namespace voltaire
         {
             InitializeComponent();
 
-            MainPage = new HomePage();
+            MainPage = FreshPageModelResolver.ResolvePageModel<ContactsPageModel>();
         }
 
         protected override void OnStart()
