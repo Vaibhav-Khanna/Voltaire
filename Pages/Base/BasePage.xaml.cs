@@ -5,12 +5,13 @@ using voltaire.Controls.Items;
 using voltaire.Models;
 using voltaire.PageModels;
 using Xamarin.Forms;
+
 namespace voltaire.Pages.Base
 {
     public partial class BasePage : BaseDisposePage
     {
-        private MenuItem _selectedMenuItem;
-        private List<MenuItem> _pageIcons;
+        private MenuLeftItem _selectedMenuItem;
+        private List<MenuLeftItem> _pageIcons;
         private Page _selectedPage;
 
         public BasePage()
@@ -18,29 +19,23 @@ namespace voltaire.Pages.Base
             InitializeComponent();
 
         }
-        public class MenuItem : BaseModel
-        {
-            public bool IsSelected { get; set; }
-            public string Title { get; set; }
-            public string IconSource { get; set; }
-        }
 
         protected void SetMenu(StackLayout view, int selectedIndex)
         {
             if (_pageIcons != null && _pageIcons.Any()) return;
 
-            _pageIcons = new List<MenuItem>
+            _pageIcons = new List<MenuLeftItem>
             {
-                new MenuItem {Title = "", IsSelected = false, IconSource = "home"},
-                new MenuItem {Title = "", IsSelected = false, IconSource = "contact"},
-                new MenuItem {Title = "", IsSelected = false, IconSource = "map"},
-                new MenuItem {Title = "", IsSelected = false, IconSource = "todo"},
-                new MenuItem {Title = "", IsSelected = false, IconSource = "agenda"},
-                new MenuItem {Title = "", IsSelected = false, IconSource = "report"},
-                new MenuItem {Title = "", IsSelected = false, IconSource = "quotation"},
-                new MenuItem {Title = "", IsSelected = false, IconSource = "contract"},
-                new MenuItem {Title = "", IsSelected = false, IconSource = "goals"},
-                new MenuItem {Title = "", IsSelected = false, IconSource = "podiums"},
+                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "home"},
+                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "contact"},
+                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "map"},
+                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "todo"},
+                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "agenda"},
+                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "report"},
+                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "quotation"},
+                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "contract"},
+                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "goals"},
+                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "podiums"},
             };
             _pageIcons[selectedIndex].IsSelected = true;
             _selectedMenuItem = _pageIcons[selectedIndex];
@@ -49,7 +44,7 @@ namespace voltaire.Pages.Base
             {
                 var cell = new LeftMenuItem();
                 cell.BindingContext = item;
-                //cell.ItemClicked += ItemClicked;
+                cell.ItemClicked += ItemClicked;
                 view.Children.Add(cell);
             }
         }
@@ -109,7 +104,7 @@ namespace voltaire.Pages.Base
             }
         }
 
-        private void ItemClicked(object sender, MenuItem menuItem)
+        private void ItemClicked(object sender, MenuLeftItem menuItem)
         {
             if (_selectedMenuItem != menuItem)
             {

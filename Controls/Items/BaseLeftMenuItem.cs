@@ -1,11 +1,12 @@
 ﻿using System;
+using voltaire.Models;
 using Xamarin.Forms;
 
 namespace voltaire.Controls.Items
 {
     public class BaseLeftMenuItem : ContentView, ILeftMenuItem
     {
-        public event EventHandler<MenuItem> ItemClicked;
+        public event EventHandler<MenuLeftItem> ItemClicked;
 
         public void AddTapHandler(Layout layout)
         {
@@ -13,7 +14,7 @@ namespace voltaire.Controls.Items
             {
                 Command = new Command(() =>
                 {
-                    ItemClicked?.Invoke(this, (MenuItem)BindingContext);
+                    ItemClicked?.Invoke(this, (MenuLeftItem)BindingContext);
                 })
             };
             layout.GestureRecognizers.Add(tapGestureRecognizer);

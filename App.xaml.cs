@@ -15,7 +15,10 @@ namespace voltaire
         {
             InitializeComponent();
 
-            MainPage = FreshPageModelResolver.ResolvePageModel<ContactsPageModel>();
+            var homePage = FreshPageModelResolver.ResolvePageModel<HomePageModel>();
+            var homeContainer = new FreshNavigationContainer(homePage);
+            MainPage = homeContainer;
+
         }
 
         protected override void OnStart()

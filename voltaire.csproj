@@ -108,6 +108,8 @@
     <Compile Include="Converters\StringNullableToBooleanConverter.cs" />
     <Compile Include="Converters\DateNullableToBooleanConverter.cs" />
     <Compile Include="Helpers\AttachedProperties\TappedGestureAttached.cs" />
+    <Compile Include="Renderers\CustomScrollView.cs" />
+    <Compile Include="Models\MenuLeftItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
