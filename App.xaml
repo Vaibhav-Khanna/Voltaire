@@ -22,7 +22,8 @@
         <Color x:Key="GreyPlaceholder">#b3b3b3</Color>
         <Color x:Key="White">#f0f0f0</Color>
         <Color x:Key="BlueKeyList">#aad0d6</Color> 
-        <Color x:Key="MaroonReset">#595959</Color>    
+        <Color x:Key="MaroonReset">#595959</Color>
+        <Color x:Key="MaroonBlack">#333333</Color>    
             
        <!-- LOGIN PAGE -->
         <Style x:Key="EntryLogin" TargetType="Entry">

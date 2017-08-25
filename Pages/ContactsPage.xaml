@@ -92,8 +92,6 @@
                                             </StackLayout>
     
                 </Frame>
-             
-
             </StackLayout>
 
             <ListView                  x:Name="ListViewLayout"

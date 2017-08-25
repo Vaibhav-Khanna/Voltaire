@@ -1,10 +1,10 @@
 ﻿using System;
-using Xamarin.Forms;
+using voltaire.Models;
 
 namespace voltaire.Controls.Items
 {
     public interface ILeftMenuItem
     {
-        event EventHandler<MenuItem> ItemClicked;
+        event EventHandler<MenuLeftItem> ItemClicked;
     }
 }
