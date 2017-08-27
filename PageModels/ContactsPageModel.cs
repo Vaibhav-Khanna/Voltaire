@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using FreshMvvm;
 using voltaire.Helpers.Collections;
 using voltaire.Models;
 using voltaire.PageModels.Base;
@@ -50,7 +51,7 @@ namespace voltaire.PageModels
 
         public ContactsPageModel()
         {
-
+			
         }
 
         private void FiltersLayoutAppearing()
@@ -74,6 +75,8 @@ namespace voltaire.PageModels
         //INIT data form page  freshmvvm
         public override void Init(object initData)
         {
+                  
+
             customers = new ObservableCollection<Customer>
             {
                 new Customer {
@@ -184,7 +187,7 @@ namespace voltaire.PageModels
             else CustomersCount = customers.Count + " Contact";
 
 
-            var models = customers.Select(i => new CustomerModel(i)).ToList();
+            var models = customers.Select(i => new CustomerModel(i){ navigation = CoreMethods }).ToList();
 
             var groupedData =
                 models.OrderBy(p => p.Customer.LastName)

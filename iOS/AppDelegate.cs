@@ -8,6 +8,7 @@ using Foundation;
 using UIKit;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
+using CarouselView.FormsPlugin.iOS;
 
 namespace voltaire.iOS
 {
@@ -17,6 +18,7 @@ namespace voltaire.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            CarouselViewRenderer.Init();
 
             // Code for starting up the Xamarin Test Cloud Agent
 #if DEBUG

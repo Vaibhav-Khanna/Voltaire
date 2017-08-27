@@ -16,7 +16,7 @@ namespace voltaire.Pages
         {
             base.OnAppearing();
             SetMenu(MenuLayout, 1);
-
+           
         }
 
     }

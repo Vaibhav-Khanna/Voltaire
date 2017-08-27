@@ -91,4 +91,23 @@
 	<data name="Filters" xml:space="preserve">
         <value>Filtres</value>
     </data>
+	<!-- CONTACTS DETAIL PAGE -->
+	<data name = "Modify" xml:space = "preserve">
+        <value>Modify</value>
+	</data>	
+	<data name = "ContactDetails" xml:space = "preserve">
+        <value>Contact Details</value>
+	</data>
+	<data name = "Reminder" xml:space = "preserve">
+        <value>Reminders &amp; notes</value>
+	</data>
+	<data name = "Map" xml:space = "preserve">
+        <value>Map</value>
+	</data>
+	<data name = "Quotations" xml:space = "preserve">
+        <value>Quotations</value>
+	</data>
+	<data name = "Contracts" xml:space = "preserve">
+        <value>Contracts</value>
+	</data>
 </root>
