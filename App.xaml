@@ -24,7 +24,8 @@
         <Color x:Key="BlueKeyList">#aad0d6</Color> 
         <Color x:Key="Squash">#edb00d</Color>
         <Color x:Key="MaroonReset">#595959</Color>
-        <Color x:Key="MaroonBlack">#333333</Color>    
+        <Color x:Key="MaroonBlack">#333333</Color>   
+        <Color x:Key="Vermillion">#eb1010</Color>
             
        <!-- LOGIN PAGE -->
         <Style x:Key="EntryLogin" TargetType="Entry">

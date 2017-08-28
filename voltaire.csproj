@@ -117,6 +117,12 @@
     <Compile Include="Pages\Base\BaseViewPagerPage.cs" />
     <Compile Include="Renderers\CustomScrollView.cs" />
     <Compile Include="Models\MenuLeftItem.cs" />
+    <Compile Include="Pages\ContactDetailTabPage.cs" />
+    <Compile Include="Renderers\RoundedBoxview.cs" />
+    <Compile Include="Controls\WeightScale.cs" />
+    <Compile Include="Controls\CustomLabelEntry.cs" />
+    <Compile Include="Renderers\BorderlessEntry.cs" />
+    <Compile Include="Converters\DateToStringConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
@@ -170,6 +176,7 @@
     <Folder Include="Helpers\Collections\" />
     <Folder Include="Helpers\AttachedProperties\" />
     <Folder Include="TemplateSelectors\" />
+    <Folder Include="Effects\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

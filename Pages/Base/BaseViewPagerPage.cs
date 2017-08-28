@@ -13,8 +13,6 @@ namespace voltaire.Pages.Base
 
         public IPageModelCoreMethods NavigationService;      //  Navigation service
 
-        public object PageBindingContext { get; set; }   /// Binding context for the tab page and all sub views
-
 
         public BaseViewPagerPage()
         {
@@ -47,6 +45,13 @@ namespace voltaire.Pages.Base
                             BindingContextSet();
 							break;
 						}
+                    case "ContactDetailTabPage":
+                        {
+                            context.ViewBindingContext = Context.Parent;
+                            BindingContext = Context.Parent;
+							BindingContextSet();
+                            break;
+                        }
 				}
             }
               		
@@ -57,20 +62,30 @@ namespace voltaire.Pages.Base
             
         }
 
-        public void MoveNext()
+        public bool MoveToNextTab()
         {
             var page = Context.Parent as ContactDetailPageModel;
+
+            if (page == null)
+                return false;
 
             if( page.SelectedIndex+1 < page.Tab.Count)
             page.SelectedIndex = 1;
+
+            return true;
         }
 
-        public void MoveBack()
+        public bool MoveToBackTab()
         {
             var page = Context.Parent as ContactDetailPageModel;
 
+            if (page == null)
+                return false;
+
 			if (page.SelectedIndex > 0)
 				page.SelectedIndex -= 1;
+
+            return true;
         }
 
     }

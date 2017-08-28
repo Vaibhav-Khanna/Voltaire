@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace voltaire.Models
 {
@@ -19,9 +20,13 @@ namespace voltaire.Models
 
         public string Email { get; set; }
 
-        public int? Weight { get; set; }
+        public int? Weight { get; set; } 
 
         public string Grade { get; set; }
+
+        public string Website { get; set; }
+
+        public List<string> Tags { get; set; }
 
         public Nullable<DateTime> LastVisit { get; set; }
 

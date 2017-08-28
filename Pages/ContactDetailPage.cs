@@ -68,7 +68,7 @@ namespace voltaire.Pages
 
             tabslider = new TTabSlider(){ HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.Start };
             tabslider.SetBinding(TTabSlider.TabsProperty,"Tab");
-			tabslider.SetBinding(TTabSlider.SelectedIndexProperty,"SelectedIndex");
+            tabslider.SetBinding(TTabSlider.SelectedIndexProperty,"SelectedIndex",BindingMode.TwoWay);
 
 
             viewpager = new CarouselViewControl()
@@ -84,9 +84,8 @@ namespace voltaire.Pages
             };
             viewpager.SetBinding(CarouselViewControl.ItemsSourceProperty,"Tab");
             viewpager.SetBinding(CarouselViewControl.ItemTemplateProperty,"ItemTemplates");
-            viewpager.SetDynamicResource(CarouselViewControl.PositionProperty,"SelectedIndex");
+            viewpager.SetBinding(CarouselViewControl.PositionProperty,"SelectedIndex", BindingMode.TwoWay );
     
-
 			tabslider.SelectedIndexChanged += () => 
             {
                 viewpager.Position = tabslider.Selected_Index;

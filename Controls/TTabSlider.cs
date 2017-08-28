@@ -5,6 +5,7 @@ using voltaire.Controls.Items;
 using Xamarin.Forms;
 using System.Collections;
 using System.Collections.Specialized;
+using voltaire.Renderers;
 
 namespace voltaire.Controls
 {
@@ -50,7 +51,7 @@ namespace voltaire.Controls
         }
 
         StackLayout Container;
-        ScrollView scrollview;
+        CustomScrollView scrollview;
         BoxView slider;
         TapGestureRecognizer tap_tabgesture = new TapGestureRecognizer();   // tab tap gesture handler
 
@@ -94,7 +95,7 @@ namespace voltaire.Controls
             var main_Container = new StackLayout { Orientation = StackOrientation.Vertical, Spacing = 4, HorizontalOptions = LayoutOptions.FillAndExpand,
                 VerticalOptions = LayoutOptions.Start, Children = { Container,slider }, Padding = 0, Margin = 0 };
 
-            scrollview = new ScrollView { Orientation = ScrollOrientation.Horizontal, BackgroundColor = (Color)Application.Current.Resources["turquoiseBlue"],  Content = main_Container, HorizontalOptions = LayoutOptions.FillAndExpand,
+            scrollview = new CustomScrollView { Orientation = ScrollOrientation.Horizontal, BackgroundColor = (Color)Application.Current.Resources["turquoiseBlue"],  Content = main_Container, HorizontalOptions = LayoutOptions.FillAndExpand,
                 Padding = 0, Margin = 0 };
 
             Content = scrollview;

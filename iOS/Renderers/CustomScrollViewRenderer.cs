@@ -34,6 +34,7 @@ namespace voltaire.iOS.Renderers
         {
 
             this.ShowsVerticalScrollIndicator = false;
+            this.ShowsHorizontalScrollIndicator = false;
         }
     }
 }
