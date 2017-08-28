@@ -1,12 +1,15 @@
 ﻿using voltaire.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using FreshMvvm;
+using voltaire.PageModels;
 
 namespace voltaire.Controls.Cells
 {
 
     public partial class ContactCell
     {
+       
         public ContactCell()
         {
             InitializeComponent();
@@ -28,5 +31,20 @@ namespace voltaire.Controls.Cells
                 };
             }
         }
+
+        protected override void OnTapped()
+        {
+            base.OnTapped();
+
+            var model = (CustomerModel)BindingContext;
+
+            model.navigation.PushPageModel<ContactDetailPageModel>(model.Customer);
+
+            var parent = this.Parent as ListView;
+            parent.SelectedItem = null;
+        }
+           
+        
+
     }
 }

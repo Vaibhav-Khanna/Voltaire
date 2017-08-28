@@ -1,11 +1,14 @@
 ﻿using System.Text.RegularExpressions;
-
+using FreshMvvm;
 
 namespace voltaire.Models
 {
     public class CustomerModel : BaseModel
     {
         public Customer Customer { get; set; }
+
+        public IPageModelCoreMethods navigation { get; set; }
+
         public string Name => $"{Customer.FirstName} {Customer.LastName}";
 
         public string NameSort
