@@ -26,6 +26,7 @@ namespace voltaire.Droid
 		
 		public static void UpdateIdValues()
 		{
+<<<<<<< HEAD
 			global::CarouselView.FormsPlugin.Android.Resource.Animation.abc_fade_in = global::voltaire.Droid.Resource.Animation.abc_fade_in;
 			global::CarouselView.FormsPlugin.Android.Resource.Animation.abc_fade_out = global::voltaire.Droid.Resource.Animation.abc_fade_out;
 			global::CarouselView.FormsPlugin.Android.Resource.Animation.abc_grow_fade_in_from_bottom = global::voltaire.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
@@ -1706,6 +1707,8 @@ namespace voltaire.Droid
 			global::CarouselView.FormsPlugin.Android.Resource.Styleable.ViewStubCompat_android_id = global::voltaire.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::CarouselView.FormsPlugin.Android.Resource.Styleable.ViewStubCompat_android_inflatedId = global::voltaire.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::CarouselView.FormsPlugin.Android.Resource.Styleable.ViewStubCompat_android_layout = global::voltaire.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+=======
+>>>>>>> development
 			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_dialog_actioned_on_disabled_toast = global::voltaire.Droid.Resource.String.mobile_center_distribute_dialog_actioned_on_disabled_toast;
 			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_download_progress_number_format = global::voltaire.Droid.Resource.String.mobile_center_distribute_download_progress_number_format;
 			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_downloading_mandatory_update = global::voltaire.Droid.Resource.String.mobile_center_distribute_downloading_mandatory_update;

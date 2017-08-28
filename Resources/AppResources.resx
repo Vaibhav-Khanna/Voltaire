@@ -60,26 +60,26 @@
 	</resheader>
 	<!-- LOGIN PAGE -->
 	<data name="Username" xml:space="preserve">
-        <value>Identifiant</value>
+        <value>Username</value>
     </data>
 	<data name="Password" xml:space="preserve">
-        <value>Mot de passe</value>
+        <value>Password</value>
     </data>
 	<data name="Login" xml:space="preserve">
-        <value>Se connecter</value>
+        <value>Connect</value>
     </data>
 	<!-- HOME PAGE -->
 	<data name="Dashboard" xml:space="preserve">
         <value>Dashboard</value>
     </data>
 	<data name="Goals" xml:space="preserve">
-        <value>Objectifs</value>
+        <value>Goals</value>
     </data>
 	<data name="TopSalesman" xml:space="preserve">
-        <value>Top Vendeurs</value>
+        <value>Top Salesman</value>
     </data>
 	<data name="Sales" xml:space="preserve">
-        <value>Ventes :</value>
+        <value>Sales :</value>
     </data>
 	<data name="CheckIn" xml:space="preserve">
         <value>Check-In :</value>
@@ -89,7 +89,7 @@
         <value>Contacts</value>
     </data>
 	<data name="Filters" xml:space="preserve">
-        <value>Filtres</value>
+        <value>Filters</value>
     </data>
 	<!-- CONTACTS DETAIL PAGE -->
 	<data name = "Modify" xml:space = "preserve">

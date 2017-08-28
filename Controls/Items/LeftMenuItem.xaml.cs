@@ -1,4 +1,5 @@
-﻿namespace voltaire.Controls.Items
+﻿using Xamarin.Forms.Xaml;
+namespace voltaire.Controls.Items
 {
     public partial class LeftMenuItem
     {
