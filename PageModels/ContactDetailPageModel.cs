@@ -38,6 +38,85 @@ namespace voltaire.PageModels
             }
         }
 
+        private int? weight;
+
+		public int? Weight
+		{
+            get { return weight; }
+			set
+			{
+                weight = value;
+                customer.Weight = weight;
+				RaisePropertyChanged();
+			}
+		}
+
+        private DateTime? lastvisit;
+
+        public DateTime? LastVisit
+		{
+			get { return lastvisit; }
+			set
+			{
+				lastvisit = value;
+                customer.LastVisit = lastvisit;
+				RaisePropertyChanged();
+			}
+		}
+
+
+        private string email;
+
+        public string Email
+		{
+            get { return email; }
+			set
+			{
+                email = value;
+                customer.Email = email;
+				RaisePropertyChanged();
+			}
+		}
+
+		private string website;
+
+		public string Website
+		{
+            get { return website; }
+			set
+			{
+                website = value;
+                customer.Website = website;
+				RaisePropertyChanged();
+			}
+		}
+
+		private string address;
+
+		public string Address
+		{
+            get { return address; }
+			set
+			{
+                address = value;
+                customer.Address = address;
+				RaisePropertyChanged();
+			}
+		}
+
+		private string phone;
+
+		public string Phone
+		{
+            get { return phone; }
+			set
+			{
+                phone = value;
+                customer.Phone = phone;
+				RaisePropertyChanged();
+			}
+		}
+
         private int selectedindex = 0;
 
         public int SelectedIndex 
@@ -46,7 +125,7 @@ namespace voltaire.PageModels
             set
             {
                 selectedindex = value;
-                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(SelectedIndex));
             }
         }
 
@@ -70,10 +149,23 @@ namespace voltaire.PageModels
                 _customer = value;
               
                 title = $"{customer.FirstName} {customer.LastName}";
+              
+                weight = customer.Weight;
+                email = customer.Email;
+                address = customer.Address;
+                phone = customer.Phone;
+                website = customer.Website;
+                lastvisit = customer.LastVisit;
 
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(Title));
+                RaisePropertyChanged(nameof(Weight));
+                RaisePropertyChanged(nameof(Email));
+                RaisePropertyChanged(nameof(Website));
+                RaisePropertyChanged(nameof(Address));
+                RaisePropertyChanged(nameof(LastVisit));
             } 
+
         }
 
         public ContactDetailPageModel()
@@ -103,7 +195,7 @@ namespace voltaire.PageModels
 
             ObservableCollection<TTab> pages = new ObservableCollection<TTab>();
 
-            pages.Add(new TTab(this) { Name = AppResources.ContactDetails, View = typeof(Pages.MapTabPage) });
+            pages.Add(new TTab(this) { Name = AppResources.ContactDetails, View = typeof(Pages.ContactDetailTabPage) });
             pages.Add(new TTab(this) { Name = AppResources.Reminder, View = typeof(Pages.MapTabPage)  });
             pages.Add(new TTab(this) { Name = AppResources.Map, View = typeof(Pages.MapTabPage) });
             pages.Add(new TTab(this) { Name = AppResources.Quotations, View = typeof(Pages.MapTabPage) });

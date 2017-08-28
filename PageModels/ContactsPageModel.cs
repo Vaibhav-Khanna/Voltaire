@@ -83,7 +83,11 @@ namespace voltaire.PageModels
                     FirstName= "Bill",
                     LastName="Anderson",
                     Grade="Pro",
-                    Weight=5,
+                    Weight= 4,
+                    Email = "vaibhav@gmail.com",
+                    Address = "Jammu and Kashmir",
+                    Phone = "8872892265",
+                    Website = "www.matisya.com",
                     LastVisit=new DateTime(2017, 6, 3)
                 },
                 new Customer {

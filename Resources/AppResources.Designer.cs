@@ -142,5 +142,35 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("Contracts", resourceCulture);
             }
         }
+        
+        internal static string LastVisit {
+            get {
+                return ResourceManager.GetString("LastVisit", resourceCulture);
+            }
+        }
+        
+        internal static string Weight {
+            get {
+                return ResourceManager.GetString("Weight", resourceCulture);
+            }
+        }
+        
+        internal static string ParentPartner {
+            get {
+                return ResourceManager.GetString("ParentPartner", resourceCulture);
+            }
+        }
+        
+        internal static string Tags {
+            get {
+                return ResourceManager.GetString("Tags", resourceCulture);
+            }
+        }
+        
+        internal static string addtags {
+            get {
+                return ResourceManager.GetString("addtags", resourceCulture);
+            }
+        }
     }
 }
