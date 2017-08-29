@@ -1,5 +1,6 @@
 ﻿using System;
 using voltaire.Controls;
+using voltaire.Controls.Items;
 using voltaire.Converters;
 using voltaire.PageModels;
 using voltaire.Pages.Base;
@@ -12,6 +13,8 @@ namespace voltaire.Pages
     public class ContactDetailTabPage : BaseViewPagerPage
     {
 
+        StackLayout topcontainer;
+
         public ContactDetailTabPage()
         {
             InitLayout();
@@ -21,7 +24,7 @@ namespace voltaire.Pages
         void InitLayout()
         {
 
-            var topcontainer = new StackLayout     //  Contains top horizontal children
+             topcontainer = new StackLayout     //  Contains top horizontal children
             {
                 Orientation = StackOrientation.Horizontal,
                 VerticalOptions = LayoutOptions.Start,
@@ -57,7 +60,6 @@ namespace voltaire.Pages
                 WidthRequest = 190,
                 HeightRequest = 50
             };
-            Bt_CheckIn.SetBinding(Button.IsEnabledProperty,"CanEdit");
             Bt_CheckIn.Clicked += (sender, e) =>
             {
                 var context = BindingContext as ContactDetailPageModel;
@@ -142,7 +144,6 @@ namespace voltaire.Pages
                 HorizontalOptions = LayoutOptions.StartAndExpand,
                 VerticalOptions = LayoutOptions.StartAndExpand
             };
-            bt_addtags.SetBinding(Button.IsEnabledProperty, "CanEdit");
 
             grid.Children.Add(lb_company,0,1);
             grid.Children.Add(lb_phone, 0, 2);
@@ -171,9 +172,34 @@ namespace voltaire.Pages
 
         }
 
-        protected override void BindingContextSet()
+        protected override void BindingContextSet()   // Check if its editing page, Then do some modifications
         {
             base.BindingContextSet();
+
+            var context = BindingContext as TTab;
+
+            if (context == null)
+                return;
+
+            var main_context = context.ViewBindingContext as ContactDetailPageModel;
+
+            if(main_context!= null && main_context.CanEdit)   //  Add some extra fields for editing below
+            {
+                topcontainer.Children.Clear();
+
+                var lb_firstName = new CustomLabelEntry("First Name", true) { Keyboard = Keyboard.Text,HorizontalOptions = LayoutOptions.FillAndExpand };
+                lb_firstName.SetBinding(CustomLabelEntry.TextProperty, "FirstName", BindingMode.TwoWay);
+                lb_firstName.SetBinding(VisualElement.IsEnabledProperty, "CanEdit");
+                var lb_lastName = new CustomLabelEntry("Last Name", true) { Keyboard = Keyboard.Text,HorizontalOptions = LayoutOptions.FillAndExpand };
+				lb_lastName.SetBinding(CustomLabelEntry.TextProperty, "LastName", BindingMode.TwoWay);
+				lb_lastName.SetBinding(VisualElement.IsEnabledProperty, "CanEdit");
+
+                topcontainer.Margin = new Thickness(0, 70, 0, 20);
+                topcontainer.BackgroundColor = Color.White;
+                topcontainer.Children.Add(lb_firstName);
+                topcontainer.Children.Add(lb_lastName);
+
+            }
 
         }
 

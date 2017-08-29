@@ -131,4 +131,13 @@
 	<data name = "addtags" xml:space = "preserve">
         <value>+ Add tags</value>
     </data>
+	<data name = "Cancel" xml:space = "preserve">
+        <value>Cancel</value>
+    </data>
+	<data name = "Back" xml:space = "preserve">
+        <value>Back</value>
+    </data>
+	<data name = "Update" xml:space = "preserve">
+        <value>Update customer</value>
+    </data>
 </root>
