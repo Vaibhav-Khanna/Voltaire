@@ -19,6 +19,7 @@ namespace voltaire.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             CarouselViewRenderer.Init();
+            Xamarin.FormsGoogleMaps.Init("AIzaSyBAkwMnIRpuTLMTdXgF6-CuYsiYOSFpSpA");
 
             // Code for starting up the Xamarin Test Cloud Agent
 #if DEBUG

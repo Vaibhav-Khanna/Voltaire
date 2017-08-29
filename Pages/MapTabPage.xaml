@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:BaseViewPagerPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+    x:Class="voltaire.Pages.MapTabPage">
+	<ContentView.Content>
+        <maps:Map x:Name="map"
+                      VerticalOptions="FillAndExpand" />
+	</ContentView.Content>
+</base:BaseViewPagerPage>

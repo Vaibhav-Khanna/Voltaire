@@ -286,10 +286,10 @@ namespace voltaire.PageModels
             ObservableCollection<TTab> pages = new ObservableCollection<TTab>();
 
             pages.Add(new TTab(this) { Name = AppResources.ContactDetails, View = typeof(Pages.ContactDetailTabPage) });
-            pages.Add(new TTab(this) { Name = AppResources.Reminder, View = typeof(Pages.MapTabPage)  });
+            pages.Add(new TTab(this) { Name = AppResources.Reminder, View = typeof(ContentView)  });
             pages.Add(new TTab(this) { Name = AppResources.Map, View = typeof(Pages.MapTabPage) });
-            pages.Add(new TTab(this) { Name = AppResources.Quotations, View = typeof(Pages.MapTabPage) });
-            pages.Add(new TTab(this) { Name = AppResources.Contracts , View = typeof(Pages.MapTabPage)  });           
+            pages.Add(new TTab(this) { Name = AppResources.Quotations, View = typeof(ContentView) });
+            pages.Add(new TTab(this) { Name = AppResources.Contracts , View = typeof(ContentView)  });           
 
             var selector = new ViewPagerTemplateSelector();
 

@@ -128,7 +128,7 @@ namespace voltaire.Controls
                 new_selected.TextColor = Color.White;
                 scrollview.ScrollToAsync(new_selected,ScrollToPosition.Center,true);
                 slider.WidthRequest = new_selected.Width;
-                slider.TranslationX = Container.X + new_selected.X;
+                slider.TranslateTo(Container.X + new_selected.X, 0);
             }
         }
 
