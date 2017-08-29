@@ -35,13 +35,13 @@ namespace voltaire.Pages
 
             var R_toolbaritem = new Label
             {
-                Text = AppResources.Modify,
                 TextColor = Color.White,
                 FontFamily = "Raleway-Regular",
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
             };
             tap_toolbar.SetBinding(TapGestureRecognizer.CommandProperty, "tap_Toolbar");
+            R_toolbaritem.SetBinding(Label.TextProperty,"ToolbarButton");
             R_toolbaritem.GestureRecognizers.Add(tap_toolbar);
 
 

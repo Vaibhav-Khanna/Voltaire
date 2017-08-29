@@ -113,6 +113,12 @@ namespace voltaire.Resources {
             }
         }
         
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
         internal static string ContactDetails {
             get {
                 return ResourceManager.GetString("ContactDetails", resourceCulture);
