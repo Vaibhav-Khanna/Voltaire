@@ -95,6 +95,9 @@
 	<data name = "Modify" xml:space = "preserve">
         <value>Modify</value>
 	</data>	
+	<data name = "Save" xml:space = "preserve">
+        <value>Save</value>
+    </data> 
 	<data name = "ContactDetails" xml:space = "preserve">
         <value>Contact Details</value>
 	</data>
@@ -120,12 +123,21 @@
         <value>Weight</value>
     </data>
 	<data name = "ParentPartner" xml:space = "preserve">
-        <value>Parent Partner    </value>
+        <value>Parent Partner   >  </value>
     </data>
 	<data name = "Tags" xml:space = "preserve">
         <value>Tags</value>
     </data>
 	<data name = "addtags" xml:space = "preserve">
         <value>+ Add tags</value>
+    </data>
+	<data name = "Cancel" xml:space = "preserve">
+        <value>Cancel</value>
+    </data>
+	<data name = "Back" xml:space = "preserve">
+        <value>Back</value>
+    </data>
+	<data name = "Update" xml:space = "preserve">
+        <value>Update customer</value>
     </data>
 </root>

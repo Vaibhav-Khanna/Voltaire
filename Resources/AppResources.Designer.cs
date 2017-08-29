@@ -113,6 +113,12 @@ namespace voltaire.Resources {
             }
         }
         
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
         internal static string ContactDetails {
             get {
                 return ResourceManager.GetString("ContactDetails", resourceCulture);
@@ -170,6 +176,24 @@ namespace voltaire.Resources {
         internal static string addtags {
             get {
                 return ResourceManager.GetString("addtags", resourceCulture);
+            }
+        }
+        
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        internal static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        internal static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
             }
         }
     }

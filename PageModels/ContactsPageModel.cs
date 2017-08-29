@@ -83,6 +83,7 @@ namespace voltaire.PageModels
                     FirstName= "Bill",
                     LastName="Anderson",
                     Grade="Pro",
+                    Company = "Matsiya IT",
                     Weight= 4,
                     Email = "vaibhav@gmail.com",
                     Address = "Jammu and Kashmir",
