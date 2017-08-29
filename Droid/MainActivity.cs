@@ -24,6 +24,9 @@ namespace voltaire.Droid
 
             base.OnCreate(bundle);
 
+            CarouselView.FormsPlugin.Android.CarouselViewRenderer.Init();
+            Xamarin.FormsGoogleMaps.Init(this,bundle);
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
 #if DEBUG
 #else
