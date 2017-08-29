@@ -43,15 +43,13 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Raleway-Bold.ttf</string>
-		<string>Raleway-Heavy.ttf</string>
-		<string>Raleway-Medium.ttf</string>
-		<string>Raleway-Regular.ttf</string>
-		<string>Raleway-SemiBold.ttf</string>
-		<string>SFNSDisplay.ttf</string>
-		<string>SFNS-SemiBold.ttf</string>
-		<string>SFUIText-Bold.otf</string>
-		<string>SFUIText-Regular.otf</string>
+		<string>Fonts/Raleway-Bold.ttf</string>
+		<string>Fonts/Raleway-Heavy.ttf</string>
+		<string>Fonts/Raleway-Medium.ttf</string>
+		<string>Fonts/Raleway-Regular.ttf</string>
+		<string>Fonts/Raleway-SemiBold.ttf</string>
+		<string>Fonts/SanFranciscoDisplay-Light.otf</string>
+		<string>Fonts/SanFranciscoDisplay-Semibold.otf</string>
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>

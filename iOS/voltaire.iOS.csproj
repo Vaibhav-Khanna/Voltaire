@@ -141,6 +141,7 @@
     <Folder Include="Resources\" />
     <Folder Include="Renderers\" />
     <Folder Include="Effects\" />
+    <Folder Include="Resources\Fonts\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -149,15 +150,6 @@
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
-    <None Include="Fonts\Raleway-Bold.ttf" />
-    <None Include="Fonts\Raleway-Heavy.ttf" />
-    <None Include="Fonts\Raleway-Medium.ttf" />
-    <None Include="Fonts\Raleway-Regular.ttf" />
-    <None Include="Fonts\Raleway-SemiBold.ttf" />
-    <None Include="Fonts\SFNS-Semibold.ttf" />
-    <None Include="Fonts\SFNSDisplay.ttf" />
-    <None Include="Fonts\SFUIText-Bold.otf" />
-    <None Include="Fonts\SFUIText-Regular.otf" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -264,6 +256,13 @@
     <BundleResource Include="Resources\email.png" />
     <BundleResource Include="Resources\email%402x.png" />
     <BundleResource Include="Resources\email%403x.png" />
+    <BundleResource Include="Resources\Fonts\Raleway-Heavy.ttf" />
+    <BundleResource Include="Resources\Fonts\Raleway-Medium.ttf" />
+    <BundleResource Include="Resources\Fonts\Raleway-Regular.ttf" />
+    <BundleResource Include="Resources\Fonts\Raleway-SemiBold.ttf" />
+    <BundleResource Include="Resources\Fonts\Raleway-Bold.ttf" />
+    <BundleResource Include="Resources\Fonts\SanFranciscoDisplay-Light.otf" />
+    <BundleResource Include="Resources\Fonts\SanFranciscoDisplay-Semibold.otf" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
