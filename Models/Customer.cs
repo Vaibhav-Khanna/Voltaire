@@ -34,7 +34,7 @@ namespace voltaire.Models
 
         public bool CanEdit { get; set; } = false;
 
-		
+        public List<CustomerAddressLocation> CustomerAddresses { get; set; }
 
     }
 

@@ -7,6 +7,7 @@
     x:Class="voltaire.Pages.MapTabPage">
 	<ContentView.Content>
         <maps:Map x:Name="map"
-                      VerticalOptions="FillAndExpand" />
+                      VerticalOptions="FillAndExpand" HorizontalOptions = "FillAndExpand" HasZoomEnabled = "true"
+         MyLocationEnabled = "true" />
 	</ContentView.Content>
 </base:BaseViewPagerPage>

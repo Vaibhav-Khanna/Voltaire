@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -75,7 +76,7 @@ namespace voltaire.PageModels
         //INIT data form page  freshmvvm
         public override void Init(object initData)
         {
-                  
+
 
             customers = new ObservableCollection<Customer>
             {
@@ -89,7 +90,20 @@ namespace voltaire.PageModels
                     Address = "Jammu and Kashmir",
                     Phone = "8872892265",
                     Website = "www.matisya.com",
-                    LastVisit=new DateTime(2017, 6, 3)
+                    LastVisit=new DateTime(2017, 6, 3),
+                    CustomerAddresses = new List<CustomerAddressLocation>(){ new CustomerAddressLocation()
+                        {
+                            Address = "8 c Beauty Avenue, Phase 1, Amritsar, Punjab, 143001",
+                            Title = "Matsiya",
+                            Latitude = 31.655,
+                            Longitude = 74.879,
+                        }, new CustomerAddressLocation()
+                        {
+                            Address = "Metro Cash and carry",
+                            Title = "Metro",
+                            Latitude = 31.669,
+                            Longitude = 74.882
+                        } }
                 },
                 new Customer {
                     FirstName= "Milton",

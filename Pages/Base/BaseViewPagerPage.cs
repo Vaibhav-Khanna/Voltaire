@@ -40,7 +40,9 @@ namespace voltaire.Pages.Base
 				{
 					case "MapTabPage":
 						{
-							context.ViewBindingContext = new MapPageModel();
+                            var mapspage = new MapPageModel();
+                            mapspage.Init(context.Customer);
+                            context.ViewBindingContext = mapspage;
                             BindingContext = context.ViewBindingContext;
                             BindingContextSet();
 							break;

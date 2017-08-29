@@ -334,10 +334,10 @@ namespace voltaire.PageModels
    
             if (!CanEdit)
             {
-                pages.Add(new TTab(this) { Name = AppResources.Reminder, View = typeof(Pages.MapTabPage) });
+                pages.Add(new TTab(this) { Name = AppResources.Reminder, View = typeof(ContentView) });
                 pages.Add(new TTab(this) { Name = AppResources.Map, View = typeof(Pages.MapTabPage) });
-                pages.Add(new TTab(this) { Name = AppResources.Quotations, View = typeof(Pages.MapTabPage) });
-                pages.Add(new TTab(this) { Name = AppResources.Contracts, View = typeof(Pages.MapTabPage) });
+                pages.Add(new TTab(this) { Name = AppResources.Quotations, View = typeof(ContentView) });
+                pages.Add(new TTab(this) { Name = AppResources.Contracts, View = typeof(ContentView) });
             }
 
             var selector = new ViewPagerTemplateSelector();
