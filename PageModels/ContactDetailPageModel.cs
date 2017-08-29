@@ -30,6 +30,8 @@ namespace voltaire.PageModels
             {
                 customer.Address = address;
                 customer.Weight = weight;
+                customer.FirstName = firstname;
+                customer.LastName = lastname;
                 customer.Phone = phone;
                 customer.Website = website;
                 customer.LastVisit = lastvisit;
@@ -80,6 +82,19 @@ namespace voltaire.PageModels
 			}
 		}
 
+		private string backbutton;
+
+		public string BackButton
+		{
+			get { return backbutton; }
+			set
+			{
+				backbutton = value;
+				RaisePropertyChanged();
+			}
+		}
+
+
         private string toolbarbutton;
 
         public string ToolbarButton
@@ -88,6 +103,30 @@ namespace voltaire.PageModels
 			set
 			{
 				toolbarbutton = value;
+				RaisePropertyChanged();
+			}
+		}
+
+        private string firstname;
+
+        public string FirstName
+		{
+			get { return firstname; }
+			set
+			{
+				firstname = value;
+				RaisePropertyChanged();
+			}
+		}
+
+		private string lastname;
+
+		public string LastName
+		{
+            get { return lastname; }
+			set
+			{
+                lastname = value;
 				RaisePropertyChanged();
 			}
 		}
@@ -219,9 +258,9 @@ namespace voltaire.PageModels
             } set
             {
                 _customer = value;
-              
-                title = $"{customer.FirstName} {customer.LastName}";
-              
+
+                firstname = customer.FirstName;
+                lastname = customer.LastName;
                 weight = customer.Weight;
                 email = customer.Email;
                 address = customer.Address;
@@ -229,11 +268,15 @@ namespace voltaire.PageModels
                 website = customer.Website;
                 lastvisit = customer.LastVisit;
                 canedit = customer.CanEdit;
+                title = canedit ? AppResources.Update : $"{customer.FirstName} {customer.LastName}";
                 toolbarbutton = canedit ? AppResources.Save : AppResources.Modify;
+                backbutton = canedit ? AppResources.Cancel : AppResources.Back;
                 companyname = customer.Company;
 
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(Title));
+                RaisePropertyChanged(nameof(FirstName));
+                RaisePropertyChanged(nameof(LastName));
                 RaisePropertyChanged(nameof(Weight));
                 RaisePropertyChanged(nameof(Phone));
                 RaisePropertyChanged(nameof(Email));
@@ -243,6 +286,7 @@ namespace voltaire.PageModels
                 RaisePropertyChanged(nameof(LastVisit));
                 RaisePropertyChanged(nameof(CanEdit));
                 RaisePropertyChanged(nameof(ToolbarButton));
+                RaisePropertyChanged(nameof(BackButton));
             } 
 
         }
@@ -286,10 +330,14 @@ namespace voltaire.PageModels
             ObservableCollection<TTab> pages = new ObservableCollection<TTab>();
 
             pages.Add(new TTab(this) { Name = AppResources.ContactDetails, View = typeof(Pages.ContactDetailTabPage) });
-            pages.Add(new TTab(this) { Name = AppResources.Reminder, View = typeof(Pages.MapTabPage)  });
-            pages.Add(new TTab(this) { Name = AppResources.Map, View = typeof(Pages.MapTabPage) });
-            pages.Add(new TTab(this) { Name = AppResources.Quotations, View = typeof(Pages.MapTabPage) });
-            pages.Add(new TTab(this) { Name = AppResources.Contracts , View = typeof(Pages.MapTabPage)  });           
+
+            if (!CanEdit)
+            {
+                pages.Add(new TTab(this) { Name = AppResources.Reminder, View = typeof(Pages.MapTabPage) });
+                pages.Add(new TTab(this) { Name = AppResources.Map, View = typeof(Pages.MapTabPage) });
+                pages.Add(new TTab(this) { Name = AppResources.Quotations, View = typeof(Pages.MapTabPage) });
+                pages.Add(new TTab(this) { Name = AppResources.Contracts, View = typeof(Pages.MapTabPage) });
+            }
 
             var selector = new ViewPagerTemplateSelector();
 

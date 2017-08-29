@@ -47,13 +47,13 @@ namespace voltaire.Pages
 
 			var L_toolbaritem = new Label
 			{
-				Text = "Back",
 				TextColor = Color.White,
 				FontFamily = "Raleway-Regular",
 				VerticalOptions = LayoutOptions.CenterAndExpand,
 				HorizontalOptions = LayoutOptions.CenterAndExpand,
 			};
 			tap_Pop.SetBinding(TapGestureRecognizer.CommandProperty, "tap_Back");
+            L_toolbaritem.SetBinding(Label.TextProperty, "BackButton");
             L_toolbaritem.GestureRecognizers.Add(tap_Pop);
 
             toolbar = new TToolBar()
@@ -62,6 +62,7 @@ namespace voltaire.Pages
                 HeightRequest = 80,
                 HorizontalOptions = LayoutOptions.FillAndExpand
             };
+
             toolbar.RightToolbarItems.Add(R_toolbaritem);
             toolbar.LeftToolbarItems.Add(L_toolbaritem);
             toolbar.SetBinding(TToolBar.TitleProperty,"Title");
@@ -69,7 +70,6 @@ namespace voltaire.Pages
             tabslider = new TTabSlider(){ HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.Start };
             tabslider.SetBinding(TTabSlider.TabsProperty,"Tab");
             tabslider.SetBinding(TTabSlider.SelectedIndexProperty,"SelectedIndex",BindingMode.TwoWay);
-
 
             viewpager = new CarouselViewControl()
             {
@@ -109,8 +109,30 @@ namespace voltaire.Pages
 
         }
 
+        protected override void OnBindingContextChanged()    // Check if its an editing page, Then do some modifications
+		{
+            base.OnBindingContextChanged();
+
+            var context = BindingContext as ContactDetailPageModel;
+
+            if(context!=null)
+            {
+                if(context.CanEdit)
+                {
+                    tabslider.IsVisible = false;
+                    viewpager.IsSwipingEnabled = false;
+                }
+                else
+                {
+                    tabslider.IsVisible = true; 
+                    viewpager.IsSwipingEnabled = true;
+                }
+            }
+
+        }
+
      
-        protected override void OnAppearing()
+        protected override void OnAppearing()   //  call the OnAppearing method of tabslider
         {
             base.OnAppearing();
             tabslider.ViewHasAppeared();
