@@ -57,6 +57,9 @@
     <EmbeddedResource Include="Pages\MapTabPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\QuotationsTabPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -129,6 +132,11 @@
       <DependentUpon>MapTabPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomerAddressLocation.cs" />
+    <Compile Include="Pages\QuotationsTabPage.xaml.cs">
+      <DependentUpon>QuotationsTabPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Renderers\CustomSearchBar.cs" />
+    <Compile Include="Renderers\BorderlessPicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

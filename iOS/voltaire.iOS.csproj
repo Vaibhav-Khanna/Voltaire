@@ -176,6 +176,8 @@
     <Compile Include="Renderers\CustomScrollViewRenderer.cs" />
     <Compile Include="Renderers\RoundedBoxViewRenderer.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+    <Compile Include="Renderers\CustomSearchBarRenderer.cs" />
+    <Compile Include="Renderers\BorderlessPickerRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.png" />

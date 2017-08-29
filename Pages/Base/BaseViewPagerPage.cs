@@ -54,6 +54,15 @@ namespace voltaire.Pages.Base
 							BindingContextSet();
                             break;
                         }
+                    case"QuotationsTabPage":
+                        {
+                            var quote = new QuotationsPageModel();
+							quote.Init(context.Customer);
+							context.ViewBindingContext = quote;
+                            BindingContext = quote;
+							BindingContextSet();
+                            break;
+                        }
 				}
             }
               		

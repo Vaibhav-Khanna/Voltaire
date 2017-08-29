@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:BaseViewPagerPage  
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
+    xmlns:renderer ="clr-namespace:voltaire.Renderers;assembly=voltaire"
+    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="voltaire.Pages.QuotationsTabPage">
+    <base:BaseViewPagerPage.Content>
+        <StackLayout Orientation = "Vertical" Spacing = "0" >
+       <StackLayout Orientation = "Horizontal" Padding = "10,10,10,10" VerticalOptions = "Start" HorizontalOptions = "FillAndExpand">
+       <renderer:CustomSearchBar x:Name = "search_bar" FontSize = "16" FontFamily = "Raleway-Regular" BackgroundColor = "{StaticResource GreyBack}" PlaceholderColor = "{StaticResource GreyPlaceholder}" Placeholder = "Search                                                  "  WidthRequest = "320" HeightRequest = "50" HorizontalOptions = "Start" VerticalOptions = "Center" HorizontalTextAlignment = "Start" />
+       <Label Text = "{x:Static resources:AppResources.Filters}" TextColor = "{StaticResource GreyPlaceholder}" VerticalOptions = "Center" FontSize = "16" HorizontalOptions = "Start" Margin = "20,0,20,0" />
+       <renderer:BorderlessPicker x:Name = "picker"  ItemsSource = "{Binding FilterTypes}" SelectedIndex = "0" HeightRequest = "35" WidthRequest = "50" TextColor = "Black" VerticalOptions = "Center" HorizontalOptions = "StartAndExpand" />
+            <Button BackgroundColor = "{StaticResource turquoiseBlue}" TextColor = "White" VerticalOptions = "Center" HorizontalOptions = "End" HeightRequest = "35" Text = "  + Add quotation   " FontSize = "12" />
+     </StackLayout>
+            <BoxView Color = "{StaticResource GreyBack}" HeightRequest = "1" HorizontalOptions = "FillAndExpand" />
+            </StackLayout>
+    </base:BaseViewPagerPage.Content>
+</base:BaseViewPagerPage >
