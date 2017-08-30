@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base:BasePage 
+    x:Class="voltaire.Pages.GoalsPage" 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
+    xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire"
+    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire" 
+    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
+    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
+    xmlns:attachedProperties="clr-namespace:voltaire.Helpers.AttachedProperties;assembly=voltaire"
+    >
+    <ContentPage.Behaviors>
+        <behaviors:HideNavigationBehavior />
+    </ContentPage.Behaviors>
+    <Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <!--  Toolbar  -->
+        <controls:TToolBar Title="{x:Static resources:AppResources.Goals}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <controls:TToolBar.LeftToolbarItems>
+                <Entry Placeholder="{x:Static resources:AppResources.SearchSalesman}" Keyboard="Text" HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}"  />
+          </controls:TToolBar.LeftToolbarItems>
+        </controls:TToolBar>
+     <!--  Menu  -->
+        
+            <renderers:CustomScrollView Grid.Row="1" Grid.Column="0" BackgroundColor="{StaticResource MaroonBlack}" >
+            <StackLayout x:Name="MenuLayout" 
+            BackgroundColor="{StaticResource Black}" 
+            HorizontalOptions="StartAndExpand" 
+            Orientation="Vertical" 
+            Spacing="0" 
+            WidthRequest="80" />
+        </renderers:CustomScrollView>   
+           <!--  Main Layout  -->
+
+           <Grid Grid.Row="1" Grid.Column="1" ColumnSpacing="0" RowSpacing="0" Padding="0" BackgroundColor="White" x:Name="GridMainLayout">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+           
+            <!--  Salesmens number  -->
+            <StackLayout   Grid.Row="0"  Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource White}" Padding="0,0,0,0">
+                <Label      Text="{Binding SalesmensCount}"
+                            Margin="-45,0,0,0"   
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource CommonLabelStyle}"
+                            TextColor="{StaticResource GreyishBrown}"
+                            VerticalOptions="Center" />                 
+                    
+            </StackLayout>
+
+            <ListView                  x:Name="ListViewLayout"
+                                       Grid.Row="1" 
+                                       GroupDisplayBinding="{Binding Key}"
+                                       HasUnevenRows="True"
+                                       IsGroupingEnabled="True"
+                                       ItemsSource="{Binding SalesmensItems}">
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="25">
+                            <StackLayout BackgroundColor="{StaticResource BlueKeyList}" VerticalOptions="FillAndExpand">
+                                <Label Margin="10,0,0,0"
+                                       Text="{Binding Key}"
+                                       TextColor="White"
+                                       VerticalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <cells:SalesmanCell />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView> 
+           
+        </Grid>
+    </Grid>
+</base:BasePage>
