@@ -38,6 +38,8 @@ namespace voltaire.Controls.Cells
 
             var model = (CustomerModel)BindingContext;
 
+            model.Customer.CanEdit = false;
+
             model.navigation.PushPageModel<ContactDetailPageModel>(model.Customer);
 
             var parent = this.Parent as ListView;

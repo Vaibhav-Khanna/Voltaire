@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.IO;
 
 namespace voltaire.Models
 {
+    
     public class Customer
     {
         public string FirstName { get; set; }
@@ -29,6 +31,10 @@ namespace voltaire.Models
         public List<string> Tags { get; set; }
 
         public Nullable<DateTime> LastVisit { get; set; }
+
+        public bool CanEdit { get; set; } = false;
+
+        public List<CustomerAddressLocation> CustomerAddresses { get; set; }
 
     }
 

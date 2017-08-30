@@ -3,6 +3,7 @@
 
 
 Droid/Resources/Resource.designer.cs
+Resources/AppResources.Designer.cs
 
 # User-specific files
 *.suo
