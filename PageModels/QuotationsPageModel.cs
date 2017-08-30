@@ -12,6 +12,7 @@ namespace voltaire.PageModels
     {
 
 		Customer customer;
+
 		public Customer Customer
 		{
 			get { return customer; }
@@ -24,12 +25,14 @@ namespace voltaire.PageModels
               
                 filter = 0;
 
+                if(customer.Quotations!=null)
                 foreach (var item in customer.Quotations)
                 {
                     item.BackColor = customer.Quotations.IndexOf(item)%2 == 0 ?  Color.FromRgb(247,247,247) : Color.White;
                 }
 
-				all_items = new ObservableCollection<QuotationsModel>(customer.Quotations);
+
+                all_items = new ObservableCollection<QuotationsModel>(customer.Quotations);
                 quotationsitemsource = all_items;
                    
                 RaisePropertyChanged();
@@ -63,6 +66,11 @@ namespace voltaire.PageModels
             }
         }
 
+        public Command AddQuotation => new Command(async (object NavigationService) =>
+       {
+           await ((FreshMvvm.IPageModelCoreMethods)NavigationService).PushPageModel<QuotationDetailViewPageModel>();
+       });
+
 
         public Command FilterTap => new Command(() =>
        {
@@ -93,8 +101,8 @@ namespace voltaire.PageModels
 
         void SearchResults(string query_string)
         {
-
-           
+            if (all_items.Count == 0)
+                return;
 
             List<QuotationsModel> items = new List<QuotationsModel>();
 
@@ -111,27 +119,27 @@ namespace voltaire.PageModels
             {
                 case 0:
                     {
-                        items = quotationsitemsource.Where((arg) => arg.Name.ToLower().Contains(query_string.ToLower()) || arg.Date.ToString().ToLower().Contains(query_string.ToLower()) || arg.Status.ToString().ToLower().Contains(query_string.ToLower()) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.Contains(query_string) ).ToList();
+                        items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string.ToLower()) || arg.Date.ToString().ToLower().Contains(query_string.ToLower()) || arg.Status.ToString().ToLower().Contains(query_string.ToLower()) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.Contains(query_string) ).ToList();
                         break;
                     }
                 case 1 : 
                     {
-                        items = quotationsitemsource.Where((arg) => arg.Name.ToLower().Contains(query_string.ToLower())).ToList();
+                        items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string.ToLower())).ToList();
                         break;
                     }
                 default:
 					{
-						items = quotationsitemsource.Where((arg) => arg.Name.ToLower().Contains(query_string.ToLower()) || arg.Date.ToString().ToLower().Contains(query_string.ToLower()) || arg.Status.ToString().ToLower().Contains(query_string.ToLower()) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.Contains(query_string)).ToList();
+                        items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string.ToLower()) || arg.Date.ToString().ToLower().Contains(query_string.ToLower()) || arg.Status.ToString().ToLower().Contains(query_string.ToLower()) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.Contains(query_string)).ToList();
 						break; 
                     }
                    
             }
 
-            if(items.Count()!=0)
+            if(items != null)
             { 
                 quotationsitemsource = new ObservableCollection<QuotationsModel>(items);
                 RaisePropertyChanged(nameof(QuotationsItemSource));
-			}
+            }
 
 
         }

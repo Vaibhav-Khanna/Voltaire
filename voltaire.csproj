@@ -60,6 +60,9 @@
     <EmbeddedResource Include="Pages\QuotationsTabPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\QuotationDetailViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -139,6 +142,10 @@
     <Compile Include="Renderers\BorderlessPicker.cs" />
     <Compile Include="Models\QuotationsModel.cs" />
     <Compile Include="Converters\EnumToStringConverter.cs" />
+    <Compile Include="Pages\QuotationDetailViewPage.xaml.cs">
+      <DependentUpon>QuotationDetailViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageModels\QuotationDetailViewPageModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
