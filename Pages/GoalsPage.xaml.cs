@@ -2,9 +2,11 @@
 
 namespace voltaire.Pages
 {
-    public partial class ContactsPage
+    public partial class GoalsPage
     {
-        public ContactsPage()
+
+
+        public GoalsPage()
         {
             NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
@@ -13,7 +15,7 @@ namespace voltaire.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            SetMenu(MenuLayout, 1);
+            SetMenu(MenuLayout, 8);
 
         }
 
