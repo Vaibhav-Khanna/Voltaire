@@ -103,7 +103,13 @@ namespace voltaire.PageModels
                             Title = "Metro",
                             Latitude = 31.669,
                             Longitude = 74.882
-                        } }
+                        } },
+                    Quotations = new List<QuotationsModel>()
+                    {
+                        new QuotationsModel(){ Date = DateTime.Now, Name = "CNM Paris", Ref = "1254342", Status = QuotationStatus.Order , TotalAmount = 4300 },
+                        new QuotationsModel(){ Date = DateTime.Now.AddDays(-90), Name = "TRT World", Ref = "1254342", Status = QuotationStatus.Payed , TotalAmount = 300 },
+                        new QuotationsModel(){ Date = DateTime.Now.AddDays(34), Name = "New York Yankees" , Ref = "1254342", Status = QuotationStatus.Quotation , TotalAmount = 4300 }
+					}
                 },
                 new Customer {
                     FirstName= "Milton",

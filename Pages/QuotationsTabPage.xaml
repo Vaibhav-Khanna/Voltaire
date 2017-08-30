@@ -3,18 +3,68 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
     xmlns:renderer ="clr-namespace:voltaire.Renderers;assembly=voltaire"
+    xmlns:local="clr-namespace:voltaire.Converters;assembly=voltaire"
     xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="voltaire.Pages.QuotationsTabPage">
+    <base:BaseViewPagerPage.Resources>
+         <ResourceDictionary>
+           <local:EnumToStringConverter x:Key="EnumToStringConverter" />
+    </ResourceDictionary>
+    </base:BaseViewPagerPage.Resources>
     <base:BaseViewPagerPage.Content>
         <StackLayout Orientation = "Vertical" Spacing = "0" >
        <StackLayout Orientation = "Horizontal" Padding = "10,10,10,10" VerticalOptions = "Start" HorizontalOptions = "FillAndExpand">
-       <renderer:CustomSearchBar x:Name = "search_bar" FontSize = "16" FontFamily = "Raleway-Regular" BackgroundColor = "{StaticResource GreyBack}" PlaceholderColor = "{StaticResource GreyPlaceholder}" Placeholder = "Search                                                  "  WidthRequest = "320" HeightRequest = "50" HorizontalOptions = "Start" VerticalOptions = "Center" HorizontalTextAlignment = "Start" />
+       <renderer:CustomSearchBar  Text = "{Binding SearchText,Mode = TwoWay }" SearchCommand = "{Binding SearchQuery}" x:Name = "search_bar" FontSize = "16" FontFamily = "Raleway-Regular" BackgroundColor = "{StaticResource GreyBack}" PlaceholderColor = "{StaticResource GreyPlaceholder}" Placeholder = "Search                                                  "  WidthRequest = "320" HeightRequest = "50" HorizontalOptions = "Start" VerticalOptions = "Center" HorizontalTextAlignment = "Start" />
        <Label Text = "{x:Static resources:AppResources.Filters}" TextColor = "{StaticResource GreyPlaceholder}" VerticalOptions = "Center" FontSize = "16" HorizontalOptions = "Start" Margin = "20,0,20,0" />
-       <renderer:BorderlessPicker x:Name = "picker"  ItemsSource = "{Binding FilterTypes}" SelectedIndex = "0" HeightRequest = "35" WidthRequest = "50" TextColor = "Black" VerticalOptions = "Center" HorizontalOptions = "StartAndExpand" />
+       <renderer:BorderlessPicker x:Name = "picker" Title = "Select" SelectedIndex = "{Binding Filter, Mode =TwoWay}"  ItemsSource = "{Binding FilterTypes}"   HeightRequest = "35" WidthRequest = "80" TextColor = "Black" VerticalOptions = "Center" HorizontalOptions = "StartAndExpand" />
             <Button BackgroundColor = "{StaticResource turquoiseBlue}" TextColor = "White" VerticalOptions = "Center" HorizontalOptions = "End" HeightRequest = "35" Text = "  + Add quotation   " FontSize = "12" />
      </StackLayout>
             <BoxView Color = "{StaticResource GreyBack}" HeightRequest = "1" HorizontalOptions = "FillAndExpand" />
+            <Grid HorizontalOptions = "FillAndExpand" VerticalOptions = "Start" Padding = "15,15,15,15" BackgroundColor = "White" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height= "Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+             <ColumnDefinition Width="2*" />
+               <ColumnDefinition Width="2*" />
+               <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+                <Label FontFamily = "Raleway-Bold" FontSize = "16" FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "REF" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "0"  />
+                            <Label FontFamily = "Raleway-Bold"  FontAttributes = "Bold" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "Name" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "1"  />
+                            <Label FontFamily = "Raleway-Bold"  FontAttributes = "Bold" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "Date" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "2"  />
+               <Label FontFamily = "Raleway-Bold"  FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "Total" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "3"  />
+               <Label FontFamily = "Raleway-Bold" FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "Status" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "4"  />  
+            </Grid>
+                      <BoxView Color = "{StaticResource GreyBack}" HeightRequest = "1" HorizontalOptions = "FillAndExpand" />
+            <ListView x:Name ="listview" SeparatorColor = "{StaticResource GreyBack}" ItemsSource = "{Binding QuotationsItemSource}" HasUnevenRows ="true" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                       <ViewCell> 
+                            <Grid  x:Name = "grid" HorizontalOptions = "FillAndExpand" VerticalOptions = "Center" Margin ="0" Padding = "15,15,15,15" BackgroundColor = "{Binding BackColor}" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height= "Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Ref}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "0"  />
+                                <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Name}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "1"  />
+                                <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Date, StringFormat = '{0:yyyy MMMM dd}' }" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "2"  />
+                                <Label FontFamily = "SanFranciscoDisplay-Regular"  FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding TotalAmount, StringFormat = '${0:N}' }" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "3"  />
+                                <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Status, Converter = {StaticResource EnumToStringConverter} }" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "4"  />  
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             </StackLayout>
     </base:BaseViewPagerPage.Content>
 </base:BaseViewPagerPage >

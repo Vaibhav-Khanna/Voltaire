@@ -78,7 +78,7 @@ namespace voltaire.Pages
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 InterPageSpacing = 5,
                 IsSwipingEnabled = true,
-                AnimateTransition = true,
+                AnimateTransition = false,
                 BackgroundColor = Color.White,
                 Orientation = CarouselViewOrientation.Horizontal
             };

@@ -13,21 +13,23 @@ namespace voltaire.Pages
 
             #region UI_tweaks
 
-           
+            listview.ItemTapped += Listview_ItemTapped;
 
             #endregion
 
 
         }
 
+        void Listview_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            listview.SelectedItem = null;
+        }
        
 
         protected override void BindingContextSet()
         {
             base.BindingContextSet();
 
-            picker.SelectedIndex = 0;
         }
-
     }
 }

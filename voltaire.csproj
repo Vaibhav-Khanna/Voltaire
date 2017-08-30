@@ -137,6 +137,8 @@
     </Compile>
     <Compile Include="Renderers\CustomSearchBar.cs" />
     <Compile Include="Renderers\BorderlessPicker.cs" />
+    <Compile Include="Models\QuotationsModel.cs" />
+    <Compile Include="Converters\EnumToStringConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
