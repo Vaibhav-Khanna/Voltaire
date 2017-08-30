@@ -125,6 +125,9 @@
     <Compile Include="Controls\CustomLabelEntry.cs" />
     <Compile Include="Renderers\BorderlessEntry.cs" />
     <Compile Include="Converters\DateToStringConverter.cs" />
+    <Compile Include="Models\PartnerGrade.cs" />
+    <Compile Include="Controls\WrapLayout.cs" />
+    <Compile Include="Controls\RepeaterView.cs" />
     <Compile Include="Pages\MapTabPage.xaml.cs">
       <DependentUpon>MapTabPage.xaml</DependentUpon>
     </Compile>

@@ -72,6 +72,9 @@
 	<data name="Dashboard" xml:space="preserve">
         <value>Dashboard</value>
     </data>
+	<data name="SearchContact" xml:space="preserve">
+        <value>Search Contact</value>
+    </data>
 	<data name="Goals" xml:space="preserve">
         <value>Goals</value>
     </data>
@@ -91,26 +94,41 @@
 	<data name="Filters" xml:space="preserve">
         <value>Filters</value>
     </data>
+	<data name="Weight" xml:space="preserve">
+        <value>Weight</value>
+    </data>
+	<data name="PartnerGrade" xml:space="preserve">
+        <value>Partner Grade</value>
+    </data>
+	<data name="ResetFilters" xml:space="preserve">
+        <value>Reset Filters</value>
+    </data>
+	<data name="ParentPartner" xml:space="preserve">
+        <value>Parent Partner    </value>
+    </data>
+	<data name="LastVisit" xml:space="preserve">
+        <value>Last visit</value>
+    </data>
 	<!-- CONTACTS DETAIL PAGE -->
-	<data name = "Modify" xml:space = "preserve">
+	<data name="Modify" xml:space="preserve">
         <value>Modify</value>
-	</data>	
+	</data>
 	<data name = "Save" xml:space = "preserve">
         <value>Save</value>
     </data> 
 	<data name = "ContactDetails" xml:space = "preserve">
         <value>Contact Details</value>
 	</data>
-	<data name = "Reminder" xml:space = "preserve">
+	<data name="Reminder" xml:space="preserve">
         <value>Reminders &amp; notes</value>
 	</data>
-	<data name = "Map" xml:space = "preserve">
+	<data name="Map" xml:space="preserve">
         <value>Map</value>
 	</data>
-	<data name = "Quotations" xml:space = "preserve">
+	<data name="Quotations" xml:space="preserve">
         <value>Quotations</value>
 	</data>
-	<data name = "Contracts" xml:space = "preserve">
+	<data name="Contracts" xml:space="preserve">
         <value>Contracts</value>
 	</data>
 	<data name = "LastVisit" xml:space = "preserve">
@@ -128,7 +146,7 @@
 	<data name = "Tags" xml:space = "preserve">
         <value>Tags</value>
     </data>
-	<data name = "addtags" xml:space = "preserve">
+	<data name="addtags" xml:space="preserve">
         <value>+ Add tags</value>
     </data>
 	<data name = "Cancel" xml:space = "preserve">
