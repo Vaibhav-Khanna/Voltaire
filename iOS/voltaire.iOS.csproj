@@ -178,6 +178,7 @@
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <Compile Include="Renderers\CustomSearchBarRenderer.cs" />
     <Compile Include="Renderers\BorderlessPickerRenderer.cs" />
+    <Compile Include="Renderers\DefaultButtonRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.png" />
@@ -282,6 +283,15 @@
     <BundleResource Include="Resources\back.png" />
     <BundleResource Include="Resources\back%402x.png" />
     <BundleResource Include="Resources\back%403x.png" />
+    <BundleResource Include="Resources\sign.png" />
+    <BundleResource Include="Resources\sign%402x.png" />
+    <BundleResource Include="Resources\sign%403x.png" />
+    <BundleResource Include="Resources\note.png" />
+    <BundleResource Include="Resources\note%402x.png" />
+    <BundleResource Include="Resources\note%403x.png" />
+    <BundleResource Include="Resources\email2.png" />
+    <BundleResource Include="Resources\email2%402x.png" />
+    <BundleResource Include="Resources\email2%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
