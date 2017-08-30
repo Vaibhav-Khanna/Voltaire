@@ -28,6 +28,21 @@ namespace voltaire.Controls.Cells
                 };
             }
         }
+
+        protected override void OnTapped()
+        {
+            base.OnTapped();
+
+            var model = (SalesmanModel)BindingContext;
+
+            //model.Customer.CanEdit = false;
+
+            model.navigation.PushPageModel<GoalsDetailPageModel>(model.Salesman);
+
+            var parent = this.Parent as ListView;
+            parent.SelectedItem = null;
+        }
+
     }
 }
 

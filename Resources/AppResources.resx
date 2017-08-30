@@ -163,7 +163,7 @@
         <value>Salesmens</value>
     </data>
 	<data name="Salesman" xml:space="preserve">
-        <value>Salesman</value>
+        <value>Salesman </value>
     </data>
 	<data name="SearchSalesman" xml:space="preserve">
         <value>Search a salesman</value>

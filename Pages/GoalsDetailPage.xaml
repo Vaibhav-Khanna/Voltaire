@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<base:BasePage 
+    x:Class="voltaire.Pages.GoalsDetailPage" 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
+    xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire"
+    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire" 
+    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
+    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
+    xmlns:attachedProperties="clr-namespace:voltaire.Helpers.AttachedProperties;assembly=voltaire"
+    >
+    <ContentPage.Behaviors>
+        <behaviors:HideNavigationBehavior />
+    </ContentPage.Behaviors>
+    <Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <!--  Toolbar  -->
+        <controls:TToolBar Title="{x:Static resources:AppResources.Goals}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <controls:TToolBar.LeftToolbarItems>
+
+            <StackLayout attachedProperties:TappedGestureAttached.Command="{Binding tap_Back}"
+                             HeightRequest="45"
+                             Orientation="Horizontal"
+                             WidthRequest="45">
+                
+                <Image Source="back" HeightRequest="24" WidthRequest="46" HorizontalOptions="Center" VerticalOptions="Center"/> 
+            </StackLayout>        
+          </controls:TToolBar.LeftToolbarItems>
+        </controls:TToolBar>
+     <!--  Menu  -->
+        
+            <renderers:CustomScrollView Grid.Row="1" Grid.Column="0" BackgroundColor="{StaticResource MaroonBlack}" >
+            <StackLayout x:Name="MenuLayout" 
+            BackgroundColor="{StaticResource Black}" 
+            HorizontalOptions="StartAndExpand" 
+            Orientation="Vertical" 
+            Spacing="0" 
+            WidthRequest="80" />
+        </renderers:CustomScrollView>   
+           <!--  Main Layout  -->
+           <Grid Grid.Row="1" Grid.Column="1" ColumnSpacing="0" RowSpacing="0" Padding="10,20" BackgroundColor="White" x:Name="GridMainLayout">
+
+           <Grid>
+            <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="330"/>
+                    <RowDefinition Height="80"/>
+             </Grid.RowDefinitions>
+            
+            <StackLayout Grid.Row="0"    
+                    Margin="20" 
+                    HorizontalOptions="StartAndExpand" 
+                    VerticalOptions="Start"
+                    Orientation="Horizontal">
+                 <Label   Text="{x:Static resources:AppResources.Salesman}" Style="{StaticResource SalesmanLabelStyle}"/>   
+                 <Label   Text=" {Binding name}" Style="{StaticResource SalesmanNameLabelStyle}"/>
+                
+            </StackLayout>
+           <Grid BackgroundColor="{StaticResource White}" Grid.Row="1" RowSpacing="1" ColumnSpacing="1" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="0.5"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.5"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0" Grid.Column="0" BackgroundColor="White"/>
+                <Grid Grid.Row="0" Grid.Column="1" BackgroundColor="White">
+                    <Label Text=""  Style="{StaticResource MonthLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="2" BackgroundColor="{StaticResource GreyTable}">
+                    <Label Text="JAN"  Style="{StaticResource MonthLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="3" BackgroundColor="{StaticResource GreyTable}">
+                    <Label Text="FEV"  Style="{StaticResource MonthLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="4" BackgroundColor="{StaticResource GreyTable}">
+                    <Label Text="MAR"  Style="{StaticResource MonthLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="5" BackgroundColor="{StaticResource GreyTable}">
+                    <Label Text="APR"  Style="{StaticResource MonthLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="6" BackgroundColor="{StaticResource GreyTable}">
+                    <Label Text="MAY"  Style="{StaticResource MonthLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="7" BackgroundColor="{StaticResource GreyTable}">
+                    <Label Text="JUN"  Style="{StaticResource MonthLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="8" BackgroundColor="{StaticResource GreyTable}">
+                    <Label Text="JUL"  Style="{StaticResource MonthLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="9" BackgroundColor="{StaticResource GreyTable}">
+                    <Label Text="AUG"  Style="{StaticResource MonthLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="10" BackgroundColor="{StaticResource GreyTable}">
+                    <Label Text="SEP"  Style="{StaticResource MonthLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="11" BackgroundColor="{StaticResource GreyTable}">
+                    <Label Text="OCT"  Style="{StaticResource MonthLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="12" BackgroundColor="{StaticResource GreyTable}">
+                    <Label Text="NOV"  Style="{StaticResource MonthLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="13" BackgroundColor="{StaticResource GreyTable}">
+                    <Label Text="DEC"  Style="{StaticResource MonthLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="14" BackgroundColor="{StaticResource GreyTable}"/>
+<!-- Sales -->               
+                <Grid Grid.Row="1" Grid.Column="0" BackgroundColor="{StaticResource GreyTable}"/>
+                <Grid Grid.Row="1" Grid.Column="1" BackgroundColor="White">
+                    <Label Text="Sales"  Style="{StaticResource CategoryLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="2" BackgroundColor="White">
+                    <Label Text="12"  Style="{StaticResource SalesLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="3" BackgroundColor="White">
+                    <Label Text="12"  Style="{StaticResource SalesLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="4" BackgroundColor="White">
+                    <Label Text="12"  Style="{StaticResource SalesLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="5" BackgroundColor="White">
+                    <Label Text="12"  Style="{StaticResource SalesLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="6" BackgroundColor="White">
+                    <Label Text="12"  Style="{StaticResource SalesLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="7" BackgroundColor="White">
+                    <Label Text="12"  Style="{StaticResource SalesLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="8" BackgroundColor="White">
+                    <Label Text="12"  Style="{StaticResource SalesLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="9" BackgroundColor="White">
+                    <Label Text="12"  Style="{StaticResource SalesLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="10" BackgroundColor="White">
+                    <Label Text="12"  Style="{StaticResource SalesLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="11" BackgroundColor="White">
+                    <Label Text="12"  Style="{StaticResource SalesLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="12" BackgroundColor="White">
+                    <Label Text="12"  Style="{StaticResource SalesLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="13" BackgroundColor="White">
+                    <Label Text="12"  Style="{StaticResource SalesLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="14" BackgroundColor="{StaticResource GreyTable}"/>
+
+ <!-- Goals -->                
+                <Grid Grid.Row="2" Grid.Column="0" BackgroundColor="{StaticResource GreyTable}"/>
+                <Grid Grid.Row="2" Grid.Column="1" BackgroundColor="White">
+                    <Label Text="Goals"  Style="{StaticResource CategoryLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="2" BackgroundColor="White">
+                    <Entry Text="12"  Style="{StaticResource GoalsEntryStyle}" />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="3" BackgroundColor="White">
+                    <Entry Text="10"  Style="{StaticResource GoalsEntryStyle}" />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="4" BackgroundColor="White">
+                    <Entry Text="20"  Style="{StaticResource GoalsEntryStyle}" />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="5" BackgroundColor="White">
+                    <Entry Text="12"  Style="{StaticResource GoalsEntryStyle}" />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="6" BackgroundColor="White">
+                    <Entry Text="12" Style="{StaticResource GoalsEntryStyle}" />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="7" BackgroundColor="White">
+                    <Entry Text="12"  Style="{StaticResource GoalsEntryStyle}" />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="8" BackgroundColor="White">
+                    <Entry Text="12"  Style="{StaticResource GoalsEntryStyle}" />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="9" BackgroundColor="White">
+                    <Entry Text="12"  Style="{StaticResource GoalsEntryStyle}" />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="10" BackgroundColor="White">
+                    <Entry Text="12"  Style="{StaticResource GoalsEntryStyle}" />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="11" BackgroundColor="White">
+                    <Entry Text="12"  Style="{StaticResource GoalsEntryStyle}" />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="12" BackgroundColor="White">
+                    <Entry Text="12"  Style="{StaticResource GoalsEntryStyle}" />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="13" BackgroundColor="White">
+                    <Entry Text="12"  Style="{StaticResource GoalsEntryStyle}" />
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="14" BackgroundColor="{StaticResource GreyTable}"/>
+
+
+ <!--Difference -->
+                <Grid Grid.Row="3" Grid.Column="0" BackgroundColor="{StaticResource GreyTable}"/>
+                <Grid Grid.Row="3" Grid.Column="1" BackgroundColor="White">
+                    <Label Text="Difference"  Style="{StaticResource CategoryLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="2" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="3" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="4" BackgroundColor="White">
+                    <Image Source="markerred" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="5" BackgroundColor="White">
+                    <Image Source="markerred" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="6" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="7" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="8" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="9" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="10" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="11" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="12" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="13" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="14" BackgroundColor="{StaticResource GreyTable}"/>
+
+
+<!-- Year to date -->
+                <Grid Grid.Row="4" Grid.Column="0" BackgroundColor="{StaticResource GreyTable}"/>    
+                <Grid Grid.Row="4" Grid.Column="1" BackgroundColor="White">
+                    <Label Text="Year to date"  Style="{StaticResource CategoryLabelStyle}" />
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="2" BackgroundColor="White">
+                    <Image Source="markergreen"  HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="3" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="4" BackgroundColor="White">
+                    <Image Source="markerred" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="5" BackgroundColor="White">
+                    <Image Source="markerred" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="6" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="7" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="8" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="9" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="10" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="11" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="12" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="13" BackgroundColor="White">
+                    <Image Source="markergreen" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="20" WidthRequest="20"/>
+                </Grid>
+                <Grid Grid.Row="4" Grid.Column="14" BackgroundColor="{StaticResource GreyTable}"/>
+                    
+                <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="15" BackgroundColor="{StaticResource GreyTable}"/>   
+                    
+             </Grid>
+                <Button Text="Save Goals" 
+                        HeightRequest="60" 
+                        WidthRequest="200"
+                        HorizontalOptions="End"
+                        VerticalOptions="Start"
+                        Margin="10"
+                        TextColor="White"
+                        BackgroundColor="{StaticResource turquoiseBlue}"
+                        Grid.Row="2"/>                   
+          
+      </Grid>          
+        </Grid>
+        </Grid>
+</base:BasePage>
