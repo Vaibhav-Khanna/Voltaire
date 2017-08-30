@@ -47,7 +47,8 @@
             Orientation="Vertical" 
             Spacing="0" 
             WidthRequest="80" />
-        </renderers:CustomScrollView>    
+        </renderers:CustomScrollView>   
+       <!-- Main Layout -->
         <Grid Grid.Row="1" Grid.Column="1" ColumnSpacing="15" RowSpacing="10" Padding="0" BackgroundColor="{StaticResource GreyBack}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

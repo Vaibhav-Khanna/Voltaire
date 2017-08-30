@@ -113,6 +113,36 @@ namespace voltaire.Resources {
             }
         }
         
+        internal static string Weight {
+            get {
+                return ResourceManager.GetString("Weight", resourceCulture);
+            }
+        }
+        
+        internal static string PartnerGrade {
+            get {
+                return ResourceManager.GetString("PartnerGrade", resourceCulture);
+            }
+        }
+        
+        internal static string ResetFilters {
+            get {
+                return ResourceManager.GetString("ResetFilters", resourceCulture);
+            }
+        }
+        
+        internal static string ParentPartner {
+            get {
+                return ResourceManager.GetString("ParentPartner", resourceCulture);
+            }
+        }
+        
+        internal static string LastVisit {
+            get {
+                return ResourceManager.GetString("LastVisit", resourceCulture);
+            }
+        }
+        
         internal static string Modify {
             get {
                 return ResourceManager.GetString("Modify", resourceCulture);
@@ -146,24 +176,6 @@ namespace voltaire.Resources {
         internal static string Contracts {
             get {
                 return ResourceManager.GetString("Contracts", resourceCulture);
-            }
-        }
-        
-        internal static string LastVisit {
-            get {
-                return ResourceManager.GetString("LastVisit", resourceCulture);
-            }
-        }
-        
-        internal static string Weight {
-            get {
-                return ResourceManager.GetString("Weight", resourceCulture);
-            }
-        }
-        
-        internal static string ParentPartner {
-            get {
-                return ResourceManager.GetString("ParentPartner", resourceCulture);
             }
         }
         

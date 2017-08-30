@@ -4,17 +4,19 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
-    xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire" 
+    xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire"
+    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire" 
     xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
     xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
     xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
-    xmlns:attachedProperties="clr-namespace:voltaire.Helpers.AttachedProperties;assembly=voltaire">
+    xmlns:attachedProperties="clr-namespace:voltaire.Helpers.AttachedProperties;assembly=voltaire"
+    >
     <ContentPage.Behaviors>
         <behaviors:HideNavigationBehavior />
     </ContentPage.Behaviors>
     <Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
+            <RowDefinition Height="100" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -24,8 +26,8 @@
         <!--  Toolbar  -->
         <controls:TToolBar Title="{x:Static resources:AppResources.Contacts}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <controls:TToolBar.LeftToolbarItems>
-                <Entry Placeholder="Rechercher un contact" Keyboard="Text" PlaceholderColor="{StaticResource GreyPlaceholder}" BackgroundColor="{StaticResource GreyBack}" />
-            </controls:TToolBar.LeftToolbarItems>
+                <Entry Placeholder="{x:Static resources:AppResources.SearchContact}" Keyboard="Text" HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}"  />
+          </controls:TToolBar.LeftToolbarItems>
             <controls:TToolBar.RightToolbarItems>
                 <!--attachedProperties:TappedGestureAttached.Command="{Binding AddContactCommand}" -->
                 <StackLayout 
@@ -42,14 +44,16 @@
             </controls:TToolBar.RightToolbarItems>
         </controls:TToolBar>
      <!--  Menu  -->
-        <StackLayout 
-                        x:Name="MenuLayout" 
-                        Grid.Row="1" 
-                        Grid.Column="0" 
-                        BackgroundColor="{StaticResource Black}" 
-                        HorizontalOptions="StartAndExpand" 
-                        Spacing="0" 
-                        WidthRequest="80" />
+        
+            <renderers:CustomScrollView Grid.Row="1" Grid.Column="0" BackgroundColor="{StaticResource MaroonBlack}" >
+            <StackLayout x:Name="MenuLayout" 
+             
+            BackgroundColor="{StaticResource Black}" 
+            HorizontalOptions="StartAndExpand" 
+            Orientation="Vertical" 
+            Spacing="0" 
+            WidthRequest="80" />
+        </renderers:CustomScrollView>   
            <!--  Main Layout  -->
 
            <Grid Grid.Row="1" Grid.Column="1" ColumnSpacing="0" RowSpacing="0" Padding="0" BackgroundColor="White" x:Name="GridMainLayout">
@@ -59,19 +63,18 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80*"/>
-                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="72*"/>
+                <ColumnDefinition Width="28*"/>
             </Grid.ColumnDefinitions>
             <!--  Contacts number  -->
             <StackLayout   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource White}" Padding="0,0,0,0">
            
-                <Label  
-                                         Margin="80,0,0,0"   
-                                         HorizontalOptions="CenterAndExpand"
-                                         Style="{StaticResource CommonLabelStyle}"
-                                         Text="{Binding CustomersCount}"
-                                         TextColor="{StaticResource GreyishBrown}"
-                                         VerticalOptions="Center" />                 
+                <Label      Text="{Binding CustomersCount}"
+                            Margin="80,0,0,0"   
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource CommonLabelStyle}"
+                            TextColor="{StaticResource GreyishBrown}"
+                            VerticalOptions="Center" />                 
                     <Frame   
                         Margin="0,0,20,0"
                         Padding="0" 
@@ -82,16 +85,15 @@
                         WidthRequest="130" 
                         HeightRequest= "35"
                         BackgroundColor="{StaticResource White}"> 
-                                           <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" attachedProperties:TappedGestureAttached.Command="{Binding FiltersLayoutCommand}"   >
-                                             <Image Source="{Binding filterImage}" HeightRequest="20" WidthRequest="20"/>
-                                             <Label Style="{StaticResource CommonLabelStyle}"
-                                                    Text="{x:Static resources:AppResources.Filters}"
-                                                    TextColor="{StaticResource GreyishBrown}"
-                                                    VerticalOptions="Center"  /> 
-
-                                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" attachedProperties:TappedGestureAttached.Command="{Binding FiltersLayoutCommand}"   >
+                               <Image Source="{Binding filterImage}" HeightRequest="20" WidthRequest="20"/>
+                               <Label Style="{StaticResource CommonLabelStyle}"
+                                      Text="{x:Static resources:AppResources.Filters}"
+                                      TextColor="{StaticResource GreyishBrown}"
+                                      VerticalOptions="Center"  /> 
+                            </StackLayout>
     
-                </Frame>
+                    </Frame>
             </StackLayout>
 
             <ListView                  x:Name="ListViewLayout"
@@ -126,30 +128,85 @@
                             BackgroundColor="{StaticResource GreyBack}" 
                             Orientation="Vertical"
                             HorizontalOptions="FillAndExpand"
-                            VerticalOptions="FillAndExpand" >
-                <BoxView HeightRequest="1" BackgroundColor="{StaticResource GreyLine}" HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
-                <Label Text="Weight" HorizontalOptions="Start" VerticalOptions="Start" Margin="10" TextColor="{StaticResource MaroonReset}"/>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Spacing="10">
-                        <Button HeightRequest="30" WidthRequest="30" BorderRadius="15" BorderWidth="2" BorderColor="{StaticResource WarmGrey}" TextColor="{StaticResource GreyishBrown}" Text="0" />
-                        <Button HeightRequest="30" WidthRequest="30" BorderRadius="15" BorderWidth="2" BorderColor="{StaticResource WarmGrey}" TextColor="{StaticResource GreyishBrown}" Text="1" />
-                        <Button HeightRequest="30" WidthRequest="30" BorderRadius="15" BorderWidth="2" BorderColor="{StaticResource WarmGrey}" TextColor="{StaticResource GreyishBrown}" Text="2"/>
-                        <Button HeightRequest="30" WidthRequest="30" BorderRadius="15" BorderWidth="2" BorderColor="{StaticResource WarmGrey}" TextColor="{StaticResource GreyishBrown}" Text="3" />
-                        <Button HeightRequest="30" WidthRequest="30" BorderRadius="15" BorderWidth="2" BorderColor="{StaticResource WarmGrey}" TextColor="{StaticResource GreyishBrown}" Text="4" />
-                        <Button HeightRequest="30" WidthRequest="30" BorderRadius="15" BorderWidth="2" BorderColor="{StaticResource WarmGrey}" TextColor="{StaticResource GreyishBrown}" Text="5" />
-                </StackLayout>    
-                <BoxView HeightRequest="1" BackgroundColor="{StaticResource GreyLine}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="0,20,0,0"/>          
-                <Label Text="Partner Grade" HorizontalOptions="Start" VerticalOptions="Start" Margin="10" TextColor="{StaticResource MaroonReset}"/>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Start"  >
-                    <Button BorderWidth="1" HeightRequest="50" BackgroundColor="White"  BorderColor="{StaticResource GreyPlaceholder}" Text="CCE" Margin="5" />
-                    <Button BorderWidth="1" HeightRequest="50" BackgroundColor="White"  BorderColor="{StaticResource GreyPlaceholder}" Text="CSO" Margin="5"/>
-                    <Button BorderWidth="1" HeightRequest="50" BackgroundColor="White"  BorderColor="{StaticResource GreyPlaceholder}" Text="DRE" Margin="5"/>
-                    <Button BorderWidth="1" HeightRequest="50" BackgroundColor="White"  BorderColor="{StaticResource GreyPlaceholder}" Text="Endurance" Margin="5"/>
-                    <Button BorderWidth="1" HeightRequest="50" BackgroundColor="White"  BorderColor="{StaticResource GreyPlaceholder}" Text="Pro" Margin="5"/>
-                    <Button BorderWidth="1" HeightRequest="50" BackgroundColor="White"  BorderColor="{StaticResource GreyPlaceholder}" Text="Particuler" Margin="5"/>
-                    <Button BorderWidth="1" HeightRequest="50" BackgroundColor="White"  BorderColor="{StaticResource GreyPlaceholder}" Text="Ecuries" Margin="5"/>
-                 </StackLayout>       
-                 <BoxView HeightRequest="1" BackgroundColor="{StaticResource GreyLine}" HorizontalOptions="FillAndExpand"/>          
-                    <Button HeightRequest="40" WidthRequest="150" BackgroundColor="{StaticResource MaroonReset}" Text="Reset Filter" Margin="5" HorizontalOptions="Start"/>
+                            VerticalOptions="FillAndExpand" Padding="0" >
+                
+                <BoxView    HeightRequest="1" 
+                            BackgroundColor="{StaticResource GreyLine}" 
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="Start"/>
+                
+                <Label  Text="{x:Static resources:AppResources.Weight}" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Start" 
+                        Margin="10"
+                        Style="{StaticResource FilterSectionLabelStyle}" />
+                
+                <controls:WrapLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Spacing="10">
+                        <Button Text="0" 
+                                Style="{StaticResource FilterWeightButtonStyle}" />
+                    
+                        <Button Text="1"
+                                Style="{StaticResource FilterWeightButtonStyle}" />
+                    
+                        <Button Text="2"
+                                Style="{StaticResource FilterWeightButtonStyle}" />
+                    
+                        <Button Text="3"
+                                Style="{StaticResource FilterWeightClickedButtonStyle}" />
+                    
+                        <Button Text="4"
+                                Style="{StaticResource FilterWeightButtonStyle}" />
+                    
+                        <Button Text="5"
+                                Style="{StaticResource FilterWeightButtonStyle}" />  
+                </controls:WrapLayout> 
+                
+                <BoxView    HeightRequest="1" 
+                            BackgroundColor="{StaticResource GreyLine}" 
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="Start" 
+                            Margin="0,20,0,0"/>
+                
+                <Label  Text="{x:Static resources:AppResources.PartnerGrade}" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Start" 
+                        Margin="10" 
+                        Style="{StaticResource FilterSectionLabelStyle}"/>
+                
+                    <controls:RepeaterView ItemsSource="{Binding partnerGrades}" VerticalOptions="Start" HorizontalOptions="Start" Orientation="Horizontal" Spacing="10" Margin="10,10">
+                        <controls:RepeaterView.ItemTemplate>
+                          <DataTemplate>
+                            <Frame Padding="20,0" Style="{StaticResource PartnerGradeFrame}"> 
+                                <Button Text="{Binding Grade}"  Style="{StaticResource PartnerGradeButton}" />
+                            </Frame>
+                        </DataTemplate>
+                        </controls:RepeaterView.ItemTemplate>    
+                    </controls:RepeaterView>    
+                
+                    
+                 <BoxView   HeightRequest="1" 
+                            BackgroundColor="{StaticResource GreyLine}" 
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="Start" 
+                            Margin="0,20,0,0"/>
+                
+                    <Frame   
+                        Margin="20"
+                        Padding="0" 
+                        HasShadow="false" 
+                        VerticalOptions="Start"
+                        HorizontalOptions="Start"
+                        WidthRequest="130" 
+                        HeightRequest= "35"
+                        BackgroundColor="{StaticResource MaroonReset}"> 
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand"  >
+                               <Image Source="reset" HeightRequest="10" WidthRequest="11"/>
+                               <Label Style="{StaticResource ResetFiltersLabelStyle}"
+                                      Text="{x:Static resources:AppResources.ResetFilters}"
+                                      VerticalOptions="Center"  /> 
+                            </StackLayout>
+    
+                    </Frame>
                     
             </StackLayout>
         </Grid>

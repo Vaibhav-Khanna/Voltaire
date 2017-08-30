@@ -94,6 +94,21 @@
 	<data name="Filters" xml:space="preserve">
         <value>Filters</value>
     </data>
+	<data name="Weight" xml:space="preserve">
+        <value>Weight</value>
+    </data>
+	<data name="PartnerGrade" xml:space="preserve">
+        <value>Partner Grade</value>
+    </data>
+	<data name="ResetFilters" xml:space="preserve">
+        <value>Reset Filters</value>
+    </data>
+	<data name="ParentPartner" xml:space="preserve">
+        <value>Parent Partner    </value>
+    </data>
+	<data name="LastVisit" xml:space="preserve">
+        <value>Last visit</value>
+    </data>
 	<!-- CONTACTS DETAIL PAGE -->
 	<data name="Modify" xml:space="preserve">
         <value>Modify</value>
@@ -113,18 +128,6 @@
 	<data name="Contracts" xml:space="preserve">
         <value>Contracts</value>
 	</data>
-	<data name="LastVisit" xml:space="preserve">
-        <value>Last visit</value>
-    </data>
-	<data name="CheckIn" xml:space="preserve">
-        <value>Check-in</value>
-    </data>
-	<data name="Weight" xml:space="preserve">
-        <value>Weight</value>
-    </data>
-	<data name="ParentPartner" xml:space="preserve">
-        <value>Parent Partner    </value>
-    </data>
 	<data name="Tags" xml:space="preserve">
         <value>Tags</value>
     </data>

@@ -212,14 +212,90 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource GreyPlaceholder}" />
             </Style>
             <Style x:Key="CellButtonWeightStyle"
-                   BasedOn="{StaticResource CellButtonGradeStyle}"
                    TargetType="Button">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>SanFranciscoDisplay-Semibold</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/SanFranciscoDisplay-Semibold.otf#SanFranciscoDisplay</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="BackgroundColor" Value="{StaticResource GreyBack2}" />
+                <Setter Property="TextColor" Value="White" />
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="BorderRadius" Value="15" />
                 <Setter Property="WidthRequest" Value="30"  />
                 <Setter Property="HeightRequest" Value="30"  />
-            </Style>    
+            </Style>  
+          <!-- FILTERS CONTACTS PAGE -->
+          <Style x:Key="FilterWeightButtonStyle"
+                   TargetType="Button">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>SanFranciscoDisplay-Semibold</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/SanFranciscoDisplay-Semibold.otf#SanFranciscoDisplay</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderColor" Value="{StaticResource WarmGrey}" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
+                <Setter Property="HeightRequest" Value="36" />
+                <Setter Property="WidthRequest" Value="36" />
+                <Setter Property="BorderRadius" Value="18" />
+                <Setter Property="BorderWidth" Value="2" />
+            </Style>
+            <Style x:Key="FilterWeightClickedButtonStyle"
+                    BasedOn="{StaticResource FilterWeightButtonStyle}"
+                   TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource MaroonReset}" />
+                <Setter Property="TextColor" Value="White" />  
+            </Style>
+            <Style x:Key="FilterSectionLabelStyle"
+                   BasedOn="{StaticResource BaseLabelStyle}"
+                   TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-SemiBold</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-SemiBold.otf#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="{StaticResource MaroonReset}" />
+            </Style>
+            <Style x:Key="ResetFiltersLabelStyle"
+                   BasedOn="{StaticResource CommonLabelStyle}"
+                   TargetType="Label"> 
+                <Setter Property="TextColor" Value="{StaticResource White}" />
+                <Setter Property="FontSize" Value="17" />
+            </Style>
+            <Style x:Key="PartnerGradeButton"
+                   TargetType="Button">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Medium</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Medium.otf#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="{StaticResource MaroonReset}" />
+
+            </Style>
+            <Style x:Key="PartnerGradeFrame"
+                   TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="HasShadow" Value="false" />
+                <Setter Property="OutlineColor" Value="{StaticResource GreyPlaceholder}" />
+            </Style>
+
+
+            
           <!--CONVERTERS -->
           <converters:BoolToColorConverter x:Key="SelectableCellBoolToColorConverter"
                                              ColorFalse="Transparent"

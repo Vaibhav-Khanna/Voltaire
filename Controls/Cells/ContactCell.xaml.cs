@@ -9,7 +9,7 @@ namespace voltaire.Controls.Cells
 
     public partial class ContactCell
     {
-       
+
         public ContactCell()
         {
             InitializeComponent();
@@ -26,8 +26,8 @@ namespace voltaire.Controls.Cells
                 FullNameLabel.FormattedText = new FormattedString
                 {
                     Spans = {
-                new Span { Text = model.Customer.FirstName, FontAttributes = FontAttributes.None, FontSize = 20},
-                new Span { Text = $" {model.Customer.LastName}", FontAttributes = FontAttributes.Bold, FontSize = 20} }
+                new Span { Text = model.Customer.FirstName, FontAttributes = FontAttributes.None, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"},
+                new Span { Text = $" {model.Customer.LastName}", FontAttributes = FontAttributes.Bold, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"} }
                 };
             }
         }
@@ -43,8 +43,8 @@ namespace voltaire.Controls.Cells
             var parent = this.Parent as ListView;
             parent.SelectedItem = null;
         }
-           
-        
+
+
 
     }
 }
