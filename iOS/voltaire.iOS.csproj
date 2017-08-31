@@ -276,6 +276,16 @@
     <BundleResource Include="Resources\reset.png" />
     <BundleResource Include="Resources\reset%402x.png" />
     <BundleResource Include="Resources\reset%403x.png" />
+    <BundleResource Include="Resources\markergreen.png" />
+    <BundleResource Include="Resources\markergreen%402x.png" />
+    <BundleResource Include="Resources\markergreen%403x.png" />
+    <BundleResource Include="Resources\markerred.png" />
+    <BundleResource Include="Resources\markerred%402x.png" />
+    <BundleResource Include="Resources\markerred%403x.png" />
+    <BundleResource Include="Resources\Fonts\SanFranciscoDisplay-Bold.otf" />
+    <BundleResource Include="Resources\back.png" />
+    <BundleResource Include="Resources\back%402x.png" />
+    <BundleResource Include="Resources\back%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

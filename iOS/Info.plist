@@ -48,6 +48,7 @@
 		<string>Fonts/Raleway-SemiBold.ttf</string>
 		<string>Fonts/SanFranciscoDisplay-Light.otf</string>
 		<string>Fonts/SanFranciscoDisplay-Semibold.otf</string>
+		<string>Fonts/SanFranciscoDisplay-Bold.otf</string>
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>

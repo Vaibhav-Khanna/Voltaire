@@ -30,7 +30,7 @@
                         <ColumnDefinition Width="50" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Image Source="profile" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" />
+                    <Image Source="profile" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" IsVisible="false" />
                     <StackLayout Orientation="Vertical" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Margin="20,0,0,0">
                         <Label Text="Alain Forestier" Style="{StaticResource UserName}" VerticalOptions="Center" />
                         <Label Text="Co-directeur/Commercial" Style="{StaticResource UserFunction}" VerticalOptions="Center" />

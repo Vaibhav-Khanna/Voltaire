@@ -12,7 +12,9 @@
         <Color x:Key="GreyBack">#f0f0f0</Color>
         <Color x:Key="GreyBack2">#d4d4d4</Color>
         <Color x:Key="GreyBack3">#cdcdcd</Color>
-        <Color x:Key="GreyLine">#d8d8d8</Color>    
+        <Color x:Key="GreyLine">#d8d8d8</Color>
+        <Color x:Key="GreyTable">#f7f7f7</Color>
+        <Color x:Key="GreyTable2">#c8c8c8</Color>    
         <Color x:Key="Black">#333333</Color>
         <Color x:Key="WarmGrey">#858585</Color>
         <Color x:Key="turquoiseBlue">#01abc4</Color>
@@ -293,7 +295,96 @@
                 <Setter Property="HasShadow" Value="false" />
                 <Setter Property="OutlineColor" Value="{StaticResource GreyPlaceholder}" />
             </Style>
+            <!-- GOALS DETAIL PAGE -->
+            <Style x:Key="SalesmanLabelStyle"
+                   TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Regular</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Regular.otf#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="TextColor" Value="{StaticResource MaroonReset}" />
+            </Style>
+            <Style x:Key="SalesmanNameLabelStyle"
+                   BasedOn="{StaticResource SalesmanLabelStyle}"
+                   TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-SemiBold</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-SemiBold.otf#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+            </Style>
+            
+            <Style x:Key="MonthLabelStyle"
+                   TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Bold</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Bold.otf#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="{StaticResource MaroonReset}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            <Style x:Key="CategoryLabelStyle"
+                BasedOn="{StaticResource MonthLabelStyle}"
+                TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>SanFranciscoDisplay-Bold</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/SanFranciscoDisplay-Bold#SanFranciscoDisplay</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="Margin" Value="0,0,10,0"/>
+            </Style>
 
+            
+            <Style x:Key="SalesLabelStyle"
+                TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>SanFranciscoDisplay-Regular</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/SanFranciscoDisplay-Regular#SanFranciscoDisplay</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="{StaticResource GreyTable2}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+             <Style x:Key="GoalsEntryStyle"
+                TargetType="Entry">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>SanFranciscoDisplay-Regular</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/SanFranciscoDisplay-Regular#SanFranciscoDisplay</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="{StaticResource MaroonReset}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Keyboard" Value="Numeric" />
+                <Setter Property="WidthRequest" Value="40" />
+            </Style>
 
             
           <!--CONVERTERS -->

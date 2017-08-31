@@ -63,6 +63,9 @@
     <EmbeddedResource Include="Controls\Cells\SalesmanCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\GoalsDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -146,6 +149,10 @@
     <Compile Include="Controls\Cells\SalesmanCell.xaml.cs">
       <DependentUpon>SalesmanCell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\GoalsDetailPage.xaml.cs">
+      <DependentUpon>GoalsDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageModels\GoalsDetailPageModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
