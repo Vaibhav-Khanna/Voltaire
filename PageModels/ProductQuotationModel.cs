@@ -7,8 +7,7 @@ using voltaire.Models;
 
 namespace voltaire.PageModels
 {
-
-
+    
     public class ProductQuotationModel : INotifyPropertyChanged
     {
 
@@ -21,6 +20,7 @@ namespace voltaire.PageModels
             set
             {
                 description = value;
+				SetOrderStatusIndex(OrderStatusIndex);
                 RaisePropertyChanged();
             }
         }
@@ -55,12 +55,9 @@ namespace voltaire.PageModels
             get { return orderstatusindex; }
             set
             {
-                if (orderstatusindex != value)
-                {
                     orderstatusindex = value;
-                 
-                    RaisePropertyChanged();
-                }
+                    
+                    RaisePropertyChanged();              
             }
         }
 
@@ -76,7 +73,6 @@ namespace voltaire.PageModels
 			}
 		}
 
-
         List<string> quantitysource;
         public List<string> QuantitySource
         {
@@ -89,23 +85,6 @@ namespace voltaire.PageModels
             }
         }
 
-        int qtyindex;
-        public int QtyIndex
-        {
-            get { return qtyindex; }
-            set
-            {
-                if (qtyindex != value)
-                {                    
-                    qtyindex = value;
-
-                    RaisePropertyChanged();
-					
-
-                }
-            }
-        }
-
         int quantity;
         public int Quantity 
         {
@@ -113,7 +92,16 @@ namespace voltaire.PageModels
             set
             {
                 quantity = value;
-               
+
+				if (istaxapply)
+				{
+					TaxFree = (UnitPrice - ((ProductConstants.TaxPercent / 100) * UnitPrice)) * Quantity;
+				}
+				else
+				{
+					TaxFree = UnitPrice * Quantity;
+				}
+
                 RaisePropertyChanged();
             }
         }
@@ -127,6 +115,7 @@ namespace voltaire.PageModels
             set
             { 
                 unitprice = value;
+               
                 RaisePropertyChanged();
             }
         }
@@ -141,11 +130,11 @@ namespace voltaire.PageModels
 
                 if(istaxapply)
                 {
-                    TaxFree = UnitPrice - ((ProductConstants.TaxPercent/100) * UnitPrice);
+                    TaxFree = (UnitPrice - ((ProductConstants.TaxPercent/100) * UnitPrice))*Quantity;
                 }
                 else
                 {
-                    TaxFree = UnitPrice;
+                    TaxFree = UnitPrice*Quantity;
                 }
 
                 RaisePropertyChanged();
@@ -168,11 +157,28 @@ namespace voltaire.PageModels
             OrderStatusTypes = ProductConstants.ProductStatusRange;
             QuantitySource = ProductConstants.QuantityRange;
             Init(_product);
-            QtyIndex = 1; 
-            OrderStatusIndex = 1;
             IsTaxApply = false;
             Product = _product;
+
         }
+
+        void SetOrderStatusIndex(int _value)
+        {
+            Xamarin.Forms.Device.StartTimer(new TimeSpan(0,0,0,1,200), ()=>
+            {
+                OrderStatusIndex = _value;
+                return false;
+            });
+        }
+
+		void SetQuantityIndex(int _value)
+		{
+			Xamarin.Forms.Device.StartTimer(new TimeSpan(0, 0, 0, 0, 600), () =>
+			{
+                Quantity = _value;
+				return false;
+			});
+		}
 
         void Init(Product _product)
         {

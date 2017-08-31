@@ -85,7 +85,8 @@ namespace voltaire.Pages
             viewpager.SetBinding(CarouselViewControl.ItemsSourceProperty,"Tab");
             viewpager.SetBinding(CarouselViewControl.ItemTemplateProperty,"ItemTemplates");
             viewpager.SetBinding(CarouselViewControl.PositionProperty,"SelectedIndex", BindingMode.TwoWay );
-    
+
+
 			tabslider.SelectedIndexChanged += () => 
             {
                 viewpager.Position = tabslider.Selected_Index;

@@ -17,7 +17,7 @@ namespace voltaire.PageModels
         public Command AddProductQuotation => new Command( () =>
        {
             // Temporary Fix for adding products unitl choice picker is added
-            var item = new ProductQuotationModel(new Product() { Name = "Saddle", Description = "This is a saddle", UnitPrice = 3000 }){ }; 
+            var item = new ProductQuotationModel(new Product() { Name = "Saddle", Description = "This is a saddle", UnitPrice = 3000 }){ Quantity = 1 }; 
             OrderItemsSource.Add(item);
             quotation.Products.Add(item);
        });
@@ -79,8 +79,23 @@ namespace voltaire.PageModels
                 quotation = value;
 
                 QuotationNumber = quotation.Ref;
+
+                QuotationName = quotation.Name;
+
+                HorseShow = quotation.HorseShow;
+
+                TrainerName = quotation.TrainerName;
+
+                TaxAmount = quotation.TaxAmount;
+
+                ApplyTax = quotation.ApplyTax;
+
+                SubTotal = quotation.SubTotal;
+
+                Total = quotation.TotalAmount;
                 		
-                OrderItemsSource = new ObservableCollection<ProductQuotationModel>(quotation.Products); 
+                OrderItemsSource = new ObservableCollection<ProductQuotationModel>(quotation.Products);
+                OrderItemsSource.CollectionChanged += OrderItemsSource_CollectionChanged;           
 
                 RaisePropertyChanged();
             }
@@ -98,6 +113,119 @@ namespace voltaire.PageModels
             }
         }
 
+        string trainername;
+        public string TrainerName
+        {
+            get { return trainername; }
+            set 
+            {
+                trainername = value;
+                quotation.TrainerName = trainername;
+                RaisePropertyChanged();
+            }
+        }
+
+        string horseshow;
+        public string HorseShow
+        {
+            get { return horseshow; }
+            set 
+            {
+                horseshow = value;
+                quotation.HorseShow = horseshow;
+                RaisePropertyChanged();
+            }
+        }
+
+        string quotationname;
+        public string QuotationName
+        {
+            get { return quotationname; }
+            set 
+            {
+                quotationname = value;
+                quotation.Name = quotationname;
+                RaisePropertyChanged();
+            }
+        }
+
+        double subtotal;
+        public double SubTotal
+        {
+            get { return subtotal; }
+            set 
+            {
+                subtotal = value;
+                quotation.SubTotal = subtotal;
+                RaisePropertyChanged();
+            }
+        }
+
+
+        double total;
+        public double Total
+        {
+            get { return total; }
+            set
+            {
+                total = value;
+                quotation.TotalAmount = total;
+                RaisePropertyChanged();
+            }
+        }
+
+
+		double taxamount;
+		public double TaxAmount
+		{
+			get { return taxamount; }
+			set
+			{
+				taxamount = value;
+                quotation.TaxAmount = taxamount;
+                OrderItemsSource_CollectionChanged(null, null);
+				RaisePropertyChanged();
+			}
+		}
+
+        bool applytax;
+        public bool ApplyTax
+        {
+            get { return applytax; }
+            set
+            {
+                applytax = value;
+                quotation.ApplyTax = applytax;
+                OrderItemsSource_CollectionChanged(null,null);
+                RaisePropertyChanged();
+            }
+        }
+
+
+        void OrderItemsSource_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+
+            if (OrderItemsSource == null)
+                return;
+
+            SubTotal = 0;
+            Total = 0;
+
+            foreach (var item in OrderItemsSource)
+            {
+                SubTotal += item.TaxFree;
+            }
+
+            if(ApplyTax)
+            {
+                Total = SubTotal + SubTotal * (TaxAmount/100);
+            }
+            else
+            {
+                Total = SubTotal;  
+            }
+
+        }
 
         public override void Init(object initData)
         {

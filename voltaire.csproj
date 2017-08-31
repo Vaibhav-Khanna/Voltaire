@@ -149,6 +149,9 @@
     <Compile Include="Models\ProductConstants.cs" />
     <Compile Include="PageModels\ProductQuotationModel.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Behaviors\NumberValidationBehaviour.cs" />
+    <Compile Include="Behaviors\MaxLengthValidationBehaviour.cs" />
+    <Compile Include="Renderers\NumberEntry.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

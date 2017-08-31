@@ -1,5 +1,5 @@
 ﻿using System;
-
+using voltaire.Behaviors;
 using Xamarin.Forms;
 
 namespace voltaire.Renderers
@@ -8,7 +8,6 @@ namespace voltaire.Renderers
     {
         public BorderlessEntry()
         {
-            
         }
     }
 }

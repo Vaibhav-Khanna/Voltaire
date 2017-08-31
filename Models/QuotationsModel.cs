@@ -18,7 +18,17 @@ namespace voltaire.Models
 
         public double TotalAmount { get; set; }
 
+        public double SubTotal { get; set; }
+
+        public bool ApplyTax { get; set; }
+
+        public double TaxAmount { get; set; }
+
         public QuotationStatus Status { get; set; }
+
+        public string TrainerName { get; set; }
+
+        public string HorseShow { get; set; }
 
         public List<ProductQuotationModel> Products { get; set; } = new List<ProductQuotationModel>();
 

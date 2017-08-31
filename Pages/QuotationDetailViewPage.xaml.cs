@@ -17,8 +17,7 @@ namespace voltaire.Pages
         }
 
         void Listview_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            listview.SelectedItem = null;
+        {listview.SelectedItem = null;
         }
     }
 }
