@@ -5,6 +5,7 @@ using voltaire.Models;
 using voltaire.PageModels.Base;
 using Xamarin.Forms;
 using System.Linq;
+using FreshMvvm;
 
 namespace voltaire.PageModels
 {
@@ -68,7 +69,7 @@ namespace voltaire.PageModels
 
         public Command AddQuotation => new Command(async (object NavigationService) =>
        {
-           await ((FreshMvvm.IPageModelCoreMethods)NavigationService).PushPageModel<QuotationDetailViewPageModel>();
+            await ((IPageModelCoreMethods)NavigationService).PushPageModel<QuotationDetailViewPageModel>(new Tuple<Customer,bool,QuotationsModel>(customer,true,null));
        });
 
 
@@ -81,6 +82,12 @@ namespace voltaire.PageModels
 	  {
             SearchResults((SearchText));
 	  });
+
+        public Command TapQuotation => new Command(async (object obj) =>
+       {
+            var item = obj as Tuple<IPageModelCoreMethods, QuotationsModel>;
+            await item.Item1.PushPageModel<QuotationDetailViewPageModel>(new Tuple<Customer, bool, QuotationsModel>(customer, false, item.Item2));
+       });
 
         public string SearchText { get; set; }
 

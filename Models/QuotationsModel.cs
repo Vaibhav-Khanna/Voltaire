@@ -1,15 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using voltaire.PageModels;
 using Xamarin.Forms;
 
 namespace voltaire.Models
 {
     public class QuotationsModel
     {
-        public QuotationsModel()
-        {
-            
-        }
-
+        
         public Color BackColor { get; set; }
 
         public string Name { get; set; }
@@ -21,6 +19,8 @@ namespace voltaire.Models
         public double TotalAmount { get; set; }
 
         public QuotationStatus Status { get; set; }
+
+        public List<ProductQuotationModel> Products { get; set; } = new List<ProductQuotationModel>();
 
     }
 

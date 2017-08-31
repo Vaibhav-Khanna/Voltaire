@@ -12,6 +12,13 @@ namespace voltaire.Pages
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            listview.ItemTapped += Listview_ItemTapped;
+
+        }
+
+        void Listview_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            listview.SelectedItem = null;
         }
     }
 }

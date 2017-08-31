@@ -146,6 +146,9 @@
       <DependentUpon>QuotationDetailViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\QuotationDetailViewPageModel.cs" />
+    <Compile Include="Models\ProductConstants.cs" />
+    <Compile Include="PageModels\ProductQuotationModel.cs" />
+    <Compile Include="Models\Product.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
