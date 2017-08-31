@@ -232,5 +232,11 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("SearchSalesman", resourceCulture);
             }
         }
+        
+        internal static string Reports {
+            get {
+                return ResourceManager.GetString("Reports", resourceCulture);
+            }
+        }
     }
 }

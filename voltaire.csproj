@@ -66,6 +66,12 @@
     <EmbeddedResource Include="Pages\GoalsDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ReportsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Cells\ReportCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -90,7 +96,7 @@
     <Compile Include="PageModels\MapPageModel.cs" />
     <Compile Include="PageModels\TodoPageModel.cs" />
     <Compile Include="PageModels\AgendaPageModel.cs" />
-    <Compile Include="PageModels\ReportPageModel.cs" />
+    <Compile Include="PageModels\ReportsPageModel.cs" />
     <Compile Include="PageModels\QuotationsPageModel.cs" />
     <Compile Include="PageModels\ContractPageModel.cs" />
     <Compile Include="PageModels\GoalsPageModel.cs" />
@@ -153,6 +159,18 @@
       <DependentUpon>GoalsDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\GoalsDetailPageModel.cs" />
+    <Compile Include="Pages\ReportsPage.xaml.cs">
+      <DependentUpon>ReportsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\State.cs" />
+    <Compile Include="PageModels\ReportsDetailPageModel.cs" />
+    <Compile Include="Controls\Cells\ReportCell.xaml.cs">
+      <DependentUpon>ReportCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\EnumColorToImageSourceConverter.cs" />
+    <Compile Include="Models\ColorEnum.cs" />
+    <Compile Include="Models\StateColor.cs" />
+    <Compile Include="Converters\BoolInverseConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

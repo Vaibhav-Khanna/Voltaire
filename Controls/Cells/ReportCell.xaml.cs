@@ -1,12 +1,14 @@
-﻿using voltaire.Models;
-using Xamarin.Forms;
+﻿using System;
+using System.Collections.Generic;
+using voltaire.Models;
 using voltaire.PageModels;
+using Xamarin.Forms;
 
 namespace voltaire.Controls.Cells
 {
-    public partial class SalesmanCell
+    public partial class ReportCell
     {
-        public SalesmanCell()
+        public ReportCell()
         {
             InitializeComponent();
         }
@@ -35,7 +37,7 @@ namespace voltaire.Controls.Cells
 
             //model.Customer.CanEdit = false;
 
-            model.navigation.PushPageModel<GoalsDetailPageModel>(model.Salesman);
+            model.navigation.PushPageModel<ReportsDetailPageModel>(model.Salesman);
 
             var parent = this.Parent as ListView;
             parent.SelectedItem = null;
@@ -43,7 +45,3 @@ namespace voltaire.Controls.Cells
 
     }
 }
-
-
-
-

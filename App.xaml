@@ -23,11 +23,14 @@
         <Color x:Key="frogGreen">#38d700</Color>
         <Color x:Key="GreyPlaceholder">#b3b3b3</Color>
         <Color x:Key="White">#f0f0f0</Color>
+        <Color x:Key="WhiteThree">#d8d8d8</Color>    
         <Color x:Key="BlueKeyList">#aad0d6</Color> 
         <Color x:Key="Squash">#edb00d</Color>
-        <Color x:Key="MaroonReset">#595959</Color>
         <Color x:Key="MaroonBlack">#333333</Color>   
         <Color x:Key="Vermillion">#eb1010</Color>
+        <Color x:Key="Green">#70c800 </Color>
+        <Color x:Key="orangeYellow">#ffa800 </Color>
+            
             
        <!-- LOGIN PAGE -->
         <Style x:Key="EntryLogin" TargetType="Entry">
@@ -252,7 +255,7 @@
             <Style x:Key="FilterWeightClickedButtonStyle"
                     BasedOn="{StaticResource FilterWeightButtonStyle}"
                    TargetType="Button">
-                <Setter Property="BackgroundColor" Value="{StaticResource MaroonReset}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource GreyishBrown}" />
                 <Setter Property="TextColor" Value="White" />  
             </Style>
             <Style x:Key="FilterSectionLabelStyle"
@@ -267,7 +270,7 @@
                     </Setter.Value>
                 </Setter>               
                 <Setter Property="FontSize" Value="16" />
-                <Setter Property="TextColor" Value="{StaticResource MaroonReset}" />
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
             </Style>
             <Style x:Key="ResetFiltersLabelStyle"
                    BasedOn="{StaticResource CommonLabelStyle}"
@@ -286,7 +289,7 @@
                     </Setter.Value>
                 </Setter>               
                 <Setter Property="FontSize" Value="14" />
-                <Setter Property="TextColor" Value="{StaticResource MaroonReset}" />
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
 
             </Style>
             <Style x:Key="PartnerGradeFrame"
@@ -307,7 +310,7 @@
                     </Setter.Value>
                 </Setter>               
                 <Setter Property="FontSize" Value="24" />
-                <Setter Property="TextColor" Value="{StaticResource MaroonReset}" />
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
             </Style>
             <Style x:Key="SalesmanNameLabelStyle"
                    BasedOn="{StaticResource SalesmanLabelStyle}"
@@ -333,7 +336,7 @@
                     </Setter.Value>
                 </Setter>               
                 <Setter Property="FontSize" Value="16" />
-                <Setter Property="TextColor" Value="{StaticResource MaroonReset}" />
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
@@ -379,13 +382,96 @@
                     </Setter.Value>
                 </Setter>               
                 <Setter Property="FontSize" Value="12" />
-                <Setter Property="TextColor" Value="{StaticResource MaroonReset}" />
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="Keyboard" Value="Numeric" />
                 <Setter Property="WidthRequest" Value="40" />
             </Style>
+            <!-- REPORTS DETAIL PAGE -->
+            <Style x:Key="SortLabelStyle"
+                TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>SanFranciscoDisplay-Regular</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/SanFranciscoDisplay-Regular#SanFranciscoDisplay</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="White" />
+             </Style>
+             <Style x:Key="RegularLabelStyle"
+                TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Regular</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Regular#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
+             </Style>
+             <Style x:Key="BoldLabelStyle"
+                TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Bold</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Bold#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
+             </Style>
+            
+            <!-- REPORT CELL -->
+            <Style x:Key="ReportCellLabelStyle"
+                TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>SanFranciscoDisplay-Semibold</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/SanFranciscoDisplay-Semibold#SanFranciscoDisplay</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
+             </Style>
+            <Style x:Key="ReportStatesButtonStyle"
+                TargetType="Button">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>SanFranciscoDisplay-Bold</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/SanFranciscoDisplay-Bold#SanFranciscoDisplay</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="WidthRequest" Value="50" />
+                <Setter Property="HeightRequest" Value="30" />
+            </Style>
+            <Style x:Key="ReportStatesLabelStyle"
+                TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>SanFranciscoDisplay-Bold</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/SanFranciscoDisplay-Bold#SanFranciscoDisplay</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="White" />
 
+             </Style>
             
           <!--CONVERTERS -->
           <converters:BoolToColorConverter x:Key="SelectableCellBoolToColorConverter"
@@ -393,6 +479,8 @@
                                              ColorTrue="{StaticResource turquoiseBlue}" />
             
           <converters:StringNullableToBooleanConverter x:Key="StringNullableToBooleanConverter" />
+          <converters:EnumColorToImageSourceConverter x:Key="EnumColorToImageSourceConverter" />
+          <converters:BoolInverseConverter x:Key="BoolInverseConverter" />  
           <converters:DateNullableToBooleanConverter x:Key="DateNullableToBooleanConverter" />
         </ResourceDictionary>    
 	</Application.Resources>
