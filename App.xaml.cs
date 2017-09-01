@@ -6,6 +6,7 @@ using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
 using Microsoft.Azure.Mobile.Distribute;
+using voltaire.Models;
 
 namespace voltaire
 {
@@ -14,6 +15,9 @@ namespace voltaire
         public App()
         {
             InitializeComponent();
+
+
+            ProductConstants.Init();
 
             var homePage = FreshPageModelResolver.ResolvePageModel<HomePageModel>();
             var homeContainer = new FreshNavigationContainer(homePage){ BarTextColor = Color.White };

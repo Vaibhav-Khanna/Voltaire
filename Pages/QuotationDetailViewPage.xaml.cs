@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FreshMvvm;
+using Rg.Plugins.Popup.Services;
 using voltaire.PageModels;
 using voltaire.Pages.Base;
 using Xamarin.Forms;
@@ -15,7 +16,9 @@ namespace voltaire.Pages
             NavigationPage.SetHasNavigationBar(this, false);
             listview.ItemTapped += Listview_ItemTapped;
 
-        }
+
+
+		}
 
         void Listview_ItemTapped(object sender, ItemTappedEventArgs e)
         {

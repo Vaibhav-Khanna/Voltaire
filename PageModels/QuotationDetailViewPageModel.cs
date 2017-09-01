@@ -1,26 +1,45 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using Rg.Plugins.Popup.Services;
 using voltaire.Models;
 using voltaire.PageModels.Base;
+using voltaire.PopUps;
 using Xamarin.Forms;
 
 namespace voltaire.PageModels
 {
     public class QuotationDetailViewPageModel : BasePageModel
     {
+        
+        ProductPickerPopupModel popup_context = new ProductPickerPopupModel(); //  Popup picker model 
+
 
         public Command BackButton => new Command( async() =>
         {
             await CoreMethods?.PopPageModel();
         });
 
-        public Command AddProductQuotation => new Command( () =>
+       
+        // Add product button tapped then subscribe to the selectem item changed event and take action
+        public Command AddProductQuotation => new Command( async() => 
        {
-            // Temporary Fix for adding products unitl choice picker is added
-            var item = new ProductQuotationModel(new Product() { Name = "Saddle", Description = "This is a saddle", UnitPrice = 3000 }){ Quantity = 1 }; 
-            OrderItemsSource.Add(item);
-            quotation.Products.Add(item);
+            popup_context.ItemSelectedChanged += Popup_Context_ItemSelectedChanged;    // Subscribe to the event
+            await PopupNavigation.PushAsync(new ProductPickerPopUp(){ BindingContext = popup_context }, true);
        });
+
+
+
+        void Popup_Context_ItemSelectedChanged() // When an item is selected from the popup then open product customize page
+        {
+            if (popup_context.SelectedItem != null)
+            {
+                var item = new ProductQuotationModel(popup_context.SelectedItem) { Quantity = 1 };
+                OrderItemsSource.Add(item);
+                quotation.Products.Add(item);
+            }
+            // Unsubscribe from the event
+			popup_context.ItemSelectedChanged -= Popup_Context_ItemSelectedChanged;
+		}
 
 
         bool newquotation;
