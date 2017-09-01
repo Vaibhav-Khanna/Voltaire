@@ -20,7 +20,6 @@ namespace voltaire.PageModels
             set
             {
                 description = value;
-				SetOrderStatusIndex(OrderStatusIndex);
                 RaisePropertyChanged();
             }
         }

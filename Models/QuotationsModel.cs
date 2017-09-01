@@ -24,7 +24,7 @@ namespace voltaire.Models
 
         public double TaxAmount { get; set; }
 
-        public QuotationStatus Status { get; set; }
+        public QuotationStatus Status { get; set; } = QuotationStatus.Draft;
 
         public string TrainerName { get; set; }
 

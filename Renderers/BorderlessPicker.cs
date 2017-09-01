@@ -6,8 +6,11 @@ namespace voltaire.Renderers
     public class BorderlessPicker : Picker
     {
         public BorderlessPicker()
-        {
-            
+        { 
+           
         }
+
+	
+
     }
 }

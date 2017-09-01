@@ -21,8 +21,7 @@ namespace voltaire.PageModels
 			{
 				customer = value;
 
-
-                filtertypes = new ObservableCollection<string>() { "All", "Name", "Status", "Amount", "Date" };
+                filtertypes = new ObservableCollection<string>() { "All", "Name", "Status" };
               
                 filter = 0;
 
@@ -132,6 +131,11 @@ namespace voltaire.PageModels
                 case 1 : 
                     {
                         items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string.ToLower())).ToList();
+                        break;
+                    }
+                case 2 :
+                    {
+                        items = all_items.Where((arg) => arg.Status.ToString().ToLower().Contains(query_string.ToLower())).ToList();
                         break;
                     }
                 default:

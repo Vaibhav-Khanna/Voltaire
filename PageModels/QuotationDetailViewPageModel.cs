@@ -202,11 +202,12 @@ namespace voltaire.PageModels
         }
 
 
-        void OrderItemsSource_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        public void OrderItemsSource_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
 
             if (OrderItemsSource == null)
                 return;
+
 
             SubTotal = 0;
             Total = 0;
@@ -225,7 +226,9 @@ namespace voltaire.PageModels
                 Total = SubTotal;  
             }
 
+
         }
+
 
         public override void Init(object initData)
         {
