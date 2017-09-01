@@ -15,13 +15,14 @@ namespace voltaire.Pages
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             listview.ItemTapped += Listview_ItemTapped;
-
-
-
 		}
 
         void Listview_ItemTapped(object sender, ItemTappedEventArgs e)
         {
+            var item = e.Item as ProductQuotationModel;
+
+            (BindingContext as QuotationDetailViewPageModel).itemTapped.Execute(item);
+
             listview.SelectedItem = null;
         }
 

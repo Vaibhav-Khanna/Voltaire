@@ -17,6 +17,7 @@ namespace voltaire.iOS.Renderers
             base.OnElementChanged(e);
 
             Control.BorderStyle = UITextBorderStyle.None;
+            Control.TextAlignment = UITextAlignment.Right;
         }
 
 

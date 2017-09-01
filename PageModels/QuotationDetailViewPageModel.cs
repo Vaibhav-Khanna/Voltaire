@@ -19,6 +19,12 @@ namespace voltaire.PageModels
             await CoreMethods?.PopPageModel();
         });
 
+        public Command itemTapped => new Command(async (object obj) =>
+		{
+            var item = obj as ProductQuotationModel;
+            await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<Product, ProductQuotationModel>(item.Product,item));
+		});
+
        
         // Add product button tapped then subscribe to the selectem item changed event and take action
         public Command AddProductQuotation => new Command( async() => 
@@ -29,13 +35,16 @@ namespace voltaire.PageModels
 
 
 
-        void Popup_Context_ItemSelectedChanged() // When an item is selected from the popup then open product customize page
+        async void Popup_Context_ItemSelectedChanged() // When an item is selected from the popup then open product customize page
         {
             if (popup_context.SelectedItem != null)
             {
                 var item = new ProductQuotationModel(popup_context.SelectedItem) { Quantity = 1 };
                 OrderItemsSource.Add(item);
                 quotation.Products.Add(item);
+
+                await CoreMethods.PushPageModel<ProductDescriptionPageModel>( new Tuple<Product,ProductQuotationModel>(popup_context.SelectedItem,item));
+
             }
             // Unsubscribe from the event
 			popup_context.ItemSelectedChanged -= Popup_Context_ItemSelectedChanged;

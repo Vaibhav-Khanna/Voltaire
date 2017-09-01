@@ -66,6 +66,9 @@
     <EmbeddedResource Include="PopUps\ProductPickerPopUp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ProductDescriptionPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -159,6 +162,12 @@
       <DependentUpon>ProductPickerPopUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="PopUps\ProductPickerPopupModel.cs" />
+    <Compile Include="Pages\ProductDescriptionPage.xaml.cs">
+      <DependentUpon>ProductDescriptionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductProperty.cs" />
+    <Compile Include="PageModels\ProductDescriptionPageModel.cs" />
+    <Compile Include="Converters\StringToBoolConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

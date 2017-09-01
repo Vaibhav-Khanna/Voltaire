@@ -31,7 +31,19 @@ namespace voltaire.PageModels
             set
             {
                 product = value;
+                //ProductProperties = product.Properties;
                 Init(product);
+                RaisePropertyChanged();
+            }
+        }
+
+        List<ProductProperty> productproperties;
+        public List<ProductProperty> ProductProperties
+        {
+            get { return productproperties; }
+            set
+            {
+                productproperties = value;
                 RaisePropertyChanged();
             }
         }
@@ -159,6 +171,16 @@ namespace voltaire.PageModels
             IsTaxApply = false;
             Product = _product;
 
+            if(ProductProperties==null)
+            {
+                var properties = new List<ProductProperty>();
+                foreach (var item in _product.Properties)
+                {
+                    ProductProperty clone = item.ObjectClone(item);
+                    properties.Add(clone);
+                }
+                ProductProperties = properties;
+            }
         }
 
         void SetOrderStatusIndex(int _value)

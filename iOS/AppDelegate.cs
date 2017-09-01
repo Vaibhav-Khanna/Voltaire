@@ -21,6 +21,9 @@ namespace voltaire.iOS
             CarouselViewRenderer.Init();
             Xamarin.FormsGoogleMaps.Init("AIzaSyCxXBNtq5ksFXZJBwW_SRkf3gEMOg4YhPc");
 
+            App.ScreenHeight = UIScreen.MainScreen.Bounds.Height;
+            App.ScreenWidth = UIScreen.MainScreen.Bounds.Width;
+
             // Code for starting up the Xamarin Test Cloud Agent
 #if DEBUG
             Xamarin.Calabash.Start();
