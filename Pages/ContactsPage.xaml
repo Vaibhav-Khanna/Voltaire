@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <base:BasePage 
     x:Class="voltaire.Pages.ContactsPage" 
     xmlns="http://xamarin.com/schemas/2014/forms" 
@@ -198,7 +198,7 @@
                         HorizontalOptions="Start"
                         WidthRequest="130" 
                         HeightRequest= "35"
-                        BackgroundColor="{StaticResource MaroonReset}"> 
+                        BackgroundColor="{StaticResource GreyishBrown}"> 
                             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand"  >
                                <Image Source="reset" HeightRequest="10" WidthRequest="11"/>
                                <Label Style="{StaticResource ResetFiltersLabelStyle}"

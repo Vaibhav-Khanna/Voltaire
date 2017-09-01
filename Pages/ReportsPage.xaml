@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base:BasePage 
+    x:Class="voltaire.Pages.ReportsPage" 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
+    xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire"
+    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire"
+    xmlns:converters="clr-namespace:voltaire.Converters;assembly=voltaire"
+    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
+    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
+    xmlns:attachedProperties="clr-namespace:voltaire.Helpers.AttachedProperties;assembly=voltaire"
+    >
+    <ContentPage.Behaviors>
+        <behaviors:HideNavigationBehavior />
+    </ContentPage.Behaviors>
+       <RelativeLayout x:Name="RelativeLayout"
+                    HorizontalOptions="FillAndExpand"
+                    Padding="0, -20, 0, 0"
+                    VerticalOptions="StartAndExpand">
+        <Grid ColumnSpacing="0"
+              RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                     Property=Height,
+                                                                     Factor=1}"
+              RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                    Property=Width,
+                                                                    Factor=1}"
+              RowSpacing="0"
+            BackgroundColor="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+         <!-- COLOR GRID -->
+                <Grid x:Name="ColorGrid"
+                  ColumnSpacing="0"
+                  HeightRequest="200"
+                  IsVisible="true"
+                  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                    ElementName=ListViewLayout,
+                                                                    Property=Width,
+                                                                    Factor=0.3,
+                                                                    Constant=60}"
+                  RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                    ElementName=ListViewLayout,
+                                                                    Property=Height,
+                                                                    Factor=0.1,
+                                                                    Constant=-80}"
+                  RowSpacing="0"
+                  WidthRequest="100">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="1" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="1" />
+                </Grid.RowDefinitions>
+                <BoxView Grid.Row="0"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="3"
+                         HeightRequest="1"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"
+                         Color="{StaticResource WhiteThree}" />
+
+                <BoxView Grid.Row="0"
+                         Grid.RowSpan="3"
+                         Grid.Column="0"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"
+                         WidthRequest="1"
+                         Color="{StaticResource WhiteThree}" />
+                <BoxView Grid.Row="0"
+                         Grid.RowSpan="3"
+                         Grid.Column="2"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"
+                         WidthRequest="1"
+                         Color="{StaticResource WhiteThree}" />
+                <ListView Grid.Row="1"
+                                           Grid.Column="1"
+                                           BackgroundColor="White"
+
+                                           ItemsSource="{Binding ColorItems}"
+                                           RowHeight="40"
+                                           SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                   <Label Grid.Column="0"
+                                                             FontSize="17"
+                                                             HorizontalOptions="Center"                                                            
+                                                             Text="All" 
+                                                             IsVisible="{Binding IsAllItem}"  
+                                                             TextColor="{StaticResource GreyishBrown}"
+                                                             VerticalOptions="Center" />
+                                    <Image Grid.Column="0"
+                                           IsVisible="{Binding IsAllItem,
+                                                               Converter={StaticResource BoolInverseConverter}}"
+                                           Source="{Binding ColorName,
+                                                            Converter={StaticResource EnumColorToImageSourceConverter}}" />
+                                  <!--  <Image Grid.Column="1"
+                                           Margin="5,0"
+                                           HeightRequest="18"
+                                           HorizontalOptions="EndAndExpand"
+                                           IsVisible="{Binding IsSelected}"
+                                           Source="check"
+                                           WidthRequest="18" /> -->
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <BoxView Grid.Row="2"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="3"
+                         HeightRequest="1"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"
+                         Color="{StaticResource WhiteThree}" />
+            </Grid>
+         <!--> END GRID COLOR <-->      
+
+            
+        <!--  Toolbar  -->
+        <controls:TToolBar Title="{x:Static resources:AppResources.Reports}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <controls:TToolBar.LeftToolbarItems>
+                <Entry Placeholder="{x:Static resources:AppResources.SearchSalesman}" Keyboard="Text" HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}"  />
+          </controls:TToolBar.LeftToolbarItems>
+        </controls:TToolBar>
+     <!--  Menu  -->
+        
+            <renderers:CustomScrollView Grid.Row="1" Grid.Column="0" BackgroundColor="{StaticResource MaroonBlack}" >
+            <StackLayout x:Name="MenuLayout" 
+            BackgroundColor="{StaticResource Black}" 
+            HorizontalOptions="StartAndExpand" 
+            Orientation="Vertical" 
+            Spacing="0" 
+            WidthRequest="80" />
+        </renderers:CustomScrollView>   
+           <!--  Main Layout  -->
+
+           <Grid Grid.Row="1" Grid.Column="1" ColumnSpacing="0" RowSpacing="0" Padding="0" BackgroundColor="White" x:Name="GridMainLayout">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+           
+            <!--  Calendar Row + Followed/Prospecting-->
+            <StackLayout   Grid.Row="0"  Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource White}" Padding="0,0,0,0">
+                <Grid HorizontalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                           <ColumnDefinition Width="50*" />
+                           <ColumnDefinition Width="50*" />
+                    </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" HorizontalOptions="StartAndExpand" Padding="10" VerticalOptions="Center">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                       <ColumnDefinition Width="50*" />
+                                       <ColumnDefinition Width="50*" />
+                                </Grid.ColumnDefinitions>
+                            
+                                <StackLayout Orientation="Horizontal" Grid.Column="0" VerticalOptions="Center">
+                                    <Label Text="Start" Style="{StaticResource BoldLabelStyle}" VerticalOptions="Center" />
+                                    <DatePicker ></DatePicker>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" Grid.Column="1" VerticalOptions="Center">
+                                    <Label Text="End" Style="{StaticResource BoldLabelStyle}" VerticalOptions="Center"/>
+                                    <DatePicker ></DatePicker>
+                                </StackLayout>
+                            </Grid>
+                         </StackLayout>
+                         <StackLayout Orientation="Vertical" Grid.Column="1" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Spacing="0">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Followed 4,118.50 min" Style="{StaticResource BoldLabelStyle}" /> 
+                                    <Label Text="for a total of 2 checking or 66.67%" Style="{StaticResource RegularLabelStyle}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Prospecting 0.00 min"  Style="{StaticResource BoldLabelStyle}"/> 
+                                    <Label Text="for a total of 1 checking or 33.33%" Style="{StaticResource RegularLabelStyle}" />
+                                </StackLayout>
+                         </StackLayout>
+                </Grid>                           
+            </StackLayout>
+
+            <Grid   Grid.Row="1" BackgroundColor="{StaticResource GreyishBrown}" Padding="5">
+                <Grid.ColumnDefinitions>
+                       <ColumnDefinition Width="40*" />
+                       <ColumnDefinition Width="15*" />
+                       <ColumnDefinition Width="15*" />
+                       <ColumnDefinition Width="10*" />
+                       <ColumnDefinition Width="20*" /> 
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label      Text="Check-Ins"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"
+                                Style="{StaticResource SortLabelStyle}"/>
+                    <Image Source="arrowdown" HeightRequest="8" WidthRequest="14"/>
+                </StackLayout>
+                <StackLayout Grid.Column="2" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label      Text="New contacts"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"
+                                Style="{StaticResource SortLabelStyle}"/>
+                    <Image Source="arrowdown" HeightRequest="8" WidthRequest="14"/>
+                </StackLayout>
+                <StackLayout Grid.Column="3" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center">
+                    <Label      Text="States"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"
+                                Style="{StaticResource SortLabelStyle}"/>
+                    <Image Source="arrowdown" HeightRequest="8" WidthRequest="14"/>
+                </StackLayout>
+
+               
+                <Image Source="filterascending" Grid.Column="4" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </Grid>
+
+            
+            <ListView                  x:Name="ListViewLayout"
+                                       Grid.Row="2" 
+                                       GroupDisplayBinding="{Binding Key}"
+                                       HasUnevenRows="True"
+                                       IsGroupingEnabled="True"
+                                       ItemsSource="{Binding SalesmensItems}"
+                                       RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                                              Property=Height}"
+                                       RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                                             Property=Width}">
+                    >
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="25">
+                            <StackLayout BackgroundColor="{StaticResource BlueKeyList}" VerticalOptions="FillAndExpand">
+                                <Label Margin="10,0,0,0"
+                                       Text="{Binding Key}"
+                                       TextColor="White"
+                                       VerticalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <cells:ReportCell />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView> 
+           
+        </Grid>
+    </Grid>
+    </RelativeLayout>           
+</base:BasePage>

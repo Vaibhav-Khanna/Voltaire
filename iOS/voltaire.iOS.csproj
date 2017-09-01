@@ -242,15 +242,6 @@
     <BundleResource Include="Resources\filters.png" />
     <BundleResource Include="Resources\filters%402x.png" />
     <BundleResource Include="Resources\filters%403x.png" />
-    <BundleResource Include="Resources\forange.png" />
-    <BundleResource Include="Resources\forange%402x.png" />
-    <BundleResource Include="Resources\forange%403x.png" />
-    <BundleResource Include="Resources\fgreen.png" />
-    <BundleResource Include="Resources\fgreen%402x.png" />
-    <BundleResource Include="Resources\fgreen%403x.png" />
-    <BundleResource Include="Resources\fred.png" />
-    <BundleResource Include="Resources\fred%402x.png" />
-    <BundleResource Include="Resources\fred%403x.png" />
     <BundleResource Include="Resources\close.png" />
     <BundleResource Include="Resources\close%402x.png" />
     <BundleResource Include="Resources\close%403x.png" />
@@ -286,6 +277,28 @@
     <BundleResource Include="Resources\back.png" />
     <BundleResource Include="Resources\back%402x.png" />
     <BundleResource Include="Resources\back%403x.png" />
+    <BundleResource Include="Resources\arrowdown.png" />
+    <BundleResource Include="Resources\arrowdown%402x.png" />
+    <BundleResource Include="Resources\arrowdown%403x.png" />
+    <BundleResource Include="Resources\filterascending.png" />
+    <BundleResource Include="Resources\filterascending%402x.png" />
+    <BundleResource Include="Resources\filterascending%403x.png" />
+    <BundleResource Include="Resources\Fonts\SanFranciscoDisplay-Regular.otf" />
+    <BundleResource Include="Resources\greenfilter.png" />
+    <BundleResource Include="Resources\greenfilter%403x.png" />
+    <BundleResource Include="Resources\grayfilter.png" />
+    <BundleResource Include="Resources\grayfilter%402x.png" />
+    <BundleResource Include="Resources\grayfilter%403x.png" />
+    <BundleResource Include="Resources\greenfilter%402x.png" />
+    <BundleResource Include="Resources\orangefilter.png" />
+    <BundleResource Include="Resources\orangefilter%402x.png" />
+    <BundleResource Include="Resources\orangefilter%403x.png" />
+    <BundleResource Include="Resources\redfilter.png" />
+    <BundleResource Include="Resources\redfilter%402x.png" />
+    <BundleResource Include="Resources\redfilter%403x.png" />
+    <BundleResource Include="Resources\check.png" />
+    <BundleResource Include="Resources\check%402x.png" />
+    <BundleResource Include="Resources\check%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

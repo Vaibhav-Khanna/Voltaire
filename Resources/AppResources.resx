@@ -168,4 +168,8 @@
 	<data name="SearchSalesman" xml:space="preserve">
         <value>Search a salesman</value>
     </data>
+	<!-->REPORTS PAGE <-->
+	<data name="Reports" xml:space="preserve">
+        <value>Reports</value>
+    </data>
 </root>

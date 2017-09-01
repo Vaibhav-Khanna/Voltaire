@@ -27,7 +27,7 @@ namespace voltaire.Controls.Cells
                 {
                     Spans = {
                 new Span { Text = model.Customer.FirstName, FontAttributes = FontAttributes.None, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"},
-                new Span { Text = $" {model.Customer.LastName}", FontAttributes = FontAttributes.Bold, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"} }
+                new Span { Text = $" {model.Customer.LastName}", FontSize = 20, FontFamily="SanFranciscoDisplay-Bold"} }
                 };
             }
         }

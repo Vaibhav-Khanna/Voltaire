@@ -72,7 +72,7 @@ namespace voltaire.Pages.Base
                     page = FreshPageModelResolver.ResolvePageModel<AgendaPageModel>();
                     break;
                 case "report":
-                    page = FreshPageModelResolver.ResolvePageModel<ReportPageModel>();
+                    page = FreshPageModelResolver.ResolvePageModel<ReportsPageModel>();
                     break;
                 case "quotations":
                     page = FreshPageModelResolver.ResolvePageModel<QuotationsPageModel>();

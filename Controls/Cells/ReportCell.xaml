@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell x:Class="voltaire.Controls.Cells.ReportCell"
+          xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"  >
+<Grid>
+           <Grid.ColumnDefinitions>
+                       <ColumnDefinition Width="40*" />
+                       <ColumnDefinition Width="15*" />
+                       <ColumnDefinition Width="15*" />
+                       <ColumnDefinition Width="10*" />
+                       <ColumnDefinition Width="20*" /> 
+           </Grid.ColumnDefinitions>
+
+    
+    <Grid   MinimumHeightRequest="40"
+            Grid.Column="0"   
+            Padding="15,10,7,10">
+        <Label   x:Name="FullNameLabel" /> 
+    </Grid>        
+        <!-- Check-Ins -->
+    <Grid   MinimumHeightRequest="40"
+            Grid.Column="1"
+            HorizontalOptions="Center" 
+            VerticalOptions="Center">
+        <Label   Text="{Binding Salesman.CheckIns}" Style="{StaticResource ReportCellLabelStyle}" /> 
+    </Grid>
+        <!--> New Contacts <-->
+    <Grid   MinimumHeightRequest="40"
+            Grid.Column="2"
+            HorizontalOptions="Center" 
+            VerticalOptions="Center">
+        <Label   Text="{Binding Salesman.NewContacts}" Style="{StaticResource ReportCellLabelStyle}" /> 
+    </Grid>
+     <StackLayout Orientation="Horizontal"   Grid.Column="3" Grid.ColumnSpan="2" Spacing="5" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+
+         <Frame     HasShadow="false" 
+                    BackgroundColor="{StaticResource GreyishBrown}" 
+                    WidthRequest="55" 
+                    HeightRequest="30" 
+                    Padding="7,0,0,0"  >
+                
+            <Label  Text="{Binding Salesman.State.Gray}" 
+                    Style="{StaticResource ReportStatesLabelStyle}" 
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Center"/>
+         </Frame> 
+
+         <Frame     HasShadow="false" 
+                    BackgroundColor="{StaticResource Green}" 
+                    WidthRequest="55" 
+                    HeightRequest="30" 
+                    Padding="7,0,0,0"  >
+                
+            <Label  Text="{Binding Salesman.State.Green}" 
+                    Style="{StaticResource ReportStatesLabelStyle}" 
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Center"/>
+         </Frame> 
+            
+         <Frame     HasShadow="false" 
+                    BackgroundColor="{StaticResource orangeYellow}" 
+                    WidthRequest="55" 
+                    HeightRequest="30" 
+                    Padding="7,0,0,0"  >
+                
+            <Label  Text="{Binding Salesman.State.Orange}" 
+                    Style="{StaticResource ReportStatesLabelStyle}" 
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Center"/>
+         </Frame>
+            
+         <Frame     HasShadow="false" 
+                    BackgroundColor="{StaticResource Vermillion}" 
+                    WidthRequest="55" 
+                    HeightRequest="30" 
+                    Padding="7,0,0,0"  >
+                
+            <Label  Text="{Binding Salesman.State.Red}" 
+                    Style="{StaticResource ReportStatesLabelStyle}" 
+                    HorizontalOptions="Start" VerticalOptions="Center"/>
+         </Frame>       
+
+     </StackLayout>  
+   </Grid>
+</ViewCell>
