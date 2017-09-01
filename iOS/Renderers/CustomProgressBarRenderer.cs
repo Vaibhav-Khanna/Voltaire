@@ -11,12 +11,24 @@ namespace voltaire.iOS.Renderers
 {
     public class CustomProgressBarRenderer : ProgressBarRenderer
     {
-        protected override void OnElementChanged(
-         ElementChangedEventArgs<Xamarin.Forms.ProgressBar> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<ProgressBar> e)
         {
             base.OnElementChanged(e);
 
-            Control.ProgressTintColor = Color.FromRgb(0, 222, 255).ToUIColor();// If you want to change the color
+            var newElement = e.NewElement as CustomProgressBar;
+
+
+            if (newElement.ProgressColor == "Blue")
+                Control.ProgressTintColor = Color.FromRgb(0, 222, 255).ToUIColor();// If you want to change the color
+
+            if (newElement.ProgressColor == "Orange")
+                Control.ProgressTintColor = Color.FromRgb(255, 168, 0).ToUIColor();// If you want to change the color
+
+            if (newElement.ProgressColor == "Green")
+                Control.ProgressTintColor = Color.FromRgb(139, 226, 27).ToUIColor();// If you want to change the color
+
+            if (newElement.ProgressColor == "Red")
+                Control.ProgressTintColor = Color.FromRgb(255, 103, 103).ToUIColor();// If you want to change the color
 
         }
 

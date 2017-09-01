@@ -172,4 +172,8 @@
 	<data name="Reports" xml:space="preserve">
         <value>Reports</value>
     </data>
+	<!-->REPORTS DETAIL PAGE <-->
+	<data name="Report" xml:space="preserve">
+        <value>Report</value>
+    </data>
 </root>

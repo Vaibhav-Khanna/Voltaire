@@ -238,5 +238,11 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("Reports", resourceCulture);
             }
         }
+        
+        internal static string Report {
+            get {
+                return ResourceManager.GetString("Report", resourceCulture);
+            }
+        }
     }
 }
