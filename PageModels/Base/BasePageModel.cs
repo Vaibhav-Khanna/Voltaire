@@ -26,6 +26,11 @@ namespace voltaire.PageModels.Base
 
         private void OnPageWasPopped(object sender, EventArgs eventArgs)
         {
+            if (CurrentPage.GetType() != typeof(BaseDisposePage))
+            {
+				return;
+            }
+               
             ((BaseDisposePage)CurrentPage).DisposeResources();
             PageWasPopped -= OnPageWasPopped;
             ReleaseResources();

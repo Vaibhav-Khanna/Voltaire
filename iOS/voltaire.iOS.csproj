@@ -136,6 +136,15 @@
     <Reference Include="Xamarin.Forms.GoogleMaps.iOS">
       <HintPath>..\packages\Xamarin.Forms.GoogleMaps.2.1.0\lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.iOS.dll</HintPath>
     </Reference>
+    <Reference Include="Rg.Plugins.Popup">
+      <HintPath>..\packages\Rg.Plugins.Popup.1.0.4\lib\Xamarin.IOS\Rg.Plugins.Popup.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup.IOS">
+      <HintPath>..\packages\Rg.Plugins.Popup.1.0.4\lib\Xamarin.IOS\Rg.Plugins.Popup.IOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup.Platform">
+      <HintPath>..\packages\Rg.Plugins.Popup.1.0.4\lib\Xamarin.IOS\Rg.Plugins.Popup.Platform.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\voltaire.csproj">
@@ -168,6 +177,9 @@
     <Compile Include="Renderers\CustomScrollViewRenderer.cs" />
     <Compile Include="Renderers\RoundedBoxViewRenderer.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+    <Compile Include="Renderers\CustomSearchBarRenderer.cs" />
+    <Compile Include="Renderers\BorderlessPickerRenderer.cs" />
+    <Compile Include="Renderers\DefaultButtonRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.png" />
@@ -257,6 +269,24 @@
     <BundleResource Include="Resources\email.png" />
     <BundleResource Include="Resources\email%402x.png" />
     <BundleResource Include="Resources\email%403x.png" />
+    <BundleResource Include="Resources\more.png" />
+    <BundleResource Include="Resources\more%402x.png" />
+    <BundleResource Include="Resources\more%403x.png" />
+    <BundleResource Include="Resources\back.png" />
+    <BundleResource Include="Resources\back%402x.png" />
+    <BundleResource Include="Resources\back%403x.png" />
+    <BundleResource Include="Resources\sign.png" />
+    <BundleResource Include="Resources\sign%402x.png" />
+    <BundleResource Include="Resources\sign%403x.png" />
+    <BundleResource Include="Resources\note.png" />
+    <BundleResource Include="Resources\note%402x.png" />
+    <BundleResource Include="Resources\note%403x.png" />
+    <BundleResource Include="Resources\email2.png" />
+    <BundleResource Include="Resources\email2%402x.png" />
+    <BundleResource Include="Resources\email2%403x.png" />
+    <BundleResource Include="Resources\Close1.png" />
+    <BundleResource Include="Resources\Close1%402x.png" />
+    <BundleResource Include="Resources\Close1%403x.png" />
     <BundleResource Include="Resources\Fonts\Raleway-Heavy.ttf" />
     <BundleResource Include="Resources\Fonts\Raleway-Medium.ttf" />
     <BundleResource Include="Resources\Fonts\Raleway-Regular.ttf" />
@@ -274,9 +304,6 @@
     <BundleResource Include="Resources\markerred%402x.png" />
     <BundleResource Include="Resources\markerred%403x.png" />
     <BundleResource Include="Resources\Fonts\SanFranciscoDisplay-Bold.otf" />
-    <BundleResource Include="Resources\back.png" />
-    <BundleResource Include="Resources\back%402x.png" />
-    <BundleResource Include="Resources\back%403x.png" />
     <BundleResource Include="Resources\arrowdown.png" />
     <BundleResource Include="Resources\arrowdown%402x.png" />
     <BundleResource Include="Resources\arrowdown%403x.png" />

@@ -28,7 +28,10 @@ namespace voltaire.Pages.Base
             var context = BindingContext as TTab;
 
             if (context == null)
+            {
                 return;
+            }
+
 
             Context = context;
 
@@ -54,14 +57,34 @@ namespace voltaire.Pages.Base
 							BindingContextSet();
                             break;
                         }
+                    case"QuotationsTabPage":
+                        {
+                            var quote = new QuotationsPageModel();
+							quote.Init(context.Customer);
+							context.ViewBindingContext = quote;
+                            BindingContext = quote;
+							BindingContextSet();
+                            break;
+                        }
 				}
             }
               		
         }
 
+		protected virtual void OnAppearing()
+		{
+
+		}
+
+
         virtual protected void BindingContextSet()
         {
             
+        }
+
+        void Context_OnAppearing()
+        {
+            OnAppearing();
         }
 
         public bool MoveToNextTab()

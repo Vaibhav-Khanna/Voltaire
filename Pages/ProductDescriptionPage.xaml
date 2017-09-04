@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:FreshBaseContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:base="clr-namespace:FreshMvvm;assembly=FreshMvvm" 
+    xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire" 
+    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire"
+    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
+    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
+     x:Class="voltaire.Pages.ProductDescriptionPage">
+        <StackLayout BackgroundColor = "White" Orientation = "Vertical" Spacing = "0" Padding= "0" VerticalOptions = "StartAndExpand" >
+            <controls:TToolBar x:Name="toolbar" BackgroundColor = "{StaticResource turquoiseBlue}" HeightRequest = "90" Title = "{Binding ProductName}" VerticalOptions = "StartAndExpand" HorizontalOptions = "FillAndExpand" >
+                <controls:TToolBar.LeftToolbarItems>
+                    <Image Source = "back.png" HeightRequest = "25" WidthRequest = "30" VerticalOptions = "Center" HorizontalOptions = "Start" >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding BackButton}" />
+                        </Image.GestureRecognizers> 
+                    </Image>
+                </controls:TToolBar.LeftToolbarItems>
+                <controls:TToolBar.RightToolbarItems>
+                  <Label Text="Save product" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"/>
+                </controls:TToolBar.RightToolbarItems>
+            </controls:TToolBar>
+        <Grid x:Name = "grid" RowSpacing="1" ColumnSpacing="1" Margin="20" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+        </StackLayout>
+</base:FreshBaseContentPage>

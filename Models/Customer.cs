@@ -36,6 +36,8 @@ namespace voltaire.Models
 
         public List<CustomerAddressLocation> CustomerAddresses { get; set; }
 
+        public List<QuotationsModel> Quotations { get; set; } = new List<QuotationsModel>();
+
     }
 
 }

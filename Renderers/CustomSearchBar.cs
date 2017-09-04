@@ -1,14 +1,13 @@
 ﻿using System;
-using voltaire.Behaviors;
 using Xamarin.Forms;
 
 namespace voltaire.Renderers
 {
-    public class BorderlessEntry : Entry
+    public class CustomSearchBar : SearchBar
     {
-        public BorderlessEntry()
+        public CustomSearchBar()
         {
+            
         }
     }
 }
-

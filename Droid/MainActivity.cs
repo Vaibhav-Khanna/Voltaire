@@ -27,6 +27,10 @@ namespace voltaire.Droid
             CarouselView.FormsPlugin.Android.CarouselViewRenderer.Init();
             Xamarin.FormsGoogleMaps.Init(this,bundle);
 
+            var displayMetrics = this.Resources.DisplayMetrics;
+            App.ScreenWidth = ConvertPixelsToDp(displayMetrics.WidthPixels);
+            App.ScreenHeight = ConvertPixelsToDp(displayMetrics.HeightPixels);
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
 #if DEBUG
 #else
@@ -35,5 +39,12 @@ namespace voltaire.Droid
 
             LoadApplication(new App());
         }
+
+		private int ConvertPixelsToDp(float pixelValue)
+		{
+			var dp = (int)((pixelValue) / Resources.DisplayMetrics.Density);
+			return dp;
+		}
+
     }
 }

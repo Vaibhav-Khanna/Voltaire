@@ -52,9 +52,20 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Cells\ContactCell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\MapTabPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\QuotationsTabPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\QuotationDetailViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopUps\ProductPickerPopUp.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ProductDescriptionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\GoalsPage.xaml">
@@ -147,6 +158,33 @@
       <DependentUpon>MapTabPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomerAddressLocation.cs" />
+    <Compile Include="Pages\QuotationsTabPage.xaml.cs">
+      <DependentUpon>QuotationsTabPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Renderers\CustomSearchBar.cs" />
+    <Compile Include="Renderers\BorderlessPicker.cs" />
+    <Compile Include="Models\QuotationsModel.cs" />
+    <Compile Include="Converters\EnumToStringConverter.cs" />
+    <Compile Include="Pages\QuotationDetailViewPage.xaml.cs">
+      <DependentUpon>QuotationDetailViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageModels\QuotationDetailViewPageModel.cs" />
+    <Compile Include="Models\ProductConstants.cs" />
+    <Compile Include="PageModels\ProductQuotationModel.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Behaviors\NumberValidationBehaviour.cs" />
+    <Compile Include="Behaviors\MaxLengthValidationBehaviour.cs" />
+    <Compile Include="Renderers\NumberEntry.cs" />
+    <Compile Include="PopUps\ProductPickerPopUp.xaml.cs">
+      <DependentUpon>ProductPickerPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopUps\ProductPickerPopupModel.cs" />
+    <Compile Include="Pages\ProductDescriptionPage.xaml.cs">
+      <DependentUpon>ProductDescriptionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductProperty.cs" />
+    <Compile Include="PageModels\ProductDescriptionPageModel.cs" />
+    <Compile Include="Converters\StringToBoolConverter.cs" />
     <Compile Include="Pages\GoalsPage.xaml.cs">
       <DependentUpon>GoalsPage.xaml</DependentUpon>
     </Compile>
@@ -212,6 +250,12 @@
     <Reference Include="Xamarin.Forms.GoogleMaps">
       <HintPath>packages\Xamarin.Forms.GoogleMaps.2.1.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid70+MonoTouch10+Xamarin.iOS10+UAP10\Xamarin.Forms.GoogleMaps.dll</HintPath>
     </Reference>
+    <Reference Include="Rg.Plugins.Popup">
+      <HintPath>packages\Rg.Plugins.Popup.1.0.4\lib\portable-win+net45+wp8+win8+wpa81\Rg.Plugins.Popup.dll</HintPath>
+    </Reference>
+    <Reference Include="Rg.Plugins.Popup.Platform">
+      <HintPath>packages\Rg.Plugins.Popup.1.0.4\lib\portable-win+net45+wp8+win8+wpa81\Rg.Plugins.Popup.Platform.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -234,6 +278,7 @@
     <Folder Include="Helpers\AttachedProperties\" />
     <Folder Include="TemplateSelectors\" />
     <Folder Include="Effects\" />
+    <Folder Include="PopUps\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

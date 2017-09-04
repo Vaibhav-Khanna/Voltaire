@@ -9,6 +9,7 @@ using CarouselView.FormsPlugin.Abstractions;
 using System.Collections.ObjectModel;
 using voltaire.Controls.Items;
 using voltaire.Resources;
+using voltaire.Renderers;
 
 namespace voltaire.Pages
 {
@@ -78,14 +79,15 @@ namespace voltaire.Pages
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 InterPageSpacing = 5,
                 IsSwipingEnabled = true,
-                AnimateTransition = true,
+                AnimateTransition = false,
                 BackgroundColor = Color.White,
                 Orientation = CarouselViewOrientation.Horizontal
             };
             viewpager.SetBinding(CarouselViewControl.ItemsSourceProperty,"Tab");
             viewpager.SetBinding(CarouselViewControl.ItemTemplateProperty,"ItemTemplates");
             viewpager.SetBinding(CarouselViewControl.PositionProperty,"SelectedIndex", BindingMode.TwoWay );
-    
+
+
 			tabslider.SelectedIndexChanged += () => 
             {
                 viewpager.Position = tabslider.Selected_Index;
@@ -93,7 +95,8 @@ namespace voltaire.Pages
 
             viewpager.PositionSelected += (sender, e) => 
             {
-                tabslider.Selected_Index = viewpager.Position; 
+                tabslider.Selected_Index = viewpager.Position;
+
             };
 
 
@@ -136,6 +139,7 @@ namespace voltaire.Pages
         {
             base.OnAppearing();
             tabslider.ViewHasAppeared();
+
         }
 
         public override void DisposeResources()

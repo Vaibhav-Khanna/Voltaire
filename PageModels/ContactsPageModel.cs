@@ -104,7 +104,8 @@ namespace voltaire.PageModels
                             Title = "Metro",
                             Latitude = 31.669,
                             Longitude = 74.882
-                        } }
+                        } },
+                   
                 },
                 new Customer {
                     FirstName= "Milton",

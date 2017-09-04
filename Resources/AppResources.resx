@@ -158,6 +158,10 @@
 	<data name="Update" xml:space="preserve">
         <value>Update customer</value>
     </data>
+	<data name = "Filters" xml:space = "preserve">
+        <value>Filters</value>
+	</data>
+	
 	<!-->GOALS PAGE <-->
 	<data name="Salesmens" xml:space="preserve">
         <value>Salesmens</value>
