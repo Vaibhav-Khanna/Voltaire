@@ -21,12 +21,11 @@ namespace voltaire
             InitializeComponent();
 
 
-
-
             ProductConstants.Init();
 
             var homePage = FreshPageModelResolver.ResolvePageModel<HomePageModel>();
             var homeContainer = new FreshNavigationContainer(homePage){ BarTextColor = Color.White };
+
 
             MainPage = homeContainer;
 
