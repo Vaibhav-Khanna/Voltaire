@@ -38,6 +38,7 @@ namespace voltaire.Models
 
         public List<QuotationsModel> Quotations { get; set; } = new List<QuotationsModel>();
 
+        public List<Contract> Contracts { get; set; } = new List<Contract>();
     }
 
 }

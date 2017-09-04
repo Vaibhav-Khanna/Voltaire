@@ -66,6 +66,15 @@ namespace voltaire.Pages.Base
 							BindingContextSet();
                             break;
                         }
+					case "ContractListTabPage":
+						{
+                            var contract = new ContractPageModel();
+							contract.Init(context.Customer);
+							context.ViewBindingContext = contract;
+							BindingContext = contract;
+							BindingContextSet();
+							break;
+						}
 				}
             }
               		
