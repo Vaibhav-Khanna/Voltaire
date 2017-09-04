@@ -52,12 +52,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Cells\ContactCell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\MapTabPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-<<<<<<< HEAD
     <EmbeddedResource Include="Pages\QuotationsTabPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -68,7 +66,8 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ProductDescriptionPage.xaml">
-=======
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\GoalsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -82,7 +81,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Cells\ReportCell.xaml">
->>>>>>> development
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -157,7 +155,6 @@
       <DependentUpon>MapTabPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomerAddressLocation.cs" />
-<<<<<<< HEAD
     <Compile Include="Pages\QuotationsTabPage.xaml.cs">
       <DependentUpon>QuotationsTabPage.xaml</DependentUpon>
     </Compile>
@@ -185,8 +182,6 @@
     <Compile Include="Models\ProductProperty.cs" />
     <Compile Include="PageModels\ProductDescriptionPageModel.cs" />
     <Compile Include="Converters\StringToBoolConverter.cs" />
-    <Compile Include="Renderers\MyCarouselViewControl.cs" />
-=======
     <Compile Include="Pages\GoalsPage.xaml.cs">
       <DependentUpon>GoalsPage.xaml</DependentUpon>
     </Compile>
@@ -214,7 +209,6 @@
     <Compile Include="Models\ColorEnum.cs" />
     <Compile Include="Models\StateColor.cs" />
     <Compile Include="Converters\BoolInverseConverter.cs" />
->>>>>>> development
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

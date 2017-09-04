@@ -158,10 +158,10 @@
 	<data name="Update" xml:space="preserve">
         <value>Update customer</value>
     </data>
-<<<<<<< HEAD
 	<data name = "Filters" xml:space = "preserve">
         <value>Filters</value>
-=======
+	</data>
+	
 	<!-->GOALS PAGE <-->
 	<data name="Salesmens" xml:space="preserve">
         <value>Salesmens</value>
@@ -175,6 +175,5 @@
 	<!-->REPORTS PAGE <-->
 	<data name="Reports" xml:space="preserve">
         <value>Reports</value>
->>>>>>> development
     </data>
 </root>

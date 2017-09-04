@@ -269,7 +269,6 @@
     <BundleResource Include="Resources\email.png" />
     <BundleResource Include="Resources\email%402x.png" />
     <BundleResource Include="Resources\email%403x.png" />
-<<<<<<< HEAD
     <BundleResource Include="Resources\more.png" />
     <BundleResource Include="Resources\more%402x.png" />
     <BundleResource Include="Resources\more%403x.png" />
@@ -288,7 +287,6 @@
     <BundleResource Include="Resources\Close1.png" />
     <BundleResource Include="Resources\Close1%402x.png" />
     <BundleResource Include="Resources\Close1%403x.png" />
-=======
     <BundleResource Include="Resources\Fonts\Raleway-Heavy.ttf" />
     <BundleResource Include="Resources\Fonts\Raleway-Medium.ttf" />
     <BundleResource Include="Resources\Fonts\Raleway-Regular.ttf" />
@@ -306,9 +304,6 @@
     <BundleResource Include="Resources\markerred%402x.png" />
     <BundleResource Include="Resources\markerred%403x.png" />
     <BundleResource Include="Resources\Fonts\SanFranciscoDisplay-Bold.otf" />
-    <BundleResource Include="Resources\back.png" />
-    <BundleResource Include="Resources\back%402x.png" />
-    <BundleResource Include="Resources\back%403x.png" />
     <BundleResource Include="Resources\arrowdown.png" />
     <BundleResource Include="Resources\arrowdown%402x.png" />
     <BundleResource Include="Resources\arrowdown%403x.png" />
@@ -331,7 +326,6 @@
     <BundleResource Include="Resources\check.png" />
     <BundleResource Include="Resources\check%402x.png" />
     <BundleResource Include="Resources\check%403x.png" />
->>>>>>> development
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
