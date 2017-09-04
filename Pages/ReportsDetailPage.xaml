@@ -169,6 +169,7 @@
                                 WidthRequest="100"
                                 BorderColor="{StaticResource turquoiseBlue3}"
                                 Text="3"
+                                FontSize="40"
                                 TextColor="{StaticResource GreyishBrown}"
                                 FontFamily="SanFranciscoDisplay-Regular"
                                 VerticalOptions="Center"
@@ -259,19 +260,20 @@
                                 VerticalOptions="Start"
                                 Margin="15"/>
 
-                    <Button     BorderWidth="8"
+                    <Button     BorderWidth="8"                             
                                 BorderRadius="50"
                                 HeightRequest="100" 
                                 WidthRequest="100"
                                 BorderColor="{StaticResource GreyLine}"
-                                Text="1"                            
+                                Text="1"  
+                                FontSize="40"
                                 TextColor="{StaticResource turquoiseBlue3}"
                                 FontFamily="SanFranciscoDisplay-Regular"
                                 VerticalOptions="Center"
                                 HorizontalOptions="CenterAndExpand"
                                 Margin="0,0,0,10"/>
 
-                    <Label Text="1 new for this period" TextColor="{StaticResource turquoiseBlue3}" HorizontalOptions="Center"/>
+                    <Label Text="1 new for this period" FontFamily="SanFranciscoDisplay-Semibold" TextColor="{StaticResource turquoiseBlue3}" HorizontalOptions="Center"/>
                     <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                          <Button    
                                     BorderRadius="30"
@@ -280,11 +282,13 @@
                                     BackgroundColor="{StaticResource turquoiseBlue3}"
                                     Text="3325"
                                     TextColor="White"
-                                    FontSize="16"
+                                    FontSize="20"
                                     FontFamily="SanFranciscoDisplay-Bold"
                                     VerticalOptions="CenterAndExpand"
                                     HorizontalOptions="CenterAndExpand"/>
-                        <Label Text="contacts in database"  VerticalOptions="CenterAndExpand" TextColor="{StaticResource turquoiseBlue3}" />
+
+                        
+                        <Label Text="contacts in database" FontFamily="SanFranciscoDisplay-Medium" VerticalOptions="CenterAndExpand" TextColor="{StaticResource turquoiseBlue3}" />
                    </StackLayout> 
                 </StackLayout>
                 <StackLayout    Grid.Column="0"
