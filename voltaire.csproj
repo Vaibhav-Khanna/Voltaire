@@ -72,6 +72,9 @@
     <EmbeddedResource Include="Controls\Cells\ReportCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ReportsDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -171,6 +174,9 @@
     <Compile Include="Models\ColorEnum.cs" />
     <Compile Include="Models\StateColor.cs" />
     <Compile Include="Converters\BoolInverseConverter.cs" />
+    <Compile Include="Pages\ReportsDetailPage.xaml.cs">
+      <DependentUpon>ReportsDetailPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

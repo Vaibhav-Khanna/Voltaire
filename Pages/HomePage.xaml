@@ -80,7 +80,13 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Label Text="{x:Static resources:AppResources.Goals}" Grid.Column="0" Grid.Row="0" Style="{StaticResource MenuItemLabelStyle}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-                        <renderers:CustomProgressBar Progress="0.48" VerticalOptions="Center" Grid.Column="0" Grid.Row="1" />
+
+                        <renderers:CustomProgressBar Progress="0.48" VerticalOptions="Center" Grid.Column="0" Grid.Row="1" >
+                        <x:Arguments>
+                                    <x:String>Blue</x:String>
+                                </x:Arguments>
+                         </renderers:CustomProgressBar>
+
                         <Label Grid.Column="1" Grid.Row="1" Text="48%" HorizontalOptions="End" Style="{StaticResource GreenPerCent}" VerticalOptions="CenterAndExpand" />
                         <Image Source="up" Grid.Column="2" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"  HeightRequest="13" WidthRequest="20"/>
                         <Label Grid.Column="0" Grid.Row="2" Margin="0,-15,0,0" VerticalOptions="Start" HorizontalOptions="Start" Text="0" Style="{StaticResource ProgressBarLabel}" />

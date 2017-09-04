@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <base:BasePage 
+    x:Class="voltaire.Pages.ReportsDetailPage" 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
+    xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire"
+    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire" 
+    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
+    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
+    xmlns:attachedProperties="clr-namespace:voltaire.Helpers.AttachedProperties;assembly=voltaire"
+    >
+    <ContentPage.Behaviors>
+        <behaviors:HideNavigationBehavior />
+    </ContentPage.Behaviors>
+    <Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <!--  Toolbar  -->
+        <controls:TToolBar Title="{Binding name}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <controls:TToolBar.LeftToolbarItems>
+
+            <StackLayout attachedProperties:TappedGestureAttached.Command="{Binding tap_Back}"
+                             HeightRequest="45"
+                             Orientation="Horizontal"
+                             WidthRequest="45">
+                
+                <Image Source="back" HeightRequest="24" WidthRequest="46" HorizontalOptions="Center" VerticalOptions="Center"/> 
+            </StackLayout>        
+          </controls:TToolBar.LeftToolbarItems>
+        </controls:TToolBar>
+         <!--  Menu  -->
+        
+            <renderers:CustomScrollView Grid.Row="1" Grid.Column="0" BackgroundColor="{StaticResource MaroonBlack}" >
+            <StackLayout x:Name="MenuLayout" 
+            BackgroundColor="{StaticResource Black}" 
+            HorizontalOptions="StartAndExpand" 
+            Orientation="Vertical" 
+            Spacing="0" 
+            WidthRequest="80" />
+        </renderers:CustomScrollView>
+
+         <!--  Main Layout  -->
+
+           <Grid Grid.Row="1" Grid.Column="1" ColumnSpacing="0" RowSpacing="0" Padding="0" BackgroundColor="White" x:Name="GridMainLayout">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+           
+            <!--  Calendar Row -->
+            <StackLayout   Grid.Row="0"  Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource White}" Padding="30,0,0,0">
+                <Grid HorizontalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                           <ColumnDefinition Width="35*" />
+                           <ColumnDefinition Width="65*" />
+                    </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" HorizontalOptions="StartAndExpand" Padding="10" VerticalOptions="Center">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                       <ColumnDefinition Width="50*" />
+                                       <ColumnDefinition Width="50*" />
+                                </Grid.ColumnDefinitions>
+                            
+                                <StackLayout Orientation="Horizontal" Grid.Column="0" VerticalOptions="Center">
+                                    <Label Text="Start" Style="{StaticResource BoldLabelStyle}" VerticalOptions="Center" />
+                                    <DatePicker ></DatePicker>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" Grid.Column="1" VerticalOptions="Center">
+                                    <Label Text="End" Style="{StaticResource BoldLabelStyle}" VerticalOptions="Center"/>
+                                    <DatePicker ></DatePicker>
+                                </StackLayout>
+                            </Grid>
+                         </StackLayout>                       
+                </Grid>                           
+            </StackLayout>
+           
+            <Grid   RowSpacing="10" 
+                    ColumnSpacing="10" 
+                    Grid.Row="1"
+                    BackgroundColor="{StaticResource GreyTable}" 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    Padding="10">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30*" />
+                    <RowDefinition Height="50*" />
+                    <RowDefinition Height="20*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="30*" />
+                </Grid.ColumnDefinitions>
+            
+
+                <StackLayout    Grid.Column="0" 
+                                Grid.Row="0"
+                                BackgroundColor="White"
+                                Orientation="Vertical"
+                                HorizontalOptions="FillAndExpand" 
+                                VerticalOptions="FillAndExpand">
+
+                    <Label  Text="Check-in type" 
+                            Style="{StaticResource ReportSectionTitleLabelStyle}"
+                            Margin="15"/>
+
+                    <StackLayout Orientation="Horizontal" Margin="15,0,0,0" >
+                        <Label Text="4" Style="{StaticResource CheckInSectionBoldLabelStyle}" />
+                        <Label Text="Followed" Style="{StaticResource CheckInSectionLabelStyle}"/> 
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="15,0,0,0" > 
+                            <renderers:CustomProgressBar    HorizontalOptions="FillAndExpand" 
+                                                            VerticalOptions="CenterAndExpand"
+                                                            Progress="0.66">
+                                <x:Arguments>
+                                    <x:String>Orange</x:String>
+                                </x:Arguments>
+                            </renderers:CustomProgressBar>
+                        <Label Text="66.67%"
+                                    HorizontalOptions="End"
+                                    Style="{StaticResource CheckInSectionLabelStyle}"
+                                    Margin="15,0,15,0" />   
+
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="15,0,0,0">
+                        <Label Text="2" Style="{StaticResource CheckInSectionBoldLabelStyle}" />
+                        <Label Text="Prospecting" Style="{StaticResource CheckInSectionLabelStyle}"/> 
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="15,0,0,0" > 
+                            <renderers:CustomProgressBar    HorizontalOptions="FillAndExpand" 
+                                                            VerticalOptions="CenterAndExpand"
+                                                            Progress="0.33">
+                                <x:Arguments>
+                                    <x:String>Blue</x:String>
+                                </x:Arguments>
+                            </renderers:CustomProgressBar>
+                             <Label Text="33.33%"
+                                    HorizontalOptions="End"
+                                    Style="{StaticResource CheckInSectionLabelStyle}"
+                                    Margin="15,0,15,0"/>   
+
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout    Grid.Column="1" 
+                                Grid.Row="0"
+                                BackgroundColor="White"
+                                Orientation="Vertical"
+                                HorizontalOptions="FillAndExpand" 
+                                VerticalOptions="FillAndExpand"
+                                Spacing="10">
+
+                    <Label      Text="Check-Ins" 
+                                Style="{StaticResource ReportSectionTitleLabelStyle}" 
+                                VerticalOptions="Start"
+                                Margin="15"/>
+                    
+                    <Button     BorderWidth="8"
+                                BorderRadius="50"
+                                HeightRequest="100" 
+                                WidthRequest="100"
+                                BorderColor="{StaticResource turquoiseBlue3}"
+                                Text="3"
+                                FontSize="40"
+                                TextColor="{StaticResource GreyishBrown}"
+                                FontFamily="SanFranciscoDisplay-Regular"
+                                VerticalOptions="Center"
+                                HorizontalOptions="CenterAndExpand"
+                                Margin="0,0,0,50"/>
+
+                </StackLayout>
+                <StackLayout    Grid.Column="0" 
+                                Grid.Row="1"
+                                BackgroundColor="White"
+                                Orientation="Vertical"
+                                HorizontalOptions="FillAndExpand" 
+                                VerticalOptions="FillAndExpand">
+
+                    <Label      Text="Time spent" 
+                                Style="{StaticResource ReportSectionTitleLabelStyle}"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start"
+                                Margin="15"/>
+
+                    <Grid ColumnSpacing="20" Padding="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25*" />
+                            <ColumnDefinition Width="25*" />
+                            <ColumnDefinition Width="25*" />
+                            <ColumnDefinition Width="25*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" Orientation="Vertical" Spacing="20" VerticalOptions="StartAndExpand">
+                            <Label Text="34 Check-Ins" HorizontalOptions="Center" Style="{StaticResource LiveSectionNumberLabelStyle}" />
+                            <renderers:CustomProgressBar    HorizontalOptions="FillAndExpand" 
+                                                            VerticalOptions="CenterAndExpand"
+                                                            Progress="0.33">
+                                <x:Arguments>
+                                    <x:String>Blue</x:String>
+                                </x:Arguments>
+                            </renderers:CustomProgressBar>
+                            <Label Text="&lt; 20 min" HorizontalOptions="Center" Style="{StaticResource CheckInSectionLabelStyle}"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="20" VerticalOptions="StartAndExpand">
+                            <Label Text="10 Check-Ins" HorizontalOptions="Center" Style="{StaticResource LiveSectionNumberLabelStyle}"/>
+                            <renderers:CustomProgressBar    HorizontalOptions="FillAndExpand" 
+                                                            VerticalOptions="CenterAndExpand"
+                                                            Progress="0.15">
+                            <x:Arguments>
+                                    <x:String>Green</x:String>
+                                </x:Arguments>
+                            </renderers:CustomProgressBar>
+                            <Label Text="20-40 min" HorizontalOptions="Center" Style="{StaticResource CheckInSectionLabelStyle}"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="20" VerticalOptions="StartAndExpand">
+                            <Label Text="50 Check-Ins" HorizontalOptions="Center" Style="{StaticResource LiveSectionNumberLabelStyle}"/>
+                            <renderers:CustomProgressBar    HorizontalOptions="FillAndExpand" 
+                                                            VerticalOptions="CenterAndExpand"
+                                                            Progress="0.50">
+                            <x:Arguments>
+                                    <x:String>Orange</x:String>
+                             </x:Arguments>
+                            </renderers:CustomProgressBar>
+                            <Label Text="40-60 min" HorizontalOptions="Center" Style="{StaticResource CheckInSectionLabelStyle}"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="3" Orientation="Vertical" Spacing="20" VerticalOptions="StartAndExpand">
+                            <Label Text="3 Check-Ins" HorizontalOptions="Center" Style="{StaticResource LiveSectionNumberLabelStyle}" />
+                            <renderers:CustomProgressBar    HorizontalOptions="FillAndExpand" 
+                                                            VerticalOptions="CenterAndExpand"
+                                                            Progress="0.10">
+                            <x:Arguments>
+                                    <x:String>Red</x:String>
+                                </x:Arguments>
+                            </renderers:CustomProgressBar>
+                            <Label Text="&gt; 60 min" HorizontalOptions="Center" Style="{StaticResource CheckInSectionLabelStyle}"/>
+                        </StackLayout>
+
+                   </Grid>
+
+                    
+                </StackLayout>    
+                <StackLayout    Grid.Column="1" 
+                                Grid.Row="1"
+                                BackgroundColor="White"
+                                Orientation="Vertical"
+                                Spacing="10"
+                                HorizontalOptions="FillAndExpand" 
+                                VerticalOptions="FillAndExpand">
+
+                    <Label      Text="Contacts" 
+                                Style="{StaticResource ReportSectionTitleLabelStyle}"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start"
+                                Margin="15"/>
+
+                    <Button     BorderWidth="8"                             
+                                BorderRadius="50"
+                                HeightRequest="100" 
+                                WidthRequest="100"
+                                BorderColor="{StaticResource GreyLine}"
+                                Text="1"  
+                                FontSize="40"
+                                TextColor="{StaticResource turquoiseBlue3}"
+                                FontFamily="SanFranciscoDisplay-Regular"
+                                VerticalOptions="Center"
+                                HorizontalOptions="CenterAndExpand"
+                                Margin="0,0,0,10"/>
+
+                    <Label Text="1 new for this period" FontFamily="SanFranciscoDisplay-Semibold" TextColor="{StaticResource turquoiseBlue3}" HorizontalOptions="Center"/>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                         <Button    
+                                    BorderRadius="30"
+                                    HeightRequest="60" 
+                                    WidthRequest="60"
+                                    BackgroundColor="{StaticResource turquoiseBlue3}"
+                                    Text="3325"
+                                    TextColor="White"
+                                    FontSize="20"
+                                    FontFamily="SanFranciscoDisplay-Bold"
+                                    VerticalOptions="CenterAndExpand"
+                                    HorizontalOptions="CenterAndExpand"/>
+
+                        
+                        <Label Text="contacts in database" FontFamily="SanFranciscoDisplay-Medium" VerticalOptions="CenterAndExpand" TextColor="{StaticResource turquoiseBlue3}" />
+                   </StackLayout> 
+                </StackLayout>
+                <StackLayout    Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Grid.Row="2"
+                                BackgroundColor="White"
+                                Orientation="Vertical"
+                                HorizontalOptions="FillAndExpand" 
+                                VerticalOptions="FillAndExpand">
+
+                    <Label      Text="Live overview" 
+                                Style="{StaticResource ReportSectionTitleLabelStyle}"
+                                Margin="25,10,0,0"/>
+                    <Grid Padding="0,0,0,0" ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                    <Frame  
+                            Grid.Column="0" 
+                            Style="{StaticResource ReportFrameStyle}">
+                        <Grid HorizontalOptions="StartAndExpand"  VerticalOptions="StartAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="85*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>  
+                            <StackLayout    Grid.Column="0" 
+                                            Orientation="Vertical" 
+                                            HorizontalOptions="StartAndExpand" 
+                                            VerticalOptions="StartAndExpand"
+                                            Spacing="0">
+                              <Label Text="5637" Style="{StaticResource LiveSectionNumberLabelStyle}"/>
+                              <Label Text="Total to Visit" Style="{StaticResource LiveSectionLabelStyle}"/>          
+                            </StackLayout>
+                            <Image  Grid.Column="1"
+                                    Source="graysignal"/>
+                                
+                        </Grid>
+                     </Frame>
+                     <Frame     Grid.Column="1" 
+                                Style="{StaticResource ReportFrameStyle}" >
+                            
+                        <Grid  HorizontalOptions="StartAndExpand"  VerticalOptions="StartAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="85*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>  
+                            <StackLayout    Grid.Column="0" 
+                                            Orientation="Vertical"
+                                            HorizontalOptions="StartAndExpand" 
+                                            VerticalOptions="StartAndExpand"
+                                            Spacing="0">
+                              <Label Text="32" Style="{StaticResource LiveSectionNumberLabelStyle}"/>
+                              <Label Text="Already visited" Style="{StaticResource LiveSectionLabelStyle}"/>          
+                            </StackLayout>
+                            <Image  Grid.Column="1"
+                                    Source="greensignal" />
+                                
+                        </Grid>
+                     </Frame>
+                     <Frame     Grid.Column="2" 
+                                Style="{StaticResource ReportFrameStyle}">
+                            
+                        <Grid HorizontalOptions="StartAndExpand"  VerticalOptions="StartAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="85*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>  
+                            <StackLayout    Grid.Column="0" 
+                                            Orientation="Vertical"
+                                            HorizontalOptions="StartAndExpand" 
+                                            VerticalOptions="StartAndExpand"
+                                            Spacing="0">
+                              <Label Text="22" Style="{StaticResource LiveSectionNumberLabelStyle}"/>
+                              <Label Text="Visit before next week" Style="{StaticResource LiveSectionLabelStyle}"/>          
+                            </StackLayout>
+                            <Image  Grid.Column="1"
+                                    Source="orangesignal" />
+                                
+                        </Grid>
+                     </Frame>
+                    <Frame  Grid.Column="3" 
+                            Style="{StaticResource ReportFrameStyle}">
+                        <Grid HorizontalOptions="StartAndExpand"  VerticalOptions="StartAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="85*" />
+                                <ColumnDefinition Width="15*" />
+                            </Grid.ColumnDefinitions>  
+                            <StackLayout    Grid.Column="0" 
+                                            Orientation="Vertical"
+                                            HorizontalOptions="StartAndExpand" 
+                                            VerticalOptions="StartAndExpand"
+                                            Spacing="0">
+                              <Label Text="7" Style="{StaticResource LiveSectionNumberLabelStyle}"  />
+                              <Label Text="To visit today" Style="{StaticResource LiveSectionLabelStyle}"  />          
+                            </StackLayout>
+                            <Image  Grid.Column="1"
+                                    Source="redsignal" />
+                                
+                        </Grid>
+                     </Frame>
+                  </Grid>      
+                </StackLayout>
+            </Grid>           
+        </Grid>
+        </Grid>
+</base:BasePage>
