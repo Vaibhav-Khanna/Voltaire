@@ -40,7 +40,7 @@
                <Label FontFamily = "Raleway-Bold" FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "Status" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "4"  />  
             </Grid>
                       <BoxView Color = "{StaticResource GreyBack}" HeightRequest = "1" HorizontalOptions = "FillAndExpand" />
-            <ListView x:Name ="listview" SeparatorColor = "{StaticResource GreyBack}" ItemsSource = "{Binding QuotationsItemSource}" HasUnevenRows ="true" >
+            <ListView x:Name ="listview" Refreshing="Handle_Refreshing" IsPullToRefreshEnabled="true" SeparatorColor = "{StaticResource GreyBack}" ItemsSource = "{Binding QuotationsItemSource}" HasUnevenRows ="true" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                        <ViewCell> 

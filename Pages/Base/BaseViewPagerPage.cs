@@ -28,7 +28,10 @@ namespace voltaire.Pages.Base
             var context = BindingContext as TTab;
 
             if (context == null)
+            {
                 return;
+            }
+
 
             Context = context;
 
@@ -68,9 +71,20 @@ namespace voltaire.Pages.Base
               		
         }
 
+		protected virtual void OnAppearing()
+		{
+
+		}
+
+
         virtual protected void BindingContextSet()
         {
             
+        }
+
+        void Context_OnAppearing()
+        {
+            OnAppearing();
         }
 
         public bool MoveToNextTab()

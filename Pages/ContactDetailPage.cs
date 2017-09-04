@@ -9,6 +9,7 @@ using CarouselView.FormsPlugin.Abstractions;
 using System.Collections.ObjectModel;
 using voltaire.Controls.Items;
 using voltaire.Resources;
+using voltaire.Renderers;
 
 namespace voltaire.Pages
 {
@@ -94,7 +95,8 @@ namespace voltaire.Pages
 
             viewpager.PositionSelected += (sender, e) => 
             {
-                tabslider.Selected_Index = viewpager.Position; 
+                tabslider.Selected_Index = viewpager.Position;
+
             };
 
 
@@ -137,6 +139,7 @@ namespace voltaire.Pages
         {
             base.OnAppearing();
             tabslider.ViewHasAppeared();
+
         }
 
         public override void DisposeResources()

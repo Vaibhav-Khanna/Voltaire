@@ -168,6 +168,7 @@
     <Compile Include="Models\ProductProperty.cs" />
     <Compile Include="PageModels\ProductDescriptionPageModel.cs" />
     <Compile Include="Converters\StringToBoolConverter.cs" />
+    <Compile Include="Renderers\MyCarouselViewControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

@@ -176,7 +176,6 @@ namespace voltaire.PageModels
 				return;
 
             Customer = context;
-
         }
 
 

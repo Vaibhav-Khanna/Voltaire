@@ -5,6 +5,7 @@ using voltaire.Pages.Base;
 using voltaire.PageModels;
 using FreshMvvm;
 using voltaire.Models;
+using System.Threading.Tasks;
 
 namespace voltaire.Pages
 {
@@ -49,6 +50,23 @@ namespace voltaire.Pages
             {
                 context.SearchQuery.Execute(null);
             };
+        }
+
+        void Handle_Refreshing(object sender, System.EventArgs e)
+        {     
+			var context = BindingContext as QuotationsPageModel;
+
+			if (context == null)
+				return;
+            
+            context.Init(context.Customer);
+
+            listview.EndRefresh();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
         }
        
     }

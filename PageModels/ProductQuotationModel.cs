@@ -30,8 +30,7 @@ namespace voltaire.PageModels
             get { return product; }
             set
             {
-                product = value;
-                //ProductProperties = product.Properties;
+                product = value;               
                 Init(product);
                 RaisePropertyChanged();
             }

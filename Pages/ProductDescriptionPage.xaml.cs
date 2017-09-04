@@ -14,7 +14,7 @@ namespace voltaire.Pages
     {
 
         int row_count;
-        int row_height = 50;
+        int row_height = 60;
 
         public ProductDescriptionPage()
         {
@@ -96,7 +96,7 @@ namespace voltaire.Pages
 
         StackLayout Switch_Row_Layout(ProductProperty Bind_Context)
         {
-            var stack = new StackLayout { BackgroundColor = Color.White, Orientation = StackOrientation.Horizontal, HeightRequest = 50, Margin = 0 , HorizontalOptions = LayoutOptions.FillAndExpand, Padding = new Thickness(15,0,15,0) };
+            var stack = new StackLayout { BackgroundColor = Color.White, Orientation = StackOrientation.Horizontal, HeightRequest = 60, Margin = 0 , HorizontalOptions = LayoutOptions.FillAndExpand, Padding = new Thickness(20,0,20,0) };
 
             var label = new Label { FontFamily = "SanFranciscoDisplay-Regular", HorizontalOptions = LayoutOptions.StartAndExpand, VerticalOptions = LayoutOptions.Center, TextColor = (Color) App.Current.Resources["GreyishBrown"] };
             label.SetBinding(Label.TextProperty,"PropertyName");
@@ -114,7 +114,7 @@ namespace voltaire.Pages
 
 		StackLayout Picker_Row_Layout(ProductProperty Bind_Context)
 		{
-			var stack = new StackLayout { BackgroundColor = Color.White, Orientation = StackOrientation.Horizontal, HeightRequest = 50, Margin = 0, HorizontalOptions = LayoutOptions.FillAndExpand, Padding = new Thickness(15, 0, 15, 0) };
+			var stack = new StackLayout { BackgroundColor = Color.White, Orientation = StackOrientation.Horizontal, HeightRequest = 60, Margin = 0, HorizontalOptions = LayoutOptions.FillAndExpand, Padding = new Thickness(20, 0, 20, 0) };
 
             var label = new Label { FontFamily = "SanFranciscoDisplay-Regular", HorizontalOptions = LayoutOptions.StartAndExpand, VerticalOptions = LayoutOptions.Center, TextColor = (Color)App.Current.Resources["GreyishBrown"] };
 			label.SetBinding(Label.TextProperty, "PropertyName");
@@ -133,7 +133,7 @@ namespace voltaire.Pages
 
 		StackLayout Entry_Row_Layout(ProductProperty Bind_Context)
 		{
-			var stack = new StackLayout { BackgroundColor = Color.White, Orientation = StackOrientation.Horizontal, HeightRequest = 50, Margin = 0, HorizontalOptions = LayoutOptions.FillAndExpand, Padding = new Thickness(15, 0, 15, 0) };
+			var stack = new StackLayout { BackgroundColor = Color.White, Orientation = StackOrientation.Horizontal, HeightRequest = 60, Margin = 0, HorizontalOptions = LayoutOptions.FillAndExpand, Padding = new Thickness(20, 0, 20, 0) };
             	
             var entry = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand, HeightRequest = 40, VerticalOptions = LayoutOptions.Center, TextColor = (Color)App.Current.Resources["GreyishBrown"], FontFamily = "SanFranciscoDisplay-Regular", PlaceholderColor = Color.FromRgb(179,179,179) };
             entry.SetBinding(Entry.TextProperty, "PropertyValue", BindingMode.TwoWay);
