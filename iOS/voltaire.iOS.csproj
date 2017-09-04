@@ -160,6 +160,7 @@
     <Folder Include="Resources\" />
     <Folder Include="Renderers\" />
     <Folder Include="Effects\" />
+    <Folder Include="Resources\Fonts\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -168,15 +169,6 @@
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
-    <None Include="Fonts\Raleway-Bold.ttf" />
-    <None Include="Fonts\Raleway-Heavy.ttf" />
-    <None Include="Fonts\Raleway-Medium.ttf" />
-    <None Include="Fonts\Raleway-Regular.ttf" />
-    <None Include="Fonts\Raleway-SemiBold.ttf" />
-    <None Include="Fonts\SFNS-Semibold.ttf" />
-    <None Include="Fonts\SFNSDisplay.ttf" />
-    <None Include="Fonts\SFUIText-Bold.otf" />
-    <None Include="Fonts\SFUIText-Regular.otf" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -262,15 +254,6 @@
     <BundleResource Include="Resources\filters.png" />
     <BundleResource Include="Resources\filters%402x.png" />
     <BundleResource Include="Resources\filters%403x.png" />
-    <BundleResource Include="Resources\forange.png" />
-    <BundleResource Include="Resources\forange%402x.png" />
-    <BundleResource Include="Resources\forange%403x.png" />
-    <BundleResource Include="Resources\fgreen.png" />
-    <BundleResource Include="Resources\fgreen%402x.png" />
-    <BundleResource Include="Resources\fgreen%403x.png" />
-    <BundleResource Include="Resources\fred.png" />
-    <BundleResource Include="Resources\fred%402x.png" />
-    <BundleResource Include="Resources\fred%403x.png" />
     <BundleResource Include="Resources\close.png" />
     <BundleResource Include="Resources\close%402x.png" />
     <BundleResource Include="Resources\close%403x.png" />
@@ -286,6 +269,7 @@
     <BundleResource Include="Resources\email.png" />
     <BundleResource Include="Resources\email%402x.png" />
     <BundleResource Include="Resources\email%403x.png" />
+<<<<<<< HEAD
     <BundleResource Include="Resources\more.png" />
     <BundleResource Include="Resources\more%402x.png" />
     <BundleResource Include="Resources\more%403x.png" />
@@ -304,6 +288,50 @@
     <BundleResource Include="Resources\Close1.png" />
     <BundleResource Include="Resources\Close1%402x.png" />
     <BundleResource Include="Resources\Close1%403x.png" />
+=======
+    <BundleResource Include="Resources\Fonts\Raleway-Heavy.ttf" />
+    <BundleResource Include="Resources\Fonts\Raleway-Medium.ttf" />
+    <BundleResource Include="Resources\Fonts\Raleway-Regular.ttf" />
+    <BundleResource Include="Resources\Fonts\Raleway-SemiBold.ttf" />
+    <BundleResource Include="Resources\Fonts\Raleway-Bold.ttf" />
+    <BundleResource Include="Resources\Fonts\SanFranciscoDisplay-Light.otf" />
+    <BundleResource Include="Resources\Fonts\SanFranciscoDisplay-Semibold.otf" />
+    <BundleResource Include="Resources\reset.png" />
+    <BundleResource Include="Resources\reset%402x.png" />
+    <BundleResource Include="Resources\reset%403x.png" />
+    <BundleResource Include="Resources\markergreen.png" />
+    <BundleResource Include="Resources\markergreen%402x.png" />
+    <BundleResource Include="Resources\markergreen%403x.png" />
+    <BundleResource Include="Resources\markerred.png" />
+    <BundleResource Include="Resources\markerred%402x.png" />
+    <BundleResource Include="Resources\markerred%403x.png" />
+    <BundleResource Include="Resources\Fonts\SanFranciscoDisplay-Bold.otf" />
+    <BundleResource Include="Resources\back.png" />
+    <BundleResource Include="Resources\back%402x.png" />
+    <BundleResource Include="Resources\back%403x.png" />
+    <BundleResource Include="Resources\arrowdown.png" />
+    <BundleResource Include="Resources\arrowdown%402x.png" />
+    <BundleResource Include="Resources\arrowdown%403x.png" />
+    <BundleResource Include="Resources\filterascending.png" />
+    <BundleResource Include="Resources\filterascending%402x.png" />
+    <BundleResource Include="Resources\filterascending%403x.png" />
+    <BundleResource Include="Resources\Fonts\SanFranciscoDisplay-Regular.otf" />
+    <BundleResource Include="Resources\greenfilter.png" />
+    <BundleResource Include="Resources\greenfilter%403x.png" />
+    <BundleResource Include="Resources\grayfilter.png" />
+    <BundleResource Include="Resources\grayfilter%402x.png" />
+    <BundleResource Include="Resources\grayfilter%403x.png" />
+    <BundleResource Include="Resources\greenfilter%402x.png" />
+    <BundleResource Include="Resources\orangefilter.png" />
+    <BundleResource Include="Resources\orangefilter%402x.png" />
+    <BundleResource Include="Resources\orangefilter%403x.png" />
+    <BundleResource Include="Resources\redfilter.png" />
+    <BundleResource Include="Resources\redfilter%402x.png" />
+    <BundleResource Include="Resources\redfilter%403x.png" />
+    <BundleResource Include="Resources\check.png" />
+    <BundleResource Include="Resources\check%402x.png" />
+    <BundleResource Include="Resources\check%403x.png" />
+>>>>>>> development
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

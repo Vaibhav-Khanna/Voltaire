@@ -1,24 +1,19 @@
 ﻿using voltaire.Models;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using FreshMvvm;
 using voltaire.PageModels;
 
 namespace voltaire.Controls.Cells
 {
-
-    public partial class ContactCell
+    public partial class SalesmanCell
     {
-
-        public ContactCell()
+        public SalesmanCell()
         {
             InitializeComponent();
         }
-
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
-            var model = (CustomerModel)BindingContext;
+            var model = (SalesmanModel)BindingContext;
 
 
             if (model != null)
@@ -26,8 +21,8 @@ namespace voltaire.Controls.Cells
                 FullNameLabel.FormattedText = new FormattedString
                 {
                     Spans = {
-                new Span { Text = model.Customer.FirstName, FontAttributes = FontAttributes.None, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"},
-                new Span { Text = $" {model.Customer.LastName}", FontSize = 20, FontFamily="SanFranciscoDisplay-Bold"} }
+                new Span { Text = model.Salesman.FirstName, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"},
+                new Span { Text = $" {model.Salesman.LastName}", FontSize = 20, FontFamily="SanFranciscoDisplay-Bold"} }
                 };
             }
         }
@@ -36,17 +31,19 @@ namespace voltaire.Controls.Cells
         {
             base.OnTapped();
 
-            var model = (CustomerModel)BindingContext;
+            var model = (SalesmanModel)BindingContext;
 
-            model.Customer.CanEdit = false;
+            //model.Customer.CanEdit = false;
 
-            model.navigation.PushPageModel<ContactDetailPageModel>(model.Customer);
+            model.navigation.PushPageModel<GoalsDetailPageModel>(model.Salesman);
 
             var parent = this.Parent as ListView;
             parent.SelectedItem = null;
         }
 
-
-
     }
 }
+
+
+
+

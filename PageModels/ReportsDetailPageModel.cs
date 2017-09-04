@@ -3,9 +3,9 @@ using voltaire.PageModels.Base;
 
 namespace voltaire.PageModels
 {
-    public class ReportPageModel : BasePageModel
+    public class ReportsDetailPageModel : BasePageModel
     {
-        public ReportPageModel()
+        public ReportsDetailPageModel()
         {
         }
     }

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ViewCell x:Class="voltaire.Controls.Cells.ContactCell"
           xmlns="http://xamarin.com/schemas/2014/forms"
-          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"  >
           <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="65*"/>
-                <ColumnDefinition Width="25*"/>
-                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="55*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="15*"/>
             </Grid.ColumnDefinitions>
 
     
@@ -37,15 +38,17 @@
                  IsVisible="{Binding Customer.LastVisit,
                                    Converter={StaticResource DateNullableToBooleanConverter}}"   >
         <Image Source="fgreen" HeightRequest="10" WidthRequest="10"/> 
-
-        <Label  Text="{Binding Customer.LastVisit, StringFormat='Dernière visite le {0:dd MMMM yyyy}'}"
+        <Label  Text="{x:Static resources:AppResources.LastVisit}"
+                Style="{StaticResource CellLabelDescriptionStyle}" /> 
+        <Label  Text="{Binding Customer.LastVisit, StringFormat='{0:MMMM d, yyyy}'}"
                 Style="{StaticResource CellLabelDescriptionStyle}" /> 
     </StackLayout>
     <Button     IsVisible="{Binding Customer.Weight,
                                    Converter={StaticResource StringNullableToBooleanConverter}}"
                 Grid.Column="2" 
-                HorizontalOptions="End" 
-                Margin="10,0,20,0"  
+                HorizontalOptions="End"
+                VerticalOptions="Center" 
+                Margin="10,0,50,0"  
                 Text="{Binding Customer.Weight}" 
                 Style="{StaticResource CellButtonWeightStyle}" />   
 

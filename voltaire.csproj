@@ -57,6 +57,7 @@
     <EmbeddedResource Include="Pages\MapTabPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="Pages\QuotationsTabPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -67,6 +68,21 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ProductDescriptionPage.xaml">
+=======
+    <EmbeddedResource Include="Pages\GoalsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Cells\SalesmanCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\GoalsDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ReportsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Cells\ReportCell.xaml">
+>>>>>>> development
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -77,9 +93,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\AppResources.Designer.cs">
-      <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -96,7 +109,7 @@
     <Compile Include="PageModels\MapPageModel.cs" />
     <Compile Include="PageModels\TodoPageModel.cs" />
     <Compile Include="PageModels\AgendaPageModel.cs" />
-    <Compile Include="PageModels\ReportPageModel.cs" />
+    <Compile Include="PageModels\ReportsPageModel.cs" />
     <Compile Include="PageModels\QuotationsPageModel.cs" />
     <Compile Include="PageModels\ContractPageModel.cs" />
     <Compile Include="PageModels\GoalsPageModel.cs" />
@@ -137,10 +150,14 @@
     <Compile Include="Controls\CustomLabelEntry.cs" />
     <Compile Include="Renderers\BorderlessEntry.cs" />
     <Compile Include="Converters\DateToStringConverter.cs" />
+    <Compile Include="Models\PartnerGrade.cs" />
+    <Compile Include="Controls\WrapLayout.cs" />
+    <Compile Include="Controls\RepeaterView.cs" />
     <Compile Include="Pages\MapTabPage.xaml.cs">
       <DependentUpon>MapTabPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomerAddressLocation.cs" />
+<<<<<<< HEAD
     <Compile Include="Pages\QuotationsTabPage.xaml.cs">
       <DependentUpon>QuotationsTabPage.xaml</DependentUpon>
     </Compile>
@@ -169,6 +186,35 @@
     <Compile Include="PageModels\ProductDescriptionPageModel.cs" />
     <Compile Include="Converters\StringToBoolConverter.cs" />
     <Compile Include="Renderers\MyCarouselViewControl.cs" />
+=======
+    <Compile Include="Pages\GoalsPage.xaml.cs">
+      <DependentUpon>GoalsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Salesman.cs" />
+    <Compile Include="Resources\AppResources.Designer.cs">
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SalesmanModel.cs" />
+    <Compile Include="Controls\Cells\SalesmanCell.xaml.cs">
+      <DependentUpon>SalesmanCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GoalsDetailPage.xaml.cs">
+      <DependentUpon>GoalsDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageModels\GoalsDetailPageModel.cs" />
+    <Compile Include="Pages\ReportsPage.xaml.cs">
+      <DependentUpon>ReportsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\State.cs" />
+    <Compile Include="PageModels\ReportsDetailPageModel.cs" />
+    <Compile Include="Controls\Cells\ReportCell.xaml.cs">
+      <DependentUpon>ReportCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\EnumColorToImageSourceConverter.cs" />
+    <Compile Include="Models\ColorEnum.cs" />
+    <Compile Include="Models\StateColor.cs" />
+    <Compile Include="Converters\BoolInverseConverter.cs" />
+>>>>>>> development
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

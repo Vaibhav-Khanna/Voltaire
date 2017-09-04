@@ -20,13 +20,18 @@ namespace voltaire
         {
             InitializeComponent();
 
+<<<<<<< HEAD
 
             ProductConstants.Init();
 
             var homePage = FreshPageModelResolver.ResolvePageModel<HomePageModel>();
             var homeContainer = new FreshNavigationContainer(homePage){ BarTextColor = Color.White };
+=======
+            var homePage = FreshPageModelResolver.ResolvePageModel<HomePageModel>();
+            var homeContainer = new FreshNavigationContainer(homePage) { BarTextColor = Color.White };
+>>>>>>> development
             MainPage = homeContainer;
-        
+
         }
 
         protected override void OnStart()

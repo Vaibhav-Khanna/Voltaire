@@ -1,11 +1,15 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using System.Collections.Generic;
+
+using Xamarin.Forms;
 
 namespace voltaire.Pages
 {
-    public partial class ContactsPage
+    public partial class GoalsDetailPage
     {
-        public ContactsPage()
+        public GoalsDetailPage()
         {
+
             NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
         }
@@ -13,7 +17,7 @@ namespace voltaire.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            SetMenu(MenuLayout, 1);
+            SetMenu(MenuLayout, 8);
 
         }
 

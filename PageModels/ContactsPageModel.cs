@@ -52,7 +52,7 @@ namespace voltaire.PageModels
 
         public ContactsPageModel()
         {
-			
+
         }
 
         private void FiltersLayoutAppearing()
@@ -72,6 +72,7 @@ namespace voltaire.PageModels
 
         }
 
+        public ObservableCollection<PartnerGrade> partnerGrades { get; set; }
 
         //INIT data form page  freshmvvm
         public override void Init(object initData)
@@ -207,7 +208,7 @@ namespace voltaire.PageModels
             else CustomersCount = customers.Count + " Contact";
 
 
-            var models = customers.Select(i => new CustomerModel(i){ navigation = CoreMethods }).ToList();
+            var models = customers.Select(i => new CustomerModel(i) { navigation = CoreMethods }).ToList();
 
             var groupedData =
                 models.OrderBy(p => p.Customer.LastName)
@@ -224,6 +225,19 @@ namespace voltaire.PageModels
             //filter frame image 
             _filterImage = "filters";
 
+            //PartnerGrades 
+            partnerGrades = new ObservableCollection<PartnerGrade>
+            {
+                new PartnerGrade {Grade="CCE"},
+                new PartnerGrade {Grade="CSO"},
+                new PartnerGrade {Grade="DRE"},
+                new PartnerGrade {Grade="Endurance"},
+                new PartnerGrade {Grade="PRO"},
+                new PartnerGrade {Grade="Particulier"},
+                new PartnerGrade {Grade="Ecuries"}
+
+
+            };
 
         }
 
