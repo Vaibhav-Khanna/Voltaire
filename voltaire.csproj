@@ -86,6 +86,12 @@
     <EmbeddedResource Include="Pages\ReportsDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ContractListTabPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\NewContractPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -215,6 +221,16 @@
     <Compile Include="Pages\ReportsDetailPage.xaml.cs">
       <DependentUpon>ReportsDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ContractListTabPage.xaml.cs">
+      <DependentUpon>ContractListTabPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Contract.cs" />
+    <Compile Include="Models\ContractModel.cs" />
+    <Compile Include="Converters\TimeSpanToStringConverter.cs" />
+    <Compile Include="Pages\NewContractPage.xaml.cs">
+      <DependentUpon>NewContractPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageModels\NewContractPageModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

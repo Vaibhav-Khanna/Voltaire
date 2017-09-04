@@ -105,7 +105,11 @@ namespace voltaire.PageModels
                             Latitude = 31.669,
                             Longitude = 74.882
                         } },
-                   
+                    Contracts = new List<Contract>(){
+                        new Contract(){ Name = "Contract 8234374", ModifiedDateTime = DateTime.Now },
+                        new Contract(){ Name = "Contract 0098274664", ModifiedDateTime = DateTime.Now.AddDays(-23)
+                        }
+                    }
                 },
                 new Customer {
                     FirstName= "Milton",

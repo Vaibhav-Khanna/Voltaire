@@ -337,7 +337,7 @@ namespace voltaire.PageModels
                 pages.Add(new TTab(this) { Name = AppResources.Reminder, View = typeof(ContentView) });
                 pages.Add(new TTab(this) { Name = AppResources.Map, View = typeof(Pages.MapTabPage) });
                 pages.Add(new TTab(this) { Name = AppResources.Quotations, View = typeof(Pages.QuotationsTabPage) });
-                pages.Add(new TTab(this) { Name = AppResources.Contracts, View = typeof(ContentView) });
+                pages.Add(new TTab(this) { Name = AppResources.Contracts, View = typeof(Pages.ContractListTabPage) });
             }
 
             var selector = new ViewPagerTemplateSelector();
