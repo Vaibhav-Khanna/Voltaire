@@ -22,6 +22,7 @@ namespace voltaire
 
 
 
+
             ProductConstants.Init();
 
             var homePage = FreshPageModelResolver.ResolvePageModel<HomePageModel>();

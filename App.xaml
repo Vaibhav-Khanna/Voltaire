@@ -14,7 +14,8 @@
         <Color x:Key="GreyBack3">#cdcdcd</Color>
         <Color x:Key="GreyLine">#d8d8d8</Color>
         <Color x:Key="GreyTable">#f7f7f7</Color>
-        <Color x:Key="GreyTable2">#c8c8c8</Color>    
+        <Color x:Key="GreyTable2">#c8c8c8</Color>
+        <Color x:Key="GreyTable3">#cfcfcf</Color>   
         <Color x:Key="Black">#333333</Color>
         <Color x:Key="WarmGrey">#858585</Color>
         <Color x:Key="turquoiseBlue">#01abc4</Color>
@@ -30,7 +31,7 @@
         <Color x:Key="Vermillion">#eb1010</Color>
         <Color x:Key="Green">#70c800 </Color>
         <Color x:Key="orangeYellow">#ffa800 </Color>
-            
+        <Color x:Key="turquoiseBlue3">#00deff </Color>   
             
        <!-- LOGIN PAGE -->
         <Style x:Key="EntryLogin" TargetType="Entry">
@@ -470,9 +471,85 @@
                 </Setter>               
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="TextColor" Value="White" />
-
              </Style>
+         <!-- REPORTS DETAIL PAGE --> 
+         <Style x:Key="ReportSectionTitleLabelStyle"
+                TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Medium</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Medium#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
+         </Style>
+         <Style x:Key="CheckInSectionBoldLabelStyle"
+                TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>SanFranciscoDisplay-Bold</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/SanFranciscoDisplay-Bold#SanFranciscoDisplay</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
+         </Style>
+         <Style x:Key="CheckInSectionLabelStyle"
+                BasedOn="{StaticResource CheckInSectionBoldLabelStyle}"
+                TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>SanFranciscoDisplay-Regular</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/SanFranciscoDisplay-Regular#SanFranciscoDisplay</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+         </Style>
+         <Style x:Key="LiveSectionNumberLabelStyle"
+                BasedOn="{StaticResource CheckInSectionBoldLabelStyle}"
+                TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>SanFranciscoDisplay-Medium</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/SanFranciscoDisplay-Medium#SanFranciscoDisplay</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FontSize" Value="20" />
+         </Style>
+         <Style x:Key="LiveSectionLabelStyle"
+                TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>SanFranciscoDisplay-Light</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/SanFranciscoDisplay-Light#SanFranciscoDisplay</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="{StaticResource GreyTable3}" />
+         </Style>
+
+
             
+         <Style x:Key="ReportFrameStyle" 
+                TargetType="Frame">
+               <Setter Property="Padding" Value="0" />
+               <Setter Property="CornerRadius" Value="0" />
+               <Setter Property="OutlineColor" Value="{StaticResource GreyTable2}" />
+               <Setter Property="BackgroundColor" Value="White"/>
+               <Setter Property="HasShadow" Value="false" />
+               <Setter Property="HeightRequest" Value="60" />
+                
+         </Style>
           <!--CONVERTERS -->
           <converters:BoolToColorConverter x:Key="SelectableCellBoolToColorConverter"
                                              ColorFalse="Transparent"

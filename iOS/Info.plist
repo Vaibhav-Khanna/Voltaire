@@ -50,6 +50,7 @@
 		<string>Fonts/SanFranciscoDisplay-Semibold.otf</string>
 		<string>Fonts/SanFranciscoDisplay-Bold.otf</string>
 		<string>Fonts/SanFranciscoDisplay-Regular.otf</string>
+		<string>Fonts/SanFranciscoDisplay-Medium.otf</string>
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>

@@ -326,6 +326,19 @@
     <BundleResource Include="Resources\check.png" />
     <BundleResource Include="Resources\check%402x.png" />
     <BundleResource Include="Resources\check%403x.png" />
+    <BundleResource Include="Resources\graysignal.png" />
+    <BundleResource Include="Resources\graysignal%402x.png" />
+    <BundleResource Include="Resources\graysignal%403x.png" />
+    <BundleResource Include="Resources\orangesignal.png" />
+    <BundleResource Include="Resources\orangesignal%402x.png" />
+    <BundleResource Include="Resources\greensignal.png" />
+    <BundleResource Include="Resources\greensignal%402x.png" />
+    <BundleResource Include="Resources\greensignal%403x.png" />
+    <BundleResource Include="Resources\orangesignal%403x.png" />
+    <BundleResource Include="Resources\redsignal.png" />
+    <BundleResource Include="Resources\redsignal%402x.png" />
+    <BundleResource Include="Resources\redsignal%403x.png" />
+    <BundleResource Include="Resources\Fonts\SanFranciscoDisplay-Medium.otf" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
