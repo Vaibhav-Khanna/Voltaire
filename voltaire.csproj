@@ -231,6 +231,8 @@
       <DependentUpon>NewContractPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\NewContractPageModel.cs" />
+    <Compile Include="Models\Agreement.cs" />
+    <Compile Include="Models\AgreementModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

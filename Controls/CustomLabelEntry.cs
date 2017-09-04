@@ -14,6 +14,7 @@ namespace voltaire.Controls
         Button cancelbutton;
         bool ShowText;
         Label labeltext;
+        bool isdisabledstyle;
 
 		public static readonly BindableProperty TextProperty =
             BindableProperty.Create("Text", typeof(string), typeof(CustomLabelEntry), null);
@@ -36,9 +37,10 @@ namespace voltaire.Controls
 			}
 		}
 
-        public CustomLabelEntry(string image, bool isText = false)
+        public CustomLabelEntry(string image, bool isText = false, bool isDisabledStyle = false)
         {
             ShowText = isText;
+            isdisabledstyle = isDisabledStyle;
             imagesource = image;
             InflateLayout();
         }
@@ -55,7 +57,6 @@ namespace voltaire.Controls
                 Padding = new Thickness(0,0,40,0),
                 Spacing = 25
             };
-
 
 
 
@@ -91,6 +92,12 @@ namespace voltaire.Controls
 
             container.Children.Add(entry);
             container.Children.Add(cancelbutton);
+
+            if(isdisabledstyle)
+            {                
+                labeltext.TextColor = (Color)App.Current.Resources["GreyishBrown"];
+                cancelbutton.IsVisible = false;
+            }
 
             Content = container;
         }

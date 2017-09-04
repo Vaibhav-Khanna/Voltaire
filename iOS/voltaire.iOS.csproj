@@ -342,6 +342,15 @@
     <BundleResource Include="Resources\pdf.png" />
     <BundleResource Include="Resources\pdf%402x.png" />
     <BundleResource Include="Resources\pdf%403x.png" />
+    <BundleResource Include="Resources\generate.png" />
+    <BundleResource Include="Resources\generate%402x.png" />
+    <BundleResource Include="Resources\generate%403x.png" />
+    <BundleResource Include="Resources\uncheck.png" />
+    <BundleResource Include="Resources\uncheck%402x.png" />
+    <BundleResource Include="Resources\uncheck%403x.png" />
+    <BundleResource Include="Resources\check1.png" />
+    <BundleResource Include="Resources\check1%402x.png" />
+    <BundleResource Include="Resources\check1%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
