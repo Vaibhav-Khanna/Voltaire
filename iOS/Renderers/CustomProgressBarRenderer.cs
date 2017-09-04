@@ -17,6 +17,8 @@ namespace voltaire.iOS.Renderers
 
             var newElement = e.NewElement as CustomProgressBar;
 
+            Control.TrackTintColor = Color.FromRgb(216, 216, 216).ToUIColor();
+
 
             if (newElement.ProgressColor == "Blue")
                 Control.ProgressTintColor = Color.FromRgb(0, 222, 255).ToUIColor();// If you want to change the color

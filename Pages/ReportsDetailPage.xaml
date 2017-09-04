@@ -264,7 +264,7 @@
                                 HeightRequest="100" 
                                 WidthRequest="100"
                                 BorderColor="{StaticResource GreyLine}"
-                                Text="1"
+                                Text="1"                            
                                 TextColor="{StaticResource turquoiseBlue3}"
                                 FontFamily="SanFranciscoDisplay-Regular"
                                 VerticalOptions="Center"
@@ -298,7 +298,7 @@
                     <Label      Text="Live overview" 
                                 Style="{StaticResource ReportSectionTitleLabelStyle}"
                                 Margin="25,10,0,0"/>
-                    <Grid Padding="20,5,20,10" ColumnSpacing="10">
+                    <Grid Padding="0,0,0,0" ColumnSpacing="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
@@ -309,7 +309,7 @@
                     <Frame  
                             Grid.Column="0" 
                             Style="{StaticResource ReportFrameStyle}">
-                        <Grid Padding="10">
+                        <Grid HorizontalOptions="StartAndExpand"  VerticalOptions="StartAndExpand">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="85*" />
                                 <ColumnDefinition Width="15*" />
@@ -317,7 +317,8 @@
                             <StackLayout    Grid.Column="0" 
                                             Orientation="Vertical" 
                                             HorizontalOptions="StartAndExpand" 
-                                            VerticalOptions="CenterAndExpand">
+                                            VerticalOptions="StartAndExpand"
+                                            Spacing="0">
                               <Label Text="5637" Style="{StaticResource LiveSectionNumberLabelStyle}"/>
                               <Label Text="Total to Visit" Style="{StaticResource LiveSectionLabelStyle}"/>          
                             </StackLayout>
@@ -329,9 +330,7 @@
                      <Frame     Grid.Column="1" 
                                 Style="{StaticResource ReportFrameStyle}" >
                             
-                        <Grid   Padding="10" 
-                                VerticalOptions="FillAndExpand" 
-                                HorizontalOptions="FillAndExpand">
+                        <Grid  HorizontalOptions="StartAndExpand"  VerticalOptions="StartAndExpand">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="85*" />
                                 <ColumnDefinition Width="15*" />
@@ -339,7 +338,8 @@
                             <StackLayout    Grid.Column="0" 
                                             Orientation="Vertical"
                                             HorizontalOptions="StartAndExpand" 
-                                            VerticalOptions="Center">
+                                            VerticalOptions="StartAndExpand"
+                                            Spacing="0">
                               <Label Text="32" Style="{StaticResource LiveSectionNumberLabelStyle}"/>
                               <Label Text="Already visited" Style="{StaticResource LiveSectionLabelStyle}"/>          
                             </StackLayout>
@@ -351,7 +351,7 @@
                      <Frame     Grid.Column="2" 
                                 Style="{StaticResource ReportFrameStyle}">
                             
-                        <Grid Padding="10">
+                        <Grid HorizontalOptions="StartAndExpand"  VerticalOptions="StartAndExpand">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="85*" />
                                 <ColumnDefinition Width="15*" />
@@ -359,7 +359,8 @@
                             <StackLayout    Grid.Column="0" 
                                             Orientation="Vertical"
                                             HorizontalOptions="StartAndExpand" 
-                                            VerticalOptions="CenterAndExpand">
+                                            VerticalOptions="StartAndExpand"
+                                            Spacing="0">
                               <Label Text="22" Style="{StaticResource LiveSectionNumberLabelStyle}"/>
                               <Label Text="Visit before next week" Style="{StaticResource LiveSectionLabelStyle}"/>          
                             </StackLayout>
@@ -370,7 +371,7 @@
                      </Frame>
                     <Frame  Grid.Column="3" 
                             Style="{StaticResource ReportFrameStyle}">
-                        <Grid Padding="10">
+                        <Grid HorizontalOptions="StartAndExpand"  VerticalOptions="StartAndExpand">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="85*" />
                                 <ColumnDefinition Width="15*" />
@@ -378,9 +379,10 @@
                             <StackLayout    Grid.Column="0" 
                                             Orientation="Vertical"
                                             HorizontalOptions="StartAndExpand" 
-                                            VerticalOptions="CenterAndExpand">
-                              <Label Text="7" Style="{StaticResource LiveSectionNumberLabelStyle}" VerticalOptions="Center"  />
-                              <Label Text="To visit today" Style="{StaticResource LiveSectionLabelStyle}" VerticalOptions="Center" />          
+                                            VerticalOptions="StartAndExpand"
+                                            Spacing="0">
+                              <Label Text="7" Style="{StaticResource LiveSectionNumberLabelStyle}"  />
+                              <Label Text="To visit today" Style="{StaticResource LiveSectionLabelStyle}"  />          
                             </StackLayout>
                             <Image  Grid.Column="1"
                                     Source="redsignal" />
