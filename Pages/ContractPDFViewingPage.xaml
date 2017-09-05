@@ -8,7 +8,6 @@
     xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
     xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
     xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
-    xmlns:syncfusion="clr-namespace:Syncfusion.SfPdfViewer.XForms;assembly=Syncfusion.SfPdfViewer.XForms"
     x:Class="voltaire.Pages.ContractPDFViewingPage">
 	<ContentPage.Content>
          <Grid BackgroundColor = "{StaticResource GreyishBrown}" Padding= "0" VerticalOptions = "FillAndExpand" >
@@ -29,7 +28,6 @@
                 </Image>
             </controls:TToolBar.LeftToolbarItems>
     </controls:TToolBar>
-             <syncfusion:SfPdfViewer x:Name="pdfViewerControl" InputFileStream="{Binding PdfDocumentStream}" Grid.Row="1" Grid.Column="0" />
         <StackLayout Orientation="Horizontal" Spacing="10" HeightRequest="90"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" Grid.Row="2" Grid.Column="0" >
             <Image Source="sign1.png" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
             <Label FontFamily="Raleway-Bold" TextColor="{StaticResource turquoiseBlue}" FontSize="22" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Text="Sign"/>
