@@ -145,6 +145,12 @@
     <Reference Include="Rg.Plugins.Popup.Platform">
       <HintPath>..\packages\Rg.Plugins.Popup.1.0.4\lib\Xamarin.IOS\Rg.Plugins.Popup.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.Compression.Portable">
+      <HintPath>..\packages\Syncfusion.Xamarin.Compression.15.3.0.29\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.Compression.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Pdf.Portable">
+      <HintPath>..\packages\Syncfusion.Xamarin.Pdf.15.3.0.29\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.Pdf.Portable.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\voltaire.csproj">
@@ -180,6 +186,7 @@
     <Compile Include="Renderers\CustomSearchBarRenderer.cs" />
     <Compile Include="Renderers\BorderlessPickerRenderer.cs" />
     <Compile Include="Renderers\DefaultButtonRenderer.cs" />
+    <Compile Include="Renderers\BorderlessDatePickerRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.png" />
@@ -342,6 +349,18 @@
     <BundleResource Include="Resources\pdf.png" />
     <BundleResource Include="Resources\pdf%402x.png" />
     <BundleResource Include="Resources\pdf%403x.png" />
+    <BundleResource Include="Resources\generate.png" />
+    <BundleResource Include="Resources\generate%402x.png" />
+    <BundleResource Include="Resources\generate%403x.png" />
+    <BundleResource Include="Resources\uncheck.png" />
+    <BundleResource Include="Resources\uncheck%402x.png" />
+    <BundleResource Include="Resources\uncheck%403x.png" />
+    <BundleResource Include="Resources\check1.png" />
+    <BundleResource Include="Resources\check1%402x.png" />
+    <BundleResource Include="Resources\check1%403x.png" />
+    <BundleResource Include="Resources\sign1.png" />
+    <BundleResource Include="Resources\sign1%402x.png" />
+    <BundleResource Include="Resources\sign1%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

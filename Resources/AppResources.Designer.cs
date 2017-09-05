@@ -215,6 +215,42 @@ namespace voltaire.Resources {
             }
         }
         
+        internal static string RiderHeader {
+            get {
+                return ResourceManager.GetString("RiderHeader", resourceCulture);
+            }
+        }
+        
+        internal static string OrderN {
+            get {
+                return ResourceManager.GetString("OrderN", resourceCulture);
+            }
+        }
+        
+        internal static string Period {
+            get {
+                return ResourceManager.GetString("Period", resourceCulture);
+            }
+        }
+        
+        internal static string Subject {
+            get {
+                return ResourceManager.GetString("Subject", resourceCulture);
+            }
+        }
+        
+        internal static string GeneratePDF {
+            get {
+                return ResourceManager.GetString("GeneratePDF", resourceCulture);
+            }
+        }
+        
+        internal static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
         internal static string Salesmens {
             get {
                 return ResourceManager.GetString("Salesmens", resourceCulture);

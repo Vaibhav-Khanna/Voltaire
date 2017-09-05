@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using voltaire.Pages.Base;
 using voltaire.PageModels;
+using voltaire.Models;
 
 namespace voltaire.Pages
 {
@@ -29,6 +30,11 @@ namespace voltaire.Pages
 
         void Listview_ItemTapped(object sender, ItemTappedEventArgs e)
         {
+            var item = e.Item as ContractModel;
+            var context = BindingContext as ContractPageModel;
+
+            context.ItemTapped.Execute(new Tuple<FreshMvvm.IPageModelCoreMethods,Contract>(NavigationService,item.Contract));
+
             listview.SelectedItem = null;
         }
 

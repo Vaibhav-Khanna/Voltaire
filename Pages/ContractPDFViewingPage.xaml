@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:FreshMvvm;assembly=FreshMvvm" 
+    xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire" 
+    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire"
+    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
+    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
+    x:Class="voltaire.Pages.ContractPDFViewingPage">
+	<ContentPage.Content>
+         <Grid BackgroundColor = "{StaticResource GreyishBrown}" Padding= "0" VerticalOptions = "FillAndExpand" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="90"/>
+        </Grid.RowDefinitions>
+        <controls:TToolBar BackgroundColor = "{StaticResource turquoiseBlue}" HeightRequest = "80" Title = "{Binding Title}" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand" Grid.Row="0" Grid.Column="0" >
+            <controls:TToolBar.LeftToolbarItems>
+                <Image Source = "back.png" HeightRequest = "25" WidthRequest = "30" VerticalOptions = "Center" HorizontalOptions = "Start"  >
+                    <Image.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding BackButton}" />
+                </Image.GestureRecognizers> 
+                </Image>
+            </controls:TToolBar.LeftToolbarItems>
+    </controls:TToolBar>
+        <StackLayout Orientation="Horizontal" Spacing="10" HeightRequest="90"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" Grid.Row="2" Grid.Column="0" >
+            <Image Source="sign1.png" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+            <Label FontFamily="Raleway-Bold" TextColor="{StaticResource turquoiseBlue}" FontSize="22" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Text="Sign"/>
+        </StackLayout>
+    </Grid>
+	</ContentPage.Content>
+</ContentPage>
