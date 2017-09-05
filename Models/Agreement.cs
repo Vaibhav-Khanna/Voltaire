@@ -6,10 +6,17 @@ namespace voltaire.Models
 {
     public class Agreement
     {
+        
         public string Title { get; set; }
 
-        public bool IsSelected { get; set; }
+        public bool IsSelected { get; set; } = false;
 
         public List<FormattedString> ContractString { get; set; }
+
+		public Agreement ObjectClone()
+		{
+			return (Agreement) this.MemberwiseClone();
+		}
+
     }
 }

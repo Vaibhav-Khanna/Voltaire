@@ -26,10 +26,10 @@
                 </Image>
             </controls:TToolBar.LeftToolbarItems>
     </controls:TToolBar>
-        <ListView VerticalOptions="FillAndExpand" ItemsSource="{Binding AgreementItemSource}" HorizontalOptions="FillAndExpand" SeparatorVisibility="None" Grid.Row="1" Grid.Column="0" >
+        <ListView x:Name="listview" VerticalOptions="FillAndExpand" ItemsSource="{Binding AgreementItemSource}" HasUnevenRows="true" HorizontalOptions="FillAndExpand" SeparatorVisibility="None" Grid.Row="1" Grid.Column="0" >
             <ListView.Header>
             <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Padding="30,30,0,25" Spacing="20" >
-                <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Padding="0" Margin="0" >
+                <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding OrderN, Mode=TwoWay}" Padding="0" Margin="0" >
                     <x:Arguments>
                         <x:String>Order No.</x:String>
                         <x:Boolean>true</x:Boolean>
@@ -37,15 +37,14 @@
                     </x:Arguments>
                 </controls:CustomLabelEntry>         
                 <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource White}" />
-                <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Padding="0" Margin="0" >
-                    <x:Arguments>
-                        <x:String>Period:</x:String>
-                        <x:Boolean>true</x:Boolean>
-                        <x:Boolean>true</x:Boolean>
-                    </x:Arguments>
-                </controls:CustomLabelEntry>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="30">
+                        <Label Text="Period From:" FontFamily="SanFranciscoDisplay-Regular" FontSize="20" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Start"/>
+                        <renderers:BorderlessDatePicker Date="{Binding DateFrom,Mode=TwoWay}" Format="yyyy MMM dd" VerticalOptions="Center" HorizontalOptions="Start" TextColor="{StaticResource turquoiseBlue}" />
+                        <Label Text="To:" FontFamily="SanFranciscoDisplay-Regular" FontSize="20" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Start"/>
+                        <renderers:BorderlessDatePicker Date="{Binding DateTo,Mode=TwoWay}" Format="yyyy MMM dd" VerticalOptions="Center" HorizontalOptions="Start" TextColor="{StaticResource turquoiseBlue}" />
+                    </StackLayout>
                 <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource White}" />
-                <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Padding="0" Margin="0" >
+                <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding Subject, Mode=TwoWay}" Padding="0" Margin="0" >
                     <x:Arguments>
                         <x:String>Subject:</x:String>
                         <x:Boolean>true</x:Boolean>
@@ -68,6 +67,10 @@
             </ListView.ItemTemplate>
         </ListView>
         <StackLayout Orientation="Horizontal" Spacing="10" HeightRequest="90"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource turquoiseBlue}" Grid.Row="2" Grid.Column="0" >
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding CreatePDF}">
+                </TapGestureRecognizer>
+            </StackLayout.GestureRecognizers>
             <Image Source="generate.png" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
             <Label FontFamily="Raleway-Bold" TextColor="White" FontSize="22" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Text="Generate PDF"/>
         </StackLayout>

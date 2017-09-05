@@ -51,11 +51,30 @@ namespace voltaire.Models
 			Products.Add(new Product() { Description = "This is a seat", Name = "Seat", UnitPrice = 15000 });
 			Products.Add(new Product() { Description = "This is a tradein", Name = "TradeIn", UnitPrice = 200 });
 			Products.Add(new Product() { Description = "This is a horse", Name = "Horse", UnitPrice = 10 });
+
+
+            Agreements.Add(new Agreement(){ Title = "1) You will have to obey to all the rules and regulations mentioned by the company." });
+			Agreements.Add(new Agreement() { Title = "2) You will have to obey to all the rules and regulations mentioned by the company." });
+			Agreements.Add(new Agreement() { Title = "3) You will have to obey to all the rules and regulations mentioned by the company." });
+			Agreements.Add(new Agreement() { Title = "4) You will have to obey to all the rules and regulations mentioned by the company." });
+			Agreements.Add(new Agreement() { Title = "5) You will have to obey to all the rules and regulations mentioned by the company." });
+			Agreements.Add(new Agreement() { Title = "6) You will have to obey to all the rules and regulations mentioned by the company." });
+			Agreements.Add(new Agreement() { Title = "7) You will have to obey to all the rules and regulations mentioned by the company." });
+			Agreements.Add(new Agreement() { Title = "8) You will have to obey to all the rules and regulations mentioned by the company." });
+			Agreements.Add(new Agreement() { Title = "9) You will have to obey to all the rules and regulations mentioned by the company." });
+			Agreements.Add(new Agreement() { Title = "10) You will have to obey to all the rules and regulations mentioned by the company." });
+			Agreements.Add(new Agreement() { Title = "11) You will have to obey to all the rules and regulations mentioned by the company." });
+			Agreements.Add(new Agreement() { Title = "12) You will have to obey to all the rules and regulations mentioned by the company." });
+			Agreements.Add(new Agreement() { Title = "13) You will have to obey to all the rules and regulations mentioned by the company." });
+
+
 		}
 
         public static double TaxPercent { get; set; } = 12.5;
 
         public static List<Product> Products { get; set; } = new List<Product>() { };
+
+        public static List<Agreement> Agreements { get; set; } = new List<Agreement>();
 
         public static List<string> SeatTypes { get; set; } = new List<string>() { "Big", "Small" ,"Medium" ,"Extra Large" };
 

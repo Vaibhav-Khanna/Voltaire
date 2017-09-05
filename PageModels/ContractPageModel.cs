@@ -36,7 +36,13 @@ namespace voltaire.PageModels
         public Command AddContract => new Command( async(obj) =>
        {
             var navigation = obj as FreshMvvm.IPageModelCoreMethods;
-            await navigation.PushPageModel<NewContractPageModel>(Customer);
+            await navigation.PushPageModel<NewContractPageModel>(new Tuple<Customer,Contract>(Customer,null));
+       });
+
+        public Command ItemTapped => new Command( async(obj) =>
+       {
+            var navigation = obj as Tuple<FreshMvvm.IPageModelCoreMethods, Contract>;
+            await navigation.Item1.PushPageModel<NewContractPageModel>(new Tuple<Customer,Contract>(Customer,navigation.Item2));
        });
 
 

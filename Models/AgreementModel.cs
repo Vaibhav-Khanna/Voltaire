@@ -3,6 +3,7 @@ using System.ComponentModel;
 
 namespace voltaire.Models
 {
+    
     public class AgreementModel : BaseModel 
     {
         public AgreementModel(Agreement _agreement)

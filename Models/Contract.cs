@@ -11,11 +11,11 @@ namespace voltaire.Models
 
         public string Subject { get; set; }
 
-        public DateTime? DateFrom { get; set; }
+        public DateTime? DateFrom { get; set; } = DateTime.Now;
 
-        public DateTime? DateTo { get; set; }
+        public DateTime? DateTo { get; set; } = DateTime.Now.AddDays(1);
 
-        public List<Agreement> Agreements = new List<Agreement>();
+        public List<Agreement> Agreements { get; set; }
 
     }
 }
