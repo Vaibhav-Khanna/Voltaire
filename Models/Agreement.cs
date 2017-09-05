@@ -11,7 +11,7 @@ namespace voltaire.Models
 
         public bool IsSelected { get; set; } = false;
 
-        public List<FormattedString> ContractString { get; set; }
+        public AgreementText ContractString { get; set; } = new AgreementText();
 
 		public Agreement ObjectClone()
 		{
@@ -19,4 +19,5 @@ namespace voltaire.Models
 		}
 
     }
+
 }

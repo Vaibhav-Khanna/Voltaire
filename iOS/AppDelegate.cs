@@ -9,6 +9,7 @@ using UIKit;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
 using CarouselView.FormsPlugin.iOS;
+using Syncfusion.SfPdfViewer.XForms.iOS;
 
 namespace voltaire.iOS
 {
@@ -18,7 +19,7 @@ namespace voltaire.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            CarouselViewRenderer.Init();
+            CarouselViewRenderer.Init();       
             Xamarin.FormsGoogleMaps.Init("AIzaSyCxXBNtq5ksFXZJBwW_SRkf3gEMOg4YhPc");
 
             App.ScreenHeight = UIScreen.MainScreen.Bounds.Height;
@@ -34,6 +35,8 @@ namespace voltaire.iOS
 #endif
 
             LoadApplication(new App());
+
+            SfPdfDocumentViewRenderer.Init();
 
             return base.FinishedLaunching(app, options);
         }

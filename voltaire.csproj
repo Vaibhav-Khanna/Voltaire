@@ -95,6 +95,9 @@
     <EmbeddedResource Include="Pages\ContractPDFViewingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ContractSignValidatePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -241,6 +244,11 @@
       <DependentUpon>ContractPDFViewingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\ContractPDFViewingPageModel.cs" />
+    <Compile Include="Models\AgreementText.cs" />
+    <Compile Include="Pages\ContractSignValidatePage.xaml.cs">
+      <DependentUpon>ContractSignValidatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageModels\ContractSignValidatePageModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
@@ -287,6 +295,12 @@
     </Reference>
     <Reference Include="Syncfusion.Pdf.Portable">
       <HintPath>packages\Syncfusion.Xamarin.Pdf.15.3.0.29\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.Pdf.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfPdfViewer.XForms">
+      <HintPath>packages\Syncfusion.Xamarin.SfPdfViewer.15.3.0.29\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.SfPdfViewer.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="SignaturePad.Forms">
+      <HintPath>packages\Xamarin.Controls.SignaturePad.Forms.2.1.1\lib\portable-net45+win+wp8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SignaturePad.Forms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

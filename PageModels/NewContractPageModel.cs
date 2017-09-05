@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using FreshMvvm;
 using Syncfusion.Drawing;
 using Syncfusion.Pdf;
@@ -44,10 +45,6 @@ namespace voltaire.PageModels
 
                     contract.Agreements = agreements;
                 }
-                else
-                {
-                   
-                }
 
 				List<AgreementModel> agreementmodel = new List<AgreementModel>();
 
@@ -86,22 +83,13 @@ namespace voltaire.PageModels
 
         public Command CreatePDF => new Command(async(obj) =>
        {
-		   using (PdfDocument document = new PdfDocument())
-		   {
-			   //Add a page in the PDF document.
-			   PdfPage page = document.Pages.Add();
-			   //Access the PDF graphics instance of the page.
-			   PdfGraphics graphics = page.Graphics;
-			   
-                //Create the PDF font instance.
-			   PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 12);
-			 
-                //Draw the text in PDF page.
-			   graphics.DrawString("!", font, PdfBrushes.Black, new PointF(20, 20));
-               //Save the PDF document to disk
+            if(string.IsNullOrWhiteSpace(OrderN))
+            {
+                await CoreMethods.DisplayAlert("Fill Information","Please enter the order number,","Ok");
+               return;
+            }
 
-               await CoreMethods.PushPageModel<ContractPDFViewingPageModel>(document);
-		   }
+		   await CoreMethods.PushPageModel<ContractPDFViewingPageModel>(Contract);
        });
 
 
@@ -124,6 +112,7 @@ namespace voltaire.PageModels
 			{
 				ordern = value;
                 contract.Name = ordern;
+                NewContract = ordern;
 				RaisePropertyChanged();
 			}
 		}
@@ -194,7 +183,7 @@ namespace voltaire.PageModels
             else
             {
                 Contract = context.Item2;
-				NewContract = "Contract " + contract.Name;
+				NewContract = contract.Name;
             }
 
         }

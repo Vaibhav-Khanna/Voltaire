@@ -151,6 +151,18 @@
     <Reference Include="Syncfusion.Pdf.Portable">
       <HintPath>..\packages\Syncfusion.Xamarin.Pdf.15.3.0.29\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.Pdf.Portable.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.SfPdfViewer.XForms">
+      <HintPath>..\packages\Syncfusion.Xamarin.SfPdfViewer.15.3.0.29\lib\Xamarin.iOS10\Syncfusion.SfPdfViewer.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfPdfViewer.XForms.iOS">
+      <HintPath>..\packages\Syncfusion.Xamarin.SfPdfViewer.15.3.0.29\lib\Xamarin.iOS10\Syncfusion.SfPdfViewer.XForms.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="SignaturePad">
+      <HintPath>..\packages\Xamarin.Controls.SignaturePad.2.1.1\lib\Xamarin.iOS\SignaturePad.dll</HintPath>
+    </Reference>
+    <Reference Include="SignaturePad.Forms">
+      <HintPath>..\packages\Xamarin.Controls.SignaturePad.Forms.2.1.1\lib\Xamarin.iOS\SignaturePad.Forms.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\voltaire.csproj">
@@ -361,6 +373,9 @@
     <BundleResource Include="Resources\sign1.png" />
     <BundleResource Include="Resources\sign1%402x.png" />
     <BundleResource Include="Resources\sign1%403x.png" />
+    <BundleResource Include="Resources\check2.png" />
+    <BundleResource Include="Resources\check2%402x.png" />
+    <BundleResource Include="Resources\check2%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

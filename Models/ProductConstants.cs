@@ -53,7 +53,7 @@ namespace voltaire.Models
 			Products.Add(new Product() { Description = "This is a horse", Name = "Horse", UnitPrice = 10 });
 
 
-            Agreements.Add(new Agreement(){ Title = "1) You will have to obey to all the rules and regulations mentioned by the company." });
+            Agreements.Add(new Agreement() { Title = "1) You will have to obey to all the rules and regulations mentioned by the company." });
 			Agreements.Add(new Agreement() { Title = "2) You will have to obey to all the rules and regulations mentioned by the company." });
 			Agreements.Add(new Agreement() { Title = "3) You will have to obey to all the rules and regulations mentioned by the company." });
 			Agreements.Add(new Agreement() { Title = "4) You will have to obey to all the rules and regulations mentioned by the company." });
