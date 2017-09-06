@@ -185,7 +185,7 @@
                     <Label Text="Juanary to June" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource MonthLabel}"/>
                         
                     <Grid Grid.Row="1">
-                                        <Image Source="firstmonth" HorizontalOptions="CenterAndExpand"/>
+                                        <Image Source="firstseason" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="30" VerticalOptions="CenterAndExpand">
                                             <Label Text="1" Style="{StaticResource CircleNumber5}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
