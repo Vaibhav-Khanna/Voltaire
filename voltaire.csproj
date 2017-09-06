@@ -104,6 +104,9 @@
     <EmbeddedResource Include="Pages\ContactDetailTabPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\QuotationNotesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -261,6 +264,13 @@
     <Compile Include="Pages\ContactDetailTabPage.xaml.cs">
       <DependentUpon>ContactDetailTabPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\QuotationNotesPage.xaml.cs">
+      <DependentUpon>QuotationNotesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageModels\QuotationNotesPageModel.cs" />
+    <Compile Include="Models\Note.cs" />
+    <Compile Include="Models\Reminder.cs" />
+    <Compile Include="Models\NoteModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

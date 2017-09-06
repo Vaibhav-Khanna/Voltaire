@@ -251,6 +251,12 @@ namespace voltaire.Resources {
             }
         }
         
+        internal static string Notes {
+            get {
+                return ResourceManager.GetString("Notes", resourceCulture);
+            }
+        }
+        
         internal static string Salesmens {
             get {
                 return ResourceManager.GetString("Salesmens", resourceCulture);

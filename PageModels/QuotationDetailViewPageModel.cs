@@ -33,6 +33,10 @@ namespace voltaire.PageModels
             await PopupNavigation.PushAsync(new ProductPickerPopUp(){ BindingContext = popup_context }, true);
        });
 
+        public Command NotesCommand => new Command( async() =>
+       {
+            await CoreMethods.PushPageModel<QuotationNotesPageModel>(Quotation);
+       });
 
 
         async void Popup_Context_ItemSelectedChanged() // When an item is selected from the popup then open product customize page
