@@ -77,6 +77,14 @@ namespace voltaire.PageModels
             }
         }
 
+        public override void ReverseInit(object returnedData)
+        {
+            base.ReverseInit(returnedData);
+
+            Init(returnedData);
+        }
+
+
         void GeneratePDF()
         {
 			using (PdfDocument document = new PdfDocument())
@@ -134,6 +142,15 @@ namespace voltaire.PageModels
                 textElement.Draw(page, new RectangleF(20, y, page.GetClientSize().Width-20 , 40)); 
                 y += 40;
             }
+
+
+            if(contract.SignImageSource!=null)
+            {
+                PdfBitmap image = new PdfBitmap(new MemoryStream(contract.SignImageSource) );
+
+                graphics.DrawImage(image,new RectangleF(20,y,width/2,60));
+            }
+
 
 		}
 

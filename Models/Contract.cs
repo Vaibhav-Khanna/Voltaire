@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace voltaire.Models
 {
@@ -17,7 +18,6 @@ namespace voltaire.Models
 
         public List<Agreement> Agreements { get; set; }
 
-        public string SignImageSource { get; set; }
-
+        public byte[] SignImageSource { get; set; }
     }
 }

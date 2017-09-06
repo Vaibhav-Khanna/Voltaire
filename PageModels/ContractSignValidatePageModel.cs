@@ -2,6 +2,8 @@
 using Xamarin.Forms;
 using voltaire.PageModels.Base;
 using voltaire.Models;
+using System.IO;
+using voltaire.DataStore;
 
 namespace voltaire.PageModels
 {
@@ -26,6 +28,20 @@ namespace voltaire.PageModels
 				RaisePropertyChanged();
 			}
 		}
+
+        Stream imagestream;
+        public Stream ImageStream
+        {
+            get { return imagestream; }
+            set
+            {
+                imagestream = value;
+
+                contract.SignImageSource = LocalDB.ReadFully(imagestream);
+
+                BackButton.Execute(null);
+            }
+        }
 
 		string title;
 		public string Title

@@ -10,6 +10,7 @@ using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
 using CarouselView.FormsPlugin.iOS;
 using Syncfusion.SfPdfViewer.XForms.iOS;
+using Akavache;
 
 namespace voltaire.iOS
 {
@@ -24,6 +25,7 @@ namespace voltaire.iOS
 
             App.ScreenHeight = UIScreen.MainScreen.Bounds.Height;
             App.ScreenWidth = UIScreen.MainScreen.Bounds.Width;
+            BlobCache.ApplicationName = "voltaire";
 
             // Code for starting up the Xamarin Test Cloud Agent
 #if DEBUG

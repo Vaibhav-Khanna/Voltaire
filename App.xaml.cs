@@ -7,6 +7,7 @@ using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
 using Microsoft.Azure.Mobile.Distribute;
 using voltaire.Models;
+using voltaire.DataStore;
 
 namespace voltaire
 {
@@ -45,7 +46,10 @@ namespace voltaire
 
         protected override void OnSleep()
         {
-            // Handle when your app sleeps
+			// Handle when your app sleeps
+
+            // Shutdown the database for integrity
+			LocalDB.ShutDown();
         }
 
         protected override void OnResume()
