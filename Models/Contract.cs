@@ -17,5 +17,7 @@ namespace voltaire.Models
 
         public List<Agreement> Agreements { get; set; }
 
+        public string SignImageSource { get; set; }
+
     }
 }

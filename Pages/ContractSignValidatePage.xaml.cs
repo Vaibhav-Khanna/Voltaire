@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using Syncfusion.Pdf.Native;
 using SignaturePad.Forms;
-
 using Xamarin.Forms;
 
 namespace voltaire.Pages
 {
-    
-    public partial class ContractPDFViewingPage : ContentPage
+    public partial class ContractSignValidatePage : ContentPage
     {
-        public ContractPDFViewingPage()
+        public ContractSignValidatePage()
         {
             NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
+        }
 
-           
+        void Handle_Tapped(object sender, System.EventArgs e)
+        {
+            
         }
     }
 }
