@@ -280,5 +280,23 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("Report", resourceCulture);
             }
         }
+        
+        internal static string Leaderboards {
+            get {
+                return ResourceManager.GetString("Leaderboards", resourceCulture);
+            }
+        }
+        
+        internal static string SalesTitle {
+            get {
+                return ResourceManager.GetString("SalesTitle", resourceCulture);
+            }
+        }
+        
+        internal static string CheckIns {
+            get {
+                return ResourceManager.GetString("CheckIns", resourceCulture);
+            }
+        }
     }
 }
