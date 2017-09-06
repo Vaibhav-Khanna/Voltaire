@@ -98,6 +98,12 @@
     <EmbeddedResource Include="Pages\ContractSignValidatePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ContactDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ContactDetailTabPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -150,14 +156,12 @@
     <Compile Include="Converters\DateNullableToBooleanConverter.cs" />
     <Compile Include="Helpers\AttachedProperties\TappedGestureAttached.cs" />
     <Compile Include="PageModels\ContactDetailPageModel.cs" />
-    <Compile Include="Pages\ContactDetailPage.cs" />
     <Compile Include="Controls\TTabSlider.cs" />
     <Compile Include="Controls\Items\TTab.cs" />
     <Compile Include="TemplateSelectors\ViewPagerTemplateSelector.cs" />
     <Compile Include="Pages\Base\BaseViewPagerPage.cs" />
     <Compile Include="Renderers\CustomScrollView.cs" />
     <Compile Include="Models\MenuLeftItem.cs" />
-    <Compile Include="Pages\ContactDetailTabPage.cs" />
     <Compile Include="Renderers\RoundedBoxview.cs" />
     <Compile Include="Controls\WeightScale.cs" />
     <Compile Include="Controls\CustomLabelEntry.cs" />
@@ -251,6 +255,12 @@
     <Compile Include="PageModels\ContractSignValidatePageModel.cs" />
     <Compile Include="AkavacheSqliteLinkerOverride.cs" />
     <Compile Include="DataStore\LocalDB.cs" />
+    <Compile Include="Pages\ContactDetailPage.xaml.cs">
+      <DependentUpon>ContactDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ContactDetailTabPage.xaml.cs">
+      <DependentUpon>ContactDetailTabPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

@@ -58,6 +58,11 @@ namespace voltaire.PageModels
             }
 	   });
 
+        public Command CheckIn => new Command( () =>
+       {
+           LastVisit = DateTime.Now;
+       });
+
         private ObservableCollection<TTab> tab;
 
         public ObservableCollection<TTab> Tab

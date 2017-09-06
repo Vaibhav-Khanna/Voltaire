@@ -6,18 +6,15 @@ using Xamarin.Forms;
 using System.Collections;
 using System.Collections.Specialized;
 using voltaire.Renderers;
+using System.Collections.Generic;
 
 namespace voltaire.Controls
 {
     public class TTabSlider : ContentView
     {
 
-        public delegate void EventHandler();
-
-        public event EventHandler SelectedIndexChanged;
-
 		public static readonly BindableProperty TabsProperty =
-			BindableProperty.Create("Tabs", typeof(IEnumerable), typeof(TTabSlider), defaultValue: null); 
+            BindableProperty.Create("Tabs", typeof(IEnumerable), typeof(TTabSlider), defaultValue: null); 
 
        
         public IEnumerable Tabs
@@ -34,10 +31,10 @@ namespace voltaire.Controls
 		}
 
 		public static readonly BindableProperty SelectedIndexProperty =
-			BindableProperty.Create("Selected_Index", typeof(int), typeof(TTabSlider), 0 );
+			BindableProperty.Create("SelectedIndex", typeof(int), typeof(TTabSlider), 0 );
 
 
-		public int Selected_Index
+		public int SelectedIndex
         {
             get
             {
@@ -46,7 +43,7 @@ namespace voltaire.Controls
             set
             {
                 SetValue(SelectedIndexProperty,value);
-				OnPropertyChanged(nameof(Selected_Index)); 
+				OnPropertyChanged(nameof(SelectedIndex)); 
             }
         }
 
@@ -77,7 +74,7 @@ namespace voltaire.Controls
 
         void InitView()                 // Initialize View
 		{
-            Container = new StackLayout() { Spacing = 40, Padding = new Thickness(50,10,50,10), Margin = 0, HorizontalOptions = LayoutOptions.CenterAndExpand, Orientation = StackOrientation.Horizontal };
+            Container = new StackLayout() { Spacing = 40, Padding = new Thickness(50,10,50,10), Margin = 0, HorizontalOptions = LayoutOptions.CenterAndExpand, VerticalOptions = LayoutOptions.StartAndExpand, Orientation = StackOrientation.Horizontal };
 
             tap_tabgesture.Tapped += (sender, e) => 
             {
@@ -86,14 +83,17 @@ namespace voltaire.Controls
                 if(Container.Children.Contains(selected_tab))
                 {
                     var index = Container.Children.IndexOf(selected_tab);
-                    Selected_Index = index;
+                    SelectedIndex = index;
                 }
             };
 
-            slider = new BoxView { HeightRequest = 5, Color = (Color)Application.Current.Resources["Squash"], WidthRequest = 5, HorizontalOptions = LayoutOptions.Start, Margin = 0 };
+            slider = new BoxView { HeightRequest = 5, Color = (Color)Application.Current.Resources["Squash"], WidthRequest = 5, HorizontalOptions = LayoutOptions.Start, VerticalOptions = LayoutOptions.End, Margin = 0 };
 
-            var main_Container = new StackLayout { Orientation = StackOrientation.Vertical, Spacing = 4, HorizontalOptions = LayoutOptions.FillAndExpand,
-                VerticalOptions = LayoutOptions.Start, Children = { Container,slider }, Padding = 0, Margin = 0 };
+            var main_Container = new StackLayout {
+                Orientation = StackOrientation.Vertical,
+                Spacing = 4,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.FillAndExpand, Children = { Container,slider }, Padding = 0, Margin = 0 };
 
             scrollview = new CustomScrollView { Orientation = ScrollOrientation.Horizontal, BackgroundColor = (Color)Application.Current.Resources["turquoiseBlue"],  Content = main_Container, HorizontalOptions = LayoutOptions.FillAndExpand,
                 Padding = 0, Margin = 0 };
@@ -121,7 +121,7 @@ namespace voltaire.Controls
                 item.TextColor = Color.FromRgba(255, 255, 255, 178);
             }
 
-            var new_selected = (Label) Container.Children[Selected_Index];
+            var new_selected = (Label) Container.Children[SelectedIndex];
            
             if(new_selected!=null)
             {
@@ -143,10 +143,9 @@ namespace voltaire.Controls
 					Tabs_CollectionChanged(null, null);
                     break;
 
-                case "Selected_Index":
+                case "SelectedIndex":
                     {
 						SelectTab();
-						SelectedIndexChanged?.Invoke();
                         break;
                     }                 					
 			}
@@ -154,11 +153,13 @@ namespace voltaire.Controls
 
         public void ViewHasAppeared()
         {
-            var child_view = Container.Children[Selected_Index];
+            if (Container.Children.Count == 0)
+                return;
+            
+            var child_view = Container.Children[SelectedIndex];
             slider.TranslationX = Container.X + child_view.X;
             slider.WidthRequest = child_view.Width;
         }
-
 
     }
 }
