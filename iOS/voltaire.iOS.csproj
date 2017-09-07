@@ -239,6 +239,7 @@
     <Compile Include="Renderers\DefaultButtonRenderer.cs" />
     <Compile Include="Renderers\BorderlessDatePickerRenderer.cs" />
     <Compile Include="AkavacheSqliteLinkerOverride.cs" />
+    <Compile Include="Renderers\BorderlessTimePickerRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.png" />
@@ -419,6 +420,15 @@
     <BundleResource Include="Resources\trash.png" />
     <BundleResource Include="Resources\trash%402x.png" />
     <BundleResource Include="Resources\trash%403x.png" />
+    <BundleResource Include="Resources\reminderInactive.png" />
+    <BundleResource Include="Resources\reminderInactive%402x.png" />
+    <BundleResource Include="Resources\reminderInactive%403x.png" />
+    <BundleResource Include="Resources\reminderActive.png" />
+    <BundleResource Include="Resources\reminderActive%402x.png" />
+    <BundleResource Include="Resources\reminderActive%403x.png" />
+    <BundleResource Include="Resources\send.png" />
+    <BundleResource Include="Resources\send%402x.png" />
+    <BundleResource Include="Resources\send%403x.png" />
     <BundleResource Include="Resources\firstseason.png" />
     <BundleResource Include="Resources\firstseason%402x.png" />
     <BundleResource Include="Resources\firstseason%403x.png" />

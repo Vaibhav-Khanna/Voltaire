@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire" 
+    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    x:Class="voltaire.PopUps.ReminderAddPopUp">
+     <pages:PopupPage.Animation>
+    <animations:ScaleAnimation 
+      PositionIn="Center"
+      PositionOut="Center"
+      ScaleIn="1.2"
+      ScaleOut="0.8"
+      DurationIn="400"
+      DurationOut="300"
+      EasingIn="SinOut"
+      EasingOut="SinIn"
+      HasBackgroundAnimation="True"/>
+  </pages:PopupPage.Animation>
+	<pages:PopupPage.Content>
+        <StackLayout Orientation="Vertical" Spacing="0" Padding="0" BackgroundColor="White" >            
+                <Image Source="Close1.png" Margin="25,25,0,0" HeightRequest="25" WidthRequest="25" VerticalOptions="Start" HorizontalOptions="Start">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Close}" />
+            </Image.GestureRecognizers>
+                </Image>
+                <Label FontSize="22" BackgroundColor="White" Text="Reminder" TextColor="#4a4a4a" FontFamily="Raleway-Regular" VerticalOptions="Start" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" />
+            <StackLayout BackgroundColor="White" Orientation="Vertical" Padding="80,0,80,0" Margin="0" Spacing="8" >
+                <Label TextColor="#4a4a4a" FontFamily="SanFranciscoDisplay-Semibold" FontSize="16" Text="Name" />
+                <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="50" BackgroundColor="#979797" Padding="1" Margin="0,0,0,10" >
+                    <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start" WidthRequest="20"/>
+                    <renderers:BorderlessEntry x:Name="remindername" Text="{Binding ReminderName, Mode=TwoWay}" TextColor="{StaticResource GreyishBrown}" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Placeholder="Reminder"/>
+                </StackLayout>
+                <Label TextColor="#4a4a4a" FontFamily="SanFranciscoDisplay-Semibold" FontSize="16" Text="Remind me on this day" />
+                <StackLayout Margin="0,0,0,10" Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="50" BackgroundColor="#979797" Padding="1" >
+                    <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start" WidthRequest="20"/>
+                   <renderers:BorderlessDatePicker VerticalOptions="FillAndExpand" BackgroundColor="White" Format="ddd MMM dd, yyyy" Date="{Binding ReminderDate, Mode=TwoWay}" TextColor="{StaticResource GreyishBrown}" HorizontalOptions="Start"/>
+                    <Label Text=" at  " TextColor="{StaticResource GreyishBrown}" HorizontalOptions="Start" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" BackgroundColor="White"/> 
+                    <renderers:BorderlessTimePicker TextColor="{StaticResource GreyishBrown}" Format="hh:mm tt" Time="{Binding Time, Mode=TwoWay}" BackgroundColor="White" HorizontalOptions="Start" />
+                    <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+                <Label TextColor="#4a4a4a" FontFamily="SanFranciscoDisplay-Semibold" FontSize="16" Text="Priority" />
+                 <StackLayout Margin="0,0,0,10" Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="50" BackgroundColor="#979797" Padding="1"  >
+                    <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start" WidthRequest="20"/>
+                    <renderers:BorderlessPicker TextColor="{StaticResource GreyishBrown}" BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="FillAndExpand" ItemsSource="{Binding Source}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Title="Choose" />
+                    <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+                <StackLayout BackgroundColor="White" Padding="0,20,0,35" Orientation="Horizontal" Spacing="20" >
+                    <Button Command="{Binding Cancel}" FontSize="20" HeightRequest="50" BackgroundColor="#9b9b9b" WidthRequest="130" Text="Cancel" TextColor="White" FontFamily="Raleway-Regular" VerticalOptions="Center" HorizontalOptions="EndAndExpand" BorderRadius="0"  />
+                     <Button Clicked="Handle_Clicked" FontSize="20" HeightRequest="50" BackgroundColor="{StaticResource turquoiseBlue}" WidthRequest="130" Text="Done" TextColor="White" FontFamily="Raleway-Regular" VerticalOptions="Center" HorizontalOptions="StartAndExpand" BorderRadius="0"  />
+                </StackLayout>
+            </StackLayout>              
+        </StackLayout>
+	</pages:PopupPage.Content>
+</pages:PopupPage>
