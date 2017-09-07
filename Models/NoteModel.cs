@@ -1,16 +1,31 @@
 ﻿using System;
+using FreshMvvm;
+using Xamarin.Forms;
+using Rg.Plugins.Popup.Services;
+using voltaire.PopUps;
+
 namespace voltaire.Models
 {
     public class NoteModel : BaseModel
     {
         public NoteModel(Note note)
         {
+            Note = note;
+           
             Index = note.id +".";
             Name = note.Publisher;
             Date = note.Date.Date.ToString("d");
             Notes = note.Text;
-            Image = note.IsReminderActive ? "reminderActive.png" : "reminderInactive.png";
+            IsReminderactive = note.IsReminderActive;
         }
+
+        public Note Note { get; set; }
+
+        public Command ReminderToggle => new Command( async(obj) =>
+       {
+            await PopupNavigation.PushAsync(new ReminderAddPopUp());
+            IsReminderactive = !IsReminderactive;
+       });
 
         string index;
         public string Index 
@@ -55,6 +70,22 @@ namespace voltaire.Models
                 OnPropertyChanged();
             }
         }
+
+        bool isreminderactive;
+        public bool IsReminderactive
+        {
+            get { return isreminderactive; }
+            set 
+            {
+                isreminderactive = value;
+                Note.IsReminderActive = isreminderactive;
+
+                Image = isreminderactive ? "reminderActive.png" : "reminderInactive.png";
+
+                OnPropertyChanged();
+            }
+        }
+
 
         string image;
         public string Image 

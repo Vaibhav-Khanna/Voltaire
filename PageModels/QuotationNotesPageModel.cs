@@ -15,6 +15,14 @@ namespace voltaire.PageModels
             await CoreMethods.PopPageModel();
        });
 
+        public Command AddNote => new Command(() =>
+       {
+            var note = new Note(){ Date = DateTime.Now, id = quotation.Notes.Count+1, IsReminderActive = false, Publisher = "Me", Text = NoteText };
+            quotation.Notes.Add(note);
+            NoteSource.Add(new NoteModel(note)); 
+            NoteText = "";
+       });
+
 
         QuotationsModel quotation;
         public QuotationsModel Quotation
@@ -27,8 +35,7 @@ namespace voltaire.PageModels
                 if (quotation.Notes == null)
                     quotation.Notes = new List<Note>();
 
-                quotation.Notes.Add(new Note() { Date = DateTime.Now, id = 1, IsReminderActive = false, Publisher = "Vaibhav Khanna", Text = "hello world this a sample note" });
-
+             
                 var list = new List<NoteModel>();
 
                 foreach (var item in quotation.Notes)
@@ -49,6 +56,17 @@ namespace voltaire.PageModels
             set
             {
                 notesource = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        string notetext;
+        public string NoteText
+        {
+            get { return notetext; }
+            set
+            {
+                notetext = value;
                 RaisePropertyChanged();
             }
         }

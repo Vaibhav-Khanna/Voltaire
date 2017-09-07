@@ -45,7 +45,11 @@
                             <Label Text="{Binding Name}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="0" Grid.Column="1"/>
                             <Label Text="{Binding Date}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="0" Grid.Column="2"/>
                             <Label Text="{Binding Notes}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="0" Grid.Column="3"/>
-                            <Image HeightRequest="35" WidthRequest="35" Source="{Binding Image}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="4" />
+                            <Image HeightRequest="35" WidthRequest="35" Source="{Binding Image}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="4" >
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding ReminderToggle}" />
+                                </Image.GestureRecognizers> 
+                            </Image>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
@@ -54,7 +58,10 @@
         <StackLayout BackgroundColor="#e9e9e9" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15" Orientation="Horizontal" Spacing="15" Grid.Row="2" Grid.Column="0">
             <renderers:BorderlessEntry Text="{Binding NoteText,Mode=TwoWay}" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Placeholder="   Add a note..." FontSize="14"/>
             <StackLayout BackgroundColor="{StaticResource turquoiseBlue}" HorizontalOptions="End" VerticalOptions="FillAndExpand" Padding="15,5,10,10" >
-                <Image TranslationY="2" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFit" Scale="0.7" Source="send.png"  />
+                <Image TranslationY="2" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFit" Scale="0.7" Source="send.png" />
+                 <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding AddNote}" />
+                </StackLayout.GestureRecognizers> 
             </StackLayout>
         </StackLayout>
     </Grid>
