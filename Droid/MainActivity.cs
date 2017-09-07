@@ -11,6 +11,7 @@ using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Distribute;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
+using Akavache;
 
 namespace voltaire.Droid
 {
@@ -26,6 +27,7 @@ namespace voltaire.Droid
 
             CarouselView.FormsPlugin.Android.CarouselViewRenderer.Init();
             Xamarin.FormsGoogleMaps.Init(this,bundle);
+			BlobCache.ApplicationName = "voltaire";
 
             var displayMetrics = this.Resources.DisplayMetrics;
             App.ScreenWidth = ConvertPixelsToDp(displayMetrics.WidthPixels);

@@ -28,10 +28,16 @@
                 </Image>
             </controls:TToolBar.LeftToolbarItems>
     </controls:TToolBar>
-           <signature:SignaturePadCanvasView  Margin="90" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" /> 
+           <signature:SignaturePadCanvasView x:Name="signaturePad"  Margin="90" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" />
+            <Image Source="trash.png" WidthRequest="30" HeightRequest="30" Grid.Row="1" Grid.Column="0" VerticalOptions="Start" HorizontalOptions="End" TranslationY="120" TranslationX="-120" >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped= "ClearSign"> 
+                    </TapGestureRecognizer>
+                </Image.GestureRecognizers>
+            </Image>
         <StackLayout Orientation="Horizontal" Spacing="10" HeightRequest="100"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource turquoiseBlue}" Grid.Row="2" Grid.Column="0" >
                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ValidatePDF}">
+                    <TapGestureRecognizer Tapped="Handle_Tapped">
                     </TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
             <Image Source="check2.png" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
