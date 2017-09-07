@@ -171,7 +171,7 @@
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
-                <Setter Property="FontSize" Value="40" />
+                <Setter Property="FontSize" Value="38" />
                 <Setter Property="TextColor" Value="White" />
           </Style>
           <Style x:Key="CircleNumber2" TargetType="Label" BasedOn="{StaticResource CircleNumber1}">
@@ -524,8 +524,7 @@
                 </Setter>
                 <Setter Property="FontSize" Value="20" />
          </Style>
-         <Style x:Key="LiveSectionLabelStyle"
-                TargetType="Label">
+         <Style x:Key="LiveSectionLabelStyle" TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
@@ -536,10 +535,7 @@
                 </Setter>
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="TextColor" Value="{StaticResource GreyTable3}" />
-         </Style>
-
-
-            
+         </Style>            
          <Style x:Key="ReportFrameStyle" 
                 TargetType="Frame">
                <Setter Property="Padding" Value="0" />
@@ -548,8 +544,91 @@
                <Setter Property="BackgroundColor" Value="White"/>
                <Setter Property="HasShadow" Value="false" />
                <Setter Property="HeightRequest" Value="60" />
-                
          </Style>
+         <!-- PODIUMS PAGE -->
+         <Style x:Key="SalesmanFirstLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Medium</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Medium#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="White" />
+         </Style>
+         <Style x:Key="MonthLabel" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>SanFranciscoDisplay-Semibold</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/SanFranciscoDisplay-Semibold#SanFranciscoDisplay</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
+         </Style>
+         <Style x:Key="LeaderboardLabel" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Regular</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Regular#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="TextColor" Value="White" />
+         </Style>
+         <Style x:Key="LeaderboardBoldLabel" BasedOn="{StaticResource LeaderboardLabel}" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-SemiBold</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-SemiBold#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>               
+         </Style>
+          <Style x:Key="SalesmanDetail3"
+                BasedOn="{StaticResource SalesmanDetail}"
+                TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+         </Style>
+         <Style x:Key="SalesmanDetail4"
+                BasedOn="{StaticResource SalesmanDetail2}"
+                TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+         </Style>
+          <Style x:Key="SalesmanDetail5"
+                BasedOn="{StaticResource SalesmanDetail}"
+                TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
+         </Style>
+        <Style x:Key="SalesmanDetail6"
+                BasedOn="{StaticResource SalesmanDetail2}"
+                TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
+         </Style>
+        <Style x:Key="CircleNumber3" TargetType="Label"
+                BasedOn="{StaticResource CircleNumber1}">
+                <Setter Property="TextColor" Value="{StaticResource turquoiseBlue}" />
+        </Style>
+        <Style x:Key="CircleNumber4" TargetType="Label"
+                BasedOn="{StaticResource CircleNumber1}">
+                <Setter Property="TextColor" Value="{StaticResource WarmGrey}" />
+        </Style>
+        <Style x:Key="CircleNumber5" TargetType="Label"
+                BasedOn="{StaticResource CircleNumber1}">
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
+        </Style>
+        <Style x:Key="SalesmanSecondLabelStyle" TargetType="Label"
+                BasedOn="{StaticResource SalesmanFirstLabelStyle}">
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
+        </Style>
+
           <!--CONVERTERS -->
           <converters:BoolToColorConverter x:Key="SelectableCellBoolToColorConverter"
                                              ColorFalse="Transparent"

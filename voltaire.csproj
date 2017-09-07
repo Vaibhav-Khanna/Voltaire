@@ -98,6 +98,9 @@
     <EmbeddedResource Include="Pages\ContractSignValidatePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\PodiumsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -251,6 +254,9 @@
     <Compile Include="PageModels\ContractSignValidatePageModel.cs" />
     <Compile Include="AkavacheSqliteLinkerOverride.cs" />
     <Compile Include="DataStore\LocalDB.cs" />
+    <Compile Include="Pages\PodiumsPage.xaml.cs">
+      <DependentUpon>PodiumsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
