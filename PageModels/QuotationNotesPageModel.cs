@@ -17,6 +17,9 @@ namespace voltaire.PageModels
 
         public Command AddNote => new Command(() =>
        {
+           if (string.IsNullOrWhiteSpace(NoteText))
+               return;
+
             var note = new Note(){ Date = DateTime.Now, id = quotation.Notes.Count+1, IsReminderActive = false, Publisher = "Me", Text = NoteText };
             quotation.Notes.Add(note);
             NoteSource.Add(new NoteModel(note)); 

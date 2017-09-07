@@ -21,11 +21,27 @@ namespace voltaire.Models
 
         public Note Note { get; set; }
 
+        private ReminderAddPopUpModel reminder_popup_model;
+
         public Command ReminderToggle => new Command( async(obj) =>
-       {
-            await PopupNavigation.PushAsync(new ReminderAddPopUp());
-            IsReminderactive = !IsReminderactive;
+       {            
+                reminder_popup_model = new ReminderAddPopUpModel(Note.Reminder);
+                reminder_popup_model.ReminderModeChanged += Reminder_Popup_Model_ReminderSet;
+                var popup = new ReminderAddPopUp(){ BindingContext = reminder_popup_model };
+                await PopupNavigation.PushAsync(popup);
        });
+
+
+        void Reminder_Popup_Model_ReminderSet()
+        {
+            reminder_popup_model.ReminderModeChanged -= Reminder_Popup_Model_ReminderSet;
+
+            if (reminder_popup_model.IsReminderSet == true)
+                IsReminderactive = true;
+            else if (reminder_popup_model.IsReminderSet == false)
+                IsReminderactive = false;
+        }
+
 
         string index;
         public string Index 

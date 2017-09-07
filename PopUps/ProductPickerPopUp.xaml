@@ -20,10 +20,11 @@
   </pages:PopupPage.Animation>
     <pages:PopupPage.Content>        
         <StackLayout Orientation="Vertical" Spacing="0" Padding="15" BackgroundColor="White" >            
-                <Image Source="Close1.png" Margin="10" HeightRequest="25" WidthRequest="25" VerticalOptions="Start" HorizontalOptions="Start"/>
+                <Image Source="Close1.png" Margin="10" HeightRequest="25" WidthRequest="25" VerticalOptions="Start" HorizontalOptions="Start" >
             <Image.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding Close}" />
             </Image.GestureRecognizers>
+                </Image>
                 <Label TranslationY="-20" FontAttributes="Bold" Text="Select a product" TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Semibold" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" />
             <ListView x:Name="listview" ItemsSource="{Binding ItemSource}" SeparatorColor="{StaticResource GreyishBrown}" HasUnevenRows="false" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
                 <ListView.ItemTemplate>
