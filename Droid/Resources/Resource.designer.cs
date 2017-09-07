@@ -1721,10 +1721,7 @@ namespace voltaire.Droid
 			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_postpone = global::voltaire.Droid.Resource.String.mobile_center_distribute_update_dialog_postpone;
 			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_title = global::voltaire.Droid.Resource.String.mobile_center_distribute_update_dialog_title;
 			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_view_release_notes = global::voltaire.Droid.Resource.String.mobile_center_distribute_update_dialog_view_release_notes;
-
 			global::Splat.Resource.String.library_name = global::voltaire.Droid.Resource.String.library_name;
-
-
 			global::Syncfusion.SfPdfViewer.XForms.Droid.Resource.Animation.abc_fade_in = global::voltaire.Droid.Resource.Animation.abc_fade_in;
 			global::Syncfusion.SfPdfViewer.XForms.Droid.Resource.Animation.abc_fade_out = global::voltaire.Droid.Resource.Animation.abc_fade_out;
 			global::Syncfusion.SfPdfViewer.XForms.Droid.Resource.Animation.abc_grow_fade_in_from_bottom = global::voltaire.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
@@ -7344,7 +7341,6 @@ namespace voltaire.Droid
 			public const int common_signin_button_text_long = 2131230735;
 			
 			// aapt resource value: 0x7f080050
-
 			public const int library_name = 2131230800;
 			
 			// aapt resource value: 0x7f080051
@@ -7391,51 +7387,6 @@ namespace voltaire.Droid
 			
 			// aapt resource value: 0x7f08005f
 			public const int mobile_center_distribute_update_dialog_view_release_notes = 2131230815;
-
-			public const int mobile_center_distribute_dialog_actioned_on_disabled_toast = 2131230800;
-			
-			// aapt resource value: 0x7f080051
-			public const int mobile_center_distribute_download_progress_number_format = 2131230801;
-			
-			// aapt resource value: 0x7f080052
-			public const int mobile_center_distribute_downloading_mandatory_update = 2131230802;
-			
-			// aapt resource value: 0x7f080053
-			public const int mobile_center_distribute_install = 2131230803;
-			
-			// aapt resource value: 0x7f080054
-			public const int mobile_center_distribute_install_ready_message = 2131230804;
-			
-			// aapt resource value: 0x7f080055
-			public const int mobile_center_distribute_install_ready_title = 2131230805;
-			
-			// aapt resource value: 0x7f080056
-			public const int mobile_center_distribute_notification_category = 2131230806;
-			
-			// aapt resource value: 0x7f080057
-			public const int mobile_center_distribute_unknown_sources_dialog_message = 2131230807;
-			
-			// aapt resource value: 0x7f080058
-			public const int mobile_center_distribute_unknown_sources_dialog_settings = 2131230808;
-			
-			// aapt resource value: 0x7f080059
-			public const int mobile_center_distribute_update_dialog_download = 2131230809;
-			
-			// aapt resource value: 0x7f08005a
-			public const int mobile_center_distribute_update_dialog_message_mandatory = 2131230810;
-			
-			// aapt resource value: 0x7f08005b
-			public const int mobile_center_distribute_update_dialog_message_optional = 2131230811;
-			
-			// aapt resource value: 0x7f08005c
-			public const int mobile_center_distribute_update_dialog_postpone = 2131230812;
-			
-			// aapt resource value: 0x7f08005d
-			public const int mobile_center_distribute_update_dialog_title = 2131230813;
-			
-			// aapt resource value: 0x7f08005e
-			public const int mobile_center_distribute_update_dialog_view_release_notes = 2131230814;
-
 			
 			// aapt resource value: 0x7f080011
 			public const int mr_button_content_description = 2131230737;
