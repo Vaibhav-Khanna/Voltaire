@@ -102,6 +102,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ContactDetailTabPage.xaml">
+        <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\PodiumsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\QuotationNotesPage.xaml">
@@ -266,6 +269,9 @@
     </Compile>
     <Compile Include="Pages\ContactDetailTabPage.xaml.cs">
       <DependentUpon>ContactDetailTabPage.xaml</DependentUpon>
+      </Compile>
+    <Compile Include="Pages\PodiumsPage.xaml.cs">
+      <DependentUpon>PodiumsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\QuotationNotesPage.xaml.cs">
       <DependentUpon>QuotationNotesPage.xaml</DependentUpon>

@@ -82,10 +82,10 @@
         <value>Top Salesman</value>
     </data>
 	<data name="Sales" xml:space="preserve">
-        <value>Sales :</value>
+        <value>Sales: </value>
     </data>
 	<data name="CheckIn" xml:space="preserve">
-        <value>Check-In :</value>
+        <value>Check-In: </value>
     </data>
 	<!-- CONTACTS PAGE -->
 	<data name="Contacts" xml:space="preserve">
@@ -134,9 +134,6 @@
 	<data name="LastVisit" xml:space="preserve">
         <value>Dernière visite le</value>
     </data>
-	<data name="CheckIn" xml:space="preserve">
-        <value>Check-in</value>
-    </data>
 	<data name="Weight" xml:space="preserve">
         <value>Weight</value>
     </data>
@@ -158,27 +155,26 @@
 	<data name="Update" xml:space="preserve">
         <value>Update customer</value>
     </data>
-	<data name = "Filters" xml:space = "preserve">
+	<data name="Filters" xml:space="preserve">
         <value>Filters</value>
 	</data>
-
-    <!-- CONTRACT NEW PAGE -->
-    <data name = "RiderHeader" xml:space = "preserve">
+	<!-- CONTRACT NEW PAGE -->
+	<data name="RiderHeader" xml:space="preserve">
         <value>The rider hereby must agrees to the following during the Term of the agreement:</value>
     </data>
-	 <data name = "OrderN" xml:space = "preserve">
+	<data name="OrderN" xml:space="preserve">
         <value>Order No.:</value>
     </data>
-	<data name = "Period" xml:space = "preserve">
+	<data name="Period" xml:space="preserve">
         <value>Period:</value>
     </data>
-    <data name = "Subject" xml:space = "preserve">
+	<data name="Subject" xml:space="preserve">
         <value>Subject:</value>
     </data>
-	<data name = "GeneratePDF" xml:space = "preserve">
+	<data name="GeneratePDF" xml:space="preserve">
         <value>Generate PDF</value>
     </data>
-	<data name = "Title" xml:space = "preserve">
+	<data name="Title" xml:space="preserve">
         <value>New contract for</value>
     </data>
 	<data name = "Notes" xml:space = "preserve">
@@ -202,5 +198,15 @@
 	<!-->REPORTS DETAIL PAGE <-->
 	<data name="Report" xml:space="preserve">
         <value>Report</value>
+    </data>
+	<!--PODIUMS PAGE-->
+	<data name="Leaderboards" xml:space="preserve">
+        <value>Leaderboards</value>
+    </data>
+	<data name="SalesTitle" xml:space="preserve">
+        <value>Sales</value>
+    </data>
+	<data name="CheckIns" xml:space="preserve">
+        <value>Check-Ins</value>
     </data>
 </root>
