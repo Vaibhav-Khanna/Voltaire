@@ -39,6 +39,12 @@ namespace voltaire.PageModels
        });
 
 
+		public Command SignCommand => new Command(async () =>
+		{
+            await CoreMethods.PushPageModel<QuotationSignPageModel>(Quotation);
+		});
+
+
         async void Popup_Context_ItemSelectedChanged() // When an item is selected from the popup then open product customize page
         {
             if (popup_context.SelectedItem != null)
