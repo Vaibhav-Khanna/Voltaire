@@ -12,7 +12,7 @@ namespace voltaire.PopUps
             InitializeComponent();
 
             Padding = new Thickness(150,150,150,250);
-            CloseWhenBackgroundIsClicked = true;  
+            CloseWhenBackgroundIsClicked = false;  
 
             listview.ItemTapped += Listview_ItemTapped;
 
