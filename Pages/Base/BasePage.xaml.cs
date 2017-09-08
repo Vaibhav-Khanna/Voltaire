@@ -16,8 +16,8 @@ namespace voltaire.Pages.Base
 
         public BasePage()
         {
+            NavigationPage.SetBackButtonTitle(this,"Back");
             InitializeComponent();
-
         }
 
         protected void SetMenu(StackLayout view, int selectedIndex)
@@ -63,7 +63,7 @@ namespace voltaire.Pages.Base
                     page = FreshPageModelResolver.ResolvePageModel<ContactsPageModel>();
                     break;
                 case "map":
-                    page = FreshPageModelResolver.ResolvePageModel<MapPageModel>();
+                    page = FreshPageModelResolver.ResolvePageModel<MapMainPageModel>();
                     break;
                 case "todo":
                     page = FreshPageModelResolver.ResolvePageModel<TodoPageModel>();
@@ -74,11 +74,11 @@ namespace voltaire.Pages.Base
                 case "report":
                     page = FreshPageModelResolver.ResolvePageModel<ReportsPageModel>();
                     break;
-                case "quotations":
-                    page = FreshPageModelResolver.ResolvePageModel<QuotationsPageModel>();
+                case "quotation":
+                    page = FreshPageModelResolver.ResolvePageModel<QuotationsMainPageModel>();
                     break;
                 case "contract":
-                    page = FreshPageModelResolver.ResolvePageModel<ContractPageModel>();
+                    page = FreshPageModelResolver.ResolvePageModel<ContractsMainPageModel>();
                     break;
                 case "goals":
                     page = FreshPageModelResolver.ResolvePageModel<GoalsPageModel>();
@@ -91,7 +91,7 @@ namespace voltaire.Pages.Base
 
             if (page != null)
             {
-                if (_selectedPage != null)
+                if (_selectedPage != null && Navigation.NavigationStack.Contains(_selectedPage))
                 {
                     Navigation.InsertPageBefore(page, _selectedPage);
                     Navigation.PopAsync();

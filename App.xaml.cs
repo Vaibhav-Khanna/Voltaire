@@ -25,7 +25,7 @@ namespace voltaire
             ProductConstants.Init();
 
             var homePage = FreshPageModelResolver.ResolvePageModel<HomePageModel>();
-            var homeContainer = new FreshNavigationContainer(homePage) { BarTextColor = Color.White };
+            var homeContainer = new FreshNavigationContainer(homePage) { BarBackgroundColor = (Color)Resources["turquoiseBlue"], BarTextColor = Color.White };
 
 
             MainPage = homeContainer;
