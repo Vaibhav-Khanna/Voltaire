@@ -116,6 +116,21 @@
     <EmbeddedResource Include="Pages\QuotationSignPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MapMainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\TodoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\AgendaPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\QuotationsMainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ContractsMainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -292,6 +307,24 @@
       <DependentUpon>QuotationSignPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\QuotationSignPageModel.cs" />
+    <Compile Include="Pages\MapMainPage.xaml.cs">
+      <DependentUpon>MapMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageModels\MapMainPageModel.cs" />
+    <Compile Include="Pages\TodoPage.xaml.cs">
+      <DependentUpon>TodoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AgendaPage.xaml.cs">
+      <DependentUpon>AgendaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageModels\ContractsMainPageModel.cs" />
+    <Compile Include="PageModels\QuotationsMainPageModel.cs" />
+    <Compile Include="Pages\QuotationsMainPage.xaml.cs">
+      <DependentUpon>QuotationsMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ContractsMainPage.xaml.cs">
+      <DependentUpon>ContractsMainPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

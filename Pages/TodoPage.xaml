@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:BasePage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire.Pages.Base"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="voltaire.Pages.TodoPage">
+	<base:BasePage.Content>
+	</base:BasePage.Content>
+</base:BasePage>
