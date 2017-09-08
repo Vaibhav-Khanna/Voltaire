@@ -113,6 +113,9 @@
     <EmbeddedResource Include="PopUps\ReminderAddPopUp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\QuotationSignPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -285,6 +288,10 @@
     </Compile>
     <Compile Include="Renderers\BorderlessTimePicker.cs" />
     <Compile Include="PopUps\ReminderAddPopUpModel.cs" />
+    <Compile Include="Pages\QuotationSignPage.xaml.cs">
+      <DependentUpon>QuotationSignPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageModels\QuotationSignPageModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
