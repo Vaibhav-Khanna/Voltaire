@@ -81,8 +81,8 @@ namespace voltaire.PageModels
                 return;
 
             Customer = context;
-
         }
+
 
 		void SearchResults(string query_string)
 		{

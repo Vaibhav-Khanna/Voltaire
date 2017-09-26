@@ -1,5 +1,81 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="voltaire.Pages.ContractsMainPage">
-	<ContentPage.Content>
-	</ContentPage.Content>
-</ContentPage>
+<?xml version="1.0" encoding="UTF-8"?>
+<base:BasePage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
+    xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire"
+    xmlns:local="clr-namespace:voltaire.Converters;assembly=voltaire"
+    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire" 
+    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
+    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
+    xmlns:attachedProperties="clr-namespace:voltaire.Helpers.AttachedProperties;assembly=voltaire"
+    x:Class="voltaire.Pages.ContractsMainPage">  
+    <base:BasePage.Resources>
+         <ResourceDictionary>
+           <local:TimeSpanToStringConverter x:Key="TimeSpanToStringConverter" />
+    </ResourceDictionary>
+    </base:BasePage.Resources>
+    <base:BasePage.Content>
+        <Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
+           <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+            <!--  Toolbar  -->
+            
+        <controls:TToolBar Title="{x:Static resources:AppResources.Contracts}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <controls:TToolBar.RightToolbarItems>
+                <Button Command="{Binding AddContract}" WidthRequest="34" HeightRequest="34" BorderRadius="17" BorderColor="White" Text="+" FontSize="25" TextColor="White" BorderWidth="1" VerticalOptions="Center" HorizontalOptions="Center"  />
+          </controls:TToolBar.RightToolbarItems>
+        </controls:TToolBar>
+
+            <!--  Menu  -->
+        
+        <renderers:CustomScrollView Grid.Row="1" Grid.Column="0" BackgroundColor="{StaticResource MaroonBlack}" >
+            <StackLayout x:Name="MenuLayout" 
+            BackgroundColor="{StaticResource Black}" 
+            HorizontalOptions="StartAndExpand" 
+            Orientation="Vertical" 
+            Spacing="0" 
+            WidthRequest="80" />
+        </renderers:CustomScrollView>   
+
+            <!--  Main Layout  -->
+
+             <ListView x:Name ="listview" Margin="15,0,0,0" Grid.Row="1" Grid.Column="1" Refreshing="Handle_Refreshing" IsPullToRefreshEnabled="true" SeparatorColor = "{StaticResource GreyBack}" ItemsSource = "{Binding ContractsItemSource}" HasUnevenRows ="true" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                       <ViewCell> 
+                            <Grid  x:Name = "grid" HorizontalOptions = "FillAndExpand" VerticalOptions = "Center" Margin ="0" Padding = "15,15,15,15" BackgroundColor = "{Binding BackColor}" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height= "Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="4*"/>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Spacing="15" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row = "0" Grid.Column = "0" >                               
+                                    <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Name}" VerticalOptions = "Center" HorizontalOptions =  "Start"   />
+                                    <Image Source="pdf.png" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="Start" />
+                                </StackLayout>
+                                <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text="{Binding CustomerName}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Grid.Column="1" Grid.Row="0" />
+                                <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Date, StringFormat = '{0:yyyy MMM dd}' }" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "2"  />
+                                <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Time, Converter = {StaticResource TimeSpanToStringConverter}}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "3"  />                              
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            
+        </Grid>
+	</base:BasePage.Content>
+</base:BasePage>
