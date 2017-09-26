@@ -304,5 +304,29 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("CheckIns", resourceCulture);
             }
         }
+        
+        internal static string LocationEnableAlert {
+            get {
+                return ResourceManager.GetString("LocationEnableAlert", resourceCulture);
+            }
+        }
+        
+        internal static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        internal static string NotNow {
+            get {
+                return ResourceManager.GetString("NotNow", resourceCulture);
+            }
+        }
+        
+        internal static string Alert {
+            get {
+                return ResourceManager.GetString("Alert", resourceCulture);
+            }
+        }
     }
 }
