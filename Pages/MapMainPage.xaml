@@ -1,9 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <base:BasePage 
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire.Pages.Base"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"    
+    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
+    xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire"
+    xmlns:local="clr-namespace:voltaire.Converters;assembly=voltaire"
+    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire" 
+    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
+    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
+    xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+    xmlns:attachedProperties="clr-namespace:voltaire.Helpers.AttachedProperties;assembly=voltaire"
     x:Class="voltaire.Pages.MapMainPage">
-	<base:BasePage.Content>
-	</base:BasePage.Content>
+	 <base:BasePage.Content>
+        
+        <Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
+           <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+            <!--  Toolbar  -->
+            
+        <controls:TToolBar Title="{x:Static resources:AppResources.Map}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <controls:TToolBar.LeftToolbarItems>
+                <Entry Placeholder="{x:Static resources:AppResources.SearchContact}" Keyboard="Text" HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}"  />
+          </controls:TToolBar.LeftToolbarItems>
+        </controls:TToolBar>
+
+            <!--  Menu  -->
+        
+        <renderers:CustomScrollView Grid.Row="1" Grid.Column="0" BackgroundColor="{StaticResource MaroonBlack}" >
+            <StackLayout x:Name="MenuLayout" 
+            BackgroundColor="{StaticResource Black}" 
+            HorizontalOptions="StartAndExpand" 
+            Orientation="Vertical" 
+            Spacing="0" 
+            WidthRequest="80" />
+        </renderers:CustomScrollView>   
+
+            <!--  Main Layout  -->
+
+            <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1" Grid.Column="1">
+                <maps:Map x:Name="Map" HasZoomEnabled="true" HasScrollEnabled="true" IsShowingUser="true" MyLocationButtonClicked="Handle_MyLocationButtonClicked" MyLocationEnabled="true" MapType="Street" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
+                <BoxView InputTransparent="true" BackgroundColor="{StaticResource turquoiseBlue}" Opacity="0.2" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />             
+                 <Image HeightRequest="60" WidthRequest="60" Source="filter.png"  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.95,0.04,AutoSize,AutoSize" />
+            </AbsoluteLayout>
+                            
+        </Grid>
+    </base:BasePage.Content>
 </base:BasePage>

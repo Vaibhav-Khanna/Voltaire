@@ -15,7 +15,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>10.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>2</integer>
@@ -65,5 +65,7 @@
 	<false/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow voltaire to access location for check-in&apos;s and client location check-in&apos;s</string>
 </dict>
 </plist>

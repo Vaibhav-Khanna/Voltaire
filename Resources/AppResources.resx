@@ -209,4 +209,20 @@
 	<data name="CheckIns" xml:space="preserve">
         <value>Check-Ins</value>
     </data>
+	<!--MAP PAGE-->
+	<data name="LocationEnableAlert" xml:space="preserve">
+        <value>Please enable the location services in the app settings to use this feature.</value>
+    </data>
+	<data name="Ok" xml:space="preserve">
+        <value>Ok</value>	
+    </data>
+	<data name="Cancel" xml:space="preserve">
+        <value>Cancel</value>   
+    </data>
+	<data name="NotNow" xml:space="preserve">
+        <value>Not Now</value>   
+    </data>
+	<data name="Alert" xml:space="preserve">
+        <value>Alert</value>   
+    </data>
 </root>

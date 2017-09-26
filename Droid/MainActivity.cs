@@ -12,6 +12,7 @@ using Microsoft.Azure.Mobile.Distribute;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
 using Akavache;
+using Plugin.Permissions;
 
 namespace voltaire.Droid
 {
@@ -46,6 +47,12 @@ namespace voltaire.Droid
 		{
 			var dp = (int)((pixelValue) / Resources.DisplayMetrics.Density);
 			return dp;
+		}
+
+
+		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+		{
+			PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 		}
 
     }
