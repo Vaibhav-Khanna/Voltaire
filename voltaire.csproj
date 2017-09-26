@@ -325,6 +325,8 @@
     <Compile Include="Pages\ContractsMainPage.xaml.cs">
       <DependentUpon>ContractsMainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\CourseAgendaCellModel.cs" />
+    <Compile Include="Models\CheckIn.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

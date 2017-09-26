@@ -328,5 +328,77 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("Alert", resourceCulture);
             }
         }
+        
+        internal static string RetrospectiveCourse {
+            get {
+                return ResourceManager.GetString("RetrospectiveCourse", resourceCulture);
+            }
+        }
+        
+        internal static string PickStartEnd {
+            get {
+                return ResourceManager.GetString("PickStartEnd", resourceCulture);
+            }
+        }
+        
+        internal static string ChooseFilter {
+            get {
+                return ResourceManager.GetString("ChooseFilter", resourceCulture);
+            }
+        }
+        
+        internal static string None {
+            get {
+                return ResourceManager.GetString("None", resourceCulture);
+            }
+        }
+        
+        internal static string Today {
+            get {
+                return ResourceManager.GetString("Today", resourceCulture);
+            }
+        }
+        
+        internal static string ThisWeek {
+            get {
+                return ResourceManager.GetString("ThisWeek", resourceCulture);
+            }
+        }
+        
+        internal static string ThisMonth {
+            get {
+                return ResourceManager.GetString("ThisMonth", resourceCulture);
+            }
+        }
+        
+        internal static string CoursesDetails {
+            get {
+                return ResourceManager.GetString("CoursesDetails", resourceCulture);
+            }
+        }
+        
+        internal static string Start {
+            get {
+                return ResourceManager.GetString("Start", resourceCulture);
+            }
+        }
+        
+        internal static string End {
+            get {
+                return ResourceManager.GetString("End", resourceCulture);
+            }
+        }
+        
+        internal static string Check {
+            get {
+                return ResourceManager.GetString("Check", resourceCulture);
+            }
+        }
+        
+        internal static string Duration {
+            get {
+                return ResourceManager.GetString("Duration", resourceCulture);
+            }
+        }
     }
 }

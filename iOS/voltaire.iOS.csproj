@@ -457,6 +457,12 @@
     <BundleResource Include="Resources\here.png" />
     <BundleResource Include="Resources\here%402x.png" />
     <BundleResource Include="Resources\here%403x.png" />
+    <BundleResource Include="Resources\check3.png" />
+    <BundleResource Include="Resources\check3%402x.png" />
+    <BundleResource Include="Resources\check3%403x.png" />
+    <BundleResource Include="Resources\marker.png" />
+    <BundleResource Include="Resources\marker%402x.png" />
+    <BundleResource Include="Resources\marker%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
