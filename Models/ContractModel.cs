@@ -24,8 +24,11 @@ namespace voltaire.Models
                 Name = contract.Name;
 				Date = contract.ModifiedDateTime.Date;
 				Time = contract.ModifiedDateTime.TimeOfDay;
+                CustomerName = $"{contract.Customer.FirstName}  {contract.Customer.LastName}";
             }
         }
+
+        public string CustomerName { get; set; }
 
         public Color BackColor { get; set; }
 

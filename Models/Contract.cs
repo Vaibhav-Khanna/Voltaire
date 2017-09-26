@@ -6,6 +6,13 @@ namespace voltaire.Models
 {
     public class Contract
     {       
+        public Contract(Customer customer)
+        {
+            Customer = customer;
+        }
+
+        public Customer Customer;
+
         public string Name { get; set; }
 
         public DateTime ModifiedDateTime { get; set; }
