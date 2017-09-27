@@ -134,6 +134,9 @@
     <EmbeddedResource Include="Controls\BindingPinView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="PopUps\CustomerPickerPopUp.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -334,6 +337,10 @@
       <DependentUpon>BindingPinView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Extensions\DateTimeExtensions.cs" />
+    <Compile Include="PopUps\CustomerPickerPopUp.xaml.cs">
+      <DependentUpon>CustomerPickerPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopUps\CustomerPickerPopupModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

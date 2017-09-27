@@ -48,7 +48,103 @@
             <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1" Grid.Column="1">
                 <maps:Map x:Name="Map" HasZoomEnabled="true" HasScrollEnabled="true" IsShowingUser="true" MyLocationButtonClicked="Handle_MyLocationButtonClicked" MyLocationEnabled="true" MapType="Street" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
                 <BoxView InputTransparent="true" BackgroundColor="{StaticResource turquoiseBlue}" Opacity="0.2" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />             
-                 <Image HeightRequest="60" WidthRequest="60" Source="filter.png"  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.95,0.04,AutoSize,AutoSize" />
+                 <Image HeightRequest="60" WidthRequest="60" Source="filter.png"  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.95,0.04,AutoSize,AutoSize">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Filter}" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <StackLayout    
+                            AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,0.3,0.8"
+                            IsVisible="{Binding FilterLayoutVisibility}" 
+                            BackgroundColor="{StaticResource GreyBack}" 
+                            Orientation="Vertical"
+                            VerticalOptions="FillAndExpand" Padding="10,10,10,0" >
+                
+                <BoxView    HeightRequest="1" 
+                            BackgroundColor="{StaticResource GreyLine}" 
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="Start"/>
+                
+                <Label  Text="{x:Static resources:AppResources.Weight}" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Start" 
+                        Margin="10"
+                        Style="{StaticResource FilterSectionLabelStyle}" />
+                
+                <controls:WrapLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Spacing="10">
+                        <Button Text="0" Clicked="Handle_Clicked"
+                            Command="{Binding FilterWeight}" x:Name="W0" CommandParameter="{Binding Source={x:Reference W0}, Path=Text}"
+                                Style="{StaticResource FilterWeightClickedButtonStyle}" />
+         
+                        <Button Text="1" Clicked="Handle_Clicked" Command="{Binding FilterWeight}" x:Name="W1" CommandParameter="{Binding Source={x:Reference W1}, Path=Text}"
+                                Style="{StaticResource FilterWeightButtonStyle}" />
+                     
+                        <Button Text="2" Clicked="Handle_Clicked" Command="{Binding FilterWeight}" x:Name="W2" CommandParameter="{Binding Source={x:Reference W2}, Path=Text}"
+                                Style="{StaticResource FilterWeightButtonStyle}" />
+                    
+                        <Button Text="3" Clicked="Handle_Clicked" Command="{Binding FilterWeight}" x:Name="W3" CommandParameter="{Binding Source={x:Reference W3}, Path=Text}"
+                                Style="{StaticResource FilterWeightButtonStyle}" />
+                    
+                        <Button Text="4" Clicked="Handle_Clicked" Command="{Binding FilterWeight}" x:Name="W4" CommandParameter="{Binding Source={x:Reference W4}, Path=Text}"
+                                Style="{StaticResource FilterWeightButtonStyle}" />
+                    
+                        <Button Text="5" Clicked="Handle_Clicked" Command="{Binding FilterWeight}" x:Name="W5" CommandParameter="{Binding Source={x:Reference W5}, Path=Text}"
+                                Style="{StaticResource FilterWeightButtonStyle}" />  
+                </controls:WrapLayout> 
+                
+                <BoxView    HeightRequest="1" 
+                            BackgroundColor="{StaticResource GreyLine}" 
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="Start" 
+                            Margin="0,20,0,0"/>
+                
+                <Label  Text="{x:Static resources:AppResources.PartnerGrade}" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Start" 
+                        Margin="10" 
+                        Style="{StaticResource FilterSectionLabelStyle}"/>
+                
+                    <controls:RepeaterView ItemsSource="{Binding partnerGrades}" VerticalOptions="Start" HorizontalOptions="Start" Orientation="Horizontal" Spacing="10" Margin="10,10">
+                        <controls:RepeaterView.ItemTemplate>
+                          <DataTemplate>
+                            <Frame Padding="20,0" Style="{StaticResource PartnerGradeFrame}"> 
+                                <Button Text="{Binding Grade}" Clicked="Grade_Clicked"  Style="{StaticResource PartnerGradeButton}" />
+                            </Frame>
+                        </DataTemplate>
+                        </controls:RepeaterView.ItemTemplate>    
+                    </controls:RepeaterView>    
+                
+                    
+                 <BoxView   HeightRequest="1" 
+                            BackgroundColor="{StaticResource GreyLine}" 
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="Start" 
+                            Margin="0,20,0,0"/>
+                
+                    <Frame   
+                        Margin="20"
+                        Padding="0" 
+                        HasShadow="false" 
+                        VerticalOptions="Start"
+                        HorizontalOptions="Start"
+                        WidthRequest="130" 
+                        HeightRequest= "35"
+                        BackgroundColor="{StaticResource GreyishBrown}"> 
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand"  >
+                               <Image Source="reset" HeightRequest="10" WidthRequest="11"/>
+                               <Label Style="{StaticResource ResetFiltersLabelStyle}"
+                                      Text="{x:Static resources:AppResources.ResetFilters}"
+                                      VerticalOptions="Center" >
+                                 <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding FilterReset}" Tapped="FilterReset" />
+                                </Label.GestureRecognizers>
+                            </Label> 
+                            </StackLayout> 
+                    </Frame>                  
+                </StackLayout>
+
+                
             </AbsoluteLayout>
                             
         </Grid>

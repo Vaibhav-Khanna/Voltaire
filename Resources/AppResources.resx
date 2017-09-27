@@ -265,4 +265,7 @@
 	<data name="Duration" xml:space="preserve">
         <value>Duration</value>   
     </data>
+	<data name="SelectACustomer" xml:space="preserve">
+        <value>Select a customer</value>   
+    </data>
 </root>
