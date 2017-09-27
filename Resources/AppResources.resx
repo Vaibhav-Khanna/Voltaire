@@ -225,4 +225,44 @@
 	<data name="Alert" xml:space="preserve">
         <value>Alert</value>   
     </data>
+	<!--RETROSEPECTIVE COURSE PAGE-->
+	<data name="RetrospectiveCourse" xml:space="preserve">
+        <value>Retrospective course</value>   
+    </data>
+	<data name="PickStartEnd" xml:space="preserve">
+        <value>Pick start and end date</value>   
+    </data>
+	<data name="ChooseFilter" xml:space="preserve">
+        <value>Or choose a filter</value>   
+    </data>
+	<data name="None" xml:space="preserve">
+        <value>None</value>   
+    </data>
+	<data name="Today" xml:space="preserve">
+        <value>Today</value>   
+    </data>
+	<data name="ThisWeek" xml:space="preserve">
+        <value>This week</value>   
+    </data>
+	<data name="ThisMonth" xml:space="preserve">
+        <value>This month</value>   
+    </data>
+	<data name="CoursesDetails" xml:space="preserve">
+        <value>Courses details</value>   
+    </data>
+	<data name="Start" xml:space="preserve">
+        <value>Start</value>   
+    </data>
+	<data name="End" xml:space="preserve">
+        <value>End</value>   
+    </data>
+	<data name="Check" xml:space="preserve">
+        <value>Check-in</value>   
+    </data>
+	<data name="Contacts" xml:space="preserve">
+        <value>Contact</value>   
+    </data>
+	<data name="Duration" xml:space="preserve">
+        <value>Duration</value>   
+    </data>
 </root>

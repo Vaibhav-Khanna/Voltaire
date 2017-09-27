@@ -31,7 +31,10 @@
         <Color x:Key="Vermillion">#eb1010</Color>
         <Color x:Key="Green">#70c800 </Color>
         <Color x:Key="orangeYellow">#ffa800 </Color>
-        <Color x:Key="turquoiseBlue3">#00deff </Color>   
+        <Color x:Key="turquoiseBlue3">#00deff </Color> 
+        <Color x:Key="purpleyGrey">#9b9b9b</Color> 
+        <Color x:Key="darkSkyBlue">#4a90e2</Color> 
+        <Color x:Key="warmGrey">#979797</Color>
             
        <!-- LOGIN PAGE -->
         <Style x:Key="EntryLogin" TargetType="Entry">

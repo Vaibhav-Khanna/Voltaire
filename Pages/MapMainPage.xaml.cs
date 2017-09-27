@@ -59,7 +59,7 @@ namespace voltaire.Pages
 							Position = new Position(location.Latitude, location.Longitude)
 						});
 
-						await Map.AnimateCamera(CameraUpdateFactory.NewPosition(new Position(location.Latitude, location.Longitude)));
+                        Map.InitialCameraUpdate = (CameraUpdateFactory.NewPositionZoom(new Position(location.Latitude, location.Longitude),12d));
 
                     }
                     else

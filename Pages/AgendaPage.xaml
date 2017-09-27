@@ -2,6 +2,150 @@
 <base:BasePage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire.Pages.Base"
+    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
+    xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire"
+    xmlns:local="clr-namespace:voltaire.Converters;assembly=voltaire"
+    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire" 
+    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
+    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+    xmlns:attachedProperties="clr-namespace:voltaire.Helpers.AttachedProperties;assembly=voltaire"
     x:Class="voltaire.Pages.AgendaPage">
+     <base:BasePage.Content>
+        
+        <Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
+           <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+            <!--  Toolbar  -->
+            
+        <controls:TToolBar Title="{x:Static resources:AppResources.RetrospectiveCourse}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+            <controls:TToolBar.LeftToolbarItems>
+                <Entry Placeholder="{x:Static resources:AppResources.SearchContact}" Keyboard="Text" HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}"  />
+          </controls:TToolBar.LeftToolbarItems>
+               <controls:TToolBar.RightToolbarItems>
+                <Grid ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="profile.png" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="true" />
+                    <StackLayout Orientation="Vertical" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Margin="20,0,0,0">
+                        <Label Text="Alain Forestier" Style="{StaticResource UserName}" VerticalOptions="Center" />
+                        <Label Text="Co-directeur/Commercial" Style="{StaticResource UserFunction}" VerticalOptions="Center" />
+                    </StackLayout>
+                </Grid>
+            </controls:TToolBar.RightToolbarItems>
+        </controls:TToolBar>
+
+            <!--  Menu  -->
+        
+        <renderers:CustomScrollView Grid.Row="1" Grid.Column="0" BackgroundColor="{StaticResource MaroonBlack}" >
+            <StackLayout x:Name="MenuLayout" 
+            BackgroundColor="{StaticResource Black}" 
+            HorizontalOptions="StartAndExpand" 
+            Orientation="Vertical" 
+            Spacing="0" 
+            WidthRequest="80" />
+        </renderers:CustomScrollView>   
+
+            <!--  Main Layout  -->
+
+            <StackLayout Orientation="Vertical" Padding="20,20,0,0" Grid.Row="1" Grid.Column="1" >
+
+                <Label FontFamily="SanFranciscoDisplay-Semibold" FontSize="16" TextColor="{StaticResource GreyishBrown}" Text="{x:Static resources:AppResources.PickStartEnd}" />
+
+                 <StackLayout Margin="0,5,30,10" Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="50" BackgroundColor="#979797" Padding="1"  >
+                    <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start" WidthRequest="20"/>
+                    <Label FontFamily="SanFranciscoDisplay-Regular" FontSize="20" Text="{x:Static resources:AppResources.Start}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" TextColor="{StaticResource GreyishBrown}" BackgroundColor="White"  />
+                    <renderers:BorderlessDatePicker x:Name="StartDatePicker" MaximumDate="{x:Static sys:DateTime.Now}" Date="{Binding StartDate,Mode=TwoWay}" Format="dd/MM/yyyy"  TextColor="{StaticResource purpleyGrey}"  HorizontalOptions="End" BackgroundColor="White" VerticalOptions="FillAndExpand" />
+                    <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="End" />
+                </StackLayout>
+
+                 <StackLayout Margin="0,5,30,10" Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="50" BackgroundColor="#979797" Padding="1"  >
+                    <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start" WidthRequest="20"/>
+                    <Label FontFamily="SanFranciscoDisplay-Regular" FontSize="20" Text="{x:Static resources:AppResources.End}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" TextColor="{StaticResource GreyishBrown}" BackgroundColor="White"  />
+                    <renderers:BorderlessDatePicker x:Name="EndDatePicker"  MaximumDate="{x:Static sys:DateTime.Now}"  Date="{Binding EndDate,Mode=TwoWay}" Format="dd/MM/yyyy" TextColor="{StaticResource purpleyGrey}"  HorizontalOptions="End" BackgroundColor="White" VerticalOptions="FillAndExpand" />
+                    <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="End" />
+                </StackLayout>
+
+                <Label FontFamily="SanFranciscoDisplay-Semibold" FontSize="16" TextColor="{StaticResource GreyishBrown}" Text="{x:Static resources:AppResources.ChooseFilter}" />
+
+
+                 <!--  FilerContainer Layout  -->
+                <StackLayout Orientation="Horizontal" Spacing="15" x:Name ="FilterContainer" >
+                    <Label FontFamily="SanFranciscoDisplay-Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" FontSize="14" HeightRequest="35" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" TextColor="{StaticResource darkSkyBlue}" Text="{x:Static resources:AppResources.None}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="FilterTap" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Image x:Name="Filter" Source="check3.png" HeightRequest="10" WidthRequest="10" />
+                     <Label FontFamily="SanFranciscoDisplay-Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" HeightRequest="35" FontSize="14" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" TextColor="{StaticResource darkSkyBlue}" Text="{x:Static resources:AppResources.Today}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="FilterTap" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label FontFamily="SanFranciscoDisplay-Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" HeightRequest="35" FontSize="14" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" TextColor="{StaticResource darkSkyBlue}" Text="{x:Static resources:AppResources.ThisWeek}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="FilterTap" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label FontFamily="SanFranciscoDisplay-Regular" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" HeightRequest="35" FontSize="14" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" TextColor="{StaticResource darkSkyBlue}" Text="{x:Static resources:AppResources.ThisMonth}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="FilterTap" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+
+                <BoxView HeightRequest="1" Margin="0,10,0,10" HorizontalOptions="FillAndExpand" Color="{StaticResource White}" />
+
+                
+                 <!--  Check-in List -->
+               <ListView x:Name="listview" SeparatorColor="{StaticResource warmGrey}" ItemsSource="{Binding CourseItems}" HasUnevenRows="true" ItemTapped="Handle_ItemTapped" >
+                    <ListView.Header>
+                         <Label FontFamily="SanFranciscoDisplay-Semibold" FontSize="16" TextColor="{StaticResource GreyishBrown}" Text="{x:Static resources:AppResources.CoursesDetails}" />
+                    </ListView.Header>
+                      <ListView.ItemTemplate>
+                        <DataTemplate>
+                           <ViewCell>
+                                <Grid Padding="0,20,10,20" RowSpacing="5" ColumnSpacing="20" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="20" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="2*"/>
+                                         <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Text="{Binding Index}" WidthRequest="40" HeightRequest="40" BorderRadius="20" BackgroundColor="{StaticResource Black}" FontSize="22" FontFamily="SanFranciscoDisplay-Semibold" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" TextColor="White"  Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" />
+                                    <Label FontFamily="SanFranciscoDisplay-Semibold" FontSize="16" TextColor="{StaticResource Black}" Text="{x:Static resources:AppResources.Check}" VerticalOptions="Center" Grid.Row="0" Grid.Column="1" />
+                                    <Label FontFamily="SanFranciscoDisplay-Semibold" FontSize="16" TextColor="{StaticResource Black}" Text="{x:Static resources:AppResources.Contacts}" VerticalOptions="Center" Grid.Row="1" Grid.Column="1" />
+                                    <Label FontFamily="SanFranciscoDisplay-Semibold" FontSize="16" TextColor="{StaticResource Black}" Text="{x:Static resources:AppResources.Duration}" VerticalOptions="Center" Grid.Row="2" Grid.Column="1" />
+                                    <Label FontFamily="SanFranciscoDisplay-Semibold" FontSize="16" TextColor="{StaticResource darkSkyBlue}" Text="{Binding CheckInTime}" VerticalOptions="Center" Grid.Row="0" Grid.Column="2" />
+                                    <Label FontFamily="SanFranciscoDisplay-Semibold" FontSize="16" TextColor="{StaticResource darkSkyBlue}" Text="{Binding ContactName}" VerticalOptions="Center" Grid.Row="1" Grid.Column="2" />
+                                    <Label FontFamily="SanFranciscoDisplay-Semibold" FontSize="16" TextColor="{StaticResource darkSkyBlue}" Text="{Binding Duration}" VerticalOptions="Center" Grid.Row="2" Grid.Column="2" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+            </StackLayout>
+
+             <!--  Map Layout  -->
+            <maps:Map x:Name="Map" Grid.Row="1" Grid.Column="2" HasZoomEnabled="true" HasScrollEnabled="true" IsShowingUser="true" MyLocationButtonClicked="Handle_MyLocationButtonClicked" MyLocationEnabled="true" MapType="Street" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
+                                        
+        </Grid>
+    </base:BasePage.Content> 
 </base:BasePage>
