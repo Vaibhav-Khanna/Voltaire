@@ -268,4 +268,7 @@
 	<data name="SelectACustomer" xml:space="preserve">
         <value>Select a customer</value>   
     </data>
+	<data name="Orders" xml:space="preserve">
+        <value>Orders</value>   
+    </data>
 </root>
