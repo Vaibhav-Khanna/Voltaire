@@ -58,10 +58,10 @@ namespace voltaire.Pages
             ViewModel.PropertyChanged += null;
         }
 
-        void Handle_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
+        async void Handle_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
         {
             var index = ViewModel.CourseItems.IndexOf(e.Item as CourseAgendaCellModel);
-            Map.AnimateCamera(CameraUpdateFactory.NewPositionZoom((Map.Pins[index].Position),5d));
+            await Map.AnimateCamera(CameraUpdateFactory.NewPositionZoom((Map.Pins[index].Position),16),new TimeSpan(0,0,2));
             listview.SelectedItem = null;
         }
 
@@ -182,7 +182,7 @@ namespace voltaire.Pages
 							Position = new Position(location.Latitude, location.Longitude)
 						});
 
-						await Map.AnimateCamera(CameraUpdateFactory.NewPosition(new Position(location.Latitude, location.Longitude)), new TimeSpan(0, 0, 3));
+                        await Map.AnimateCamera(CameraUpdateFactory.NewPositionZoom(new Position(location.Latitude, location.Longitude),12), new TimeSpan(0, 0, 3));
 					}
 
 					await locator.StopListeningAsync();
@@ -240,6 +240,8 @@ namespace voltaire.Pages
                 }
             }
 
+			if (!Map.Pins.Contains(MyPin) && !string.IsNullOrEmpty(MyPin.Label))
+				Map.Pins.Add(MyPin);
 
 		}
 

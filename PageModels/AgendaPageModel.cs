@@ -96,7 +96,8 @@ namespace voltaire.PageModels
             }
             else if(SelectedFilter == AppResources.ThisMonth)
             {
-                
+                new_filter_list = AllCheckInItems.Where((arg) => arg.CheckIn.DateTime.Date.CompareTo(new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1)) >= 0 && arg.CheckIn.DateTime.Date.CompareTo(DateTime.Now.Date) <= 0).ToList();
+				CourseItems = new ObservableCollection<CourseAgendaCellModel>(new_filter_list);
             }
 
         }
@@ -110,10 +111,13 @@ namespace voltaire.PageModels
             items.Add(new CourseAgendaCellModel(new CheckIn(new Customer() { FirstName = "Smauel" }){ Address ="palo alot", Latitude = 37.795296, Longitude = -122.443807, DateTime = DateTime.Now }){ Index = "1" });
             items.Add(new CourseAgendaCellModel(new CheckIn(new Customer(){ FirstName = "dsdsdd" }){ Address = "Nevada", Latitude = 37.766804, Longitude = -122.432821, DateTime = DateTime.Now.AddDays(-1) }){ Index = "2" });
             items.Add(new CourseAgendaCellModel(new CheckIn(new Customer(){ FirstName = "Osdsd" }){ Address = "Mads", Latitude = 37.766262, Longitude = -122.389562,DateTime = DateTime.Now.AddDays(-2) }){ Index = "3" });
+            // mock data
+
 
             AllCheckInItems = new ObservableCollection<CourseAgendaCellModel>(items);
             CourseItems = AllCheckInItems;
 
+            FilterCheckinForDateRange();
         }
 
     }

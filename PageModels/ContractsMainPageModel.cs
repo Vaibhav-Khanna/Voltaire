@@ -1,24 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Rg.Plugins.Popup.Services;
 using voltaire.Models;
 using voltaire.PageModels.Base;
+using voltaire.PopUps;
 using Xamarin.Forms;
 
 namespace voltaire.PageModels
 {
     public class ContractsMainPageModel : BasePageModel
     {
-        public ContractsMainPageModel()
-        {
-        }
+
+        CustomerPickerPopupModel popup_context = new CustomerPickerPopupModel(); //  Popup picker model 
+
+
 
 		public Command AddContract => new Command(async (obj) =>
-		{			
-            await CoreMethods.PushPageModel<NewContractPageModel>(new Tuple<Customer, Contract>(null, null));
+		{
+			popup_context.ItemSelectedChanged += Popup_Context_ItemSelectedChanged;    // Subscribe to the event
+         
+            await PopupNavigation.PushAsync(new CustomerPickerPopUp() { BindingContext = popup_context }, true);
 		});
 
-		public Command ItemTapped => new Command(async (obj) =>
+
+        async void Popup_Context_ItemSelectedChanged()
+        {
+			if (popup_context.SelectedItem != null)
+			{	
+                await CoreMethods.PushPageModel<NewContractPageModel>(new Tuple<Customer, Contract>(popup_context.SelectedItem, null));
+			}
+			// Unsubscribe from the event
+			popup_context.ItemSelectedChanged -= Popup_Context_ItemSelectedChanged;
+        }
+
+
+
+        public Command ItemTapped => new Command(async (obj) =>
 		{
 			var contract = obj as Contract;
             await CoreMethods.PushPageModel<NewContractPageModel>(new Tuple<Customer, Contract>(contract.Customer, contract));
@@ -37,6 +55,7 @@ namespace voltaire.PageModels
 		}
 
 
+
 		public override void Init(object initData)
 		{
 			base.Init(initData);
@@ -53,9 +72,17 @@ namespace voltaire.PageModels
                 Mock_list.Add(new ContractModel(item));
             }
 
-			// Mock Data
+            var list_customer = new List<Customer>();
 
-			ContractsItemSource = new ObservableCollection<ContractModel>(Mock_list);
+            foreach (var item in list)
+            {
+                list_customer.Add(item.Customer);
+            }
+            popup_context.ItemSource = new ObservableCollection<Customer>(list_customer);
+
+            // Mock Data
+
+            ContractsItemSource = new ObservableCollection<ContractModel>(Mock_list);
 
 		}
 
