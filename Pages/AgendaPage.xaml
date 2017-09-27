@@ -9,6 +9,7 @@
     xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
     xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
     xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
     xmlns:attachedProperties="clr-namespace:voltaire.Helpers.AttachedProperties;assembly=voltaire"
     x:Class="voltaire.Pages.AgendaPage">
@@ -66,14 +67,14 @@
                  <StackLayout Margin="0,5,30,10" Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="50" BackgroundColor="#979797" Padding="1"  >
                     <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start" WidthRequest="20"/>
                     <Label FontFamily="SanFranciscoDisplay-Regular" FontSize="20" Text="{x:Static resources:AppResources.Start}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" TextColor="{StaticResource GreyishBrown}" BackgroundColor="White"  />
-                    <renderers:BorderlessDatePicker Date="{Binding StartDate, Mode=TwoWay}" Format="dd/MM/yyyy"  TextColor="{StaticResource purpleyGrey}"  HorizontalOptions="End" BackgroundColor="White" VerticalOptions="FillAndExpand" />
+                    <renderers:BorderlessDatePicker x:Name="StartDatePicker" MaximumDate="{x:Static sys:DateTime.Now}" Date="{Binding StartDate,Mode=TwoWay}" Format="dd/MM/yyyy"  TextColor="{StaticResource purpleyGrey}"  HorizontalOptions="End" BackgroundColor="White" VerticalOptions="FillAndExpand" />
                     <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="End" />
                 </StackLayout>
 
                  <StackLayout Margin="0,5,30,10" Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="50" BackgroundColor="#979797" Padding="1"  >
                     <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start" WidthRequest="20"/>
                     <Label FontFamily="SanFranciscoDisplay-Regular" FontSize="20" Text="{x:Static resources:AppResources.End}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" TextColor="{StaticResource GreyishBrown}" BackgroundColor="White"  />
-                    <renderers:BorderlessDatePicker Date="{Binding EndDate, Mode=TwoWay}" Format="dd/MM/yyyy" TextColor="{StaticResource purpleyGrey}"  HorizontalOptions="End" BackgroundColor="White" VerticalOptions="FillAndExpand" />
+                    <renderers:BorderlessDatePicker x:Name="EndDatePicker"  MaximumDate="{x:Static sys:DateTime.Now}"  Date="{Binding EndDate,Mode=TwoWay}" Format="dd/MM/yyyy" TextColor="{StaticResource purpleyGrey}"  HorizontalOptions="End" BackgroundColor="White" VerticalOptions="FillAndExpand" />
                     <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="End" />
                 </StackLayout>
 
@@ -109,11 +110,11 @@
 
                 
                  <!--  Check-in List -->
-                <ListView x:Name="listview" SeparatorColor="{StaticResource warmGrey}" ItemsSource="{Binding CourseItems}" HasUnevenRows="true" ItemTapped="Handle_ItemTapped" >
+               <ListView x:Name="listview" SeparatorColor="{StaticResource warmGrey}" ItemsSource="{Binding CourseItems}" HasUnevenRows="true" ItemTapped="Handle_ItemTapped" >
                     <ListView.Header>
                          <Label FontFamily="SanFranciscoDisplay-Semibold" FontSize="16" TextColor="{StaticResource GreyishBrown}" Text="{x:Static resources:AppResources.CoursesDetails}" />
                     </ListView.Header>
-                    <ListView.ItemTemplate>
+                      <ListView.ItemTemplate>
                         <DataTemplate>
                            <ViewCell>
                                 <Grid Padding="0,20,10,20" RowSpacing="5" ColumnSpacing="20" >

@@ -10,11 +10,17 @@ namespace voltaire.Models
             Customer = checkin.Customer;
             Longitude = checkin.Longitude;
             Latitude = checkin.Latitude;
-            CheckInTime = checkin.DateTime.TimeOfDay.ToString("h:mm tt");
+            CheckInTime = checkin.DateTime.ToString("h:mm tt");
             ContactName = $"{Customer.FirstName} {Customer.LastName}";
+            Address = checkin.Address;
+            CheckIn = checkin;
         }
 
         public Customer Customer { get; set; }
+
+        public CheckIn CheckIn { get; set; }
+
+        public string Address { get; set; }
 
         public double Longitude { get; private set; }
 
@@ -26,7 +32,7 @@ namespace voltaire.Models
 
         public string ContactName { get; set; }
 
-        public string Duration { get; set; } = "28 mins"; // Mock Data
+        public string Duration { get; set; } 
 
     }
 }

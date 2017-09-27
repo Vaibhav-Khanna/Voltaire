@@ -17,5 +17,6 @@ namespace voltaire.Models
 
         public double Longitude { get; set; }
 
+        public string Address { get; set; }
     }
 }

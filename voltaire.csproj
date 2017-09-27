@@ -131,6 +131,9 @@
     <EmbeddedResource Include="Pages\ContractsMainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\BindingPinView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -327,6 +330,10 @@
     </Compile>
     <Compile Include="Models\CourseAgendaCellModel.cs" />
     <Compile Include="Models\CheckIn.cs" />
+    <Compile Include="Controls\BindingPinView.xaml.cs">
+      <DependentUpon>BindingPinView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Extensions\DateTimeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
@@ -443,6 +450,7 @@
     <Folder Include="Effects\" />
     <Folder Include="PopUps\" />
     <Folder Include="DataStore\" />
+    <Folder Include="Helpers\Extensions\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
