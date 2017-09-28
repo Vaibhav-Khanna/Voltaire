@@ -31,7 +31,8 @@ namespace voltaire.PageModels
            if (SignImage != null)
            {             
                 quotation.SignedImage = SignImage; 
-                IsSigned = true; 
+                IsSigned = true;
+                quotation.Status = QuotationStatus.Sent;
                 CoreMethods.PopPageModel();
             }
             else

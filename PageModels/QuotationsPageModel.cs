@@ -25,14 +25,19 @@ namespace voltaire.PageModels
               
                 filter = 0;
 
-                if(customer.Quotations!=null)
-                foreach (var item in customer.Quotations)
+				List<QuotationsModel> not_sent_quotations = new List<QuotationsModel>();
+
+				if (customer.Quotations != null)
+					not_sent_quotations = customer.Quotations.Where((arg) => arg.Status != QuotationStatus.Sent).ToList();
+
+
+                foreach (var item in not_sent_quotations)
                 {
                     item.BackColor = customer.Quotations.IndexOf(item)%2 == 0 ?  Color.FromRgb(247,247,247) : Color.White;
                 }
 
 
-                all_items = new ObservableCollection<QuotationsModel>(customer.Quotations);
+                all_items = new ObservableCollection<QuotationsModel>(not_sent_quotations);
                 quotationsitemsource = all_items;
                    
                 RaisePropertyChanged();
