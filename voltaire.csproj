@@ -137,11 +137,10 @@
     <EmbeddedResource Include="PopUps\CustomerPickerPopUp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-
     <EmbeddedResource Include="PopUps\UserInfoPopUp.xaml">
-
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\OrderListTabPage.xaml">
-
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

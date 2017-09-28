@@ -11,10 +11,10 @@
 						<TapGestureRecognizer Command="{Binding CloseCommand}" />
 					</Image.GestureRecognizers>
 				</Image>
-				<Label Text="My Account" TextColor="#4A4A4A" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+				<Label Text="My Account" Style="{StaticResource MyAccountTitle}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
 				</Label>
 			</StackLayout>
-			<BoxView BackgroundColor="#4A4A4A" HeightRequest="1">
+			<BoxView BackgroundColor="{StaticResource warmGrey}" HeightRequest="1">
 			</BoxView>
 			<Grid Padding="10,0,0,0">
 				<Grid.ColumnDefinitions>
@@ -33,25 +33,25 @@
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
-				<Label Text="Jackson Osborne" TextColor="#4A4A4A" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Label>
+				<Label Text="Jackson Osborne" Style="{StaticResource MyAccountDetailLabel}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Label>
 				<Image Source="Close1.png" Grid.Row="1" Grid.Column="0"></Image>
-				<Label Text="309-812-4549" TextColor="#4A4A4A" Grid.Row="1" Grid.Column="1"></Label>
-				<BoxView BackgroundColor="#4A4A4A" HeightRequest="1" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+				<Label Text="309-812-4549" Style="{StaticResource MyAccountDetailLabel}" Grid.Row="1" Grid.Column="1"></Label>
+				<BoxView BackgroundColor="{StaticResource warmGrey}" HeightRequest="1" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
 				
 				<Image Source="Close1.png" Grid.Row="3" Grid.Column="0"></Image>
-				<Label Text="1738 Lavada Points Suite 231" TextColor="#4A4A4A" Grid.Row="3" Grid.Column="1"></Label>
-				<BoxView BackgroundColor="#4A4A4A" HeightRequest="1" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"/>
+				<Label Text="1738 Lavada Points Suite 231" Style="{StaticResource MyAccountDetailLabel}" Grid.Row="3" Grid.Column="1"></Label>
+				<BoxView BackgroundColor="{StaticResource warmGrey}" HeightRequest="1" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"/>
 
 				
 				<Image Source="Close1.png" Grid.Row="5" Grid.Column="0"></Image>
-				<Label Text="jack_osborne@gmail.com" TextColor="#4A4A4A" Grid.Row="5" Grid.Column="1"></Label>
-				<BoxView BackgroundColor="#4A4A4A" HeightRequest="1" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"/>
+				<Label Text="jack_osborne@gmail.com" Style="{StaticResource MyAccountDetailLabel}" Grid.Row="5" Grid.Column="1"></Label>
+				<BoxView BackgroundColor="{StaticResource warmGrey}" HeightRequest="1" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"/>
 				
 				<Image Source="Close1.png" Grid.Row="7" Grid.Column="0"></Image>
-				<Label Text="http://www.antares.com" TextColor="#4A4A4A" Grid.Row="7" Grid.Column="1"></Label>
-				<BoxView BackgroundColor="#4A4A4A" HeightRequest="1" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"/>
+				<Label Text="http://www.antares.com" Style="{StaticResource MyAccountDetailLabel}" Grid.Row="7" Grid.Column="1"></Label>
+				<BoxView BackgroundColor="{StaticResource warmGrey}" HeightRequest="1" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"/>
 			</Grid>
-			<Button HorizontalOptions="CenterAndExpand" Text="Disconnect" TextColor="White" BackgroundColor="Red"></Button>
+			<Button HorizontalOptions="CenterAndExpand" Style="{StaticResource DisconnectButton}" Text="Disconnect" TextColor="White" BackgroundColor="Red"></Button>
 		</StackLayout>
 	</pages:PopupPage.Content>
 </pages:PopupPage>
