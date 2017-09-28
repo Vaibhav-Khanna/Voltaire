@@ -137,7 +137,11 @@
     <EmbeddedResource Include="PopUps\CustomerPickerPopUp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+
     <EmbeddedResource Include="PopUps\UserInfoPopUp.xaml">
+
+    <EmbeddedResource Include="Pages\OrderListTabPage.xaml">
+
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -344,10 +348,17 @@
       <DependentUpon>CustomerPickerPopUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="PopUps\CustomerPickerPopupModel.cs" />
+
     <Compile Include="PopUps\UserInfoPopUp.xaml.cs">
       <DependentUpon>UserInfoPopUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="PopUps\UserInfoPopupModel.cs" />
+
+    <Compile Include="Pages\OrderListTabPage.xaml.cs">
+      <DependentUpon>OrderListTabPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageModels\OrderListTabPageModel.cs" />
+
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

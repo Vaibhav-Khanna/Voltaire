@@ -57,6 +57,15 @@ namespace voltaire.Pages.Base
 							BindingContextSet();
                             break;
                         }
+                    case "OrderListTabPage":
+                        {
+                            var order = new OrderListTabPageModel();
+							order.Init(context.Customer);
+							context.ViewBindingContext = order;
+							BindingContext = order;
+							BindingContextSet();
+							break;
+                        }
                     case"QuotationsTabPage":
                         {
                             var quote = new QuotationsPageModel();

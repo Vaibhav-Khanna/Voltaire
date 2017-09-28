@@ -50,7 +50,7 @@ namespace voltaire.Models
 
     public enum QuotationStatus 
     {
-        Quotation , Draft, Order , Payed 
+        Quotation , Draft, Order , Payed , Sent
     }
 
     public enum PaymentMethod

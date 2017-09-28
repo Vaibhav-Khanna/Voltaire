@@ -406,5 +406,11 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("SelectACustomer", resourceCulture);
             }
         }
+        
+        internal static string Orders {
+            get {
+                return ResourceManager.GetString("Orders", resourceCulture);
+            }
+        }
     }
 }
