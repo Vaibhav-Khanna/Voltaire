@@ -179,6 +179,12 @@ namespace voltaire.Resources {
             }
         }
         
+        internal static string Quotation {
+            get {
+                return ResourceManager.GetString("Quotation", resourceCulture);
+            }
+        }
+        
         internal static string Contracts {
             get {
                 return ResourceManager.GetString("Contracts", resourceCulture);
@@ -410,6 +416,42 @@ namespace voltaire.Resources {
         internal static string Orders {
             get {
                 return ResourceManager.GetString("Orders", resourceCulture);
+            }
+        }
+        
+        internal static string PermanentNote {
+            get {
+                return ResourceManager.GetString("PermanentNote", resourceCulture);
+            }
+        }
+        
+        internal static string Messages {
+            get {
+                return ResourceManager.GetString("Messages", resourceCulture);
+            }
+        }
+        
+        internal static string SignedDate {
+            get {
+                return ResourceManager.GetString("SignedDate", resourceCulture);
+            }
+        }
+        
+        internal static string PaymentType {
+            get {
+                return ResourceManager.GetString("PaymentType", resourceCulture);
+            }
+        }
+        
+        internal static string PaymentInformation {
+            get {
+                return ResourceManager.GetString("PaymentInformation", resourceCulture);
+            }
+        }
+        
+        internal static string PermanentNotes {
+            get {
+                return ResourceManager.GetString("PermanentNotes", resourceCulture);
             }
         }
     }

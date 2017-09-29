@@ -44,6 +44,8 @@ namespace voltaire.Models
 
         public byte[] SignedImage { get; set; }
 
+        public DateTime? DateSigned { get; set; }
+
         public List<string> TermsConditions { get; set; } = new List<string> { "20% cancellation fee on any custom order" , "2 weeks return policy on any custom item" };
 
     }
