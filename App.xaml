@@ -36,6 +36,7 @@
             <Color x:Key="darkSkyBlue">#4a90e2</Color>
             <Color x:Key="warmGrey">#979797</Color>
             <Color x:Key="Red">#ff0000</Color>
+            <Color x:Key="darkGrey">#4A4A4A</Color>
 
             <!-- LOGIN PAGE -->
             <Style x:Key="EntryLogin" TargetType="Entry">
@@ -645,7 +646,7 @@
                     </Setter.Value>
                 </Setter>
                 <Setter Property="FontSize" Value="48" />
-                <Setter Property="TextColor" Value="{StaticResource GreyBack2}" />
+                <Setter Property="TextColor" Value="{StaticResource darkGrey}" />
             </Style>
 
             <Style x:Key="MyAccountDetailLabel" TargetType="Label">
@@ -658,7 +659,7 @@
                     </Setter.Value>
                 </Setter>
                 <Setter Property="FontSize" Value="36" />
-                <Setter Property="TextColor" Value="{StaticResource GreyBack2}" />
+                <Setter Property="TextColor" Value="{StaticResource darkGrey}" />
             </Style>
 
             <Style x:Key="DisconnectButton" TargetType="Button">
