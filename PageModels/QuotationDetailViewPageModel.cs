@@ -34,6 +34,8 @@ namespace voltaire.PageModels
 			if (response == AppResources.InternalNotes)
 			{
 				// Open internal notes
+                await CoreMethods.PushPageModel<QuotationInternalNotesPageModel>(Quotation);
+
             }
             else if(response == AppResources.DeleteQuotation)
             {
@@ -49,9 +51,9 @@ namespace voltaire.PageModels
             await PopupNavigation.PushAsync(new ProductPickerPopUp(){ BindingContext = popup_context }, true);
        });
 
-        public Command NotesCommand => new Command( async() =>
+        public Command NotesCommand => new Command( () =>
        {
-            await CoreMethods.PushPageModel<QuotationNotesPageModel>(Quotation);
+            
        });
 
 

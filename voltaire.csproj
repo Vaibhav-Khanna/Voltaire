@@ -107,7 +107,7 @@
     <EmbeddedResource Include="Pages\PodiumsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\QuotationNotesPage.xaml">
+    <EmbeddedResource Include="Pages\QuotationInternalNotesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="PopUps\ReminderAddPopUp.xaml">
@@ -141,6 +141,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\OrderListDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MessagesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -303,10 +306,10 @@
     <Compile Include="Pages\PodiumsPage.xaml.cs">
       <DependentUpon>PodiumsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\QuotationNotesPage.xaml.cs">
-      <DependentUpon>QuotationNotesPage.xaml</DependentUpon>
+    <Compile Include="Pages\QuotationInternalNotesPage.xaml.cs">
+      <DependentUpon>QuotationInternalNotesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageModels\QuotationNotesPageModel.cs" />
+    <Compile Include="PageModels\QuotationInternalNotesPageModel.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\Reminder.cs" />
     <Compile Include="Models\NoteModel.cs" />
@@ -355,6 +358,10 @@
       <DependentUpon>OrderListDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\OrderListDetailPageModel.cs" />
+    <Compile Include="Pages\MessagesPage.xaml.cs">
+      <DependentUpon>MessagesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageModels\MessagesPageModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<base:BaseDisposePage
+<ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire"
@@ -7,17 +7,18 @@
     xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire"
     xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
     xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
-    x:Class="voltaire.Pages.QuotationNotesPage">
-	<Grid BackgroundColor = "White" Padding= "0" RowSpacing="0" VerticalOptions = "FillAndExpand" >
+    x:Class="voltaire.Pages.MessagesPage">
+	<ContentPage.Content>
+        <Grid x:Name="grid" BackgroundColor = "White" Padding= "0" RowSpacing="0" VerticalOptions = "FillAndExpand" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="80"/>
+           <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
-        <controls:TToolBar BackgroundColor = "{StaticResource turquoiseBlue}" HeightRequest = "80" Title = "{x:Static resources:AppResources.Notes}" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand" Grid.Row="0" Grid.Column="0" >
+        <controls:TToolBar BackgroundColor = "{StaticResource turquoiseBlue}" HeightRequest = "80" Title = "{x:Static resources:AppResources.Messages}" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand" Grid.Row="0" Grid.Column="0" >
             <controls:TToolBar.LeftToolbarItems>
                 <Image Source = "back.png" HeightRequest = "25" WidthRequest = "30" VerticalOptions = "Center" HorizontalOptions = "Start"  >
                     <Image.GestureRecognizers>
@@ -26,7 +27,7 @@
                 </Image>
             </controls:TToolBar.LeftToolbarItems>
         </controls:TToolBar>
-        <ListView  x:Name="listview" HasUnevenRows="true" SeparatorColor="{StaticResource White}" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding NoteSource}" >
+        <ListView  x:Name="listview" HasUnevenRows="true" VerticalOptions="FillAndExpand" SeparatorColor="{StaticResource White}" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding MessageSource}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -39,31 +40,26 @@
                                 <ColumnDefinition Width="3*"/>
                                 <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="8*"/>
-                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Label Text="{Binding Index}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" />
                             <Label Text="{Binding Name}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="0" Grid.Column="1"/>
                             <Label Text="{Binding Date}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="0" Grid.Column="2"/>
-                            <Label Text="{Binding Notes}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="0" Grid.Column="3"/>
-                            <Image HeightRequest="35" WidthRequest="35" Source="{Binding Image}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="4" >
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding ReminderToggle}" />
-                                </Image.GestureRecognizers> 
-                            </Image>
+                            <Label Text="{Binding Message}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="0" Grid.Column="3"/>                         
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>
-        <StackLayout BackgroundColor="#e9e9e9" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15" Orientation="Horizontal" Spacing="0" Grid.Row="2" Grid.Column="0">
-            <BoxView Color="White" VerticalOptions="FillAndExpand" WidthRequest="20" HorizontalOptions="Start" Margin="0"/>
-            <renderers:BorderlessEntry Text="{Binding NoteText,Mode=TwoWay}" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Placeholder="Add a note..." FontSize="14"/>
-            <StackLayout BackgroundColor="{StaticResource turquoiseBlue}" HorizontalOptions="End" VerticalOptions="FillAndExpand" Margin="15,0,0,0" Padding="15,5,10,10" >
-                <Image TranslationY="2" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFit" Scale="0.7" Source="send.png" />
-                 <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding AddNote}" />
-                </StackLayout.GestureRecognizers> 
-            </StackLayout>
-        </StackLayout>
-    </Grid>
-</base:BaseDisposePage>
+        </ListView>   
+            <StackLayout x:Name = "BottomContainer" BackgroundColor="#e9e9e9" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15" Orientation="Horizontal" Spacing="0" Grid.Row="2" Grid.Column="0" >
+                        <BoxView Color="White" VerticalOptions="FillAndExpand" WidthRequest="20" HorizontalOptions="Start" Margin="0"/>
+                        <renderers:BorderlessEntry Text="{Binding MessageText,Mode=TwoWay}" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Placeholder="{x:Static resources:AppResources.WriteAMesage}" FontSize="14"/>
+                        <StackLayout BackgroundColor="{StaticResource turquoiseBlue}" HorizontalOptions="End" VerticalOptions="FillAndExpand" Margin="15,0,0,0" Padding="15,5,10,10" >
+                            <Image TranslationY="2" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFit" Scale="0.7" Source="send.png" />
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding AddMessage}" />
+                            </StackLayout.GestureRecognizers> 
+                        </StackLayout>
+                    </StackLayout>
+        </Grid>
+	</ContentPage.Content>
+</ContentPage>

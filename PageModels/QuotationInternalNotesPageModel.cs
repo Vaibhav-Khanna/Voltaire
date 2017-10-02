@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace voltaire.PageModels
 {
-    public class QuotationNotesPageModel : BasePageModel
+    public class QuotationInternalNotesPageModel : BasePageModel
     {
 
         public Command BackButton => new Command( async() =>

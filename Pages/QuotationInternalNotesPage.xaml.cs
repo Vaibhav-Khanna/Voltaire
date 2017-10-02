@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace voltaire.Pages
 {
-    public partial class QuotationNotesPage : BaseDisposePage
+    public partial class QuotationInternalNotesPage : BaseDisposePage
     {
-        public QuotationNotesPage()
+        public QuotationInternalNotesPage()
         {
             NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
