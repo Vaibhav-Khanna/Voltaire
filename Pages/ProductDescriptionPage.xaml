@@ -19,7 +19,11 @@
                     </Image>
                 </controls:TToolBar.LeftToolbarItems>
                 <controls:TToolBar.RightToolbarItems>
-                  <Label Text="Save product" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"/>
+                  <Label IsEnabled="{Binding IsControlsEnabled}"  Text="Save product" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center">
+                     <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding SaveProduct}" />
+                        </Label.GestureRecognizers> 
+                </Label>
                 </controls:TToolBar.RightToolbarItems>
             </controls:TToolBar>
         <Grid x:Name = "grid" RowSpacing="1" ColumnSpacing="1" Margin="20" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" >

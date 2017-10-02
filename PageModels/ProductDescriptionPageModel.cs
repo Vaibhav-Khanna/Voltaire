@@ -9,6 +9,7 @@ using Xamarin.Forms;
 
 namespace voltaire.PageModels
 {
+    
     public class ProductDescriptionPageModel : BasePageModel
     {
 
@@ -59,17 +60,30 @@ namespace voltaire.PageModels
 			}
 		}
 
+        bool iscontrolsenabled;
+        public bool IsControlsEnabled 
+        { 
+            get { return iscontrolsenabled; }
+            set 
+            { 
+                iscontrolsenabled = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
         public override void Init(object initData)
         {
             base.Init(initData);
 
-            var context = initData as Tuple<Product,ProductQuotationModel>;
+            var context = initData as Tuple<Product,ProductQuotationModel,bool>;
 
             if (context == null)
                 return;
 
             Product = context.Item1;
             ProductProperties = context.Item2.ProductProperties;
+            IsControlsEnabled = context.Item3;
         }
 
     }

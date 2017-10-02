@@ -293,5 +293,14 @@
 	<data name="PermanentNotes" xml:space="preserve">
         <value>Permanent Notes</value>   
     </data>
+	<data name="InternalNotes" xml:space="preserve">
+        <value>Internal notes</value>   
+    </data>
+	<data name="DeleteQuotation" xml:space="preserve">
+        <value>Delete quotation</value>   
+    </data>
+	<data name="Select" xml:space="preserve">
+        <value>Select</value>   
+    </data>
 	
 </root>

@@ -6,6 +6,8 @@ using voltaire.PageModels.Base;
 using voltaire.PopUps;
 using voltaire.Resources;
 using Xamarin.Forms;
+using System.Collections.Generic;
+using System.Linq;
 
 
 namespace voltaire.PageModels
@@ -22,7 +24,7 @@ namespace voltaire.PageModels
 		public Command itemTapped => new Command(async (object obj) =>
 		{
 			var item = obj as ProductQuotationModel;
-			await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<Product, ProductQuotationModel>(item.Product, item));
+            await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<Product, ProductQuotationModel,bool>(item.Product, item, false ));
 		});
 
 
@@ -30,6 +32,18 @@ namespace voltaire.PageModels
 		{
 			await CoreMethods.PushPageModel<QuotationNotesPageModel>(Quotation);
 		});
+
+
+        public Command ToolbarMenu => new Command( async() =>
+       {
+            var response = await CoreMethods.DisplayActionSheet(AppResources.Select, AppResources.Cancel, null , new List<string> { AppResources.InternalNotes }.ToArray());
+
+            if(response==AppResources.InternalNotes)
+            {
+                // Open internal notes
+            }
+
+       });
 
 
 		Customer customer;
