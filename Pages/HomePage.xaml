@@ -1,226 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
-<base:BasePage x:Class="voltaire.Pages.HomePage" 
-    xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
-    xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire" 
-    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire" 
-    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
-    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire">
-    <ContentPage.Behaviors>
-        <behaviors:HideNavigationBehavior />
-    </ContentPage.Behaviors>
-    <Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="80" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <!--  Toolbar  -->
-        <controls:TToolBar Title="{x:Static resources:AppResources.Dashboard}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            <controls:TToolBar.LeftToolbarItems>
-                <Entry Placeholder="{x:Static resources:AppResources.SearchContact}" Keyboard="Text" HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}"  />
-            </controls:TToolBar.LeftToolbarItems>
-            <controls:TToolBar.RightToolbarItems>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Image Source="profile" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" IsVisible="false" />
-                    <StackLayout Orientation="Vertical" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Margin="20,0,0,0">
-                        <Label Text="Alain Forestier" Style="{StaticResource UserName}" VerticalOptions="Center" />
-                        <Label Text="Co-directeur/Commercial" Style="{StaticResource UserFunction}" VerticalOptions="Center" />
-                    </StackLayout>
-                </Grid>
-            </controls:TToolBar.RightToolbarItems>
-        </controls:TToolBar>
-        <!--  Menu  -->
-        <renderers:CustomScrollView Grid.Row="1" Grid.Column="0" BackgroundColor="{StaticResource MaroonBlack}" >
-            <StackLayout x:Name="MenuLayout" 
-             
-            BackgroundColor="{StaticResource Black}" 
-            HorizontalOptions="StartAndExpand" 
-            Orientation="Vertical" 
-            Spacing="0" 
-            WidthRequest="80" />
-        </renderers:CustomScrollView>   
-       <!-- Main Layout -->
-        <Grid Grid.Row="1" Grid.Column="1" ColumnSpacing="15" RowSpacing="10" Padding="0" BackgroundColor="{StaticResource GreyBack}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="170" />
-                <RowDefinition Height="250" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <!--  Goals and Top Salesman Bloc  -->
-            <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="#ffffff" Padding="0,0,0,10">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                   <Grid Grid.Column="0" Padding="50,0,50,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="75*" />
-                            <ColumnDefinition Width="20*" />
-                            <ColumnDefinition Width="5*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="60" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Label Text="{x:Static resources:AppResources.Goals}" Grid.Column="0" Grid.Row="0" Style="{StaticResource MenuItemLabelStyle}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-
-                        <renderers:CustomProgressBar Progress="0.48" VerticalOptions="Center" Grid.Column="0" Grid.Row="1" >
-                        <x:Arguments>
-                                    <x:String>Blue</x:String>
-                                </x:Arguments>
-                         </renderers:CustomProgressBar>
-
-                        <Label Grid.Column="1" Grid.Row="1" Text="48%" HorizontalOptions="End" Style="{StaticResource GreenPerCent}" VerticalOptions="CenterAndExpand" />
-                        <Image Source="up" Grid.Column="2" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"  HeightRequest="13" WidthRequest="20"/>
-                        <Label Grid.Column="0" Grid.Row="2" Margin="0,-15,0,0" VerticalOptions="Start" HorizontalOptions="Start" Text="0" Style="{StaticResource ProgressBarLabel}" />
-                        <Label Grid.Column="0" Grid.Row="2" Margin="0,-15,0,0" VerticalOptions="Start" HorizontalOptions="End" Text="200" Style="{StaticResource ProgressBarLabel}" />
-                    </Grid>
-
-                    <Grid Grid.Column="1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="60" />
-                                <RowDefinition Height="80" />
-                            </Grid.RowDefinitions> 
-                           <Label Text="{x:Static resources:AppResources.TopSalesman}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" 
-                            Style="{StaticResource MenuItemLabelStyle}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-
-                             <Grid Grid.Column="0"  Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">  
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                   <Grid Grid.Column="0">
-                                        <Image Source="circleblue"/>
-                                        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" Margin="0,-3,0,0" Spacing="0">
-                                            <Label Text="1" Style="{StaticResource CircleNumber1}" HorizontalOptions="CenterAndExpand" HeightRequest="40" Margin="0,4"/>
-                                            <Label Text="------------" Style="{StaticResource CircleNumber2}" HorizontalOptions="CenterAndExpand" HeightRequest="8" Margin="0,-2,0,4" />
-                                            <Label Text="2000" Style="{StaticResource CircleNumber2}" HorizontalOptions="CenterAndExpand" />
-                                        </StackLayout>
-                                    </Grid>
-                                    <StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                                        <Label Text="Eddy Toto" Style="{StaticResource SalesmanName}" />
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="{x:Static resources:AppResources.Sales}" Style="{StaticResource SalesmanDetail}" />
-                                            <Label Text="259" Style="{StaticResource SalesmanDetail2}" />
-                                        </StackLayout>
-                                    </StackLayout>
-                                </Grid>
-                                </Grid>
-                                <Grid Grid.Column="1" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                   <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Grid.Column="0">
-                                        <Image Source="circleblue"/>
-                                        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" Margin="0,-3,0,0" Spacing="0">
-                                            <Label Text="1" Style="{StaticResource CircleNumber1}" HorizontalOptions="CenterAndExpand" HeightRequest="40" Margin="0,4"/>
-                                            <Label Text="------------" Style="{StaticResource CircleNumber2}" HorizontalOptions="CenterAndExpand" HeightRequest="8" Margin="0,-2,0,4" />
-                                            <Label Text="2000" Style="{StaticResource CircleNumber2}" HorizontalOptions="CenterAndExpand" />
-                                        </StackLayout>
-                                    </Grid>
-                                        <StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                                            <Label Text="Bruce Williss" Style="{StaticResource SalesmanName}" />
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="{x:Static resources:AppResources.Sales}" Style="{StaticResource SalesmanDetail}" />
-                                                <Label Text="259" Style="{StaticResource SalesmanDetail2}" />
-                                            </StackLayout>
-                                        </StackLayout>
-                                    </Grid>
-                                </Grid> 
-                           
-                           </Grid>
-                         </Grid>   
-                       </Grid>
-            </StackLayout> 
-            <!--  Contacts  -->
-            <StackLayout Grid.Row="1" Grid.Column="0" Margin="0,20,0,0"  Style="{StaticResource CircleMenuStyle}">
-                     <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToContacts" />
-                </StackLayout.GestureRecognizers> 
-                <Image Source="contactsBig" Style="{StaticResource CircleMenuIconStyle}" />
-                <Label Style="{StaticResource MenuItemLabelStyle}" Text="Contacts" />
-            </StackLayout>
-            <!--  Map  -->
-            <StackLayout Grid.Row="1"  Grid.Column="1" Margin="0,20,0,0"  Style="{StaticResource CircleMenuStyle}">
-               <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToMap" />
-                </StackLayout.GestureRecognizers> 
-                <Image Source="mapBig" Style="{StaticResource CircleMenuIconStyle}" />
-                <Label Style="{StaticResource MenuItemLabelStyle}" Text="Map" />
-            </StackLayout>
-            <!--  Todo  -->
-            <StackLayout Grid.Row="1" Grid.Column="2" Margin="0,20,0,0" Style="{StaticResource CircleMenuStyle}">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToTodo" />
-                </StackLayout.GestureRecognizers> 
-                <Image Source="todoBig" Style="{StaticResource CircleMenuIconStyle}" />
-                <Label Style="{StaticResource MenuItemLabelStyle}" Text="Todo list" />
-            </StackLayout>
-            <!--  Agenda  -->
-            <StackLayout Grid.Row="1" Grid.Column="3" Margin="0,20,0,0" Style="{StaticResource CircleMenuStyle}">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToAgenda" />
-                </StackLayout.GestureRecognizers> 
-                <Image Source="agendaBig" Style="{StaticResource CircleMenuIconStyle}" />
-                <Label Style="{StaticResource MenuItemLabelStyle}" Text="Retrospective agenda" />
-            </StackLayout>
-            <!--  Reports  -->
-            <StackLayout Grid.Row="2" Grid.Column="0" Margin="0,20,0,0"  Style="{StaticResource CircleMenuSecondLineStyle}">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToReport" />
-                </StackLayout.GestureRecognizers> 
-                <Image Source="reportsBig" Style="{StaticResource CircleMenuIconStyle}" />
-                <Label Style="{StaticResource MenuItemLabelStyle}" Text="Reports" />
-            </StackLayout>
-            <!--  Manage users  -->
-            <StackLayout Grid.Row="2" Grid.Column="1" Margin="0,20,0,0" Style="{StaticResource CircleMenuSecondLineStyle}">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToQuotations" />
-                </StackLayout.GestureRecognizers>
-                <Image Source="quotationsBig" Style="{StaticResource CircleMenuIconStyle}" />
-                <Label Style="{StaticResource MenuItemLabelStyle}" Text="Quotations" />
-            </StackLayout>
-            <!--  Contract  -->
-            <StackLayout Grid.Row="2" Grid.Column="2" Margin="0,20,0,0" Style="{StaticResource CircleMenuSecondLineStyle}">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToContract" />
-                </StackLayout.GestureRecognizers> 
-                <Image Source="contractsBig" Style="{StaticResource CircleMenuIconStyle}" />
-                <Label Style="{StaticResource MenuItemLabelStyle}" Text="Contracts" />
-            </StackLayout>
-            <!--  Goals  -->
-            <StackLayout Grid.Row="2" Grid.Column="3" Margin="0,20,0,0" Style="{StaticResource CircleMenuSecondLineStyle}">
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToGoals" />
-                </StackLayout.GestureRecognizers>
-                <Image Source="goalsBig" Style="{StaticResource CircleMenuIconStyle}" />
-                <Label Style="{StaticResource MenuItemLabelStyle}" Text="Goals" />
-            </StackLayout>
-        </Grid>
-    </Grid>
+<base:BasePage x:Class="voltaire.Pages.HomePage" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire" xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire" xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire">
+	<ContentPage.Behaviors>
+		<behaviors:HideNavigationBehavior />
+	</ContentPage.Behaviors>
+	<Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="100" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="80" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<!--  Toolbar  -->
+		<controls:TToolBar Title="{x:Static resources:AppResources.Dashboard}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+			<controls:TToolBar.LeftToolbarItems>
+				<Entry Placeholder="{x:Static resources:AppResources.SearchContact}" Keyboard="Text" HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}" />
+			</controls:TToolBar.LeftToolbarItems>
+			<controls:TToolBar.RightToolbarItems>
+				<Grid>
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Command="{Binding UserInfoCommand}" />
+					</Grid.GestureRecognizers>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="50" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Image Source="profile" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" IsVisible="false" />
+					<StackLayout Orientation="Vertical" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Margin="20,0,0,0">
+						<Label Text="Alain Forestier" Style="{StaticResource UserName}" VerticalOptions="Center" />
+						<Label Text="Co-directeur/Commercial" Style="{StaticResource UserFunction}" VerticalOptions="Center" />
+					</StackLayout>
+				</Grid>
+			</controls:TToolBar.RightToolbarItems>
+		</controls:TToolBar>
+		<!--  Menu  -->
+		<renderers:CustomScrollView Grid.Row="1" Grid.Column="0" BackgroundColor="{StaticResource MaroonBlack}">
+			<StackLayout x:Name="MenuLayout" BackgroundColor="{StaticResource Black}" HorizontalOptions="StartAndExpand" Orientation="Vertical" Spacing="0" WidthRequest="80" />
+		</renderers:CustomScrollView>
+		<!-- Main Layout -->
+		<Grid Grid.Row="1" Grid.Column="1" ColumnSpacing="15" RowSpacing="10" Padding="0" BackgroundColor="{StaticResource GreyBack}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="170" />
+				<RowDefinition Height="250" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<!--  Goals and Top Salesman Bloc  -->
+			<StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" BackgroundColor="#ffffff" Padding="0,0,0,10">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Grid Grid.Column="0" Padding="50,0,50,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="75*" />
+							<ColumnDefinition Width="20*" />
+							<ColumnDefinition Width="5*" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="60" />
+							<RowDefinition Height="*" />
+							<RowDefinition Height="*" />
+						</Grid.RowDefinitions>
+						<Label Text="{x:Static resources:AppResources.Goals}" Grid.Column="0" Grid.Row="0" Style="{StaticResource MenuItemLabelStyle}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+						<renderers:CustomProgressBar Progress="0.48" VerticalOptions="Center" Grid.Column="0" Grid.Row="1">
+							<x:Arguments>
+								<x:String>Blue</x:String>
+							</x:Arguments>
+						</renderers:CustomProgressBar>
+						<Label Grid.Column="1" Grid.Row="1" Text="48%" HorizontalOptions="End" Style="{StaticResource GreenPerCent}" VerticalOptions="CenterAndExpand" />
+						<Image Source="up" Grid.Column="2" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" HeightRequest="13" WidthRequest="20" />
+						<Label Grid.Column="0" Grid.Row="2" Margin="0,-15,0,0" VerticalOptions="Start" HorizontalOptions="Start" Text="0" Style="{StaticResource ProgressBarLabel}" />
+						<Label Grid.Column="0" Grid.Row="2" Margin="0,-15,0,0" VerticalOptions="Start" HorizontalOptions="End" Text="200" Style="{StaticResource ProgressBarLabel}" />
+					</Grid>
+					<Grid Grid.Column="1">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="60" />
+								<RowDefinition Height="80" />
+							</Grid.RowDefinitions>
+							<Label Text="{x:Static resources:AppResources.TopSalesman}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource MenuItemLabelStyle}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+							<Grid Grid.Column="0" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+									<Grid Grid.Column="0">
+										<Image Source="circleblue" />
+										<StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" Margin="0,-3,0,0" Spacing="0">
+											<Label Text="1" Style="{StaticResource CircleNumber1}" HorizontalOptions="CenterAndExpand" HeightRequest="40" Margin="0,4" />
+											<Label Text="------------" Style="{StaticResource CircleNumber2}" HorizontalOptions="CenterAndExpand" HeightRequest="8" Margin="0,-2,0,4" />
+											<Label Text="2000" Style="{StaticResource CircleNumber2}" HorizontalOptions="CenterAndExpand" />
+										</StackLayout>
+									</Grid>
+									<StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+										<Label Text="Eddy Toto" Style="{StaticResource SalesmanName}" />
+										<StackLayout Orientation="Horizontal">
+											<Label Text="{x:Static resources:AppResources.Sales}" Style="{StaticResource SalesmanDetail}" />
+											<Label Text="259" Style="{StaticResource SalesmanDetail2}" />
+										</StackLayout>
+									</StackLayout>
+								</Grid>
+							</Grid>
+							<Grid Grid.Column="1" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="*" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+									<Grid Grid.Column="0">
+										<Image Source="circleblue" />
+										<StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" Margin="0,-3,0,0" Spacing="0">
+											<Label Text="1" Style="{StaticResource CircleNumber1}" HorizontalOptions="CenterAndExpand" HeightRequest="40" Margin="0,4" />
+											<Label Text="------------" Style="{StaticResource CircleNumber2}" HorizontalOptions="CenterAndExpand" HeightRequest="8" Margin="0,-2,0,4" />
+											<Label Text="2000" Style="{StaticResource CircleNumber2}" HorizontalOptions="CenterAndExpand" />
+										</StackLayout>
+									</Grid>
+									<StackLayout Grid.Column="1" Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+										<Label Text="Bruce Williss" Style="{StaticResource SalesmanName}" />
+										<StackLayout Orientation="Horizontal">
+											<Label Text="{x:Static resources:AppResources.Sales}" Style="{StaticResource SalesmanDetail}" />
+											<Label Text="259" Style="{StaticResource SalesmanDetail2}" />
+										</StackLayout>
+									</StackLayout>
+								</Grid>
+							</Grid>
+						</Grid>
+					</Grid>
+				</Grid>
+			</StackLayout>
+			<!--  Contacts  -->
+			<StackLayout Grid.Row="1" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource CircleMenuStyle}">
+				<StackLayout.GestureRecognizers>
+					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToContacts" />
+				</StackLayout.GestureRecognizers>
+				<Image Source="contactsBig" Style="{StaticResource CircleMenuIconStyle}" />
+				<Label Style="{StaticResource MenuItemLabelStyle}" Text="Contacts" />
+			</StackLayout>
+			<!--  Map  -->
+			<StackLayout Grid.Row="1" Grid.Column="1" Margin="0,20,0,0" Style="{StaticResource CircleMenuStyle}">
+				<StackLayout.GestureRecognizers>
+					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToMap" />
+				</StackLayout.GestureRecognizers>
+				<Image Source="mapBig" Style="{StaticResource CircleMenuIconStyle}" />
+				<Label Style="{StaticResource MenuItemLabelStyle}" Text="Map" />
+			</StackLayout>
+			<!--  Todo  -->
+			<StackLayout Grid.Row="1" Grid.Column="2" Margin="0,20,0,0" Style="{StaticResource CircleMenuStyle}">
+				<StackLayout.GestureRecognizers>
+					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToTodo" />
+				</StackLayout.GestureRecognizers>
+				<Image Source="todoBig" Style="{StaticResource CircleMenuIconStyle}" />
+				<Label Style="{StaticResource MenuItemLabelStyle}" Text="Todo list" />
+			</StackLayout>
+			<!--  Agenda  -->
+			<StackLayout Grid.Row="1" Grid.Column="3" Margin="0,20,0,0" Style="{StaticResource CircleMenuStyle}">
+				<StackLayout.GestureRecognizers>
+					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToAgenda" />
+				</StackLayout.GestureRecognizers>
+				<Image Source="agendaBig" Style="{StaticResource CircleMenuIconStyle}" />
+				<Label Style="{StaticResource MenuItemLabelStyle}" Text="Retrospective agenda" />
+			</StackLayout>
+			<!--  Reports  -->
+			<StackLayout Grid.Row="2" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource CircleMenuSecondLineStyle}">
+				<StackLayout.GestureRecognizers>
+					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToReport" />
+				</StackLayout.GestureRecognizers>
+				<Image Source="reportsBig" Style="{StaticResource CircleMenuIconStyle}" />
+				<Label Style="{StaticResource MenuItemLabelStyle}" Text="Reports" />
+			</StackLayout>
+			<!--  Manage users  -->
+			<StackLayout Grid.Row="2" Grid.Column="1" Margin="0,20,0,0" Style="{StaticResource CircleMenuSecondLineStyle}">
+				<StackLayout.GestureRecognizers>
+					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToQuotations" />
+				</StackLayout.GestureRecognizers>
+				<Image Source="quotationsBig" Style="{StaticResource CircleMenuIconStyle}" />
+				<Label Style="{StaticResource MenuItemLabelStyle}" Text="Quotations" />
+			</StackLayout>
+			<!--  Contract  -->
+			<StackLayout Grid.Row="2" Grid.Column="2" Margin="0,20,0,0" Style="{StaticResource CircleMenuSecondLineStyle}">
+				<StackLayout.GestureRecognizers>
+					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToContract" />
+				</StackLayout.GestureRecognizers>
+				<Image Source="contractsBig" Style="{StaticResource CircleMenuIconStyle}" />
+				<Label Style="{StaticResource MenuItemLabelStyle}" Text="Contracts" />
+			</StackLayout>
+			<!--  Goals  -->
+			<StackLayout Grid.Row="2" Grid.Column="3" Margin="0,20,0,0" Style="{StaticResource CircleMenuSecondLineStyle}">
+				<StackLayout.GestureRecognizers>
+					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToGoals" />
+				</StackLayout.GestureRecognizers>
+				<Image Source="goalsBig" Style="{StaticResource CircleMenuIconStyle}" />
+				<Label Style="{StaticResource MenuItemLabelStyle}" Text="Goals" />
+			</StackLayout>
+		</Grid>
+	</Grid>
 </base:BasePage>

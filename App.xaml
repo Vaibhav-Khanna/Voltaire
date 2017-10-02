@@ -4,71 +4,73 @@
     x:Class="voltaire.App"
     xmlns:converters="clr-namespace:voltaire.Converters;assembly=voltaire">
 
-	<Application.Resources>
-		<ResourceDictionary>
-        <Color x:Key="PinkishGrey">#bababa</Color>
-        <Color x:Key="AquaBlue">#00c9e6</Color>
-        <Color x:Key="GreyishBrown">#595959</Color>
-        <Color x:Key="GreyBack">#f0f0f0</Color>
-        <Color x:Key="GreyBack2">#d4d4d4</Color>
-        <Color x:Key="GreyBack3">#cdcdcd</Color>
-        <Color x:Key="GreyLine">#d8d8d8</Color>
-        <Color x:Key="GreyTable">#f7f7f7</Color>
-        <Color x:Key="GreyTable2">#c8c8c8</Color>
-        <Color x:Key="GreyTable3">#cfcfcf</Color>   
-        <Color x:Key="Black">#333333</Color>
-        <Color x:Key="WarmGrey">#858585</Color>
-        <Color x:Key="turquoiseBlue">#01abc4</Color>
-        <Color x:Key="turquoiseBlue2">#02abc4</Color>    
-        <Color x:Key="GreyBox">#818181</Color> 
-        <Color x:Key="frogGreen">#38d700</Color>
-        <Color x:Key="GreyPlaceholder">#b3b3b3</Color>
-        <Color x:Key="White">#f0f0f0</Color>
-        <Color x:Key="WhiteThree">#d8d8d8</Color>    
-        <Color x:Key="BlueKeyList">#aad0d6</Color> 
-        <Color x:Key="Squash">#edb00d</Color>
-        <Color x:Key="MaroonBlack">#333333</Color>   
-        <Color x:Key="Vermillion">#eb1010</Color>
-        <Color x:Key="Green">#70c800 </Color>
-        <Color x:Key="orangeYellow">#ffa800 </Color>
-        <Color x:Key="turquoiseBlue3">#00deff </Color> 
-        <Color x:Key="purpleyGrey">#9b9b9b</Color> 
-        <Color x:Key="darkSkyBlue">#4a90e2</Color> 
-        <Color x:Key="warmGrey">#979797</Color>
-            
-       <!-- LOGIN PAGE -->
-        <Style x:Key="EntryLogin" TargetType="Entry">
-            <Setter Property="FontFamily" Value="Raleway-Regular" />
-            <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
-            <Setter Property="BackgroundColor" Value="{StaticResource GreyBack}" />
-            <Setter Property="PlaceholderColor" Value="{StaticResource PinkishGrey}" />        
-        </Style>  
-        <Style x:Key="EntryButton" TargetType="Button">
-            <Setter Property="FontFamily" Value="Raleway-Regular" />
-             <Setter Property="BackgroundColor"    Value="{StaticResource AquaBlue}" />
-            <Setter Property="TextColor" Value="#ffffff" />
-        </Style>
-        <!-- TOOLBAR -->
-        <Style x:Key="ToolbarTitleLabelStyle" TargetType="Label">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PinkishGrey">#bababa</Color>
+            <Color x:Key="AquaBlue">#00c9e6</Color>
+            <Color x:Key="GreyishBrown">#595959</Color>
+            <Color x:Key="GreyBack">#f0f0f0</Color>
+            <Color x:Key="GreyBack2">#d4d4d4</Color>
+            <Color x:Key="GreyBack3">#cdcdcd</Color>
+            <Color x:Key="GreyLine">#d8d8d8</Color>
+            <Color x:Key="GreyTable">#f7f7f7</Color>
+            <Color x:Key="GreyTable2">#c8c8c8</Color>
+            <Color x:Key="GreyTable3">#cfcfcf</Color>
+            <Color x:Key="Black">#333333</Color>
+            <Color x:Key="WarmGrey">#858585</Color>
+            <Color x:Key="turquoiseBlue">#01abc4</Color>
+            <Color x:Key="turquoiseBlue2">#02abc4</Color>
+            <Color x:Key="GreyBox">#818181</Color>
+            <Color x:Key="frogGreen">#38d700</Color>
+            <Color x:Key="GreyPlaceholder">#b3b3b3</Color>
+            <Color x:Key="White">#f0f0f0</Color>
+            <Color x:Key="WhiteThree">#d8d8d8</Color>
+            <Color x:Key="BlueKeyList">#aad0d6</Color>
+            <Color x:Key="Squash">#edb00d</Color>
+            <Color x:Key="MaroonBlack">#333333</Color>
+            <Color x:Key="Vermillion">#eb1010</Color>
+            <Color x:Key="Green">#70c800</Color>
+            <Color x:Key="orangeYellow">#ffa800</Color>
+            <Color x:Key="turquoiseBlue3">#00deff</Color>
+            <Color x:Key="purpleyGrey">#9b9b9b</Color>
+            <Color x:Key="darkSkyBlue">#4a90e2</Color>
+            <Color x:Key="warmGrey">#979797</Color>
+            <Color x:Key="Red">#ff0000</Color>
+            <Color x:Key="darkGrey">#4A4A4A</Color>
+
+            <!-- LOGIN PAGE -->
+            <Style x:Key="EntryLogin" TargetType="Entry">
+                <Setter Property="FontFamily" Value="Raleway-Regular" />
+                <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource GreyBack}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource PinkishGrey}" />
+            </Style>
+            <Style x:Key="EntryButton" TargetType="Button">
+                <Setter Property="FontFamily" Value="Raleway-Regular" />
+                <Setter Property="BackgroundColor"    Value="{StaticResource AquaBlue}" />
+                <Setter Property="TextColor" Value="#ffffff" />
+            </Style>
+            <!-- TOOLBAR -->
+            <Style x:Key="ToolbarTitleLabelStyle" TargetType="Label">
                 <Setter Property="FontFamily" Value="Raleway-Regular" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="FontSize" Value="24" />
                 <Setter Property="TextColor" Value="White" />
-         </Style>
-         <Style x:Key="SearchContact"  TargetType="Entry">
-             <Setter Property="FontFamily">
+            </Style>
+            <Style x:Key="SearchContact"  TargetType="Entry">
+                <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
                             <OnPlatform.iOS>Raleway-Regular</OnPlatform.iOS>
                             <OnPlatform.Android>fonts/Raleway-Regular.ttf#Raleway</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>   
-             <Setter Property="PlaceholderColor" Value="{StaticResource GreyPlaceholder}" />
-             <Setter Property="FontSize" Value="12" />
-             <Setter Property="BackgroundColor" Value="{StaticResource GreyBack}" />   
-            </Style> 
-          <Style x:Key="UserName" TargetType="Label">
+                </Setter>
+                <Setter Property="PlaceholderColor" Value="{StaticResource GreyPlaceholder}" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="BackgroundColor" Value="{StaticResource GreyBack}" />
+            </Style>
+            <Style x:Key="UserName" TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
@@ -79,8 +81,8 @@
                 </Setter>
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="TextColor" Value="White" />
-          </Style>
-          <Style x:Key="UserFunction" TargetType="Label">
+            </Style>
+            <Style x:Key="UserFunction" TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
@@ -92,10 +94,10 @@
                 <Setter Property="FontFamily" Value="Raleway-Regular" />
                 <Setter Property="FontSize" Value="10" />
                 <Setter Property="TextColor" Value="White" />
-          </Style>
-         <!-- HOME PAGE -->
-            
-         <Style x:Key="BaseBoldLabelStyle" TargetType="Label">
+            </Style>
+            <!-- HOME PAGE -->
+
+            <Style x:Key="BaseBoldLabelStyle" TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
@@ -104,22 +106,22 @@
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
-         </Style>   
-         <Style x:Key="CircleMenuStyle" TargetType="StackLayout">
+            </Style>
+            <Style x:Key="CircleMenuStyle" TargetType="StackLayout">
                 <Setter Property="Orientation" Value="Vertical" />
                 <Setter Property="Spacing" Value="15" />
-         </Style>
-         <Style x:Key="CircleMenuIconStyle" TargetType="Image">
+            </Style>
+            <Style x:Key="CircleMenuIconStyle" TargetType="Image">
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="WidthRequest" Value="150" />
                 <Setter Property="HeightRequest" Value="150" />
-         </Style>
-         <Style x:Key="CircleMenuSecondLineStyle" TargetType="StackLayout">
+            </Style>
+            <Style x:Key="CircleMenuSecondLineStyle" TargetType="StackLayout">
                 <Setter Property="Orientation" Value="Vertical" />
                 <Setter Property="VerticalOptions" Value="Start" />
                 <Setter Property="Spacing" Value="15" />
-          </Style>  
-         <Style x:Key="BaseLabelStyle" TargetType="Label">
+            </Style>
+            <Style x:Key="BaseLabelStyle" TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
@@ -128,44 +130,44 @@
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
-         </Style>
-         <Style x:Key="ProgressBarLabel"
+            </Style>
+            <Style x:Key="ProgressBarLabel"
                    BasedOn="{StaticResource BaseLabelStyle}"
                    TargetType="Label">
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="TextColor" Value="{StaticResource WarmGrey}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
-          </Style>
-          <Style x:Key="MenuItemLabelStyle"
+            </Style>
+            <Style x:Key="MenuItemLabelStyle"
                    BasedOn="{StaticResource ProgressBarLabel}"
                    TargetType="Label">
                 <Setter Property="FontSize" Value="22" />
 
-          </Style>
+            </Style>
 
-            
-          <Style x:Key="GreenPerCent" TargetType="Label">
+
+            <Style x:Key="GreenPerCent" TargetType="Label">
                 <Setter Property="FontFamily" Value="SanFranciscoDisplay-Semibold" />
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="TextColor" Value="{StaticResource frogGreen}" />
-          </Style>
-          <Style x:Key="SalesmanName" TargetType="Label">
+            </Style>
+            <Style x:Key="SalesmanName" TargetType="Label">
                 <Setter Property="FontFamily" Value="Raleway-Medium" />
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="TextColor" Value="{StaticResource turquoiseBlue2}" />
-          </Style>  
-          <Style x:Key="SalesmanDetail" TargetType="Label">
+            </Style>
+            <Style x:Key="SalesmanDetail" TargetType="Label">
                 <Setter Property="FontFamily" Value="SanFranciscoDisplay-Light" />
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="TextColor" Value="{StaticResource turquoiseBlue2}" />
-          </Style>
-          <Style x:Key="SalesmanDetail2" TargetType="Label" >
+            </Style>
+            <Style x:Key="SalesmanDetail2" TargetType="Label" >
                 <Setter Property="FontFamily" Value="SanFranciscoDisplay-Semibold" />
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="TextColor" Value="{StaticResource turquoiseBlue2}" />
-          </Style>
+            </Style>
 
-          <Style x:Key="CircleNumber1" TargetType="Label">
+            <Style x:Key="CircleNumber1" TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
@@ -176,8 +178,8 @@
                 </Setter>
                 <Setter Property="FontSize" Value="38" />
                 <Setter Property="TextColor" Value="White" />
-          </Style>
-          <Style x:Key="CircleNumber2" TargetType="Label" BasedOn="{StaticResource CircleNumber1}">
+            </Style>
+            <Style x:Key="CircleNumber2" TargetType="Label" BasedOn="{StaticResource CircleNumber1}">
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
@@ -187,17 +189,17 @@
                     </Setter.Value>
                 </Setter>
                 <Setter Property="FontSize" Value="12" />
-          </Style>
-          <!-- CONTACTS PAGE -->
-          <Style x:Key="CommonLabelStyle"
+            </Style>
+            <!-- CONTACTS PAGE -->
+            <Style x:Key="CommonLabelStyle"
                    BasedOn="{StaticResource BaseLabelStyle}"
                    TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource White}" />
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="FontSize" Value="17" />
             </Style>
-           <!-- CONTROLS CELLS CONTACTCELL --> 
-           <Style x:Key="CellLabelDescriptionStyle"
+            <!-- CONTROLS CELLS CONTACTCELL -->
+            <Style x:Key="CellLabelDescriptionStyle"
                    BasedOn="{StaticResource BaseLabelStyle}"
                    TargetType="Label">
                 <Setter Property="VerticalOptions" Value="Center" />
@@ -236,9 +238,9 @@
                 <Setter Property="BorderRadius" Value="15" />
                 <Setter Property="WidthRequest" Value="30"  />
                 <Setter Property="HeightRequest" Value="30"  />
-            </Style>  
-          <!-- FILTERS CONTACTS PAGE -->
-          <Style x:Key="FilterWeightButtonStyle"
+            </Style>
+            <!-- FILTERS CONTACTS PAGE -->
+            <Style x:Key="FilterWeightButtonStyle"
                    TargetType="Button">
                 <Setter Property="FontFamily">
                     <Setter.Value>
@@ -260,7 +262,7 @@
                     BasedOn="{StaticResource FilterWeightButtonStyle}"
                    TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{StaticResource GreyishBrown}" />
-                <Setter Property="TextColor" Value="White" />  
+                <Setter Property="TextColor" Value="White" />
             </Style>
             <Style x:Key="FilterSectionLabelStyle"
                    BasedOn="{StaticResource BaseLabelStyle}"
@@ -272,13 +274,13 @@
                             <OnPlatform.Android>fonts/Raleway-SemiBold.otf#Raleway</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
+                </Setter>
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
             </Style>
             <Style x:Key="ResetFiltersLabelStyle"
                    BasedOn="{StaticResource CommonLabelStyle}"
-                   TargetType="Label"> 
+                   TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource White}" />
                 <Setter Property="FontSize" Value="17" />
             </Style>
@@ -291,7 +293,7 @@
                             <OnPlatform.Android>fonts/Raleway-Medium.otf#Raleway</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
+                </Setter>
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
 
@@ -312,7 +314,7 @@
                             <OnPlatform.Android>fonts/Raleway-Regular.otf#Raleway</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
+                </Setter>
                 <Setter Property="FontSize" Value="24" />
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
             </Style>
@@ -326,9 +328,9 @@
                             <OnPlatform.Android>fonts/Raleway-SemiBold.otf#Raleway</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
+                </Setter>
             </Style>
-            
+
             <Style x:Key="MonthLabelStyle"
                    TargetType="Label">
                 <Setter Property="FontFamily">
@@ -338,7 +340,7 @@
                             <OnPlatform.Android>fonts/Raleway-Bold.otf#Raleway</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
+                </Setter>
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
                 <Setter Property="HorizontalOptions" Value="Center" />
@@ -354,12 +356,12 @@
                             <OnPlatform.Android>fonts/SanFranciscoDisplay-Bold#SanFranciscoDisplay</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
+                </Setter>
                 <Setter Property="HorizontalOptions" Value="End" />
                 <Setter Property="Margin" Value="0,0,10,0"/>
             </Style>
 
-            
+
             <Style x:Key="SalesLabelStyle"
                 TargetType="Label">
                 <Setter Property="FontFamily">
@@ -369,13 +371,13 @@
                             <OnPlatform.Android>fonts/SanFranciscoDisplay-Regular#SanFranciscoDisplay</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
+                </Setter>
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="TextColor" Value="{StaticResource GreyTable2}" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
-             <Style x:Key="GoalsEntryStyle"
+            <Style x:Key="GoalsEntryStyle"
                 TargetType="Entry">
                 <Setter Property="FontFamily">
                     <Setter.Value>
@@ -384,7 +386,7 @@
                             <OnPlatform.Android>fonts/SanFranciscoDisplay-Regular#SanFranciscoDisplay</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
+                </Setter>
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
                 <Setter Property="HorizontalOptions" Value="Center" />
@@ -402,11 +404,11 @@
                             <OnPlatform.Android>fonts/SanFranciscoDisplay-Regular#SanFranciscoDisplay</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
+                </Setter>
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="TextColor" Value="White" />
-             </Style>
-             <Style x:Key="RegularLabelStyle"
+            </Style>
+            <Style x:Key="RegularLabelStyle"
                 TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
@@ -415,11 +417,11 @@
                             <OnPlatform.Android>fonts/Raleway-Regular#Raleway</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
+                </Setter>
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
-             </Style>
-             <Style x:Key="BoldLabelStyle"
+            </Style>
+            <Style x:Key="BoldLabelStyle"
                 TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
@@ -428,11 +430,11 @@
                             <OnPlatform.Android>fonts/Raleway-Bold#Raleway</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
+                </Setter>
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
-             </Style>
-            
+            </Style>
+
             <!-- REPORT CELL -->
             <Style x:Key="ReportCellLabelStyle"
                 TargetType="Label">
@@ -443,10 +445,10 @@
                             <OnPlatform.Android>fonts/SanFranciscoDisplay-Semibold#SanFranciscoDisplay</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
+                </Setter>
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
-             </Style>
+            </Style>
             <Style x:Key="ReportStatesButtonStyle"
                 TargetType="Button">
                 <Setter Property="FontFamily">
@@ -456,7 +458,7 @@
                             <OnPlatform.Android>fonts/SanFranciscoDisplay-Bold#SanFranciscoDisplay</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
+                </Setter>
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="WidthRequest" Value="50" />
@@ -471,12 +473,12 @@
                             <OnPlatform.Android>fonts/SanFranciscoDisplay-Bold#SanFranciscoDisplay</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
+                </Setter>
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="TextColor" Value="White" />
-             </Style>
-         <!-- REPORTS DETAIL PAGE --> 
-         <Style x:Key="ReportSectionTitleLabelStyle"
+            </Style>
+            <!-- REPORTS DETAIL PAGE -->
+            <Style x:Key="ReportSectionTitleLabelStyle"
                 TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
@@ -485,11 +487,11 @@
                             <OnPlatform.Android>fonts/Raleway-Medium#Raleway</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
+                </Setter>
                 <Setter Property="FontSize" Value="22" />
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
-         </Style>
-         <Style x:Key="CheckInSectionBoldLabelStyle"
+            </Style>
+            <Style x:Key="CheckInSectionBoldLabelStyle"
                 TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
@@ -498,11 +500,11 @@
                             <OnPlatform.Android>fonts/SanFranciscoDisplay-Bold#SanFranciscoDisplay</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
+                </Setter>
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
-         </Style>
-         <Style x:Key="CheckInSectionLabelStyle"
+            </Style>
+            <Style x:Key="CheckInSectionLabelStyle"
                 BasedOn="{StaticResource CheckInSectionBoldLabelStyle}"
                 TargetType="Label">
                 <Setter Property="FontFamily">
@@ -512,9 +514,9 @@
                             <OnPlatform.Android>fonts/SanFranciscoDisplay-Regular#SanFranciscoDisplay</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
-         </Style>
-         <Style x:Key="LiveSectionNumberLabelStyle"
+                </Setter>
+            </Style>
+            <Style x:Key="LiveSectionNumberLabelStyle"
                 BasedOn="{StaticResource CheckInSectionBoldLabelStyle}"
                 TargetType="Label">
                 <Setter Property="FontFamily">
@@ -526,8 +528,8 @@
                     </Setter.Value>
                 </Setter>
                 <Setter Property="FontSize" Value="20" />
-         </Style>
-         <Style x:Key="LiveSectionLabelStyle" TargetType="Label">
+            </Style>
+            <Style x:Key="LiveSectionLabelStyle" TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
@@ -538,18 +540,18 @@
                 </Setter>
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="TextColor" Value="{StaticResource GreyTable3}" />
-         </Style>            
-         <Style x:Key="ReportFrameStyle" 
+            </Style>
+            <Style x:Key="ReportFrameStyle" 
                 TargetType="Frame">
-               <Setter Property="Padding" Value="0" />
-               <Setter Property="CornerRadius" Value="0" />
-               <Setter Property="OutlineColor" Value="{StaticResource GreyTable2}" />
-               <Setter Property="BackgroundColor" Value="White"/>
-               <Setter Property="HasShadow" Value="false" />
-               <Setter Property="HeightRequest" Value="60" />
-         </Style>
-         <!-- PODIUMS PAGE -->
-         <Style x:Key="SalesmanFirstLabelStyle" TargetType="Label">
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="OutlineColor" Value="{StaticResource GreyTable2}" />
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="HasShadow" Value="false" />
+                <Setter Property="HeightRequest" Value="60" />
+            </Style>
+            <!-- PODIUMS PAGE -->
+            <Style x:Key="SalesmanFirstLabelStyle" TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
@@ -560,8 +562,8 @@
                 </Setter>
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="TextColor" Value="White" />
-         </Style>
-         <Style x:Key="MonthLabel" TargetType="Label">
+            </Style>
+            <Style x:Key="MonthLabel" TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
@@ -572,8 +574,8 @@
                 </Setter>
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
-         </Style>
-         <Style x:Key="LeaderboardLabel" TargetType="Label">
+            </Style>
+            <Style x:Key="LeaderboardLabel" TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
@@ -584,8 +586,8 @@
                 </Setter>
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="TextColor" Value="White" />
-         </Style>
-         <Style x:Key="LeaderboardBoldLabel" BasedOn="{StaticResource LeaderboardLabel}" TargetType="Label">
+            </Style>
+            <Style x:Key="LeaderboardBoldLabel" BasedOn="{StaticResource LeaderboardLabel}" TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
@@ -593,54 +595,88 @@
                             <OnPlatform.Android>fonts/Raleway-SemiBold#Raleway</OnPlatform.Android>
                         </OnPlatform>
                     </Setter.Value>
-                </Setter>               
-         </Style>
-          <Style x:Key="SalesmanDetail3"
+                </Setter>
+            </Style>
+            <Style x:Key="SalesmanDetail3"
                 BasedOn="{StaticResource SalesmanDetail}"
                 TargetType="Label">
                 <Setter Property="TextColor" Value="White" />
-         </Style>
-         <Style x:Key="SalesmanDetail4"
+            </Style>
+            <Style x:Key="SalesmanDetail4"
                 BasedOn="{StaticResource SalesmanDetail2}"
                 TargetType="Label">
                 <Setter Property="TextColor" Value="White" />
-         </Style>
-          <Style x:Key="SalesmanDetail5"
+            </Style>
+            <Style x:Key="SalesmanDetail5"
                 BasedOn="{StaticResource SalesmanDetail}"
                 TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
-         </Style>
-        <Style x:Key="SalesmanDetail6"
+            </Style>
+            <Style x:Key="SalesmanDetail6"
                 BasedOn="{StaticResource SalesmanDetail2}"
                 TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
-         </Style>
-        <Style x:Key="CircleNumber3" TargetType="Label"
+            </Style>
+            <Style x:Key="CircleNumber3" TargetType="Label"
                 BasedOn="{StaticResource CircleNumber1}">
                 <Setter Property="TextColor" Value="{StaticResource turquoiseBlue}" />
-        </Style>
-        <Style x:Key="CircleNumber4" TargetType="Label"
+            </Style>
+            <Style x:Key="CircleNumber4" TargetType="Label"
                 BasedOn="{StaticResource CircleNumber1}">
                 <Setter Property="TextColor" Value="{StaticResource WarmGrey}" />
-        </Style>
-        <Style x:Key="CircleNumber5" TargetType="Label"
+            </Style>
+            <Style x:Key="CircleNumber5" TargetType="Label"
                 BasedOn="{StaticResource CircleNumber1}">
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
-        </Style>
-        <Style x:Key="SalesmanSecondLabelStyle" TargetType="Label"
+            </Style>
+            <Style x:Key="SalesmanSecondLabelStyle" TargetType="Label"
                 BasedOn="{StaticResource SalesmanFirstLabelStyle}">
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
-        </Style>
+            </Style>
 
-          <!--CONVERTERS -->
-          <converters:BoolToColorConverter x:Key="SelectableCellBoolToColorConverter"
+
+            <!--MyAccount Page-->
+            <Style x:Key="MyAccountTitle" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Regular</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Regular#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FontSize" Value="48" />
+                <Setter Property="TextColor" Value="{StaticResource darkGrey}" />
+            </Style>
+
+            <Style x:Key="MyAccountDetailLabel" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>SanFranciscoDisplay-Regular</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Regular#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FontSize" Value="36" />
+                <Setter Property="TextColor" Value="{StaticResource darkGrey}" />
+            </Style>
+
+            <Style x:Key="DisconnectButton" TargetType="Button">
+                <Setter Property="FontFamily" Value="Raleway-Regular" />
+                <Setter Property="BackgroundColor"    Value="{StaticResource Red}" />
+                <Setter Property="TextColor" Value="#ffffff" />
+            </Style>
+
+            <!--CONVERTERS -->
+            <converters:BoolToColorConverter x:Key="SelectableCellBoolToColorConverter"
                                              ColorFalse="Transparent"
                                              ColorTrue="{StaticResource turquoiseBlue}" />
-            
-          <converters:StringNullableToBooleanConverter x:Key="StringNullableToBooleanConverter" />
-          <converters:EnumColorToImageSourceConverter x:Key="EnumColorToImageSourceConverter" />
-          <converters:BoolInverseConverter x:Key="BoolInverseConverter" />  
-          <converters:DateNullableToBooleanConverter x:Key="DateNullableToBooleanConverter" />
-        </ResourceDictionary>    
-	</Application.Resources>
+
+            <converters:StringNullableToBooleanConverter x:Key="StringNullableToBooleanConverter" />
+            <converters:EnumColorToImageSourceConverter x:Key="EnumColorToImageSourceConverter" />
+            <converters:BoolInverseConverter x:Key="BoolInverseConverter" />
+            <converters:DateNullableToBooleanConverter x:Key="DateNullableToBooleanConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>
