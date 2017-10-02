@@ -26,7 +26,7 @@ namespace voltaire.PageModels
 		public Command TapQuotation => new Command(async (object obj) =>
 		{
 			var item = obj as Tuple<IPageModelCoreMethods, QuotationsModel>;
-			await item.Item1.PushPageModel<QuotationDetailViewPageModel>(new Tuple<Customer, bool, QuotationsModel>(customer, false, item.Item2));
+            await item.Item1.PushPageModel<OrderListDetailPageModel>(new Tuple<Customer, bool, QuotationsModel>(customer, false, item.Item2));
 		});
 
 

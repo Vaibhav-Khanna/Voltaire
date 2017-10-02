@@ -1,37 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<base:FreshBaseContentPage
+<base:BasePage 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    xmlns:base="clr-namespace:FreshMvvm;assembly=FreshMvvm" 
+    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
     xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire" 
     xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire"
     xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
     xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
     xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
-    x:Class="voltaire.Pages.QuotationDetailViewPage">
-    <StackLayout BackgroundColor = "White" Orientation = "Vertical" Spacing = "0" Padding= "0" VerticalOptions = "StartAndExpand" >
-        <controls:TToolBar BackgroundColor = "{StaticResource turquoiseBlue}" HeightRequest = "120" Title = "{Binding QuotationNumber}" VerticalOptions = "Start" HorizontalOptions = "FillAndExpand" >
-            <controls:TToolBar.LeftToolbarItems>
-                <Image Source = "back.png" HeightRequest = "25" WidthRequest = "30" VerticalOptions = "Center" HorizontalOptions = "Start" >
-                    <Image.GestureRecognizers>
-                    <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding BackButton}" />
-                </Image.GestureRecognizers> 
-                </Image>
-            </controls:TToolBar.LeftToolbarItems>
-            <controls:TToolBar.RightToolbarItems>
-                <Image Source = "more.png"  HeightRequest = "25" WidthRequest = "60" VerticalOptions = "Center" HorizontalOptions = "End" TranslationX="10" >
-                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding ToolbarMenu}" />
-                        </Image.GestureRecognizers>
-                    </Image> 
-            </controls:TToolBar.RightToolbarItems>
-    </controls:TToolBar>
-
+    x:Class="voltaire.Pages.OrderListDetailPage">
+	<base:BasePage.Content>
         <Grid ColumnSpacing = "1" RowSpacing = "1" Padding = "0" Margin = "0" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand" BackgroundColor ="#d8d8d8" >
             <Grid.RowDefinitions>
-               <RowDefinition Height = "40" />
+                <RowDefinition Height="90" />
+                <RowDefinition Height = "40" />
                 <RowDefinition Height = "Auto" />
-                <RowDefinition Height = "72*"/>
+                <RowDefinition Height = "54*"/>
                 <RowDefinition Height = "9*" />
                 <RowDefinition Height = "9*" />
                 <RowDefinition Height = "9*" />
@@ -40,8 +24,29 @@
                 <ColumnDefinition Width = "*" />
                 <ColumnDefinition Width = "*"/>
             </Grid.ColumnDefinitions>
-            <Label BackgroundColor = "#c8c8c8" Grid.Row = "0" Grid.Column = "0" Grid.ColumnSpan ="2" VerticalTextAlignment = "Center" HorizontalTextAlignment = "Center" Text = "{Binding CustomerName}" TextColor = "White" FontFamily = "SanFranciscoDisplay-Regular" />
-                    <Grid HorizontalOptions = "FillAndExpand" VerticalOptions = "Start" Padding = "15,15,15,15" BackgroundColor = "White"  Grid.Row = "1" Grid.Column = "0" Grid.ColumnSpan ="2">
+
+            <!-- Toolbar -->
+            <controls:TToolBar BackgroundColor = "{StaticResource turquoiseBlue}" Title = "{Binding QuotationNumber}" HorizontalOptions = "FillAndExpand" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
+            <controls:TToolBar.LeftToolbarItems>
+                <Image Source = "back.png" HeightRequest = "25" WidthRequest = "30" VerticalOptions = "Center" HorizontalOptions = "Start" >
+                    <Image.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding BackButton}" />
+                </Image.GestureRecognizers> 
+                </Image>
+            </controls:TToolBar.LeftToolbarItems>
+            <controls:TToolBar.RightToolbarItems>
+                    <Image Source = "more.png"  HeightRequest = "25" WidthRequest = "60" VerticalOptions = "Center" HorizontalOptions = "End" TranslationX="10" >
+                         <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding ToolbarMenu}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+            </controls:TToolBar.RightToolbarItems>
+            </controls:TToolBar>
+
+
+             <!-- Listview Header -->
+             <Label BackgroundColor = "#c8c8c8" Grid.Row = "1" Grid.Column = "0" Grid.ColumnSpan ="2" VerticalTextAlignment = "Center" HorizontalTextAlignment = "Center" Text = "{Binding CustomerName}" TextColor = "White" FontFamily = "SanFranciscoDisplay-Regular" />
+                    <Grid HorizontalOptions = "FillAndExpand" VerticalOptions = "Start" Padding = "15,15,15,15" BackgroundColor = "White"  Grid.Row = "2" Grid.Column = "0" Grid.ColumnSpan ="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height= "Auto" />
                         </Grid.RowDefinitions>
@@ -61,11 +66,11 @@
                         <Label FontFamily = "Raleway-Bold" FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "Tax Free" VerticalOptions = "Center" HorizontalOptions =  "Center" Grid.Row = "0" Grid.Column = "5"  />   
                     </Grid>
 
-
-            <ListView x:Name ="listview" BackgroundColor = "White"  HasUnevenRows = "true" ItemsSource = "{Binding OrderItemsSource}" SeparatorColor = "{StaticResource GreyBack}" Grid.Row = "2" Grid.Column = "0" Grid.ColumnSpan ="2" > 
+              <!-- Listview -->
+              <ListView x:Name ="listview" BackgroundColor = "White" ItemTapped="Handle_ItemTapped" HasUnevenRows = "true" ItemsSource = "{Binding OrderItemsSource}" SeparatorColor = "{StaticResource GreyBack}" Grid.Row = "3" Grid.Column = "0" Grid.ColumnSpan ="2" > 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                       <ViewCell  x:Name = "view_cell" BindingContextChanged="Handle_BindingContextChanged" >
+                       <ViewCell  x:Name = "view_cell"  >
                             <Grid  HorizontalOptions = "FillAndExpand" VerticalOptions = "Center" Margin ="0" Padding = "15,15,15,15" BackgroundColor = "{Binding BackColor}" >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height= "Auto" />
@@ -79,24 +84,24 @@
                                     <ColumnDefinition Width="2*" />
                                 </Grid.ColumnDefinitions>
                                 <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Description}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "0"  />
-                                <renderers:BorderlessPicker Title="Select" x:Name = "picker_1" TextColor = "{StaticResource turquoiseBlue}" VerticalOptions = "Center" HorizontalOptions = "FillAndExpand"  SelectedIndex = "{Binding OrderStatusIndex, Mode=TwoWay}" ItemsSource = "{Binding OrderStatusTypes}" Grid.Row = "0" Grid.Column = "1" /> 
-                                <renderers:NumberEntry x:Name ="Qty" Text="{Binding Quantity, Mode=TwoWay}" Keyboard="Numeric" TextColor = "{StaticResource turquoiseBlue}" HorizontalTextAlignment="Center" VerticalOptions = "Center" HorizontalOptions = "FillAndExpand" Grid.Row = "0" Grid.Column = "2"/>                            
+                                <renderers:BorderlessPicker IsEnabled="false" Title="Select" x:Name = "picker_1" TextColor = "{StaticResource turquoiseBlue}" VerticalOptions = "Center" HorizontalOptions = "FillAndExpand"  SelectedIndex = "{Binding OrderStatusIndex, Mode=TwoWay}" ItemsSource = "{Binding OrderStatusTypes}" Grid.Row = "0" Grid.Column = "1" /> 
+                                <renderers:NumberEntry IsEnabled="false" x:Name ="Qty" Text="{Binding Quantity, Mode=TwoWay}" Keyboard="Numeric" TextColor = "{StaticResource turquoiseBlue}" HorizontalTextAlignment="Center" VerticalOptions = "Center" HorizontalOptions = "FillAndExpand" Grid.Row = "0" Grid.Column = "2"/>                            
                                 <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding UnitPrice,StringFormat='{0:N}$'}" VerticalOptions = "Center" HorizontalOptions =  "Center" Grid.Row = "0" Grid.Column = "3"  />
-                                <Switch x:Name ="taxswitch" IsToggled = "{Binding IsTaxApply, Mode=TwoWay}" VerticalOptions = "Center" HorizontalOptions = "Center" Grid.Column = "4" Grid.Row = "0"/> 
+                                <Switch IsEnabled="false" x:Name ="taxswitch" IsToggled = "{Binding IsTaxApply, Mode=TwoWay}" VerticalOptions = "Center" HorizontalOptions = "Center" Grid.Column = "4" Grid.Row = "0"/> 
                                 <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding TaxFree,StringFormat='{0:N}$'}" VerticalOptions = "Center" HorizontalOptions =  "Center" Grid.Row = "0" Grid.Column = "5"  />  
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.Footer>
-                    <StackLayout Orientation = "Horizontal" Padding = "15,0,10,0" BackgroundColor = "#f7f7f7" HeightRequest = "50" HorizontalOptions = "FillAndExpand">
-                        <Button Text = "+ Add product" Command="{Binding AddProductQuotation}" VerticalOptions = "Center" BackgroundColor = "Transparent" TextColor = "{StaticResource turquoiseBlue}" FontFamily ="SanFranciscoDisplay-Semibold" FontAttributes = "Bold" />
+                    <StackLayout Orientation = "Vertical" Padding = "15,40,10,40" BackgroundColor = "#f7f7f7" HorizontalOptions = "FillAndExpand">
+                        <Label FormattedText="{Binding OrderDetails}" ></Label>                    
                     </StackLayout>
                 </ListView.Footer>
             </ListView> 
 
-            
-            <StackLayout BackgroundColor = "{StaticResource GreyLine}" Orientation = "Horizontal" Grid.Row = "3" Grid.Column = "1" Padding = "30,0,20,0" >
+
+            <StackLayout BackgroundColor = "{StaticResource GreyLine}" Orientation = "Horizontal" Grid.Row = "4" Grid.Column = "1" Padding = "30,0,20,0" >
                 <Label HorizontalOptions ="StartAndExpand" VerticalOptions = "Center" >
                     <Label.FormattedText>
                         <FormattedString>
@@ -105,37 +110,38 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Switch IsToggled = "{Binding ApplyTax, Mode=TwoWay}" HorizontalOptions = "End" Margin = "0,0,20,0" VerticalOptions ="Center" />
-                <Entry Placeholder="0.00%" Margin = "0,10,0,10"  HorizontalTextAlignment = "End" BackgroundColor = "Transparent"  VerticalOptions = "CenterAndExpand" Keyboard="Numeric" HorizontalOptions ="End" Text = "{Binding TaxAmount,Mode=TwoWay}" PlaceholderColor = "{StaticResource GreyishBrown}" TextColor = "{StaticResource GreyishBrown}" WidthRequest = "80"  />
+                <Switch IsEnabled="false" IsToggled = "{Binding ApplyTax, Mode=TwoWay}" HorizontalOptions = "End" Margin = "0,0,20,0" VerticalOptions ="Center" />
+                <Entry IsEnabled="false" Placeholder="0.00%" Margin = "0,10,0,10"  HorizontalTextAlignment = "End" BackgroundColor = "Transparent"  VerticalOptions = "CenterAndExpand" Keyboard="Numeric" HorizontalOptions ="End" Text = "{Binding TaxAmount,Mode=TwoWay}" PlaceholderColor = "{StaticResource GreyishBrown}" TextColor = "{StaticResource GreyishBrown}" WidthRequest = "80"  />
             </StackLayout>
-            <StackLayout BackgroundColor = "White" Orientation = "Horizontal" Grid.Row = "4" Grid.Column = "1" Padding = "30,0,20,0">
+            
+            <StackLayout BackgroundColor = "White" Orientation = "Horizontal" Grid.Row = "5" Grid.Column = "1" Padding = "30,0,20,0">
                 <Label FontSize = "20" Text = "Sub total" FontAttributes ="Bold" VerticalOptions ="Center" HorizontalOptions ="StartAndExpand" TextColor ="{StaticResource GreyishBrown}" FontFamily ="SanFranciscoDisplay-Medium"  />
                 <Label FontSize = "20" Text = "{Binding SubTotal,StringFormat='{0:N}$'}" VerticalOptions = "Center" HorizontalOptions ="End" TextColor = "{StaticResource GreyishBrown}" />
             </StackLayout>
-             <StackLayout BackgroundColor = "#515151" Orientation = "Horizontal" Grid.Row = "5" Grid.Column = "1" Padding = "30,0,20,0">
+             <StackLayout BackgroundColor = "#515151" Orientation = "Horizontal" Grid.Row = "6" Grid.Column = "1" Padding = "30,0,20,0">
                 <Label FontSize = "24" Text = "Total" FontAttributes ="Bold" VerticalOptions ="Center" HorizontalOptions ="StartAndExpand" TextColor ="White" FontFamily ="SanFranciscoDisplay-Bold"  />
                 <Label FontSize = "24" Text = "{Binding Total,StringFormat='{0:N}$'}" FontAttributes = "Bold" VerticalOptions = "Center" HorizontalOptions ="End" TextColor = "White" />                
             </StackLayout>
-            <StackLayout Orientation = "Vertical" HorizontalOptions ="FillAndExpand" VerticalOptions ="FillAndExpand" Padding ="15,20,15,20" Grid.Row ="3" Grid.Column ="0" Grid.RowSpan ="2" BackgroundColor = "White" >
+            <StackLayout Orientation = "Vertical" HorizontalOptions ="FillAndExpand" VerticalOptions ="FillAndExpand" Padding ="15,20,15,20" Grid.Row ="4" Grid.Column ="0" Grid.RowSpan ="2" BackgroundColor = "White" >
                 <StackLayout Orientation ="Horizontal" Spacing = "10" VerticalOptions = "CenterAndExpand" HorizontalOptions = "FillAndExpand" >
-                    <Entry Text = "{Binding TrainerName, Mode = TwoWay}" Placeholder ="Trainer" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="Center"/>
-                    <Entry Text = "{Binding HorseShow, Mode= TwoWay}" Placeholder ="Horse show" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="Center"/>
+                    <Entry IsEnabled="false" Text = "{Binding TrainerName, Mode = TwoWay}" Placeholder ="Trainer" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="Center"/>
+                    <Entry IsEnabled="false" Text = "{Binding HorseShow, Mode= TwoWay}" Placeholder ="Horse show" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="Center"/>
                 </StackLayout>
-                <Entry Text = "{Binding QuotationName, Mode=TwoWay}" Placeholder ="Quotation name" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="CenterAndExpand"/>
+                <Entry IsEnabled="false" Text = "{Binding QuotationName, Mode=TwoWay}" Placeholder ="Quotation name" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="CenterAndExpand"/>
                 </StackLayout>
-            <Grid ColumnSpacing = "1" RowSpacing = "1" Padding = "1" Margin = "0" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand" BackgroundColor ="{StaticResource turquoiseBlue}" Grid.Row ="5" Grid.Column ="0" >
+            <Grid ColumnSpacing = "1" RowSpacing = "1" Padding = "1" Margin = "0" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand" BackgroundColor ="{StaticResource turquoiseBlue}" Grid.Row ="6" Grid.Column ="0" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height = "*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width = "*" />
-                    <ColumnDefinition Width = "*"/>
-                    <ColumnDefinition Width = "2*"/>
+                    <ColumnDefinition Width = "*"/>                   
             </Grid.ColumnDefinitions>
-                <Button Command = "{Binding NotesCommand}" FontSize ="20" BackgroundColor = "#f7f7f7" Text = "Notes" FontFamily ="Raleway-Regular"  TextColor = "{StaticResource turquoiseBlue}" VerticalOptions = "FillAndExpand" HorizontalOptions ="FillAndExpand" Grid.Row ="0" Grid.Column ="0" BorderRadius= "0"  />
-                <Button Command = "{Binding EmailCommand}" FontSize ="20" BackgroundColor = "#f7f7f7" Text = "E-mail" FontFamily ="Raleway-Regular"  TextColor = "{StaticResource turquoiseBlue}" VerticalOptions = "FillAndExpand" HorizontalOptions ="FillAndExpand" Grid.Row ="0" Grid.Column ="1" BorderRadius= "0"  />
-                <Button Command = "{Binding SignCommand}" FontSize ="20" BackgroundColor = "Transparent" Text = "Proceed Signing" FontFamily ="Raleway-Regular"  TextColor = "White" VerticalOptions = "FillAndExpand" HorizontalOptions ="FillAndExpand" Grid.Row ="0" Grid.Column ="2" BorderRadius= "0"  />
+                <Button Command = "{Binding NotesCommand}"  FontSize ="20" BackgroundColor = "#f7f7f7" Text = "{x:Static resources:AppResources.PermanentNotes}" FontFamily ="Raleway-Regular"  TextColor = "{StaticResource turquoiseBlue}" VerticalOptions = "FillAndExpand" HorizontalOptions ="FillAndExpand" Grid.Row ="0" Grid.Column ="0" BorderRadius= "0"  />               
+                <Button Command = "{Binding SignCommand}" Image="messages.png" ContentLayout="Left,5" FontSize ="20" BackgroundColor = "Transparent" Text = "{x:Static resources:AppResources.Messages}" FontFamily ="Raleway-Regular"  TextColor = "White" VerticalOptions = "FillAndExpand" HorizontalOptions ="FillAndExpand" Grid.Row ="0" Grid.Column ="1" BorderRadius= "0"  />
             </Grid>
+
+            
         </Grid>
-     </StackLayout>
-</base:FreshBaseContentPage>
+	</base:BasePage.Content>
+</base:BasePage>

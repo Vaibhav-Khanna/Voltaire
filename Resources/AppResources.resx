@@ -128,6 +128,9 @@
 	<data name="Quotations" xml:space="preserve">
         <value>Quotations</value>
 	</data>
+	<data name="Quotation" xml:space="preserve">
+        <value>Quotation</value>
+    </data>
 	<data name="Contracts" xml:space="preserve">
         <value>Contracts</value>
 	</data>
@@ -268,7 +271,36 @@
 	<data name="SelectACustomer" xml:space="preserve">
         <value>Select a customer</value>   
     </data>
+	<!--Order List page-->
 	<data name="Orders" xml:space="preserve">
         <value>Orders</value>   
     </data>
+	<data name="PermanentNote" xml:space="preserve">
+        <value>Permanent note</value>   
+    </data>
+	<data name="Messages" xml:space="preserve">
+        <value>Messages</value>   
+    </data>
+	<data name="SignedDate" xml:space="preserve">
+        <value>Signed date : </value>   
+    </data>
+	<data name="PaymentType" xml:space="preserve">
+        <value>Payment type : </value>   
+    </data>
+	<data name="PaymentInformation" xml:space="preserve">
+        <value>Payment information : </value>   
+    </data>
+	<data name="PermanentNotes" xml:space="preserve">
+        <value>Permanent Notes</value>   
+    </data>
+	<data name="InternalNotes" xml:space="preserve">
+        <value>Internal notes</value>   
+    </data>
+	<data name="DeleteQuotation" xml:space="preserve">
+        <value>Delete quotation</value>   
+    </data>
+	<data name="Select" xml:space="preserve">
+        <value>Select</value>   
+    </data>
+	
 </root>
