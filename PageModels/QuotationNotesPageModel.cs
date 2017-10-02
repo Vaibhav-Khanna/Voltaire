@@ -20,8 +20,8 @@ namespace voltaire.PageModels
            if (string.IsNullOrWhiteSpace(NoteText))
                return;
 
-            var note = new Note(){ Date = DateTime.Now, id = quotation.Notes.Count+1, IsReminderActive = false, Publisher = "Me", Text = NoteText };
-            quotation.Notes.Add(note);
+            var note = new Note(){ Date = DateTime.Now, id = quotation.InternalNotes.Count+1, IsReminderActive = false, Publisher = "Me", Text = NoteText };
+            quotation.InternalNotes.Add(note);
             NoteSource.Add(new NoteModel(note)); 
             NoteText = "";
        });
@@ -35,13 +35,13 @@ namespace voltaire.PageModels
             {
                 quotation = value;
 
-                if (quotation.Notes == null)
-                    quotation.Notes = new List<Note>();
+                if (quotation.InternalNotes == null)
+                    quotation.InternalNotes = new List<Note>();
 
              
                 var list = new List<NoteModel>();
 
-                foreach (var item in quotation.Notes)
+                foreach (var item in quotation.InternalNotes)
                 {
                     list.Add(new NoteModel(item));
                 }
