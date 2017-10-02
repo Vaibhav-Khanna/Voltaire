@@ -15,6 +15,7 @@ namespace voltaire.Pages
 
         int row_count;
         int row_height = 60;
+        bool controlEnabled;
 
         public ProductDescriptionPage()
         {
@@ -43,6 +44,7 @@ namespace voltaire.Pages
 
             if(context!=null)
             {
+                controlEnabled = context.IsControlsEnabled;
                 InitLayout(context);   
             }
         }
@@ -102,7 +104,7 @@ namespace voltaire.Pages
             label.SetBinding(Label.TextProperty,"PropertyName");
             label.BindingContext = Bind_Context;
 
-            var sw = new Switch() { HorizontalOptions = LayoutOptions.End, VerticalOptions = LayoutOptions.Center };
+            var sw = new Switch() { IsEnabled = controlEnabled, HorizontalOptions = LayoutOptions.End, VerticalOptions = LayoutOptions.Center };
             sw.SetBinding(Switch.IsToggledProperty,"PropertyValue", BindingMode.TwoWay,converter: new StringToBoolConverter());
             sw.BindingContext = Bind_Context;
 
@@ -120,7 +122,7 @@ namespace voltaire.Pages
 			label.SetBinding(Label.TextProperty, "PropertyName");
 			label.BindingContext = Bind_Context;
 
-            var picker = new Renderers.BorderlessPicker() { HorizontalOptions = LayoutOptions.End, WidthRequest = 120, VerticalOptions = LayoutOptions.Center, Title ="Choose", TextColor = (Color)App.Current.Resources["turquoiseBlue"] };         
+            var picker = new Renderers.BorderlessPicker() { IsEnabled = controlEnabled, HorizontalOptions = LayoutOptions.End, WidthRequest = 120, VerticalOptions = LayoutOptions.Center, Title ="Choose", TextColor = (Color)App.Current.Resources["turquoiseBlue"] };         
             picker.SetBinding(Picker.ItemsSourceProperty,"ItemSource");
 			picker.SetBinding(Picker.SelectedItemProperty, "PropertyValue", BindingMode.TwoWay);
 			picker.BindingContext = Bind_Context;
@@ -135,7 +137,7 @@ namespace voltaire.Pages
 		{
 			var stack = new StackLayout { BackgroundColor = Color.White, Orientation = StackOrientation.Horizontal, HeightRequest = 60, Margin = 0, HorizontalOptions = LayoutOptions.FillAndExpand, Padding = new Thickness(20, 0, 20, 0) };
             	
-            var entry = new Entry() { HorizontalOptions = LayoutOptions.FillAndExpand, HeightRequest = 40, VerticalOptions = LayoutOptions.Center, TextColor = (Color)App.Current.Resources["GreyishBrown"], FontFamily = "SanFranciscoDisplay-Regular", PlaceholderColor = Color.FromRgb(179,179,179) };
+            var entry = new Entry() { IsEnabled = controlEnabled, HorizontalOptions = LayoutOptions.FillAndExpand, HeightRequest = 40, VerticalOptions = LayoutOptions.Center, TextColor = (Color)App.Current.Resources["GreyishBrown"], FontFamily = "SanFranciscoDisplay-Regular", PlaceholderColor = Color.FromRgb(179,179,179) };
             entry.SetBinding(Entry.TextProperty, "PropertyValue", BindingMode.TwoWay);
             entry.SetBinding(Entry.PlaceholderProperty, "PropertyName");
 			entry.BindingContext = Bind_Context;

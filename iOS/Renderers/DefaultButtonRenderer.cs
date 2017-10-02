@@ -14,7 +14,7 @@ namespace voltaire.iOS.Renderers
 
             if(Control!=null)
             {
-                Control.ImageEdgeInsets = new UIKit.UIEdgeInsets(25, -10, 25,0);
+                Control.ImageEdgeInsets = new UIKit.UIEdgeInsets(18,-15,18,0);
             }
 
         }

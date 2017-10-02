@@ -143,6 +143,9 @@
     <EmbeddedResource Include="Pages\OrderListTabPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\OrderListDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -357,6 +360,11 @@
       <DependentUpon>OrderListTabPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\OrderListTabPageModel.cs" />
+
+    <Compile Include="Pages\OrderListDetailPage.xaml.cs">
+      <DependentUpon>OrderListDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageModels\OrderListDetailPageModel.cs" />
 
   </ItemGroup>
   <ItemGroup>

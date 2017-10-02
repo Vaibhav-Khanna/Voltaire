@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Rg.Plugins.Popup.Services;
 using voltaire.Models;
 using voltaire.PageModels.Base;
 using voltaire.PopUps;
+using voltaire.Resources;
 using Xamarin.Forms;
 
 namespace voltaire.PageModels
@@ -22,9 +24,23 @@ namespace voltaire.PageModels
         public Command itemTapped => new Command(async (object obj) =>
 		{
             var item = obj as ProductQuotationModel;
-            await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<Product, ProductQuotationModel>(item.Product,item));
+            await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<Product, ProductQuotationModel,bool>(item.Product, item, Quotation.Status == QuotationStatus.Sent ? false : true));
 		});
 
+		public Command ToolbarMenu => new Command(async () =>
+		{
+            var response = await CoreMethods.DisplayActionSheet(AppResources.Select, AppResources.Cancel, AppResources.DeleteQuotation , new List<string> { AppResources.InternalNotes }.ToArray());
+
+			if (response == AppResources.InternalNotes)
+			{
+				// Open internal notes
+            }
+            else if(response == AppResources.DeleteQuotation)
+            {
+               // delete quotation 
+            }
+
+		});
        
         // Add product button tapped then subscribe to the selectem item changed event and take action
         public Command AddProductQuotation => new Command( async() => 
@@ -53,7 +69,7 @@ namespace voltaire.PageModels
                 OrderItemsSource.Add(item);
                 quotation.Products.Add(item);
 
-                await CoreMethods.PushPageModel<ProductDescriptionPageModel>( new Tuple<Product,ProductQuotationModel>(popup_context.SelectedItem,item));
+                await CoreMethods.PushPageModel<ProductDescriptionPageModel>( new Tuple<Product,ProductQuotationModel,bool>(popup_context.SelectedItem,item, Quotation.Status == QuotationStatus.Sent ? false : true));
 
             }
             // Unsubscribe from the event

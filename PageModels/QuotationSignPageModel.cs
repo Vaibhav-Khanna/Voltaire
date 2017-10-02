@@ -28,11 +28,12 @@ namespace voltaire.PageModels
                 return;
             }
 
-           if (SignImage != null)
-           {             
+            if (SignImage != null)
+            {             
                 quotation.SignedImage = SignImage; 
                 IsSigned = true;
                 quotation.Status = QuotationStatus.Sent;
+                quotation.DateSigned = DateTime.Now;
                 CoreMethods.PopPageModel();
             }
             else
