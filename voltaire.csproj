@@ -362,6 +362,8 @@
       <DependentUpon>MessagesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\MessagesPageModel.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\MessageModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

@@ -256,6 +256,7 @@
     <Compile Include="Renderers\BorderlessDatePickerRenderer.cs" />
     <Compile Include="AkavacheSqliteLinkerOverride.cs" />
     <Compile Include="Renderers\BorderlessTimePickerRenderer.cs" />
+    <Compile Include="Renderers\ContentPageSwipeRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.png" />

@@ -40,11 +40,13 @@
                                 <ColumnDefinition Width="3*"/>
                                 <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="8*"/>
+                                <ColumnDefinition Width="20"/>
                             </Grid.ColumnDefinitions>
                             <Label Text="{Binding Index}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" />
                             <Label Text="{Binding Name}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="0" Grid.Column="1"/>
                             <Label Text="{Binding Date}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="0" Grid.Column="2"/>
-                            <Label Text="{Binding Message}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="0" Grid.Column="3"/>                         
+                            <Label Text="{Binding Message}" LineBreakMode="{Binding LineBreak}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="0" Grid.Column="3"/> 
+                            <Image Source="arrowdown.png" BackgroundColor="Black" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Center" />     
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

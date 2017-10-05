@@ -18,7 +18,8 @@ namespace voltaire.iOS.Renderers
 
             Control.BorderStyle = UITextBorderStyle.None;
             Control.Layer.BorderWidth = 0;
-
+          
+           
         }
 
     }

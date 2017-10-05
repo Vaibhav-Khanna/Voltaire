@@ -34,7 +34,7 @@ namespace voltaire.PopUps
 
                 SelectedItem = reminder.Priority.ToString();
 
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
@@ -79,7 +79,7 @@ namespace voltaire.PopUps
             {
                 remindername = value;
 
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
@@ -93,7 +93,7 @@ namespace voltaire.PopUps
                 reminderdate = value;
 
 
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
@@ -106,7 +106,7 @@ namespace voltaire.PopUps
 
                 time = value;
 
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
@@ -118,7 +118,7 @@ namespace voltaire.PopUps
             {
                 selecteditem = value;
 
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 

@@ -28,7 +28,7 @@ namespace voltaire.PopUps
 			set
 			{
 				selecteditem = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
 			}
 		}
 
@@ -54,7 +54,7 @@ namespace voltaire.PopUps
 			set
 			{
 				itemsource = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
 			}
 		}
     }
