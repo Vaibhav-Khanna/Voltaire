@@ -16,7 +16,10 @@
     </ResourceDictionary>
     </base:BaseViewPagerPage.Resources>
 	<base:BaseViewPagerPage.Content>
-        <ScrollView VerticalOptions="FillAndExpand" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+
+        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        
+        <ScrollView AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional" AbsoluteLayout.LayoutBounds="0,0,1,AutoSize" VerticalOptions="FillAndExpand" Orientation="Vertical" HorizontalOptions="FillAndExpand">
             <StackLayout Orientation="Vertical" BackgroundColor="White" Margin="0" Padding="0" Spacing="0">
                 <StackLayout x:Name="topcontainer" Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource White}" Padding="40,20,30,20" Spacing="5" >
                     <renderers:RoundedBoxView HeightRequest="15" WidthRequest="15" Margin="3" Color="{StaticResource Vermillion}" VerticalOptions="Center"/>
@@ -34,6 +37,7 @@
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="70"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <controls:WeightScale MaxWeight="5" SelectedScale="{Binding Weight, Mode=TwoWay}"  IsEnabled="{Binding CanEdit}" SelectedScaleChanged="Handle_SelectedScaleChanged" Grid.Row="0" Grid.Column="0"/>    
@@ -72,12 +76,33 @@
                             <x:Boolean>false</x:Boolean>
                         </x:Arguments>
                     </controls:CustomLabelEntry>
-                    <StackLayout Spacing="20" Orientation="Vertical" BackgroundColor="White" Padding="0,30,0,40" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="6" Grid.Column="0">
+                    <StackLayout Spacing="20" Orientation="Vertical" BackgroundColor="White" Padding="0,30,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="6" Grid.Column="0">
                         <Label FontFamily="Raleway-Medium" TextColor="{StaticResource GreyishBrown}" FontSize="24" Text="{x:Static resources:AppResources.Tags}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
                         <Button FontFamily="Raleway-Regular" FontSize="16" TextColor="{StaticResource turquoiseBlue}" Text="{x:Static resources:AppResources.addtags}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Command="{Binding AddTags}"/>
                     </StackLayout>
+                    
+                    <StackLayout Spacing="20" Orientation="Vertical" BackgroundColor="White" Padding="0,30,0,40" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="7" Grid.Column="0">
+                        <Label FontFamily="Raleway-Medium" TextColor="{StaticResource GreyishBrown}" FontSize="24" Text="{x:Static resources:AppResources.PermanentNote}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+                        <StackLayout Margin="0,0,40,0" Padding="1" BackgroundColor="{StaticResource warmGrey}"  Grid.Row="1" >
+                            <StackLayout BackgroundColor="White" Padding="15" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                                <Editor  Text="{Binding NoteText, Mode=TwoWay}" TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Regular" FontSize="14" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="100" BackgroundColor="White" />
+                            </StackLayout>         
+                        </StackLayout>
+                    </StackLayout>
+                   
                 </Grid>
+                </StackLayout>
+            </ScrollView>
+
+            <StackLayout BackgroundColor="{StaticResource turquoiseBlue}" Spacing="15" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="End" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional" HeightRequest="80" AbsoluteLayout.LayoutBounds="0,1,1,80">
+                <Image TranslationX="20" HeightRequest="20" WidthRequest="20" Source="notewhite.png" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                <Label TranslationX="20" FontSize="20" Text = "{x:Static resources:AppResources.InternalNotes}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontFamily ="SanFranciscoDisplay-Regular" TextColor = "White"/>
+                 <Image HeightRequest="20" Margin="0,0,20,0" WidthRequest="20" Source="back.png" Rotation="180" VerticalOptions="Center" HorizontalOptions="End"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding InternalNotes}" />
+                </StackLayout.GestureRecognizers>
             </StackLayout>
-        </ScrollView>
+
+        </AbsoluteLayout>
 	</base:BaseViewPagerPage.Content>
 </base:BaseViewPagerPage>

@@ -89,14 +89,23 @@ namespace voltaire.PageModels
 
         public override void Init(object initData)
         {
+            
             base.Init(initData);
 
             var context = initData as QuotationsModel;
 
             if (context == null)
-                return;
+            {
+                var customer_context = initData as Customer;
 
-            Quotation = context;
+                if (customer_context == null)
+                    return;
+            }
+            else
+            {
+                Quotation = context;
+            }
+
 
         }
 

@@ -28,6 +28,10 @@ namespace voltaire.Models
 
         public string Website { get; set; }
 
+        public List<Note> InternalNotes { get; set; } = new List<Note>();
+
+        public string PermanentNote { get; set; }
+
         public List<string> Tags { get; set; }
 
         public Nullable<DateTime> LastVisit { get; set; }

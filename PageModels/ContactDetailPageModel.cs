@@ -35,6 +35,7 @@ namespace voltaire.PageModels
                 customer.Phone = phone;
                 customer.Website = website;
                 customer.LastVisit = lastvisit;
+				customer.PermanentNote = notetext;
                 customer.Email = email;
                 customer.CanEdit = false;
                 customer.Company = companyname;
@@ -62,6 +63,12 @@ namespace voltaire.PageModels
        {
            LastVisit = DateTime.Now;
        });
+
+        public Command InternalNotes => new Command(async () =>
+       {
+            await CoreMethods.PushPageModel<QuotationInternalNotesPageModel>(customer);
+       });
+
 
         private ObservableCollection<TTab> tab;
 
@@ -231,6 +238,20 @@ namespace voltaire.PageModels
                 RaisePropertyChanged();
 			}
 		}
+
+        string notetext;
+        public string NoteText 
+        {
+            get { return notetext; }
+            set
+            {
+                notetext = value;
+
+                customer.PermanentNote = notetext;
+
+                RaisePropertyChanged();
+            }
+        }
 
 
         private int selectedindex = 0;
