@@ -57,6 +57,9 @@ namespace voltaire.PageModels
 				all_items = new ObservableCollection<QuotationsModel>(sent_quotations);
 				quotationsitemsource = all_items;
 
+                all_items.Add(new QuotationsModel(){ Status = QuotationStatus.Sent, DateSigned = DateTime.Now, IsSignedValidated = true, IsConditionsAgree = true, Ref = "123434323"  });
+
+
 				RaisePropertyChanged();
 				RaisePropertyChanged(nameof(FilterTypes));
 				RaisePropertyChanged(nameof(Filter));

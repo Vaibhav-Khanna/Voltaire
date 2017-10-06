@@ -107,7 +107,7 @@
     <EmbeddedResource Include="Pages\PodiumsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\QuotationNotesPage.xaml">
+    <EmbeddedResource Include="Pages\QuotationInternalNotesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="PopUps\ReminderAddPopUp.xaml">
@@ -131,19 +131,25 @@
     <EmbeddedResource Include="Pages\ContractsMainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+		<EmbeddedResource Include="PopUps\UserInfoPopUp.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</EmbeddedResource>
     <EmbeddedResource Include="Controls\BindingPinView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="PopUps\CustomerPickerPopUp.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="PopUps\UserInfoPopUp.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pages\OrderListTabPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\OrderListDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MessagesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\PermanentNotePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -306,10 +312,10 @@
     <Compile Include="Pages\PodiumsPage.xaml.cs">
       <DependentUpon>PodiumsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\QuotationNotesPage.xaml.cs">
-      <DependentUpon>QuotationNotesPage.xaml</DependentUpon>
+    <Compile Include="Pages\QuotationInternalNotesPage.xaml.cs">
+      <DependentUpon>QuotationInternalNotesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PageModels\QuotationNotesPageModel.cs" />
+    <Compile Include="PageModels\QuotationInternalNotesPageModel.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\Reminder.cs" />
     <Compile Include="Models\NoteModel.cs" />
@@ -349,23 +355,30 @@
     <Compile Include="PopUps\CustomerPickerPopUp.xaml.cs">
       <DependentUpon>CustomerPickerPopUp.xaml</DependentUpon>
     </Compile>
+		<Compile Include="PopUps\UserInfoPopUp.xaml.cs">
+			<DependentUpon>UserInfoPopUp.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="PopUps\UserInfoPopupModel.cs" />
     <Compile Include="PopUps\CustomerPickerPopupModel.cs" />
-
-    <Compile Include="PopUps\UserInfoPopUp.xaml.cs">
-      <DependentUpon>UserInfoPopUp.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PopUps\UserInfoPopupModel.cs" />
-
     <Compile Include="Pages\OrderListTabPage.xaml.cs">
       <DependentUpon>OrderListTabPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\OrderListTabPageModel.cs" />
-
     <Compile Include="Pages\OrderListDetailPage.xaml.cs">
       <DependentUpon>OrderListDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\OrderListDetailPageModel.cs" />
-
+    <Compile Include="Pages\MessagesPage.xaml.cs">
+      <DependentUpon>MessagesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageModels\MessagesPageModel.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\MessageModel.cs" />
+    <Compile Include="Converters\BoolToLineBreakModeConverter.cs" />
+    <Compile Include="Pages\PermanentNotePage.xaml.cs">
+      <DependentUpon>PermanentNotePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageModels\PermanentNotePageModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
@@ -458,6 +471,18 @@
     <Reference Include="Plugin.Geolocator">
       <HintPath>packages\Xam.Plugin.Geolocator.4.0.1\lib\netstandard1.0\Plugin.Geolocator.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.Core.XForms">
+      <HintPath>packages\Syncfusion.Xamarin.Core.15.3.0.33\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.Core.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.DataSource.Portable">
+      <HintPath>packages\Syncfusion.Xamarin.DataSource.15.3.0.33\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.DataSource.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.GridCommon.Portable">
+      <HintPath>packages\Syncfusion.Xamarin.GridCommon.15.3.0.33\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.GridCommon.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfListView.XForms">
+      <HintPath>packages\Syncfusion.Xamarin.SfListView.15.3.0.33\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.SfListView.XForms.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -487,3 +512,7 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('packages\Xamarin.Forms.2.3.4.267\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
 </Project>
+
+
+
+

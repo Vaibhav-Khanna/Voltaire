@@ -28,10 +28,16 @@ namespace voltaire.PageModels
 		});
 
 
-		public Command NotesCommand => new Command(async () =>
-		{
-			await CoreMethods.PushPageModel<QuotationNotesPageModel>(Quotation);
-		});
+        public Command NotesCommand => new Command(async () => 
+        {
+            await CoreMethods.PushPageModel<PermanentNotePageModel>(Quotation);
+        });
+
+
+        public Command MessageCommand => new Command(async() =>
+       {
+            await CoreMethods.PushPageModel<MessagesPageModel>(Quotation);
+       });
 
 
         public Command ToolbarMenu => new Command( async() =>
@@ -41,6 +47,7 @@ namespace voltaire.PageModels
             if(response==AppResources.InternalNotes)
             {
                 // Open internal notes
+                await CoreMethods.PushPageModel<QuotationInternalNotesPageModel>(Quotation);
             }
 
        });

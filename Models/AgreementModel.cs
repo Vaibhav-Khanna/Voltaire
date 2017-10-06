@@ -23,7 +23,7 @@ namespace voltaire.Models
 				AgreementTitle = agreement.Title;
 				IsSelected = agreement.IsSelected;	
              
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
@@ -34,7 +34,7 @@ namespace voltaire.Models
             set
             {
                 title = value;
-				OnPropertyChanged();
+				RaisePropertyChanged();
             }
         }
 
@@ -45,7 +45,7 @@ namespace voltaire.Models
             set
             {
                 image = value;
-				OnPropertyChanged();
+				RaisePropertyChanged();
             }
         }
 
@@ -62,7 +62,7 @@ namespace voltaire.Models
                 Image = isselected ? "check1.png" : "uncheck.png";
                 agreement.IsSelected = isselected;
 
-				OnPropertyChanged();
+				RaisePropertyChanged();
             }
         }
 

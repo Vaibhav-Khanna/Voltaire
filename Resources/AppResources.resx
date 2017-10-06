@@ -302,5 +302,16 @@
 	<data name="Select" xml:space="preserve">
         <value>Select</value>   
     </data>
-	
+	<data name="Permanent" xml:space="preserve">
+        <value>Permanent</value>   
+    </data>
+	<data name="Note" xml:space="preserve">
+        <value>Note</value>   
+    </data>
+	<data name="WriteAMesage" xml:space="preserve">
+        <value>Write a message</value>   
+    </data>
+	<data name="PermanentNote" xml:space="preserve">
+        <value>Permanent note</value>   
+    </data>
 </root>

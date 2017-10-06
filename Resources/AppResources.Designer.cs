@@ -472,5 +472,23 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("Select", resourceCulture);
             }
         }
+        
+        internal static string Permanent {
+            get {
+                return ResourceManager.GetString("Permanent", resourceCulture);
+            }
+        }
+        
+        internal static string Note {
+            get {
+                return ResourceManager.GetString("Note", resourceCulture);
+            }
+        }
+        
+        internal static string WriteAMesage {
+            get {
+                return ResourceManager.GetString("WriteAMesage", resourceCulture);
+            }
+        }
     }
 }

@@ -29,11 +29,22 @@ namespace voltaire.PageModels
 
 		public Command ToolbarMenu => new Command(async () =>
 		{
-            var response = await CoreMethods.DisplayActionSheet(AppResources.Select, AppResources.Cancel, AppResources.DeleteQuotation , new List<string> { AppResources.InternalNotes }.ToArray());
+
+            string delete_text;
+
+            // check the status before passing on deletion option to user
+            if (CanEdit)
+                delete_text = AppResources.DeleteQuotation;
+            else
+                delete_text = null;
+
+            var response = await CoreMethods.DisplayActionSheet(AppResources.Select, AppResources.Cancel,delete_text, new List<string> { AppResources.InternalNotes }.ToArray());
 
 			if (response == AppResources.InternalNotes)
 			{
 				// Open internal notes
+                await CoreMethods.PushPageModel<QuotationInternalNotesPageModel>(Quotation);
+
             }
             else if(response == AppResources.DeleteQuotation)
             {
@@ -51,7 +62,7 @@ namespace voltaire.PageModels
 
         public Command NotesCommand => new Command( async() =>
        {
-            await CoreMethods.PushPageModel<QuotationNotesPageModel>(Quotation);
+            await CoreMethods.PushPageModel<PermanentNotePageModel>(Quotation);
        });
 
 
@@ -255,8 +266,19 @@ namespace voltaire.PageModels
             }
         }
 
+		bool canedit;
+		public bool CanEdit
+		{
+			get { return canedit; }
+			set
+			{
+				canedit = value;
+				RaisePropertyChanged();
+			}
+		}
 
-        public void OrderItemsSource_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+
+		public void OrderItemsSource_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
 
             if (OrderItemsSource == null)
@@ -283,8 +305,10 @@ namespace voltaire.PageModels
 
         }
 
+		
 
-        public override void Init(object initData)
+
+		public override void Init(object initData)
         {
             base.Init(initData);
 
@@ -306,6 +330,23 @@ namespace voltaire.PageModels
                 }
             }
 
+        }
+
+        protected override void ViewIsAppearing(object sender, EventArgs e)
+        {
+            base.ViewIsAppearing(sender, e);
+
+            CanEdit = Quotation.Status == QuotationStatus.Sent ? false : true;
+
+            if(!CanEdit)
+            {
+                QuotationNumber = AppResources.Quotation + " " + quotation.Ref + " - " + quotation.Status.ToString();
+            }
+
+            foreach (var item in OrderItemsSource)
+            {
+                item.CanEdit = CanEdit;
+            }
         }
 
         string UnixTimeStamp()

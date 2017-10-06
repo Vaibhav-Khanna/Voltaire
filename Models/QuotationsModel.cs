@@ -24,7 +24,11 @@ namespace voltaire.Models
 
         public double TaxAmount { get; set; }
 
-        public List<Note> Notes { get; set; } = new List<Note>();
+        public List<Note> InternalNotes { get; set; } = new List<Note>();
+
+        public List<Message> Messages { get; set; } = new List<Message>();
+
+        public string PermanentNote { get; set; }
 
         public QuotationStatus Status { get; set; } = QuotationStatus.Draft;
 

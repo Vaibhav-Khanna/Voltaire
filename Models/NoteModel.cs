@@ -50,7 +50,7 @@ namespace voltaire.Models
             set
             {
                 index = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
@@ -61,7 +61,7 @@ namespace voltaire.Models
             set
             {
                 name = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
@@ -72,7 +72,7 @@ namespace voltaire.Models
             set
             {
                 date = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
@@ -83,7 +83,7 @@ namespace voltaire.Models
             set
             {
                 notes = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
@@ -98,10 +98,20 @@ namespace voltaire.Models
 
                 Image = isreminderactive ? "reminderActive.png" : "reminderInactive.png";
 
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
+		bool canedit;
+		public bool CanEdit
+		{
+			get { return canedit; }
+			set
+			{
+				canedit = value;
+				RaisePropertyChanged();
+			}
+		}
 
         string image;
         public string Image 
@@ -110,7 +120,7 @@ namespace voltaire.Models
             set
             {
                 image = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
     }

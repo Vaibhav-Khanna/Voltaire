@@ -79,10 +79,10 @@
                                     <ColumnDefinition Width="2*" />
                                 </Grid.ColumnDefinitions>
                                 <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Description}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "0"  />
-                                <renderers:BorderlessPicker Title="Select" x:Name = "picker_1" TextColor = "{StaticResource turquoiseBlue}" VerticalOptions = "Center" HorizontalOptions = "FillAndExpand"  SelectedIndex = "{Binding OrderStatusIndex, Mode=TwoWay}" ItemsSource = "{Binding OrderStatusTypes}" Grid.Row = "0" Grid.Column = "1" /> 
-                                <renderers:NumberEntry x:Name ="Qty" Text="{Binding Quantity, Mode=TwoWay}" Keyboard="Numeric" TextColor = "{StaticResource turquoiseBlue}" HorizontalTextAlignment="Center" VerticalOptions = "Center" HorizontalOptions = "FillAndExpand" Grid.Row = "0" Grid.Column = "2"/>                            
+                                <renderers:BorderlessPicker IsEnabled="{Binding CanEdit}" Title="Select" x:Name = "picker_1" TextColor = "{StaticResource turquoiseBlue}" VerticalOptions = "Center" HorizontalOptions = "FillAndExpand"  SelectedIndex = "{Binding OrderStatusIndex, Mode=TwoWay}" ItemsSource = "{Binding OrderStatusTypes}" Grid.Row = "0" Grid.Column = "1" /> 
+                                <renderers:NumberEntry IsEnabled="{Binding CanEdit}" x:Name ="Qty" Text="{Binding Quantity, Mode=TwoWay}" Keyboard="Numeric" TextColor = "{StaticResource turquoiseBlue}" HorizontalTextAlignment="Center" VerticalOptions = "Center" HorizontalOptions = "FillAndExpand" Grid.Row = "0" Grid.Column = "2"/>                            
                                 <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding UnitPrice,StringFormat='{0:N}$'}" VerticalOptions = "Center" HorizontalOptions =  "Center" Grid.Row = "0" Grid.Column = "3"  />
-                                <Switch x:Name ="taxswitch" IsToggled = "{Binding IsTaxApply, Mode=TwoWay}" VerticalOptions = "Center" HorizontalOptions = "Center" Grid.Column = "4" Grid.Row = "0"/> 
+                                <Switch IsEnabled="{Binding CanEdit}" x:Name ="taxswitch" IsToggled = "{Binding IsTaxApply, Mode=TwoWay}" VerticalOptions = "Center" HorizontalOptions = "Center" Grid.Column = "4" Grid.Row = "0"/> 
                                 <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding TaxFree,StringFormat='{0:N}$'}" VerticalOptions = "Center" HorizontalOptions =  "Center" Grid.Row = "0" Grid.Column = "5"  />  
                             </Grid>
                         </ViewCell>
@@ -90,7 +90,7 @@
                 </ListView.ItemTemplate>
                 <ListView.Footer>
                     <StackLayout Orientation = "Horizontal" Padding = "15,0,10,0" BackgroundColor = "#f7f7f7" HeightRequest = "50" HorizontalOptions = "FillAndExpand">
-                        <Button Text = "+ Add product" Command="{Binding AddProductQuotation}" VerticalOptions = "Center" BackgroundColor = "Transparent" TextColor = "{StaticResource turquoiseBlue}" FontFamily ="SanFranciscoDisplay-Semibold" FontAttributes = "Bold" />
+                        <Button IsEnabled="{Binding CanEdit}" Text = "+ Add product" Command="{Binding AddProductQuotation}" VerticalOptions = "Center" BackgroundColor = "Transparent" TextColor = "{StaticResource turquoiseBlue}" FontFamily ="SanFranciscoDisplay-Semibold" FontAttributes = "Bold" />
                     </StackLayout>
                 </ListView.Footer>
             </ListView> 
@@ -105,8 +105,8 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Switch IsToggled = "{Binding ApplyTax, Mode=TwoWay}" HorizontalOptions = "End" Margin = "0,0,20,0" VerticalOptions ="Center" />
-                <Entry Placeholder="0.00%" Margin = "0,10,0,10"  HorizontalTextAlignment = "End" BackgroundColor = "Transparent"  VerticalOptions = "CenterAndExpand" Keyboard="Numeric" HorizontalOptions ="End" Text = "{Binding TaxAmount,Mode=TwoWay}" PlaceholderColor = "{StaticResource GreyishBrown}" TextColor = "{StaticResource GreyishBrown}" WidthRequest = "80"  />
+                <Switch IsEnabled="{Binding CanEdit}" IsToggled = "{Binding ApplyTax, Mode=TwoWay}" HorizontalOptions = "End" Margin = "0,0,20,0" VerticalOptions ="Center" />
+                <Entry IsEnabled="{Binding CanEdit}" Placeholder="0.00%" Margin = "0,10,0,10"  HorizontalTextAlignment = "End" BackgroundColor = "Transparent"  VerticalOptions = "CenterAndExpand" Keyboard="Numeric" HorizontalOptions ="End" Text = "{Binding TaxAmount,Mode=TwoWay}" PlaceholderColor = "{StaticResource GreyishBrown}" TextColor = "{StaticResource GreyishBrown}" WidthRequest = "80"  />
             </StackLayout>
             <StackLayout BackgroundColor = "White" Orientation = "Horizontal" Grid.Row = "4" Grid.Column = "1" Padding = "30,0,20,0">
                 <Label FontSize = "20" Text = "Sub total" FontAttributes ="Bold" VerticalOptions ="Center" HorizontalOptions ="StartAndExpand" TextColor ="{StaticResource GreyishBrown}" FontFamily ="SanFranciscoDisplay-Medium"  />
@@ -118,10 +118,10 @@
             </StackLayout>
             <StackLayout Orientation = "Vertical" HorizontalOptions ="FillAndExpand" VerticalOptions ="FillAndExpand" Padding ="15,20,15,20" Grid.Row ="3" Grid.Column ="0" Grid.RowSpan ="2" BackgroundColor = "White" >
                 <StackLayout Orientation ="Horizontal" Spacing = "10" VerticalOptions = "CenterAndExpand" HorizontalOptions = "FillAndExpand" >
-                    <Entry Text = "{Binding TrainerName, Mode = TwoWay}" Placeholder ="Trainer" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="Center"/>
-                    <Entry Text = "{Binding HorseShow, Mode= TwoWay}" Placeholder ="Horse show" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="Center"/>
+                    <Entry IsEnabled="{Binding CanEdit}" Text = "{Binding TrainerName, Mode = TwoWay}" Placeholder ="Trainer" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="Center"/>
+                    <Entry IsEnabled="{Binding CanEdit}" Text = "{Binding HorseShow, Mode= TwoWay}" Placeholder ="Horse show" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="Center"/>
                 </StackLayout>
-                <Entry Text = "{Binding QuotationName, Mode=TwoWay}" Placeholder ="Quotation name" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="CenterAndExpand"/>
+                <Entry IsEnabled="{Binding CanEdit}" Text = "{Binding QuotationName, Mode=TwoWay}" Placeholder ="Quotation name" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="CenterAndExpand"/>
                 </StackLayout>
             <Grid ColumnSpacing = "1" RowSpacing = "1" Padding = "1" Margin = "0" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand" BackgroundColor ="{StaticResource turquoiseBlue}" Grid.Row ="5" Grid.Column ="0" >
                 <Grid.RowDefinitions>
@@ -132,9 +132,15 @@
                     <ColumnDefinition Width = "*"/>
                     <ColumnDefinition Width = "2*"/>
             </Grid.ColumnDefinitions>
-                <Button Command = "{Binding NotesCommand}" FontSize ="20" BackgroundColor = "#f7f7f7" Text = "Notes" FontFamily ="Raleway-Regular"  TextColor = "{StaticResource turquoiseBlue}" VerticalOptions = "FillAndExpand" HorizontalOptions ="FillAndExpand" Grid.Row ="0" Grid.Column ="0" BorderRadius= "0"  />
+                <StackLayout Orientation="Vertical" Grid.Row ="0" Grid.Column ="0" BackgroundColor = "#f7f7f7" Spacing="0" >
+                    <Label Text="{x:Static resources:AppResources.Permanent}" FontFamily ="Raleway-Regular"  TextColor = "{StaticResource turquoiseBlue}" HorizontalOptions="Center" VerticalOptions="EndAndExpand" FontSize ="13"/>
+                    <Label Text="{x:Static resources:AppResources.Note}" FontFamily ="Raleway-Regular"  TextColor = "{StaticResource turquoiseBlue}" HorizontalOptions="Center" VerticalOptions="StartAndExpand" FontSize ="20"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NotesCommand}" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>              
                 <Button Command = "{Binding EmailCommand}" FontSize ="20" BackgroundColor = "#f7f7f7" Text = "E-mail" FontFamily ="Raleway-Regular"  TextColor = "{StaticResource turquoiseBlue}" VerticalOptions = "FillAndExpand" HorizontalOptions ="FillAndExpand" Grid.Row ="0" Grid.Column ="1" BorderRadius= "0"  />
-                <Button Command = "{Binding SignCommand}" FontSize ="20" BackgroundColor = "Transparent" Text = "Proceed Signing" FontFamily ="Raleway-Regular"  TextColor = "White" VerticalOptions = "FillAndExpand" HorizontalOptions ="FillAndExpand" Grid.Row ="0" Grid.Column ="2" BorderRadius= "0"  />
+                <Button IsEnabled="{Binding CanEdit}" Command = "{Binding SignCommand}" FontSize ="20" BackgroundColor = "Transparent" Text = "Proceed Signing" FontFamily ="Raleway-Regular"  TextColor = "White" VerticalOptions = "FillAndExpand" HorizontalOptions ="FillAndExpand" Grid.Row ="0" Grid.Column ="2" BorderRadius= "0"  />
             </Grid>
         </Grid>
      </StackLayout>

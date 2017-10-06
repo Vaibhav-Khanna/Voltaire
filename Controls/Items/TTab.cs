@@ -42,7 +42,7 @@ namespace voltaire.Controls.Items
 
                 }
 
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         } 
 

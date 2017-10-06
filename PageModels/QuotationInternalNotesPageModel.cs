@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace voltaire.PageModels
 {
-    public class QuotationNotesPageModel : BasePageModel
+    public class QuotationInternalNotesPageModel : BasePageModel
     {
 
         public Command BackButton => new Command( async() =>
@@ -20,9 +20,9 @@ namespace voltaire.PageModels
            if (string.IsNullOrWhiteSpace(NoteText))
                return;
 
-            var note = new Note(){ Date = DateTime.Now, id = quotation.Notes.Count+1, IsReminderActive = false, Publisher = "Me", Text = NoteText };
-            quotation.Notes.Add(note);
-            NoteSource.Add(new NoteModel(note)); 
+            var note = new Note(){ Date = DateTime.Now, id = quotation.InternalNotes.Count+1, IsReminderActive = false, Publisher = "Me", Text = NoteText };
+            quotation.InternalNotes.Add(note);
+            NoteSource.Add(new NoteModel(note){ CanEdit = this.CanEdit }); 
             NoteText = "";
        });
 
@@ -35,15 +35,17 @@ namespace voltaire.PageModels
             {
                 quotation = value;
 
-                if (quotation.Notes == null)
-                    quotation.Notes = new List<Note>();
+                CanEdit = quotation.Status == QuotationStatus.Sent ? false : true;
+
+                if (quotation.InternalNotes == null)
+                    quotation.InternalNotes = new List<Note>();
 
              
                 var list = new List<NoteModel>();
 
-                foreach (var item in quotation.Notes)
+                foreach (var item in quotation.InternalNotes)
                 {
-                    list.Add(new NoteModel(item));
+                    list.Add(new NoteModel(item){ CanEdit = this.CanEdit });
                 }
 
                 NoteSource = new ObservableCollection<NoteModel>(list);
@@ -74,6 +76,16 @@ namespace voltaire.PageModels
             }
         }
 
+        bool canedit;
+        public bool CanEdit 
+        { 
+            get { return canedit; }
+            set
+            {
+                canedit = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public override void Init(object initData)
         {

@@ -18,6 +18,7 @@ namespace voltaire.iOS.Renderers
 
             Control.BorderStyle = UITextBorderStyle.None;
             Control.TextAlignment = UITextAlignment.Right;
+
         }
 
 
