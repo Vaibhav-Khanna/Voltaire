@@ -12,6 +12,7 @@ using CarouselView.FormsPlugin.iOS;
 using Syncfusion.SfPdfViewer.XForms.iOS;
 using Akavache;
 using KeyboardOverlap.Forms.Plugin.iOSUnified;
+using Syncfusion.ListView.XForms.iOS;
 
 namespace voltaire.iOS
 {
@@ -37,7 +38,7 @@ namespace voltaire.iOS
                                typeof(Distribute), typeof(Analytics), typeof(Crashes));
             Distribute.DontCheckForUpdatesInDebug();
 #endif
-
+            SfListViewRenderer.Init();
             LoadApplication(new App());
 
             SfPdfDocumentViewRenderer.Init();

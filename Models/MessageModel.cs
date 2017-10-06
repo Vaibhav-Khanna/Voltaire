@@ -10,10 +10,10 @@ namespace voltaire.Models
             Message = message;
             Name = message.Sender;
             Date = message.SentDate.ToString("d");
+            Text = message.Text;
         }
 
         public Message Message { get; set; }
-
 
         int index;
         public int Index 
@@ -59,6 +59,17 @@ namespace voltaire.Models
 			}
 		}
 
+        bool expanded = false;
+        public bool Expanded 
+        {
+            get { return expanded; }
+            set
+            {
+                expanded = value;
+
+                RaisePropertyChanged();
+            }
+        }
 
     }
 }

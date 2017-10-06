@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire"
+    xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire" 
+    xmlns:local="clr-namespace:voltaire.Converters;assembly=voltaire"
+    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire"
+    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
+    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    x:Class="voltaire.Pages.PermanentNotePage">
+	<ContentPage.Content>
+         <Grid x:Name="grid" RowSpacing="30" BackgroundColor = "White" Padding= "0" VerticalOptions = "FillAndExpand" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+               <RowDefinition Height="*"/> 
+                <RowDefinition Height="*"/> 
+                <RowDefinition Height="*"/> 
+        </Grid.RowDefinitions>
+            
+           <controls:TToolBar BackgroundColor = "{StaticResource turquoiseBlue}" HeightRequest = "80" Title = "{x:Static resources:AppResources.PermanentNote}" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand" Grid.Row="0" Grid.Column="0" >
+            <controls:TToolBar.LeftToolbarItems>
+                <Image Source = "back.png" HeightRequest = "25" WidthRequest = "30" VerticalOptions = "Center" HorizontalOptions = "Start"  >
+                    <Image.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding BackButton}" />
+                </Image.GestureRecognizers> 
+                </Image>
+            </controls:TToolBar.LeftToolbarItems>
+        </controls:TToolBar>
+
+
+            <StackLayout Margin="30,0,30,0" Padding="1" BackgroundColor="{StaticResource warmGrey}"  Grid.Row="1" >
+                <StackLayout BackgroundColor="White" Padding="15" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                      <Editor Text="{Binding NoteText, Mode=TwoWay}" TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Regular" FontSize="14" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White" />
+                </StackLayout>         
+            </StackLayout>
+             
+        </Grid>
+	</ContentPage.Content>
+</ContentPage>
+

@@ -28,15 +28,15 @@ namespace voltaire.PageModels
 		});
 
 
-        public Command NotesCommand => new Command( () => 
+        public Command NotesCommand => new Command(async () => 
         {
-             
+            await CoreMethods.PushPageModel<PermanentNotePageModel>(Quotation);
         });
 
 
         public Command MessageCommand => new Command(async() =>
        {
-            await CoreMethods.PushPageModel<MessagesPageModel>();
+            await CoreMethods.PushPageModel<MessagesPageModel>(Quotation);
        });
 
 

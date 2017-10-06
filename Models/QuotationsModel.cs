@@ -26,6 +26,10 @@ namespace voltaire.Models
 
         public List<Note> InternalNotes { get; set; } = new List<Note>();
 
+        public List<Message> Messages { get; set; } = new List<Message>();
+
+        public string PermanentNote { get; set; }
+
         public QuotationStatus Status { get; set; } = QuotationStatus.Draft;
 
         public string TrainerName { get; set; }

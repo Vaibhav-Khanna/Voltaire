@@ -146,6 +146,9 @@
     <EmbeddedResource Include="Pages\MessagesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\PermanentNotePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -364,6 +367,11 @@
     <Compile Include="PageModels\MessagesPageModel.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MessageModel.cs" />
+    <Compile Include="Converters\BoolToLineBreakModeConverter.cs" />
+    <Compile Include="Pages\PermanentNotePage.xaml.cs">
+      <DependentUpon>PermanentNotePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageModels\PermanentNotePageModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
@@ -455,6 +463,18 @@
     </Reference>
     <Reference Include="Plugin.Geolocator">
       <HintPath>packages\Xam.Plugin.Geolocator.4.0.1\lib\netstandard1.0\Plugin.Geolocator.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Core.XForms">
+      <HintPath>packages\Syncfusion.Xamarin.Core.15.3.0.33\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.Core.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.DataSource.Portable">
+      <HintPath>packages\Syncfusion.Xamarin.DataSource.15.3.0.33\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.DataSource.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.GridCommon.Portable">
+      <HintPath>packages\Syncfusion.Xamarin.GridCommon.15.3.0.33\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.GridCommon.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfListView.XForms">
+      <HintPath>packages\Syncfusion.Xamarin.SfListView.15.3.0.33\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.SfListView.XForms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

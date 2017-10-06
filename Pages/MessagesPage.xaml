@@ -2,12 +2,17 @@
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire"
     xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire" 
-    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire"
-    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
+    xmlns:local="clr-namespace:voltaire.Converters;assembly=voltaire"
+    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire"   
+    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
     x:Class="voltaire.Pages.MessagesPage">
+    <ContentPage.Resources>
+         <ResourceDictionary>
+           <local:BoolToLineBreakModeConverter x:Key="BoolToLineBreakModeConverter" />
+         </ResourceDictionary>
+    </ContentPage.Resources>
 	<ContentPage.Content>
         <Grid x:Name="grid" BackgroundColor = "White" Padding= "0" RowSpacing="0" VerticalOptions = "FillAndExpand" >
         <Grid.ColumnDefinitions>
@@ -27,11 +32,11 @@
                 </Image>
             </controls:TToolBar.LeftToolbarItems>
         </controls:TToolBar>
-        <ListView  x:Name="listview" HasUnevenRows="true" VerticalOptions="FillAndExpand" SeparatorColor="{StaticResource White}" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding MessageSource}" >
-            <ListView.ItemTemplate>
+        <syncfusion:SfListView x:Name="listview"  AutoFitMode="Height" VerticalOptions="FillAndExpand"   Grid.Row="1" Grid.Column="0" ItemsSource="{Binding MessageSource}">
+            <syncfusion:SfListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <Grid ColumnSpacing="5" BackgroundColor="White" Padding="0,20,0,20" Margin="0" >
+                   
+                        <Grid ColumnSpacing="10" BackgroundColor="White" Padding="0,20,20,20" Margin="0" >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
@@ -42,16 +47,16 @@
                                 <ColumnDefinition Width="8*"/>
                                 <ColumnDefinition Width="20"/>
                             </Grid.ColumnDefinitions>
-                            <Label Text="{Binding Index}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" />
-                            <Label Text="{Binding Name}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="0" Grid.Column="1"/>
-                            <Label Text="{Binding Date}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="0" Grid.Column="2"/>
-                            <Label Text="{Binding Message}" LineBreakMode="{Binding LineBreak}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" HorizontalOptions="Start" Grid.Row="0" Grid.Column="3"/> 
-                            <Image Source="arrowdown.png" BackgroundColor="Black" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" HorizontalOptions="Center" />     
+                            <Label Text="{Binding Index}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Start" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" />
+                            <Label Text="{Binding Name}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Start" HorizontalOptions="Start" Grid.Row="0" Grid.Column="1"/>
+                            <Label Text="{Binding Date}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Start" HorizontalOptions="Start" Grid.Row="0" Grid.Column="2"/>
+                            <Label Text="{Binding Text}" LineBreakMode="{Binding Expanded, Converter = {StaticResource BoolToLineBreakModeConverter}}"  FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="FillAndExpand" VerticalTextAlignment="Start" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Grid.Row="0" Grid.Column="3"/> 
+                            <Image Source="arrowdown.png" WidthRequest="15" HeightRequest="15" VerticalOptions="Start" HorizontalOptions="Center" Grid.Column="4" />     
                         </Grid>
-                    </ViewCell>
+          
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>   
+            </syncfusion:SfListView.ItemTemplate>
+       </syncfusion:SfListView>  
             <StackLayout x:Name = "BottomContainer" BackgroundColor="#e9e9e9" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15" Orientation="Horizontal" Spacing="0" Grid.Row="2" Grid.Column="0" >
                         <BoxView Color="White" VerticalOptions="FillAndExpand" WidthRequest="20" HorizontalOptions="Start" Margin="0"/>
                         <renderers:BorderlessEntry Text="{Binding MessageText,Mode=TwoWay}" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Placeholder="{x:Static resources:AppResources.WriteAMesage}" FontSize="14"/>

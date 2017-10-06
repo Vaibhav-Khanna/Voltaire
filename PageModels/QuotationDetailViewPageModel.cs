@@ -51,9 +51,9 @@ namespace voltaire.PageModels
             await PopupNavigation.PushAsync(new ProductPickerPopUp(){ BindingContext = popup_context }, true);
        });
 
-        public Command NotesCommand => new Command( () =>
+        public Command NotesCommand => new Command( async() =>
        {
-            
+            await CoreMethods.PushPageModel<PermanentNotePageModel>(Quotation);
        });
 
 

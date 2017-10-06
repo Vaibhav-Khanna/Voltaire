@@ -311,4 +311,7 @@
 	<data name="WriteAMesage" xml:space="preserve">
         <value>Write a message</value>   
     </data>
+	<data name="PermanentNote" xml:space="preserve">
+        <value>Permanent note</value>   
+    </data>
 </root>
