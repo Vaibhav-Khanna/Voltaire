@@ -29,7 +29,16 @@ namespace voltaire.PageModels
 
 		public Command ToolbarMenu => new Command(async () =>
 		{
-            var response = await CoreMethods.DisplayActionSheet(AppResources.Select, AppResources.Cancel, AppResources.DeleteQuotation , new List<string> { AppResources.InternalNotes }.ToArray());
+
+            string delete_text;
+
+            // check the status before passing on deletion option to user
+            if (CanEdit)
+                delete_text = AppResources.DeleteQuotation;
+            else
+                delete_text = null;
+
+            var response = await CoreMethods.DisplayActionSheet(AppResources.Select, AppResources.Cancel,delete_text, new List<string> { AppResources.InternalNotes }.ToArray());
 
 			if (response == AppResources.InternalNotes)
 			{
@@ -328,6 +337,11 @@ namespace voltaire.PageModels
             base.ViewIsAppearing(sender, e);
 
             CanEdit = Quotation.Status == QuotationStatus.Sent ? false : true;
+
+            if(!CanEdit)
+            {
+                QuotationNumber = AppResources.Quotation + " " + quotation.Ref + " - " + quotation.Status.ToString();
+            }
 
             foreach (var item in OrderItemsSource)
             {
