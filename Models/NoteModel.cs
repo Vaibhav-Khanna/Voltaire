@@ -102,6 +102,16 @@ namespace voltaire.Models
             }
         }
 
+		bool canedit;
+		public bool CanEdit
+		{
+			get { return canedit; }
+			set
+			{
+				canedit = value;
+				RaisePropertyChanged();
+			}
+		}
 
         string image;
         public string Image 

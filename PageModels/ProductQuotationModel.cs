@@ -162,6 +162,18 @@ namespace voltaire.PageModels
             }
         }
 
+		bool canedit = true;
+		public bool CanEdit
+		{
+			get { return canedit; }
+			set
+			{
+				canedit = value;
+				RaisePropertyChanged();
+			}
+		}
+
+
         public ProductQuotationModel(Product _product)
         {              
             OrderStatusTypes = ProductConstants.ProductStatusRange;

@@ -33,14 +33,27 @@ namespace voltaire.PageModels
 
         public QuotationsModel Quotation { get; set; }
 
+		bool canedit;
+		public bool CanEdit
+		{
+			get { return canedit; }
+			set
+			{
+				canedit = value;
+				RaisePropertyChanged();
+			}
+		}
 
-        public override void Init(object initData)
+
+		public override void Init(object initData)
         {
             base.Init(initData);
 
             Quotation = initData as QuotationsModel;
 
             NoteText = Quotation.PermanentNote;
+
+            CanEdit = Quotation.Status == QuotationStatus.Sent ? false : true;
 
         }
 

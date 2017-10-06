@@ -22,7 +22,7 @@ namespace voltaire.PageModels
 
             var note = new Note(){ Date = DateTime.Now, id = quotation.InternalNotes.Count+1, IsReminderActive = false, Publisher = "Me", Text = NoteText };
             quotation.InternalNotes.Add(note);
-            NoteSource.Add(new NoteModel(note)); 
+            NoteSource.Add(new NoteModel(note){ CanEdit = this.CanEdit }); 
             NoteText = "";
        });
 
@@ -35,6 +35,8 @@ namespace voltaire.PageModels
             {
                 quotation = value;
 
+                CanEdit = quotation.Status == QuotationStatus.Sent ? false : true;
+
                 if (quotation.InternalNotes == null)
                     quotation.InternalNotes = new List<Note>();
 
@@ -43,7 +45,7 @@ namespace voltaire.PageModels
 
                 foreach (var item in quotation.InternalNotes)
                 {
-                    list.Add(new NoteModel(item));
+                    list.Add(new NoteModel(item){ CanEdit = this.CanEdit });
                 }
 
                 NoteSource = new ObservableCollection<NoteModel>(list);
@@ -74,6 +76,16 @@ namespace voltaire.PageModels
             }
         }
 
+        bool canedit;
+        public bool CanEdit 
+        { 
+            get { return canedit; }
+            set
+            {
+                canedit = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public override void Init(object initData)
         {
