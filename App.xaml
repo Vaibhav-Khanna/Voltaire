@@ -645,8 +645,9 @@
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
-                <Setter Property="FontSize" Value="48" />
+                <Setter Property="FontSize" Value="22" />
                 <Setter Property="TextColor" Value="{StaticResource darkGrey}" />
+                <Setter Property="VerticalOptions" Value="Center" />
             </Style>
 
             <Style x:Key="MyAccountDetailLabel" TargetType="Label">
@@ -658,14 +659,17 @@
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
-                <Setter Property="FontSize" Value="36" />
+                <Setter Property="FontSize" Value="18" />
                 <Setter Property="TextColor" Value="{StaticResource darkGrey}" />
+                <Setter Property="VerticalOptions" Value="Center" />
             </Style>
 
             <Style x:Key="DisconnectButton" TargetType="Button">
                 <Setter Property="FontFamily" Value="Raleway-Regular" />
                 <Setter Property="BackgroundColor"    Value="{StaticResource Red}" />
                 <Setter Property="TextColor" Value="#ffffff" />
+                <Setter Property="WidthRequest" Value="150" />
+                <Setter Property="HeightRequest" Value="50" />
             </Style>
 
             <!--CONVERTERS -->

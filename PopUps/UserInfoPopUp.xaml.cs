@@ -10,7 +10,7 @@ namespace voltaire.PopUps
 		public UserInfoPopUp()
 		{
 			InitializeComponent();
-			Padding = new Thickness(150, 150, 150, 250);
+			Padding = new Thickness(150, 150, 150, 150);
 			CloseWhenBackgroundIsClicked = false;
 		}
 	}
