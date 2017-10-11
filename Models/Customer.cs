@@ -32,7 +32,7 @@ namespace voltaire.Models
 
         public string PermanentNote { get; set; }
 
-        public List<string> Tags { get; set; }
+        public List<string> Tags { get; set; } = new List<string>();
 
         public Nullable<DateTime> LastVisit { get; set; }
 

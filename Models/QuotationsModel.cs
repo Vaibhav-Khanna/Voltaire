@@ -42,7 +42,7 @@ namespace voltaire.Models
 
         public bool IsConditionsAgree { get; set; }
 
-        public List<string> PaymentNotes { get; set; } = new List<string>();
+        public string PaymentNotes { get; set; }
 
         public bool IsSignedValidated { get; set; }
 

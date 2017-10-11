@@ -76,8 +76,12 @@
                             <x:Boolean>false</x:Boolean>
                         </x:Arguments>
                     </controls:CustomLabelEntry>
-                    <StackLayout Spacing="20" Orientation="Vertical" BackgroundColor="White" Padding="0,30,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="6" Grid.Column="0">
+
+                        
+                    <StackLayout Spacing="10" Orientation="Vertical" BackgroundColor="White" Padding="0,30,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="6" Grid.Column="0">
                         <Label FontFamily="Raleway-Medium" TextColor="{StaticResource GreyishBrown}" FontSize="24" Text="{x:Static resources:AppResources.Tags}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+                        <controls:WrapLayout x:Name = "tagContainer" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
+                            </controls:WrapLayout>    
                         <Button FontFamily="Raleway-Regular" FontSize="16" TextColor="{StaticResource turquoiseBlue}" Text="{x:Static resources:AppResources.addtags}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Command="{Binding AddTags}"/>
                     </StackLayout>
                     
@@ -94,7 +98,7 @@
                 </StackLayout>
             </ScrollView>
 
-            <StackLayout BackgroundColor="{StaticResource turquoiseBlue}" Spacing="15" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="End" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional" HeightRequest="80" AbsoluteLayout.LayoutBounds="0,1,1,80">
+            <StackLayout x:Name="internalNotes" BackgroundColor="{StaticResource turquoiseBlue}" Spacing="15" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="End" AbsoluteLayout.LayoutFlags="PositionProportional,WidthProportional" HeightRequest="80" AbsoluteLayout.LayoutBounds="0,1,1,80">
                 <Image TranslationX="20" HeightRequest="20" WidthRequest="20" Source="notewhite.png" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
                 <Label TranslationX="20" FontSize="20" Text = "{x:Static resources:AppResources.InternalNotes}" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontFamily ="SanFranciscoDisplay-Regular" TextColor = "White"/>
                  <Image HeightRequest="20" Margin="0,0,20,0" WidthRequest="20" Source="back.png" Rotation="180" VerticalOptions="Center" HorizontalOptions="End"/>

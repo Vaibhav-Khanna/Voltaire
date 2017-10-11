@@ -314,4 +314,13 @@
 	<data name="PermanentNote" xml:space="preserve">
         <value>Permanent note</value>   
     </data>
+	<data name="PaymentInfo" xml:space="preserve">
+        <value>Payment information</value>   
+    </data>
+	<data name="AddTagsTitle" xml:space="preserve">
+        <value>Add tags</value>   
+    </data>
+	<data name="SelectTag" xml:space="preserve">
+        <value>Select a tag in the list</value>   
+    </data>
 </root>

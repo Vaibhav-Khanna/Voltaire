@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 using voltaire.Controls.Items;
 using voltaire.TemplateSelectors;
 using voltaire.Resources;
+using voltaire.Controls;
+using voltaire.PopUps;
+using Rg.Plugins.Popup.Services;
+using System.Collections.Generic;
 
 namespace voltaire.PageModels
 {
@@ -23,7 +27,9 @@ namespace voltaire.PageModels
             if (!customer.CanEdit)
             {
                 var customer_copy = customer;
+
                 customer_copy.CanEdit = true;
+
                 await CoreMethods.PushPageModel<ContactDetailPageModel>(customer_copy, true, true);
             }
             else
@@ -43,41 +49,78 @@ namespace voltaire.PageModels
             }
         });
 
+
         public Command tap_Back  => new Command(async() =>
 	   {
+            
            if (customer.CanEdit)
            {
                customer.CanEdit = false;
-               await CoreMethods.PopPageModel(null,true,true);
+               await CoreMethods.PopPageModel(null, true, true);
                ReleaseResources();
-            }
-            else
-            {
-			   customer.CanEdit = false;
-                await CoreMethods.PopPageModel(null, false, true);
-                ReleaseResources();
-            }
+           }
+           else
+           {
+               customer.CanEdit = false;
+               await CoreMethods.PopPageModel(null, false, true);
+               ReleaseResources();
+           }
+
 	   });
+
 
         public Command CheckIn => new Command( () =>
        {
-           LastVisit = DateTime.Now;
+            LastVisit = DateTime.Now;
        });
 
-        public Command InternalNotes => new Command(async () =>
+
+        AddTagsPopUpModel Popup_context = new AddTagsPopUpModel();
+
+        public Command AddTags => new Command( async(obj) =>
        {
-            await CoreMethods.PushPageModel<QuotationInternalNotesPageModel>(customer);
+            Popup_context.ItemSelectedChanged += Popup_Context_ItemSelectedChanged;
+            await PopupNavigation.PushAsync(new AddTagsPopUp() { BindingContext = Popup_context }, true);
        });
+
+
+        void Popup_Context_ItemSelectedChanged()
+        {
+            if(!string.IsNullOrEmpty(Popup_context.SelectedItem))
+            {
+                Tags.Add(new TagControlModel(){ TagText = Popup_context.SelectedItem, CanEdit = CanEdit });
+                customer.Tags.Add(Popup_context.SelectedItem);
+            }
+           
+            Popup_context.ItemSelectedChanged -= Popup_Context_ItemSelectedChanged;
+        }
+
+
+        public Command InternalNotes => new Command(async () =>
+        {
+            await CoreMethods.PushPageModel<QuotationInternalNotesPageModel>(customer, false, true);
+        });
 
 
         private ObservableCollection<TTab> tab;
-
         public ObservableCollection<TTab> Tab
         {
             get { return tab; } 
             set 
             {
                 tab = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private ObservableCollection<TagControlModel> tags;
+        public ObservableCollection<TagControlModel> Tags
+        {
+            get { return tags; }
+            set
+            {
+                tags = value;
+
                 RaisePropertyChanged();
             }
         }
@@ -283,6 +326,7 @@ namespace voltaire.PageModels
                 return _customer;
             } set
             {
+               
                 _customer = value;
 
                 firstname = customer.FirstName;
@@ -294,12 +338,22 @@ namespace voltaire.PageModels
                 website = customer.Website;
                 lastvisit = customer.LastVisit;
                 canedit = customer.CanEdit;
+                NoteText = customer.PermanentNote;
                 title = canedit ? AppResources.Update : $"{customer.FirstName} {customer.LastName}";
                 toolbarbutton = canedit ? AppResources.Save : AppResources.Modify;
                 backbutton = canedit ? AppResources.Cancel : AppResources.Back;
                 companyname = customer.Company;
 
-                RaisePropertyChanged();
+                var list_tags = new List<TagControlModel>();
+
+                foreach (var item in customer.Tags)
+                {
+                    list_tags.Add(new TagControlModel(){ TagText = item , CanEdit = CanEdit });
+                }
+
+                Tags = new ObservableCollection<TagControlModel>(list_tags);
+
+                RaisePropertyChanged(); 
                 RaisePropertyChanged(nameof(Title));
                 RaisePropertyChanged(nameof(FirstName));
                 RaisePropertyChanged(nameof(LastName));

@@ -152,6 +152,12 @@
     <EmbeddedResource Include="Pages\PermanentNotePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="PopUps\AddTagsPopUp.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TagControl.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -379,6 +385,14 @@
       <DependentUpon>PermanentNotePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\PermanentNotePageModel.cs" />
+    <Compile Include="PopUps\AddTagsPopUp.xaml.cs">
+      <DependentUpon>AddTagsPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopUps\AddTagsPopUpModel.cs" />
+    <Compile Include="Controls\TagControl.xaml.cs">
+      <DependentUpon>TagControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TagControlModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

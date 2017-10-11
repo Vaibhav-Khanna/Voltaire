@@ -490,5 +490,23 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("WriteAMesage", resourceCulture);
             }
         }
+        
+        internal static string PaymentInfo {
+            get {
+                return ResourceManager.GetString("PaymentInfo", resourceCulture);
+            }
+        }
+        
+        internal static string AddTagsTitle {
+            get {
+                return ResourceManager.GetString("AddTagsTitle", resourceCulture);
+            }
+        }
+        
+        internal static string SelectTag {
+            get {
+                return ResourceManager.GetString("SelectTag", resourceCulture);
+            }
+        }
     }
 }
