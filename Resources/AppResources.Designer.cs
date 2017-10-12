@@ -514,5 +514,53 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("SelectTag", resourceCulture);
             }
         }
+        
+        internal static string Reminders {
+            get {
+                return ResourceManager.GetString("Reminders", resourceCulture);
+            }
+        }
+        
+        internal static string Titles {
+            get {
+                return ResourceManager.GetString("Titles", resourceCulture);
+            }
+        }
+        
+        internal static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        internal static string Time {
+            get {
+                return ResourceManager.GetString("Time", resourceCulture);
+            }
+        }
+        
+        internal static string Priority {
+            get {
+                return ResourceManager.GetString("Priority", resourceCulture);
+            }
+        }
+        
+        internal static string NewReminder {
+            get {
+                return ResourceManager.GetString("NewReminder", resourceCulture);
+            }
+        }
+        
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        internal static string DeleteConfirm {
+            get {
+                return ResourceManager.GetString("DeleteConfirm", resourceCulture);
+            }
+        }
     }
 }

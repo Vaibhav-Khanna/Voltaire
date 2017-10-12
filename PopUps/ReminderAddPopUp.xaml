@@ -21,7 +21,7 @@
       HasBackgroundAnimation="True"/>
   </pages:PopupPage.Animation>
 	<pages:PopupPage.Content>
-        <StackLayout Orientation="Vertical" Spacing="0" Padding="0" BackgroundColor="White" >            
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Start" Spacing="0" Padding="0,0,0,20" BackgroundColor="White" >            
                 <Image Source="Close1.png" Margin="25,25,0,0" HeightRequest="25" WidthRequest="25" VerticalOptions="Start" HorizontalOptions="Start">
             <Image.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding Close}" />
@@ -45,7 +45,7 @@
                 <Label TextColor="#4a4a4a" FontFamily="SanFranciscoDisplay-Semibold" FontSize="16" Text="Priority" />
                  <StackLayout Margin="0,0,0,10" Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="50" BackgroundColor="#979797" Padding="1"  >
                     <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start" WidthRequest="20"/>
-                    <renderers:BorderlessPicker TextColor="{StaticResource GreyishBrown}" BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="FillAndExpand" ItemsSource="{Binding Source}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Title="Choose" />
+                    <renderers:BorderlessPicker TextAlignMent="Start" TextColor="{StaticResource GreyishBrown}" BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="FillAndExpand" ItemsSource="{Binding Source}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Title="Choose" />
                     <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
                 </StackLayout>
                 <StackLayout BackgroundColor="White" Padding="0,20,0,35" Orientation="Horizontal" Spacing="20" >
