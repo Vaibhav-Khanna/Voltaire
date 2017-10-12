@@ -84,15 +84,12 @@ namespace voltaire.PopUps
         }
 
         DateTime reminderdate;
-        DateTime ReminderDate
+        public DateTime ReminderDate
         {
             get { return reminderdate; }
             set 
             {
-
                 reminderdate = value;
-
-
                 RaisePropertyChanged();
             }
         }
