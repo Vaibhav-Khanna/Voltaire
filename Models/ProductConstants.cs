@@ -82,6 +82,8 @@ namespace voltaire.Models
  
         public static List<string> QuantityRange { get; set; } = new List<string>() { "1","2","3","4","5","6","7","8","9","10" };
 
+        public static List<string> TagList { get; set; } = new List<string>() { "Pro", "Nice" , "Late Payment", "Behaviour" };
+
         public static List<string> ProductStatusRange { get; set; } = new List<string>() { QuotationStatus.Draft.ToString(), QuotationStatus.Quotation.ToString(), QuotationStatus.Payed.ToString(), QuotationStatus.Order.ToString() };
     }
 }

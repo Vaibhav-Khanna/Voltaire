@@ -1,5 +1,105 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="voltaire.Pages.QuotationsMainPage">
-	<ContentPage.Content>
-	</ContentPage.Content>
-</ContentPage>
+<?xml version="1.0" encoding="UTF-8"?>
+<base:BasePage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
+    xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire"
+    xmlns:local="clr-namespace:voltaire.Converters;assembly=voltaire"
+    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire" 
+    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
+    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
+    xmlns:attachedProperties="clr-namespace:voltaire.Helpers.AttachedProperties;assembly=voltaire"    
+    x:Class="voltaire.Pages.QuotationsMainPage">
+    <base:BasePage.Resources>
+         <ResourceDictionary>
+           <local:TimeSpanToStringConverter x:Key="TimeSpanToStringConverter" />
+             <local:EnumToStringConverter x:Key="EnumToStringConverter" />
+    </ResourceDictionary>
+    </base:BasePage.Resources>
+	<base:BasePage.Content>
+        <Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
+           <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+             <!--  Toolbar  -->
+            
+        <controls:TToolBar Title="{x:Static resources:AppResources.Quotations}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <controls:TToolBar.RightToolbarItems>
+                <Button Command="{Binding AddQuotation}" WidthRequest="34" HeightRequest="34" BorderRadius="17" BorderColor="White" Text="+" FontSize="25" TextColor="White" BorderWidth="1" VerticalOptions="Center" HorizontalOptions="Center"  />
+          </controls:TToolBar.RightToolbarItems>
+        </controls:TToolBar>
+
+            <!--  Menu  -->
+        
+        <renderers:CustomScrollView Grid.Row="1" Grid.Column="0" BackgroundColor="{StaticResource MaroonBlack}" >
+            <StackLayout x:Name="MenuLayout" 
+            BackgroundColor="{StaticResource Black}" 
+            HorizontalOptions="StartAndExpand" 
+            Orientation="Vertical" 
+            Spacing="0" 
+            WidthRequest="80" />
+        </renderers:CustomScrollView>   
+
+            <!--  Main Layout  -->
+
+             <StackLayout Orientation = "Vertical" Spacing = "0" Grid.Row="1" Grid.Column="1" >    
+            <BoxView Color = "{StaticResource GreyBack}" HeightRequest = "1" HorizontalOptions = "FillAndExpand" />
+            <Grid HorizontalOptions = "FillAndExpand" VerticalOptions = "Start" Padding = "15,15,15,15" BackgroundColor = "White" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height= "Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+             <ColumnDefinition Width="2*" />
+               <ColumnDefinition Width="2*" />
+               <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+                <Label FontFamily = "Raleway-Bold" FontSize = "16" FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "REF" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "0"  />
+                            <Label FontFamily = "Raleway-Bold"  FontAttributes = "Bold" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "Name" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "1"  />
+                            <Label FontFamily = "Raleway-Bold"  FontAttributes = "Bold" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "Date" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "2"  />
+               <Label FontFamily = "Raleway-Bold"  FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "Total" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "3"  />
+               <Label FontFamily = "Raleway-Bold" FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "Status" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "4"  />  
+            </Grid>
+
+                <BoxView Color = "{StaticResource GreyBack}" HeightRequest = "1" HorizontalOptions = "FillAndExpand" />
+
+                <ListView x:Name ="listview" Refreshing="Handle_Refreshing" IsPullToRefreshEnabled="true" SeparatorColor = "{StaticResource GreyBack}" ItemsSource = "{Binding QuotationsItemSource}" HasUnevenRows ="true" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                       <ViewCell> 
+                            <Grid  x:Name = "grid" HorizontalOptions = "FillAndExpand" VerticalOptions = "Center" Margin ="0" Padding = "15,15,15,15" BackgroundColor = "{Binding BackColor}" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height= "Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Ref}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "0"  />
+                                <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Name}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "1"  />
+                                <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Date, StringFormat = '{0:yyyy MMMM dd}' }" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "2"  />
+                                <Label FontFamily = "SanFranciscoDisplay-Regular"  FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding TotalAmount, StringFormat = '${0:N}' }" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "3"  />
+                                <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Status, Converter = {StaticResource EnumToStringConverter} }" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "4"  />  
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            </StackLayout>
+            
+            
+            
+            </Grid>
+	</base:BasePage.Content>
+</base:BasePage>

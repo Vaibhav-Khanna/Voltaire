@@ -66,7 +66,9 @@ namespace voltaire.PageModels
             var list = new List<Contract>();
             list.Add(new Contract(new Customer(){ FirstName = "Johnny", LastName = "Layfield" }){ Name = "New Dummy Contract" ,ModifiedDateTime = DateTime.Now  });
             list.Add(new Contract(new Customer() { FirstName = "Nicki", LastName = "Semtosa" }) { Name = "New Dummy Contract", ModifiedDateTime = DateTime.Now });
+
             var Mock_list = new List<ContractModel>();
+          
             foreach (var item in list)
             {
                 Mock_list.Add(new ContractModel(item));

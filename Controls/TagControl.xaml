@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    x:Class="voltaire.Controls.TagControl"
+    HorizontalOptions="Start" VerticalOptions="Start" Padding="10" >
+	<ContentView.Content>
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <Frame  CornerRadius="10" BackgroundColor="{StaticResource GreyishBrown}" VerticalOptions="Start" HasShadow="false" HorizontalOptions="Start" Padding="8,2,8,2">
+              <Label Text="{Binding TagText}" FontSize="16" FontFamily="Raleway-Regular" HorizontalOptions="Start" VerticalOptions="Center" TextColor="White" />
+            </Frame>
+            <Button Command="{Binding RemoveTag}" IsVisible="{Binding CanEdit}" BackgroundColor="Red" TextColor="White" FontSize="14" BorderColor="Red" WidthRequest="20" HeightRequest="20" Text="X" BorderWidth="0" BorderRadius="10" VerticalOptions="Center" HorizontalOptions="Start" />
+        </StackLayout>
+	</ContentView.Content>
+</ContentView>

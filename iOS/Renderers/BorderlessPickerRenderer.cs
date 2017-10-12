@@ -16,8 +16,19 @@ namespace voltaire.iOS.Renderers
         {
             base.OnElementChanged(e);
 
-            Control.BorderStyle = UITextBorderStyle.None;
-            Control.TextAlignment = UITextAlignment.Right;
+            if (Element != null)
+            {
+                var element = Element as BorderlessPicker;
+
+                Control.BorderStyle = UITextBorderStyle.None;
+
+                if (element.TextAlignMent == TextAlignment.End)
+                    Control.TextAlignment = UITextAlignment.Right;
+                else if (element.TextAlignMent == TextAlignment.Start)
+                    Control.TextAlignment = UITextAlignment.Left;
+                else if (element.TextAlignMent == TextAlignment.Center)
+                    Control.TextAlignment = UITextAlignment.Center;
+            }
 
         }
 

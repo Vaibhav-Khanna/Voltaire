@@ -43,12 +43,7 @@ namespace voltaire.PageModels
 
        });
 
-        public Command AddNoteCommand => new Command(() =>
-       {
-            quotation.PaymentNotes.Add(NoteText);
-            NoteText = "";
-       });
-
+       
 
         public Command ConditionTapped => new Command(() =>
        {
@@ -102,6 +97,8 @@ namespace voltaire.PageModels
             set
             {
                 notetext = value;
+
+                quotation.PaymentNotes = notetext;
 
                 RaisePropertyChanged();
             }

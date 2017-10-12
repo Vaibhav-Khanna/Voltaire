@@ -20,11 +20,54 @@ namespace voltaire.PageModels
            if (string.IsNullOrWhiteSpace(NoteText))
                return;
 
-            var note = new Note(){ Date = DateTime.Now, id = quotation.InternalNotes.Count+1, IsReminderActive = false, Publisher = "Me", Text = NoteText };
-            quotation.InternalNotes.Add(note);
-            NoteSource.Add(new NoteModel(note){ CanEdit = this.CanEdit }); 
-            NoteText = "";
+           if (quotation != null)
+           {
+               var note = new Note() { Date = DateTime.Now, id = quotation.InternalNotes.Count + 1, IsReminderActive = false, Publisher = "Me", Text = NoteText };
+
+               quotation.InternalNotes.Add(note);
+     
+               NoteSource.Add(new NoteModel(note) { CanEdit = this.CanEdit });
+            
+            }
+            else
+            {
+                var note = new Note() { Date = DateTime.Now, id = customer.InternalNotes.Count + 1, IsReminderActive = false, Publisher = "Me", Text = NoteText };
+
+                customer.InternalNotes.Add(note);
+               
+                NoteSource.Add(new NoteModel(note) { CanEdit = this.CanEdit });
+            }
+
+           NoteText = "";
+
        });
+
+
+        Customer customer;
+        public Customer Customer
+        {
+            get { return customer; }
+            set
+            {
+                customer = value;
+
+                CanEdit = true;
+
+                if (customer.InternalNotes == null)
+                    customer.InternalNotes = new List<Note>();
+
+                var list = new List<NoteModel>();
+
+                foreach (var item in customer.InternalNotes)
+                {
+                    list.Add(new NoteModel(item) { CanEdit = this.CanEdit });
+                }
+
+                NoteSource = new ObservableCollection<NoteModel>(list);
+
+                RaisePropertyChanged();
+            }
+        }
 
 
         QuotationsModel quotation;
@@ -89,14 +132,25 @@ namespace voltaire.PageModels
 
         public override void Init(object initData)
         {
+            
             base.Init(initData);
 
             var context = initData as QuotationsModel;
 
             if (context == null)
-                return;
+            {
+                var customer_context = initData as Customer;
 
-            Quotation = context;
+                if (customer_context != null)
+                    Customer = customer_context;
+                else
+                    return;
+            }
+            else
+            {
+                Quotation = context;
+            }
+
 
         }
 
