@@ -11,6 +11,7 @@ using voltaire.Resources;
 using voltaire.Controls;
 using voltaire.PopUps;
 using Rg.Plugins.Popup.Services;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace voltaire.PageModels
@@ -88,7 +89,7 @@ namespace voltaire.PageModels
         {
             if(!string.IsNullOrEmpty(Popup_context.SelectedItem))
             {
-                Tags.Add(new TagControlModel(){ TagText = Popup_context.SelectedItem, CanEdit = CanEdit });
+                Tags.Add(new TagControlModel(Tags,customer.Tags){ TagText = Popup_context.SelectedItem, CanEdit = CanEdit });
                 customer.Tags.Add(Popup_context.SelectedItem);
             }
            
@@ -344,14 +345,17 @@ namespace voltaire.PageModels
                 backbutton = canedit ? AppResources.Cancel : AppResources.Back;
                 companyname = customer.Company;
 
-                var list_tags = new List<TagControlModel>();
+                if (Tags == null)
+                    Tags = new ObservableCollection<TagControlModel>();
+                else
+                    Tags.Clear();
 
                 foreach (var item in customer.Tags)
                 {
-                    list_tags.Add(new TagControlModel(){ TagText = item , CanEdit = CanEdit });
+                    Tags.Add(new TagControlModel(Tags,customer.Tags){ TagText = item , CanEdit = CanEdit });
                 }
-
-                Tags = new ObservableCollection<TagControlModel>(list_tags);
+                    
+                //Tags = new ObservableCollection<TagControlModel>(Tags.ToList());
 
                 RaisePropertyChanged(); 
                 RaisePropertyChanged(nameof(Title));
@@ -414,7 +418,7 @@ namespace voltaire.PageModels
    
             if (!CanEdit)
             {
-                pages.Add(new TTab(this) { Name = AppResources.Reminder, View = typeof(ContentView) });
+                //pages.Add(new TTab(this) { Name = AppResources.Reminder, View = typeof(ContentView) });
                 pages.Add(new TTab(this) { Name = AppResources.Map, View = typeof(Pages.MapTabPage) });
                 pages.Add(new TTab(this) { Name = AppResources.Orders, View = typeof(Pages.OrderListTabPage) });
                 pages.Add(new TTab(this) { Name = AppResources.Quotations, View = typeof(Pages.QuotationsTabPage) });

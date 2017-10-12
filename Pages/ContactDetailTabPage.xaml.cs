@@ -73,6 +73,10 @@ namespace voltaire.Pages
                     if(view.Any())
                         tagContainer.Children.Remove(view.FirstOrDefault());
                 }
+            }
+            else if(e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Reset)
+            {
+                tagContainer.Children.Clear();
             }       
         }
 
@@ -92,7 +96,10 @@ namespace voltaire.Pages
             if (e.PropertyName == "Tags")
             {
                 var main_context = BindingContext as ContactDetailPageModel;
-                AddTags(main_context.Tags.ToList());
+                if (main_context != null)
+                {
+                    AddTags(main_context.Tags.ToList());                   
+                }
             }
         }
 
