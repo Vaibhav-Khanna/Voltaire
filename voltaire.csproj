@@ -447,9 +447,6 @@
     <Reference Include="SignaturePad.Forms">
       <HintPath>packages\Xamarin.Controls.SignaturePad.Forms.2.1.1\lib\portable-net45+win+wp8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SignaturePad.Forms.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>packages\Newtonsoft.Json.6.0.3\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Reactive.Interfaces">
       <HintPath>packages\Rx-Interfaces.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.Interfaces.dll</HintPath>
     </Reference>
@@ -497,6 +494,18 @@
     </Reference>
     <Reference Include="Syncfusion.SfListView.XForms">
       <HintPath>packages\Syncfusion.Xamarin.SfListView.15.3.0.33\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.SfListView.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="McStreamy.NetStandard10">
+      <HintPath>packages\McStreamy.1.0.0\lib\netstandard1.0\McStreamy.NetStandard10.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="JsonRpc.CoreCLR.Client">
+      <HintPath>packages\JsonRpc.CoreCLR.Client.1.0.1\lib\netstandard1.1\JsonRpc.CoreCLR.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="OdooRpc.CoreCLR.Client">
+      <HintPath>packages\OdooRpc.CoreCLR.Client.1.0.0\lib\netstandard1.1\OdooRpc.CoreCLR.Client.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

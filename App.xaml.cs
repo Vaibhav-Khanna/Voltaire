@@ -30,7 +30,16 @@ namespace voltaire
 
             MainPage = homeContainer;
 
+            InitDatabase();
+
         }
+
+
+        async void InitDatabase()
+        {
+            await LocalDB.LoginToOdoo();
+        }
+
 
         protected override void OnStart()
         {
