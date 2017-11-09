@@ -56,16 +56,16 @@ namespace voltaire.PageModels
 
 
 
-		public override void Init(object initData)
-		{
-			base.Init(initData);
+        public override void Init(object initData)
+        {
+            base.Init(initData);
 
 
             // Mock Data
 
             var list = new List<Contract>();
-            list.Add(new Contract(new Customer(){ FirstName = "Johnny", LastName = "Layfield" }){ Name = "New Dummy Contract" ,ModifiedDateTime = DateTime.Now  });
-            list.Add(new Contract(new Customer() { FirstName = "Nicki", LastName = "Semtosa" }) { Name = "New Dummy Contract", ModifiedDateTime = DateTime.Now });
+            list.Add(new Contract { Customer = new Customer() { FirstName = "Johnny", LastName = "Layfield" }, Name = "New Dummy Contract" ,ModifiedDateTime = DateTime.Now  });
+            list.Add( new Contract(){ Customer = new Customer() { FirstName = "Nicki", LastName = "Semtosa" },  Name = "New Dummy Contract", ModifiedDateTime = DateTime.Now });
 
             var Mock_list = new List<ContractModel>();
           

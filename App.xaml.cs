@@ -30,16 +30,9 @@ namespace voltaire
 
             MainPage = homeContainer;
 
-            InitDatabase();
+           
 
         }
-
-
-        async void InitDatabase()
-        {
-            await LocalDB.LoginToOdoo();
-        }
-
 
         protected override void OnStart()
         {
@@ -57,13 +50,13 @@ namespace voltaire
         {
 			// Handle when your app sleeps
 
-            // Shutdown the database for integrity
-			LocalDB.ShutDown();
+            // Shutdown the database for integrity			
         }
 
         protected override void OnResume()
         {
             // Handle when your app resumes
         }
+
     }
 }

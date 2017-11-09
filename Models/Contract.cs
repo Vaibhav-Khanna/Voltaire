@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using voltaire.DataStore.Abstraction;
 
 namespace voltaire.Models
 {
-    public class Contract
+    public class Contract : BaseDataObject
     {       
-        public Contract(Customer customer)
-        {
-            Customer = customer;
-        }
 
-        public Customer Customer;
+
+
+        public Customer Customer { get; set; }
 
         public string Name { get; set; }
 

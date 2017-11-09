@@ -2,11 +2,12 @@
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.IO;
+using voltaire.DataStore.Abstraction;
 
 namespace voltaire.Models
 {
     
-    public class Customer
+    public class Customer : BaseDataObject
     {
         public string FirstName { get; set; }
 

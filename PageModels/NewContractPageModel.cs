@@ -179,7 +179,7 @@ namespace voltaire.PageModels
 
             if(context.Item2==null)
             {
-                var _contract = new Contract(Customer){ ModifiedDateTime = DateTime.Now };
+                var _contract = new Contract(){ Customer = Customer, ModifiedDateTime = DateTime.Now };
                 customer.Contracts.Add(_contract);
                 Contract = _contract;
 				NewContract = $"New contract for {customer.FirstName} {customer.LastName}";
