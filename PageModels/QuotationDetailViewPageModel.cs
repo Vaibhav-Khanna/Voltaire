@@ -99,15 +99,15 @@ namespace voltaire.PageModels
             }
         }
 
-        Customer customer; 
-        public Customer Customer
+        Partner customer; 
+        public Partner Customer
         {
             get { return customer; }
             set
             {
                 customer = value;
 
-                CustomerName = $"{customer.FirstName} {customer.LastName}";
+                CustomerName = $"{customer.Name}";
 
                 RaisePropertyChanged();
             }
@@ -312,7 +312,7 @@ namespace voltaire.PageModels
         {
             base.Init(initData);
 
-            var _customer = initData as Tuple<Customer,bool,QuotationsModel>;  // T1 represents the customer object data , T2 is a bool which represents if its a new quotationpage
+            var _customer = initData as Tuple<Partner,bool,QuotationsModel>;  // T1 represents the customer object data , T2 is a bool which represents if its a new quotationpage
 
             if(_customer!=null)
             {

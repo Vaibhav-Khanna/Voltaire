@@ -8,51 +8,84 @@ using voltaire.DataStore.Abstraction;
 namespace voltaire.Models
 {
 
-    public class Customer : BaseDataObject
-    {
+    //public class Partner : BaseDataObject
+    //{
 
-        public string FirstName { get; set; }
+    //    public string Name { get; set; }
 
-        public string LastName { get; set; }
+    //    public string Address { get; set; }
 
-        public string Address { get; set; }
+    //    public string Status { get; set; }
 
-        public string Status { get; set; }
+    //    public string Phone { get; set; }
 
-        public string Phone { get; set; }
+    //    public string CompanyName { get; set; }
 
-        public string CompanyName { get; set; }
+    //    public string Email { get; set; }
 
-        public string Email { get; set; }
+    //    public int? Weight { get; set; }
 
-        public int? Weight { get; set; }
+    //    public string Grade { get; set; }
 
-        public string Grade { get; set; }
+    //    public string Website { get; set; }
 
-        public string Website { get; set; }
+    //    public List<Note> InternalNotes { get; set; } = new List<Note>();
 
-        public List<Note> InternalNotes { get; set; } = new List<Note>();
+    //    public string PermanentNote { get; set; }
 
-        public string PermanentNote { get; set; }
+    //    public List<string> Tags { get; set; } = new List<string>();
 
-        public List<string> Tags { get; set; } = new List<string>();
+    //    public Nullable<DateTime> LastVisit { get; set; }
 
-        public Nullable<DateTime> LastVisit { get; set; }
+    //    public bool CanEdit { get; set; } = false;
 
-        public bool CanEdit { get; set; } = false;
+    //    public List<CustomerAddressLocation> CustomerAddresses { get; set; }
 
-        public List<CustomerAddressLocation> CustomerAddresses { get; set; }
+    //    public List<QuotationsModel> Quotations { get; set; } = new List<QuotationsModel>();
 
-        public List<QuotationsModel> Quotations { get; set; } = new List<QuotationsModel>();
+    //    public List<Contract> Contracts { get; set; } = new List<Contract>();
 
-        public List<Contract> Contracts { get; set; } = new List<Contract>();
-
-    }
-
+    //}
 
 
     public class Partner : BaseDataObject
     {
+        [JsonIgnore]
+        public string Address { get; set; }
+
+        [JsonIgnore]
+        public string Status { get; set; }
+
+        [JsonIgnore]
+        public int? Weight { get; set; }
+
+        [JsonIgnore]
+        public string Grade { get; set; }
+             
+        [JsonIgnore]
+        public List<Note> InternalNotes { get; set; } = new List<Note>();
+
+        [JsonIgnore]
+        public string PermanentNote { get; set; }
+
+        [JsonIgnore]
+        public List<string> Tags { get; set; } = new List<string>();
+
+        [JsonIgnore]
+        public Nullable<DateTime> LastVisit { get; set; }
+
+        [JsonIgnore]
+        public bool CanEdit { get; set; } = false;
+
+        [JsonIgnore]
+        public List<CustomerAddressLocation> CustomerAddresses { get; set; }
+
+        [JsonIgnore]
+        public List<QuotationsModel> Quotations { get; set; } = new List<QuotationsModel>();
+
+        [JsonIgnore]
+        public List<Contract> Contracts { get; set; } = new List<Contract>();
+
         [JsonProperty("active")]
         public bool Active { get; set; }
 
@@ -246,7 +279,7 @@ namespace voltaire.Models
         public string Mobile { get; set; }
 
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = "Bill Goldberg";
 
         [JsonProperty("notify_email")]
         public bool NotifyEmail { get; set; }
@@ -403,7 +436,7 @@ namespace voltaire.Models
 
         [JsonProperty("zip")]
         public string Zip { get; set; }
-    
+
     }
 
 

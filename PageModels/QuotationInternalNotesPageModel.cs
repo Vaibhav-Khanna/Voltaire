@@ -43,8 +43,8 @@ namespace voltaire.PageModels
        });
 
 
-        Customer customer;
-        public Customer Customer
+        Partner customer;
+        public Partner Customer
         {
             get { return customer; }
             set
@@ -139,7 +139,7 @@ namespace voltaire.PageModels
 
             if (context == null)
             {
-                var customer_context = initData as Customer;
+                var customer_context = initData as Partner;
 
                 if (customer_context != null)
                     Customer = customer_context;

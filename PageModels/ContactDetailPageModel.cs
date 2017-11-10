@@ -21,7 +21,7 @@ namespace voltaire.PageModels
     public class ContactDetailPageModel : BasePageModel
     {
        
-        Customer _customer;
+        Partner _customer;
 
         public Command tap_Toolbar  => new Command( async () => 
         {
@@ -37,8 +37,7 @@ namespace voltaire.PageModels
             {
                 customer.Address = address;
                 customer.Weight = weight;
-                customer.FirstName = firstname;
-                customer.LastName = lastname;
+                customer.Name = firstname;               
                 customer.Phone = phone;
                 customer.Website = website;
                 customer.LastVisit = lastvisit;
@@ -174,18 +173,7 @@ namespace voltaire.PageModels
 				RaisePropertyChanged();
 			}
 		}
-
-		private string lastname;
-
-		public string LastName
-		{
-            get { return lastname; }
-			set
-			{
-                lastname = value;
-				RaisePropertyChanged();
-			}
-		}
+       		
 
         private int? weight;
 
@@ -322,7 +310,7 @@ namespace voltaire.PageModels
             }
         }
 
-        public Customer customer { get 
+        public Partner customer { get 
             {
                 return _customer;
             } set
@@ -330,8 +318,8 @@ namespace voltaire.PageModels
                
                 _customer = value;
 
-                firstname = customer.FirstName;
-                lastname = customer.LastName;
+                firstname = customer.Name;
+               
                 weight = customer.Weight;
                 email = customer.Email;
                 address = customer.Address;
@@ -340,7 +328,7 @@ namespace voltaire.PageModels
                 lastvisit = customer.LastVisit;
                 canedit = customer.CanEdit;
                 NoteText = customer.PermanentNote;
-                title = canedit ? AppResources.Update : $"{customer.FirstName} {customer.LastName}";
+                title = canedit ? AppResources.Update : $"{customer.Name}";
                 toolbarbutton = canedit ? AppResources.Save : AppResources.Modify;
                 backbutton = canedit ? AppResources.Cancel : AppResources.Back;
                 companyname = customer.CompanyName;
@@ -360,7 +348,7 @@ namespace voltaire.PageModels
                 RaisePropertyChanged(); 
                 RaisePropertyChanged(nameof(Title));
                 RaisePropertyChanged(nameof(FirstName));
-                RaisePropertyChanged(nameof(LastName));
+               
                 RaisePropertyChanged(nameof(Weight));
                 RaisePropertyChanged(nameof(Phone));
                 RaisePropertyChanged(nameof(Email));
@@ -400,7 +388,7 @@ namespace voltaire.PageModels
             if (returnedData == null)
                 return;
 
-            customer = (Customer)returnedData;
+            customer = (Partner)returnedData;
      
         }
 
@@ -409,7 +397,7 @@ namespace voltaire.PageModels
             base.Init(initData);
 
             if(initData!=null)
-            customer = (Customer)initData;
+            customer = (Partner)initData;
 
             ObservableCollection<TTab> pages = new ObservableCollection<TTab>();
 

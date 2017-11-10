@@ -108,9 +108,9 @@ namespace voltaire.PageModels
 
             // mock data
             var items = new List<CourseAgendaCellModel>() { };
-            items.Add(new CourseAgendaCellModel(new CheckIn(new Customer() { FirstName = "Smauel" }){ Address ="palo alot", Latitude = 37.795296, Longitude = -122.443807, DateTime = DateTime.Now }){ Index = "1" });
-            items.Add(new CourseAgendaCellModel(new CheckIn(new Customer(){ FirstName = "dsdsdd" }){ Address = "Nevada", Latitude = 37.766804, Longitude = -122.432821, DateTime = DateTime.Now.AddDays(-1) }){ Index = "2" });
-            items.Add(new CourseAgendaCellModel(new CheckIn(new Customer(){ FirstName = "Osdsd" }){ Address = "Mads", Latitude = 37.766262, Longitude = -122.389562,DateTime = DateTime.Now.AddDays(-2) }){ Index = "3" });
+            items.Add(new CourseAgendaCellModel(new CheckIn(new Partner() { Name = "Smauel" }){ Address ="palo alot", Latitude = 37.795296, Longitude = -122.443807, DateTime = DateTime.Now }){ Index = "1" });
+            items.Add(new CourseAgendaCellModel(new CheckIn(new Partner(){ Name = "dsdsdd" }){ Address = "Nevada", Latitude = 37.766804, Longitude = -122.432821, DateTime = DateTime.Now.AddDays(-1) }){ Index = "2" });
+            items.Add(new CourseAgendaCellModel(new CheckIn(new Partner(){ Name = "Osdsd" }){ Address = "Mads", Latitude = 37.766262, Longitude = -122.389562,DateTime = DateTime.Now.AddDays(-2) }){ Index = "3" });
             // mock data
 
 

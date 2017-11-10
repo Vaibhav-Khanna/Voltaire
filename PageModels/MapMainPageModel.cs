@@ -72,9 +72,9 @@ namespace voltaire.PageModels
         public ObservableCollection<PartnerGrade> partnerGrades { get; set; }
 
 
-        List<Customer> AllCustomers;
-        List<Customer> customers;
-        public List<Customer> Customers
+        List<Partner> AllCustomers;
+        List<Partner> customers;
+        public List<Partner> Customers
         {
             get { return customers; }
             set
@@ -86,7 +86,7 @@ namespace voltaire.PageModels
 
         void FilterOutAddresses()
         {
-            List<Customer> filter_list = new List<Customer>();
+            List<Partner> filter_list = new List<Partner>();
 
             switch (Weight)
             {
@@ -125,7 +125,7 @@ namespace voltaire.PageModels
             }
 
 
-            Customers = new List<Customer>(filter_list);
+            Customers = new List<Partner>(filter_list);
 
         }
 
@@ -134,7 +134,7 @@ namespace voltaire.PageModels
             base.Init(initData);
 
             // Mock Data
-            AllCustomers = new List<Customer>();
+            AllCustomers = new List<Partner>();
 
 			partnerGrades = new ObservableCollection<PartnerGrade>
 			{

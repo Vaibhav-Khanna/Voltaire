@@ -18,11 +18,37 @@ namespace voltaire.PageModels
 
     public class ContactsPageModel : BasePageModel
     {
-        public string CustomersCount { get; set; }
+        
+        string customersCount;
+        public string CustomersCount 
+        { 
+            get { return customersCount; }
+            set { customersCount = value; 
+                RaisePropertyChanged();
+            }
+        }
 
-        public ObservableCollection<Customer> customers { get; set; }
+        ObservableCollection<Partner> customers;
+        public ObservableCollection<Partner> Customers 
+        { 
+            get { return customers; }
+            set
+            {
+                customers = value;
+                RaisePropertyChanged();
+            }
+        }
 
-        public ObservableCollection<ObservableGroupCollection<string, CustomerModel>> CustomersItems { get; set; }
+        ObservableCollection<ObservableGroupCollection<string, CustomerModel>> customersitems;
+        public ObservableCollection<ObservableGroupCollection<string, CustomerModel>> CustomersItems 
+        {
+            get { return customersitems; }
+            set
+            {
+                customersitems = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public ICommand FiltersLayoutCommand => new Command(FiltersLayoutAppearing);
 
@@ -85,7 +111,8 @@ namespace voltaire.PageModels
 
         async void Get()
         {                     
-            var result = await Store.GetItemsAsync(false);           
+            var result = await Store.GetItemsAsync(false);
+            Init(result.ToList());
         }
 
         public Command AddContact => new Command(async() =>
@@ -96,55 +123,32 @@ namespace voltaire.PageModels
         public Command RefreshList => new Command(async(obj) =>
        {
             var result = await Store.GetItemsAsync(true);
+            Init(result.ToList());
 
             IsRefreshing = false;
+
        });
 
 
         //INIT data form page  freshmvvm
         public override void Init(object initData)
         {
-            
-            customers = new ObservableCollection<Customer>
-            {
-                new Customer {
-                    FirstName= "Bill",
-                    LastName="Anderson",
-                    Grade="Pro",
-                    CompanyName = "Matsiya IT",
-                    Weight= 4,
-                    Email = "vaibhav@gmail.com",
-                    Address = "Jammu and Kashmir",
-                    Phone = "8872892265",
-                    Website = "www.matisya.com",
-                    LastVisit=new DateTime(2017, 6, 3),
-                    CustomerAddresses = new List<CustomerAddressLocation>(){ new CustomerAddressLocation()
-                        {
-                            Address = "8 c Beauty Avenue, Phase 1, Amritsar, Punjab, 143001",
-                            Title = "Matsiya",
-                            Latitude = 31.655,
-                            Longitude = 74.879,
-                        }, new CustomerAddressLocation()
-                        {
-                            Address = "Metro Cash and carry",
-                            Title = "Metro",
-                            Latitude = 31.669,
-                            Longitude = 74.882
-                        } }                    
-                    
-                }
-              
-            };
+
+            var list = initData as List<Partner>;
+
+            if (list == null)
+                list = new List<Partner>();
+
+            Customers = new ObservableCollection<Partner>(list);
+
+            if (Customers.Count > 1) CustomersCount = Customers.Count + " Contacts";
+            else CustomersCount = Customers.Count + " Contact";
 
 
-            if (customers.Count > 1) CustomersCount = customers.Count + " Contacts";
-            else CustomersCount = customers.Count + " Contact";
-
-
-            var models = customers.Select(i => new CustomerModel(i) { navigation = CoreMethods }).ToList();
+            var models = Customers.Select(i => new CustomerModel(i) { navigation = CoreMethods }).ToList();
 
             var groupedData =
-                models.OrderBy(p => p.Customer.LastName)
+                models.OrderBy(p => p.Customer.Name)
                     .GroupBy(p => p.NameSort)
                     .Select(p => new ObservableGroupCollection<string, CustomerModel>(p))
                     .ToList();

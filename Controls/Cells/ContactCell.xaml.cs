@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using FreshMvvm;
 using voltaire.PageModels;
+using System.Linq;
 
 namespace voltaire.Controls.Cells
 {
@@ -18,16 +19,21 @@ namespace voltaire.Controls.Cells
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
+          
             var model = (CustomerModel)BindingContext;
 
+            if (model == null)
+                return;
+
+            var name_array = model.Customer.Name?.Split(' ');
 
             if (model != null)
             {
                 FullNameLabel.FormattedText = new FormattedString
                 {
                     Spans = {
-                new Span { Text = model.Customer.FirstName, FontAttributes = FontAttributes.None, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"},
-                new Span { Text = $" {model.Customer.LastName}", FontSize = 20, FontFamily="SanFranciscoDisplay-Bold"} }
+                        new Span { Text = name_array?.First() + " " , FontAttributes = FontAttributes.None, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"},
+                        new Span { Text = name_array?.Count() > 1 ? name_array?.LastOrDefault() : string.Empty , FontSize = 20, FontFamily="SanFranciscoDisplay-Bold"} }
                 };
             }
         }

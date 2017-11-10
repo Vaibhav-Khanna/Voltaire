@@ -10,7 +10,7 @@ namespace voltaire.Models
 
 
 
-        public Customer Customer { get; set; }
+        public Partner Customer { get; set; }
 
         public string Name { get; set; }
 

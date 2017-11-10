@@ -200,7 +200,7 @@
     <Compile Include="Pages\ContactsPage.xaml.cs">
       <DependentUpon>ContactsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Partner.cs" />
     <Compile Include="Helpers\Collections\Grouping.cs" />
     <Compile Include="Controls\Cells\ContactCell.xaml.cs">
       <DependentUpon>ContactCell.xaml</DependentUpon>

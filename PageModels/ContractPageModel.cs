@@ -10,8 +10,8 @@ namespace voltaire.PageModels
 {
     public class ContractPageModel : BasePageModel
     {
-        Customer customer;
-        public Customer Customer 
+        Partner customer;
+        public Partner Customer 
         { 
             get { return customer; }
             set
@@ -36,13 +36,13 @@ namespace voltaire.PageModels
         public Command AddContract => new Command( async(obj) =>
        {
             var navigation = obj as FreshMvvm.IPageModelCoreMethods;
-            await navigation.PushPageModel<NewContractPageModel>(new Tuple<Customer,Contract>(Customer,null));
+            await navigation.PushPageModel<NewContractPageModel>(new Tuple<Partner,Contract>(Customer,null));
        });
 
         public Command ItemTapped => new Command( async(obj) =>
        {
             var navigation = obj as Tuple<FreshMvvm.IPageModelCoreMethods, Contract>;
-            await navigation.Item1.PushPageModel<NewContractPageModel>(new Tuple<Customer,Contract>(Customer,navigation.Item2));
+            await navigation.Item1.PushPageModel<NewContractPageModel>(new Tuple<Partner,Contract>(Customer,navigation.Item2));
        });
 
 
@@ -75,7 +75,7 @@ namespace voltaire.PageModels
         {
             base.Init(initData);
 
-            var context = initData as Customer;
+            var context = initData as Partner;
 
             if (context == null)
                 return;

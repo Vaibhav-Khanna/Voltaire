@@ -12,9 +12,9 @@ namespace voltaire.PageModels
     public class QuotationsPageModel : BasePageModel
     {
 
-		Customer customer;
+		Partner customer;
 
-		public Customer Customer
+		public Partner Customer
 		{
 			get { return customer; }
 			set
@@ -73,7 +73,7 @@ namespace voltaire.PageModels
 
         public Command AddQuotation => new Command(async (object NavigationService) =>
        {
-            await ((IPageModelCoreMethods)NavigationService).PushPageModel<QuotationDetailViewPageModel>(new Tuple<Customer,bool,QuotationsModel>(customer,true,null));
+            await ((IPageModelCoreMethods)NavigationService).PushPageModel<QuotationDetailViewPageModel>(new Tuple<Partner,bool,QuotationsModel>(customer,true,null));
        });
 
 
@@ -90,7 +90,7 @@ namespace voltaire.PageModels
         public Command TapQuotation => new Command(async (object obj) =>
        {
             var item = obj as Tuple<IPageModelCoreMethods, QuotationsModel>;
-            await item.Item1.PushPageModel<QuotationDetailViewPageModel>(new Tuple<Customer, bool, QuotationsModel>(customer, false, item.Item2));
+            await item.Item1.PushPageModel<QuotationDetailViewPageModel>(new Tuple<Partner, bool, QuotationsModel>(customer, false, item.Item2));
        });
 
         public string SearchText { get; set; }
@@ -175,7 +175,7 @@ namespace voltaire.PageModels
         {
             base.Init(initData);
 
-			var context = initData as Customer;
+			var context = initData as Partner;
 
 			if (context == null)
 				return;
