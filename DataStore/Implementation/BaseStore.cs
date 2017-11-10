@@ -56,7 +56,7 @@ namespace voltaire.DataStore.Implementation
             await InitializeStore().ConfigureAwait(false);
             await PullLatestAsync().ConfigureAwait(false);
             var items = await Table.Where(s => s.Id == id).ToListAsync().ConfigureAwait(false);
-
+           
             if (items == null || items.Count == 0)
                 return null;
 
@@ -100,7 +100,7 @@ namespace voltaire.DataStore.Implementation
             }
             try
             {
-                await StoreManager.MobileService.SyncContext.PushAsync(new CancellationToken()).ConfigureAwait(false);
+                await StoreManager.MobileService.SyncContext.PushAsync(new CancellationToken(false)).ConfigureAwait(false);
                 if (!(await PullLatestAsync().ConfigureAwait(false)))
                     return false;
             }
@@ -111,6 +111,7 @@ namespace voltaire.DataStore.Implementation
             }
             finally
             {
+                
             }
             return true;
         }
@@ -118,7 +119,7 @@ namespace voltaire.DataStore.Implementation
         public async Task<bool> PullLatestAsync()
         {
            
-            if (Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
+            if (!Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
             {
                 Debug.WriteLine("Unable to pull items, we are offline");
                 return false;
@@ -126,7 +127,7 @@ namespace voltaire.DataStore.Implementation
 
             try
             {
-                await Table.PullAsync<T>($"all{Identifier}", Table.CreateQuery(), false,new CancellationToken(),new PullOptions(){ MaxPageSize = 100 }).ConfigureAwait(false);
+                await Table.PullAsync<T>($"all{Identifier}", Table.CreateQuery(), false,new CancellationToken(false),new PullOptions(){ MaxPageSize = 100 }).ConfigureAwait(false);
             }
             catch (Exception ex)
             {

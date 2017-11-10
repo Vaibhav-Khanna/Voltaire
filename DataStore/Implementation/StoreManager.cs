@@ -10,7 +10,10 @@ using Newtonsoft.Json.Linq;
 using voltaire.DataStore.Abstraction;
 using voltaire.DataStore.Abstraction.Stores;
 using voltaire.Models;
+using System.Net.Http;
 using Xamarin.Forms;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace voltaire.DataStore.Implementation
 {
@@ -32,7 +35,6 @@ namespace voltaire.DataStore.Implementation
         public IContractStore ContractStore => contractStore ?? (contractStore = DependencyService.Get<IContractStore>());
 
 
-
         #region iStoreManager Implementation
 
         public Task DropEverythingAsync()
@@ -50,6 +52,7 @@ namespace voltaire.DataStore.Implementation
 
 
         object locker = new object();
+
         public async Task InitializeAsync()
         {
             MobileServiceSQLiteStore store;
@@ -61,13 +64,14 @@ namespace voltaire.DataStore.Implementation
                     return;
 
                 IsInitialized = true;
-               // var dbId = Settings.DatabaseId;
-               // var path = $"syncstore{dbId}.db";
-                MobileService = new MobileServiceClient("https://xyz.azurewebsites.net");
-                store = new MobileServiceSQLiteStore("path");
-                store.DefineTable<Customer>();
+                // var dbId = Settings.DatabaseId;
+                // var path = $"syncstore{dbId}.db";
+                MobileService = new MobileServiceClient("http://voltairecrm.azurewebsites.net");
+                store = new MobileServiceSQLiteStore("syncstore.db");
+                store.DefineTable<Partner>();
                 store.DefineTable<Contract>();
                 store.DefineTable<Quotation>();
+                store.DefineTable<StoreSettings>();
 
                 //TODO Add rest of the tables
             }
@@ -75,7 +79,6 @@ namespace voltaire.DataStore.Implementation
             await MobileService.SyncContext.InitializeAsync(store, new MobileServiceSyncHandler()).ConfigureAwait(false);
 
             await LoadCachedTokenAsync().ConfigureAwait(false);
-
         }
 
 
@@ -103,6 +106,7 @@ namespace voltaire.DataStore.Implementation
         #endregion
 
 
+
         public async Task<MobileServiceUser> LoginAsync(string username, string password)
         {
             if (!IsInitialized)
@@ -111,15 +115,41 @@ namespace voltaire.DataStore.Implementation
             }
 
             var credentials = new JObject();
-            credentials["email"] = username;
+            credentials["username"] = username;
             credentials["password"] = password;
 
-            MobileServiceUser user = await MobileService.LoginAsync("Provider", credentials);
-            // TODO add the provider
+            var uri = new Uri("http://voltairecrm.azurewebsites.net/api/login");
 
-            await CacheToken(user);
+            try
+            {
+                var _client = new HttpClient();
+                var json_cred = credentials.ToString();
+                var content = new StringContent(json_cred, Encoding.UTF8, "application/json");
 
-            return user;
+                var response = await _client.PostAsync(uri, content);
+       
+                if (response.IsSuccessStatusCode)
+                {
+                    var content2 = await response.Content.ReadAsStringAsync();
+                   
+                    var User = JsonConvert.DeserializeObject<USER>(content2);
+
+                    MobileServiceUser user = new MobileServiceUser(User.UserId.ToString()){ MobileServiceAuthenticationToken = User.Token };
+          
+                    await CacheToken(user);
+
+                    return user;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+           
         }
 
 
@@ -147,9 +177,20 @@ namespace voltaire.DataStore.Implementation
         async Task SaveSettingsAsync(StoreSettings settings) =>
             await MobileService.SyncContext.Store.UpsertAsync(nameof(StoreSettings), new[] { JObject.FromObject(settings) }, true);
 
-        async Task<StoreSettings> ReadSettingsAsync() =>
-            (await MobileService.SyncContext.Store.LookupAsync(nameof(StoreSettings), StoreSettings.StoreSettingsId))?.ToObject<StoreSettings>();
-
+        public async Task<StoreSettings> ReadSettingsAsync()
+        {
+            try
+            {
+                var response = (await MobileService.SyncContext.Store.LookupAsync(nameof(StoreSettings), StoreSettings.StoreSettingsId))?.ToObject<StoreSettings>();
+                return response;
+            }
+            catch(Exception)
+            {
+                return null;
+            }
+        } 
+       
+            
 
         async Task CacheToken(MobileServiceUser user)
         {
@@ -160,8 +201,8 @@ namespace voltaire.DataStore.Implementation
             };
 
             await SaveSettingsAsync(settings);
-
         }
+
 
         async Task LoadCachedTokenAsync()
         {
@@ -214,6 +255,15 @@ namespace voltaire.DataStore.Implementation
             }
         }
 
+
+        public class USER
+        {
+            [JsonProperty("token")]
+            public string Token { get; set; }
+
+            [JsonProperty("userId")]
+            public long UserId { get; set; }
+        }
 
     }
 }

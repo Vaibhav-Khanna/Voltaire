@@ -40,7 +40,11 @@
                            Source="add"
                            VerticalOptions="Center"
                            WidthRequest="35"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddContact}" />   
+                    </StackLayout.GestureRecognizers>
                 </StackLayout>
+                
             </controls:TToolBar.RightToolbarItems>
         </controls:TToolBar>
      <!--  Menu  -->
@@ -102,6 +106,9 @@
                                        Grid.ColumnSpan="{Binding listColumnSpan}" 
                                        GroupDisplayBinding="{Binding Key}"
                                        HasUnevenRows="True"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsRefreshing}"
+                RefreshCommand="{Binding RefreshList}"
                                        IsGroupingEnabled="True"
                                        ItemsSource="{Binding CustomersItems}">
                 <ListView.GroupHeaderTemplate>

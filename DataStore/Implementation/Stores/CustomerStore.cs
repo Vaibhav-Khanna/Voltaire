@@ -4,8 +4,8 @@ using voltaire.Models;
 
 namespace voltaire.DataStore.Implementation.Stores
 {
-    public class CustomerStore :  BaseStore<Customer>, ICustomerStore
+    public class CustomerStore :  BaseStore<Partner>, ICustomerStore
     {
-        public override string Identifier => "Customer";
+        public override string Identifier => "Partner";
     }
 }

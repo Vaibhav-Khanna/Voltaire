@@ -4,6 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using FreshMvvm;
+using voltaire.DataStore.Abstraction.Stores;
+using voltaire.DataStore.Implementation;
+using voltaire.DataStore.Implementation.Stores;
 using voltaire.Helpers.Collections;
 using voltaire.Models;
 using voltaire.PageModels.Base;
@@ -11,14 +14,19 @@ using Xamarin.Forms;
 
 namespace voltaire.PageModels
 {
+
+
     public class ContactsPageModel : BasePageModel
     {
         public string CustomersCount { get; set; }
+
         public ObservableCollection<Customer> customers { get; set; }
 
         public ObservableCollection<ObservableGroupCollection<string, CustomerModel>> CustomersItems { get; set; }
 
         public ICommand FiltersLayoutCommand => new Command(FiltersLayoutAppearing);
+
+        private ICustomerStore Store => StoreManager.CustomerStore;
 
         private int? _listColumnSpan;
 
@@ -52,7 +60,7 @@ namespace voltaire.PageModels
 
         public ContactsPageModel()
         {
-
+            Get();
         }
 
         private void FiltersLayoutAppearing()
@@ -74,18 +82,36 @@ namespace voltaire.PageModels
 
         public ObservableCollection<PartnerGrade> partnerGrades { get; set; }
 
+
+        async void Get()
+        {                     
+            var result = await Store.GetItemsAsync(false);           
+        }
+
+        public Command AddContact => new Command(async() =>
+       {
+            var result = await Store.InsertAsync(new Partner());
+       });
+
+        public Command RefreshList => new Command(async(obj) =>
+       {
+            var result = await Store.GetItemsAsync(true);
+
+            IsRefreshing = false;
+       });
+
+
         //INIT data form page  freshmvvm
         public override void Init(object initData)
         {
-
-
+            
             customers = new ObservableCollection<Customer>
             {
                 new Customer {
                     FirstName= "Bill",
                     LastName="Anderson",
                     Grade="Pro",
-                    Company = "Matsiya IT",
+                    CompanyName = "Matsiya IT",
                     Weight= 4,
                     Email = "vaibhav@gmail.com",
                     Address = "Jammu and Kashmir",
@@ -106,101 +132,8 @@ namespace voltaire.PageModels
                             Longitude = 74.882
                         } }                    
                     
-                },
-                new Customer {
-                    FirstName= "Milton",
-                    LastName="Aaron",
-                    Grade="Client Amateur"
-                },
-                new Customer {
-                    FirstName= "Reid",
-                    LastName="Alex"
-                },
-
-                new Customer {
-                    FirstName= "Fred",
-                    LastName="Hojberg",
-                    Grade="Client Amateur"
-                },
-
-                new Customer {
-                    FirstName= "Bruce",
-                    LastName="Ballard"
-                },
-                new Customer {
-                    FirstName= "Alex",
-                    LastName="Bartley",
-                    Grade="Client Amateur"
-                },
-                new Customer {
-                    FirstName= "Michael",
-                    LastName="Jordan"
-                },
-                new Customer {
-                    FirstName= "Magic",
-                    LastName="Johnson"
-                },
-                new Customer {
-                    FirstName= "Bill",
-                    LastName="Russell",
-                    Company="Antares",
-                    LastVisit=new DateTime(2017, 1, 18)
-                },
-                new Customer {
-                    FirstName= "James",
-                    LastName="Harden",
-                    Grade="Client Amateur"
-                },
-                new Customer {
-                    FirstName= "Russell",
-                    LastName="Westbrook",
-                    Company="Centre Hippique de Lescar",
-                    Grade="Pro",
-                    LastVisit=new DateTime(2017, 4, 22),
-                    Weight=2
-                },
-                new Customer {
-                    FirstName= "Kevin",
-                    LastName="Durant",
-                    Grade="Client Amateur",
-                    Weight=1
-                },
-                new Customer {
-                    FirstName= "Shaquil",
-                    LastName="O neill"
-                },
-                new Customer {
-                    FirstName= "Lebron",
-                    LastName="James",
-                    Company="PMU",
-                    Grade="Pro"
-                },
-                new Customer {
-                    FirstName= "Derrick",
-                    LastName="Rose"
-                },
-                new Customer {
-                    FirstName= "Mike",
-                    LastName="Dantoni"
-                },
-                new Customer {
-                    FirstName= "Chris",
-                    LastName="Paul",
-                    Grade="Pro"
-                },
-                new Customer {
-                    FirstName= "Bill",
-                    LastName="Murray"
-                },
-                new Customer {
-                    FirstName= "Jason",
-                    LastName="Kid"
-                },
-                new Customer {
-                    FirstName= "John",
-                    LastName="Stockton"
                 }
-
+              
             };
 
 
@@ -235,8 +168,6 @@ namespace voltaire.PageModels
                 new PartnerGrade {Grade="PRO"},
                 new PartnerGrade {Grade="Particulier"},
                 new PartnerGrade {Grade="Ecuries"}
-
-
             };
 
         }

@@ -562,5 +562,35 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("DeleteConfirm", resourceCulture);
             }
         }
+        
+        internal static string UsernameMissing {
+            get {
+                return ResourceManager.GetString("UsernameMissing", resourceCulture);
+            }
+        }
+        
+        internal static string PasswordMissing {
+            get {
+                return ResourceManager.GetString("PasswordMissing", resourceCulture);
+            }
+        }
+        
+        internal static string InformationMissing {
+            get {
+                return ResourceManager.GetString("InformationMissing", resourceCulture);
+            }
+        }
+        
+        internal static string IncorrectInfo {
+            get {
+                return ResourceManager.GetString("IncorrectInfo", resourceCulture);
+            }
+        }
+        
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
     }
 }

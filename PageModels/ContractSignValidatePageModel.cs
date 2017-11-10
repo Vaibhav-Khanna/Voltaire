@@ -38,7 +38,7 @@ namespace voltaire.PageModels
             {
                 imagestream = value;
 
-                contract.SignImageSource = StoreManager.ReadFully(imagestream);
+                contract.SignImageSource = voltaire.DataStore.Implementation.StoreManager.ReadFully(imagestream);
 
                 BackButton.Execute(null);
             }

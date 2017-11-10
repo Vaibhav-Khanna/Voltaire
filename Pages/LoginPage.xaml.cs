@@ -9,6 +9,7 @@ namespace voltaire.Pages
     {
         public LoginPage()
         {
+            NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
         }
     }

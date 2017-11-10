@@ -357,5 +357,20 @@
 	<data name="NotNow" xml:space="preserve">
         <value>Not now</value>   
     </data>
+	<data name="UsernameMissing" xml:space="preserve">
+        <value>Please enter the username above</value>   
+    </data>
+	<data name="PasswordMissing" xml:space="preserve">
+        <value>Please enter the password above</value>   
+    </data>
+	<data name="InformationMissing" xml:space="preserve">
+        <value>Information Missing</value>   
+    </data>
+    <data name="IncorrectInfo" xml:space="preserve">
+        <value>The given credentials do not match or are incorrect. Please try again with the correct values.</value>   
+    </data>
+	 <data name="Error" xml:space="preserve">
+        <value>Wait</value>   
+    </data>
 	
 </root>

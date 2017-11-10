@@ -407,6 +407,7 @@
     <Compile Include="DataStore\Implementation\InvalidTokenException.cs" />
     <Compile Include="DataStore\Implementation\Stores\QuotationStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\ContractStore.cs" />
+    <Compile Include="PageModels\LoginPageModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

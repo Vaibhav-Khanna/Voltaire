@@ -45,7 +45,7 @@ namespace voltaire.PageModels
 				customer.PermanentNote = notetext;
                 customer.Email = email;
                 customer.CanEdit = false;
-                customer.Company = companyname;
+                customer.CompanyName = companyname;
                 await CoreMethods.PopPageModel(customer, true, true); 
             }
         });
@@ -343,7 +343,7 @@ namespace voltaire.PageModels
                 title = canedit ? AppResources.Update : $"{customer.FirstName} {customer.LastName}";
                 toolbarbutton = canedit ? AppResources.Save : AppResources.Modify;
                 backbutton = canedit ? AppResources.Cancel : AppResources.Back;
-                companyname = customer.Company;
+                companyname = customer.CompanyName;
 
                 if (Tags == null)
                     Tags = new ObservableCollection<TagControlModel>();

@@ -3,7 +3,7 @@ using voltaire.Models;
 
 namespace voltaire.DataStore.Abstraction.Stores
 {
-    public interface ICustomerStore : IBaseStore<Customer>
+    public interface ICustomerStore : IBaseStore<Partner>
     {
         
     }

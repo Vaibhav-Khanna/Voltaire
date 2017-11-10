@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    xmlns:converter="clr-namespace:voltaire.Converters;assembly=voltaire"
     x:Class="voltaire.Pages.LoginPage"
     BackgroundColor="{StaticResource GreyBack}">
 	<ContentPage.Content>
@@ -15,7 +16,7 @@
                                  Orientation="Vertical"
                                  Padding="0,0,0,0"
                                  Spacing="15"
-                                 VerticalOptions="Start">
+                                 VerticalOptions="FillAndExpand">
 
                         <!--  Logo  -->
                         <Image Margin="0,85,0,10"
@@ -30,6 +31,7 @@
                                                        Style="{StaticResource EntryLogin}"
                                                        BackgroundColor="{StaticResource GreyBack}" 
                                                        WidthRequest="250"
+                    Text="{Binding UserName, Mode=TwoWay}"
                                                        HeightRequest="40"  
                                                        />
 
@@ -41,14 +43,20 @@
                                                        TextColor="{StaticResource GreyishBrown}"
                                                        WidthRequest="250"
                                                        HeightRequest="40" 
+                    Text="{Binding Password, Mode=TwoWay}"
                                                        />
                            
                         <Button 
                                                        Style="{StaticResource EntryButton}"
                                                        Text="{x:Static resources:AppResources.Login}"
                                                        WidthRequest="250"
+                    IsEnabled="{Binding IsBusy,Converter={converter:BoolInverseConverter}}"
+                    Margin="0,20,0,0"
                                                        HeightRequest="40" 
+                    Command="{Binding Login}"
                                                        />
+                
+                <ActivityIndicator Margin="0,50,0,0" IsVisible="{Binding IsBusy}" Color="Gray" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" IsRunning="true" />
 
                     </StackLayout>  
             </ScrollView>
