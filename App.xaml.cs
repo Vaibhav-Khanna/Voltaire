@@ -31,16 +31,21 @@ namespace voltaire
 
             storeManager = DependencyService.Get<IStoreManager>() as StoreManager;
              
-            CheckLoggedIn();
+            Init();
 
             MainPage = new ContentPage();
 
         }
 
-        public static StoreManager storeManager { get; set; }
 
-        public async void CheckLoggedIn()
+        private StoreManager storeManager { get; set; }
+
+
+        public async void Init()
         {
+            if (storeManager == null)
+                return;
+
             if (!storeManager.IsInitialized)
                 await storeManager.InitializeAsync();
 
@@ -54,7 +59,8 @@ namespace voltaire
 
                     MainPage = new FreshNavigationContainer(homePage) { BarBackgroundColor = (Color)Resources["turquoiseBlue"], BarTextColor = Color.Black };                             
                 });
-            }else
+            }
+            else
             {
                 Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
                 {
@@ -65,6 +71,10 @@ namespace voltaire
                     MainPage = homeContainer;
                 });
             }
+
+            if(setting != null && !string.IsNullOrWhiteSpace(setting.AuthToken))
+                await storeManager.SyncAllAsync(true);
+            
         }
 
 

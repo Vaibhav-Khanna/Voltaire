@@ -11,7 +11,7 @@
 	<pages:PopupPage.Content>
 		<StackLayout Orientation="Vertical" Spacing="0" Padding="15,7,15,7" BackgroundColor="White">
 			<StackLayout Orientation="Horizontal" Spacing="0" Padding="15">
-        <Image Source="Close1.png" Margin="10" HeightRequest="25" WidthRequest="25" VerticalOptions="Start" HorizontalOptions="Start">
+        <Image IsEnabled="{Binding IsBusy}" Source="Close1.png" Margin="10" HeightRequest="25" WidthRequest="25" VerticalOptions="Start" HorizontalOptions="Start">
 					<Image.GestureRecognizers>
 						<TapGestureRecognizer Command="{Binding CloseCommand}" />
 					</Image.GestureRecognizers>
@@ -59,7 +59,7 @@
 				<BoxView BackgroundColor="{StaticResource warmGrey}" HeightRequest="1" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"/>
 
       </Grid>
-      <Button HorizontalOptions="CenterAndExpand" Style="{StaticResource DisconnectButton}" Margin="0,10,0,0" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Text="Disconnect" TextColor="White" BackgroundColor="Red"></Button>
+      <Button IsEnabled="{Binding IsBusy}" Clicked="Handle_Clicked" HorizontalOptions="CenterAndExpand" Style="{StaticResource DisconnectButton}" Margin="0,10,0,0" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Text="Disconnect" TextColor="White" BackgroundColor="Red"></Button>
 
     </StackLayout>
 	</pages:PopupPage.Content>

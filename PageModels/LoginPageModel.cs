@@ -3,15 +3,17 @@ using voltaire.PageModels.Base;
 using Xamarin.Forms;
 using voltaire.Resources;
 using FreshMvvm;
+using voltaire.DataStore.Implementation;
+using voltaire.DataStore.Abstraction;
 
 namespace voltaire.PageModels
 {
     public class LoginPageModel : BasePageModel
     {
-        public LoginPageModel()
-        {
-        }
 
+        private StoreManager storeManager = DependencyService.Get<IStoreManager>() as StoreManager;
+
+       
         string username;
         public string UserName 
         {
@@ -51,7 +53,7 @@ namespace voltaire.PageModels
 
             IsBusy = true;
 
-            var response = await App.storeManager.LoginAsync(UserName,Password);
+            var response = await storeManager.LoginAsync(UserName,Password);
 
             IsBusy = false;
 

@@ -11,26 +11,41 @@ using voltaire.Helpers.Collections;
 using voltaire.Models;
 using voltaire.PageModels.Base;
 using Xamarin.Forms;
+using System.Reflection;
 
 namespace voltaire.PageModels
 {
 
-
     public class ContactsPageModel : BasePageModel
     {
-        
+
         string customersCount;
-        public string CustomersCount 
-        { 
+        public string CustomersCount
+        {
             get { return customersCount; }
-            set { customersCount = value; 
+            set
+            {
+                customersCount = value;
                 RaisePropertyChanged();
             }
         }
 
+        string searchtext;
+        public string SearchText
+        {
+            get { return searchtext; }
+            set
+            {
+                searchtext = value;
+                RaisePropertyChanged();
+                SearchContact.Execute(null);
+            }
+        }
+
+
         ObservableCollection<Partner> customers;
-        public ObservableCollection<Partner> Customers 
-        { 
+        public ObservableCollection<Partner> Customers
+        {
             get { return customers; }
             set
             {
@@ -40,7 +55,7 @@ namespace voltaire.PageModels
         }
 
         ObservableCollection<ObservableGroupCollection<string, CustomerModel>> customersitems;
-        public ObservableCollection<ObservableGroupCollection<string, CustomerModel>> CustomersItems 
+        public ObservableCollection<ObservableGroupCollection<string, CustomerModel>> CustomersItems
         {
             get { return customersitems; }
             set
@@ -110,34 +125,68 @@ namespace voltaire.PageModels
 
 
         async void Get()
-        {                     
+        {
+            // Local data
             var result = await Store.GetItemsAsync(false);
-            Init(result.ToList());
+            CreateGroupedCollection(result);
+
+            // Server refresh
+            IsRefreshing = true;
+            result = await Store.GetItemsAsync(true);
+            CreateGroupedCollection(result);
+            IsRefreshing = false;
         }
 
-        public Command AddContact => new Command(async() =>
+        public Command LoadMore => new Command(async () =>
+      {
+          if (string.IsNullOrWhiteSpace(SearchText))
+          {
+              var result = await Store.GetNextItemsAsync(Customers.Count);
+
+              if (result != null && result.Count() != 0)
+              {
+                  var list = customers.ToList();
+                  list.AddRange(result);
+                  CreateGroupedCollection(list);
+              }
+          }
+      });
+
+
+        public Command AddContact => new Command(() =>
        {
-            var result = await Store.InsertAsync(new Partner());
+
        });
 
-        public Command RefreshList => new Command(async(obj) =>
+
+        public Command RefreshList => new Command(async (obj) =>
        {
-            var result = await Store.GetItemsAsync(true);
-            Init(result.ToList());
-
-            IsRefreshing = false;
-
+           var result = await Store.GetItemsAsync(true);
+           CreateGroupedCollection(result);
+           IsRefreshing = false;
        });
 
 
-        //INIT data form page  freshmvvm
-        public override void Init(object initData)
+
+        public Command SearchContact => new Command(async () =>
+       {
+           if (string.IsNullOrWhiteSpace(searchtext))
+           {
+               var res = await Store.GetItemsAsync(false);
+               CreateGroupedCollection(res);
+               return;
+           }
+
+           var result = await Store.Search(SearchText.Trim());
+           CreateGroupedCollection(result);
+       });
+
+
+        private void CreateGroupedCollection(IEnumerable<Partner> list)
         {
-
-            var list = initData as List<Partner>;
-
             if (list == null)
                 list = new List<Partner>();
+           
 
             Customers = new ObservableCollection<Partner>(list);
 
@@ -154,6 +203,12 @@ namespace voltaire.PageModels
                     .ToList();
 
             CustomersItems = new ObservableCollection<ObservableGroupCollection<string, CustomerModel>>(groupedData);
+        }
+
+
+        //INIT data form page  freshmvvm
+        public override void Init(object initData)
+        {
 
             //columnSpan for listview
             _listColumnSpan = 2;
@@ -176,6 +231,6 @@ namespace voltaire.PageModels
 
         }
 
-
     }
+    
 }

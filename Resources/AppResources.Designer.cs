@@ -592,5 +592,17 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("Error", resourceCulture);
             }
         }
+        
+        internal static string LogOut {
+            get {
+                return ResourceManager.GetString("LogOut", resourceCulture);
+            }
+        }
+        
+        internal static string LogOutMessage {
+            get {
+                return ResourceManager.GetString("LogOutMessage", resourceCulture);
+            }
+        }
     }
 }

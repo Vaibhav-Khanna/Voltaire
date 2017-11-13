@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 using voltaire.DataStore.Abstraction;
 using Xamarin.Forms;
@@ -17,11 +19,18 @@ namespace voltaire.DataStore.Implementation
         public virtual string Identifier => "Items";
 
 
+        IMobileServiceTable<T> onlinetable;
+        protected IMobileServiceTable<T> OnlineTable
+        {
+            get { return onlinetable ?? ( onlinetable = StoreManager.MobileService.GetTable<T>()); }
+
+        }
+
+
         IMobileServiceSyncTable<T> table;
         protected IMobileServiceSyncTable<T> Table
         {
             get { return table ?? (table = StoreManager.MobileService.GetSyncTable<T>()); }
-
         }
 
 
@@ -39,16 +48,29 @@ namespace voltaire.DataStore.Implementation
             if (!storeManager.IsInitialized)
                 await storeManager.InitializeAsync().ConfigureAwait(false);
         }
-
       
 
-        public virtual async Task<System.Collections.Generic.IEnumerable<T>> GetItemsAsync(bool forceRefresh = false)
+        public virtual async Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false)
         {
             await InitializeStore().ConfigureAwait(false);
             if (forceRefresh)
                 await PullLatestAsync().ConfigureAwait(false);
 
-            return await Table.ToEnumerableAsync().ConfigureAwait(false);
+            return await Table.IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+        }
+
+        public virtual async Task<IEnumerable<T>> GetNextItemsAsync(int currentitemCount)
+        {
+            await InitializeStore().ConfigureAwait(false);
+
+            try
+            {
+                return await Table.Skip(currentitemCount).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+            }
+            catch(Exception ex)
+            {
+                return null;    
+            }
         }
 
         public virtual async Task<T> GetItemAsync(string id)
@@ -96,7 +118,7 @@ namespace voltaire.DataStore.Implementation
             if (!Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
             {
                 Debug.WriteLine("Unable to sync items, we are offline");
-                return false;
+                //return false;
             }
             try
             {
@@ -118,16 +140,16 @@ namespace voltaire.DataStore.Implementation
 
         public async Task<bool> PullLatestAsync()
         {
-           
+            
             if (!Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
             {
                 Debug.WriteLine("Unable to pull items, we are offline");
-                return false;
+                //return false;
             }
 
             try
             {
-                await Table.PullAsync<T>($"all{Identifier}", Table.CreateQuery(), false,new CancellationToken(false),new PullOptions(){ MaxPageSize = 100 }).ConfigureAwait(false);
+                await Table.PullAsync<T>($"all{Identifier}", Table.CreateQuery().IncludeTotalCount() , false,new CancellationToken(false),new PullOptions(){ MaxPageSize = 100 }).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -138,5 +160,6 @@ namespace voltaire.DataStore.Implementation
             return true;
         }
 
+       
     }
 }

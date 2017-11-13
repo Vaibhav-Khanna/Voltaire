@@ -20,8 +20,12 @@ namespace voltaire.iOS.Renderers
             if (Control == null)
                 return;
 
-			Control.Layer.BorderWidth = 0;
-			Control.BorderStyle = UITextBorderStyle.None;
+            if (Control != null && Control.Layer != null)
+            {
+                Control.Layer.BorderWidth = 0;
+                Control.BorderStyle = UITextBorderStyle.None;
+            }
+
 		}
 
 

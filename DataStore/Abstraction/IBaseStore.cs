@@ -10,6 +10,7 @@ namespace voltaire.DataStore.Abstraction
 
         Task InitializeStore();
         Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
+        Task<IEnumerable<T>> GetNextItemsAsync(int currentitemCount);
         Task<T> GetItemAsync(string id);
         Task<bool> InsertAsync(T item);
         Task<bool> UpdateAsync(T item);

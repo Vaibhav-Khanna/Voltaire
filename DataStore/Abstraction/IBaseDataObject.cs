@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace voltaire.DataStore.Abstraction
 {
@@ -16,7 +17,7 @@ namespace voltaire.DataStore.Abstraction
             Id = Guid.NewGuid().ToString();
         }
 
-
+        [JsonIgnore]
         public string RemoteId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("Id")]
