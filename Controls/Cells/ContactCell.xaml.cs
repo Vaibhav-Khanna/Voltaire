@@ -15,28 +15,7 @@ namespace voltaire.Controls.Cells
         {
             InitializeComponent();
         }
-
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
-          
-            var model = (CustomerModel)BindingContext;
-
-            if (model == null)
-                return;
-
-            var name_array = model.Customer.Name?.Split(' ');
-
-            if (model != null)
-            {
-                FullNameLabel.FormattedText = new FormattedString
-                {
-                    Spans = {
-                        new Span { Text = name_array?.First() + " " , FontAttributes = FontAttributes.None, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"},
-                        new Span { Text = name_array?.Count() > 1 ? name_array?.LastOrDefault() : string.Empty , FontSize = 20, FontFamily="SanFranciscoDisplay-Bold"} }
-                };
-            }
-        }
+      
 
         protected override void OnTapped()
         {
@@ -51,7 +30,6 @@ namespace voltaire.Controls.Cells
             var parent = this.Parent as ListView;
             parent.SelectedItem = null;
         }
-
 
 
     }

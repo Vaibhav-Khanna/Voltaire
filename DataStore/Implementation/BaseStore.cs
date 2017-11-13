@@ -62,12 +62,12 @@ namespace voltaire.DataStore.Implementation
         public virtual async Task<IEnumerable<T>> GetNextItemsAsync(int currentitemCount)
         {
             await InitializeStore().ConfigureAwait(false);
-
+           
             try
             {
                 return await Table.Skip(currentitemCount).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return null;    
             }
@@ -149,7 +149,7 @@ namespace voltaire.DataStore.Implementation
 
             try
             {
-                await Table.PullAsync<T>($"all{Identifier}", Table.CreateQuery().IncludeTotalCount() , false,new CancellationToken(false),new PullOptions(){ MaxPageSize = 100 }).ConfigureAwait(false);
+                await Table.PullAsync<T>($"all{Identifier}", Table.CreateQuery().IncludeTotalCount() , false,new CancellationToken(false), new PullOptions(){ MaxPageSize = 50 }).ConfigureAwait(false);
             }
             catch (Exception ex)
             {

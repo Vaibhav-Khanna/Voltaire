@@ -15,7 +15,7 @@
                  Orientation="Vertical"
                  Padding="15,10,7,10"
                  Spacing="4">
-        <Label   x:Name="FullNameLabel" />
+        <Label   x:Name="FullNameLabel" FormattedText="{Binding DisplayText}" />
         <Label   IsVisible="{Binding Customer.Company,
                                    Converter={StaticResource StringNullableToBooleanConverter}}"
                 Style="{StaticResource CellLabelDescriptionStyle}"

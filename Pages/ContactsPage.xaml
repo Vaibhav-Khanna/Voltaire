@@ -108,9 +108,12 @@
                                        HasUnevenRows="True"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsRefreshing}"
-                RefreshCommand="{Binding RefreshList}"
+                RefreshCommand="{Binding RefreshList}"               
                                        IsGroupingEnabled="True"
                                        ItemsSource="{Binding CustomersItems}">
+                <x:Arguments>
+                 <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+                </x:Arguments>
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <ViewCell Height="25">

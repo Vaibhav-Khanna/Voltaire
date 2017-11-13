@@ -11,7 +11,9 @@ using voltaire.Helpers.Collections;
 using voltaire.Models;
 using voltaire.PageModels.Base;
 using Xamarin.Forms;
+using voltaire.Resources;
 using System.Reflection;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace voltaire.PageModels
 {
@@ -153,9 +155,10 @@ namespace voltaire.PageModels
       });
 
 
-        public Command AddContact => new Command(() =>
+        public Command AddContact => new Command(async() =>
        {
-
+            var item = new Partner() { Name = "Alexis Reverte" };
+            await Store.InsertAsync(item);
        });
 
 
@@ -186,13 +189,14 @@ namespace voltaire.PageModels
         {
             if (list == null)
                 list = new List<Partner>();
-           
 
-            Customers = new ObservableCollection<Partner>(list);
+          
+            if( (list as IQueryResultEnumerable<Partner>) != null )
+            {
+                CustomersCount = (list as IQueryResultEnumerable<Partner>).TotalCount.ToString() + " " + AppResources.Contacts;
+            }         
 
-            if (Customers.Count > 1) CustomersCount = Customers.Count + " Contacts";
-            else CustomersCount = Customers.Count + " Contact";
-
+            Customers = new ObservableCollection<Partner>(list);                   
 
             var models = Customers.Select(i => new CustomerModel(i) { navigation = CoreMethods }).ToList();
 
