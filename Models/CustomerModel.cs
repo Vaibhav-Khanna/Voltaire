@@ -45,10 +45,10 @@ namespace voltaire.Models
                 s.RemoveAt(0);
                 foreach (var item in s)
                 {
-                    st += item;
+                    st += " " + item;
                 }
                 s = null;
-                DisplayText.Spans.Add(new Span { Text = st, FontSize = 20, FontFamily = "SanFranciscoDisplay-Bold" });
+                DisplayText.Spans.Add(new Span { Text = st.Trim(), FontSize = 20, FontFamily = "SanFranciscoDisplay-Bold" });
             }
                      
         }

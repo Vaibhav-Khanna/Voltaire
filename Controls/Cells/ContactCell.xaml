@@ -16,10 +16,10 @@
                  Padding="15,10,7,10"
                  Spacing="4">
         <Label   x:Name="FullNameLabel" FormattedText="{Binding DisplayText}" />
-        <Label   IsVisible="{Binding Customer.Company,
+        <Label   IsVisible="{Binding Customer.CompanyName,
                                    Converter={StaticResource StringNullableToBooleanConverter}}"
                 Style="{StaticResource CellLabelDescriptionStyle}"
-                Text="{Binding Customer.Company}" />
+                Text="{Binding Customer.CompanyName}" />
         <Button    IsVisible="{Binding Customer.Grade,
                                    Converter={StaticResource StringNullableToBooleanConverter}}"
                 Style="{StaticResource CellButtonGradeStyle}"

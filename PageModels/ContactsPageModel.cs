@@ -155,10 +155,9 @@ namespace voltaire.PageModels
       });
 
 
-        public Command AddContact => new Command(async() =>
+        public Command AddContact => new Command(() =>
        {
-            var item = new Partner() { Name = "Alexis Reverte" };
-            await Store.InsertAsync(item);
+           
        });
 
 
