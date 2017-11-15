@@ -129,15 +129,25 @@ namespace voltaire.PageModels
         async void Get()
         {
             // Local data
+            IsLoading = true;
+
             var result = await Store.GetItemsAsync(false);
-            CreateGroupedCollection(result);
+
 
             // Server refresh
-            IsRefreshing = true;
-            result = await Store.GetItemsAsync(true);
-            CreateGroupedCollection(result);
-            IsRefreshing = false;
+            if ( result == null || !result.Any() )
+            {
+                LoadingText = AppResources.FetchingData;
+                result = await Store.GetItemsAsync(true);
+                CreateGroupedCollection(result);
+                LoadingText = AppResources.FetchingData;
+            }
+            else
+                CreateGroupedCollection(result);
+
+            IsLoading = false;
         }
+
 
         public Command LoadMore => new Command(async () =>
       {
@@ -145,8 +155,8 @@ namespace voltaire.PageModels
           {
               var result = await Store.GetNextItemsAsync(Customers.Count);
 
-              if (result != null && result.Count() != 0)
-              {
+                if (result != null && result.Any())
+                {
                   var list = customers.ToList();
                   list.AddRange(result);
                   CreateGroupedCollection(list);
@@ -181,19 +191,20 @@ namespace voltaire.PageModels
 
            var result = await Store.Search(SearchText.Trim());
            CreateGroupedCollection(result);
+
        });
 
 
         private void CreateGroupedCollection(IEnumerable<Partner> list)
         {
+            
             if (list == null)
                 list = new List<Partner>();
-
-          
+                          
             if( (list as IQueryResultEnumerable<Partner>) != null )
             {
                 CustomersCount = (list as IQueryResultEnumerable<Partner>).TotalCount.ToString() + " " + AppResources.Contacts;
-            }         
+            }
 
             Customers = new ObservableCollection<Partner>(list);                   
 
@@ -206,6 +217,7 @@ namespace voltaire.PageModels
                     .ToList();
 
             CustomersItems = new ObservableCollection<ObservableGroupCollection<string, CustomerModel>>(groupedData);
+
         }
 
 

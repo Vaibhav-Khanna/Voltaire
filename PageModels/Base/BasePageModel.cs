@@ -8,6 +8,7 @@ using voltaire.DataStore.Implementation;
 using voltaire.DataStore.Implementation.Stores;
 using voltaire.Pages.Base;
 using Xamarin.Forms;
+using voltaire.Resources;
 
 namespace voltaire.PageModels.Base
 {
@@ -39,7 +40,28 @@ namespace voltaire.PageModels.Base
 
         public string LoadingText { get; set; }
 
-        public bool IsLoading { get; set; }
+
+        private string isloadingtext = AppResources.Loading;
+        public string IsLoadingText
+        {
+            get { return isloadingtext; }
+            set
+            {
+                isloadingtext = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private bool isloading;
+        public bool IsLoading 
+        {
+            get { return isloading; }
+            set
+            {
+                isloading = value;
+                RaisePropertyChanged();
+            }
+        }
 
       
         public static void Init()

@@ -604,5 +604,17 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("LogOutMessage", resourceCulture);
             }
         }
+        
+        internal static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        internal static string FetchingData {
+            get {
+                return ResourceManager.GetString("FetchingData", resourceCulture);
+            }
+        }
     }
 }

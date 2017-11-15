@@ -6,7 +6,8 @@
     xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
     xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire"
     xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire" 
-    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
+    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire"
+    xmlns:converter="clr-namespace:voltaire.Converters;assembly=voltaire"
     xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
     xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
     xmlns:attachedProperties="clr-namespace:voltaire.Helpers.AttachedProperties;assembly=voltaire"
@@ -99,6 +100,11 @@
     
                     </Frame>
             </StackLayout>
+            
+            <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="{Binding listColumnSpan}"  BackgroundColor="White" IsVisible="{Binding IsLoading}" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                 <ActivityIndicator IsRunning="true"  HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/> 
+                <Label Style="{StaticResource CommonLabelStyle}" Text="{Binding IsLoadingText}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" TextColor="{StaticResource GreyishBrown}" FontSize="16" />
+            </StackLayout> 
 
             <ListView                  x:Name="ListViewLayout"
                                        Grid.Row="1" 
@@ -108,7 +114,8 @@
                                        HasUnevenRows="True"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsRefreshing}"
-                RefreshCommand="{Binding RefreshList}"               
+                RefreshCommand="{Binding RefreshList}"   
+                IsVisible="{Binding IsLoading,Converter={converter:BoolInverseConverter}}"
                                        IsGroupingEnabled="True"
                                        ItemsSource="{Binding CustomersItems}">
                 <x:Arguments>

@@ -56,8 +56,9 @@ namespace voltaire.DataStore.Implementation
             if (forceRefresh)
                 await PullLatestAsync().ConfigureAwait(false);
 
-            return await Table.IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+            return await Table.Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
         }
+
 
         public virtual async Task<IEnumerable<T>> GetNextItemsAsync(int currentitemCount)
         {

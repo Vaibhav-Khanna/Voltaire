@@ -375,5 +375,11 @@
 	 <data name="LogOutMessage" xml:space="preserve">
         <value>Are you sure you want to log out of this application ? Any unsycned changes will be saved first. Wish to Continue ?</value>   
     </data>
+	 <data name="Loading" xml:space="preserve">
+        <value>Loading...</value>   
+    </data>
+	 <data name="FetchingData" xml:space="preserve">
+        <value>Fetching data from server...</value>   
+    </data>
 	
 </root>

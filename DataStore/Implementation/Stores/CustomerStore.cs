@@ -17,7 +17,7 @@ namespace voltaire.DataStore.Implementation.Stores
             if (forceRefresh)
                 await PullLatestAsync().ConfigureAwait(false);
 
-            return await Table.OrderBy( x=> x.Name ).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+            return await Table.OrderBy( x=> x.Name ).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
         }
 
         public override async Task<IEnumerable<Partner>> GetNextItemsAsync(int currentitemCount)
@@ -28,7 +28,7 @@ namespace voltaire.DataStore.Implementation.Stores
             {
                 return await Table.OrderBy(x => x.Name).Skip(currentitemCount).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -38,7 +38,7 @@ namespace voltaire.DataStore.Implementation.Stores
         {
             await InitializeStore().ConfigureAwait(false);           
           
-            var items = await OnlineTable.Where(s => s.Name.Contains(QueryText) || s.CompanyName.Contains(QueryText)).OrderBy( x => x.Name ).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+            var items = await Table.Where(s => s.Name.Contains(QueryText) || s.CompanyName.Contains(QueryText)).OrderBy( x => x.Name ).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
 
             if (items == null)
                 return null;
