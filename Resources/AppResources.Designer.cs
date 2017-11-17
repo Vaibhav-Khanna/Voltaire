@@ -616,5 +616,29 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("FetchingData", resourceCulture);
             }
         }
+        
+        internal static string Refreshing {
+            get {
+                return ResourceManager.GetString("Refreshing", resourceCulture);
+            }
+        }
+        
+        internal static string SingingIn {
+            get {
+                return ResourceManager.GetString("SingingIn", resourceCulture);
+            }
+        }
+        
+        internal static string SyncingData {
+            get {
+                return ResourceManager.GetString("SyncingData", resourceCulture);
+            }
+        }
+        
+        internal static string NewContact {
+            get {
+                return ResourceManager.GetString("NewContact", resourceCulture);
+            }
+        }
     }
 }

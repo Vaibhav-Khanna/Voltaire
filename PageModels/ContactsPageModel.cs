@@ -165,17 +165,20 @@ namespace voltaire.PageModels
       });
 
 
-        public Command AddContact => new Command(() =>
+        public Command AddContact => new Command( async() =>
        {
-           
+            await CoreMethods.PushPageModel<ContactAddPageModel>();
        });
 
 
         public Command RefreshList => new Command(async (obj) =>
        {
+           IsLoading = true;
+           IsLoadingText = AppResources.Refreshing;
            var result = await Store.GetItemsAsync(true);
            CreateGroupedCollection(result);
            IsRefreshing = false;
+           IsLoading = false;
        });
 
 
@@ -245,6 +248,18 @@ namespace voltaire.PageModels
             };
 
         }
+
+        public override void ReverseInit(object returnedData)
+        {
+            base.ReverseInit(returnedData);
+
+            if(returnedData!=null)
+            {
+                IsRefreshing = true;
+            }
+
+        }
+
 
     }
     

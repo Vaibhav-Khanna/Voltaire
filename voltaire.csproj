@@ -158,6 +158,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ContactAddPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -408,6 +412,10 @@
     <Compile Include="DataStore\Implementation\Stores\QuotationStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\ContractStore.cs" />
     <Compile Include="PageModels\LoginPageModel.cs" />
+    <Compile Include="Pages\ContactAddPage.xaml.cs">
+      <DependentUpon>ContactAddPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageModels\ContactAddPageModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

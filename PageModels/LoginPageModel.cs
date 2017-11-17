@@ -51,7 +51,9 @@ namespace voltaire.PageModels
                 return;
             }
 
+            IsLoadingText = AppResources.SingingIn;
             IsBusy = true;
+
 
             var response = await storeManager.LoginAsync(UserName,Password);
 
@@ -63,6 +65,10 @@ namespace voltaire.PageModels
             }
             else
             {
+                IsBusy = true;;
+                IsLoadingText = AppResources.SyncingData;
+                await StoreManager.SyncAllAsync(true);
+
                 Device.BeginInvokeOnMainThread( () => 
                 {
                     var homePage = FreshPageModelResolver.ResolvePageModel<HomePageModel>();
@@ -71,7 +77,9 @@ namespace voltaire.PageModels
 
                     App.Current.MainPage = homeContainer;
 
-                });    
+                });
+
+                IsBusy = false;
             }
 
        });

@@ -31,9 +31,15 @@ namespace voltaire
 
            IsBusy = false;
 
-           await storeManager.SyncAllAsync(true);
+           //await storeManager.SyncAllAsync(true);
 
-           await storeManager.LogoutAsync();
+           var result = await storeManager.LogoutAsync();
+
+           if (!result)
+           {
+               IsBusy = true; 
+               return;
+           }
 
            Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
            {

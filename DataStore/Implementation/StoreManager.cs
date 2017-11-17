@@ -14,6 +14,7 @@ using System.Net.Http;
 using Xamarin.Forms;
 using Newtonsoft.Json;
 using System.Text;
+using System.Diagnostics;
 
 namespace voltaire.DataStore.Implementation
 {
@@ -153,7 +154,7 @@ namespace voltaire.DataStore.Implementation
         }
 
 
-        public async Task LogoutAsync()
+        public async Task<bool> LogoutAsync()
         {
             if (!IsInitialized)
             {
@@ -169,13 +170,31 @@ namespace voltaire.DataStore.Implementation
                 settings.AuthToken = string.Empty;
                 settings.UserId = string.Empty;
 
-                await SaveSettingsAsync(settings);
+                var result = await SaveSettingsAsync(settings);
+                return result;
             }
+            else
+                return true;
+            
         }
 
 
-        async Task SaveSettingsAsync(StoreSettings settings) =>
-            await MobileService.SyncContext.Store.UpsertAsync(nameof(StoreSettings), new[] { JObject.FromObject(settings) }, true);
+        public async Task<bool> SaveSettingsAsync(StoreSettings settings)
+        { 
+            try
+            {
+                await MobileService.SyncContext.Store.UpsertAsync(nameof(StoreSettings), new[] { JObject.FromObject(settings) }, true);
+
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return false;
+            } 
+
+            return true;
+        }
+       
 
         public async Task<StoreSettings> ReadSettingsAsync()
         {

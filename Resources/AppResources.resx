@@ -381,5 +381,16 @@
 	 <data name="FetchingData" xml:space="preserve">
         <value>Fetching data from server...</value>   
     </data>
-	
+	 <data name="Refreshing" xml:space="preserve">
+        <value>Refreshing...</value>   
+    </data>
+	 <data name="SingingIn" xml:space="preserve">
+        <value>Signing In...</value>   
+    </data>
+	 <data name="SyncingData" xml:space="preserve">
+        <value>Syncing Data...</value>   
+    </data>
+	 <data name="NewContact" xml:space="preserve">
+        <value>New Contact</value>   
+    </data>
 </root>

@@ -9,7 +9,7 @@
 		<animations:ScaleAnimation PositionIn="Center" PositionOut="Center" ScaleIn="1.2" ScaleOut="0.8" DurationIn="400" DurationOut="300" EasingIn="SinOut" EasingOut="SinIn" HasBackgroundAnimation="True" />
 	</pages:PopupPage.Animation>
 	<pages:PopupPage.Content>
-		<StackLayout Orientation="Vertical" Spacing="0" Padding="15,7,15,7" BackgroundColor="White">
+		<StackLayout Orientation="Vertical" VerticalOptions="Start" Spacing="0" Padding="15,15,15,15" BackgroundColor="White">
 			<StackLayout Orientation="Horizontal" Spacing="0" Padding="15">
         <Image IsEnabled="{Binding IsBusy}" Source="Close1.png" Margin="10" HeightRequest="25" WidthRequest="25" VerticalOptions="Start" HorizontalOptions="Start">
 					<Image.GestureRecognizers>
@@ -41,20 +41,20 @@
 				</Grid.RowDefinitions>
 				<Label Text="Jackson Osborne" Style="{StaticResource MyAccountDetailLabel}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,0,15"></Label>
         <BoxView BackgroundColor="{StaticResource warmGrey}" HeightRequest="1" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
-				<Image Source="phone.png" Grid.Row="2" Grid.Column="0"></Image>
+				<Image WidthRequest="25" HeightRequest="25" Margin="0,10,5,10" Source="phone.png" Grid.Row="2" Grid.Column="0"></Image>
 				<Label Text="309-812-4549" Style="{StaticResource MyAccountDetailLabel}" Grid.Row="2" Grid.Column="1"></Label>
 				<BoxView BackgroundColor="{StaticResource warmGrey}" HeightRequest="1" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"/>
 				
-				<Image Source="location.png" Grid.Row="4" Grid.Column="0"></Image>
+				<Image WidthRequest="25" HeightRequest="25" Margin="0,10,5,10" Source="location.png" Grid.Row="4" Grid.Column="0"></Image>
 				<Label Text="1738 Lavada Points Suite 231" Style="{StaticResource MyAccountDetailLabel}" Grid.Row="4" Grid.Column="1"></Label>
 				<BoxView BackgroundColor="{StaticResource warmGrey}" HeightRequest="1" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"/>
 
 				
-				<Image Source="email.png" Grid.Row="6" Grid.Column="0"></Image>
+				<Image WidthRequest="25" HeightRequest="25" Margin="0,10,5,10" Source="email.png" Grid.Row="6" Grid.Column="0"></Image>
 				<Label Text="jack_osborne@gmail.com" Style="{StaticResource MyAccountDetailLabel}" Grid.Row="6" Grid.Column="1"></Label>
 				<BoxView BackgroundColor="{StaticResource warmGrey}" HeightRequest="1" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"/>
 				
-				<Image Source="www.png" Grid.Row="8" Grid.Column="0"></Image>
+				<Image WidthRequest="25" HeightRequest="25" Margin="0,10,5,10" Source="www.png" Grid.Row="8" Grid.Column="0"></Image>
 				<Label Text="http://www.antares.com" Style="{StaticResource MyAccountDetailLabel}" Grid.Row="8" Grid.Column="1"></Label>
 				<BoxView BackgroundColor="{StaticResource warmGrey}" HeightRequest="1" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"/>
 

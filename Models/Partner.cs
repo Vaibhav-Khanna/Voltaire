@@ -53,8 +53,8 @@ namespace voltaire.Models
         [JsonIgnore]
         public string Address { get; set; }
 
-        [JsonIgnore]
-        public string Status { get; set; }
+        //[JsonIgnore]
+        //public string Status { get; set; }
 
         [JsonIgnore]
         public int? Weight { get; set; }

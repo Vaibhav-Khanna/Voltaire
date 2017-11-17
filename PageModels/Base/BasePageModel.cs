@@ -15,6 +15,11 @@ namespace voltaire.PageModels.Base
     public class BasePageModel : FreshBasePageModel
     {
 
+        public Command BackCommand => new Command( async() =>
+       {
+            await CoreMethods.PopPageModel();
+       });
+
         private bool isbusy;
         public bool IsBusy 
         {
