@@ -31,7 +31,9 @@ namespace voltaire
 
            IsBusy = false;
 
-           //await storeManager.SyncAllAsync(true);
+           await storeManager.SyncAllAsync(true);
+
+           await storeManager.DropEverythingAsync();
 
            var result = await storeManager.LogoutAsync();
 

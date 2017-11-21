@@ -50,11 +50,9 @@ namespace voltaire.Models
 
     public class Partner : BaseDataObject
     {
+        
         [JsonIgnore]
         public string Address { get; set; }
-
-        //[JsonIgnore]
-        //public string Status { get; set; }
 
         [JsonIgnore]
         public int? Weight { get; set; }
@@ -86,23 +84,9 @@ namespace voltaire.Models
         [JsonIgnore]
         public List<Contract> Contracts { get; set; } = new List<Contract>();
 
+
         [JsonProperty("active")]
         public bool Active { get; set; }
-
-        [JsonProperty("activities_count")]
-        public long ActivitiesCount { get; set; }
-
-        [JsonProperty("bank_account_count")]
-        public long BankAccountCount { get; set; }
-
-        [JsonProperty("bank_ids")]
-        public string BankIds { get; set; }
-
-        [JsonProperty("barcode")]
-        public string Barcode { get; set; }
-
-        [JsonProperty("calendar_last_notif_ack")]
-        public string CalendarLastNotifAck { get; set; }
 
         [JsonProperty("category_id")]
         public long CategoryId { get; set; }
@@ -122,9 +106,6 @@ namespace voltaire.Models
         [JsonProperty("comment")]
         public string Comment { get; set; }
 
-        [JsonProperty("commercial_company_name")]
-        public string CommercialCompanyName { get; set; }
-
         [JsonProperty("commercial_partner_id")]
         public string CommercialPartnerId { get; set; }
 
@@ -135,16 +116,13 @@ namespace voltaire.Models
         public string CompanyName { get; set; }
 
         [JsonProperty("company_type")]
-        public bool CompanyType { get; set; }
+        public string CompanyType { get; set; }
 
         [JsonProperty("contact_address")]
         public string ContactAddress { get; set; }
 
         [JsonProperty("contract_ids")]
         public string ContractIds { get; set; }
-
-        [JsonProperty("contracts_count")]
-        public long ContractsCount { get; set; }
 
         [JsonProperty("country_id")]
         public long CountryId { get; set; }
@@ -161,23 +139,14 @@ namespace voltaire.Models
         [JsonProperty("credit")]
         public long Credit { get; set; }
 
-        [JsonProperty("credit_limit")]
-        public long CreditLimit { get; set; }
-
         [JsonProperty("currency_id")]
         public long CurrencyId { get; set; }
 
         [JsonProperty("customer")]
         public bool Customer { get; set; }
 
-        [JsonProperty("date")]
-        public string Date { get; set; }
-
         [JsonProperty("debit")]
         public long Debit { get; set; }
-
-        [JsonProperty("debit_limit")]
-        public long DebitLimit { get; set; }
 
         [JsonProperty("deleted")]
         public bool Deleted { get; set; }
@@ -194,104 +163,38 @@ namespace voltaire.Models
         [JsonProperty("employee")]
         public bool Employee { get; set; }
 
+        [JsonProperty("externalId")]
+        public long ExternalId { get; set; }
+
         [JsonProperty("fax")]
         public string Fax { get; set; }
 
         [JsonProperty("function")]
         public string Function { get; set; }
 
-        [JsonProperty("has_unreconciled_entries")]
-        public bool HasUnreconciledEntries { get; set; }
-
-        //[JsonProperty("id")]
-        //public string id { get; set; }
-
-        [JsonProperty("im_status")]
-        public string ImStatus { get; set; }
-
         [JsonProperty("invoice_ids")]
         public string InvoiceIds { get; set; }
-
-        [JsonProperty("invoice_warn")]
-        public bool InvoiceWarn { get; set; }
-
-        [JsonProperty("invoice_warn_msg")]
-        public string InvoiceWarnMsg { get; set; }
 
         [JsonProperty("is_company")]
         public bool IsCompany { get; set; }
 
-        [JsonProperty("issued_total")]
-        public long IssuedTotal { get; set; }
-
-        [JsonProperty("journal_item_count")]
-        public long JournalItemCount { get; set; }
-
         [JsonProperty("lang")]
-        public bool Lang { get; set; }
-
-        [JsonProperty("last_time_entries_checked")]
-        public string LastTimeEntriesChecked { get; set; }
-
-        [JsonProperty("__last_update")]
-        public string LastUpdate { get; set; }
-
-        [JsonProperty("meeting_count")]
-        public long MeetingCount { get; set; }
-
-        [JsonProperty("meeting_ids")]
-        public string MeetingIds { get; set; }
-
-        [JsonProperty("message_bounce")]
-        public long MessageBounce { get; set; }
-
-        [JsonProperty("message_channel_ids")]
-        public string MessageChannelIds { get; set; }
+        public string Lang { get; set; }
 
         [JsonProperty("message_follower_ids")]
         public string MessageFollowerIds { get; set; }
 
-        [JsonProperty("message_ids")]
-        public string MessageIds { get; set; }
-
-        [JsonProperty("message_is_follower")]
-        public bool MessageIsFollower { get; set; }
-
-        [JsonProperty("message_last_post")]
-        public string MessageLastPost { get; set; }
-
         [JsonProperty("message_needaction")]
         public bool MessageNeedaction { get; set; }
-
-        [JsonProperty("message_needaction_counter")]
-        public long MessageNeedactionCounter { get; set; }
-
-        [JsonProperty("message_partner_ids")]
-        public string MessagePartnerIds { get; set; }
-
-        [JsonProperty("message_unread")]
-        public bool MessageUnread { get; set; }
-
-        [JsonProperty("message_unread_counter")]
-        public long MessageUnreadCounter { get; set; }
 
         [JsonProperty("mobile")]
         public string Mobile { get; set; }
 
         [JsonProperty("name")]
-        public string Name { get; set; } = "Bill Goldberg";
+        public string Name { get; set; }
 
         [JsonProperty("notify_email")]
-        public bool NotifyEmail { get; set; }
-
-        [JsonProperty("opportunity_count")]
-        public long OpportunityCount { get; set; }
-
-        [JsonProperty("opportunity_ids")]
-        public string OpportunityIds { get; set; }
-
-        [JsonProperty("opt_out")]
-        public bool OptOut { get; set; }
+        public string NotifyEmail { get; set; }
 
         [JsonProperty("parent_id")]
         public long ParentId { get; set; }
@@ -299,32 +202,17 @@ namespace voltaire.Models
         [JsonProperty("parent_name")]
         public string ParentName { get; set; }
 
-        [JsonProperty("partner_share")]
-        public bool PartnerShare { get; set; }
-
-        [JsonProperty("payment_token_count")]
-        public long PaymentTokenCount { get; set; }
-
-        [JsonProperty("payment_token_ids")]
-        public string PaymentTokenIds { get; set; }
-
         [JsonProperty("phone")]
         public string Phone { get; set; }
 
         [JsonProperty("picking_warn")]
-        public bool PickingWarn { get; set; }
+        public string PickingWarn { get; set; }
 
         [JsonProperty("picking_warn_msg")]
         public string PickingWarnMsg { get; set; }
 
-        [JsonProperty("property_account_payable_id")]
-        public long PropertyAccountPayableId { get; set; }
-
         [JsonProperty("property_account_position_id")]
         public long PropertyAccountPositionId { get; set; }
-
-        [JsonProperty("property_account_receivable_id")]
-        public long PropertyAccountReceivableId { get; set; }
 
         [JsonProperty("property_payment_term_id")]
         public long PropertyPaymentTermId { get; set; }
@@ -332,50 +220,14 @@ namespace voltaire.Models
         [JsonProperty("property_product_pricelist")]
         public long PropertyProductPricelist { get; set; }
 
-        [JsonProperty("property_stock_customer")]
-        public long PropertyStockCustomer { get; set; }
-
-        [JsonProperty("property_stock_supplier")]
-        public long PropertyStockSupplier { get; set; }
-
-        [JsonProperty("property_supplier_payment_term_id")]
-        public long PropertySupplierPaymentTermId { get; set; }
-
         [JsonProperty("ref")]
         public string Ref { get; set; }
 
-        [JsonProperty("ref_company_ids")]
-        public string RefCompanyIds { get; set; }
-
-        [JsonProperty("sale_order_count")]
-        public long SaleOrderCount { get; set; }
-
-        [JsonProperty("sale_order_ids")]
-        public string SaleOrderIds { get; set; }
-
         [JsonProperty("sale_warn")]
-        public bool SaleWarn { get; set; }
-
-        [JsonProperty("sale_warn_msg")]
-        public string SaleWarnMsg { get; set; }
-
-        [JsonProperty("self")]
-        public long Self { get; set; }
-
-        [JsonProperty("signup_expiration")]
-        public string SignupExpiration { get; set; }
-
-        [JsonProperty("signup_token")]
-        public string SignupToken { get; set; }
+        public string SaleWarn { get; set; }
 
         [JsonProperty("signup_type")]
         public string SignupType { get; set; }
-
-        [JsonProperty("signup_url")]
-        public string SignupUrl { get; set; }
-
-        [JsonProperty("signup_valid")]
-        public bool SignupValid { get; set; }
 
         [JsonProperty("state_id")]
         public long StateId { get; set; }
@@ -399,16 +251,10 @@ namespace voltaire.Models
         public long TotalInvoiced { get; set; }
 
         [JsonProperty("trust")]
-        public bool Trust { get; set; }
+        public string Trust { get; set; }
 
         [JsonProperty("type")]
-        public bool Type { get; set; }
-
-        [JsonProperty("tz")]
-        public bool Tz { get; set; }
-
-        [JsonProperty("tz_offset")]
-        public string TzOffset { get; set; }
+        public string Type { get; set; }
 
         [JsonProperty("updatedAt")]
         public string UpdatedAt { get; set; }
@@ -430,9 +276,6 @@ namespace voltaire.Models
 
         [JsonProperty("write_date")]
         public string WriteDate { get; set; }
-
-        [JsonProperty("write_uid")]
-        public string WriteUid { get; set; }
 
         [JsonProperty("zip")]
         public string Zip { get; set; }

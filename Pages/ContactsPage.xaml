@@ -27,7 +27,7 @@
         <!--  Toolbar  -->
         <controls:TToolBar Title="{x:Static resources:AppResources.Contacts}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <controls:TToolBar.LeftToolbarItems>
-                <Entry Text="{Binding SearchText}" Placeholder="{x:Static resources:AppResources.SearchContact}" Keyboard="Text" HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}"  />
+                <renderers:CustomSearchBar x:Name="searchBar" Text="{Binding SearchText,Mode=TwoWay}" TextChanged="Handle_TextChanged" SearchCommand="{Binding SearchContact}" Placeholder="{x:Static resources:AppResources.SearchContact}"  HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}"  />
           </controls:TToolBar.LeftToolbarItems>
             <controls:TToolBar.RightToolbarItems>
                 <!--attachedProperties:TappedGestureAttached.Command="{Binding AddContactCommand}" -->
@@ -116,6 +116,7 @@
                 IsRefreshing="{Binding IsRefreshing}"
                 RefreshCommand="{Binding RefreshList}"   
                 IsVisible="{Binding IsLoading,Converter={converter:BoolInverseConverter}}"
+                ItemAppearing="Handle_ItemAppearing"
                                        IsGroupingEnabled="True"
                                        ItemsSource="{Binding CustomersItems}">
                 <x:Arguments>
@@ -138,6 +139,11 @@
                         <cells:ContactCell />
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <ContentView IsVisible="{Binding IsLoadMore}" HorizontalOptions="FillAndExpand" HeightRequest="90">
+                        <ActivityIndicator Color="Gray" IsRunning="true" HorizontalOptions="Center"  HeightRequest="50" VerticalOptions="Center" />
+                    </ContentView>
+                </ListView.Footer>
             </ListView> 
 
             

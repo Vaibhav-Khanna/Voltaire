@@ -14,6 +14,7 @@ using Xamarin.Forms;
 using voltaire.Resources;
 using System.Reflection;
 using Microsoft.WindowsAzure.MobileServices;
+using System.Diagnostics;
 
 namespace voltaire.PageModels
 {
@@ -146,21 +147,55 @@ namespace voltaire.PageModels
                 CreateGroupedCollection(result);
 
             IsLoading = false;
+
         }
 
+        bool Loadingmore = false;
 
         public Command LoadMore => new Command(async () =>
-      {
+        {
+            if (!IsLoadMore || Loadingmore)
+                return;
+
           if (string.IsNullOrWhiteSpace(SearchText))
           {
-              var result = await Store.GetNextItemsAsync(Customers.Count);
+                Loadingmore = true;
+                
+                var result = await Store.GetNextItemsAsync(Customers.Count);
 
                 if (result != null && result.Any())
                 {
-                  var list = customers.ToList();
-                  list.AddRange(result);
-                  CreateGroupedCollection(list);
-              }
+                    var list = customers.ToList();
+                    list.AddRange(result);
+
+                    Debug.WriteLine("Fetched "+result.Count());
+
+                    if ((result as IQueryResultEnumerable<Partner>) != null)
+                    {
+                        var totalCount = (result as IQueryResultEnumerable<Partner>).TotalCount;
+
+                        if(totalCount != 1)
+                        CustomersCount = totalCount.ToString() + " " + AppResources.Contacts;
+                        else
+                            CustomersCount = totalCount.ToString() + " " + AppResources.Contact;
+
+                        if (!string.IsNullOrWhiteSpace(SearchText))
+                            IsLoadMore = false;
+                        else
+                        {
+                            if (Convert.ToInt32(totalCount) - list.Count() > 0)
+                                IsLoadMore = true;
+                            else
+                                IsLoadMore = false;
+                        }
+                    }
+                     
+                    CreateGroupedCollection(list);
+                }
+                else
+                    IsLoadMore = false;
+
+                Loadingmore = false;
           }
       });
 
@@ -173,6 +208,12 @@ namespace voltaire.PageModels
 
         public Command RefreshList => new Command(async (obj) =>
        {
+           if (!string.IsNullOrWhiteSpace(SearchText))
+           {
+               IsRefreshing = false;
+               return;
+           }
+
            IsLoading = true;
            IsLoadingText = AppResources.Refreshing;
            var result = await Store.GetItemsAsync(true);
@@ -180,7 +221,6 @@ namespace voltaire.PageModels
            IsRefreshing = false;
            IsLoading = false;
        });
-
 
 
         public Command SearchContact => new Command(async () =>
@@ -192,9 +232,10 @@ namespace voltaire.PageModels
                return;
            }
 
+          
            var result = await Store.Search(SearchText.Trim());
            CreateGroupedCollection(result);
-
+           CustomersCount += " " + AppResources.MatchingSearch;
        });
 
 
@@ -203,18 +244,36 @@ namespace voltaire.PageModels
             
             if (list == null)
                 list = new List<Partner>();
-                          
+
+
             if( (list as IQueryResultEnumerable<Partner>) != null )
             {
-                CustomersCount = (list as IQueryResultEnumerable<Partner>).TotalCount.ToString() + " " + AppResources.Contacts;
+                var totalCount = (list as IQueryResultEnumerable<Partner>).TotalCount;
+               
+                if (totalCount != 1)
+                    CustomersCount = totalCount.ToString() + " " + AppResources.Contacts;
+                else
+                    CustomersCount = totalCount.ToString() + " " + AppResources.Contact;
+
+                if (!string.IsNullOrWhiteSpace(SearchText))
+                    IsLoadMore = false;
+                else
+                {
+                    if (Convert.ToInt32(totalCount) - list.Count() > 0)
+                        IsLoadMore = true;
+                    else
+                        IsLoadMore = false;
+                }
             }
+
+            list = list.OrderBy( (arg) => arg.Name );
 
             Customers = new ObservableCollection<Partner>(list);                   
 
             var models = Customers.Select(i => new CustomerModel(i) { navigation = CoreMethods }).ToList();
 
             var groupedData =
-                models.OrderBy(p => p.Customer.Name)
+                models
                     .GroupBy(p => p.NameSort)
                     .Select(p => new ObservableGroupCollection<string, CustomerModel>(p))
                     .ToList();

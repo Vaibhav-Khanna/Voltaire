@@ -393,4 +393,19 @@
 	 <data name="NewContact" xml:space="preserve">
         <value>New Contact</value>   
     </data>
+	 <data name="FillInCustomerName" xml:space="preserve">
+        <value>Please fill in the customer name</value>   
+    </data>
+	 <data name="FillInCompanyName" xml:space="preserve">
+        <value>Please fill in the company name</value>   
+    </data>
+	 <data name="LoadMore" xml:space="preserve">
+        <value>Load more</value>   
+    </data>
+	 <data name="Contact" xml:space="preserve">
+        <value>Contact</value>   
+    </data>
+	 <data name="MatchingSearch" xml:space="preserve">
+        <value>matching your search</value>   
+    </data>
 </root>

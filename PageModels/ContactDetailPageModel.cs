@@ -17,10 +17,9 @@ using System.Collections.Generic;
 namespace voltaire.PageModels
 {
 
-
     public class ContactDetailPageModel : BasePageModel
-    {
-       
+    { 
+        
         Partner _customer;
 
         public Command tap_Toolbar  => new Command( async () => 
@@ -30,12 +29,12 @@ namespace voltaire.PageModels
                 var customer_copy = customer;
 
                 customer_copy.CanEdit = true;
-
+               
                 await CoreMethods.PushPageModel<ContactDetailPageModel>(customer_copy, true, true);
             }
             else
             {
-                customer.Address = address;
+                customer.ContactAddress = address;
                 customer.Weight = weight;
                 customer.Name = firstname;               
                 customer.Phone = phone;
@@ -45,6 +44,14 @@ namespace voltaire.PageModels
                 customer.Email = email;
                 customer.CanEdit = false;
                 customer.CompanyName = companyname;
+                customer.Tags = Tags.Select((arg) => arg.TagText).ToList();
+
+                Dialog.ShowLoading(null);
+
+                await StoreManager.CustomerStore.UpdateAsync(customer);
+
+                Dialog.HideLoading();
+
                 await CoreMethods.PopPageModel(customer, true, true); 
             }
         });
@@ -79,6 +86,9 @@ namespace voltaire.PageModels
 
         public Command AddTags => new Command( async(obj) =>
        {
+           if (!CanEdit)
+               return;
+            
             Popup_context.ItemSelectedChanged += Popup_Context_ItemSelectedChanged;
             await PopupNavigation.PushAsync(new AddTagsPopUp() { BindingContext = Popup_context }, true);
        });
@@ -88,7 +98,7 @@ namespace voltaire.PageModels
         {
             if(!string.IsNullOrEmpty(Popup_context.SelectedItem))
             {
-                Tags.Add(new TagControlModel(Tags,customer.Tags){ TagText = Popup_context.SelectedItem, CanEdit = CanEdit });
+                Tags.Add(new TagControlModel(Tags){ TagText = Popup_context.SelectedItem, CanEdit = CanEdit });
                 customer.Tags.Add(Popup_context.SelectedItem);
             }
            
@@ -322,7 +332,7 @@ namespace voltaire.PageModels
                
                 weight = customer.Weight;
                 email = customer.Email;
-                address = customer.Address;
+                address = customer.ContactAddress;
                 phone = customer.Phone;
                 website = customer.Website;
                 lastvisit = customer.LastVisit;
@@ -333,6 +343,7 @@ namespace voltaire.PageModels
                 backbutton = canedit ? AppResources.Cancel : AppResources.Back;
                 companyname = customer.CompanyName;
 
+
                 if (Tags == null)
                     Tags = new ObservableCollection<TagControlModel>();
                 else
@@ -340,7 +351,7 @@ namespace voltaire.PageModels
 
                 foreach (var item in customer.Tags)
                 {
-                    Tags.Add(new TagControlModel(Tags,customer.Tags){ TagText = item , CanEdit = CanEdit });
+                    Tags.Add(new TagControlModel(Tags){ TagText = item , CanEdit = CanEdit });
                 }
                     
                 //Tags = new ObservableCollection<TagControlModel>(Tags.ToList());

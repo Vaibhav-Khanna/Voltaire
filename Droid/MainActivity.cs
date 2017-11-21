@@ -27,7 +27,7 @@ namespace voltaire.Droid
 
             CarouselView.FormsPlugin.Android.CarouselViewRenderer.Init();
             Xamarin.FormsGoogleMaps.Init(this,bundle);           
-
+            Acr.UserDialogs.UserDialogs.Init((Activity)Xamarin.Forms.Forms.Context);
             var displayMetrics = this.Resources.DisplayMetrics;
             App.ScreenWidth = ConvertPixelsToDp(displayMetrics.WidthPixels);
             App.ScreenHeight = ConvertPixelsToDp(displayMetrics.HeightPixels);

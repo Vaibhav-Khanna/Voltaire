@@ -24,7 +24,7 @@ namespace voltaire.iOS
             CarouselViewRenderer.Init();  
             KeyboardOverlapRenderer.Init();
             Xamarin.FormsGoogleMaps.Init("AIzaSyCxXBNtq5ksFXZJBwW_SRkf3gEMOg4YhPc");
-
+           
             App.ScreenHeight = UIScreen.MainScreen.Bounds.Height;
             App.ScreenWidth = UIScreen.MainScreen.Bounds.Width;
 

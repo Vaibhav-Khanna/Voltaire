@@ -7,19 +7,17 @@ using Xamarin.Forms;
 using voltaire.Resources;
 using voltaire.PopUps;
 using Rg.Plugins.Popup.Services;
+using Acr.UserDialogs;
 
 namespace voltaire.PageModels
 {
+    
     public class ContactAddPageModel : BasePageModel
     {
-        
-        public ContactAddPageModel()
-        {            
-        }
 
         AddTagsPopUpModel Popup_context = new AddTagsPopUpModel();
 
-      
+
         public Command AddTags => new Command( async() =>
        {
             Popup_context.ItemSelectedChanged += Popup_Context_ItemSelectedChanged;
@@ -31,7 +29,7 @@ namespace voltaire.PageModels
         {
             if (!string.IsNullOrEmpty(Popup_context.SelectedItem))
             {
-                Tags.Add(new TagControlModel(Tags,null) { TagText = Popup_context.SelectedItem, CanEdit = CanEdit });
+                Tags.Add(new TagControlModel(Tags) { TagText = Popup_context.SelectedItem, CanEdit = CanEdit });
             }
 
             Popup_context.ItemSelectedChanged -= Popup_Context_ItemSelectedChanged;
@@ -40,18 +38,27 @@ namespace voltaire.PageModels
         public Command SaveContact => new Command( async(obj) =>
        {
 
-            if(string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(CompanyName))
-            {
-                await CoreMethods.DisplayAlert(AppResources.Alert, AppResources.InformationMissing,AppResources.Ok);
-                return;
-            }
+           if (string.IsNullOrWhiteSpace(Name))
+           {
+                await CoreMethods.DisplayAlert(AppResources.Alert, AppResources.FillInCustomerName, AppResources.Ok);
+               return;
+           }
 
+            if (string.IsNullOrWhiteSpace(CompanyName))
+           {
+                await CoreMethods.DisplayAlert(AppResources.Alert, AppResources.FillInCompanyName, AppResources.Ok);
+               return;
+           }
+
+            Dialog.ShowLoading(null);
 
             CanEdit = false;
 
-            var customer = new Partner() { Name = Name, CompanyName = CompanyName, Phone = Phone, Email = Email, Website = Website, PermanentNote = NoteText, Weight = Weight, Address = Address };
+            var customer = new Partner() { Name = Name, CompanyName = CompanyName, Phone = Phone, Email = Email, Website = Website, PermanentNote = NoteText, Weight = Weight, ContactAddress = Address };
           
             await StoreManager.CustomerStore.InsertAsync(customer);
+
+            Dialog.HideLoading();
 
             await CoreMethods.PopPageModel(customer);
 

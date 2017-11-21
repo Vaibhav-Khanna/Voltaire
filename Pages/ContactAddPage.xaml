@@ -25,14 +25,14 @@
         </Grid.RowDefinitions>
         <controls:TToolBar BackgroundColor = "{StaticResource turquoiseBlue}" HeightRequest = "80" Title = "{x:Static resources:AppResources.NewContact}" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand" Grid.Row="0" Grid.Column="0" >
             <controls:TToolBar.LeftToolbarItems>
-                <Image Source = "back.png" HeightRequest = "25" WidthRequest = "30" VerticalOptions = "Center" HorizontalOptions = "Start"  >
+                <Image Source = "back.png" IsEnabled="{Binding CanEdit}" HeightRequest = "25" WidthRequest = "30" VerticalOptions = "Center" HorizontalOptions = "Start"  >
                     <Image.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding BackCommand}" />
                 </Image.GestureRecognizers> 
                 </Image>
             </controls:TToolBar.LeftToolbarItems>
                 <controls:TToolBar.RightToolbarItems>
-                  <Label  WidthRequest="80"  HorizontalTextAlignment="End" Text="Save" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center">
+                  <Label  WidthRequest="80"  HorizontalTextAlignment="End" IsEnabled="{Binding CanEdit}" Text="Save" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center">
                      <Label.GestureRecognizers>
                             <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding SaveContact}" />
                         </Label.GestureRecognizers> 

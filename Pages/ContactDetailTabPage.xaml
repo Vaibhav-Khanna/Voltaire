@@ -89,7 +89,7 @@
                         <Label FontFamily="Raleway-Medium" TextColor="{StaticResource GreyishBrown}" FontSize="24" Text="{x:Static resources:AppResources.PermanentNote}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
                         <StackLayout Margin="0,0,40,0" Padding="1" BackgroundColor="{StaticResource warmGrey}"  Grid.Row="1" >
                             <StackLayout BackgroundColor="White" Padding="15" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
-                                <Editor  Text="{Binding NoteText, Mode=TwoWay}" TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Regular" FontSize="14" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="100" BackgroundColor="White" />
+                                <Editor IsEnabled="{Binding CanEdit}" Text="{Binding NoteText, Mode=TwoWay}" TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Regular" FontSize="14" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="100" BackgroundColor="White" />
                             </StackLayout>         
                         </StackLayout>
                     </StackLayout>

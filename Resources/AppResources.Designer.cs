@@ -640,5 +640,35 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("NewContact", resourceCulture);
             }
         }
+        
+        internal static string FillInCustomerName {
+            get {
+                return ResourceManager.GetString("FillInCustomerName", resourceCulture);
+            }
+        }
+        
+        internal static string FillInCompanyName {
+            get {
+                return ResourceManager.GetString("FillInCompanyName", resourceCulture);
+            }
+        }
+        
+        internal static string LoadMore {
+            get {
+                return ResourceManager.GetString("LoadMore", resourceCulture);
+            }
+        }
+        
+        internal static string Contact {
+            get {
+                return ResourceManager.GetString("Contact", resourceCulture);
+            }
+        }
+        
+        internal static string MatchingSearch {
+            get {
+                return ResourceManager.GetString("MatchingSearch", resourceCulture);
+            }
+        }
     }
 }

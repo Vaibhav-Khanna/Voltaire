@@ -9,11 +9,14 @@ using voltaire.DataStore.Implementation.Stores;
 using voltaire.Pages.Base;
 using Xamarin.Forms;
 using voltaire.Resources;
+using Acr.UserDialogs;
 
 namespace voltaire.PageModels.Base
 {
     public class BasePageModel : FreshBasePageModel
     {
+
+        protected IUserDialogs Dialog = UserDialogs.Instance;
 
         public Command BackCommand => new Command( async() =>
        {
@@ -31,6 +34,16 @@ namespace voltaire.PageModels.Base
             }
         }
 
+        private bool isloadmore;
+        public bool IsLoadMore
+        {
+            get { return isloadmore; }
+            set
+            {
+                isloadmore = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private bool isrefreshing;
         public bool IsRefreshing

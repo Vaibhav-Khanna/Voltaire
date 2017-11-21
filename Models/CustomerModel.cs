@@ -7,7 +7,8 @@ namespace voltaire.Models
 {
     public class CustomerModel : BaseModel
     {
-        
+
+
         public Partner Customer { get; set; }
 
         public IPageModelCoreMethods navigation { get; set; }

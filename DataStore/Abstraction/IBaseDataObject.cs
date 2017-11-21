@@ -20,7 +20,7 @@ namespace voltaire.DataStore.Abstraction
         [JsonIgnore]
         public string RemoteId { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("Id")]
+        [Newtonsoft.Json.JsonProperty("id")]
         public string Id { get; set; }
 
         //[Microsoft.WindowsAzure.MobileServices.Version]
