@@ -21,8 +21,8 @@ namespace voltaire.PopUps
 		public event EventHandler ItemSelectedChanged; //  event handler when a item is selected
 
 
-        Customer selecteditem; //  selected item
-        public Customer SelectedItem
+        Partner selecteditem; //  selected item
+        public Partner SelectedItem
 		{
 			get { return selecteditem; }
 			set
@@ -41,14 +41,14 @@ namespace voltaire.PopUps
 
 		public Command ItemSelected => new Command((object obj) =>  // item viewcell tap command execute
 		{
-            SelectedItem = obj as Customer;
+            SelectedItem = obj as Partner;
 			ItemSelectedChanged.Invoke();
 			PopupNavigation.PopAsync(true);
 		});
 
 
-        ObservableCollection<Customer> itemsource;  // Product list
-        public ObservableCollection<Customer> ItemSource
+        ObservableCollection<Partner> itemsource;  // Product list
+        public ObservableCollection<Partner> ItemSource
 		{
 			get { return itemsource; }
 			set

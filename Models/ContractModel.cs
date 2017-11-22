@@ -24,7 +24,7 @@ namespace voltaire.Models
                 Name = contract.Name;
 				Date = contract.ModifiedDateTime.Date;
 				Time = contract.ModifiedDateTime.TimeOfDay;
-                CustomerName = $"{contract.Customer.FirstName}  {contract.Customer.LastName}";
+                CustomerName = contract.Customer.Name;
             }
         }
 

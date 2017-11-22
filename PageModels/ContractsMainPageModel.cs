@@ -28,7 +28,7 @@ namespace voltaire.PageModels
         {
 			if (popup_context.SelectedItem != null)
 			{	
-                await CoreMethods.PushPageModel<NewContractPageModel>(new Tuple<Customer, Contract>(popup_context.SelectedItem, null));
+                await CoreMethods.PushPageModel<NewContractPageModel>(new Tuple<Partner, Contract>(popup_context.SelectedItem, null));
 			}
 			// Unsubscribe from the event
 			popup_context.ItemSelectedChanged -= Popup_Context_ItemSelectedChanged;
@@ -39,7 +39,7 @@ namespace voltaire.PageModels
         public Command ItemTapped => new Command(async (obj) =>
 		{
 			var contract = obj as Contract;
-            await CoreMethods.PushPageModel<NewContractPageModel>(new Tuple<Customer, Contract>(contract.Customer, contract));
+            await CoreMethods.PushPageModel<NewContractPageModel>(new Tuple<Partner, Contract>(contract.Customer, contract));
 		});
 
         	
@@ -56,16 +56,16 @@ namespace voltaire.PageModels
 
 
 
-		public override void Init(object initData)
-		{
-			base.Init(initData);
+        public override void Init(object initData)
+        {
+            base.Init(initData);
 
 
             // Mock Data
 
             var list = new List<Contract>();
-            list.Add(new Contract(new Customer(){ FirstName = "Johnny", LastName = "Layfield" }){ Name = "New Dummy Contract" ,ModifiedDateTime = DateTime.Now  });
-            list.Add(new Contract(new Customer() { FirstName = "Nicki", LastName = "Semtosa" }) { Name = "New Dummy Contract", ModifiedDateTime = DateTime.Now });
+            list.Add(new Contract { Customer = new Partner() { Name = "Johnny" }, Name = "New Dummy Contract" ,ModifiedDateTime = DateTime.Now  });
+            list.Add( new Contract(){ Customer = new Partner() { Name = "Nicki" },  Name = "New Dummy Contract", ModifiedDateTime = DateTime.Now });
 
             var Mock_list = new List<ContractModel>();
           
@@ -74,13 +74,13 @@ namespace voltaire.PageModels
                 Mock_list.Add(new ContractModel(item));
             }
 
-            var list_customer = new List<Customer>();
+            var list_customer = new List<Partner>();
 
             foreach (var item in list)
             {
                 list_customer.Add(item.Customer);
             }
-            popup_context.ItemSource = new ObservableCollection<Customer>(list_customer);
+            popup_context.ItemSource = new ObservableCollection<Partner>(list_customer);
 
             // Mock Data
 

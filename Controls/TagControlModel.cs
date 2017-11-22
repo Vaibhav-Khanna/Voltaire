@@ -8,15 +8,16 @@ namespace voltaire.Controls
 {
     public class TagControlModel : BaseModel
     {
-        public TagControlModel(ObservableCollection<TagControlModel> parentList,List<string> tagList)
+        
+        public TagControlModel(ObservableCollection<TagControlModel> parentList)
         {
             ParentList = parentList;
-            TagList = tagList;
+           
         }
 
         private ObservableCollection<TagControlModel> ParentList;
-        private List<string> TagList;
  
+
         string tagtext;
         public string TagText 
         { 
@@ -42,7 +43,7 @@ namespace voltaire.Controls
 
         public Command RemoveTag => new Command((obj) =>
        {
-            TagList.Remove(this.TagText);
+           
             ParentList.Remove(this);
        });
 

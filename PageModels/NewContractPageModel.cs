@@ -14,8 +14,8 @@ namespace voltaire.PageModels
 {
     public class NewContractPageModel : FreshBasePageModel
     {
-        Customer customer;
-        public Customer Customer 
+        Partner customer;
+        public Partner Customer 
         {
             get { return customer; }
             set
@@ -170,7 +170,7 @@ namespace voltaire.PageModels
         {
             base.Init(initData);
 
-            var context = initData as Tuple<Customer,Contract>;
+            var context = initData as Tuple<Partner,Contract>;
 
             Customer = context.Item1;
 
@@ -179,10 +179,10 @@ namespace voltaire.PageModels
 
             if(context.Item2==null)
             {
-                var _contract = new Contract(Customer){ ModifiedDateTime = DateTime.Now };
+                var _contract = new Contract(){ Customer = Customer, ModifiedDateTime = DateTime.Now };
                 customer.Contracts.Add(_contract);
                 Contract = _contract;
-				NewContract = $"New contract for {customer.FirstName} {customer.LastName}";
+				NewContract = $"New contract for {customer.Name}";
             }
             else
             {

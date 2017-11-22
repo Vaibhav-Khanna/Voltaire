@@ -8,6 +8,9 @@ using Microsoft.Azure.Mobile.Crashes;
 using Microsoft.Azure.Mobile.Distribute;
 using voltaire.Models;
 using voltaire.DataStore;
+using voltaire.PageModels.Base;
+using voltaire.DataStore.Implementation;
+using voltaire.DataStore.Abstraction;
 
 namespace voltaire
 {
@@ -19,18 +22,61 @@ namespace voltaire
 
         public App()
         {
+            
             InitializeComponent();
 
-
             ProductConstants.Init();
+           
+            BasePageModel.Init();
 
-            var homePage = FreshPageModelResolver.ResolvePageModel<HomePageModel>();
-            var homeContainer = new FreshNavigationContainer(homePage) { BarBackgroundColor = (Color)Resources["turquoiseBlue"], BarTextColor = Color.White };
+            storeManager = DependencyService.Get<IStoreManager>() as StoreManager;
+             
+            Init();
 
-
-            MainPage = homeContainer;
+            MainPage = new ContentPage();
 
         }
+
+
+        private StoreManager storeManager { get; set; }
+
+
+        public async void Init()
+        {
+            if (storeManager == null)
+                return;
+
+            if (!storeManager.IsInitialized)
+                await storeManager.InitializeAsync();
+
+            var setting = await storeManager.ReadSettingsAsync();
+
+            if (setting == null || string.IsNullOrWhiteSpace(setting.AuthToken))
+            {
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
+                {
+                    var homePage = FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
+
+                    MainPage = new FreshNavigationContainer(homePage) { BarBackgroundColor = (Color)Resources["turquoiseBlue"], BarTextColor = Color.Black };                             
+                });
+            }
+            else
+            {
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
+                {
+                    var homePage = FreshPageModelResolver.ResolvePageModel<HomePageModel>();
+
+                    var homeContainer = new FreshNavigationContainer(homePage) { BarBackgroundColor = (Color)Resources["turquoiseBlue"], BarTextColor = Color.White };
+
+                    MainPage = homeContainer;
+                });
+            }
+
+            if(setting != null && !string.IsNullOrWhiteSpace(setting.AuthToken))
+                await storeManager.SyncAllAsync(true);
+            
+        }
+
 
         protected override void OnStart()
         {
@@ -48,13 +94,13 @@ namespace voltaire
         {
 			// Handle when your app sleeps
 
-            // Shutdown the database for integrity
-			LocalDB.ShutDown();
+            // Shutdown the database for integrity			
         }
 
         protected override void OnResume()
         {
             // Handle when your app resumes
         }
+
     }
 }

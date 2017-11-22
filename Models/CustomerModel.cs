@@ -1,28 +1,57 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Linq;
+using System.Text.RegularExpressions;
 using FreshMvvm;
+using Xamarin.Forms;
 
 namespace voltaire.Models
 {
     public class CustomerModel : BaseModel
     {
-        public Customer Customer { get; set; }
+
+
+        public Partner Customer { get; set; }
 
         public IPageModelCoreMethods navigation { get; set; }
 
-        public string Name => $"{Customer.FirstName} {Customer.LastName}";
+        public string Name => Customer.Name;
+
+        public FormattedString DisplayText { get; set; }
 
         public string NameSort
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(Customer.LastName) || Customer.LastName.Length == 0 || Regex.IsMatch(Customer.LastName, @"^\d")) return "#";
-                return Customer.LastName[0].ToString().ToUpper();
+                if (string.IsNullOrWhiteSpace(Customer.Name) || Customer.Name.Length == 0 || Regex.IsMatch(Customer.Name, @"^\d")) return "#";
+                return Customer.Name[0].ToString().ToUpper();
             }
         }
 
-        public CustomerModel(Customer customer)
+        public CustomerModel(Partner customer)
         {
             Customer = customer;
+
+            var name_array = Customer.Name?.Split(' ');
+
+            DisplayText = new FormattedString
+            {
+                Spans = {
+                        new Span { Text = name_array?.First() + " " , FontAttributes = FontAttributes.None, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"}
+                }
+            };
+
+            if(name_array?.Count() > 1)
+            {
+                string st ="";
+                var s = name_array.ToList();
+                s.RemoveAt(0);
+                foreach (var item in s)
+                {
+                    st += " " + item;
+                }
+                s = null;
+                DisplayText.Spans.Add(new Span { Text = st.Trim(), FontSize = 20, FontFamily = "SanFranciscoDisplay-Bold" });
+            }
+                     
         }
     }
 }

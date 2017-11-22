@@ -28,7 +28,7 @@ namespace voltaire.PageModels
         {
             if (popup_context.SelectedItem != null)
             {
-                await CoreMethods.PushPageModel<QuotationDetailViewPageModel>(new Tuple<Customer, bool, QuotationsModel>(popup_context.SelectedItem, true, null));
+                await CoreMethods.PushPageModel<QuotationDetailViewPageModel>(new Tuple<Partner, bool, QuotationsModel>(popup_context.SelectedItem, true, null));
             }
             // Unsubscribe from the event
             popup_context.ItemSelectedChanged -= Popup_Context_ItemSelectedChanged;
@@ -39,7 +39,7 @@ namespace voltaire.PageModels
         public Command TapQuotation => new Command(async(obj) =>
        {
             // mock data
-            await CoreMethods.PushPageModel<QuotationDetailViewPageModel>(new Tuple<Customer, bool, QuotationsModel>(new Customer(){  }, false, (obj as QuotationsModel) ));
+            await CoreMethods.PushPageModel<QuotationDetailViewPageModel>(new Tuple<Partner, bool, QuotationsModel>(new Partner(){  }, false, (obj as QuotationsModel) ));
        });
 
 

@@ -262,10 +262,7 @@
     </data>
 	<data name="Check" xml:space="preserve">
         <value>Check-in</value>   
-    </data>
-	<data name="Contacts" xml:space="preserve">
-        <value>Contact</value>   
-    </data>
+    </data>	
 	<data name="Duration" xml:space="preserve">
         <value>Duration</value>   
     </data>
@@ -357,5 +354,58 @@
 	<data name="NotNow" xml:space="preserve">
         <value>Not now</value>   
     </data>
-	
+	<data name="UsernameMissing" xml:space="preserve">
+        <value>Please enter the username above</value>   
+    </data>
+	<data name="PasswordMissing" xml:space="preserve">
+        <value>Please enter the password above</value>   
+    </data>
+	<data name="InformationMissing" xml:space="preserve">
+        <value>Information Missing</value>   
+    </data>
+    <data name="IncorrectInfo" xml:space="preserve">
+        <value>The given credentials do not match or are incorrect. Please try again with the correct values.</value>   
+    </data>
+	 <data name="Error" xml:space="preserve">
+        <value>Wait</value>   
+    </data>
+	 <data name="LogOut" xml:space="preserve">
+        <value>Log out</value>   
+    </data>
+	 <data name="LogOutMessage" xml:space="preserve">
+        <value>Are you sure you want to log out of this application ? Any unsycned changes will be saved first. Wish to Continue ?</value>   
+    </data>
+	 <data name="Loading" xml:space="preserve">
+        <value>Loading...</value>   
+    </data>
+	 <data name="FetchingData" xml:space="preserve">
+        <value>Fetching data from server...</value>   
+    </data>
+	 <data name="Refreshing" xml:space="preserve">
+        <value>Refreshing...</value>   
+    </data>
+	 <data name="SingingIn" xml:space="preserve">
+        <value>Signing In...</value>   
+    </data>
+	 <data name="SyncingData" xml:space="preserve">
+        <value>Syncing Data...</value>   
+    </data>
+	 <data name="NewContact" xml:space="preserve">
+        <value>New Contact</value>   
+    </data>
+	 <data name="FillInCustomerName" xml:space="preserve">
+        <value>Please fill in the customer name</value>   
+    </data>
+	 <data name="FillInCompanyName" xml:space="preserve">
+        <value>Please fill in the company name</value>   
+    </data>
+	 <data name="LoadMore" xml:space="preserve">
+        <value>Load more</value>   
+    </data>
+	 <data name="Contact" xml:space="preserve">
+        <value>Contact</value>   
+    </data>
+	 <data name="MatchingSearch" xml:space="preserve">
+        <value>matching your search</value>   
+    </data>
 </root>

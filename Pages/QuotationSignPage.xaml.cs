@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using voltaire.DataStore;
+using voltaire.DataStore.Implementation;
 using voltaire.PageModels;
 using Xamarin.Forms;
 
@@ -28,7 +29,7 @@ namespace voltaire.Pages
                 return;
             }
 
-            context.SignImage = LocalDB.ReadFully(image_stream);
+            context.SignImage = StoreManager.ReadFully(image_stream);
 
             context.SignValidate.Execute(null);
         }

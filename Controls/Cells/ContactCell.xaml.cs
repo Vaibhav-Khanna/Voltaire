@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using FreshMvvm;
 using voltaire.PageModels;
+using System.Linq;
 
 namespace voltaire.Controls.Cells
 {
@@ -14,23 +15,7 @@ namespace voltaire.Controls.Cells
         {
             InitializeComponent();
         }
-
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
-            var model = (CustomerModel)BindingContext;
-
-
-            if (model != null)
-            {
-                FullNameLabel.FormattedText = new FormattedString
-                {
-                    Spans = {
-                new Span { Text = model.Customer.FirstName, FontAttributes = FontAttributes.None, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"},
-                new Span { Text = $" {model.Customer.LastName}", FontSize = 20, FontFamily="SanFranciscoDisplay-Bold"} }
-                };
-            }
-        }
+      
 
         protected override void OnTapped()
         {
@@ -45,7 +30,6 @@ namespace voltaire.Controls.Cells
             var parent = this.Parent as ListView;
             parent.SelectedItem = null;
         }
-
 
 
     }

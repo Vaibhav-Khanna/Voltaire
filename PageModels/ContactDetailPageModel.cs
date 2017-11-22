@@ -17,11 +17,10 @@ using System.Collections.Generic;
 namespace voltaire.PageModels
 {
 
-
     public class ContactDetailPageModel : BasePageModel
-    {
-       
-        Customer _customer;
+    { 
+        
+        Partner _customer;
 
         public Command tap_Toolbar  => new Command( async () => 
         {
@@ -30,22 +29,29 @@ namespace voltaire.PageModels
                 var customer_copy = customer;
 
                 customer_copy.CanEdit = true;
-
+               
                 await CoreMethods.PushPageModel<ContactDetailPageModel>(customer_copy, true, true);
             }
             else
             {
-                customer.Address = address;
+                customer.ContactAddress = address;
                 customer.Weight = weight;
-                customer.FirstName = firstname;
-                customer.LastName = lastname;
+                customer.Name = firstname;               
                 customer.Phone = phone;
                 customer.Website = website;
                 customer.LastVisit = lastvisit;
 				customer.PermanentNote = notetext;
                 customer.Email = email;
                 customer.CanEdit = false;
-                customer.Company = companyname;
+                customer.CompanyName = companyname;
+                customer.Tags = Tags.Select((arg) => arg.TagText).ToList();
+
+                Dialog.ShowLoading(null);
+
+                await StoreManager.CustomerStore.UpdateAsync(customer);
+
+                Dialog.HideLoading();
+
                 await CoreMethods.PopPageModel(customer, true, true); 
             }
         });
@@ -80,6 +86,9 @@ namespace voltaire.PageModels
 
         public Command AddTags => new Command( async(obj) =>
        {
+           if (!CanEdit)
+               return;
+            
             Popup_context.ItemSelectedChanged += Popup_Context_ItemSelectedChanged;
             await PopupNavigation.PushAsync(new AddTagsPopUp() { BindingContext = Popup_context }, true);
        });
@@ -89,7 +98,7 @@ namespace voltaire.PageModels
         {
             if(!string.IsNullOrEmpty(Popup_context.SelectedItem))
             {
-                Tags.Add(new TagControlModel(Tags,customer.Tags){ TagText = Popup_context.SelectedItem, CanEdit = CanEdit });
+                Tags.Add(new TagControlModel(Tags){ TagText = Popup_context.SelectedItem, CanEdit = CanEdit });
                 customer.Tags.Add(Popup_context.SelectedItem);
             }
            
@@ -174,18 +183,7 @@ namespace voltaire.PageModels
 				RaisePropertyChanged();
 			}
 		}
-
-		private string lastname;
-
-		public string LastName
-		{
-            get { return lastname; }
-			set
-			{
-                lastname = value;
-				RaisePropertyChanged();
-			}
-		}
+       		
 
         private int? weight;
 
@@ -322,7 +320,7 @@ namespace voltaire.PageModels
             }
         }
 
-        public Customer customer { get 
+        public Partner customer { get 
             {
                 return _customer;
             } set
@@ -330,20 +328,21 @@ namespace voltaire.PageModels
                
                 _customer = value;
 
-                firstname = customer.FirstName;
-                lastname = customer.LastName;
+                firstname = customer.Name;
+               
                 weight = customer.Weight;
                 email = customer.Email;
-                address = customer.Address;
+                address = customer.ContactAddress;
                 phone = customer.Phone;
                 website = customer.Website;
                 lastvisit = customer.LastVisit;
                 canedit = customer.CanEdit;
                 NoteText = customer.PermanentNote;
-                title = canedit ? AppResources.Update : $"{customer.FirstName} {customer.LastName}";
+                title = canedit ? AppResources.Update : $"{customer.Name}";
                 toolbarbutton = canedit ? AppResources.Save : AppResources.Modify;
                 backbutton = canedit ? AppResources.Cancel : AppResources.Back;
-                companyname = customer.Company;
+                companyname = customer.CompanyName;
+
 
                 if (Tags == null)
                     Tags = new ObservableCollection<TagControlModel>();
@@ -352,7 +351,7 @@ namespace voltaire.PageModels
 
                 foreach (var item in customer.Tags)
                 {
-                    Tags.Add(new TagControlModel(Tags,customer.Tags){ TagText = item , CanEdit = CanEdit });
+                    Tags.Add(new TagControlModel(Tags){ TagText = item , CanEdit = CanEdit });
                 }
                     
                 //Tags = new ObservableCollection<TagControlModel>(Tags.ToList());
@@ -360,7 +359,7 @@ namespace voltaire.PageModels
                 RaisePropertyChanged(); 
                 RaisePropertyChanged(nameof(Title));
                 RaisePropertyChanged(nameof(FirstName));
-                RaisePropertyChanged(nameof(LastName));
+               
                 RaisePropertyChanged(nameof(Weight));
                 RaisePropertyChanged(nameof(Phone));
                 RaisePropertyChanged(nameof(Email));
@@ -400,7 +399,7 @@ namespace voltaire.PageModels
             if (returnedData == null)
                 return;
 
-            customer = (Customer)returnedData;
+            customer = (Partner)returnedData;
      
         }
 
@@ -409,7 +408,7 @@ namespace voltaire.PageModels
             base.Init(initData);
 
             if(initData!=null)
-            customer = (Customer)initData;
+            customer = (Partner)initData;
 
             ObservableCollection<TTab> pages = new ObservableCollection<TTab>();
 

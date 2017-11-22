@@ -14,7 +14,7 @@ namespace voltaire.Controls.Items
 
         public Type View { get; set; }
 
-        public Customer Customer { get; private set; }
+        public Partner Customer { get; private set; }
 
         public IPageModelCoreMethods Navigation { get; private set; }
 

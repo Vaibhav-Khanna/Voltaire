@@ -4,21 +4,73 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using FreshMvvm;
+using voltaire.DataStore.Abstraction.Stores;
+using voltaire.DataStore.Implementation;
+using voltaire.DataStore.Implementation.Stores;
 using voltaire.Helpers.Collections;
 using voltaire.Models;
 using voltaire.PageModels.Base;
 using Xamarin.Forms;
+using voltaire.Resources;
+using System.Reflection;
+using Microsoft.WindowsAzure.MobileServices;
+using System.Diagnostics;
 
 namespace voltaire.PageModels
 {
+
     public class ContactsPageModel : BasePageModel
     {
-        public string CustomersCount { get; set; }
-        public ObservableCollection<Customer> customers { get; set; }
 
-        public ObservableCollection<ObservableGroupCollection<string, CustomerModel>> CustomersItems { get; set; }
+        string customersCount;
+        public string CustomersCount
+        {
+            get { return customersCount; }
+            set
+            {
+                customersCount = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        string searchtext;
+        public string SearchText
+        {
+            get { return searchtext; }
+            set
+            {
+                searchtext = value;
+                RaisePropertyChanged();
+                SearchContact.Execute(null);
+            }
+        }
+
+
+        ObservableCollection<Partner> customers;
+        public ObservableCollection<Partner> Customers
+        {
+            get { return customers; }
+            set
+            {
+                customers = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        ObservableCollection<ObservableGroupCollection<string, CustomerModel>> customersitems;
+        public ObservableCollection<ObservableGroupCollection<string, CustomerModel>> CustomersItems
+        {
+            get { return customersitems; }
+            set
+            {
+                customersitems = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public ICommand FiltersLayoutCommand => new Command(FiltersLayoutAppearing);
+
+        private ICustomerStore Store => StoreManager.CustomerStore;
 
         private int? _listColumnSpan;
 
@@ -52,7 +104,7 @@ namespace voltaire.PageModels
 
         public ContactsPageModel()
         {
-
+            Get();
         }
 
         private void FiltersLayoutAppearing()
@@ -74,149 +126,166 @@ namespace voltaire.PageModels
 
         public ObservableCollection<PartnerGrade> partnerGrades { get; set; }
 
-        //INIT data form page  freshmvvm
-        public override void Init(object initData)
+
+        async void Get()
         {
+            // Local data
+            IsLoading = true;
+
+            var result = await Store.GetItemsAsync(false);
 
 
-            customers = new ObservableCollection<Customer>
+            // Server refresh
+            if ( result == null || !result.Any() )
             {
-                new Customer {
-                    FirstName= "Bill",
-                    LastName="Anderson",
-                    Grade="Pro",
-                    Company = "Matsiya IT",
-                    Weight= 4,
-                    Email = "vaibhav@gmail.com",
-                    Address = "Jammu and Kashmir",
-                    Phone = "8872892265",
-                    Website = "www.matisya.com",
-                    LastVisit=new DateTime(2017, 6, 3),
-                    CustomerAddresses = new List<CustomerAddressLocation>(){ new CustomerAddressLocation()
-                        {
-                            Address = "8 c Beauty Avenue, Phase 1, Amritsar, Punjab, 143001",
-                            Title = "Matsiya",
-                            Latitude = 31.655,
-                            Longitude = 74.879,
-                        }, new CustomerAddressLocation()
-                        {
-                            Address = "Metro Cash and carry",
-                            Title = "Metro",
-                            Latitude = 31.669,
-                            Longitude = 74.882
-                        } }                    
-                    
-                },
-                new Customer {
-                    FirstName= "Milton",
-                    LastName="Aaron",
-                    Grade="Client Amateur"
-                },
-                new Customer {
-                    FirstName= "Reid",
-                    LastName="Alex"
-                },
+                LoadingText = AppResources.FetchingData;
+                result = await Store.GetItemsAsync(true);
+                CreateGroupedCollection(result);
+                LoadingText = AppResources.FetchingData;
+            }
+            else
+                CreateGroupedCollection(result);
 
-                new Customer {
-                    FirstName= "Fred",
-                    LastName="Hojberg",
-                    Grade="Client Amateur"
-                },
+            IsLoading = false;
 
-                new Customer {
-                    FirstName= "Bruce",
-                    LastName="Ballard"
-                },
-                new Customer {
-                    FirstName= "Alex",
-                    LastName="Bartley",
-                    Grade="Client Amateur"
-                },
-                new Customer {
-                    FirstName= "Michael",
-                    LastName="Jordan"
-                },
-                new Customer {
-                    FirstName= "Magic",
-                    LastName="Johnson"
-                },
-                new Customer {
-                    FirstName= "Bill",
-                    LastName="Russell",
-                    Company="Antares",
-                    LastVisit=new DateTime(2017, 1, 18)
-                },
-                new Customer {
-                    FirstName= "James",
-                    LastName="Harden",
-                    Grade="Client Amateur"
-                },
-                new Customer {
-                    FirstName= "Russell",
-                    LastName="Westbrook",
-                    Company="Centre Hippique de Lescar",
-                    Grade="Pro",
-                    LastVisit=new DateTime(2017, 4, 22),
-                    Weight=2
-                },
-                new Customer {
-                    FirstName= "Kevin",
-                    LastName="Durant",
-                    Grade="Client Amateur",
-                    Weight=1
-                },
-                new Customer {
-                    FirstName= "Shaquil",
-                    LastName="O neill"
-                },
-                new Customer {
-                    FirstName= "Lebron",
-                    LastName="James",
-                    Company="PMU",
-                    Grade="Pro"
-                },
-                new Customer {
-                    FirstName= "Derrick",
-                    LastName="Rose"
-                },
-                new Customer {
-                    FirstName= "Mike",
-                    LastName="Dantoni"
-                },
-                new Customer {
-                    FirstName= "Chris",
-                    LastName="Paul",
-                    Grade="Pro"
-                },
-                new Customer {
-                    FirstName= "Bill",
-                    LastName="Murray"
-                },
-                new Customer {
-                    FirstName= "Jason",
-                    LastName="Kid"
-                },
-                new Customer {
-                    FirstName= "John",
-                    LastName="Stockton"
+        }
+
+        bool Loadingmore = false;
+
+        public Command LoadMore => new Command(async () =>
+        {
+            if (!IsLoadMore || Loadingmore)
+                return;
+
+          if (string.IsNullOrWhiteSpace(SearchText))
+          {
+                Loadingmore = true;
+                
+                var result = await Store.GetNextItemsAsync(Customers.Count);
+
+                if (result != null && result.Any())
+                {
+                    var list = customers.ToList();
+                    list.AddRange(result);
+
+                    Debug.WriteLine("Fetched "+result.Count());
+
+                    if ((result as IQueryResultEnumerable<Partner>) != null)
+                    {
+                        var totalCount = (result as IQueryResultEnumerable<Partner>).TotalCount;
+
+                        if(totalCount != 1)
+                        CustomersCount = totalCount.ToString() + " " + AppResources.Contacts;
+                        else
+                            CustomersCount = totalCount.ToString() + " " + AppResources.Contact;
+
+                        if (!string.IsNullOrWhiteSpace(SearchText))
+                            IsLoadMore = false;
+                        else
+                        {
+                            if (Convert.ToInt32(totalCount) - list.Count() > 0)
+                                IsLoadMore = true;
+                            else
+                                IsLoadMore = false;
+                        }
+                    }
+                     
+                    CreateGroupedCollection(list);
                 }
+                else
+                    IsLoadMore = false;
 
-            };
+                Loadingmore = false;
+          }
+      });
 
 
-            if (customers.Count > 1) CustomersCount = customers.Count + " Contacts";
-            else CustomersCount = customers.Count + " Contact";
+        public Command AddContact => new Command( async() =>
+       {
+            await CoreMethods.PushPageModel<ContactAddPageModel>();
+       });
 
 
-            var models = customers.Select(i => new CustomerModel(i) { navigation = CoreMethods }).ToList();
+        public Command RefreshList => new Command(async (obj) =>
+       {
+           if (!string.IsNullOrWhiteSpace(SearchText))
+           {
+               IsRefreshing = false;
+               return;
+           }
+
+           IsLoading = true;
+           IsLoadingText = AppResources.Refreshing;
+           var result = await Store.GetItemsAsync(true);
+           CreateGroupedCollection(result);
+           IsRefreshing = false;
+           IsLoading = false;
+       });
+
+
+        public Command SearchContact => new Command(async () =>
+       {
+           if (string.IsNullOrWhiteSpace(searchtext))
+           {
+               var res = await Store.GetItemsAsync(false);
+               CreateGroupedCollection(res);
+               return;
+           }
+
+          
+           var result = await Store.Search(SearchText.Trim());
+           CreateGroupedCollection(result);
+           CustomersCount += " " + AppResources.MatchingSearch;
+       });
+
+
+        private void CreateGroupedCollection(IEnumerable<Partner> list)
+        {
+            
+            if (list == null)
+                list = new List<Partner>();
+
+
+            if( (list as IQueryResultEnumerable<Partner>) != null )
+            {
+                var totalCount = (list as IQueryResultEnumerable<Partner>).TotalCount;
+               
+                if (totalCount != 1)
+                    CustomersCount = totalCount.ToString() + " " + AppResources.Contacts;
+                else
+                    CustomersCount = totalCount.ToString() + " " + AppResources.Contact;
+
+                if (!string.IsNullOrWhiteSpace(SearchText))
+                    IsLoadMore = false;
+                else
+                {
+                    if (Convert.ToInt32(totalCount) - list.Count() > 0)
+                        IsLoadMore = true;
+                    else
+                        IsLoadMore = false;
+                }
+            }
+
+            list = list.OrderBy( (arg) => arg.Name );
+
+            Customers = new ObservableCollection<Partner>(list);                   
+
+            var models = Customers.Select(i => new CustomerModel(i) { navigation = CoreMethods }).ToList();
 
             var groupedData =
-                models.OrderBy(p => p.Customer.LastName)
+                models
                     .GroupBy(p => p.NameSort)
                     .Select(p => new ObservableGroupCollection<string, CustomerModel>(p))
                     .ToList();
 
             CustomersItems = new ObservableCollection<ObservableGroupCollection<string, CustomerModel>>(groupedData);
+
+        }
+
+
+        //INIT data form page  freshmvvm
+        public override void Init(object initData)
+        {
 
             //columnSpan for listview
             _listColumnSpan = 2;
@@ -235,12 +304,22 @@ namespace voltaire.PageModels
                 new PartnerGrade {Grade="PRO"},
                 new PartnerGrade {Grade="Particulier"},
                 new PartnerGrade {Grade="Ecuries"}
-
-
             };
+
+        }
+
+        public override void ReverseInit(object returnedData)
+        {
+            base.ReverseInit(returnedData);
+
+            if(returnedData!=null)
+            {
+                IsRefreshing = true;
+            }
 
         }
 
 
     }
+    
 }

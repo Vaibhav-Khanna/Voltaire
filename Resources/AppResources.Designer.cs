@@ -562,5 +562,113 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("DeleteConfirm", resourceCulture);
             }
         }
+        
+        internal static string UsernameMissing {
+            get {
+                return ResourceManager.GetString("UsernameMissing", resourceCulture);
+            }
+        }
+        
+        internal static string PasswordMissing {
+            get {
+                return ResourceManager.GetString("PasswordMissing", resourceCulture);
+            }
+        }
+        
+        internal static string InformationMissing {
+            get {
+                return ResourceManager.GetString("InformationMissing", resourceCulture);
+            }
+        }
+        
+        internal static string IncorrectInfo {
+            get {
+                return ResourceManager.GetString("IncorrectInfo", resourceCulture);
+            }
+        }
+        
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        internal static string LogOut {
+            get {
+                return ResourceManager.GetString("LogOut", resourceCulture);
+            }
+        }
+        
+        internal static string LogOutMessage {
+            get {
+                return ResourceManager.GetString("LogOutMessage", resourceCulture);
+            }
+        }
+        
+        internal static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        internal static string FetchingData {
+            get {
+                return ResourceManager.GetString("FetchingData", resourceCulture);
+            }
+        }
+        
+        internal static string Refreshing {
+            get {
+                return ResourceManager.GetString("Refreshing", resourceCulture);
+            }
+        }
+        
+        internal static string SingingIn {
+            get {
+                return ResourceManager.GetString("SingingIn", resourceCulture);
+            }
+        }
+        
+        internal static string SyncingData {
+            get {
+                return ResourceManager.GetString("SyncingData", resourceCulture);
+            }
+        }
+        
+        internal static string NewContact {
+            get {
+                return ResourceManager.GetString("NewContact", resourceCulture);
+            }
+        }
+        
+        internal static string FillInCustomerName {
+            get {
+                return ResourceManager.GetString("FillInCustomerName", resourceCulture);
+            }
+        }
+        
+        internal static string FillInCompanyName {
+            get {
+                return ResourceManager.GetString("FillInCompanyName", resourceCulture);
+            }
+        }
+        
+        internal static string LoadMore {
+            get {
+                return ResourceManager.GetString("LoadMore", resourceCulture);
+            }
+        }
+        
+        internal static string Contact {
+            get {
+                return ResourceManager.GetString("Contact", resourceCulture);
+            }
+        }
+        
+        internal static string MatchingSearch {
+            get {
+                return ResourceManager.GetString("MatchingSearch", resourceCulture);
+            }
+        }
     }
 }

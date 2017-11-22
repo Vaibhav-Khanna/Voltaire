@@ -4,12 +4,12 @@ namespace voltaire.Models
 {
     public class CheckIn
     {
-        public CheckIn(Customer customer)
+        public CheckIn(Partner customer)
         {
             Customer = customer;
         }
 
-        public Customer Customer { get; set; }
+        public Partner Customer { get; set; }
 
         public DateTime DateTime { get; set; } = DateTime.Now; // Mock data
 

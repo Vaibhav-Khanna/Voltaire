@@ -6,7 +6,8 @@
     xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
     xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire"
     xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire" 
-    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
+    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire"
+    xmlns:converter="clr-namespace:voltaire.Converters;assembly=voltaire"
     xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
     xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
     xmlns:attachedProperties="clr-namespace:voltaire.Helpers.AttachedProperties;assembly=voltaire"
@@ -26,7 +27,7 @@
         <!--  Toolbar  -->
         <controls:TToolBar Title="{x:Static resources:AppResources.Contacts}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <controls:TToolBar.LeftToolbarItems>
-                <Entry Placeholder="{x:Static resources:AppResources.SearchContact}" Keyboard="Text" HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}"  />
+                <renderers:CustomSearchBar x:Name="searchBar" Text="{Binding SearchText,Mode=TwoWay}" TextChanged="Handle_TextChanged" SearchCommand="{Binding SearchContact}" Placeholder="{x:Static resources:AppResources.SearchContact}"  HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}"  />
           </controls:TToolBar.LeftToolbarItems>
             <controls:TToolBar.RightToolbarItems>
                 <!--attachedProperties:TappedGestureAttached.Command="{Binding AddContactCommand}" -->
@@ -40,7 +41,11 @@
                            Source="add"
                            VerticalOptions="Center"
                            WidthRequest="35"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddContact}" />   
+                    </StackLayout.GestureRecognizers>
                 </StackLayout>
+                
             </controls:TToolBar.RightToolbarItems>
         </controls:TToolBar>
      <!--  Menu  -->
@@ -95,6 +100,11 @@
     
                     </Frame>
             </StackLayout>
+            
+            <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="{Binding listColumnSpan}"  BackgroundColor="White" IsVisible="{Binding IsLoading}" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                 <ActivityIndicator IsRunning="true"  HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/> 
+                <Label Style="{StaticResource CommonLabelStyle}" Text="{Binding IsLoadingText}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" TextColor="{StaticResource GreyishBrown}" FontSize="16" />
+            </StackLayout> 
 
             <ListView                  x:Name="ListViewLayout"
                                        Grid.Row="1" 
@@ -102,8 +112,16 @@
                                        Grid.ColumnSpan="{Binding listColumnSpan}" 
                                        GroupDisplayBinding="{Binding Key}"
                                        HasUnevenRows="True"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsRefreshing}"
+                RefreshCommand="{Binding RefreshList}"   
+                IsVisible="{Binding IsLoading,Converter={converter:BoolInverseConverter}}"
+                ItemAppearing="Handle_ItemAppearing"
                                        IsGroupingEnabled="True"
                                        ItemsSource="{Binding CustomersItems}">
+                <x:Arguments>
+                 <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+                </x:Arguments>
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <ViewCell Height="25">
@@ -121,6 +139,11 @@
                         <cells:ContactCell />
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <ContentView IsVisible="{Binding IsLoadMore}" HorizontalOptions="FillAndExpand" HeightRequest="90">
+                        <ActivityIndicator Color="Gray" IsRunning="true" HorizontalOptions="Center"  HeightRequest="50" VerticalOptions="Center" />
+                    </ContentView>
+                </ListView.Footer>
             </ListView> 
 
             

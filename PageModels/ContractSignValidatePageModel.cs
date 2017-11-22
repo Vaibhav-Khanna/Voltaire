@@ -4,6 +4,7 @@ using voltaire.PageModels.Base;
 using voltaire.Models;
 using System.IO;
 using voltaire.DataStore;
+using voltaire.DataStore.Implementation;
 
 namespace voltaire.PageModels
 {
@@ -37,7 +38,7 @@ namespace voltaire.PageModels
             {
                 imagestream = value;
 
-                contract.SignImageSource = LocalDB.ReadFully(imagestream);
+                contract.SignImageSource = voltaire.DataStore.Implementation.StoreManager.ReadFully(imagestream);
 
                 BackButton.Execute(null);
             }

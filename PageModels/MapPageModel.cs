@@ -8,9 +8,9 @@ namespace voltaire.PageModels
     {
 
 
-		Customer customer;
+		Partner customer;
 
-        public Customer Customer 
+        public Partner Customer 
         {
             get { return customer; }
             set 
@@ -29,7 +29,7 @@ namespace voltaire.PageModels
         {
             base.Init(initData);
 
-            var context = initData as Customer;
+            var context = initData as Partner;
 
             if (context == null)
                 return;

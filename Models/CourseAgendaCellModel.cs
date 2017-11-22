@@ -11,12 +11,12 @@ namespace voltaire.Models
             Longitude = checkin.Longitude;
             Latitude = checkin.Latitude;
             CheckInTime = checkin.DateTime.ToString("h:mm tt");
-            ContactName = $"{Customer.FirstName} {Customer.LastName}";
+            ContactName = Customer.Name;
             Address = checkin.Address;
             CheckIn = checkin;
         }
 
-        public Customer Customer { get; set; }
+        public Partner Customer { get; set; }
 
         public CheckIn CheckIn { get; set; }
 

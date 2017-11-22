@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
+    xmlns:local="clr-namespace:voltaire.Converters;assembly=voltaire"
+    xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire" 
+    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire"
+    xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
+    xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    x:Class="voltaire.Pages.ContactAddPage">
+     <base:BasePage.Resources>
+         <ResourceDictionary>
+           <local:DateToStringConverter x:Key="DateToStringConverter" />
+    </ResourceDictionary>
+    </base:BasePage.Resources>
+	<ContentPage.Content>
+         <Grid x:Name="grid" BackgroundColor = "White" Padding= "0" RowSpacing="0" VerticalOptions = "FillAndExpand" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+           
+        </Grid.RowDefinitions>
+        <controls:TToolBar BackgroundColor = "{StaticResource turquoiseBlue}" HeightRequest = "80" Title = "{x:Static resources:AppResources.NewContact}" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand" Grid.Row="0" Grid.Column="0" >
+            <controls:TToolBar.LeftToolbarItems>
+                <Image Source = "back.png" IsEnabled="{Binding CanEdit}" HeightRequest = "25" WidthRequest = "30" VerticalOptions = "Center" HorizontalOptions = "Start"  >
+                    <Image.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding BackCommand}" />
+                </Image.GestureRecognizers> 
+                </Image>
+            </controls:TToolBar.LeftToolbarItems>
+                <controls:TToolBar.RightToolbarItems>
+                  <Label  WidthRequest="80"  HorizontalTextAlignment="End" IsEnabled="{Binding CanEdit}" Text="Save" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center">
+                     <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding SaveContact}" />
+                        </Label.GestureRecognizers> 
+                </Label>
+                </controls:TToolBar.RightToolbarItems>
+        </controls:TToolBar>
+
+             <ScrollView Grid.Row="1" Grid.Column="0" VerticalOptions="FillAndExpand" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical" BackgroundColor="White" Margin="0" Padding="0" Spacing="0">
+
+               <StackLayout x:Name="topcontainer" Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="White" Padding="40,40,0,20" Spacing="5" >
+
+                   <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding Name, Mode=TwoWay}" Keyboard="Text" Grid.Row="1" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                        <x:Arguments>
+                            <x:String>Name    </x:String>
+                            <x:Boolean>true</x:Boolean>
+                            <x:Boolean>false</x:Boolean>
+                        </x:Arguments>
+                    </controls:CustomLabelEntry> 
+
+              </StackLayout>
+                    
+                <Grid RowSpacing="1" Margin="40,0,0,0" BackgroundColor="{StaticResource White}" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                        
+                    <controls:WeightScale MaxWeight="5" SelectedScale="{Binding Weight, Mode=TwoWay}"  IsEnabled="{Binding CanEdit}" SelectedScaleChanged="Handle_SelectedScaleChanged" Grid.Row="0" Grid.Column="0"/>    
+                    <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding CompanyName, Mode=TwoWay}" Keyboard="Text" Grid.Row="1" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                        <x:Arguments>
+                            <x:String>Parent Partner    </x:String>
+                            <x:Boolean>true</x:Boolean>
+                            <x:Boolean>false</x:Boolean>
+                        </x:Arguments>
+                    </controls:CustomLabelEntry> 
+                    <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding Phone, Mode=TwoWay}" Keyboard="Numeric" Grid.Row="2" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                        <x:Arguments>
+                            <x:String>phone.png</x:String>
+                            <x:Boolean>false</x:Boolean>
+                            <x:Boolean>false</x:Boolean>
+                        </x:Arguments>
+                    </controls:CustomLabelEntry>
+                    <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding Address, Mode=TwoWay}" Keyboard="Text" Grid.Row="3" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                        <x:Arguments>
+                            <x:String>location.png</x:String>
+                            <x:Boolean>false</x:Boolean>
+                            <x:Boolean>false</x:Boolean>
+                        </x:Arguments>
+                    </controls:CustomLabelEntry>
+                    <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding Email, Mode=TwoWay}" Keyboard="Email" Grid.Row="4" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                        <x:Arguments>
+                            <x:String>email.png</x:String>
+                            <x:Boolean>false</x:Boolean>
+                            <x:Boolean>false</x:Boolean>
+                        </x:Arguments>
+                    </controls:CustomLabelEntry>
+                    <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding Website, Mode=TwoWay}" Keyboard="Url" Grid.Row="5" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                        <x:Arguments>
+                            <x:String>www.png</x:String>
+                            <x:Boolean>false</x:Boolean>
+                            <x:Boolean>false</x:Boolean>
+                        </x:Arguments>
+                    </controls:CustomLabelEntry>
+
+                        
+                    <StackLayout Spacing="10" Orientation="Vertical" BackgroundColor="White" Padding="0,30,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="6" Grid.Column="0">
+                        <Label FontFamily="Raleway-Medium" TextColor="{StaticResource GreyishBrown}" FontSize="24" Text="{x:Static resources:AppResources.Tags}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+                        <controls:WrapLayout x:Name = "tagContainer" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
+                            </controls:WrapLayout>    
+                        <Button FontFamily="Raleway-Regular" FontSize="16" TextColor="{StaticResource turquoiseBlue}" Text="{x:Static resources:AppResources.addtags}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Command="{Binding AddTags}"/>
+                    </StackLayout>
+                    
+                    <StackLayout Spacing="20" Orientation="Vertical" BackgroundColor="White" Padding="0,30,0,130" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="7" Grid.Column="0">
+                        <Label FontFamily="Raleway-Medium" TextColor="{StaticResource GreyishBrown}" FontSize="24" Text="{x:Static resources:AppResources.PermanentNote}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+                        <StackLayout Margin="0,0,40,0" Padding="1" BackgroundColor="{StaticResource warmGrey}"  Grid.Row="1" >
+                            <StackLayout BackgroundColor="White" Padding="15" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                                <Editor  Text="{Binding NoteText, Mode=TwoWay}" TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Regular" FontSize="14" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="100" BackgroundColor="White" />
+                            </StackLayout>         
+                        </StackLayout>
+                    </StackLayout>
+                   
+                </Grid>
+                </StackLayout>
+            </ScrollView>
+
+
+        </Grid>
+	</ContentPage.Content>
+</base:BasePage>

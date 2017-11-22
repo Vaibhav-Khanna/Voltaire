@@ -39,17 +39,14 @@ namespace voltaire.Pages
 			{
 				topcontainer.Children.Clear();
 
-				var lb_firstName = new CustomLabelEntry("First Name", true) { Keyboard = Keyboard.Text, HorizontalOptions = LayoutOptions.FillAndExpand };
-				lb_firstName.SetBinding(CustomLabelEntry.TextProperty, "FirstName", BindingMode.TwoWay);
+				var lb_firstName = new CustomLabelEntry("Name", true) { Keyboard = Keyboard.Text, HorizontalOptions = LayoutOptions.FillAndExpand };
+                lb_firstName.SetBinding(CustomLabelEntry.TextProperty, "FirstName", BindingMode.TwoWay);
 				lb_firstName.SetBinding(VisualElement.IsEnabledProperty, "CanEdit");
-				var lb_lastName = new CustomLabelEntry("Last Name", true) { Keyboard = Keyboard.Text, HorizontalOptions = LayoutOptions.FillAndExpand };
-				lb_lastName.SetBinding(CustomLabelEntry.TextProperty, "LastName", BindingMode.TwoWay);
-				lb_lastName.SetBinding(VisualElement.IsEnabledProperty, "CanEdit");
-
-				topcontainer.Margin = new Thickness(0, 30, 0, 20);
+				
+				topcontainer.Margin = new Thickness(0, 30, 0, 0);
 				topcontainer.BackgroundColor = Color.White;
 				topcontainer.Children.Add(lb_firstName);
-				topcontainer.Children.Add(lb_lastName);
+				
                 internalNotes.IsVisible = false;              
 			}
 
