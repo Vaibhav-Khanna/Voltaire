@@ -204,7 +204,6 @@
     <Compile Include="Pages\ContactsPage.xaml.cs">
       <DependentUpon>ContactsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Partner.cs" />
     <Compile Include="Helpers\Collections\Grouping.cs" />
     <Compile Include="Controls\Cells\ContactCell.xaml.cs">
       <DependentUpon>ContactCell.xaml</DependentUpon>
@@ -245,7 +244,6 @@
     <Compile Include="PageModels\QuotationDetailViewPageModel.cs" />
     <Compile Include="Models\ProductConstants.cs" />
     <Compile Include="PageModels\ProductQuotationModel.cs" />
-    <Compile Include="Models\Product.cs" />
     <Compile Include="Behaviors\NumberValidationBehaviour.cs" />
     <Compile Include="Behaviors\MaxLengthValidationBehaviour.cs" />
     <Compile Include="Renderers\NumberEntry.cs" />
@@ -262,7 +260,6 @@
     <Compile Include="Pages\GoalsPage.xaml.cs">
       <DependentUpon>GoalsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Salesman.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
@@ -277,7 +274,6 @@
     <Compile Include="Pages\ReportsPage.xaml.cs">
       <DependentUpon>ReportsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\State.cs" />
     <Compile Include="PageModels\ReportsDetailPageModel.cs" />
     <Compile Include="Controls\Cells\ReportCell.xaml.cs">
       <DependentUpon>ReportCell.xaml</DependentUpon>
@@ -292,14 +288,12 @@
     <Compile Include="Pages\ContractListTabPage.xaml.cs">
       <DependentUpon>ContractListTabPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\ContractModel.cs" />
     <Compile Include="Converters\TimeSpanToStringConverter.cs" />
     <Compile Include="Pages\NewContractPage.xaml.cs">
       <DependentUpon>NewContractPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\NewContractPageModel.cs" />
-    <Compile Include="Models\Agreement.cs" />
     <Compile Include="Models\AgreementModel.cs" />
     <Compile Include="Renderers\BorderlessDatePicker.cs" />
     <Compile Include="Pages\ContractPDFViewingPage.xaml.cs">
@@ -324,8 +318,6 @@
       <DependentUpon>QuotationInternalNotesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\QuotationInternalNotesPageModel.cs" />
-    <Compile Include="Models\Note.cs" />
-    <Compile Include="Models\Reminder.cs" />
     <Compile Include="Models\NoteModel.cs" />
     <Compile Include="PopUps\ReminderAddPopUp.xaml.cs">
       <DependentUpon>ReminderAddPopUp.xaml</DependentUpon>
@@ -380,7 +372,6 @@
       <DependentUpon>MessagesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\MessagesPageModel.cs" />
-    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Converters\BoolToLineBreakModeConverter.cs" />
     <Compile Include="Pages\PermanentNotePage.xaml.cs">
@@ -399,7 +390,6 @@
     <Compile Include="DataStore\Abstraction\IBaseStore.cs" />
     <Compile Include="DataStore\Abstraction\IStoreManager.cs" />
     <Compile Include="DataStore\Abstraction\Stores\ICustomerStore.cs" />
-    <Compile Include="Models\Quotation.cs" />
     <Compile Include="DataStore\Abstraction\Stores\IQuotationStore.cs" />
     <Compile Include="DataStore\Abstraction\Stores\IContractStore.cs" />
     <Compile Include="DataStore\Abstraction\IBaseDataObject.cs" />
@@ -416,6 +406,16 @@
       <DependentUpon>ContactAddPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\ContactAddPageModel.cs" />
+    <Compile Include="Models\DataObjects\Partner.cs" />
+    <Compile Include="Models\DataObjects\Agreement.cs" />
+    <Compile Include="Models\DataObjects\Contract.cs" />
+    <Compile Include="Models\DataObjects\Message.cs" />
+    <Compile Include="Models\DataObjects\Note.cs" />
+    <Compile Include="Models\DataObjects\Product.cs" />
+    <Compile Include="Models\DataObjects\Quotation.cs" />
+    <Compile Include="Models\DataObjects\Reminder.cs" />
+    <Compile Include="Models\DataObjects\Salesman.cs" />
+    <Compile Include="Models\DataObjects\State.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
@@ -573,6 +573,7 @@
     <Folder Include="DataStore\Implementation\" />
     <Folder Include="DataStore\Abstraction\Stores\" />
     <Folder Include="DataStore\Implementation\Stores\" />
+    <Folder Include="Models\DataObjects\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />

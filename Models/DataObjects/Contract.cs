@@ -7,9 +7,6 @@ namespace voltaire.Models
 {
     public class Contract : BaseDataObject
     {       
-
-
-
         public Partner Customer { get; set; }
 
         public string Name { get; set; }

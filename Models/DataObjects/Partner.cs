@@ -88,6 +88,9 @@ namespace voltaire.Models
         [JsonProperty("active")]
         public bool Active { get; set; }
 
+        [JsonProperty("activities_count")]
+        public long ActivitiesCount { get; set; }
+
         [JsonProperty("category_id")]
         public long CategoryId { get; set; }
 
@@ -106,6 +109,9 @@ namespace voltaire.Models
         [JsonProperty("comment")]
         public string Comment { get; set; }
 
+        [JsonProperty("commercial_company_name")]
+        public string CommercialCompanyName { get; set; }
+
         [JsonProperty("commercial_partner_id")]
         public string CommercialPartnerId { get; set; }
 
@@ -123,6 +129,9 @@ namespace voltaire.Models
 
         [JsonProperty("contract_ids")]
         public string ContractIds { get; set; }
+
+        [JsonProperty("contracts_count")]
+        public long ContractsCount { get; set; }
 
         [JsonProperty("country_id")]
         public long CountryId { get; set; }
@@ -144,6 +153,9 @@ namespace voltaire.Models
 
         [JsonProperty("customer")]
         public bool Customer { get; set; }
+
+        [JsonProperty("date")]
+        public string Date { get; set; }
 
         [JsonProperty("debit")]
         public long Debit { get; set; }
@@ -172,11 +184,20 @@ namespace voltaire.Models
         [JsonProperty("function")]
         public string Function { get; set; }
 
+        [JsonProperty("grade_id")]
+        public long GradeId { get; set; }
+
+        //[JsonProperty("id")]
+        //public string Id { get; set; }
+
         [JsonProperty("invoice_ids")]
         public string InvoiceIds { get; set; }
 
         [JsonProperty("is_company")]
         public bool IsCompany { get; set; }
+
+        [JsonProperty("journal_item_count")]
+        public long JournalItemCount { get; set; }
 
         [JsonProperty("lang")]
         public string Lang { get; set; }
@@ -196,11 +217,23 @@ namespace voltaire.Models
         [JsonProperty("notify_email")]
         public string NotifyEmail { get; set; }
 
+        [JsonProperty("opportunity_count")]
+        public long OpportunityCount { get; set; }
+
         [JsonProperty("parent_id")]
         public long ParentId { get; set; }
 
         [JsonProperty("parent_name")]
         public string ParentName { get; set; }
+
+        [JsonProperty("partner_latitude")]
+        public long PartnerLatitude { get; set; }
+
+        [JsonProperty("partner_longitude")]
+        public long PartnerLongitude { get; set; }
+
+        [JsonProperty("partner_weight")]
+        public long PartnerWeight { get; set; }
 
         [JsonProperty("phone")]
         public string Phone { get; set; }
@@ -223,8 +256,17 @@ namespace voltaire.Models
         [JsonProperty("ref")]
         public string Ref { get; set; }
 
+        [JsonProperty("sale_order_count")]
+        public long SaleOrderCount { get; set; }
+
+        [JsonProperty("sale_order_ids")]
+        public string SaleOrderIds { get; set; }
+
         [JsonProperty("sale_warn")]
         public string SaleWarn { get; set; }
+
+        [JsonProperty("section_id")]
+        public long SectionId { get; set; }
 
         [JsonProperty("signup_type")]
         public string SignupType { get; set; }
@@ -276,6 +318,9 @@ namespace voltaire.Models
 
         [JsonProperty("write_date")]
         public string WriteDate { get; set; }
+
+        [JsonProperty("write_uid")]
+        public string WriteUid { get; set; }
 
         [JsonProperty("zip")]
         public string Zip { get; set; }
