@@ -416,6 +416,7 @@
     <Compile Include="Models\DataObjects\Reminder.cs" />
     <Compile Include="Models\DataObjects\Salesman.cs" />
     <Compile Include="Models\DataObjects\State.cs" />
+    <Compile Include="Models\DataObjects\PartnerCategory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
