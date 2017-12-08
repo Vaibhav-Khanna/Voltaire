@@ -445,6 +445,12 @@
     <Compile Include="DataStore\Implementation\Stores\ProductUOMStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\PurchaseOrderLineStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\PurchaseOrderStore.cs" />
+    <Compile Include="Models\DataObjects\SaleOrder.cs" />
+    <Compile Include="Models\DataObjects\SaleOrderLine.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\ISaleOrderStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\ISaleOrderLineStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\SaleOrderStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\SaleOrderLineStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

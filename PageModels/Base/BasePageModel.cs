@@ -98,6 +98,8 @@ namespace voltaire.PageModels.Base
             DependencyService.Register<IProductUOMStore,ProductUOMStore>();
             DependencyService.Register<IPurchaseOrderLineStore,PurchaseOrderLineStore>();
             DependencyService.Register<IPurchaseOrderStore,PurchaseOrderStore>();
+            DependencyService.Register<ISaleOrderStore,SaleOrderStore>();
+            DependencyService.Register<ISaleOrderLineStore,SaleOrderLineStore>();
 
         }
 

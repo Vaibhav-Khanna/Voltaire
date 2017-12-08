@@ -64,6 +64,12 @@ namespace voltaire.DataStore.Implementation
         IPurchaseOrderStore purchaseOrderStore;
         public IPurchaseOrderStore PurchaseOrderStore => purchaseOrderStore ?? (purchaseOrderStore = DependencyService.Get<IPurchaseOrderStore>());
 
+        ISaleOrderStore saleOrderStore;
+        public ISaleOrderStore SaleOrderStore => saleOrderStore ?? (saleOrderStore = DependencyService.Get<ISaleOrderStore>());
+
+        ISaleOrderLineStore saleOrderLineStore;
+        public ISaleOrderLineStore SaleOrderLineStore => saleOrderLineStore ?? (saleOrderLineStore = DependencyService.Get<ISaleOrderLineStore>());
+
 
         #region iStoreManager Implementation
 
@@ -85,6 +91,8 @@ namespace voltaire.DataStore.Implementation
             ProductUOMStore.DropTable();
             PurchaseOrderLineStore.DropTable();
             PurchaseOrderStore.DropTable();
+            SaleOrderStore.DropTable();
+            SaleOrderLineStore.DropTable();
 
             IsInitialized = false;
             return Task.FromResult(true);
@@ -121,7 +129,9 @@ namespace voltaire.DataStore.Implementation
                 store.DefineTable<ProductUOM>();
                 store.DefineTable<PurchaseOrderLine>();
                 store.DefineTable<PurchaseOrder>();
-             
+                store.DefineTable<SaleOrder>();
+                store.DefineTable<SaleOrderLine>();
+
                 store.DefineTable<StoreSettings>();
 
                 //TODO Add rest of the tables
@@ -139,6 +149,7 @@ namespace voltaire.DataStore.Implementation
                 await InitializeAsync();
 
             var taskList = new List<Task<bool>>();
+           
             taskList.Add(CustomerStore.SyncAsync());
             taskList.Add(PartnerCategoryStore.SyncAsync());
 
@@ -152,6 +163,8 @@ namespace voltaire.DataStore.Implementation
             taskList.Add(ProductUOMStore.SyncAsync());
             taskList.Add(PurchaseOrderLineStore.SyncAsync());
             taskList.Add(PurchaseOrderStore.SyncAsync());
+            taskList.Add(SaleOrderStore.SyncAsync());
+            taskList.Add(SaleOrderLineStore.SyncAsync());
 
             //TODO add all other stores
 

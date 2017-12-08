@@ -22,7 +22,8 @@ namespace voltaire.DataStore.Abstraction
         IProductUOMStore ProductUOMStore { get; }
         IPurchaseOrderLineStore PurchaseOrderLineStore { get; }
         IPurchaseOrderStore PurchaseOrderStore { get; }
-
+        ISaleOrderStore SaleOrderStore { get; }
+        ISaleOrderLineStore SaleOrderLineStore { get; }
 
         Task<bool> SyncAllAsync(bool syncUserSpecific);
         Task DropEverythingAsync();
