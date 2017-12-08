@@ -126,11 +126,17 @@ namespace voltaire.PageModels
 
         public ObservableCollection<PartnerGrade> partnerGrades { get; set; }
 
-
+        //First call to populate the list of customers
         async void Get()
         {
             // Local data
             IsLoading = true;
+
+            var _grades = await StoreManager.PartnerGradeStore.GetItemsAsync();
+            //PartnerGrades 
+            partnerGrades = new ObservableCollection<PartnerGrade>(_grades?.Select((arg) => new PartnerGrade() { Grade = arg.DisplayName }));
+
+
 
             var result = await CustomerStore.GetItemsAsync(false);
 
@@ -151,6 +157,8 @@ namespace voltaire.PageModels
 
         bool Loadingmore = false;
 
+
+        //Fetch more contacts for infinite scroll
         public Command LoadMore => new Command(async () =>
         {
             if (!IsLoadMore || Loadingmore)
@@ -285,27 +293,17 @@ namespace voltaire.PageModels
         //INIT data form page  freshmvvm
         public override void Init(object initData)
         {
-
-            //columnSpan for listview
+             //columnSpan for listview 
             _listColumnSpan = 2;
+          
             //filters view
             _filterLayoutVisibility = false;
+
             //filter frame image 
             _filterImage = "filters";
 
-            //PartnerGrades 
-            partnerGrades = new ObservableCollection<PartnerGrade>
-            {
-                new PartnerGrade {Grade="CCE"},
-                new PartnerGrade {Grade="CSO"},
-                new PartnerGrade {Grade="DRE"},
-                new PartnerGrade {Grade="Endurance"},
-                new PartnerGrade {Grade="PRO"},
-                new PartnerGrade {Grade="Particulier"},
-                new PartnerGrade {Grade="Ecuries"}
-            };
-
         }
+
 
         public override void ReverseInit(object returnedData)
         {
