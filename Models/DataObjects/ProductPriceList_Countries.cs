@@ -7,7 +7,7 @@
     using Newtonsoft.Json;
     using voltaire.DataStore.Abstraction;
 
-    public class ProductPriceListCountries : BaseDataObject
+    public class ProductPriceList_Countries : BaseDataObject
     {
         [JsonProperty("country_id")]
         public long CountryId { get; set; }

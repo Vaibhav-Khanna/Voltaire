@@ -419,7 +419,7 @@
     <Compile Include="Models\DataObjects\PartnerTitle.cs" />
     <Compile Include="Models\DataObjects\ProductPriceList.cs" />
     <Compile Include="Models\DataObjects\ProductPriceListItem.cs" />
-    <Compile Include="Models\DataObjects\ProductPriceListCountries.cs" />
+    <Compile Include="Models\DataObjects\ProductPriceList_Countries.cs" />
     <Compile Include="Models\DataObjects\Currency.cs" />
     <Compile Include="Models\DataObjects\Country.cs" />
     <Compile Include="Models\DataObjects\ProductUOM.cs" />

@@ -4,8 +4,8 @@ using voltaire.Models.DataObjects;
 
 namespace voltaire.DataStore.Implementation.Stores
 {
-    public class ProductPriceListCountriesStore: BaseStore<ProductPriceListCountries>, IProductPriceListCountriesStore
+    public class ProductPriceListCountriesStore: BaseStore<ProductPriceList_Countries>, IProductPriceListCountriesStore
     {
-        public override string Identifier => "ProductPriceListCountries";
+        public override string Identifier => "ProductPriceList_Countries";
     }
 }

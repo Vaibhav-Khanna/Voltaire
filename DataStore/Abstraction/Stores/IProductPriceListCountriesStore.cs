@@ -3,7 +3,7 @@ using voltaire.Models.DataObjects;
 
 namespace voltaire.DataStore.Abstraction.Stores
 {
-    public interface IProductPriceListCountriesStore : IBaseStore<ProductPriceListCountries>
+    public interface IProductPriceListCountriesStore : IBaseStore<ProductPriceList_Countries>
     {
     }
 }

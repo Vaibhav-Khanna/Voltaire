@@ -115,7 +115,7 @@ namespace voltaire.DataStore.Implementation
                 store.DefineTable<Currency>();
                 store.DefineTable<Models.DataObjects.PartnerGrade>();
                 store.DefineTable<PartnerTitle>();
-                store.DefineTable<ProductPriceListCountries>();
+                store.DefineTable<ProductPriceList_Countries>();
                 store.DefineTable<ProductPriceListItem>();
                 store.DefineTable<ProductPriceList>();
                 store.DefineTable<ProductUOM>();
