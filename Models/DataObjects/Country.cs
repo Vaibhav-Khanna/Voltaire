@@ -7,16 +7,16 @@
     using Newtonsoft.Json;
     using voltaire.DataStore.Abstraction;
 
-    public class PartnerCategory : BaseDataObject
+    public class Country : BaseDataObject
     {
-        [JsonProperty("active")]
-        public bool Active { get; set; }
-
-        [JsonProperty("color")]
-        public long Color { get; set; }
+        [JsonProperty("code")]
+        public string Code { get; set; }
 
         [JsonProperty("createdAt")]
         public string CreatedAt { get; set; }
+
+        [JsonProperty("currency_id")]
+        public long CurrencyId { get; set; }
 
         [JsonProperty("deleted")]
         public bool Deleted { get; set; }
@@ -30,8 +30,8 @@
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("parent_right")]
-        public long ParentRight { get; set; }
+        [JsonProperty("phone_code")]
+        public long PhoneCode { get; set; }
 
         [JsonProperty("updatedAt")]
         public string UpdatedAt { get; set; }

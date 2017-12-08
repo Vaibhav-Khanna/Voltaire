@@ -6,7 +6,7 @@ using voltaire.Models;
 
 namespace voltaire.DataStore.Implementation.Stores
 {
-    public class CustomerStore :  BaseStore<Partner>, ICustomerStore
+    public class PartnerStore :  BaseStore<Partner>, IPartnerStore
     {
         
         public override string Identifier => "Partner";

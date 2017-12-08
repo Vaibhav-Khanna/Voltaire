@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace voltaire.DataStore.Abstraction.Stores
 {
-    public interface ICustomerStore : IBaseStore<Partner>
+    public interface IPartnerStore : IBaseStore<Partner>
     {
         Task<IEnumerable<Partner>> Search(string QueryText);
     }

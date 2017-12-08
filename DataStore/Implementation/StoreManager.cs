@@ -15,6 +15,8 @@ using Xamarin.Forms;
 using Newtonsoft.Json;
 using System.Text;
 using System.Diagnostics;
+using voltaire.Models.DataObjects;
+using voltaire.DataStore.Implementation.Stores;
 
 namespace voltaire.DataStore.Implementation
 {
@@ -26,14 +28,41 @@ namespace voltaire.DataStore.Implementation
         public bool IsInitialized { get; private set; }
 
 
-        ICustomerStore customerStore;
-        public ICustomerStore CustomerStore => customerStore ?? (customerStore = DependencyService.Get<ICustomerStore>());
+        IPartnerStore customerStore;
+        public IPartnerStore CustomerStore => customerStore ?? (customerStore = DependencyService.Get<IPartnerStore>());
+            
+        IPartnerCategoryStore partnerCategoryStore;
+        public IPartnerCategoryStore PartnerCategoryStore => partnerCategoryStore ?? (partnerCategoryStore = DependencyService.Get<IPartnerCategoryStore>());
 
-        IQuotationStore quotationStore;
-        public IQuotationStore QuotationStore => quotationStore ?? (quotationStore = DependencyService.Get<IQuotationStore>());
+        ICountryStore countryStore;
+        public ICountryStore CountryStore => countryStore ?? (countryStore = DependencyService.Get<ICountryStore>());
 
-        IContractStore contractStore;
-        public IContractStore ContractStore => contractStore ?? (contractStore = DependencyService.Get<IContractStore>());
+        ICurrencyStore currencyStore;
+        public ICurrencyStore CurrencyStore => currencyStore ?? (currencyStore = DependencyService.Get<ICurrencyStore>());
+
+        IPartnerGradeStore partnerGradeStore;
+        public IPartnerGradeStore PartnerGradeStore => partnerGradeStore ?? (partnerGradeStore = DependencyService.Get<IPartnerGradeStore>());
+
+        IPartnerTitleStore partnerTitleStore;
+        public IPartnerTitleStore PartnerTitleStore => partnerTitleStore ?? (partnerTitleStore = DependencyService.Get<IPartnerTitleStore>());
+
+        IProductPriceListCountriesStore productPriceListCountriesStore;
+        public IProductPriceListCountriesStore ProductPriceListCountriesStore => productPriceListCountriesStore ?? (productPriceListCountriesStore = DependencyService.Get<IProductPriceListCountriesStore>());
+
+        IProductPriceListItemStore productPriceListItemStore;
+        public IProductPriceListItemStore ProductPriceListItemStore => productPriceListItemStore ?? (productPriceListItemStore = DependencyService.Get<IProductPriceListItemStore>());
+
+        IProductPriceListStore productPriceListStore;
+        public IProductPriceListStore ProductPriceListStore => productPriceListStore ?? (productPriceListStore = DependencyService.Get<IProductPriceListStore>());
+
+        IProductUOMStore productUOMStore;
+        public IProductUOMStore ProductUOMStore => productUOMStore ?? (productUOMStore = DependencyService.Get<IProductUOMStore>());
+
+        IPurchaseOrderLineStore purchaseOrderLineStore;
+        public IPurchaseOrderLineStore PurchaseOrderLineStore => purchaseOrderLineStore ?? (purchaseOrderLineStore = DependencyService.Get<IPurchaseOrderLineStore>());
+
+        IPurchaseOrderStore purchaseOrderStore;
+        public IPurchaseOrderStore PurchaseOrderStore => purchaseOrderStore ?? (purchaseOrderStore = DependencyService.Get<IPurchaseOrderStore>());
 
 
         #region iStoreManager Implementation
@@ -44,8 +73,18 @@ namespace voltaire.DataStore.Implementation
             //TODO Do the update id for settings and add rest of the tables
 
             CustomerStore.DropTable();
-            QuotationStore.DropTable();
-            ContractStore.DropTable();
+            PartnerCategoryStore.DropTable();
+
+            CountryStore.DropTable();
+            CurrencyStore.DropTable();
+            PartnerGradeStore.DropTable();
+            PartnerTitleStore.DropTable();
+            ProductPriceListCountriesStore.DropTable();
+            ProductPriceListItemStore.DropTable();
+            ProductPriceListStore.DropTable();
+            ProductUOMStore.DropTable();
+            PurchaseOrderLineStore.DropTable();
+            PurchaseOrderStore.DropTable();
 
             IsInitialized = false;
             return Task.FromResult(true);
@@ -69,9 +108,20 @@ namespace voltaire.DataStore.Implementation
                 // var path = $"syncstore{dbId}.db";
                 MobileService = new MobileServiceClient("http://voltairecrm.azurewebsites.net");
                 store = new MobileServiceSQLiteStore("syncstore.db");
+              
                 store.DefineTable<Partner>();
-                store.DefineTable<Contract>();
-                store.DefineTable<Quotation>();
+                store.DefineTable<PartnerCategory>();
+                store.DefineTable<Country>();
+                store.DefineTable<Currency>();
+                store.DefineTable<Models.DataObjects.PartnerGrade>();
+                store.DefineTable<PartnerTitle>();
+                store.DefineTable<ProductPriceListCountries>();
+                store.DefineTable<ProductPriceListItem>();
+                store.DefineTable<ProductPriceList>();
+                store.DefineTable<ProductUOM>();
+                store.DefineTable<PurchaseOrderLine>();
+                store.DefineTable<PurchaseOrder>();
+             
                 store.DefineTable<StoreSettings>();
 
                 //TODO Add rest of the tables
@@ -90,8 +140,18 @@ namespace voltaire.DataStore.Implementation
 
             var taskList = new List<Task<bool>>();
             taskList.Add(CustomerStore.SyncAsync());
-            taskList.Add(QuotationStore.SyncAsync());
-            taskList.Add(ContractStore.SyncAsync());
+            taskList.Add(PartnerCategoryStore.SyncAsync());
+
+            taskList.Add(CurrencyStore.SyncAsync());
+            taskList.Add(CountryStore.SyncAsync());
+            taskList.Add(PartnerGradeStore.SyncAsync());
+            taskList.Add(PartnerTitleStore.SyncAsync());
+            taskList.Add(ProductPriceListCountriesStore.SyncAsync());
+            taskList.Add(ProductPriceListItemStore.SyncAsync());
+            taskList.Add(ProductPriceListStore.SyncAsync());
+            taskList.Add(ProductUOMStore.SyncAsync());
+            taskList.Add(PurchaseOrderLineStore.SyncAsync());
+            taskList.Add(PurchaseOrderStore.SyncAsync());
 
             //TODO add all other stores
 
@@ -128,15 +188,17 @@ namespace voltaire.DataStore.Implementation
                 var content = new StringContent(json_cred, Encoding.UTF8, "application/json");
 
                 var response = await _client.PostAsync(uri, content);
-       
+
                 if (response.IsSuccessStatusCode)
                 {
                     var content2 = await response.Content.ReadAsStringAsync();
-                   
+
                     var User = JsonConvert.DeserializeObject<USER>(content2);
 
-                    MobileServiceUser user = new MobileServiceUser(User.UserId.ToString()){ MobileServiceAuthenticationToken = User.Token };
-          
+                    MobileServiceUser user = new MobileServiceUser(User.UserId.ToString()) { MobileServiceAuthenticationToken = User.Token };
+
+                    MobileService.CurrentUser = user;
+
                     await CacheToken(user);
 
                     return user;
@@ -150,7 +212,7 @@ namespace voltaire.DataStore.Implementation
             {
                 return null;
             }
-           
+
         }
 
 
@@ -175,26 +237,26 @@ namespace voltaire.DataStore.Implementation
             }
             else
                 return true;
-            
+
         }
 
 
         public async Task<bool> SaveSettingsAsync(StoreSettings settings)
-        { 
+        {
             try
             {
                 await MobileService.SyncContext.Store.UpsertAsync(nameof(StoreSettings), new[] { JObject.FromObject(settings) }, true);
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
                 return false;
-            } 
+            }
 
             return true;
         }
-       
+
 
         public async Task<StoreSettings> ReadSettingsAsync()
         {
@@ -203,13 +265,13 @@ namespace voltaire.DataStore.Implementation
                 var response = (await MobileService.SyncContext.Store.LookupAsync(nameof(StoreSettings), StoreSettings.StoreSettingsId))?.ToObject<StoreSettings>();
                 return response;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return null;
             }
-        } 
-       
-            
+        }
+
+
 
         async Task CacheToken(MobileServiceUser user)
         {

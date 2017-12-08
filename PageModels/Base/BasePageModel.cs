@@ -83,12 +83,21 @@ namespace voltaire.PageModels.Base
 
       
         public static void Init()
-        {
-         
+        {         
             DependencyService.Register<IStoreManager, StoreManager>();
-            DependencyService.Register<ICustomerStore, CustomerStore>();
-            DependencyService.Register<IContractStore, ContractStore>();
-            DependencyService.Register<IQuotationStore, QuotationStore>();
+
+            DependencyService.Register<IPartnerStore, PartnerStore>();           
+            DependencyService.Register<IPartnerCategoryStore,PartnerCategoryStore>();
+            DependencyService.Register<ICurrencyStore,CurrencyStore>();
+            DependencyService.Register<ICountryStore,CountryStore>();
+            DependencyService.Register<IPartnerGradeStore,PartnerGradeStore>();
+            DependencyService.Register<IPartnerTitleStore,PartnerTitleStore>();
+            DependencyService.Register<IProductPriceListCountriesStore,ProductPriceListCountriesStore>();
+            DependencyService.Register<IProductPriceListItemStore,ProductPriceListItemStore>();
+            DependencyService.Register<IProductPriceListStore,ProductPriceListStore>();
+            DependencyService.Register<IProductUOMStore,ProductUOMStore>();
+            DependencyService.Register<IPurchaseOrderLineStore,PurchaseOrderLineStore>();
+            DependencyService.Register<IPurchaseOrderStore,PurchaseOrderStore>();
 
         }
 

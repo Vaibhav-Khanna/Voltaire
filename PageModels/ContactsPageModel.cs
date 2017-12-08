@@ -70,7 +70,7 @@ namespace voltaire.PageModels
 
         public ICommand FiltersLayoutCommand => new Command(FiltersLayoutAppearing);
 
-        private ICustomerStore Store => StoreManager.CustomerStore;
+        private IPartnerStore CustomerStore => StoreManager.CustomerStore;
 
         private int? _listColumnSpan;
 
@@ -132,14 +132,13 @@ namespace voltaire.PageModels
             // Local data
             IsLoading = true;
 
-            var result = await Store.GetItemsAsync(false);
-
+            var result = await CustomerStore.GetItemsAsync(false);
 
             // Server refresh
             if ( result == null || !result.Any() )
             {
                 LoadingText = AppResources.FetchingData;
-                result = await Store.GetItemsAsync(true);
+                result = await CustomerStore.GetItemsAsync(true);
                 CreateGroupedCollection(result);
                 LoadingText = AppResources.FetchingData;
             }
@@ -161,7 +160,7 @@ namespace voltaire.PageModels
           {
                 Loadingmore = true;
                 
-                var result = await Store.GetNextItemsAsync(Customers.Count);
+                var result = await CustomerStore.GetNextItemsAsync(Customers.Count);
 
                 if (result != null && result.Any())
                 {
@@ -216,7 +215,7 @@ namespace voltaire.PageModels
 
            IsLoading = true;
            IsLoadingText = AppResources.Refreshing;
-           var result = await Store.GetItemsAsync(true);
+           var result = await CustomerStore.GetItemsAsync(true);
            CreateGroupedCollection(result);
            IsRefreshing = false;
            IsLoading = false;
@@ -227,13 +226,13 @@ namespace voltaire.PageModels
        {
            if (string.IsNullOrWhiteSpace(searchtext))
            {
-               var res = await Store.GetItemsAsync(false);
+               var res = await CustomerStore.GetItemsAsync(false);
                CreateGroupedCollection(res);
                return;
            }
 
           
-           var result = await Store.Search(SearchText.Trim());
+           var result = await CustomerStore.Search(SearchText.Trim());
            CreateGroupedCollection(result);
            CustomersCount += " " + AppResources.MatchingSearch;
        });

@@ -9,9 +9,20 @@ namespace voltaire.DataStore.Abstraction
         bool IsInitialized { get; }
         Task InitializeAsync();
       
-        ICustomerStore CustomerStore { get; }       
-        IQuotationStore QuotationStore { get; }
-        IContractStore ContractStore { get; }
+
+        ICountryStore CountryStore { get; }
+        ICurrencyStore CurrencyStore { get; }      
+        IPartnerCategoryStore PartnerCategoryStore { get; }
+        IPartnerGradeStore PartnerGradeStore { get; }
+        IPartnerStore CustomerStore { get; }
+        IPartnerTitleStore PartnerTitleStore { get; }
+        IProductPriceListCountriesStore ProductPriceListCountriesStore { get; }
+        IProductPriceListItemStore ProductPriceListItemStore { get; }
+        IProductPriceListStore ProductPriceListStore { get; }
+        IProductUOMStore ProductUOMStore { get; }
+        IPurchaseOrderLineStore PurchaseOrderLineStore { get; }
+        IPurchaseOrderStore PurchaseOrderStore { get; }
+
 
         Task<bool> SyncAllAsync(bool syncUserSpecific);
         Task DropEverythingAsync();

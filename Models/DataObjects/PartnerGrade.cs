@@ -7,13 +7,10 @@
     using Newtonsoft.Json;
     using voltaire.DataStore.Abstraction;
 
-    public class PartnerCategory : BaseDataObject
+    public class PartnerGrade : BaseDataObject
     {
         [JsonProperty("active")]
         public bool Active { get; set; }
-
-        [JsonProperty("color")]
-        public long Color { get; set; }
 
         [JsonProperty("createdAt")]
         public string CreatedAt { get; set; }
@@ -30,8 +27,11 @@
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("parent_right")]
-        public long ParentRight { get; set; }
+        [JsonProperty("partner_weight")]
+        public long PartnerWeight { get; set; }
+
+        [JsonProperty("sequence")]
+        public long Sequence { get; set; }
 
         [JsonProperty("updatedAt")]
         public string UpdatedAt { get; set; }
