@@ -174,6 +174,9 @@
         [JsonProperty("source_id")]
         public long SourceId { get; set; }
 
+        [JsonProperty("state")]
+        public string State { get; set; }
+
         [JsonProperty("tasks_count")]
         public long TasksCount { get; set; }
 
