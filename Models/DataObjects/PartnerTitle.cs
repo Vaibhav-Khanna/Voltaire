@@ -15,9 +15,6 @@
         [JsonProperty("deleted")]
         public bool Deleted { get; set; }
 
-        [JsonProperty("display_name")]
-        public string DisplayName { get; set; }
-
         [JsonProperty("externalId")]
         public long ExternalId { get; set; }
 

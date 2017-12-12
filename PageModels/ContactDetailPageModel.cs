@@ -200,7 +200,6 @@ namespace voltaire.PageModels
 		}
 
         private DateTime? lastvisit;
-
         public DateTime? LastVisit
 		{
 			get { return lastvisit; }
@@ -330,7 +329,7 @@ namespace voltaire.PageModels
 
                 firstname = customer.Name;
                
-                weight = customer.Weight;
+                weight = customer.PartnerWeight == 0 ? null : (int?) Convert.ToInt32(customer.PartnerWeight);
                 email = customer.Email;
                 address = customer.ContactAddress;
                 phone = customer.Phone;
@@ -342,7 +341,6 @@ namespace voltaire.PageModels
                 toolbarbutton = canedit ? AppResources.Save : AppResources.Modify;
                 backbutton = canedit ? AppResources.Cancel : AppResources.Back;
                 companyname = customer.CompanyName;
-
 
                 if (Tags == null)
                     Tags = new ObservableCollection<TagControlModel>();

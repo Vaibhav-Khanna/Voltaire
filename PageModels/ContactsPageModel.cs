@@ -104,6 +104,9 @@ namespace voltaire.PageModels
 
         public ContactsPageModel()
         {
+            CustomerStore.GradeFilter = null;
+            CustomerStore.WeightFilter = null;
+
             Get();
         }
 
@@ -124,20 +127,19 @@ namespace voltaire.PageModels
 
         }
 
-        public ObservableCollection<PartnerGrade> partnerGrades { get; set; }
+        private ObservableCollection<PartnerGrade> grades;
+        public ObservableCollection<PartnerGrade> partnerGrades 
+        { 
+            get { return grades; }
+            set { grades = value; RaisePropertyChanged(); }
+        }
 
         //First call to populate the list of customers
         async void Get()
         {
             // Local data
             IsLoading = true;
-
-            var _grades = await StoreManager.PartnerGradeStore.GetItemsAsync();
-            //PartnerGrades 
-            partnerGrades = new ObservableCollection<PartnerGrade>(_grades?.Select((arg) => new PartnerGrade() { Grade = arg.DisplayName }));
-
-
-
+                      
             var result = await CustomerStore.GetItemsAsync(false);
 
             // Server refresh
@@ -246,6 +248,13 @@ namespace voltaire.PageModels
        });
 
 
+        public Command FilterByWeight => new Command( (obj) =>
+       {
+           CustomerStore.WeightFilter = (int?) Convert.ToInt32(obj);
+           Get();
+       });
+
+
         private void CreateGroupedCollection(IEnumerable<Partner> list)
         {
             
@@ -291,7 +300,7 @@ namespace voltaire.PageModels
 
 
         //INIT data form page  freshmvvm
-        public override void Init(object initData)
+        public async override void Init(object initData)
         {
              //columnSpan for listview 
             _listColumnSpan = 2;
@@ -301,6 +310,10 @@ namespace voltaire.PageModels
 
             //filter frame image 
             _filterImage = "filters";
+
+            var _grades = await StoreManager.PartnerGradeStore.GetItemsAsync();
+            //PartnerGrades 
+            partnerGrades = new ObservableCollection<PartnerGrade>(_grades?.Select((arg) => new PartnerGrade() { Grade = arg.Name }));
 
         }
 

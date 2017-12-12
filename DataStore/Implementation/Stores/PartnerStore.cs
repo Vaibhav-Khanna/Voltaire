@@ -11,13 +11,33 @@ namespace voltaire.DataStore.Implementation.Stores
         
         public override string Identifier => "Partner";
 
+        public int? WeightFilter { get; set; }
+       
+        public string GradeFilter { get; set; }
+
         public override async Task<IEnumerable<Partner>> GetItemsAsync(bool forceRefresh = false)
         {
             await InitializeStore().ConfigureAwait(false);
+
             if (forceRefresh)
                 await PullLatestAsync().ConfigureAwait(false);
 
-            return await Table.OrderBy( x=> x.Name ).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+            if(WeightFilter!=null && string.IsNullOrWhiteSpace(GradeFilter))
+            {
+                return await Table.Where(x => x.PartnerWeight == WeightFilter).OrderBy(x => x.Name).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+            }
+            else if(WeightFilter != null && !string.IsNullOrWhiteSpace(GradeFilter))
+            {
+                return await Table.Where(x => x.PartnerWeight == WeightFilter && GradeFilter.Equals(x.Grade) ).OrderBy(x => x.Name).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+            }
+            else if(WeightFilter == null && !string.IsNullOrWhiteSpace(GradeFilter))
+            {
+                return await Table.Where(x => GradeFilter.Equals(x.Grade) ).OrderBy(x => x.Name).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+            }
+            else
+            {
+                return await Table.OrderBy(x => x.Name).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+            }
         }
 
         public override async Task<IEnumerable<Partner>> GetNextItemsAsync(int currentitemCount)
@@ -26,7 +46,23 @@ namespace voltaire.DataStore.Implementation.Stores
 
             try
             {
-                return await Table.OrderBy(x => x.Name).Skip(currentitemCount).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+                if (WeightFilter != null && string.IsNullOrWhiteSpace(GradeFilter))
+                {
+                    return await Table.Where(x => x.PartnerWeight == WeightFilter).OrderBy(x => x.Name).Skip(currentitemCount).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+                }
+                else if (WeightFilter != null && !string.IsNullOrWhiteSpace(GradeFilter))
+                {
+                    return await Table.Where(x => x.PartnerWeight == WeightFilter && GradeFilter.Equals(x.Grade)).OrderBy(x => x.Name).Skip(currentitemCount).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+                }
+                else if (WeightFilter == null && !string.IsNullOrWhiteSpace(GradeFilter))
+                {
+                    return await Table.Where(x => GradeFilter.Equals(x.Grade)).OrderBy(x => x.Name).Skip(currentitemCount).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+                }
+                else
+                {
+                    return await Table.OrderBy(x => x.Name).Skip(currentitemCount).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+                }
+               
             }
             catch (Exception)
             {

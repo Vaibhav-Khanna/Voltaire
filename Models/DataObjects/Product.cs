@@ -5,8 +5,6 @@ namespace voltaire.Models
 {
     public class Product
     {
-     
-
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -14,7 +12,5 @@ namespace voltaire.Models
         public double UnitPrice { get; set; }
 
         public List<ProductProperty> Properties { get; set; } = new List<ProductProperty>();
-
     }
-
 }
