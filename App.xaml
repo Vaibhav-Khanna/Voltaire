@@ -681,6 +681,7 @@
             <converters:EnumColorToImageSourceConverter x:Key="EnumColorToImageSourceConverter" />
             <converters:BoolInverseConverter x:Key="BoolInverseConverter" />
             <converters:DateNullableToBooleanConverter x:Key="DateNullableToBooleanConverter" />
+            <converters:PartnerWeightConverter x:Key="PartnerWeightConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

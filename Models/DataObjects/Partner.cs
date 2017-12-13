@@ -78,7 +78,7 @@ namespace voltaire.Models
         public string Email { get; set; }
 
         [JsonProperty("partner_weight")]
-        public long? PartnerWeight { get; set; }
+        public long PartnerWeight { get; set; }
 
         [JsonProperty("weight")]
         public long Weight { get; set; }

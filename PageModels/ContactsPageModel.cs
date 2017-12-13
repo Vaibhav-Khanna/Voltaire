@@ -227,10 +227,11 @@ namespace voltaire.PageModels
 
            IsLoading = true;
            IsLoadingText = AppResources.Refreshing;
-            var result = await CustomerStore.GetItemsAsync(FilterWeight, FilterGrade,true);
+           var result = await CustomerStore.GetItemsAsync(FilterWeight, FilterGrade,true);
            CreateGroupedCollection(result);
            IsRefreshing = false;
            IsLoading = false;
+
        });
 
 

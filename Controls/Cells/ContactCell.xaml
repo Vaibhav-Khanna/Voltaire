@@ -44,7 +44,7 @@
                 Style="{StaticResource CellLabelDescriptionStyle}" /> 
     </StackLayout>
     <Button     IsVisible="{Binding Customer.PartnerWeight,
-                                   Converter={StaticResource StringNullableToBooleanConverter}}"
+                                   Converter={StaticResource PartnerWeightConverter}}"
                 Grid.Column="2" 
                 HorizontalOptions="End"
                 VerticalOptions="Center" 
