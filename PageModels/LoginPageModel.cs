@@ -67,6 +67,7 @@ namespace voltaire.PageModels
             {
                 IsBusy = true;;
                 IsLoadingText = AppResources.SyncingData;
+               
                 await StoreManager.SyncAllAsync(true);
 
                 Device.BeginInvokeOnMainThread( () => 

@@ -13,7 +13,7 @@ namespace voltaire.PageModels
 
         public Command AddMessage => new Command((obj) =>
        {
-            var message = new Message() { Sender = "Me", SentDate = DateTime.Now, Text = MessageText };
+            var message = new Message() { AuthorId = 0 , Date = DateTime.Now, Body = MessageText };
             Quotation.Messages.Add(message);
             MessageSource.Add(new MessageModel(message){ Index = messagesource.Count +1 });
             //MessageText = null;

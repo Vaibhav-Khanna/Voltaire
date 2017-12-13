@@ -54,7 +54,7 @@ namespace voltaire.PageModels
 
             CanEdit = false;
 
-            var customer = new Partner() { Name = Name, CompanyName = CompanyName, Phone = Phone, Email = Email, Website = Website, PermanentNote = NoteText, Weight = Weight, ContactAddress = Address };
+            var customer = new Partner() { Name = Name, CompanyName = CompanyName, Phone = Phone, Email = Email, Website = Website, PermanentNote = NoteText, PartnerWeight = Weight != null ? Convert.ToInt64(Weight) : 0 , ContactAddress = Address };
           
             await StoreManager.CustomerStore.InsertAsync(customer);
 

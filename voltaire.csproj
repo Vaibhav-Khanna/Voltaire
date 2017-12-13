@@ -419,7 +419,6 @@
     <Compile Include="Models\DataObjects\PartnerTitle.cs" />
     <Compile Include="Models\DataObjects\ProductPriceList.cs" />
     <Compile Include="Models\DataObjects\ProductPriceListItem.cs" />
-    <Compile Include="Models\DataObjects\ProductPriceList_Countries.cs" />
     <Compile Include="Models\DataObjects\Currency.cs" />
     <Compile Include="Models\DataObjects\Country.cs" />
     <Compile Include="Models\DataObjects\ProductUOM.cs" />
@@ -430,7 +429,7 @@
     <Compile Include="DataStore\Abstraction\Stores\IPartnerGradeStore.cs" />
     <Compile Include="DataStore\Abstraction\Stores\IPartnerTitleStore.cs" />
     <Compile Include="DataStore\Abstraction\Stores\IProductPriceListStore.cs" />
-    <Compile Include="DataStore\Abstraction\Stores\IProductPriceListCountriesStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IUserStore.cs" />
     <Compile Include="DataStore\Abstraction\Stores\IProductPriceListItemStore.cs" />
     <Compile Include="DataStore\Abstraction\Stores\IProductUOMStore.cs" />
     <Compile Include="DataStore\Abstraction\Stores\IPurchaseOrderStore.cs" />
@@ -439,7 +438,7 @@
     <Compile Include="DataStore\Implementation\Stores\CurrencyStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\PartnerGradeStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\PartnerTitleStore.cs" />
-    <Compile Include="DataStore\Implementation\Stores\ProductPriceListCountriesStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\UserStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\ProductPriceListItemStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\ProductPriceListStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\ProductUOMStore.cs" />
@@ -451,6 +450,15 @@
     <Compile Include="DataStore\Abstraction\Stores\ISaleOrderLineStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\SaleOrderStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\SaleOrderLineStore.cs" />
+    <Compile Include="Models\DataObjects\Event.cs" />
+    <Compile Include="Models\DataObjects\EventAlarm.cs" />
+    <Compile Include="Models\DataObjects\User.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IEventStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IEventAlarmStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IMessageStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\EventStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\EventAlarmStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\MessageStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

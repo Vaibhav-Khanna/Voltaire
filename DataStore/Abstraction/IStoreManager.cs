@@ -16,7 +16,7 @@ namespace voltaire.DataStore.Abstraction
         IPartnerGradeStore PartnerGradeStore { get; }
         IPartnerStore CustomerStore { get; }
         IPartnerTitleStore PartnerTitleStore { get; }
-        IProductPriceListCountriesStore ProductPriceListCountriesStore { get; }
+        IUserStore UserStore { get; }
         IProductPriceListItemStore ProductPriceListItemStore { get; }
         IProductPriceListStore ProductPriceListStore { get; }
         IProductUOMStore ProductUOMStore { get; }
@@ -24,6 +24,9 @@ namespace voltaire.DataStore.Abstraction
         IPurchaseOrderStore PurchaseOrderStore { get; }
         ISaleOrderStore SaleOrderStore { get; }
         ISaleOrderLineStore SaleOrderLineStore { get; }
+        IEventStore EventStore { get; }
+        IEventAlarmStore EventAlarmStore { get; }
+        IMessageStore MessageStore { get; }
 
         Task<bool> SyncAllAsync(bool syncUserSpecific);
         Task DropEverythingAsync();

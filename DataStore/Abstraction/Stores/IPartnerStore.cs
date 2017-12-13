@@ -7,10 +7,10 @@ namespace voltaire.DataStore.Abstraction.Stores
 {
     public interface IPartnerStore : IBaseStore<Partner>
     {
-        int? WeightFilter { get; set; }
+        Task<IEnumerable<Partner>> GetItemsAsync(int? Weight, string Grade,bool forceRefresh = false);
 
-        string GradeFilter { get; set; }
+        Task<IEnumerable<Partner>> GetNextItemsAsync(int currentitemCount,int? Weight, string Grade, bool forceRefresh = false);
 
-        Task<IEnumerable<Partner>> Search(string QueryText);
+        Task<IEnumerable<Partner>> Search(string QueryText,int? Weight, string Grade);
     }
 }

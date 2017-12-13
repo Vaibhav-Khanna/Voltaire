@@ -35,7 +35,7 @@ namespace voltaire.PageModels
             else
             {
                 customer.ContactAddress = address;
-                customer.Weight = weight;
+                customer.Weight = weight == null ? 0 : Convert.ToInt64(weight);
                 customer.Name = firstname;               
                 customer.Phone = phone;
                 customer.Website = website;

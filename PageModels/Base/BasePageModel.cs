@@ -92,7 +92,7 @@ namespace voltaire.PageModels.Base
             DependencyService.Register<ICountryStore,CountryStore>();
             DependencyService.Register<IPartnerGradeStore,PartnerGradeStore>();
             DependencyService.Register<IPartnerTitleStore,PartnerTitleStore>();
-            DependencyService.Register<IProductPriceListCountriesStore,ProductPriceListCountriesStore>();
+            DependencyService.Register<IUserStore,UserStore>();
             DependencyService.Register<IProductPriceListItemStore,ProductPriceListItemStore>();
             DependencyService.Register<IProductPriceListStore,ProductPriceListStore>();
             DependencyService.Register<IProductUOMStore,ProductUOMStore>();
@@ -100,6 +100,9 @@ namespace voltaire.PageModels.Base
             DependencyService.Register<IPurchaseOrderStore,PurchaseOrderStore>();
             DependencyService.Register<ISaleOrderStore,SaleOrderStore>();
             DependencyService.Register<ISaleOrderLineStore,SaleOrderLineStore>();
+            DependencyService.Register<IEventStore, EventStore>();
+            DependencyService.Register<IEventAlarmStore, EventAlarmStore>();
+            DependencyService.Register<IMessageStore, MessageStore>();
 
         }
 
