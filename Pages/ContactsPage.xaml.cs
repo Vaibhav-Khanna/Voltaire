@@ -45,7 +45,15 @@ namespace voltaire.Pages
 
         void Handle_Clicked(object sender, System.EventArgs e)
         {
-            
+            var normal_style = (Style)App.Current.Resources["FilterWeightButtonStyle"];
+            bt0.Style = normal_style;
+            bt1.Style = normal_style;
+            bt2.Style = normal_style;
+            bt3.Style = normal_style;
+            bt4.Style = normal_style;
+            bt5.Style = normal_style;
+
+            (sender as Button).Style = (Style) App.Current.Resources["FilterWeightClickedButtonStyle"];
         }
     }
 }
