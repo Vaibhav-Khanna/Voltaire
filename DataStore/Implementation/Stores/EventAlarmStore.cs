@@ -4,8 +4,8 @@ using voltaire.Models.DataObjects;
 
 namespace voltaire.DataStore.Implementation.Stores
 {
-    public class CurrencyStore : BaseStore<Currency>, ICurrencyStore
+    public class EventAlarmStore: BaseStore<EventAlarm>, IEventAlarmStore
     {
-        public override string Identifier => "Currency";
+        public override string Identifier => "EventAlarm";
     }
 }

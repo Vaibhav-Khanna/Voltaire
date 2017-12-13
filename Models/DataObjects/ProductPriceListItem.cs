@@ -9,20 +9,24 @@
 
     public class ProductPriceListItem : BaseDataObject
     {
+       
+        [JsonProperty("version")]
+        public string Version { get; set; }
+
         [JsonProperty("createdAt")]
-        public string CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
 
-        [JsonProperty("date_end")]
-        public string DateEnd { get; set; }
-
-        [JsonProperty("date_start")]
-        public string DateStart { get; set; }
+        [JsonProperty("updatedAt")]
+        public DateTime UpdatedAt { get; set; }
 
         [JsonProperty("deleted")]
         public bool Deleted { get; set; }
 
-        [JsonProperty("externalId")]
-        public long ExternalId { get; set; }
+        [JsonProperty("date_start")]
+        public DateTime DateStart { get; set; }
+
+        [JsonProperty("date_end")]
+        public DateTime DateEnd { get; set; }
 
         [JsonProperty("fixed_price")]
         public long FixedPrice { get; set; }
@@ -42,22 +46,19 @@
         [JsonProperty("price_discount")]
         public long PriceDiscount { get; set; }
 
-        [JsonProperty("priceListId")]
-        public long PriceListId { get; set; }
-
         [JsonProperty("price_round")]
         public long PriceRound { get; set; }
 
         [JsonProperty("price_surcharge")]
         public long PriceSurcharge { get; set; }
 
-        [JsonProperty("updatedAt")]
-        public string UpdatedAt { get; set; }
-
-        [JsonProperty("version")]
-        public string Version { get; set; }
-
         [JsonProperty("write_date")]
-        public string WriteDate { get; set; }
+        public DateTime WriteDate { get; set; }
+
+        [JsonProperty("externalId")]
+        public long ExternalId { get; set; }
+
+        [JsonProperty("priceListId")]
+        public long PriceListId { get; set; }
     }
 }

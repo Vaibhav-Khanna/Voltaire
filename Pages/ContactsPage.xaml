@@ -167,22 +167,28 @@
                         Style="{StaticResource FilterSectionLabelStyle}" />
                 
                 <controls:WrapLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Spacing="10">
-                        <Button Text="0" 
+                        <Button Text="0" Command="{Binding FilterByWeight}" CommandParameter="0"
+                        Clicked="Handle_Clicked"
                                 Style="{StaticResource FilterWeightButtonStyle}" />
                     
-                        <Button Text="1"
+                        <Button Text="1" Command="{Binding FilterByWeight}" CommandParameter="1"
+                        Clicked="Handle_Clicked"
                                 Style="{StaticResource FilterWeightButtonStyle}" />
                     
-                        <Button Text="2"
+                        <Button Text="2" Command="{Binding FilterByWeight}" CommandParameter="2"
+                        Clicked="Handle_Clicked"
                                 Style="{StaticResource FilterWeightButtonStyle}" />
                     
-                        <Button Text="3"
+                        <Button Text="3" Command="{Binding FilterByWeight}" CommandParameter="3"
+                        Clicked="Handle_Clicked"
                                 Style="{StaticResource FilterWeightClickedButtonStyle}" />
                     
-                        <Button Text="4"
+                        <Button Text="4" Command="{Binding FilterByWeight}" CommandParameter="4"
+                        Clicked="Handle_Clicked"
                                 Style="{StaticResource FilterWeightButtonStyle}" />
                     
-                        <Button Text="5"
+                        <Button Text="5" Command="{Binding FilterByWeight}" CommandParameter="5"
+                        Clicked="Handle_Clicked"
                                 Style="{StaticResource FilterWeightButtonStyle}" />  
                 </controls:WrapLayout> 
                 
@@ -202,7 +208,7 @@
                         <controls:RepeaterView.ItemTemplate>
                           <DataTemplate>
                             <Frame Padding="20,0" Style="{StaticResource PartnerGradeFrame}"> 
-                                <Button Text="{Binding Grade}"  Style="{StaticResource PartnerGradeButton}" />
+                                <Button Text="{Binding Grade}" Command="{Binding FilterByGrade}" CommandParameter="{Binding Grade}"  Style="{StaticResource PartnerGradeButton}" />
                             </Frame>
                         </DataTemplate>
                         </controls:RepeaterView.ItemTemplate>    

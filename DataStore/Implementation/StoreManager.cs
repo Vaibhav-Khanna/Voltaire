@@ -46,8 +46,8 @@ namespace voltaire.DataStore.Implementation
         IPartnerTitleStore partnerTitleStore;
         public IPartnerTitleStore PartnerTitleStore => partnerTitleStore ?? (partnerTitleStore = DependencyService.Get<IPartnerTitleStore>());
 
-        IProductPriceListCountriesStore productPriceListCountriesStore;
-        public IProductPriceListCountriesStore ProductPriceListCountriesStore => productPriceListCountriesStore ?? (productPriceListCountriesStore = DependencyService.Get<IProductPriceListCountriesStore>());
+        IUserStore userStore;
+        public IUserStore UserStore => userStore ?? ( userStore = DependencyService.Get<IUserStore>());
 
         IProductPriceListItemStore productPriceListItemStore;
         public IProductPriceListItemStore ProductPriceListItemStore => productPriceListItemStore ?? (productPriceListItemStore = DependencyService.Get<IProductPriceListItemStore>());
@@ -70,6 +70,15 @@ namespace voltaire.DataStore.Implementation
         ISaleOrderLineStore saleOrderLineStore;
         public ISaleOrderLineStore SaleOrderLineStore => saleOrderLineStore ?? (saleOrderLineStore = DependencyService.Get<ISaleOrderLineStore>());
 
+        IEventStore eventStore;
+        public IEventStore EventStore => eventStore ?? (eventStore = DependencyService.Get<IEventStore>());
+
+        IEventAlarmStore eventAlarmStore;
+        public IEventAlarmStore EventAlarmStore => eventAlarmStore ?? (eventAlarmStore = DependencyService.Get<IEventAlarmStore>());
+
+        IMessageStore messageStore;
+        public IMessageStore MessageStore => messageStore ?? (messageStore = DependencyService.Get<IMessageStore>());
+
 
         #region iStoreManager Implementation
 
@@ -85,7 +94,7 @@ namespace voltaire.DataStore.Implementation
             CurrencyStore.DropTable();
             PartnerGradeStore.DropTable();
             PartnerTitleStore.DropTable();
-            ProductPriceListCountriesStore.DropTable();
+            UserStore.DropTable();
             ProductPriceListItemStore.DropTable();
             ProductPriceListStore.DropTable();
             ProductUOMStore.DropTable();
@@ -93,6 +102,9 @@ namespace voltaire.DataStore.Implementation
             PurchaseOrderStore.DropTable();
             SaleOrderStore.DropTable();
             SaleOrderLineStore.DropTable();
+            EventStore.DropTable();
+            EventAlarmStore.DropTable();
+            MessageStore.DropTable();
 
             IsInitialized = false;
             return Task.FromResult(true);
@@ -123,7 +135,7 @@ namespace voltaire.DataStore.Implementation
                 store.DefineTable<Currency>();
                 store.DefineTable<Models.DataObjects.PartnerGrade>();
                 store.DefineTable<PartnerTitle>();
-                store.DefineTable<ProductPriceList_Countries>();
+                store.DefineTable<User>();
                 store.DefineTable<ProductPriceListItem>();
                 store.DefineTable<ProductPriceList>();
                 store.DefineTable<ProductUOM>();
@@ -131,6 +143,9 @@ namespace voltaire.DataStore.Implementation
                 store.DefineTable<PurchaseOrder>();
                 store.DefineTable<SaleOrder>();
                 store.DefineTable<SaleOrderLine>();
+                store.DefineTable<Event>();
+                store.DefineTable<EventAlarm>();
+                store.DefineTable<Message>();
 
                 store.DefineTable<StoreSettings>();
 
@@ -157,7 +172,7 @@ namespace voltaire.DataStore.Implementation
             taskList.Add(CountryStore.SyncAsync());
             taskList.Add(PartnerGradeStore.SyncAsync());
             taskList.Add(PartnerTitleStore.SyncAsync());
-            taskList.Add(ProductPriceListCountriesStore.SyncAsync());
+            taskList.Add(UserStore.SyncAsync());
             taskList.Add(ProductPriceListItemStore.SyncAsync());
             taskList.Add(ProductPriceListStore.SyncAsync());
             taskList.Add(ProductUOMStore.SyncAsync());
@@ -165,6 +180,10 @@ namespace voltaire.DataStore.Implementation
             taskList.Add(PurchaseOrderStore.SyncAsync());
             taskList.Add(SaleOrderStore.SyncAsync());
             taskList.Add(SaleOrderLineStore.SyncAsync());
+            taskList.Add(EventStore.SyncAsync());
+            taskList.Add(EventAlarmStore.SyncAsync());
+            taskList.Add(MessageStore.SyncAsync());
+
 
             //TODO add all other stores
 
@@ -175,6 +194,7 @@ namespace voltaire.DataStore.Implementation
 
             var successes = await Task.WhenAll(taskList).ConfigureAwait(false);
             return successes.Any(x => !x); //if any were a failure.
+
         }
 
         #endregion
@@ -250,7 +270,7 @@ namespace voltaire.DataStore.Implementation
             }
             else
                 return true;
-
+            
         }
 
 

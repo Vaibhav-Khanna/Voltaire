@@ -7,10 +7,9 @@
     using Newtonsoft.Json;
     using voltaire.DataStore.Abstraction;
 
-    public class PartnerCategory : BaseDataObject
+    public class User : BaseDataObject
     {
-      
-
+        
         [JsonProperty("version")]
         public string Version { get; set; }
 
@@ -29,7 +28,28 @@
         [JsonProperty("write_date")]
         public DateTime WriteDate { get; set; }
 
+        [JsonProperty("firstname")]
+        public string Firstname { get; set; }
+
+        [JsonProperty("lastname")]
+        public string Lastname { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        [JsonProperty("phone")]
+        public string Phone { get; set; }
+
+        [JsonProperty("contact_address")]
+        public string ContactAddress { get; set; }
+
+        [JsonProperty("email")]
+        public string Email { get; set; }
+
+        [JsonProperty("website")]
+        public string Website { get; set; }
+
+        [JsonProperty("website_url")]
+        public string WebsiteUrl { get; set; }
     }
 }

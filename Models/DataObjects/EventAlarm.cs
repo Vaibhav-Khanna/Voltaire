@@ -7,10 +7,9 @@
     using Newtonsoft.Json;
     using voltaire.DataStore.Abstraction;
 
-    public class PartnerCategory : BaseDataObject
+    public class EventAlarm: BaseDataObject
     {
-      
-
+       
         [JsonProperty("version")]
         public string Version { get; set; }
 
@@ -29,7 +28,7 @@
         [JsonProperty("write_date")]
         public DateTime WriteDate { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonProperty("trigger_date")]
+        public DateTime TriggerDate { get; set; }
     }
 }
