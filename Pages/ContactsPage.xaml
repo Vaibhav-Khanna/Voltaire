@@ -167,27 +167,27 @@
                         Style="{StaticResource FilterSectionLabelStyle}" />
                 
                 <controls:WrapLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Spacing="10">
-                        <Button Text="0" Command="{Binding FilterByWeight}" CommandParameter="0"
+                        <Button x:Name="bt0" Text="0" Command="{Binding FilterByWeight}" CommandParameter="0"
                         Clicked="Handle_Clicked"
                                 Style="{StaticResource FilterWeightButtonStyle}" />
                     
-                        <Button Text="1" Command="{Binding FilterByWeight}" CommandParameter="1"
+                        <Button  x:Name="bt1" Text="1" Command="{Binding FilterByWeight}" CommandParameter="1"
                         Clicked="Handle_Clicked"
                                 Style="{StaticResource FilterWeightButtonStyle}" />
                     
-                        <Button Text="2" Command="{Binding FilterByWeight}" CommandParameter="2"
+                        <Button  x:Name="bt2" Text="2" Command="{Binding FilterByWeight}" CommandParameter="2"
                         Clicked="Handle_Clicked"
                                 Style="{StaticResource FilterWeightButtonStyle}" />
                     
-                        <Button Text="3" Command="{Binding FilterByWeight}" CommandParameter="3"
-                        Clicked="Handle_Clicked"
-                                Style="{StaticResource FilterWeightClickedButtonStyle}" />
-                    
-                        <Button Text="4" Command="{Binding FilterByWeight}" CommandParameter="4"
+                        <Button  x:Name="bt3" Text="3" Command="{Binding FilterByWeight}" CommandParameter="3"
                         Clicked="Handle_Clicked"
                                 Style="{StaticResource FilterWeightButtonStyle}" />
                     
-                        <Button Text="5" Command="{Binding FilterByWeight}" CommandParameter="5"
+                        <Button   x:Name="bt4" Text="4" Command="{Binding FilterByWeight}" CommandParameter="4"
+                        Clicked="Handle_Clicked"
+                                Style="{StaticResource FilterWeightButtonStyle}" />
+                    
+                        <Button   x:Name="bt5" Text="5" Command="{Binding FilterByWeight}" CommandParameter="5"
                         Clicked="Handle_Clicked"
                                 Style="{StaticResource FilterWeightButtonStyle}" />  
                 </controls:WrapLayout> 
@@ -203,7 +203,8 @@
                         VerticalOptions="Start" 
                         Margin="10" 
                         Style="{StaticResource FilterSectionLabelStyle}"/>
-                
+
+                <ScrollView Orientation="Vertical" VerticalOptions="Start">               
                     <controls:RepeaterView ItemsSource="{Binding partnerGrades}" VerticalOptions="Start" HorizontalOptions="Start" Orientation="Horizontal" Spacing="10" Margin="10,10">
                         <controls:RepeaterView.ItemTemplate>
                           <DataTemplate>
@@ -213,7 +214,7 @@
                         </DataTemplate>
                         </controls:RepeaterView.ItemTemplate>    
                     </controls:RepeaterView>    
-                
+                 </ScrollView>
                     
                  <BoxView   HeightRequest="1" 
                             BackgroundColor="{StaticResource GreyLine}" 
