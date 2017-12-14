@@ -463,6 +463,7 @@
     <Compile Include="Renderers\ExtendedEditor.cs" />
     <Compile Include="DataStore\Abstraction\Stores\IProductStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\ProductStore.cs" />
+    <Compile Include="NavigationContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

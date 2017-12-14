@@ -45,7 +45,9 @@ namespace voltaire.PageModels
                 customer.Email = email;
                 customer.CanEdit = false;
                 customer.CompanyName = companyname;
-                customer.Tags = Tags.Select((arg) => arg.TagText).ToList();
+
+                if(Tags.Any() && ContactsPageModel.GradeValues.Any() )
+                customer.GradeId = ContactsPageModel.GradeValues[Tags.First().TagText].Value;
 
                 Dialog.ShowLoading(null);
 
@@ -99,8 +101,9 @@ namespace voltaire.PageModels
         {
             if(!string.IsNullOrEmpty(Popup_context.SelectedItem))
             {
+                Tags.Clear();
                 Tags.Add(new TagControlModel(Tags){ TagText = Popup_context.SelectedItem, CanEdit = CanEdit });
-                customer.Tags.Add(Popup_context.SelectedItem);
+                //customer.Tags.Add(Popup_context.SelectedItem);
             }
            
             Popup_context.ItemSelectedChanged -= Popup_Context_ItemSelectedChanged;
@@ -137,7 +140,6 @@ namespace voltaire.PageModels
         }
 
         private bool canedit;
-
         public bool CanEdit
 		{
             get { return canedit; }
@@ -149,7 +151,6 @@ namespace voltaire.PageModels
 		}
 
 		private string backbutton;
-
 		public string BackButton
 		{
 			get { return backbutton; }
@@ -162,7 +163,6 @@ namespace voltaire.PageModels
 
 
         private string toolbarbutton;
-
         public string ToolbarButton
 		{
 			get { return toolbarbutton; }
@@ -174,7 +174,6 @@ namespace voltaire.PageModels
 		}
 
         private string firstname;
-
         public string FirstName
 		{
 			get { return firstname; }
@@ -187,7 +186,6 @@ namespace voltaire.PageModels
        		
 
         private int? weight;
-
 		public int? Weight
 		{
             get { return weight; }
@@ -348,9 +346,9 @@ namespace voltaire.PageModels
                 else
                     Tags.Clear();
 
-                foreach (var item in customer.Tags)
+                if ( ContactsPageModel.GradeValues.Where( (arg) => arg.Value == customer.GradeId).Any() )
                 {
-                    Tags.Add(new TagControlModel(Tags){ TagText = item , CanEdit = CanEdit });
+                    Tags.Add(new TagControlModel(Tags){ TagText = ContactsPageModel.GradeValues.Where((arg) => arg.Value == customer.GradeId).First().Key , CanEdit = CanEdit });
                 }
                     
                 //Tags = new ObservableCollection<TagControlModel>(Tags.ToList());

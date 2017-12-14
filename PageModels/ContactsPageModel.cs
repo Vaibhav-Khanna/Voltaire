@@ -66,7 +66,7 @@ namespace voltaire.PageModels
             }
         }
 
-        private Dictionary<string, long?> GradeValues = new Dictionary<string, long?>();
+        public static Dictionary<string, long?> GradeValues = new Dictionary<string, long?>();
 
         public ICommand FiltersLayoutCommand => new Command(FiltersLayoutAppearing);
 

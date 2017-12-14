@@ -150,7 +150,7 @@ namespace voltaire.DataStore.Implementation
 
             try
             {
-                await Table.PullAsync<T>($"all{Identifier}", Table.CreateQuery().IncludeTotalCount(), false, new CancellationToken(false), new PullOptions() { MaxPageSize = 200 }).ConfigureAwait(false);
+                await Table.PullAsync<T>($"all{Identifier}", Table.CreateQuery().IncludeTotalCount(), false, new CancellationToken(false), new PullOptions() { MaxPageSize = 150 }).ConfigureAwait(false);
             }
             catch (Exception ex)
             {

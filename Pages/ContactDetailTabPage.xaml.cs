@@ -44,6 +44,7 @@ namespace voltaire.Pages
 				lb_firstName.SetBinding(VisualElement.IsEnabledProperty, "CanEdit");
 				
 				topcontainer.Margin = new Thickness(0, 30, 0, 0);
+                topcontainer.Padding = new Thickness(40, 0, 0, 0);
 				topcontainer.BackgroundColor = Color.White;
 				topcontainer.Children.Add(lb_firstName);
 				
