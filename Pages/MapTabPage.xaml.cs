@@ -33,32 +33,30 @@ namespace voltaire.Pages
 
             var context = BindingContext as TTab;
 
-            if (context == null || context.Customer.CustomerAddresses == null)
+            if (context == null || context.Customer.PartnerLatitude == 0 || context.Customer.PartnerLongitude == 0)
                 return;
 
 
             #region Map_Pins_Set
 
-            if (context.Customer.CustomerAddresses.Count != 0)
-            {
-                var pin = context.Customer.CustomerAddresses[0];
-                map.InitialCameraUpdate = CameraUpdateFactory.NewPositionZoom(new Position(pin.Latitude, pin.Longitude), 12d);
-            }
 
-            foreach (var item in context.Customer.CustomerAddresses)
+            map.InitialCameraUpdate = CameraUpdateFactory.NewPositionZoom(new Position(context.Customer.PartnerLatitude, context.Customer.PartnerLongitude), 12d);
+
+
+            //foreach (var item in context.Customer.CustomerAddresses)
+            //{
+            var pin = new Pin()
             {
-                var pin = new Pin()
-                {
-                    Address = item.Address,
-                    IsDraggable = true,
-                    Flat = true,
-                    Label = item.Title,
-                    Type = PinType.SavedPin,
-                    IsVisible = true,
-                    Position = new Position(item.Latitude, item.Longitude)
-                };
-                map.Pins.Add(pin);
-            }
+                Address = context.Customer.ContactAddress,
+                IsDraggable = true,
+                Flat = true,
+                Label = context.Customer.Name,
+                Type = PinType.SavedPin,
+                IsVisible = true,
+                Position = new Position(context.Customer.PartnerLatitude, context.Customer.PartnerLongitude)
+            };
+            map.Pins.Add(pin);
+            //}
 
             #endregion
 

@@ -65,8 +65,8 @@ namespace voltaire
                 Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
                 {
                     var homePage = FreshPageModelResolver.ResolvePageModel<HomePageModel>();
-
-                    var homeContainer = new FreshNavigationContainer(homePage) { BarBackgroundColor = (Color)Resources["turquoiseBlue"], BarTextColor = Color.White };
+                  
+                    var homeContainer = new AONNavigationContainer(homePage) { BarBackgroundColor = (Color)Resources["turquoiseBlue"], BarTextColor = Color.White };
 
                     MainPage = homeContainer;
                 });

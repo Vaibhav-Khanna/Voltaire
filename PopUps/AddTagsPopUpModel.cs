@@ -2,7 +2,9 @@
 using System.Collections.ObjectModel;
 using Rg.Plugins.Popup.Services;
 using voltaire.Models;
+using voltaire.PageModels;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace voltaire.PopUps
 {
@@ -10,7 +12,9 @@ namespace voltaire.PopUps
     {
         public AddTagsPopUpModel()
         {
-            TagSource = new ObservableCollection<string>(ProductConstants.TagList);
+            if(ContactsPageModel.GradeValues.Any())
+            TagSource = new ObservableCollection<string>(ContactsPageModel.GradeValues.Keys.Select((string arg) => arg));
+
             SelectedItem = null;
         }
 

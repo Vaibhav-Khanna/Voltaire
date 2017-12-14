@@ -10,21 +10,11 @@ namespace voltaire.Models
 
     public class Partner : BaseDataObject
     {
-
-        [JsonIgnore]
-        public string Address { get; set; }
-
-        //[JsonIgnore]
-        //public int? Weight { get; set; }
-
-        [JsonIgnore]
-        public string Grade { get; set; }
-
+      
         [JsonIgnore]
         public List<Note> InternalNotes { get; set; } = new List<Note>();
 
-        [JsonIgnore]
-        public string PermanentNote { get; set; }
+
 
         [JsonIgnore]
         public List<string> Tags { get; set; } = new List<string>();
@@ -40,6 +30,8 @@ namespace voltaire.Models
 
         [JsonIgnore]
         public List<Contract> Contracts { get; set; } = new List<Contract>();
+
+
 
         [JsonProperty("version")]
         public string Version { get; set; }

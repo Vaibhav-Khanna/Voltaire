@@ -8,6 +8,7 @@ using voltaire.Resources;
 using voltaire.PopUps;
 using Rg.Plugins.Popup.Services;
 using Acr.UserDialogs;
+using System.Linq;
 
 namespace voltaire.PageModels
 {
@@ -29,6 +30,7 @@ namespace voltaire.PageModels
         {
             if (!string.IsNullOrEmpty(Popup_context.SelectedItem))
             {
+                Tags.Clear();
                 Tags.Add(new TagControlModel(Tags) { TagText = Popup_context.SelectedItem, CanEdit = CanEdit });
             }
 
@@ -56,6 +58,9 @@ namespace voltaire.PageModels
 
             var customer = new Partner() { Name = Name, CompanyName = CompanyName, Phone = Phone, Email = Email, Website = Website, Comment = NoteText, PartnerWeight = Weight != null ? Convert.ToInt64(Weight) : 0 , ContactAddress = Address };
           
+            if (Tags.Any() && ContactsPageModel.GradeValues.Any())
+               customer.GradeId = ContactsPageModel.GradeValues[Tags.First().TagText].Value;
+
             await StoreManager.CustomerStore.InsertAsync(customer);
 
             Dialog.HideLoading();

@@ -145,10 +145,10 @@
         <value>Parent Partner   &gt;  </value>
     </data>
 	<data name="Tags" xml:space="preserve">
-        <value>Tags</value>
+        <value>Grade</value>
     </data>
 	<data name="addtags" xml:space="preserve">
-        <value>+ Add tags</value>
+        <value>+ Add grade</value>
     </data>
 	<data name="Cancel" xml:space="preserve">
         <value>Cancel</value>
@@ -319,10 +319,10 @@
         <value>Payment information</value>   
     </data>
 	<data name="AddTagsTitle" xml:space="preserve">
-        <value>Add tags</value>   
+        <value>Add grade</value>   
     </data>
 	<data name="SelectTag" xml:space="preserve">
-        <value>Select a tag in the list</value>   
+        <value>Select a grade in the list</value>   
     </data>
 	<data name="Reminders" xml:space="preserve">
         <value>Reminders</value>   
