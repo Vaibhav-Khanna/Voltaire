@@ -6,6 +6,7 @@ using voltaire.Converters;
 using voltaire.Models;
 using voltaire.PageModels;
 using voltaire.Pages.Base;
+using voltaire.Renderers;
 using Xamarin.Forms;
 
 namespace voltaire.Pages
@@ -42,10 +43,10 @@ namespace voltaire.Pages
 
             var context = BindingContext as ProductDescriptionPageModel;
 
-            if(context!=null)
+            if (context != null)
             {
                 controlEnabled = context.IsControlsEnabled;
-                InitLayout(context);   
+                InitLayout(context);
             }
         }
 
@@ -55,9 +56,9 @@ namespace voltaire.Pages
             int x = 0;
             int y = 0;
 
-            for (int i = 0; i < context.ProductProperties.Count ; i++)
+            for (int i = 0; i < context.ProductProperties.Count; i++)
             {
-                
+
                 if (i >= row_count * 2)
                     break;
 
@@ -66,46 +67,50 @@ namespace voltaire.Pages
                     x = 0;
                     y = i;
                 }
-                else if(i==row_count)
+                else if (i == row_count)
                 {
                     x = 1;
                     y = 0;
                 }
                 else
                 {
-					x = 1;
-					y += 1; 
+                    x = 1;
+                    y += 1;
                 }
 
                 var item = context.ProductProperties[i];
 
-				if (item.PropertyType == PropertyType.IsBoolean)
-				{
-					grid.Children.Add(Switch_Row_Layout(item),x,y);
-				}
-				else if (item.PropertyType == PropertyType.IsPicker)
-				{
-                    grid.Children.Add(Picker_Row_Layout(item),x,y);
-				}
-				else if (item.PropertyType == PropertyType.IsText)
-				{
-					grid.Children.Add(Entry_Row_Layout(item),x,y);
-				}
+                if (item.PropertyType == PropertyType.IsBoolean)
+                {
+                    grid.Children.Add(Switch_Row_Layout(item), x, y);
+                }
+                else if (item.PropertyType == PropertyType.IsPicker)
+                {
+                    grid.Children.Add(Picker_Row_Layout(item), x, y);
+                }
+                else if (item.PropertyType == PropertyType.IsText)
+                {
+                    grid.Children.Add(Entry_Row_Layout(item), x, y);
+                }
+                else if (item.PropertyType == PropertyType.IsEditor)
+                {
+                    grid.Children.Add(Entry_Row_Layout(item), x, y);
+                }
 
             }
-           
+
         }
 
         StackLayout Switch_Row_Layout(ProductProperty Bind_Context)
         {
-            var stack = new StackLayout { BackgroundColor = Color.White, Orientation = StackOrientation.Horizontal, HeightRequest = 60, Margin = 0 , HorizontalOptions = LayoutOptions.FillAndExpand, Padding = new Thickness(20,0,20,0) };
+            var stack = new StackLayout { BackgroundColor = Color.White, Orientation = StackOrientation.Horizontal, HeightRequest = 60, Margin = 0, HorizontalOptions = LayoutOptions.FillAndExpand, Padding = new Thickness(20, 0, 20, 0) };
 
-            var label = new Label { FontFamily = "SanFranciscoDisplay-Regular", HorizontalOptions = LayoutOptions.StartAndExpand, VerticalOptions = LayoutOptions.Center, TextColor = (Color) App.Current.Resources["GreyishBrown"] };
-            label.SetBinding(Label.TextProperty,"PropertyName");
+            var label = new Label { FontFamily = "SanFranciscoDisplay-Regular", HorizontalOptions = LayoutOptions.StartAndExpand, VerticalOptions = LayoutOptions.Center, TextColor = (Color)App.Current.Resources["GreyishBrown"] };
+            label.SetBinding(Label.TextProperty, "PropertyName");
             label.BindingContext = Bind_Context;
 
             var sw = new Switch() { IsEnabled = controlEnabled, HorizontalOptions = LayoutOptions.End, VerticalOptions = LayoutOptions.Center };
-            sw.SetBinding(Switch.IsToggledProperty,"PropertyValue", BindingMode.TwoWay,converter: new StringToBoolConverter());
+            sw.SetBinding(Switch.IsToggledProperty, "PropertyValue", BindingMode.TwoWay, converter: new StringToBoolConverter());
             sw.BindingContext = Bind_Context;
 
             stack.Children.Add(label);
@@ -114,38 +119,52 @@ namespace voltaire.Pages
             return stack;
         }
 
-		StackLayout Picker_Row_Layout(ProductProperty Bind_Context)
-		{
-			var stack = new StackLayout { BackgroundColor = Color.White, Orientation = StackOrientation.Horizontal, HeightRequest = 60, Margin = 0, HorizontalOptions = LayoutOptions.FillAndExpand, Padding = new Thickness(20, 0, 20, 0) };
+        StackLayout Picker_Row_Layout(ProductProperty Bind_Context)
+        {
+            var stack = new StackLayout { BackgroundColor = Color.White, Orientation = StackOrientation.Horizontal, HeightRequest = 60, Margin = 0, HorizontalOptions = LayoutOptions.FillAndExpand, Padding = new Thickness(20, 0, 20, 0) };
 
             var label = new Label { FontFamily = "SanFranciscoDisplay-Regular", HorizontalOptions = LayoutOptions.StartAndExpand, VerticalOptions = LayoutOptions.Center, TextColor = (Color)App.Current.Resources["GreyishBrown"] };
-			label.SetBinding(Label.TextProperty, "PropertyName");
-			label.BindingContext = Bind_Context;
+            label.SetBinding(Label.TextProperty, "PropertyName");
+            label.BindingContext = Bind_Context;
 
-            var picker = new Renderers.BorderlessPicker() { IsEnabled = controlEnabled, HorizontalOptions = LayoutOptions.End, WidthRequest = 120, VerticalOptions = LayoutOptions.Center, Title ="Choose", TextColor = (Color)App.Current.Resources["turquoiseBlue"] };         
-            picker.SetBinding(Picker.ItemsSourceProperty,"ItemSource");
-			picker.SetBinding(Picker.SelectedItemProperty, "PropertyValue", BindingMode.TwoWay);
-			picker.BindingContext = Bind_Context;
+            var picker = new BorderlessPicker() { IsEnabled = controlEnabled, HorizontalOptions = LayoutOptions.End, WidthRequest = 120, VerticalOptions = LayoutOptions.Center, Title = "Choose", TextColor = (Color)App.Current.Resources["turquoiseBlue"] };
+            picker.SetBinding(Picker.ItemsSourceProperty, "ItemSource");
+            picker.SetBinding(Picker.SelectedItemProperty, "PropertyValue", BindingMode.TwoWay);
+            picker.BindingContext = Bind_Context;
 
-			stack.Children.Add(label);
+            stack.Children.Add(label);
             stack.Children.Add(picker);
 
-			return stack;
-		}
+            return stack;
+        }
 
-		StackLayout Entry_Row_Layout(ProductProperty Bind_Context)
-		{
-			var stack = new StackLayout { BackgroundColor = Color.White, Orientation = StackOrientation.Horizontal, HeightRequest = 60, Margin = 0, HorizontalOptions = LayoutOptions.FillAndExpand, Padding = new Thickness(20, 0, 20, 0) };
-            	
-            var entry = new Entry() { IsEnabled = controlEnabled, HorizontalOptions = LayoutOptions.FillAndExpand, HeightRequest = 40, VerticalOptions = LayoutOptions.Center, TextColor = (Color)App.Current.Resources["GreyishBrown"], FontFamily = "SanFranciscoDisplay-Regular", PlaceholderColor = Color.FromRgb(179,179,179) };
+        StackLayout Entry_Row_Layout(ProductProperty Bind_Context)
+        {
+            var stack = new StackLayout { BackgroundColor = Color.White, Orientation = StackOrientation.Horizontal, HeightRequest = 60, Margin = 0, HorizontalOptions = LayoutOptions.FillAndExpand, Padding = new Thickness(20, 0, 20, 0) };
+
+            var entry = new Entry() { IsEnabled = controlEnabled, HorizontalOptions = LayoutOptions.FillAndExpand, HeightRequest = 40, VerticalOptions = LayoutOptions.Center, TextColor = (Color)App.Current.Resources["GreyishBrown"], FontFamily = "SanFranciscoDisplay-Regular", PlaceholderColor = Color.FromRgb(179, 179, 179) };
             entry.SetBinding(Entry.TextProperty, "PropertyValue", BindingMode.TwoWay);
             entry.SetBinding(Entry.PlaceholderProperty, "PropertyName");
-			entry.BindingContext = Bind_Context;
-			
-			stack.Children.Add(entry);
+            entry.BindingContext = Bind_Context;
 
-			return stack;
-		}
+            stack.Children.Add(entry);
+
+            return stack;
+        }
+
+        /* StackLayout Editor_Row_Layout(ProductProperty Bind_Context)
+         {
+             var stack = new StackLayout { BackgroundColor = Color.White, Orientation = StackOrientation.Vertical, MinimumHeightRequest = 400, Margin = 0, VerticalOptions = LayoutOptions.FillAndExpand, Padding = new Thickness(20, 0, 20, 0) };
+
+             var editor = new ExtendedEditor() { IsEnabled = controlEnabled, HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand, TextColor = (Color)App.Current.Resources["GreyishBrown"], FontFamily = "SanFranciscoDisplay-Regular", PlaceholderColor = Color.FromRgb(179, 179, 179), BorderColor = Color.FromRgb(179, 179, 179) };
+             editor.SetBinding(Editor.TextProperty, "PropertyValue", BindingMode.TwoWay);
+             editor.SetBinding(ExtendedEditor.PlaceholderProperty, "PropertyName");
+             editor.BindingContext = Bind_Context;
+
+             stack.Children.Add(editor);
+
+             return stack;
+         } */
 
     }
 }

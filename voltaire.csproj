@@ -460,6 +460,9 @@
     <Compile Include="DataStore\Implementation\Stores\EventAlarmStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\MessageStore.cs" />
     <Compile Include="Converters\PartnerWeightConverter.cs" />
+    <Compile Include="Renderers\ExtendedEditor.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IProductStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\ProductStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
