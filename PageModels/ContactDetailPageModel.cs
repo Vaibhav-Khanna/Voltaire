@@ -30,6 +30,7 @@ namespace voltaire.PageModels
 
                 customer_copy.CanEdit = true;
                
+                
                 await CoreMethods.PushPageModel<ContactDetailPageModel>(customer_copy, true, true);
             }
             else
