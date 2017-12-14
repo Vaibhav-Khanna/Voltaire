@@ -30,9 +30,6 @@ namespace voltaire.Models
         public List<string> Tags { get; set; } = new List<string>();
 
         [JsonIgnore]
-        public Nullable<DateTime> LastVisit { get; set; }
-
-        [JsonIgnore]
         public bool CanEdit { get; set; } = false;
 
         [JsonIgnore]

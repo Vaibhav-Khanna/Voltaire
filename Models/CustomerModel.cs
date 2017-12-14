@@ -30,16 +30,16 @@ namespace voltaire.Models
         {
             Customer = customer;
 
-            // var name_array = Customer.Name?.Split(' ');
-            var name = Customer.Name;
+            var name_array = Customer.Name?.Split(' ');
+           // var name = Customer.Name;
 
             DisplayText = new FormattedString
             {
                 Spans = {
-                    new Span { Text = name , FontAttributes = FontAttributes.None, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"}
+                    new Span { Text = name_array?.First() + " " , FontAttributes = FontAttributes.None, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"}
                 }
             };
-            /*
+
             if(name_array?.Count() > 1)
             {
                 string st ="";
@@ -52,7 +52,7 @@ namespace voltaire.Models
                 s = null;
                 DisplayText.Spans.Add(new Span { Text = st.Trim(), FontSize = 20, FontFamily = "SanFranciscoDisplay-Bold" });
             }
-              */
+             
         }
     }
 }

@@ -66,6 +66,8 @@ namespace voltaire.PageModels
             }
         }
 
+        private Dictionary<string, long?> GradeValues = new Dictionary<string, long?>();
+
         public ICommand FiltersLayoutCommand => new Command(FiltersLayoutAppearing);
 
         private IPartnerStore CustomerStore => StoreManager.CustomerStore;
@@ -134,18 +136,17 @@ namespace voltaire.PageModels
         async void Get()
         {
             // Local data
-            IsLoading = true;
-                      
+            IsLoading = true;                      
 
-            var result = await CustomerStore.GetItemsAsync(FilterWeight,FilterGrade,false);
-
+            var result = await CustomerStore.GetItemsAsync(FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade],false);
+           
             // Server refresh
             if ( result == null || !result.Any()  )
             {
                 if (FilterWeight == null && string.IsNullOrWhiteSpace(FilterGrade))
                 {
                     LoadingText = AppResources.FetchingData;
-                    result = await CustomerStore.GetItemsAsync(FilterWeight, FilterGrade, true);
+                    result = await CustomerStore.GetItemsAsync(FilterWeight,FilterGrade == null ? null : GradeValues[FilterGrade], true);
                     CreateGroupedCollection(result);
                     LoadingText = AppResources.FetchingData;
                 }
@@ -172,7 +173,7 @@ namespace voltaire.PageModels
           {
                 Loadingmore = true;
                 
-                var result = await CustomerStore.GetNextItemsAsync(Customers.Count,FilterWeight, FilterGrade);
+                var result = await CustomerStore.GetNextItemsAsync(Customers.Count,FilterWeight,FilterGrade == null ? null : GradeValues[FilterGrade] );
 
                 if (result != null && result.Any())
                 {
@@ -227,7 +228,7 @@ namespace voltaire.PageModels
 
            IsLoading = true;
            IsLoadingText = AppResources.Refreshing;
-           var result = await CustomerStore.GetItemsAsync(FilterWeight, FilterGrade,true);
+            var result = await CustomerStore.GetItemsAsync(FilterWeight,FilterGrade == null ? null : GradeValues[FilterGrade],true);
            CreateGroupedCollection(result);
            IsRefreshing = false;
            IsLoading = false;
@@ -239,13 +240,13 @@ namespace voltaire.PageModels
        {
            if (string.IsNullOrWhiteSpace(searchtext))
            {
-               var res = await CustomerStore.GetItemsAsync(FilterWeight, FilterGrade,false);
+                var res = await CustomerStore.GetItemsAsync(FilterWeight,FilterGrade == null ? null :GradeValues[FilterGrade],false);
                CreateGroupedCollection(res);
                return;
            }
 
           
-           var result = await CustomerStore.Search(SearchText.Trim(),FilterWeight,FilterGrade);
+            var result = await CustomerStore.Search(SearchText.Trim(),FilterWeight,FilterGrade == null ? null : GradeValues[FilterGrade]);
            CreateGroupedCollection(result);
            CustomersCount += " " + AppResources.MatchingSearch;
 
@@ -258,6 +259,18 @@ namespace voltaire.PageModels
             Get();
        });
 
+        public Command FilterByGrade => new Command((obj) =>
+       {
+           FilterGrade = (obj as string);
+           Get();
+       });
+
+        public Command ResetFilter => new Command((obj) =>
+       {
+           FilterWeight = null;
+           FilterGrade = null;
+           Get();
+       });
 
         private void CreateGroupedCollection(IEnumerable<Partner> list)
         {
@@ -316,6 +329,14 @@ namespace voltaire.PageModels
             _filterImage = "filters";
 
             var _grades = await StoreManager.PartnerGradeStore.GetItemsAsync();
+
+            GradeValues = new Dictionary<string, long?>();
+
+            foreach (var item in _grades)
+            {
+                GradeValues.Add(item.Name,item.ExternalId);
+            }
+
             //PartnerGrades 
             partnerGrades = new ObservableCollection<PartnerGrade>(_grades?.Select((arg) => new PartnerGrade() { Grade = arg.Name }));
 

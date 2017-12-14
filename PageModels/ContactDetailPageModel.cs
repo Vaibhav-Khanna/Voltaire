@@ -35,12 +35,12 @@ namespace voltaire.PageModels
             else
             {
                 customer.ContactAddress = address;
-                customer.Weight = weight == null ? 0 : Convert.ToInt64(weight);
+                customer.PartnerWeight = weight == null ? 0 : Convert.ToInt64(weight);
                 customer.Name = firstname;               
                 customer.Phone = phone;
                 customer.Website = website;
-                customer.LastVisit = lastvisit;
-				customer.PermanentNote = notetext;
+                customer.DateLocalization = lastvisit;
+                customer.Comment = notetext;
                 customer.Email = email;
                 customer.CanEdit = false;
                 customer.CompanyName = companyname;
@@ -206,11 +206,11 @@ namespace voltaire.PageModels
 			set
 			{
 				lastvisit = value;
-                customer.LastVisit = lastvisit;
+                customer.DateLocalization = lastvisit;
+                StoreManager.CustomerStore.UpdateAsync(customer);
 				RaisePropertyChanged();
 			}
 		}
-
 
         private string email;
 
@@ -288,7 +288,7 @@ namespace voltaire.PageModels
             {
                 notetext = value;
 
-                customer.PermanentNote = notetext;
+                customer.Comment = notetext;
 
                 RaisePropertyChanged();
             }
@@ -334,9 +334,9 @@ namespace voltaire.PageModels
                 address = customer.ContactAddress;
                 phone = customer.Phone;
                 website = customer.Website;
-                lastvisit = customer.LastVisit;
+                lastvisit = customer.DateLocalization;
                 canedit = customer.CanEdit;
-                NoteText = customer.PermanentNote;
+                NoteText = customer.Comment;
                 title = canedit ? AppResources.Update : $"{customer.Name}";
                 toolbarbutton = canedit ? AppResources.Save : AppResources.Modify;
                 backbutton = canedit ? AppResources.Cancel : AppResources.Back;

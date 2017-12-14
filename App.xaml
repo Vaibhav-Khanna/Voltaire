@@ -296,6 +296,19 @@
                 </Setter>
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
+            </Style>
+             <Style x:Key="PartnerGradeButtonSelected"
+                   TargetType="Button">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Medium</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Medium.otf#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="White" />
 
             </Style>
             <Style x:Key="PartnerGradeFrame"
@@ -303,6 +316,12 @@
                 <Setter Property="BackgroundColor" Value="White" />
                 <Setter Property="HasShadow" Value="false" />
                 <Setter Property="OutlineColor" Value="{StaticResource GreyPlaceholder}" />
+            </Style>
+             <Style x:Key="PartnerGradeFrameSelected"
+                   TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource GreyishBrown}" />
+                <Setter Property="HasShadow" Value="false" />
+                <Setter Property="OutlineColor" Value="{StaticResource GreyishBrown}" />
             </Style>
             <!-- GOALS DETAIL PAGE -->
             <Style x:Key="SalesmanLabelStyle"
