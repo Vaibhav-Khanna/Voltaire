@@ -304,6 +304,7 @@
     <Compile Include="Renderers\BorderlessDatePickerRenderer.cs" />
     <Compile Include="Renderers\BorderlessTimePickerRenderer.cs" />
     <Compile Include="Renderers\ContentPageSwipeRenderer.cs" />
+    <Compile Include="Renderers\ExtendedEditorRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.png" />

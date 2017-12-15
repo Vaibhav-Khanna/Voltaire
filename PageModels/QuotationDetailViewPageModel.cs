@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Rg.Plugins.Popup.Services;
 using voltaire.Models;
+using voltaire.Models.DataObjects;
 using voltaire.PageModels.Base;
 using voltaire.PopUps;
 using voltaire.Resources;
@@ -12,23 +13,23 @@ namespace voltaire.PageModels
 {
     public class QuotationDetailViewPageModel : BasePageModel
     {
-        
+
         ProductPickerPopupModel popup_context = new ProductPickerPopupModel(); //  Popup picker model 
 
 
-        public Command BackButton => new Command( async() =>
-        {
-            await CoreMethods?.PopPageModel();
-        });
+        public Command BackButton => new Command(async () =>
+       {
+           await CoreMethods?.PopPageModel();
+       });
 
         public Command itemTapped => new Command(async (object obj) =>
-		{
+        {
             var item = obj as ProductQuotationModel;
-            await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<Product, ProductQuotationModel,bool>(item.Product, item, Quotation.Status == QuotationStatus.Sent ? false : true));
-		});
+            await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<Product, ProductQuotationModel, bool>(item.Product, item, Quotation.Status == QuotationStatus.Sent ? false : true));
+        });
 
-		public Command ToolbarMenu => new Command(async () =>
-		{
+        public Command ToolbarMenu => new Command(async () =>
+        {
 
             string delete_text;
 
@@ -38,38 +39,38 @@ namespace voltaire.PageModels
             else
                 delete_text = null;
 
-            var response = await CoreMethods.DisplayActionSheet(AppResources.Select, AppResources.Cancel,delete_text, new List<string> { AppResources.InternalNotes }.ToArray());
+            var response = await CoreMethods.DisplayActionSheet(AppResources.Select, AppResources.Cancel, delete_text, new List<string> { AppResources.InternalNotes }.ToArray());
 
-			if (response == AppResources.InternalNotes)
-			{
-				// Open internal notes
+            if (response == AppResources.InternalNotes)
+            {
+                // Open internal notes
                 await CoreMethods.PushPageModel<QuotationInternalNotesPageModel>(Quotation);
 
             }
-            else if(response == AppResources.DeleteQuotation)
+            else if (response == AppResources.DeleteQuotation)
             {
-               // delete quotation 
+                // delete quotation 
             }
 
-		});
-       
+        });
+
         // Add product button tapped then subscribe to the selectem item changed event and take action
-        public Command AddProductQuotation => new Command( async() => 
-       {
-            popup_context.ItemSelectedChanged += Popup_Context_ItemSelectedChanged;    // Subscribe to the event
-            await PopupNavigation.PushAsync(new ProductPickerPopUp(){ BindingContext = popup_context }, true);
-       });
+        public Command AddProductQuotation => new Command(async () =>
+      {
+          popup_context.ItemSelectedChanged += Popup_Context_ItemSelectedChanged;    // Subscribe to the event
+           await PopupNavigation.PushAsync(new ProductPickerPopUp() { BindingContext = popup_context }, true);
+      });
 
-        public Command NotesCommand => new Command( async() =>
-       {
-            await CoreMethods.PushPageModel<PermanentNotePageModel>(Quotation);
-       });
+        public Command NotesCommand => new Command(async () =>
+      {
+          await CoreMethods.PushPageModel<PermanentNotePageModel>(Quotation);
+      });
 
 
-		public Command SignCommand => new Command(async () =>
-		{
+        public Command SignCommand => new Command(async () =>
+        {
             await CoreMethods.PushPageModel<QuotationSignPageModel>(Quotation);
-		});
+        });
 
 
         async void Popup_Context_ItemSelectedChanged() // When an item is selected from the popup then open product customize page
@@ -80,26 +81,26 @@ namespace voltaire.PageModels
                 OrderItemsSource.Add(item);
                 quotation.Products.Add(item);
 
-                await CoreMethods.PushPageModel<ProductDescriptionPageModel>( new Tuple<Product,ProductQuotationModel,bool>(popup_context.SelectedItem,item, Quotation.Status == QuotationStatus.Sent ? false : true));
+                await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<Product, ProductQuotationModel, bool>(popup_context.SelectedItem, item, Quotation.Status == QuotationStatus.Sent ? false : true));
 
             }
             // Unsubscribe from the event
-			popup_context.ItemSelectedChanged -= Popup_Context_ItemSelectedChanged;
-		}
+            popup_context.ItemSelectedChanged -= Popup_Context_ItemSelectedChanged;
+        }
 
 
         bool newquotation;
         public bool NewQuotation
         {
             get { return newquotation; }
-            set 
+            set
             {
                 newquotation = value;
                 RaisePropertyChanged();
             }
         }
 
-        Partner customer; 
+        Partner customer;
         public Partner Customer
         {
             get { return customer; }
@@ -139,8 +140,8 @@ namespace voltaire.PageModels
         public QuotationsModel Quotation
         {
             get { return quotation; }
-            set 
-            { 
+            set
+            {
                 quotation = value;
 
                 QuotationNumber = quotation.Ref;
@@ -158,9 +159,9 @@ namespace voltaire.PageModels
                 SubTotal = quotation.SubTotal;
 
                 Total = quotation.TotalAmount;
-                		
+
                 OrderItemsSource = new ObservableCollection<ProductQuotationModel>(quotation.Products);
-                OrderItemsSource.CollectionChanged += OrderItemsSource_CollectionChanged;           
+                OrderItemsSource.CollectionChanged += OrderItemsSource_CollectionChanged;
 
                 RaisePropertyChanged();
             }
@@ -171,7 +172,7 @@ namespace voltaire.PageModels
         public ObservableCollection<ProductQuotationModel> OrderItemsSource
         {
             get { return orderitemssource; }
-            set 
+            set
             {
                 orderitemssource = value;
                 RaisePropertyChanged();
@@ -182,7 +183,7 @@ namespace voltaire.PageModels
         public string TrainerName
         {
             get { return trainername; }
-            set 
+            set
             {
                 trainername = value;
                 quotation.TrainerName = trainername;
@@ -194,7 +195,7 @@ namespace voltaire.PageModels
         public string HorseShow
         {
             get { return horseshow; }
-            set 
+            set
             {
                 horseshow = value;
                 quotation.HorseShow = horseshow;
@@ -206,7 +207,7 @@ namespace voltaire.PageModels
         public string QuotationName
         {
             get { return quotationname; }
-            set 
+            set
             {
                 quotationname = value;
                 quotation.Name = quotationname;
@@ -218,7 +219,7 @@ namespace voltaire.PageModels
         public double SubTotal
         {
             get { return subtotal; }
-            set 
+            set
             {
                 subtotal = value;
                 quotation.SubTotal = subtotal;
@@ -240,18 +241,18 @@ namespace voltaire.PageModels
         }
 
 
-		double taxamount;
-		public double TaxAmount
-		{
-			get { return taxamount; }
-			set
-			{
-				taxamount = value;
+        double taxamount;
+        public double TaxAmount
+        {
+            get { return taxamount; }
+            set
+            {
+                taxamount = value;
                 quotation.TaxAmount = taxamount;
                 OrderItemsSource_CollectionChanged(null, null);
-				RaisePropertyChanged();
-			}
-		}
+                RaisePropertyChanged();
+            }
+        }
 
         bool applytax;
         public bool ApplyTax
@@ -261,24 +262,24 @@ namespace voltaire.PageModels
             {
                 applytax = value;
                 quotation.ApplyTax = applytax;
-                OrderItemsSource_CollectionChanged(null,null);
+                OrderItemsSource_CollectionChanged(null, null);
                 RaisePropertyChanged();
             }
         }
 
-		bool canedit;
-		public bool CanEdit
-		{
-			get { return canedit; }
-			set
-			{
-				canedit = value;
-				RaisePropertyChanged();
-			}
-		}
+        bool canedit;
+        public bool CanEdit
+        {
+            get { return canedit; }
+            set
+            {
+                canedit = value;
+                RaisePropertyChanged();
+            }
+        }
 
 
-		public void OrderItemsSource_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        public void OrderItemsSource_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
 
             if (OrderItemsSource == null)
@@ -293,40 +294,40 @@ namespace voltaire.PageModels
                 SubTotal += item.TaxFree;
             }
 
-            if(ApplyTax)
+            if (ApplyTax)
             {
-                Total = SubTotal + SubTotal * (TaxAmount/100);
+                Total = SubTotal + SubTotal * (TaxAmount / 100);
             }
             else
             {
-                Total = SubTotal;  
+                Total = SubTotal;
             }
 
 
         }
 
-		
 
 
-		public override void Init(object initData)
+
+        public override void Init(object initData)
         {
             base.Init(initData);
 
-            var _customer = initData as Tuple<Partner,bool,QuotationsModel>;  // T1 represents the customer object data , T2 is a bool which represents if its a new quotationpage
+            var _customer = initData as Tuple<Partner, bool, QuotationsModel>;  // T1 represents the customer object data , T2 is a bool which represents if its a new quotationpage
 
-            if(_customer!=null)
+            if (_customer != null)
             {
                 NewQuotation = _customer.Item2;
                 Customer = _customer.Item1;
-				
+
                 if (NewQuotation)
-				{
-					Quotation = new QuotationsModel() { Date = DateTime.Now, Ref = UnixTimeStamp(), Status = QuotationStatus.Quotation, TotalAmount = 0 };
-					customer.Quotations.Add(Quotation);
+                {
+                    Quotation = new QuotationsModel() { Date = DateTime.Now, Ref = UnixTimeStamp(), Status = QuotationStatus.Quotation, TotalAmount = 0 };
+                    customer.Quotations.Add(Quotation);
                 }
                 else
                 {
-                    Quotation = _customer.Item3; 
+                    Quotation = _customer.Item3;
                 }
             }
 
@@ -338,7 +339,7 @@ namespace voltaire.PageModels
 
             CanEdit = Quotation.Status == QuotationStatus.Sent ? false : true;
 
-            if(!CanEdit)
+            if (!CanEdit)
             {
                 QuotationNumber = AppResources.Quotation + " " + quotation.Ref + " - " + quotation.Status.ToString();
             }

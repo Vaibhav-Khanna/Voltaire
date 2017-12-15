@@ -8,15 +8,16 @@ namespace voltaire.DataStore.Abstraction
     {
         bool IsInitialized { get; }
         Task InitializeAsync();
-      
+
 
         ICountryStore CountryStore { get; }
-        ICurrencyStore CurrencyStore { get; }      
+        ICurrencyStore CurrencyStore { get; }
         IPartnerCategoryStore PartnerCategoryStore { get; }
         IPartnerGradeStore PartnerGradeStore { get; }
         IPartnerStore CustomerStore { get; }
         IPartnerTitleStore PartnerTitleStore { get; }
         IUserStore UserStore { get; }
+        IProductStore ProductStore { get; }
         IProductPriceListItemStore ProductPriceListItemStore { get; }
         IProductPriceListStore ProductPriceListStore { get; }
         IProductUOMStore ProductUOMStore { get; }

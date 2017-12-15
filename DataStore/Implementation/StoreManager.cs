@@ -30,7 +30,7 @@ namespace voltaire.DataStore.Implementation
 
         IPartnerStore customerStore;
         public IPartnerStore CustomerStore => customerStore ?? (customerStore = DependencyService.Get<IPartnerStore>());
-            
+
         IPartnerCategoryStore partnerCategoryStore;
         public IPartnerCategoryStore PartnerCategoryStore => partnerCategoryStore ?? (partnerCategoryStore = DependencyService.Get<IPartnerCategoryStore>());
 
@@ -47,7 +47,10 @@ namespace voltaire.DataStore.Implementation
         public IPartnerTitleStore PartnerTitleStore => partnerTitleStore ?? (partnerTitleStore = DependencyService.Get<IPartnerTitleStore>());
 
         IUserStore userStore;
-        public IUserStore UserStore => userStore ?? ( userStore = DependencyService.Get<IUserStore>());
+        public IUserStore UserStore => userStore ?? (userStore = DependencyService.Get<IUserStore>());
+
+        IProductStore productStore;
+        public IProductStore ProductStore => productStore ?? (productStore = DependencyService.Get<IProductStore>());
 
         IProductPriceListItemStore productPriceListItemStore;
         public IProductPriceListItemStore ProductPriceListItemStore => productPriceListItemStore ?? (productPriceListItemStore = DependencyService.Get<IProductPriceListItemStore>());
@@ -95,6 +98,7 @@ namespace voltaire.DataStore.Implementation
             PartnerGradeStore.DropTable();
             PartnerTitleStore.DropTable();
             UserStore.DropTable();
+            ProductStore.DropTable();
             ProductPriceListItemStore.DropTable();
             ProductPriceListStore.DropTable();
             ProductUOMStore.DropTable();
@@ -128,7 +132,7 @@ namespace voltaire.DataStore.Implementation
                 // var path = $"syncstore{dbId}.db";
                 MobileService = new MobileServiceClient("http://voltairecrm.azurewebsites.net");
                 store = new MobileServiceSQLiteStore("syncstore.db");
-              
+
                 store.DefineTable<Partner>();
                 store.DefineTable<PartnerCategory>();
                 store.DefineTable<Country>();
@@ -136,6 +140,7 @@ namespace voltaire.DataStore.Implementation
                 store.DefineTable<Models.DataObjects.PartnerGrade>();
                 store.DefineTable<PartnerTitle>();
                 store.DefineTable<User>();
+                store.DefineTable<Product>();
                 store.DefineTable<ProductPriceListItem>();
                 store.DefineTable<ProductPriceList>();
                 store.DefineTable<ProductUOM>();
@@ -164,7 +169,7 @@ namespace voltaire.DataStore.Implementation
                 await InitializeAsync();
 
             var taskList = new List<Task<bool>>();
-           
+
             taskList.Add(CustomerStore.SyncAsync());
             taskList.Add(PartnerCategoryStore.SyncAsync());
 
@@ -173,6 +178,7 @@ namespace voltaire.DataStore.Implementation
             taskList.Add(PartnerGradeStore.SyncAsync());
             taskList.Add(PartnerTitleStore.SyncAsync());
             taskList.Add(UserStore.SyncAsync());
+            taskList.Add(ProductStore.SyncAsync());
             taskList.Add(ProductPriceListItemStore.SyncAsync());
             taskList.Add(ProductPriceListStore.SyncAsync());
             taskList.Add(ProductUOMStore.SyncAsync());
@@ -270,7 +276,7 @@ namespace voltaire.DataStore.Implementation
             }
             else
                 return true;
-            
+
         }
 
 
