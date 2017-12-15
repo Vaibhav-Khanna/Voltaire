@@ -26,6 +26,7 @@ namespace voltaire.PageModels
 
         public HomePageModel()
         {
+            LoadData();
         }
 
         public ICommand UserInfoCommand
@@ -39,10 +40,8 @@ namespace voltaire.PageModels
                 });
             }
         }
-        protected override async void ViewIsAppearing(object sender, EventArgs e)
+        private async void LoadData()
         {
-            base.ViewIsAppearing(sender, e);
-
             _currUser = await StoreManager.UserStore.GetCurrentUserAsync();
 
             UserName = _currUser != null ? _currUser.Name : string.Empty;

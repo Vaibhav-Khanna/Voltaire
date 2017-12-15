@@ -32,24 +32,30 @@ namespace voltaire.DataStore.Implementation.Stores
             }
 
             var id = StoreManager.MobileService.CurrentUser.UserId;
-
-            try
+            if (id != null)
             {
-                await InitializeStore().ConfigureAwait(false);
+                try
+                {
+                    await InitializeStore().ConfigureAwait(false);
 
-                //var item = await Table.LookupAsync(id).ConfigureAwait(false);
+                    //var item = await Table.LookupAsync(id).ConfigureAwait(false);
 
-                var items = await Table.Where(s => s.ExternalId.ToString() == id).ToListAsync().ConfigureAwait(false);
+                    var items = await Table.Where(s => s.ExternalId.ToString() == id).ToListAsync().ConfigureAwait(false);
 
-                if (items == null || items.Count == 0)
+                    if (items == null || items.Count == 0)
+                        return null;
+
+                    currentUser = items[0];
+
+                    return currentUser;
+
+                }
+                catch (Exception)
+                {
                     return null;
-
-                currentUser = items[0];
-
-                return currentUser;
-
+                }
             }
-            catch (Exception)
+            else
             {
                 return null;
             }

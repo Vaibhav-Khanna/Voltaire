@@ -168,6 +168,7 @@ namespace voltaire.DataStore.Implementation
             if (!IsInitialized)
                 await InitializeAsync();
 
+
             var taskList = new List<Task<bool>>();
 
             taskList.Add(CustomerStore.SyncAsync());
@@ -348,6 +349,78 @@ namespace voltaire.DataStore.Implementation
             }
         }
 
+        public async Task VerifyTokenAsync()
+        {
+
+            StoreSettings settings = await ReadSettingsAsync();
+
+            if (settings != null)
+            {
+                try
+                {
+                    if (!string.IsNullOrEmpty(settings.AuthToken) && JwtUtility.GetTokenExpiration(settings.AuthToken) < DateTime.UtcNow)
+                    {
+                        var result = await RegenerateTokenAsync();
+
+                        if (!result)
+                        {
+                            //no token regenerated
+                            await LogoutAsync();
+                        }
+
+                    }
+                }
+                catch (InvalidTokenException)
+                {
+                    //Token exception error
+                    await LogoutAsync();
+                }
+            }
+            else
+            {
+                //no token stored locally
+                await LogoutAsync();
+            }
+
+        }
+
+        private async Task<bool> RegenerateTokenAsync()
+        {
+            var uri = new Uri("http://voltairecrm.azurewebsites.net/api/regenerate");
+
+            StoreSettings settings = await ReadSettingsAsync();
+
+            var actualToken = settings.AuthToken;
+
+            try
+            {
+                var _client = new HttpClient();
+                _client.DefaultRequestHeaders.Add("token", actualToken);
+                _client.DefaultRequestHeaders.Add("ZUMO-API-VERSION", "2.0.0");
+
+                var response = await _client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var User = JsonConvert.DeserializeObject<USER>(content);
+                    MobileServiceUser user = new MobileServiceUser(User.UserId.ToString()) { MobileServiceAuthenticationToken = User.Token };
+                    MobileService.CurrentUser = user;
+
+                    await CacheToken(user);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
 
         public class StoreSettings
         {
