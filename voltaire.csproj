@@ -162,6 +162,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="PopUps\ToastLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -464,6 +468,10 @@
     <Compile Include="DataStore\Abstraction\Stores\IProductStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\ProductStore.cs" />
     <Compile Include="NavigationContainer.cs" />
+    <Compile Include="PopUps\ToastService.cs" />
+    <Compile Include="PopUps\ToastLayout.xaml.cs">
+      <DependentUpon>ToastLayout.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

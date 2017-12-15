@@ -17,6 +17,7 @@ using System.Text;
 using System.Diagnostics;
 using voltaire.Models.DataObjects;
 using voltaire.DataStore.Implementation.Stores;
+using voltaire.PopUps;
 
 namespace voltaire.DataStore.Implementation
 {
@@ -190,6 +191,11 @@ namespace voltaire.DataStore.Implementation
             taskList.Add(EventAlarmStore.SyncAsync());
             taskList.Add(MessageStore.SyncAsync());
 
+            Device.BeginInvokeOnMainThread( async () => 
+            {
+                await ToastService.Show("Syncing");
+            });
+           
 
             //TODO add all other stores
 
@@ -199,8 +205,14 @@ namespace voltaire.DataStore.Implementation
             }
 
             var successes = await Task.WhenAll(taskList).ConfigureAwait(false);
-            return successes.Any(x => !x); //if any were a failure.
 
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await ToastService.Hide();
+            });
+
+            return successes.Any(x => !x); //if any were a failure.
+                  
         }
 
         #endregion
