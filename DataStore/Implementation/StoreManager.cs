@@ -172,14 +172,15 @@ namespace voltaire.DataStore.Implementation
 
             var taskList = new List<Task<bool>>();
 
+            taskList.Add(UserStore.SyncAsync());
             taskList.Add(CustomerStore.SyncAsync());
             taskList.Add(PartnerCategoryStore.SyncAsync());
 
-            taskList.Add(CurrencyStore.SyncAsync());
-            taskList.Add(CountryStore.SyncAsync());
+
             taskList.Add(PartnerGradeStore.SyncAsync());
             taskList.Add(PartnerTitleStore.SyncAsync());
-            taskList.Add(UserStore.SyncAsync());
+            taskList.Add(CurrencyStore.SyncAsync());
+            taskList.Add(CountryStore.SyncAsync());
             taskList.Add(ProductStore.SyncAsync());
             taskList.Add(ProductPriceListItemStore.SyncAsync());
             taskList.Add(ProductPriceListStore.SyncAsync());
@@ -190,13 +191,14 @@ namespace voltaire.DataStore.Implementation
             taskList.Add(SaleOrderLineStore.SyncAsync());
             taskList.Add(EventStore.SyncAsync());
             taskList.Add(EventAlarmStore.SyncAsync());
+
             taskList.Add(MessageStore.SyncAsync());
 
-            Device.BeginInvokeOnMainThread( async () => 
-            {
-                await ToastService.Show("Syncing");
-            });
-           
+            Device.BeginInvokeOnMainThread(async () =>
+           {
+               await ToastService.Show("Syncing");
+           });
+
 
             //TODO add all other stores
 
@@ -213,7 +215,7 @@ namespace voltaire.DataStore.Implementation
             });
 
             return successes.Any(x => !x); //if any were a failure.
-                  
+
         }
 
         #endregion
