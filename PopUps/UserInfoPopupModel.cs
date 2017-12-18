@@ -90,7 +90,7 @@ namespace voltaire
 
            IsBusy = false;
 
-           await storeManager.SyncAllAsync(true);
+           //await storeManager.SyncAllAsync(true);
 
            await storeManager.DropEverythingAsync();
 
@@ -106,7 +106,7 @@ namespace voltaire
            {
                var homePage = FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
 
-               App.Current.MainPage = new FreshNavigationContainer(homePage) { BarBackgroundColor = (Color)App.Current.Resources["turquoiseBlue"], BarTextColor = Color.Black };
+                App.Current.MainPage = new FreshNavigationContainer(homePage) { BarBackgroundColor = (Color)App.Current.Resources["turquoiseBlue"], BarTextColor = Color.Black };
            });
 
            await PopupNavigation.PopAsync(true);

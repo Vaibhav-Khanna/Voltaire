@@ -12,7 +12,14 @@ namespace voltaire.PopUps
         {
            
             InitializeComponent();
-           ToastLabel.Text = Text;
+            ToastLabel.Text = Text;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            anim.Play();
         }
 
     }

@@ -5,6 +5,7 @@ using voltaire.Resources;
 using FreshMvvm;
 using voltaire.DataStore.Implementation;
 using voltaire.DataStore.Abstraction;
+using System.Threading.Tasks;
 
 namespace voltaire.PageModels
 {
@@ -65,27 +66,28 @@ namespace voltaire.PageModels
            }
            else
            {
-
-
+                
                //Before sync so we are to login page 
-
                //IsBusy = true;
+              
                //IsLoadingText = AppResources.SyncingData;
-               // await StoreManager.SyncAllAsync(true);
+              
+               //StoreManager.SyncAllAsync(true);
 
                Device.BeginInvokeOnMainThread(() =>
               {
                   var homePage = FreshPageModelResolver.ResolvePageModel<HomePageModel>();
 
-                  var homeContainer = new FreshNavigationContainer(homePage) { BarBackgroundColor = (Color)App.Current.Resources["turquoiseBlue"], BarTextColor = Color.White };
+                    var homeContainer = new AONNavigationContainer(homePage) { BarBackgroundColor = (Color)App.Current.Resources["turquoiseBlue"], BarTextColor = Color.White };
 
                   App.Current.MainPage = homeContainer;
 
               });
-               //After sync so we are on homepage 
-               await StoreManager.SyncAllAsync(true);
-
-               //IsBusy = false;
+              
+             
+                StoreManager.SyncAllAsync(true);
+              //IsBusy = false;
+           
            }
 
        });

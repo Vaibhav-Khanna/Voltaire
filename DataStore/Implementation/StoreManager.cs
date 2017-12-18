@@ -191,12 +191,11 @@ namespace voltaire.DataStore.Implementation
             taskList.Add(SaleOrderLineStore.SyncAsync());
             taskList.Add(EventStore.SyncAsync());
             taskList.Add(EventAlarmStore.SyncAsync());
-
             taskList.Add(MessageStore.SyncAsync());
 
             Device.BeginInvokeOnMainThread(async () =>
            {
-               await ToastService.Show("Syncing");
+                await ToastService.Show("The app is currently syncing... This might take a few minutes");
            });
 
 
@@ -381,7 +380,6 @@ namespace voltaire.DataStore.Implementation
                             //no token regenerated
                             await LogoutAsync();
                         }
-
                     }
                 }
                 catch (InvalidTokenException)
@@ -395,7 +393,6 @@ namespace voltaire.DataStore.Implementation
                 //no token stored locally
                 await LogoutAsync();
             }
-
         }
 
         private async Task<bool> RegenerateTokenAsync()
@@ -429,7 +426,7 @@ namespace voltaire.DataStore.Implementation
                     return false;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
