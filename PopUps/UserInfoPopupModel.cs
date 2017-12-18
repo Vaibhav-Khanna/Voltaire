@@ -4,26 +4,85 @@ using Rg.Plugins.Popup.Services;
 using voltaire.DataStore.Abstraction;
 using voltaire.DataStore.Implementation;
 using voltaire.Models;
+using voltaire.Models.DataObjects;
 using voltaire.PageModels;
 using Xamarin.Forms;
 
 namespace voltaire
 {
-	public class UserInfoPopupModel : BaseModel
-	{
+    public class UserInfoPopupModel : BaseModel
+    {
 
         private StoreManager storeManager;
 
 
-		public UserInfoPopupModel()
-		{
+        public UserInfoPopupModel()
+        {
             storeManager = DependencyService.Get<IStoreManager>() as StoreManager;
-		}
+            LoadData();
 
-        public Command CloseCommand => new Command( async() =>
-		{
-            await PopupNavigation.PopAsync(true);
-		});
+        }
+
+        private User _currUser;
+
+        string userName;
+        public string UserName
+        {
+            get { return userName; }
+            set
+            {
+                userName = value;
+                RaisePropertyChanged();
+            }
+        }
+        string phone;
+        public string Phone
+        {
+            get { return phone; }
+            set
+            {
+                phone = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        string address;
+        public string Address
+        {
+            get { return address; }
+            set
+            {
+                address = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        string email;
+        public string Email
+        {
+            get { return email; }
+            set
+            {
+                email = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        string website;
+        public string Website
+        {
+            get { return website; }
+            set
+            {
+                website = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public Command CloseCommand => new Command(async () =>
+       {
+           await PopupNavigation.PopAsync(true);
+       });
 
 
         public Command SignOut => new Command(async () =>
@@ -39,7 +98,7 @@ namespace voltaire
 
            if (!result)
            {
-               IsBusy = true; 
+               IsBusy = true;
                return;
            }
 
@@ -56,5 +115,17 @@ namespace voltaire
 
        });
 
-	}
+        private async void LoadData()
+        {
+
+            _currUser = await storeManager.UserStore.GetCurrentUserAsync();
+
+            UserName = !string.IsNullOrWhiteSpace(_currUser.Name) ? _currUser.Name : Resources.AppResources.NotSpecified;
+            Phone = !string.IsNullOrWhiteSpace(_currUser.Phone) ? _currUser.Phone : Resources.AppResources.NotSpecified;
+            Address = !string.IsNullOrWhiteSpace(_currUser.ContactAddress) ? _currUser.ContactAddress : Resources.AppResources.NotSpecified;
+            Email = !string.IsNullOrWhiteSpace(_currUser.Email) ? _currUser.Email : Resources.AppResources.NotSpecified;
+            Website = !string.IsNullOrWhiteSpace(_currUser.Website) ? _currUser.Website : Resources.AppResources.NotSpecified;
+        }
+
+    }
 }
