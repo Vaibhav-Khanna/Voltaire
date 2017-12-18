@@ -18,11 +18,11 @@
       HasBackgroundAnimation="True"/>
   </pages:PopupPage.Animation>
     <pages:PopupPage.Content>
-        <Frame  CornerRadius="0" VerticalOptions="Start" HorizontalOptions="FillAndExpand" HeightRequest="35" Margin="0" Padding="0,15,0,0"  BackgroundColor="#1FACFF" OutlineColor="#1FACFF" HasShadow="true">
-           <StackLayout Orientation="Horizontal" Spacing="15" HorizontalOptions="FillAndExpand" >
-            <forms:AnimationView x:Name="anim" Animation="LoadAnim" HeightRequest="50" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" VerticalOptions="Center" WidthRequest="50" AutoPlay="true" Loop="true" />
+        <Frame x:Name="container"  CornerRadius="0" VerticalOptions="Start" HorizontalOptions="FillAndExpand" HeightRequest="35" Margin="0" Padding="0,15,0,0"  BackgroundColor="#1FACFF" OutlineColor="#1FACFF" HasShadow="true">
+           <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand" >
+            <forms:AnimationView x:Name="anim" Animation="data.json" BackgroundColor="Fuchsia" HeightRequest="30" HorizontalOptions="EndAndExpand"  Scale="1" VerticalOptions="Center" WidthRequest="30" AutoPlay="false" Loop="true" />
             <Label x:Name="ToastLabel" Text="The app is currently syncing... This might take a few minutes" TextColor="White" LineBreakMode="TailTruncation" FontAttributes="Bold" FontSize="16"  HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" />
-                 </StackLayout>
+            </StackLayout>
         </Frame> 
     </pages:PopupPage.Content>
 </pages:PopupPage>
