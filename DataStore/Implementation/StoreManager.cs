@@ -18,6 +18,7 @@ using System.Diagnostics;
 using voltaire.Models.DataObjects;
 using voltaire.DataStore.Implementation.Stores;
 using voltaire.PopUps;
+using Plugin.Connectivity;
 
 namespace voltaire.DataStore.Implementation
 {
@@ -373,26 +374,28 @@ namespace voltaire.DataStore.Implementation
                 {
                     if (!string.IsNullOrEmpty(settings.AuthToken) && JwtUtility.GetTokenExpiration(settings.AuthToken) < DateTime.UtcNow)
                     {
-                        var result = await RegenerateTokenAsync();
-
-                        if (!result)
+                        if (CrossConnectivity.Current.IsConnected)
                         {
-                            //no token regenerated
-                            await LogoutAsync();
+                            var result = await RegenerateTokenAsync();
+
+                            if (!result)
+                            {
+                                //no token regenerated
+                                await LogoutAsync();
+                            }
                         }
                     }
                 }
                 catch (InvalidTokenException)
                 {
                     //Token exception error
-                    await LogoutAsync();
+                    if (CrossConnectivity.Current.IsConnected)
+                    {
+                        await LogoutAsync();
+                    }
                 }
             }
-            else
-            {
-                //no token stored locally
-                await LogoutAsync();
-            }
+           
         }
 
         private async Task<bool> RegenerateTokenAsync()
