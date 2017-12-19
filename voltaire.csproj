@@ -472,6 +472,18 @@
     <Compile Include="PopUps\ToastLayout.xaml.cs">
       <DependentUpon>ToastLayout.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataObjects\Accessory.cs" />
+    <Compile Include="Models\DataObjects\AccessoryCategory.cs" />
+    <Compile Include="Models\DataObjects\SaddlePrice.cs" />
+    <Compile Include="Models\DataObjects\Service.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IAccessoryStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IAccessoryCategoryStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\ISaddlePriceStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IServiceStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\AccessoryStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\AccessoryCategoryStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\SaddlePriceStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\ServiceStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

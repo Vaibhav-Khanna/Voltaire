@@ -45,7 +45,7 @@ namespace voltaire.PageModels
                 List<QuotationsModel> sent_quotations = new List<QuotationsModel>();
 
                 if(customer.Quotations!=null)
-                 sent_quotations = customer.Quotations.Where((arg) => arg.Status == QuotationStatus.Sent).ToList();
+                    sent_quotations = customer.Quotations.Where((arg) => arg.Status == QuotationStatus.sent.ToString()).ToList();
                     
 
                 foreach (var item in sent_quotations)	
@@ -56,9 +56,6 @@ namespace voltaire.PageModels
 
 				all_items = new ObservableCollection<QuotationsModel>(sent_quotations);
 				quotationsitemsource = all_items;
-
-                all_items.Add(new QuotationsModel(){ Status = QuotationStatus.Sent, DateSigned = DateTime.Now, IsSignedValidated = true, IsConditionsAgree = true, Ref = "123434323"  });
-
 
 				RaisePropertyChanged();
 				RaisePropertyChanged(nameof(FilterTypes));

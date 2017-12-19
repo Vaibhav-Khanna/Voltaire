@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using voltaire.Models.DataObjects;
 using voltaire.PageModels;
 using Xamarin.Forms;
 
@@ -7,7 +8,26 @@ namespace voltaire.Models
 {
     public class QuotationsModel
     {
-        
+
+        public QuotationsModel(SaleOrder model)
+        {
+            if (model != null)
+            {
+                SaleOrder = model;
+                Name = model.Name;
+                Ref = model.ClientOrderRef;
+                TotalAmount = model.AmountTotal;
+                SubTotal = model.AmountUntaxed;
+                ApplyTax = model.AmountTax == 0 ? false : true;
+                TaxAmount = model.AmountTax;
+                PermanentNote = model.Note;
+                Date = model.DateOrder;
+                Status = model.State;
+            }
+        }
+
+        public SaleOrder SaleOrder { get; set; }
+
         public Color BackColor { get; set; }
 
         public string Name { get; set; }
@@ -30,7 +50,7 @@ namespace voltaire.Models
 
         public string PermanentNote { get; set; }
 
-        public QuotationStatus Status { get; set; } = QuotationStatus.Draft;
+        public string Status { get; set; }
 
         public string TrainerName { get; set; }
 
@@ -56,7 +76,7 @@ namespace voltaire.Models
 
     public enum QuotationStatus 
     {
-        Quotation , Draft, Order , Payed , Sent
+        cancel , draft, sale , done , sent
     }
 
     public enum PaymentMethod

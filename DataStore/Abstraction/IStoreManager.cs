@@ -28,6 +28,10 @@ namespace voltaire.DataStore.Abstraction
         IEventStore EventStore { get; }
         IEventAlarmStore EventAlarmStore { get; }
         IMessageStore MessageStore { get; }
+        IAccessoryStore AccessoryStore { get; }
+        IAccessoryCategoryStore AccessoryCategoryStore { get; }
+        ISaddlePriceStore SaddlePriceStore { get; }
+        IServiceStore ServiceStore { get; }
 
         Task<bool> SyncAllAsync(bool syncUserSpecific);
         Task DropEverythingAsync();

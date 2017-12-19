@@ -154,6 +154,6 @@ namespace voltaire.Models
 
         public static List<string> TagList { get; set; } = new List<string>() { "Pro", "Nice", "Late Payment", "Behaviour" };
 
-        public static List<string> ProductStatusRange { get; set; } = new List<string>() { QuotationStatus.Draft.ToString(), QuotationStatus.Quotation.ToString(), QuotationStatus.Payed.ToString(), QuotationStatus.Order.ToString() };
+        public static List<string> ProductStatusRange { get; set; } = new List<string>() { QuotationStatus.sent.ToString(), QuotationStatus.draft.ToString(), QuotationStatus.cancel.ToString(), QuotationStatus.done.ToString(), QuotationStatus.sale.ToString() };
     }
 }

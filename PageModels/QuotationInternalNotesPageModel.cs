@@ -78,7 +78,7 @@ namespace voltaire.PageModels
             {
                 quotation = value;
 
-                CanEdit = quotation.Status == QuotationStatus.Sent ? false : true;
+                CanEdit = quotation.Status == QuotationStatus.sale.ToString() || quotation.Status == QuotationStatus.done.ToString() ? false : true;
 
                 if (quotation.InternalNotes == null)
                     quotation.InternalNotes = new List<Note>();

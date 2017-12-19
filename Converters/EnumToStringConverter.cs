@@ -8,7 +8,7 @@ namespace voltaire.Converters
     {
         public object Convert(object valu, Type targetType, object parameter, CultureInfo culture)
         {
-            var en = (Models.QuotationStatus) valu;
+            var en = (string) valu;
 
             return en.ToString();
 

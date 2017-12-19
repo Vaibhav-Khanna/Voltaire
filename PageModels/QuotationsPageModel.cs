@@ -13,7 +13,6 @@ namespace voltaire.PageModels
     {
 
 		Partner customer;
-
 		public Partner Customer
 		{
 			get { return customer; }
@@ -21,30 +20,12 @@ namespace voltaire.PageModels
 			{
 				customer = value;
 
-                filtertypes = new ObservableCollection<string>() { "All", "Name", "Status" };
+                FilterTypes = new ObservableCollection<string>() { "All", "Name", "Status" };
               
-                filter = 0;
+                Filter = 0;
 
-				List<QuotationsModel> not_sent_quotations = new List<QuotationsModel>();
-
-				if (customer.Quotations != null)
-					not_sent_quotations = customer.Quotations.Where((arg) => arg.Status != QuotationStatus.Sent).ToList();
-
-
-                foreach (var item in not_sent_quotations)
-                {
-                    item.BackColor = customer.Quotations.IndexOf(item)%2 == 0 ?  Color.FromRgb(247,247,247) : Color.White;
-                }
-
-
-                all_items = new ObservableCollection<QuotationsModel>(not_sent_quotations);
-                quotationsitemsource = all_items;
-                   
                 RaisePropertyChanged();
-                RaisePropertyChanged(nameof(FilterTypes));
-                RaisePropertyChanged(nameof(Filter));
-                RaisePropertyChanged(nameof(QuotationsItemSource));
-
+               
 			}
 		}
 
@@ -95,10 +76,10 @@ namespace voltaire.PageModels
 
         public string SearchText { get; set; }
 
+
         ObservableCollection<QuotationsModel> all_items;
 
         ObservableCollection<QuotationsModel> quotationsitemsource;
-
         public ObservableCollection<QuotationsModel> QuotationsItemSource 
         {
             get { return quotationsitemsource; }
@@ -181,8 +162,33 @@ namespace voltaire.PageModels
 				return;
 
             Customer = context;
+
+            FetchItems();
         }
 
+        async void FetchItems()
+        {
+            
+            var items = await StoreManager.SaleOrderStore.GetQuotationItemsByCustomer(Customer.ExternalId);
+
+            List<QuotationsModel> Quotations = new List<QuotationsModel>();
+
+            foreach (var item in items)
+            {
+                Quotations.Add(new QuotationsModel(item));
+            }
+
+           
+            foreach (var item in Quotations)
+            {
+                item.BackColor = Quotations.IndexOf(item) % 2 == 0 ? Color.FromRgb(247, 247, 247) : Color.White;
+            }
+
+
+            all_items = new ObservableCollection<QuotationsModel>(Quotations);
+            QuotationsItemSource = all_items;
+
+        }
 
     }
 }
