@@ -27,7 +27,7 @@ namespace voltaire.PageModels
            Quotation.Messages.Add(message);
 
            MessageSource.Add(new MessageModel(message) { Index = MessageSource.Count + 1, Name = currUser.Name });
-           //MessageText = null;
+           MessageText = null;
        });
 
         /*
