@@ -11,18 +11,25 @@ namespace voltaire.PageModels
     {
 
 
-        public Command AddMessage => new Command((obj) =>
+        public Command AddMessage => new Command(async (obj) =>
        {
-            var message = new Message() { AuthorId = 0 , Date = DateTime.Now, Body = MessageText };
-            Quotation.Messages.Add(message);
-            MessageSource.Add(new MessageModel(message){ Index = messagesource.Count +1 });
-            //MessageText = null;
+           var currUser = await StoreManager.UserStore.GetCurrentUserAsync();
+
+           var message = new Message() { AuthorId = currUser.ExternalId, Date = DateTime.Now, Body = MessageText, ResId = Quotation.Ref };
+
+           //insertion de message dans la base
+           await StoreManager.MessageStore.InsertAsync(message);
+
+
+           Quotation.Messages.Add(message);
+           MessageSource.Add(new MessageModel(message) { Index = messagesource.Count + 1 });
+           //MessageText = null;
        });
 
         public Command BackButton => new Command(async () =>
-		{
-			await CoreMethods.PopPageModel();
-		});
+        {
+            await CoreMethods.PopPageModel();
+        });
 
 
         QuotationsModel Quotation { get; set; }
@@ -67,7 +74,7 @@ namespace voltaire.PageModels
 
             foreach (var item in message_list)
             {
-                message_models.Add(new MessageModel(item){ Index = message_models.Count + 1});
+                message_models.Add(new MessageModel(item) { Index = message_models.Count + 1 });
             }
 
             MessageSource = new ObservableCollection<MessageModel>(message_models);
