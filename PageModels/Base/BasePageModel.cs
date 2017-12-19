@@ -104,6 +104,10 @@ namespace voltaire.PageModels.Base
             DependencyService.Register<IEventStore, EventStore>();
             DependencyService.Register<IEventAlarmStore, EventAlarmStore>();
             DependencyService.Register<IMessageStore, MessageStore>();
+            DependencyService.Register<IAccessoryStore,AccessoryStore>();
+            DependencyService.Register<IAccessoryCategoryStore,AccessoryCategoryStore>();
+            DependencyService.Register<ISaddlePriceStore,SaddlePriceStore>();
+            DependencyService.Register<IServiceStore,ServiceStore>();
 
         }
 

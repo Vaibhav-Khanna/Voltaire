@@ -25,7 +25,7 @@ namespace voltaire.PageModels
         public Command itemTapped => new Command(async (object obj) =>
         {
             var item = obj as ProductQuotationModel;
-            await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<Product, ProductQuotationModel, bool>(item.Product, item, Quotation.Status == QuotationStatus.Sent ? false : true));
+            await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<Product, ProductQuotationModel, bool>(item.Product, item, Quotation.Status == QuotationStatus.draft.ToString() ? false : true));
         });
 
         public Command ToolbarMenu => new Command(async () =>
@@ -81,7 +81,7 @@ namespace voltaire.PageModels
                 OrderItemsSource.Add(item);
                 quotation.Products.Add(item);
 
-                await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<Product, ProductQuotationModel, bool>(popup_context.SelectedItem, item, Quotation.Status == QuotationStatus.Sent ? false : true));
+                await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<Product, ProductQuotationModel, bool>(popup_context.SelectedItem, item, Quotation.Status == QuotationStatus.draft.ToString() ? false : true));
 
             }
             // Unsubscribe from the event
@@ -322,7 +322,7 @@ namespace voltaire.PageModels
 
                 if (NewQuotation)
                 {
-                    Quotation = new QuotationsModel() { Date = DateTime.Now, Ref = UnixTimeStamp(), Status = QuotationStatus.Quotation, TotalAmount = 0 };
+                    Quotation = new QuotationsModel( new SaleOrder() ) { Date = DateTime.Now, Ref = UnixTimeStamp(), Status = QuotationStatus.draft.ToString() , TotalAmount = 0 };
                     customer.Quotations.Add(Quotation);
                 }
                 else
@@ -337,7 +337,7 @@ namespace voltaire.PageModels
         {
             base.ViewIsAppearing(sender, e);
 
-            CanEdit = Quotation.Status == QuotationStatus.Sent ? false : true;
+            CanEdit = Quotation.Status == QuotationStatus.sale.ToString() || Quotation.Status == QuotationStatus.done.ToString() ? false : true;
 
             if (!CanEdit)
             {

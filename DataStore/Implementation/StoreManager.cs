@@ -84,6 +84,18 @@ namespace voltaire.DataStore.Implementation
         IMessageStore messageStore;
         public IMessageStore MessageStore => messageStore ?? (messageStore = DependencyService.Get<IMessageStore>());
 
+        IAccessoryStore accessoryStore;
+        public IAccessoryStore AccessoryStore => accessoryStore ?? (accessoryStore = DependencyService.Get<IAccessoryStore>());
+
+        IAccessoryCategoryStore accessoryCategoryStore;
+        public IAccessoryCategoryStore AccessoryCategoryStore => accessoryCategoryStore ?? (accessoryCategoryStore = DependencyService.Get<IAccessoryCategoryStore>());
+
+        ISaddlePriceStore saddlePriceStore;
+        public ISaddlePriceStore SaddlePriceStore => saddlePriceStore ?? (saddlePriceStore = DependencyService.Get<ISaddlePriceStore>());
+
+        IServiceStore serviceStore;
+        public IServiceStore ServiceStore => serviceStore ?? (serviceStore = DependencyService.Get<IServiceStore>());
+
 
         #region iStoreManager Implementation
 
@@ -110,7 +122,12 @@ namespace voltaire.DataStore.Implementation
             SaleOrderLineStore.DropTable();
             EventStore.DropTable();
             EventAlarmStore.DropTable();
+            AccessoryStore.DropTable();
+            AccessoryCategoryStore.DropTable();
+            SaddlePriceStore.DropTable();
+            ServiceStore.DropTable();
             MessageStore.DropTable();
+
 
             IsInitialized = false;
             return Task.FromResult(true);
@@ -153,6 +170,10 @@ namespace voltaire.DataStore.Implementation
                 store.DefineTable<Event>();
                 store.DefineTable<EventAlarm>();
                 store.DefineTable<Message>();
+                store.DefineTable<Accessory>();
+                store.DefineTable<AccessoryCategory>();
+                store.DefineTable<SaddlePrice>();
+                store.DefineTable<Service>();
 
                 store.DefineTable<StoreSettings>();
 
@@ -177,7 +198,6 @@ namespace voltaire.DataStore.Implementation
             taskList.Add(CustomerStore.SyncAsync());
             taskList.Add(PartnerCategoryStore.SyncAsync());
 
-
             taskList.Add(PartnerGradeStore.SyncAsync());
             taskList.Add(PartnerTitleStore.SyncAsync());
             taskList.Add(CurrencyStore.SyncAsync());
@@ -192,11 +212,15 @@ namespace voltaire.DataStore.Implementation
             taskList.Add(SaleOrderLineStore.SyncAsync());
             taskList.Add(EventStore.SyncAsync());
             taskList.Add(EventAlarmStore.SyncAsync());
+            taskList.Add(AccessoryStore.SyncAsync());
+            taskList.Add(AccessoryCategoryStore.SyncAsync());
+            taskList.Add(SaddlePriceStore.SyncAsync());
+            taskList.Add(ServiceStore.SyncAsync());
             //taskList.Add(MessageStore.SyncAsync());
 
             Device.BeginInvokeOnMainThread(async () =>
            {
-                await ToastService.Show("The app is currently syncing... This might take a few minutes");
+               await ToastService.Show("The app is currently syncing... This might take a few minutes");
            });
 
 
@@ -219,8 +243,6 @@ namespace voltaire.DataStore.Implementation
         }
 
         #endregion
-
-
 
         public async Task<MobileServiceUser> LoginAsync(string username, string password)
         {

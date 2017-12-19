@@ -32,7 +32,7 @@ namespace voltaire.PageModels
             {             
                 quotation.SignedImage = SignImage; 
                 IsSigned = true;
-                quotation.Status = QuotationStatus.Sent;
+                quotation.Status = QuotationStatus.done.ToString();
                 quotation.DateSigned = DateTime.Now;
                 CoreMethods.PopPageModel();
             }

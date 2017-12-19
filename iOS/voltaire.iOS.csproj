@@ -253,12 +253,6 @@
     <Reference Include="Lottie.iOS">
       <HintPath>..\packages\Com.Airbnb.iOS.Lottie.2.1.5.0\lib\xamarinios\Lottie.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="Lottie.Forms">
-      <HintPath>..\packages\Com.Airbnb.Xamarin.Forms.Lottie.2.4.0\lib\xamarinios\Lottie.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="Lottie.Forms.iOS">
-      <HintPath>..\packages\Com.Airbnb.Xamarin.Forms.Lottie.2.4.0\lib\xamarinios\Lottie.Forms.iOS.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\packages\Xamarin.Forms.2.5.0.121934\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
@@ -270,6 +264,12 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.5.0.121934\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Lottie.Forms">
+      <HintPath>..\packages\Com.Airbnb.Xamarin.Forms.Lottie.2.3.4\lib\xamarinios\Lottie.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="Lottie.Forms.iOS">
+      <HintPath>..\packages\Com.Airbnb.Xamarin.Forms.Lottie.2.3.4\lib\xamarinios\Lottie.Forms.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -533,7 +533,8 @@
     <BundleResource Include="Resources\filterlist.png" />
     <BundleResource Include="Resources\filterlist%402x.png" />
     <BundleResource Include="Resources\filterlist%403x.png" />
-    <BundleResource Include="LoadAnim.json" />
+    <BundleResource Include="data.json" />
+    <BundleResource Include="round.json" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Build.Download.0.4.6\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.6\build\Xamarin.Build.Download.targets')" />
