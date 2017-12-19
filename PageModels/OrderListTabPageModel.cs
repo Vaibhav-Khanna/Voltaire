@@ -38,30 +38,11 @@ namespace voltaire.PageModels
 			{
 				customer = value;
 
-				filtertypes = new ObservableCollection<string>() { "All", "Name", "Status" };
+                FilterTypes = new ObservableCollection<string>() { "All", "Name", "Status" };
 
-				filter = 0;
-
-                List<QuotationsModel> sent_quotations = new List<QuotationsModel>();
-
-                if(customer.Quotations!=null)
-                    sent_quotations = customer.Quotations.Where((arg) => arg.Status == QuotationStatus.sent.ToString()).ToList();
-                    
-
-                foreach (var item in sent_quotations)	
-                {	
-                    item.BackColor = sent_quotations.IndexOf(item) % 2 == 0 ? Color.FromRgb(247, 247, 247) : Color.White;		
-                }
-
-
-				all_items = new ObservableCollection<QuotationsModel>(sent_quotations);
-				quotationsitemsource = all_items;
-
-				RaisePropertyChanged();
-				RaisePropertyChanged(nameof(FilterTypes));
-				RaisePropertyChanged(nameof(Filter));
-				RaisePropertyChanged(nameof(QuotationsItemSource));
-
+                Filter = 0;
+                              
+				RaisePropertyChanged();			
 			}
 		}
 
@@ -114,8 +95,33 @@ namespace voltaire.PageModels
 				return;
 
 			Customer = context;
+
+            FetchItems();
 		}
 
+        async void FetchItems()
+        {
+
+            var items = await StoreManager.SaleOrderStore.GetOrderItemsByCustomer(Customer.ExternalId);
+
+            List<QuotationsModel> Quotations = new List<QuotationsModel>();
+
+            foreach (var item in items)
+            {
+                Quotations.Add(new QuotationsModel(item));
+            }
+
+
+            foreach (var item in Quotations)
+            {
+                item.BackColor = Quotations.IndexOf(item) % 2 == 0 ? Color.FromRgb(247, 247, 247) : Color.White;
+            }
+
+
+            all_items = new ObservableCollection<QuotationsModel>(Quotations);
+            QuotationsItemSource = all_items;
+
+        }
 
 		void SearchResults(string query_string)
 		{
@@ -174,5 +180,6 @@ namespace voltaire.PageModels
 
 
 		}
+
     }
 }
