@@ -44,7 +44,7 @@ namespace voltaire.Models
 
         public double TaxAmount { get; set; }
 
-        public List<Note> InternalNotes { get; set; } = new List<Note>();
+        //public List<Note> InternalNotes { get; set; } = new List<Note>();
 
         public List<Message> Messages { get; set; } = new List<Message>();
 
@@ -70,13 +70,13 @@ namespace voltaire.Models
 
         public DateTime? DateSigned { get; set; }
 
-        public List<string> TermsConditions { get; set; } = new List<string> { "20% cancellation fee on any custom order" , "2 weeks return policy on any custom item" };
+        public List<string> TermsConditions { get; set; } = new List<string> { "20% cancellation fee on any custom order", "2 weeks return policy on any custom item" };
 
     }
 
-    public enum QuotationStatus 
+    public enum QuotationStatus
     {
-        cancel , draft, sale , done , sent
+        cancel, draft, sale, done, sent
     }
 
     public enum PaymentMethod

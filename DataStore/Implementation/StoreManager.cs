@@ -106,7 +106,6 @@ namespace voltaire.DataStore.Implementation
 
             CustomerStore.DropTable();
             PartnerCategoryStore.DropTable();
-
             CountryStore.DropTable();
             CurrencyStore.DropTable();
             PartnerGradeStore.DropTable();
@@ -216,7 +215,7 @@ namespace voltaire.DataStore.Implementation
             taskList.Add(AccessoryCategoryStore.SyncAsync());
             taskList.Add(SaddlePriceStore.SyncAsync());
             taskList.Add(ServiceStore.SyncAsync());
-            //taskList.Add(MessageStore.SyncAsync());
+            taskList.Add(MessageStore.SyncAsync());
 
             Device.BeginInvokeOnMainThread(async () =>
            {
@@ -417,7 +416,7 @@ namespace voltaire.DataStore.Implementation
                     }
                 }
             }
-           
+
         }
 
         private async Task<bool> RegenerateTokenAsync()

@@ -29,7 +29,10 @@
         public DateTime WriteDate { get; set; }
 
         [JsonProperty("author_id")]
-        public long AuthorId { get; set; }
+        public string AuthorId { get; set; } //azure Document Author Id
+
+        [JsonProperty("external_author_id")] //to connect to Partner externalId
+        public long ExternalAuthorId { get; set; }
 
         [JsonProperty("body")]
         public string Body { get; set; }
@@ -41,7 +44,10 @@
         public DateTime Date { get; set; }
 
         [JsonProperty("res_id")] //Document relative Id eg 
-        public long ResId { get; set; }
+        public string ResId { get; set; }
+
+        [JsonProperty("external_res_id")] //to connect to sale Order externalId
+        public long ExternalResId { get; set; }
 
         [JsonProperty("model")] //Related Document Type eg sale.order
         public string Model { get; set; }
