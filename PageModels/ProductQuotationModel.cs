@@ -25,8 +25,8 @@ namespace voltaire.PageModels
             }
         }
 
-        Product product;
-        public Product Product
+        SaleOrderLine product;
+        public SaleOrderLine Product
         {
             get { return product; }
             set
@@ -175,23 +175,32 @@ namespace voltaire.PageModels
         }
 
 
-        public ProductQuotationModel(Product _product)
+        public ProductQuotationModel(SaleOrderLine _product)
         {
             OrderStatusTypes = ProductConstants.ProductStatusRange;
             QuantitySource = ProductConstants.QuantityRange;
+
             Init(_product);
-            IsTaxApply = false;
+
+            UnitPrice = _product.PriceUnit;
+            Quantity = (int)_product.ProductQty;
+            IsTaxApply = _product.PriceTax == 0 ? false : true;
             Product = _product;
+
+            if (OrderStatusTypes.Contains(_product.State.Trim().ToLower()))
+                OrderStatusIndex = OrderStatusTypes.IndexOf(_product.State.Trim().ToLower());
 
             if (ProductProperties == null)
             {
-                var properties = new List<ProductProperty>();
-                foreach (var item in _product.Properties)
-                {
-                    ProductProperty clone = item.ObjectClone(item);
-                    properties.Add(clone);
-                }
-                ProductProperties = properties;
+                //TODO
+
+                //var properties = new List<ProductProperty>();
+                //foreach (var item in _product.Properties)
+                //{
+                //    ProductProperty clone = item.ObjectClone(item);
+                //    properties.Add(clone);
+                //}
+                //ProductProperties = properties;
             }
         }
 
@@ -213,10 +222,9 @@ namespace voltaire.PageModels
             });
         }
 
-        void Init(Product _product)
+        void Init(SaleOrderLine _product)
         {
-            Description = _product.Description;
-            //UnitPrice = _product.UnitPrice;
+            Description = _product.DisplayName;
         }
 
         void RaisePropertyChanged([CallerMemberName] string name = "")

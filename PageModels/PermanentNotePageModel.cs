@@ -7,12 +7,11 @@ namespace voltaire.PageModels
 {
     public class PermanentNotePageModel : BasePageModel
     {
-        public PermanentNotePageModel()
-        {
-        }
+        
 
         public Command BackButton => new Command(async(obj) =>
        {
+            StoreManager.SaleOrderStore.UpdateAsync(Quotation.SaleOrder);
             await CoreMethods.PopPageModel();
        });
 

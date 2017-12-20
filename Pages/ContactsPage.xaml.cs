@@ -3,6 +3,7 @@ using voltaire.PageModels;
 using Xamarin.Forms;
 using System.Linq;
 using voltaire.Helpers.Collections;
+using Xamarin.Forms.Xaml;
 
 namespace voltaire.Pages
 {

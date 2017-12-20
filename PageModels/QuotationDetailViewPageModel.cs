@@ -19,13 +19,14 @@ namespace voltaire.PageModels
 
         public Command BackButton => new Command(async () =>
        {
+           StoreManager.SaleOrderStore.UpdateAsync(Quotation.SaleOrder);
            await CoreMethods?.PopPageModel();
        });
 
         public Command itemTapped => new Command(async (object obj) =>
         {
             var item = obj as ProductQuotationModel;
-            await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<Product, ProductQuotationModel, bool>(item.Product, item, Quotation.Status == QuotationStatus.draft.ToString() ? false : true));
+            await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<SaleOrderLine, ProductQuotationModel, bool>(item.Product, item, Quotation.Status == QuotationStatus.draft.ToString() ? false : true));
         });
 
         public Command ToolbarMenu => new Command(async () =>
@@ -77,7 +78,8 @@ namespace voltaire.PageModels
         {
             if (popup_context.SelectedItem != null)
             {
-                var item = new ProductQuotationModel(popup_context.SelectedItem) { Quantity = 1 };
+                //TODO
+                var item = new ProductQuotationModel(null) { Quantity = 1 };
                 OrderItemsSource.Add(item);
                 quotation.Products.Add(item);
 
@@ -159,11 +161,7 @@ namespace voltaire.PageModels
                 SubTotal = quotation.SubTotal;
 
                 Total = quotation.TotalAmount;
-
-               
-                OrderItemsSource = new ObservableCollection<ProductQuotationModel>(quotation.Products);
-                OrderItemsSource.CollectionChanged += OrderItemsSource_CollectionChanged;
-
+                               
                 RaisePropertyChanged();
             }
         }
@@ -286,7 +284,6 @@ namespace voltaire.PageModels
             if (OrderItemsSource == null)
                 return;
 
-
             SubTotal = 0;
             Total = 0;
 
@@ -319,6 +316,7 @@ namespace voltaire.PageModels
             {
                 NewQuotation = _customer.Item2;
                 Customer = _customer.Item1;
+                var products = new List<ProductQuotationModel>();
 
                 if (NewQuotation)
                 {
@@ -330,12 +328,17 @@ namespace voltaire.PageModels
                     Quotation = _customer.Item3;
                   
                     var items = await StoreManager.SaleOrderLineStore.GetItemsByOrderId(quotation.SaleOrder.ExternalId);
-                   
+                                      
                     foreach (var item in items)
                     {
-                        var product = await StoreManager.ProductStore.GetItemsByProductId(item.ProductId);
+                        products.Add(new ProductQuotationModel(item));
+                        //var product = await StoreManager.ProductStore.GetItemsByProductId(item.ProductId);
                     }
                 }
+
+                OrderItemsSource = new ObservableCollection<ProductQuotationModel>(products);
+                OrderItemsSource.CollectionChanged += OrderItemsSource_CollectionChanged;
+            
             }
 
         }
