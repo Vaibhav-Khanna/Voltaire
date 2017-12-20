@@ -12,6 +12,13 @@ namespace voltaire.PageModels
     public class QuotationsPageModel : BasePageModel
     {
 
+        public QuotationsPageModel()
+        {
+            FilterTypes = new ObservableCollection<string>() { "All", "Name", "Status" };
+
+            Filter = 0;
+        }
+
 		Partner customer;
 		public Partner Customer
 		{
@@ -19,11 +26,6 @@ namespace voltaire.PageModels
 			set
 			{
 				customer = value;
-
-                FilterTypes = new ObservableCollection<string>() { "All", "Name", "Status" };
-              
-                Filter = 0;
-
                 RaisePropertyChanged();
                
 			}
@@ -76,7 +78,6 @@ namespace voltaire.PageModels
 
         public string SearchText { get; set; }
 
-
         ObservableCollection<QuotationsModel> all_items;
 
         ObservableCollection<QuotationsModel> quotationsitemsource;
@@ -100,8 +101,7 @@ namespace voltaire.PageModels
 
             if(string.IsNullOrWhiteSpace(query_string))
             {
-                quotationsitemsource = all_items;
-				RaisePropertyChanged(nameof(QuotationsItemSource));
+                QuotationsItemSource = all_items;
                 return;
             }
 
@@ -135,19 +135,15 @@ namespace voltaire.PageModels
 
                 }
             }
-            catch(Exception ex)
+            catch(Exception)
             {
-				//quotationsitemsource = all_items;
-				//RaisePropertyChanged(nameof(QuotationsItemSource));
-				//return;
+                QuotationsItemSource = all_items;
             }
 
             if(items != null)
             { 
-                quotationsitemsource = new ObservableCollection<QuotationsModel>(items);
-                RaisePropertyChanged(nameof(QuotationsItemSource));
+                QuotationsItemSource = new ObservableCollection<QuotationsModel>(items); 
             }
-
 
         }
 
@@ -166,9 +162,15 @@ namespace voltaire.PageModels
             FetchItems();
         }
 
-        async void FetchItems()
+        public override void TabAppearing()
         {
-            
+            base.TabAppearing();
+
+            FetchItems();
+        }
+
+        async void FetchItems()
+        {            
             var items = await StoreManager.SaleOrderStore.GetQuotationItemsByCustomer(Customer.ExternalId);
 
             List<QuotationsModel> Quotations = new List<QuotationsModel>();
@@ -188,6 +190,7 @@ namespace voltaire.PageModels
             all_items = new ObservableCollection<QuotationsModel>(Quotations);
             QuotationsItemSource = all_items;
 
+            SearchQuery.Execute(null);
         }
 
     }

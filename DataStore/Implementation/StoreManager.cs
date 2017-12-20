@@ -216,7 +216,7 @@ namespace voltaire.DataStore.Implementation
             taskList.Add(AccessoryCategoryStore.SyncAsync());
             taskList.Add(SaddlePriceStore.SyncAsync());
             taskList.Add(ServiceStore.SyncAsync());
-            //taskList.Add(MessageStore.SyncAsync());
+            taskList.Add(MessageStore.SyncAsync());
 
             Device.BeginInvokeOnMainThread(async () =>
            {

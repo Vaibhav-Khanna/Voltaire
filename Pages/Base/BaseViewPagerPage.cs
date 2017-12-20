@@ -32,7 +32,6 @@ namespace voltaire.Pages.Base
                 return;
             }
 
-
             Context = context;
 
             NavigationService = context.Navigation;

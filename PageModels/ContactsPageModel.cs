@@ -349,7 +349,8 @@ namespace voltaire.PageModels
 
             if(returnedData!=null)
             {
-                IsRefreshing = true;
+                if ((bool)returnedData)
+                    RefreshList.Execute(null);
             }
 
         }

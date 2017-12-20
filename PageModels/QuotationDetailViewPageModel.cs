@@ -303,7 +303,6 @@ namespace voltaire.PageModels
                 Total = SubTotal;
             }
 
-
         }
 
 
