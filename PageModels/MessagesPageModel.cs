@@ -4,6 +4,8 @@ using voltaire.Models;
 using voltaire.PageModels.Base;
 using Xamarin.Forms;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace voltaire.PageModels
 {
@@ -11,18 +13,26 @@ namespace voltaire.PageModels
     {
 
 
-        public Command AddMessage => new Command((obj) =>
+        public Command AddMessage => new Command(async (obj) =>
        {
-            var message = new Message() { AuthorId = 0 , Date = DateTime.Now, Body = MessageText };
-            Quotation.Messages.Add(message);
-            MessageSource.Add(new MessageModel(message){ Index = messagesource.Count +1 });
-            //MessageText = null;
+           var currUser = await StoreManager.UserStore.GetCurrentUserAsync();
+
+           var message = new Message() { AuthorId = currUser.Id, Date = DateTime.Now, Body = MessageText, ResId = Quotation.SaleOrder.Id };
+
+           //insertion de message dans la base
+           var resul = await StoreManager.MessageStore.InsertAsync(message);
+
+           Quotation.Messages.Add(message);
+
+           MessageSource.Add(new MessageModel(message) { Index = messagesource.Count + 1, Name = currUser.Name });
+
+           //MessageText = null;
        });
 
         public Command BackButton => new Command(async () =>
-		{
-			await CoreMethods.PopPageModel();
-		});
+        {
+            await CoreMethods.PopPageModel();
+        });
 
 
         QuotationsModel Quotation { get; set; }
@@ -55,22 +65,32 @@ namespace voltaire.PageModels
 
 
 
-        public override void Init(object initData)
+        public async override void Init(object initData)
         {
             base.Init(initData);
 
             Quotation = (initData as QuotationsModel);
 
-            var message_list = Quotation.Messages;
+            //message recuperation from Quotation.SaleOrder.Id
+            var message_list = await StoreManager.MessageStore.GetMessagesBySaleOrderIdAsync(Quotation.SaleOrder.Id);
 
-            List<MessageModel> message_models = new List<MessageModel>();
-
-            foreach (var item in message_list)
+            if ((message_list.Any()) && (message_list != null))
             {
-                message_models.Add(new MessageModel(item){ Index = message_models.Count + 1});
+
+                List<MessageModel> message_models = new List<MessageModel>();
+
+                foreach (var item in message_list)
+                {
+                    //Name récupération
+                    var partner = await StoreManager.CustomerStore.GetCustomerByMessageAuthorIdAsync(item.AuthorId);
+
+                    message_models.Add(new MessageModel(item) { Index = message_models.Count + 1, Name = partner.Name });
+                }
+
+                MessageSource = new ObservableCollection<MessageModel>(message_models);
             }
 
-            MessageSource = new ObservableCollection<MessageModel>(message_models);
+
 
         }
 

@@ -11,41 +11,41 @@ namespace voltaire.Models
         public NoteModel(Note note)
         {
             Note = note;
-           
-            Index = note.id +".";
+
+            //Index = note.id + "."; to be set when add new NoteModel
             Name = note.Publisher;
             Date = note.Date.Date.ToString("d");
             Notes = note.Text;
-            IsReminderactive = note.IsReminderActive;
+            //IsReminderactive = note.IsReminderActive;
         }
 
         public Note Note { get; set; }
 
-        private ReminderAddPopUpModel reminder_popup_model;
+        /*  private ReminderAddPopUpModel reminder_popup_model;
 
-        public Command ReminderToggle => new Command( async(obj) =>
-       {            
-                reminder_popup_model = new ReminderAddPopUpModel(Note.Reminder);
-                reminder_popup_model.ReminderModeChanged += Reminder_Popup_Model_ReminderSet;
-                var popup = new ReminderAddPopUp(){ BindingContext = reminder_popup_model };
-                await PopupNavigation.PushAsync(popup);
-       });
+          public Command ReminderToggle => new Command( async(obj) =>
+         {            
+                  reminder_popup_model = new ReminderAddPopUpModel(Note.Reminder);
+                  reminder_popup_model.ReminderModeChanged += Reminder_Popup_Model_ReminderSet;
+                  var popup = new ReminderAddPopUp(){ BindingContext = reminder_popup_model };
+                  await PopupNavigation.PushAsync(popup);
+         });
 
 
-        void Reminder_Popup_Model_ReminderSet()
-        {
-            reminder_popup_model.ReminderModeChanged -= Reminder_Popup_Model_ReminderSet;
+          void Reminder_Popup_Model_ReminderSet()
+          {
+              reminder_popup_model.ReminderModeChanged -= Reminder_Popup_Model_ReminderSet;
 
-            if (reminder_popup_model.IsReminderSet == true)
-                IsReminderactive = true;
-            else if (reminder_popup_model.IsReminderSet == false)
-                IsReminderactive = false;
-        }
-
+              if (reminder_popup_model.IsReminderSet == true)
+                  IsReminderactive = true;
+              else if (reminder_popup_model.IsReminderSet == false)
+                  IsReminderactive = false;
+          }
+  */
 
         string index;
-        public string Index 
-        { 
+        public string Index
+        {
             get { return index; }
             set
             {
@@ -55,8 +55,8 @@ namespace voltaire.Models
         }
 
         string name;
-        public string Name 
-        { 
+        public string Name
+        {
             get { return name; }
             set
             {
@@ -66,8 +66,8 @@ namespace voltaire.Models
         }
 
         string date;
-        public string Date 
-        { 
+        public string Date
+        {
             get { return date; }
             set
             {
@@ -77,8 +77,8 @@ namespace voltaire.Models
         }
 
         string notes;
-        public string Notes 
-        { 
+        public string Notes
+        {
             get { return notes; }
             set
             {
@@ -86,35 +86,35 @@ namespace voltaire.Models
                 RaisePropertyChanged();
             }
         }
-
-        bool isreminderactive;
-        public bool IsReminderactive
-        {
-            get { return isreminderactive; }
-            set 
+        /*
+            bool isreminderactive;
+            public bool IsReminderactive
             {
-                isreminderactive = value;
-                Note.IsReminderActive = isreminderactive;
+                get { return isreminderactive; }
+                set 
+                {
+                    isreminderactive = value;
+                    Note.IsReminderActive = isreminderactive;
 
-                Image = isreminderactive ? "reminderActive.png" : "reminderInactive.png";
+                    Image = isreminderactive ? "reminderActive.png" : "reminderInactive.png";
 
+                    RaisePropertyChanged();
+                }
+            }
+        */
+        bool canedit;
+        public bool CanEdit
+        {
+            get { return canedit; }
+            set
+            {
+                canedit = value;
                 RaisePropertyChanged();
             }
         }
 
-		bool canedit;
-		public bool CanEdit
-		{
-			get { return canedit; }
-			set
-			{
-				canedit = value;
-				RaisePropertyChanged();
-			}
-		}
-
         string image;
-        public string Image 
+        public string Image
         {
             get { return image; }
             set

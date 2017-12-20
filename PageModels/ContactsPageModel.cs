@@ -104,7 +104,7 @@ namespace voltaire.PageModels
         public string FilterGrade = null;
 
         public ContactsPageModel()
-        {          
+        {
             Get();
         }
 
@@ -126,8 +126,8 @@ namespace voltaire.PageModels
         }
 
         private ObservableCollection<PartnerGrade> grades;
-        public ObservableCollection<PartnerGrade> partnerGrades 
-        { 
+        public ObservableCollection<PartnerGrade> partnerGrades
+        {
             get { return grades; }
             set { grades = value; RaisePropertyChanged(); }
         }
@@ -136,17 +136,17 @@ namespace voltaire.PageModels
         async void Get()
         {
             // Local data
-            IsLoading = true;                      
+            IsLoading = true;
 
-            var result = await CustomerStore.GetItemsAsync(FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade],false);
-           
+            var result = await CustomerStore.GetItemsAsync(FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade], false);
+
             // Server refresh
-            if ( result == null || !result.Any()  )
+            if (result == null || !result.Any())
             {
                 if (FilterWeight == null && string.IsNullOrWhiteSpace(FilterGrade))
                 {
                     LoadingText = AppResources.FetchingData;
-                    result = await CustomerStore.GetItemsAsync(FilterWeight,FilterGrade == null ? null : GradeValues[FilterGrade], true);
+                    result = await CustomerStore.GetItemsAsync(FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade], true);
                     CreateGroupedCollection(result);
                     LoadingText = AppResources.FetchingData;
                 }
@@ -169,25 +169,25 @@ namespace voltaire.PageModels
             if (!IsLoadMore || Loadingmore)
                 return;
 
-          if (string.IsNullOrWhiteSpace(SearchText))
-          {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
                 Loadingmore = true;
-                
-                var result = await CustomerStore.GetNextItemsAsync(Customers.Count,FilterWeight,FilterGrade == null ? null : GradeValues[FilterGrade] );
+
+                var result = await CustomerStore.GetNextItemsAsync(Customers.Count, FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade]);
 
                 if (result != null && result.Any())
                 {
                     var list = customers.ToList();
                     list.AddRange(result);
 
-                    Debug.WriteLine("Fetched "+result.Count());
+                    Debug.WriteLine("Fetched " + result.Count());
 
                     if ((result as IQueryResultEnumerable<Partner>) != null)
                     {
                         var totalCount = (result as IQueryResultEnumerable<Partner>).TotalCount;
 
-                        if(totalCount != 1)
-                        CustomersCount = totalCount.ToString() + " " + AppResources.Contacts;
+                        if (totalCount != 1)
+                            CustomersCount = totalCount.ToString() + " " + AppResources.Contacts;
                         else
                             CustomersCount = totalCount.ToString() + " " + AppResources.Contact;
 
@@ -201,21 +201,21 @@ namespace voltaire.PageModels
                                 IsLoadMore = false;
                         }
                     }
-                     
+
                     CreateGroupedCollection(list);
                 }
                 else
                     IsLoadMore = false;
 
                 Loadingmore = false;
-          }
+            }
+        });
+
+
+        public Command AddContact => new Command(async () =>
+      {
+          await CoreMethods.PushPageModel<ContactAddPageModel>();
       });
-
-
-        public Command AddContact => new Command( async() =>
-       {
-            await CoreMethods.PushPageModel<ContactAddPageModel>();
-       });
 
 
         public Command RefreshList => new Command(async (obj) =>
@@ -228,7 +228,7 @@ namespace voltaire.PageModels
 
            IsLoading = true;
            IsLoadingText = AppResources.Refreshing;
-            var result = await CustomerStore.GetItemsAsync(FilterWeight,FilterGrade == null ? null : GradeValues[FilterGrade],true);
+           var result = await CustomerStore.GetItemsAsync(FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade], true);
            CreateGroupedCollection(result);
            IsRefreshing = false;
            IsLoading = false;
@@ -240,24 +240,24 @@ namespace voltaire.PageModels
        {
            if (string.IsNullOrWhiteSpace(searchtext))
            {
-                var res = await CustomerStore.GetItemsAsync(FilterWeight,FilterGrade == null ? null :GradeValues[FilterGrade],false);
+               var res = await CustomerStore.GetItemsAsync(FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade], false);
                CreateGroupedCollection(res);
                return;
            }
 
-          
-            var result = await CustomerStore.Search(SearchText.Trim(),FilterWeight,FilterGrade == null ? null : GradeValues[FilterGrade]);
+
+           var result = await CustomerStore.Search(SearchText.Trim(), FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade]);
            CreateGroupedCollection(result);
            CustomersCount += " " + AppResources.MatchingSearch;
 
        });
 
 
-        public Command FilterByWeight => new Command( (obj) =>
-       {
-            FilterWeight = (int?)Convert.ToInt32(obj);
-            Get();
-       });
+        public Command FilterByWeight => new Command((obj) =>
+      {
+          FilterWeight = (int?)Convert.ToInt32(obj);
+          Get();
+      });
 
         public Command FilterByGrade => new Command((obj) =>
        {
@@ -274,15 +274,15 @@ namespace voltaire.PageModels
 
         private void CreateGroupedCollection(IEnumerable<Partner> list)
         {
-            
+
             if (list == null)
                 list = new List<Partner>();
 
 
-            if( (list as IQueryResultEnumerable<Partner>) != null )
+            if ((list as IQueryResultEnumerable<Partner>) != null)
             {
                 var totalCount = (list as IQueryResultEnumerable<Partner>).TotalCount;
-               
+
                 if (totalCount != 1)
                     CustomersCount = totalCount.ToString() + " " + AppResources.Contacts;
                 else
@@ -299,9 +299,9 @@ namespace voltaire.PageModels
                 }
             }
 
-            list = list.OrderBy( (arg) => arg.Name );
+            list = list.OrderBy((arg) => arg.Name);
 
-            Customers = new ObservableCollection<Partner>(list);                   
+            Customers = new ObservableCollection<Partner>(list);
 
             var models = Customers.Select(i => new CustomerModel(i) { navigation = CoreMethods }).ToList();
 
@@ -319,9 +319,9 @@ namespace voltaire.PageModels
         //INIT data form page  freshmvvm
         public async override void Init(object initData)
         {
-             //columnSpan for listview 
+            //columnSpan for listview 
             _listColumnSpan = 2;
-          
+
             //filters view
             _filterLayoutVisibility = false;
 
@@ -334,7 +334,7 @@ namespace voltaire.PageModels
 
             foreach (var item in _grades)
             {
-                GradeValues.Add(item.Name,item.ExternalId);
+                GradeValues.Add(item.Name, item.ExternalId);
             }
 
             //PartnerGrades 
@@ -347,7 +347,7 @@ namespace voltaire.PageModels
         {
             base.ReverseInit(returnedData);
 
-            if(returnedData!=null)
+            if (returnedData != null)
             {
                 if ((bool)returnedData)
                     RefreshList.Execute(null);
@@ -357,5 +357,5 @@ namespace voltaire.PageModels
 
 
     }
-    
+
 }

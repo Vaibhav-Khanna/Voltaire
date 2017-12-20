@@ -106,7 +106,6 @@ namespace voltaire.DataStore.Implementation
 
             CustomerStore.DropTable();
             PartnerCategoryStore.DropTable();
-
             CountryStore.DropTable();
             CurrencyStore.DropTable();
             PartnerGradeStore.DropTable();
@@ -417,7 +416,7 @@ namespace voltaire.DataStore.Implementation
                     }
                 }
             }
-           
+
         }
 
         private async Task<bool> RegenerateTokenAsync()
