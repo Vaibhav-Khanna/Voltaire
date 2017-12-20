@@ -19,7 +19,7 @@ namespace voltaire.PageModels
         public Command AddNote => new Command(async (obj) =>
        {
            var currUser = await StoreManager.UserStore.GetCurrentUserAsync();
-           var message = new Message() { AuthorId = currUser.Id, Date = DateTime.Now, Body = MessageText, ResId = Quotation.SaleOrder.Id };
+           var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = MessageText, ResId = Quotation.SaleOrder.Id, MessageType = MessageType.comment, Model = "sale.order" };
 
            //insertion de message dans la base
            var resul = await StoreManager.MessageStore.InsertAsync(message);
