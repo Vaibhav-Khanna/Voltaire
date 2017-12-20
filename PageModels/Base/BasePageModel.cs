@@ -125,6 +125,10 @@ namespace voltaire.PageModels.Base
 
         }
 
+        public virtual void TabAppearing()
+        {
+
+        }
 
         private void OnPageWasPopped(object sender, EventArgs eventArgs)
         {

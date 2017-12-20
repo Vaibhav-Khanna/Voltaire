@@ -21,6 +21,7 @@ namespace voltaire.PageModels
     { 
         
         Partner _customer;
+        bool ItemUpdated = false;
 
         public Command tap_Toolbar  => new Command( async () => 
         {
@@ -30,7 +31,6 @@ namespace voltaire.PageModels
 
                 customer_copy.CanEdit = true;
                
-                
                 await CoreMethods.PushPageModel<ContactDetailPageModel>(customer_copy, true, true);
             }
             else
@@ -51,7 +51,7 @@ namespace voltaire.PageModels
 
                 Dialog.ShowLoading(null);
 
-                await StoreManager.CustomerStore.UpdateAsync(customer);
+                await StoreManager.CustomerStore.UpdateAsync(customer);             
 
                 Dialog.HideLoading();
 
@@ -72,7 +72,7 @@ namespace voltaire.PageModels
            else
            {
                customer.CanEdit = false;
-               await CoreMethods.PopPageModel(null, false, true);
+               await CoreMethods.PopPageModel(ItemUpdated,false, true);
                ReleaseResources();
            }
 
@@ -207,6 +207,7 @@ namespace voltaire.PageModels
 				lastvisit = value;
                 customer.DateLocalization = lastvisit;
                 StoreManager.CustomerStore.UpdateAsync(customer);
+                ItemUpdated = true;
 				RaisePropertyChanged();
 			}
 		}
@@ -295,19 +296,36 @@ namespace voltaire.PageModels
 
 
         private int selectedindex = 0;
-
         public int SelectedIndex 
         {
             get { return selectedindex; }
             set
             {
                 selectedindex = value;
+
+                if(selectedindex != 0)
+                {
+                    ToolbarButton = null;
+                }
+                else
+                {
+                    ToolbarButton = AppResources.Modify;
+                }
+
+                lock (this)
+                {
+                    if (Tab != null && Tab.Any())
+                    {
+                        Tab[selectedindex].OnAppearing();
+                    }
+                }
+
                 RaisePropertyChanged(nameof(SelectedIndex));
             }
         }
 
-        ViewPagerTemplateSelector item_template_selector;
 
+        ViewPagerTemplateSelector item_template_selector;
         public ViewPagerTemplateSelector ItemTemplates
         {
             get { return item_template_selector; }
@@ -397,7 +415,7 @@ namespace voltaire.PageModels
                 return;
 
             customer = (Partner)returnedData;
-     
+            ItemUpdated = true; 
         }
 
         public override void Init(object initData)
@@ -433,6 +451,19 @@ namespace voltaire.PageModels
 
         }
 
+        protected override void ViewIsAppearing(object sender, EventArgs e)
+        {
+            base.ViewIsAppearing(sender, e);
+
+            lock (this)
+            {
+                if (Tab != null && Tab.Any())
+                {
+                    Tab[selectedindex].OnAppearing();
+                }
+            }
+
+        }
        
 
     }

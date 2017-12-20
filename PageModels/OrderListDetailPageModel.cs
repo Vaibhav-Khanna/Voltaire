@@ -116,8 +116,12 @@ namespace voltaire.PageModels
                 OrderItemsSource = new ObservableCollection<ProductQuotationModel>(quotation.Products);
 
                 var format_string = new FormattedString();
-                format_string.Spans.Add(new Span() { Text = AppResources.SignedDate, FontSize = 16, FontFamily = "SanFranciscoDisplay-Medium", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });
-                format_string.Spans.Add(new Span() { Text = ((DateTime)quotation.DateSigned).ToString("dd/MM/yyyy") + Environment.NewLine, FontSize = 16, FontFamily = "SanFranciscoDisplay-Regular", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });
+
+                if (quotation.DateSigned != null)
+                {
+                    format_string.Spans.Add(new Span() { Text = AppResources.SignedDate, FontSize = 16, FontFamily = "SanFranciscoDisplay-Medium", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });
+                    format_string.Spans.Add(new Span() { Text = ((DateTime)quotation.DateSigned).ToString("dd/MM/yyyy") + Environment.NewLine, FontSize = 16, FontFamily = "SanFranciscoDisplay-Regular", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });
+                }
 
                 format_string.Spans.Add(new Span() { Text = AppResources.PaymentType, FontSize = 16, FontFamily = "SanFranciscoDisplay-Medium", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });
                 format_string.Spans.Add(new Span() { Text = quotation.PaymentMethod.ToString() + Environment.NewLine, FontSize = 16, FontFamily = "SanFranciscoDisplay-Regular", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });

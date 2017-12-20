@@ -53,5 +53,10 @@ namespace voltaire.Controls.Items
             Parent = ParentViewModel;
         }
 
+        public virtual void OnAppearing()
+        {
+            (ViewBindingContext as BasePageModel)?.TabAppearing();
+        }
+
     }
 }

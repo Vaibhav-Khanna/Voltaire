@@ -11,7 +11,12 @@ namespace voltaire.PageModels
 {
     public class OrderListTabPageModel : BasePageModel
     {
+        public OrderListTabPageModel()
+        {
+            FilterTypes = new ObservableCollection<string>() { "All", "Name", "Status" };
 
+            Filter = 0;
+        }
 		
 		public Command FilterTap => new Command(() =>
 		{
@@ -38,30 +43,7 @@ namespace voltaire.PageModels
 			{
 				customer = value;
 
-				filtertypes = new ObservableCollection<string>() { "All", "Name", "Status" };
-
-				filter = 0;
-
-                List<QuotationsModel> sent_quotations = new List<QuotationsModel>();
-
-                if(customer.Quotations!=null)
-                    sent_quotations = customer.Quotations.Where((arg) => arg.Status == QuotationStatus.sent.ToString()).ToList();
-                    
-
-                foreach (var item in sent_quotations)	
-                {	
-                    item.BackColor = sent_quotations.IndexOf(item) % 2 == 0 ? Color.FromRgb(247, 247, 247) : Color.White;		
-                }
-
-
-				all_items = new ObservableCollection<QuotationsModel>(sent_quotations);
-				quotationsitemsource = all_items;
-
-				RaisePropertyChanged();
-				RaisePropertyChanged(nameof(FilterTypes));
-				RaisePropertyChanged(nameof(Filter));
-				RaisePropertyChanged(nameof(QuotationsItemSource));
-
+				RaisePropertyChanged();			
 			}
 		}
 
@@ -92,8 +74,8 @@ namespace voltaire.PageModels
 
 		ObservableCollection<QuotationsModel> all_items;
 
-		ObservableCollection<QuotationsModel> quotationsitemsource;
 
+		ObservableCollection<QuotationsModel> quotationsitemsource;
 		public ObservableCollection<QuotationsModel> QuotationsItemSource
 		{
 			get { return quotationsitemsource; }
@@ -114,8 +96,42 @@ namespace voltaire.PageModels
 				return;
 
 			Customer = context;
+
+            FetchItems();
 		}
 
+        public override void TabAppearing()
+        {
+            base.TabAppearing();
+
+            FetchItems();
+        }
+
+        async void FetchItems()
+        {
+
+            var items = await StoreManager.SaleOrderStore.GetOrderItemsByCustomer(Customer.ExternalId);
+
+            List<QuotationsModel> Quotations = new List<QuotationsModel>();
+
+            foreach (var item in items)
+            {
+                Quotations.Add(new QuotationsModel(item));
+            }
+
+
+            foreach (var item in Quotations)
+            {
+                item.BackColor = Quotations.IndexOf(item) % 2 == 0 ? Color.FromRgb(247, 247, 247) : Color.White;
+            }
+
+
+            all_items = new ObservableCollection<QuotationsModel>(Quotations);
+            QuotationsItemSource = all_items;
+
+            SearchQuery.Execute(null);
+
+        }
 
 		void SearchResults(string query_string)
 		{
@@ -126,8 +142,7 @@ namespace voltaire.PageModels
 
 			if (string.IsNullOrWhiteSpace(query_string))
 			{
-				quotationsitemsource = all_items;
-				RaisePropertyChanged(nameof(QuotationsItemSource));
+                QuotationsItemSource = all_items;	
 				return;
 			}
 
@@ -163,16 +178,16 @@ namespace voltaire.PageModels
 			}
 			catch (Exception)
 			{
-			
+                QuotationsItemSource = all_items;    			
 			}
 
 			if (items != null)
 			{
-				quotationsitemsource = new ObservableCollection<QuotationsModel>(items);
-				RaisePropertyChanged(nameof(QuotationsItemSource));
+                QuotationsItemSource = new ObservableCollection<QuotationsModel>(items);	
 			}
 
 
 		}
+
     }
 }
