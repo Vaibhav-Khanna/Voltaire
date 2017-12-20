@@ -160,6 +160,7 @@ namespace voltaire.PageModels
 
                 Total = quotation.TotalAmount;
 
+               
                 OrderItemsSource = new ObservableCollection<ProductQuotationModel>(quotation.Products);
                 OrderItemsSource.CollectionChanged += OrderItemsSource_CollectionChanged;
 
@@ -308,7 +309,7 @@ namespace voltaire.PageModels
 
 
 
-        public override void Init(object initData)
+        public async override void Init(object initData)
         {
             base.Init(initData);
 
@@ -327,6 +328,13 @@ namespace voltaire.PageModels
                 else
                 {
                     Quotation = _customer.Item3;
+                  
+                    var items = await StoreManager.SaleOrderLineStore.GetItemsByOrderId(quotation.SaleOrder.ExternalId);
+                   
+                    foreach (var item in items)
+                    {
+                        var product = await StoreManager.ProductStore.GetItemsByProductId(item.ProductId);
+                    }
                 }
             }
 
