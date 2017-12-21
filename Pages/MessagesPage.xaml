@@ -51,6 +51,8 @@
                             <Label Text="{Binding Name}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Start" HorizontalOptions="Start" Grid.Row="0" Grid.Column="1"/>
                             <Label Text="{Binding Date}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Start" HorizontalOptions="Start" Grid.Row="0" Grid.Column="2"/>
                             <Label Text="{Binding Text}" LineBreakMode="{Binding Expanded, Converter = {StaticResource BoolToLineBreakModeConverter}}"  FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="FillAndExpand" VerticalTextAlignment="Start" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Grid.Row="0" Grid.Column="3"/> 
+                            <!-- <renderers:HtmlFormattedLabel Text="{Binding Text}" LineBreakMode="{Binding Expanded, Converter = {StaticResource BoolToLineBreakModeConverter}}"  FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="FillAndExpand" VerticalTextAlignment="Start" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Grid.Row="0" Grid.Column="3"/> -->
+                          
                             <Image Source="filterlist.png" WidthRequest="15" HeightRequest="15" VerticalOptions="Start" HorizontalOptions="Center" Grid.Column="4" />     
                         </Grid>
           

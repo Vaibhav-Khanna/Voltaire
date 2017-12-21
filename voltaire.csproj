@@ -484,6 +484,7 @@
     <Compile Include="DataStore\Implementation\Stores\AccessoryCategoryStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\SaddlePriceStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\ServiceStore.cs" />
+    <Compile Include="Renderers\HtmlFormattedLabel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
