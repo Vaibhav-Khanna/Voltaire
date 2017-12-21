@@ -68,7 +68,7 @@ namespace voltaire.PageModels
             Quotation = (initData as QuotationsModel);
 
             //message recuperation from Quotation.SaleOrder.Id
-            var message_list = await StoreManager.MessageStore.GetMessagesBySaleOrderIdAsync(Quotation.SaleOrder.Id);
+            var message_list = await StoreManager.MessageStore.GetMessagesByResIdAsync(Quotation.SaleOrder.Id, "sale.order");
 
             if (message_list != null)
             {

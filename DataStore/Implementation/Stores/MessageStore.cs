@@ -11,11 +11,11 @@ namespace voltaire.DataStore.Implementation.Stores
         public override string Identifier => "Message";
 
 
-        public virtual async Task<IEnumerable<Message>> GetMessagesBySaleOrderIdAsync(string saleOrderId)
+        public virtual async Task<IEnumerable<Message>> GetMessagesByResIdAsync(string saleOrderId, string model)
         {
             await InitializeStore().ConfigureAwait(false);
             await PullLatestAsync().ConfigureAwait(false);
-            var items = await Table.Where(s => s.ResId == saleOrderId).ToListAsync().ConfigureAwait(false);
+            var items = await Table.Where(s => (s.ResId == saleOrderId) && (s.Model == model)).ToListAsync().ConfigureAwait(false);
 
             if (items == null || items.Count == 0)
                 return null;

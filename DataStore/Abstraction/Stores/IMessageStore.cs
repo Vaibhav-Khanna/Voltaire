@@ -7,6 +7,6 @@ namespace voltaire.DataStore.Abstraction.Stores
 {
     public interface IMessageStore : IBaseStore<Message>
     {
-        Task<IEnumerable<Message>> GetMessagesBySaleOrderIdAsync(string saleOrderId);
+        Task<IEnumerable<Message>> GetMessagesByResIdAsync(string saleOrderId, string model);
     }
 }
