@@ -119,8 +119,9 @@ namespace voltaire.DataStore.Implementation
             if (!Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
             {
                 Debug.WriteLine("Unable to sync items, we are offline");
-                //return false;
+                return false;
             }
+
             try
             {
                 await StoreManager.MobileService.SyncContext.PushAsync(new CancellationToken(false)).ConfigureAwait(false);
@@ -145,7 +146,7 @@ namespace voltaire.DataStore.Implementation
             if (!Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
             {
                 Debug.WriteLine("Unable to pull items, we are offline");
-                //return false;
+                return false;
             }
 
             try

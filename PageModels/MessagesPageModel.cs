@@ -6,18 +6,28 @@ using Xamarin.Forms;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using voltaire.Models.DataObjects;
 
 namespace voltaire.PageModels
 {
     public class MessagesPageModel : BasePageModel
     {
 
+        private User currUser;
 
         public Command AddMessage => new Command(async (obj) =>
        {
-           var currUser = await StoreManager.UserStore.GetCurrentUserAsync();
+            if (currUser == null)
+           {
+               await CoreMethods.DisplayAlert("Error", "Experienced internal error sending this message. Reopen the app to try sending the message", "Ok");
+               return;
+           }
+
+           var _messageText = MessageText;
+
+            MessageText = null;
            // var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = "<p>" + MessageText + "</p>", ResId = Quotation.SaleOrder.Id, MessageType = MessageType.comment, Model = "sale.order" };
-           var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = MessageText, ResId = Quotation.SaleOrder.Id, MessageType = MessageType.comment, Model = "sale.order" };
+           var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = _messageText, ResId = Quotation.SaleOrder.Id, MessageType = MessageType.comment, Model = "sale.order" };
 
            //insertion de message dans la base
            var resul = await StoreManager.MessageStore.InsertAsync(message);
@@ -25,7 +35,7 @@ namespace voltaire.PageModels
            Quotation.Messages.Add(message);
 
            MessageSource.Add(new MessageModel(message) { Index = MessageSource.Count + 1, Name = currUser.Name });
-           MessageText = null;
+          
        });
 
         public Command BackButton => new Command(async () =>
@@ -67,6 +77,10 @@ namespace voltaire.PageModels
 
             Quotation = (initData as QuotationsModel);
 
+            IsLoading = true;
+
+            currUser = await StoreManager.UserStore.GetCurrentUserAsync();
+
             //message recuperation from Quotation.SaleOrder.Id
             var message_list = await StoreManager.MessageStore.GetMessagesByResIdAsync(Quotation.SaleOrder.Id, "sale.order");
 
@@ -83,6 +97,7 @@ namespace voltaire.PageModels
 
                         message_models.Add(new MessageModel(item) { Expanded = true, Index = message_models.Count + 1, Name = partner.Name });
                     }
+
                     MessageSource = new ObservableCollection<MessageModel>(message_models);
                 }
             }
@@ -91,7 +106,7 @@ namespace voltaire.PageModels
                 MessageSource = new ObservableCollection<MessageModel>();
             }
 
-
+            IsLoading = false;
         }
 
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using voltaire.Models;
+using voltaire.Models.DataObjects;
 using voltaire.PageModels.Base;
 using Xamarin.Forms;
 
@@ -11,6 +12,8 @@ namespace voltaire.PageModels
     public class QuotationInternalNotesPageModel : BasePageModel
     {
 
+        private User currUser;
+
         public Command BackButton => new Command(async () =>
       {
           await CoreMethods.PopPageModel();
@@ -18,12 +21,21 @@ namespace voltaire.PageModels
 
         public Command AddNote => new Command(async (obj) =>
        {
-           var currUser = await StoreManager.UserStore.GetCurrentUserAsync();
+           if (currUser == null)
+           {
+               await CoreMethods.DisplayAlert("Error", "Experienced internal error sending this message. Reopen the app to try sending the message", "Ok");
+               return;
+           }
+
+           var _messageText = MessageText;
+
+           MessageText = null;
 
            //déterminantion du model de message
            string modelMessage;
            string resId;
-           if (Quotation != null)
+          
+            if (Quotation != null)
            {
                modelMessage = "sale.order";
                resId = Quotation.SaleOrder.Id;
@@ -34,13 +46,13 @@ namespace voltaire.PageModels
                resId = Customer.Id;
            }
 
-           var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = MessageText, ResId = resId, MessageType = MessageType.comment, Model = modelMessage };
+            var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = _messageText, ResId = resId, MessageType = MessageType.comment, Model = modelMessage };
 
            //insertion de message dans la base
            var resul = await StoreManager.MessageStore.InsertAsync(message);
 
            MessageSource.Add(new MessageModel(message) { Index = MessageSource.Count + 1, Name = currUser.Name });
-           MessageText = null;
+
        });
 
         QuotationsModel Quotation { get; set; }
@@ -77,6 +89,9 @@ namespace voltaire.PageModels
 
             Quotation = (initData as QuotationsModel);
 
+            IsLoading = true;
+
+            currUser = await StoreManager.UserStore.GetCurrentUserAsync();
 
             if (Quotation != null)
             {
@@ -131,9 +146,10 @@ namespace voltaire.PageModels
                 {
                     MessageSource = new ObservableCollection<MessageModel>();
                 }
-
-
             }
+
+            IsLoading = false;
+
         }
 
     }

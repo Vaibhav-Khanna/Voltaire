@@ -56,7 +56,7 @@ namespace voltaire.Pages
             int x = 0;
             int y = 0;
 
-            for (int i = 0; i < context.ProductProperties.Count; i++)
+            for (int i = 0; i < context.ProductProperties?.Count; i++)
             {
 
                 if (i >= row_count * 2)

@@ -13,6 +13,7 @@ using voltaire.Resources;
 using System.Reflection;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace voltaire.PageModels
 {
@@ -105,7 +106,7 @@ namespace voltaire.PageModels
 
         public ContactsPageModel()
         {
-            Get();
+           
         }
 
         private void FiltersLayoutAppearing()
@@ -221,7 +222,9 @@ namespace voltaire.PageModels
         public Command RefreshList => new Command(async (obj) =>
        {
            if (!string.IsNullOrWhiteSpace(SearchText))
-           {
+           {             
+               SearchContact.Execute(null);
+               await Task.Delay(1000);
                IsRefreshing = false;
                return;
            }
@@ -340,6 +343,7 @@ namespace voltaire.PageModels
             //PartnerGrades 
             partnerGrades = new ObservableCollection<PartnerGrade>(_grades?.Select((arg) => new PartnerGrade() { Grade = arg.Name }));
 
+            Get();
         }
 
 

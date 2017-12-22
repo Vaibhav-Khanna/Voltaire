@@ -105,7 +105,7 @@ namespace voltaire.PageModels
                 return;
             }
 
-			query_string = query_string.Trim();
+            query_string = query_string.Trim().ToLower();
 
             try
             {
@@ -114,22 +114,22 @@ namespace voltaire.PageModels
                 {
                     case 0:
                         {
-                            items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string.ToLower()) || arg.Date.ToString().ToLower().Contains(query_string.ToLower()) || arg.Status.ToString().ToLower().Contains(query_string.ToLower()) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.Contains(query_string)).ToList();
+                            items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string) || arg.Date.ToString().ToLower().Contains(query_string) || arg.Status.ToLower().Contains(query_string) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.ToLower().Contains(query_string)).ToList();
                             break;
                         }
                     case 1:
                         {
-                            items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string.ToLower())).ToList();
+                            items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string)).ToList();
                             break;
                         }
                     case 2:
                         {
-                            items = all_items.Where((arg) => arg.Status.ToString().ToLower().Contains(query_string.ToLower())).ToList();
+                            items = all_items.Where((arg) => arg.Status.ToLower().Contains(query_string)).ToList();
                             break;
                         }
                     default:
                         {
-                            items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string.ToLower()) || arg.Date.ToString().ToLower().Contains(query_string.ToLower()) || arg.Status.ToString().ToLower().Contains(query_string.ToLower()) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.Contains(query_string)).ToList();
+                            items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string) || arg.Date.ToString().ToLower().Contains(query_string) || arg.Status.ToLower().Contains(query_string) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.ToLower().Contains(query_string)).ToList();
                             break;
                         }
 

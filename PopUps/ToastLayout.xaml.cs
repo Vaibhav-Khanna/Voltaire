@@ -22,7 +22,7 @@ namespace voltaire.PopUps
             base.OnAppearing();
          
             anim.Play();
-            Device.StartTimer(new TimeSpan(0, 0, 3), HandleFunc);
+            Device.StartTimer(new TimeSpan(0, 0, 5), HandleFunc);
         }
 
         bool HandleFunc()

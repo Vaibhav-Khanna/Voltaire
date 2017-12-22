@@ -101,12 +101,13 @@ namespace voltaire.PageModels
         {
             base.Init(initData);
 
-            var context = initData as Tuple<Product, ProductQuotationModel, bool>;
+            var context = initData as Tuple<SaleOrderLine, ProductQuotationModel, bool>;
 
             if (context == null)
                 return;
 
-            Product = context.Item1;
+            //TODO
+            Product = new Product(){ Name = context.Item1.Name };
             ProductProperties = context.Item2.ProductProperties;
             IsControlsEnabled = context.Item3;
             // SaleOrderLine = context.Item2;

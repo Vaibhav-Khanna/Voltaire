@@ -12,8 +12,8 @@ namespace voltaire.Models.DataObjects
         [JsonIgnore]
         public List<ProductProperty> Properties { get; set; } = new List<ProductProperty>();
 
-        [JsonProperty("version")]
-        public string Version { get; set; }
+        //[JsonProperty("version")]
+        //public string Version { get; set; }
 
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }

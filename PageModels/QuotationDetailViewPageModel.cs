@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Acr.UserDialogs;
 using Rg.Plugins.Popup.Services;
 using voltaire.Models;
 using voltaire.Models.DataObjects;
@@ -19,7 +20,9 @@ namespace voltaire.PageModels
 
         public Command BackButton => new Command(async () =>
        {
-           StoreManager.SaleOrderStore.UpdateAsync(Quotation.SaleOrder);
+           UserDialogs.Instance.ShowLoading("Just a moment...");
+           await StoreManager.SaleOrderStore.UpdateAsync(Quotation.SaleOrder);
+           UserDialogs.Instance.HideLoading();
            await CoreMethods?.PopPageModel();
        });
 
@@ -51,6 +54,10 @@ namespace voltaire.PageModels
             else if (response == AppResources.DeleteQuotation)
             {
                 // delete quotation 
+                UserDialogs.Instance.ShowLoading("Deleting...");
+                await StoreManager.SaleOrderStore.RemoveAsync(Quotation.SaleOrder);
+                UserDialogs.Instance.HideLoading();
+                await CoreMethods?.PopPageModel();
             }
 
         });
@@ -320,7 +327,9 @@ namespace voltaire.PageModels
 
                 if (NewQuotation)
                 {
-                    Quotation = new QuotationsModel( new SaleOrder() ) { Date = DateTime.Now, Ref = UnixTimeStamp(), Status = QuotationStatus.draft.ToString() , TotalAmount = 0 };
+                    var saleOrder = new SaleOrder(){ PartnerId = Customer.ExternalId };
+                    Quotation = new QuotationsModel( saleOrder ) { Date = DateTime.UtcNow, Ref = UnixTimeStamp(), Status = QuotationStatus.draft.ToString() , TotalAmount = 0 };
+                    InsertNewQuotation(saleOrder);
                     customer.Quotations.Add(Quotation);
                 }
                 else
@@ -366,5 +375,9 @@ namespace voltaire.PageModels
             return unixTimestamp.ToString();
         }
 
+        async void InsertNewQuotation(SaleOrder order)
+        {
+            await StoreManager.SaleOrderStore.InsertAsync(order);
+        }
     }
 }
