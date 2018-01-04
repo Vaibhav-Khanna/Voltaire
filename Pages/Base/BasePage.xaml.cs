@@ -26,16 +26,16 @@ namespace voltaire.Pages.Base
 
             _pageIcons = new List<MenuLeftItem>
             {
-                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "home"},
-                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "contact"},
-                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "map"},
-                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "todo"},
-                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "agenda"},
-                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "report"},
-                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "quotation"},
-                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "contract"},
-                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "goals"},
-                new MenuLeftItem {Title = "", IsSelected = false, IconSource = "podiums"},
+                new MenuLeftItem {Title = "",  IsEnabled = true, opacity=1, IsSelected = false, IconSource = "home"},
+                new MenuLeftItem {Title = "",  IsEnabled = true, opacity=1, IsSelected = false, IconSource = "contact"},
+                new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5, IsSelected = false, IconSource = "map"},
+                new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5, IsSelected = false, IconSource = "todo"},
+                new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5,IsSelected = false, IconSource = "agenda"},
+                new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5,IsSelected = false, IconSource = "report"},
+                new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5,IsSelected = false, IconSource = "quotation"},
+                new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5,IsSelected = false, IconSource = "contract"},
+                new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5,IsSelected = false, IconSource = "goals"},
+                new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5, IsSelected = false, IconSource = "podiums"},
             };
             _pageIcons[selectedIndex].IsSelected = true;
             _selectedMenuItem = _pageIcons[selectedIndex];
@@ -106,6 +106,9 @@ namespace voltaire.Pages.Base
 
         private void ItemClicked(object sender, MenuLeftItem menuItem)
         {
+            if (!menuItem.IsEnabled)
+                return;
+            
             if (_selectedMenuItem != menuItem)
             {
                 _selectedMenuItem.IsSelected = false;

@@ -5,8 +5,6 @@ using System.Linq;
 using System.Windows.Input;
 using FreshMvvm;
 using voltaire.DataStore.Abstraction.Stores;
-using voltaire.DataStore.Implementation;
-using voltaire.DataStore.Implementation.Stores;
 using voltaire.Helpers.Collections;
 using voltaire.Models;
 using voltaire.PageModels.Base;
@@ -15,6 +13,7 @@ using voltaire.Resources;
 using System.Reflection;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace voltaire.PageModels
 {
@@ -68,9 +67,11 @@ namespace voltaire.PageModels
             }
         }
 
+        public static Dictionary<string, long?> GradeValues = new Dictionary<string, long?>();
+
         public ICommand FiltersLayoutCommand => new Command(FiltersLayoutAppearing);
 
-        private ICustomerStore Store => StoreManager.CustomerStore;
+        private IPartnerStore CustomerStore => StoreManager.CustomerStore;
 
         private int? _listColumnSpan;
 
@@ -83,7 +84,6 @@ namespace voltaire.PageModels
         }
 
         private bool _filterLayoutVisibility;
-
         public bool filterLayoutVisibility
         {
 
@@ -93,7 +93,6 @@ namespace voltaire.PageModels
         }
 
         private string _filterImage;
-
         public string filterImage
         {
 
@@ -102,9 +101,12 @@ namespace voltaire.PageModels
             set { _filterImage = value; RaisePropertyChanged("filterImage"); }
         }
 
+        public int? FilterWeight = null;
+        public string FilterGrade = null;
+
         public ContactsPageModel()
         {
-            Get();
+           
         }
 
         private void FiltersLayoutAppearing()
@@ -124,24 +126,33 @@ namespace voltaire.PageModels
 
         }
 
-        public ObservableCollection<PartnerGrade> partnerGrades { get; set; }
+        private ObservableCollection<PartnerGrade> grades;
+        public ObservableCollection<PartnerGrade> partnerGrades
+        {
+            get { return grades; }
+            set { grades = value; RaisePropertyChanged(); }
+        }
 
-
+        //First call to populate the list of customers
         async void Get()
         {
             // Local data
             IsLoading = true;
 
-            var result = await Store.GetItemsAsync(false);
-
+            var result = await CustomerStore.GetItemsAsync(FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade], false);
 
             // Server refresh
-            if ( result == null || !result.Any() )
+            if (result == null || !result.Any())
             {
-                LoadingText = AppResources.FetchingData;
-                result = await Store.GetItemsAsync(true);
-                CreateGroupedCollection(result);
-                LoadingText = AppResources.FetchingData;
+                if (FilterWeight == null && string.IsNullOrWhiteSpace(FilterGrade))
+                {
+                    LoadingText = AppResources.FetchingData;
+                    result = await CustomerStore.GetItemsAsync(FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade], true);
+                    CreateGroupedCollection(result);
+                    LoadingText = AppResources.FetchingData;
+                }
+                else
+                    CreateGroupedCollection(result);
             }
             else
                 CreateGroupedCollection(result);
@@ -152,30 +163,32 @@ namespace voltaire.PageModels
 
         bool Loadingmore = false;
 
+
+        //Fetch more contacts for infinite scroll
         public Command LoadMore => new Command(async () =>
         {
             if (!IsLoadMore || Loadingmore)
                 return;
 
-          if (string.IsNullOrWhiteSpace(SearchText))
-          {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
                 Loadingmore = true;
-                
-                var result = await Store.GetNextItemsAsync(Customers.Count);
+
+                var result = await CustomerStore.GetNextItemsAsync(Customers.Count, FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade]);
 
                 if (result != null && result.Any())
                 {
                     var list = customers.ToList();
                     list.AddRange(result);
 
-                    Debug.WriteLine("Fetched "+result.Count());
+                    Debug.WriteLine("Fetched " + result.Count());
 
                     if ((result as IQueryResultEnumerable<Partner>) != null)
                     {
                         var totalCount = (result as IQueryResultEnumerable<Partner>).TotalCount;
 
-                        if(totalCount != 1)
-                        CustomersCount = totalCount.ToString() + " " + AppResources.Contacts;
+                        if (totalCount != 1)
+                            CustomersCount = totalCount.ToString() + " " + AppResources.Contacts;
                         else
                             CustomersCount = totalCount.ToString() + " " + AppResources.Contact;
 
@@ -189,37 +202,40 @@ namespace voltaire.PageModels
                                 IsLoadMore = false;
                         }
                     }
-                     
+
                     CreateGroupedCollection(list);
                 }
                 else
                     IsLoadMore = false;
 
                 Loadingmore = false;
-          }
+            }
+        });
+
+
+        public Command AddContact => new Command(async () =>
+      {
+          await CoreMethods.PushPageModel<ContactAddPageModel>();
       });
-
-
-        public Command AddContact => new Command( async() =>
-       {
-            await CoreMethods.PushPageModel<ContactAddPageModel>();
-       });
 
 
         public Command RefreshList => new Command(async (obj) =>
        {
            if (!string.IsNullOrWhiteSpace(SearchText))
-           {
+           {             
+               SearchContact.Execute(null);
+               await Task.Delay(1000);
                IsRefreshing = false;
                return;
            }
 
            IsLoading = true;
            IsLoadingText = AppResources.Refreshing;
-           var result = await Store.GetItemsAsync(true);
+           var result = await CustomerStore.GetItemsAsync(FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade], true);
            CreateGroupedCollection(result);
            IsRefreshing = false;
            IsLoading = false;
+
        });
 
 
@@ -227,29 +243,49 @@ namespace voltaire.PageModels
        {
            if (string.IsNullOrWhiteSpace(searchtext))
            {
-               var res = await Store.GetItemsAsync(false);
+               var res = await CustomerStore.GetItemsAsync(FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade], false);
                CreateGroupedCollection(res);
                return;
            }
 
-          
-           var result = await Store.Search(SearchText.Trim());
+
+           var result = await CustomerStore.Search(SearchText.Trim(), FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade]);
            CreateGroupedCollection(result);
            CustomersCount += " " + AppResources.MatchingSearch;
+
        });
 
 
+        public Command FilterByWeight => new Command((obj) =>
+      {
+          FilterWeight = (int?)Convert.ToInt32(obj);
+          Get();
+      });
+
+        public Command FilterByGrade => new Command((obj) =>
+       {
+           FilterGrade = (obj as string);
+           Get();
+       });
+
+        public Command ResetFilter => new Command((obj) =>
+       {
+           FilterWeight = null;
+           FilterGrade = null;
+           Get();
+       });
+
         private void CreateGroupedCollection(IEnumerable<Partner> list)
         {
-            
+
             if (list == null)
                 list = new List<Partner>();
 
 
-            if( (list as IQueryResultEnumerable<Partner>) != null )
+            if ((list as IQueryResultEnumerable<Partner>) != null)
             {
                 var totalCount = (list as IQueryResultEnumerable<Partner>).TotalCount;
-               
+
                 if (totalCount != 1)
                     CustomersCount = totalCount.ToString() + " " + AppResources.Contacts;
                 else
@@ -266,9 +302,9 @@ namespace voltaire.PageModels
                 }
             }
 
-            list = list.OrderBy( (arg) => arg.Name );
+            list = list.OrderBy((arg) => arg.Name);
 
-            Customers = new ObservableCollection<Partner>(list);                   
+            Customers = new ObservableCollection<Partner>(list);
 
             var models = Customers.Select(i => new CustomerModel(i) { navigation = CoreMethods }).ToList();
 
@@ -284,42 +320,46 @@ namespace voltaire.PageModels
 
 
         //INIT data form page  freshmvvm
-        public override void Init(object initData)
+        public async override void Init(object initData)
         {
-
-            //columnSpan for listview
+            //columnSpan for listview 
             _listColumnSpan = 2;
+
             //filters view
             _filterLayoutVisibility = false;
+
             //filter frame image 
             _filterImage = "filters";
 
-            //PartnerGrades 
-            partnerGrades = new ObservableCollection<PartnerGrade>
-            {
-                new PartnerGrade {Grade="CCE"},
-                new PartnerGrade {Grade="CSO"},
-                new PartnerGrade {Grade="DRE"},
-                new PartnerGrade {Grade="Endurance"},
-                new PartnerGrade {Grade="PRO"},
-                new PartnerGrade {Grade="Particulier"},
-                new PartnerGrade {Grade="Ecuries"}
-            };
+            var _grades = await StoreManager.PartnerGradeStore.GetItemsAsync();
 
+            GradeValues = new Dictionary<string, long?>();
+
+            foreach (var item in _grades)
+            {
+                GradeValues.Add(item.Name, item.ExternalId);
+            }
+
+            //PartnerGrades 
+            partnerGrades = new ObservableCollection<PartnerGrade>(_grades?.Select((arg) => new PartnerGrade() { Grade = arg.Name }));
+
+            Get();
         }
+
 
         public override void ReverseInit(object returnedData)
         {
             base.ReverseInit(returnedData);
 
-            if(returnedData!=null)
+            if (returnedData != null)
             {
-                IsRefreshing = true;
+                if ((bool)returnedData)
+                    RefreshList.Execute(null);
             }
 
         }
 
 
     }
-    
+
 }

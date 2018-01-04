@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire" 
+    xmlns:converter="clr-namespace:voltaire.Converters;assembly=voltaire"
     xmlns:local="clr-namespace:voltaire.Converters;assembly=voltaire"
     xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire"   
     xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
@@ -32,7 +33,8 @@
                 </Image>
             </controls:TToolBar.LeftToolbarItems>
         </controls:TToolBar>
-        <syncfusion:SfListView x:Name="listview"  AutoFitMode="Height" VerticalOptions="FillAndExpand"   Grid.Row="1" Grid.Column="0" ItemsSource="{Binding MessageSource}">
+            
+        <syncfusion:SfListView x:Name="listview"  IsVisible="{Binding IsLoading,Converter={converter:BoolInverseConverter}}"  AutoFitMode="Height" VerticalOptions="FillAndExpand"   Grid.Row="1" Grid.Column="0" ItemsSource="{Binding MessageSource}">
             <syncfusion:SfListView.ItemTemplate>
                 <DataTemplate>
                    
@@ -50,13 +52,19 @@
                             <Label Text="{Binding Index}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Start" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" />
                             <Label Text="{Binding Name}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Start" HorizontalOptions="Start" Grid.Row="0" Grid.Column="1"/>
                             <Label Text="{Binding Date}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Start" HorizontalOptions="Start" Grid.Row="0" Grid.Column="2"/>
-                            <Label Text="{Binding Text}" LineBreakMode="{Binding Expanded, Converter = {StaticResource BoolToLineBreakModeConverter}}"  FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="FillAndExpand" VerticalTextAlignment="Start" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Grid.Row="0" Grid.Column="3"/> 
-                            <Image Source="filterlist.png" WidthRequest="15" HeightRequest="15" VerticalOptions="Start" HorizontalOptions="Center" Grid.Column="4" />     
+                            <Label Text="{Binding Text}" LineBreakMode="WordWrap" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="FillAndExpand" VerticalTextAlignment="Start" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Grid.Row="0" Grid.Column="3"/> 
+                            <!-- <renderers:HtmlFormattedLabel Text="{Binding Text}" LineBreakMode="{Binding Expanded, Converter = {StaticResource BoolToLineBreakModeConverter}}"  FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="FillAndExpand" VerticalTextAlignment="Start" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start" Grid.Row="0" Grid.Column="3"/> -->
+                          
+                           <!-- <Image Source="filterlist.png" WidthRequest="15" HeightRequest="15" VerticalOptions="Start" HorizontalOptions="Center" Grid.Column="4" />     -->
                         </Grid>
           
                 </DataTemplate>
             </syncfusion:SfListView.ItemTemplate>
        </syncfusion:SfListView>  
+
+        <ActivityIndicator IsRunning="true" IsVisible="{Binding IsLoading}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Row="1" Grid.Column="0" />
+
+            
             <StackLayout x:Name = "BottomContainer" BackgroundColor="#e9e9e9" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15" Orientation="Horizontal" Spacing="0" Grid.Row="2" Grid.Column="0" >
                         <BoxView Color="White" VerticalOptions="FillAndExpand" WidthRequest="20" HorizontalOptions="Start" Margin="0"/>
                         <renderers:BorderlessEntry Text="{Binding MessageText,Mode=TwoWay}" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Placeholder="{x:Static resources:AppResources.WriteAMesage}" FontSize="14"/>

@@ -12,7 +12,7 @@ namespace voltaire.DataStore.Implementation
 {
     public class BaseStore<T> : IBaseStore<T> where T : class, IBaseDataObject, new()
     {
-      
+
 
         IStoreManager storeManager;
 
@@ -22,7 +22,7 @@ namespace voltaire.DataStore.Implementation
         IMobileServiceTable<T> onlinetable;
         protected IMobileServiceTable<T> OnlineTable
         {
-            get { return onlinetable ?? ( onlinetable = StoreManager.MobileService.GetTable<T>()); }
+            get { return onlinetable ?? (onlinetable = StoreManager.MobileService.GetTable<T>()); }
 
         }
 
@@ -48,7 +48,7 @@ namespace voltaire.DataStore.Implementation
             if (!storeManager.IsInitialized)
                 await storeManager.InitializeAsync().ConfigureAwait(false);
         }
-      
+
 
         public virtual async Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false)
         {
@@ -63,14 +63,14 @@ namespace voltaire.DataStore.Implementation
         public virtual async Task<IEnumerable<T>> GetNextItemsAsync(int currentitemCount)
         {
             await InitializeStore().ConfigureAwait(false);
-           
+
             try
             {
                 return await Table.Skip(currentitemCount).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
             }
-            catch(Exception)
+            catch (Exception)
             {
-                return null;    
+                return null;
             }
         }
 
@@ -79,7 +79,7 @@ namespace voltaire.DataStore.Implementation
             await InitializeStore().ConfigureAwait(false);
             await PullLatestAsync().ConfigureAwait(false);
             var items = await Table.Where(s => s.Id == id).ToListAsync().ConfigureAwait(false);
-           
+
             if (items == null || items.Count == 0)
                 return null;
 
@@ -102,7 +102,7 @@ namespace voltaire.DataStore.Implementation
             await Table.DeleteAsync(item).ConfigureAwait(false);
             await SyncAsync().ConfigureAwait(false);
             return true;
-        } 
+        }
 
 
         public virtual async Task<bool> UpdateAsync(T item)
@@ -119,8 +119,9 @@ namespace voltaire.DataStore.Implementation
             if (!Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
             {
                 Debug.WriteLine("Unable to sync items, we are offline");
-                //return false;
+                return false;
             }
+
             try
             {
                 await StoreManager.MobileService.SyncContext.PushAsync(new CancellationToken(false)).ConfigureAwait(false);
@@ -134,23 +135,23 @@ namespace voltaire.DataStore.Implementation
             }
             finally
             {
-                
+
             }
             return true;
         }
 
         public async Task<bool> PullLatestAsync()
         {
-            
+
             if (!Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
             {
                 Debug.WriteLine("Unable to pull items, we are offline");
-                //return false;
+                return false;
             }
 
             try
             {
-                await Table.PullAsync<T>($"all{Identifier}", Table.CreateQuery().IncludeTotalCount() , false,new CancellationToken(false), new PullOptions(){ MaxPageSize = 50 }).ConfigureAwait(false);
+                await Table.PullAsync<T>($"all{Identifier}", Table.CreateQuery().IncludeTotalCount(), false, new CancellationToken(false), new PullOptions() { MaxPageSize = 150 }).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -161,6 +162,6 @@ namespace voltaire.DataStore.Implementation
             return true;
         }
 
-       
+
     }
 }

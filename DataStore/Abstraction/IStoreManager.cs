@@ -8,10 +8,30 @@ namespace voltaire.DataStore.Abstraction
     {
         bool IsInitialized { get; }
         Task InitializeAsync();
-      
-        ICustomerStore CustomerStore { get; }       
-        IQuotationStore QuotationStore { get; }
-        IContractStore ContractStore { get; }
+
+
+        ICountryStore CountryStore { get; }
+        ICurrencyStore CurrencyStore { get; }
+        IPartnerCategoryStore PartnerCategoryStore { get; }
+        IPartnerGradeStore PartnerGradeStore { get; }
+        IPartnerStore CustomerStore { get; }
+        IPartnerTitleStore PartnerTitleStore { get; }
+        IUserStore UserStore { get; }
+        IProductStore ProductStore { get; }
+        IProductPriceListItemStore ProductPriceListItemStore { get; }
+        IProductPriceListStore ProductPriceListStore { get; }
+        IProductUOMStore ProductUOMStore { get; }
+        IPurchaseOrderLineStore PurchaseOrderLineStore { get; }
+        IPurchaseOrderStore PurchaseOrderStore { get; }
+        ISaleOrderStore SaleOrderStore { get; }
+        ISaleOrderLineStore SaleOrderLineStore { get; }
+        IEventStore EventStore { get; }
+        IEventAlarmStore EventAlarmStore { get; }
+        IMessageStore MessageStore { get; }
+        IAccessoryStore AccessoryStore { get; }
+        IAccessoryCategoryStore AccessoryCategoryStore { get; }
+        ISaddlePriceStore SaddlePriceStore { get; }
+        IServiceStore ServiceStore { get; }
 
         Task<bool> SyncAllAsync(bool syncUserSpecific);
         Task DropEverythingAsync();

@@ -5,6 +5,7 @@ using voltaire.Resources;
 using FreshMvvm;
 using voltaire.DataStore.Implementation;
 using voltaire.DataStore.Abstraction;
+using System.Threading.Tasks;
 
 namespace voltaire.PageModels
 {
@@ -13,9 +14,9 @@ namespace voltaire.PageModels
 
         private StoreManager storeManager = DependencyService.Get<IStoreManager>() as StoreManager;
 
-       
+
         string username;
-        public string UserName 
+        public string UserName
         {
             get { return username; }
             set
@@ -36,51 +37,58 @@ namespace voltaire.PageModels
             }
         }
 
-        public Command Login => new Command(async(obj) =>
+        public Command Login => new Command(async (obj) =>
        {
-            
-            if(string.IsNullOrEmpty(UserName)) 
-            {
-                await CoreMethods.DisplayAlert(AppResources.InformationMissing,AppResources.UsernameMissing,AppResources.Ok);
-                return;
-            }
 
-            if(string.IsNullOrEmpty(Password))
-            {
-                await CoreMethods.DisplayAlert(AppResources.InformationMissing, AppResources.PasswordMissing, AppResources.Ok);
-                return;
-            }
+           if (string.IsNullOrEmpty(UserName))
+           {
+               await CoreMethods.DisplayAlert(AppResources.InformationMissing, AppResources.UsernameMissing, AppResources.Ok);
+               return;
+           }
 
-            IsLoadingText = AppResources.SingingIn;
-            IsBusy = true;
+           if (string.IsNullOrEmpty(Password))
+           {
+               await CoreMethods.DisplayAlert(AppResources.InformationMissing, AppResources.PasswordMissing, AppResources.Ok);
+               return;
+           }
+
+           IsLoadingText = AppResources.SingingIn;
+           IsBusy = true;
 
 
-            var response = await storeManager.LoginAsync(UserName,Password);
+           var response = await storeManager.LoginAsync(UserName, Password);
 
-            IsBusy = false;
+           IsBusy = false;
 
-            if(response==null || string.IsNullOrEmpty(response.MobileServiceAuthenticationToken))
-            {
-                await CoreMethods.DisplayAlert(AppResources.Error, AppResources.IncorrectInfo, AppResources.Ok);
-            }
-            else
-            {
-                IsBusy = true;;
-                IsLoadingText = AppResources.SyncingData;
-                await StoreManager.SyncAllAsync(true);
+           if (response == null || string.IsNullOrEmpty(response.MobileServiceAuthenticationToken))
+           {
+               await CoreMethods.DisplayAlert(AppResources.Error, AppResources.IncorrectInfo, AppResources.Ok);
+           }
+           else
+           {
+                
+               //Before sync so we are to login page 
+               //IsBusy = true;
+              
+               //IsLoadingText = AppResources.SyncingData;
+              
+               //StoreManager.SyncAllAsync(true);
 
-                Device.BeginInvokeOnMainThread( () => 
-                {
-                    var homePage = FreshPageModelResolver.ResolvePageModel<HomePageModel>();
+               Device.BeginInvokeOnMainThread(() =>
+              {
+                  var homePage = FreshPageModelResolver.ResolvePageModel<HomePageModel>();
 
-                    var homeContainer = new FreshNavigationContainer(homePage) { BarBackgroundColor = (Color)App.Current.Resources["turquoiseBlue"], BarTextColor = Color.White };
+                    var homeContainer = new AONNavigationContainer(homePage) { BarBackgroundColor = (Color)App.Current.Resources["turquoiseBlue"], BarTextColor = Color.White };
 
-                    App.Current.MainPage = homeContainer;
+                  App.Current.MainPage = homeContainer;
 
-                });
-
-                IsBusy = false;
-            }
+              });
+              
+             
+                StoreManager.SyncAllAsync(true);
+              //IsBusy = false;
+           
+           }
 
        });
 

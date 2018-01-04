@@ -20,10 +20,10 @@
                                    Converter={StaticResource StringNullableToBooleanConverter}}"
                 Style="{StaticResource CellLabelDescriptionStyle}"
                 Text="{Binding Customer.CompanyName}" />
-        <Button    IsVisible="{Binding Customer.Grade,
+        <Button    IsVisible="{Binding Grade,
                                    Converter={StaticResource StringNullableToBooleanConverter}}"
                 Style="{StaticResource CellButtonGradeStyle}"
-                Text="{Binding Customer.Grade}"
+                Text="{Binding Grade}"
                 HorizontalOptions="Start"
                 VerticalOptions="Center"
                 HeightRequest="20"/> 
@@ -35,21 +35,21 @@
                  VerticalOptions="Center"
                  HorizontalOptions="FillAndExpand"   
                  Spacing="10"
-                 IsVisible="{Binding Customer.LastVisit,
+                 IsVisible="{Binding Customer.DateLocalization,
                                    Converter={StaticResource DateNullableToBooleanConverter}}"   >
         <Image Source="fgreen" HeightRequest="10" WidthRequest="10"/> 
         <Label  Text="{x:Static resources:AppResources.LastVisit}"
                 Style="{StaticResource CellLabelDescriptionStyle}" /> 
-        <Label  Text="{Binding Customer.LastVisit, StringFormat='{0:MMMM d, yyyy}'}"
+        <Label  Text="{Binding Customer.DateLocalization, StringFormat='{0:MMMM d, yyyy}'}"
                 Style="{StaticResource CellLabelDescriptionStyle}" /> 
     </StackLayout>
-    <Button     IsVisible="{Binding Customer.Weight,
-                                   Converter={StaticResource StringNullableToBooleanConverter}}"
+    <Button     IsVisible="{Binding Customer.PartnerWeight,
+                                   Converter={StaticResource PartnerWeightConverter}}"
                 Grid.Column="2" 
                 HorizontalOptions="End"
                 VerticalOptions="Center" 
                 Margin="10,0,50,0"  
-                Text="{Binding Customer.Weight}" 
+                Text="{Binding Customer.PartnerWeight}" 
                 Style="{StaticResource CellButtonWeightStyle}" />   
 
    </Grid>

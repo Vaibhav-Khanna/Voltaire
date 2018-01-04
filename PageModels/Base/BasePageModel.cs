@@ -18,13 +18,13 @@ namespace voltaire.PageModels.Base
 
         protected IUserDialogs Dialog = UserDialogs.Instance;
 
-        public Command BackCommand => new Command( async() =>
-       {
-            await CoreMethods.PopPageModel();
-       });
+        public Command BackCommand => new Command(async () =>
+      {
+          await CoreMethods.PopPageModel();
+      });
 
         private bool isbusy;
-        public bool IsBusy 
+        public bool IsBusy
         {
             get { return isbusy; }
             set
@@ -71,7 +71,7 @@ namespace voltaire.PageModels.Base
         }
 
         private bool isloading;
-        public bool IsLoading 
+        public bool IsLoading
         {
             get { return isloading; }
             set
@@ -81,14 +81,33 @@ namespace voltaire.PageModels.Base
             }
         }
 
-      
+
         public static void Init()
         {
-         
             DependencyService.Register<IStoreManager, StoreManager>();
-            DependencyService.Register<ICustomerStore, CustomerStore>();
-            DependencyService.Register<IContractStore, ContractStore>();
-            DependencyService.Register<IQuotationStore, QuotationStore>();
+
+            DependencyService.Register<IPartnerStore, PartnerStore>();
+            DependencyService.Register<IPartnerCategoryStore, PartnerCategoryStore>();
+            DependencyService.Register<ICurrencyStore, CurrencyStore>();
+            DependencyService.Register<ICountryStore, CountryStore>();
+            DependencyService.Register<IPartnerGradeStore, PartnerGradeStore>();
+            DependencyService.Register<IPartnerTitleStore, PartnerTitleStore>();
+            DependencyService.Register<IUserStore, UserStore>();
+            DependencyService.Register<IProductStore, ProductStore>();
+            DependencyService.Register<IProductPriceListItemStore, ProductPriceListItemStore>();
+            DependencyService.Register<IProductPriceListStore, ProductPriceListStore>();
+            DependencyService.Register<IProductUOMStore, ProductUOMStore>();
+            DependencyService.Register<IPurchaseOrderLineStore, PurchaseOrderLineStore>();
+            DependencyService.Register<IPurchaseOrderStore, PurchaseOrderStore>();
+            DependencyService.Register<ISaleOrderStore, SaleOrderStore>();
+            DependencyService.Register<ISaleOrderLineStore, SaleOrderLineStore>();
+            DependencyService.Register<IEventStore, EventStore>();
+            DependencyService.Register<IEventAlarmStore, EventAlarmStore>();
+            DependencyService.Register<IMessageStore, MessageStore>();
+            DependencyService.Register<IAccessoryStore,AccessoryStore>();
+            DependencyService.Register<IAccessoryCategoryStore,AccessoryCategoryStore>();
+            DependencyService.Register<ISaddlePriceStore,SaddlePriceStore>();
+            DependencyService.Register<IServiceStore,ServiceStore>();
 
         }
 
@@ -100,20 +119,24 @@ namespace voltaire.PageModels.Base
             PageWasPopped += OnPageWasPopped;
         }
 
-       
+
         protected virtual void ReleaseResources()
         {
-            
+
         }
 
+        public virtual void TabAppearing()
+        {
+
+        }
 
         private void OnPageWasPopped(object sender, EventArgs eventArgs)
         {
             if (CurrentPage.GetType() != typeof(BaseDisposePage))
             {
-				return;
+                return;
             }
-               
+
             ((BaseDisposePage)CurrentPage).DisposeResources();
             PageWasPopped -= OnPageWasPopped;
             ReleaseResources();

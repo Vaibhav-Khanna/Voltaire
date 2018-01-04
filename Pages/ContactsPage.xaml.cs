@@ -3,6 +3,7 @@ using voltaire.PageModels;
 using Xamarin.Forms;
 using System.Linq;
 using voltaire.Helpers.Collections;
+using Xamarin.Forms.Xaml;
 
 namespace voltaire.Pages
 {
@@ -31,7 +32,7 @@ namespace voltaire.Pages
                 Device.BeginInvokeOnMainThread(() =>
                {
                    searchBar.Unfocus();
-               });
+                });
             }
         }
 
@@ -43,5 +44,58 @@ namespace voltaire.Pages
             }
         }
 
+        void Handle_Clicked(object sender, System.EventArgs e)
+        {
+            var normal_style = (Style)App.Current.Resources["FilterWeightButtonStyle"];
+            bt0.Style = normal_style;
+            bt1.Style = normal_style;
+            bt2.Style = normal_style;
+            bt3.Style = normal_style;
+            bt4.Style = normal_style;
+            bt5.Style = normal_style;
+
+            (sender as Button).Style = (Style) App.Current.Resources["FilterWeightClickedButtonStyle"];
+        }
+
+        void Handle_Tapped(object sender, System.EventArgs e)
+        {
+            var normal_style = (Style)App.Current.Resources["FilterWeightButtonStyle"];
+            bt0.Style = normal_style;
+            bt1.Style = normal_style;
+            bt2.Style = normal_style;
+            bt3.Style = normal_style;
+            bt4.Style = normal_style;
+            bt5.Style = normal_style;
+
+            var frame_style = (Style)App.Current.Resources["PartnerGradeFrame"];
+            var button_style = (Style)App.Current.Resources["PartnerGradeButton"];
+
+            foreach (var item in grades.Children)
+            {
+                (item as Frame).Style = frame_style;
+                ((item as Frame).Content as Button).Style = button_style;
+            }
+
+        }
+
+        void Handle_Grade(object sender, System.EventArgs e)
+        {
+            var frame_style = (Style)App.Current.Resources["PartnerGradeFrame"];
+            var button_style = (Style)App.Current.Resources["PartnerGradeButton"];
+          
+            foreach (var item in grades.Children)
+            {
+                (item as Frame).Style = frame_style;
+                ((item as Frame).Content as Button).Style = button_style;
+            }
+
+
+            ((sender as Button)).Style = (Style)App.Current.Resources["PartnerGradeButtonSelected"];
+
+            ((sender as Button).Parent as Frame).Style = (Style)App.Current.Resources["PartnerGradeFrameSelected"];
+
+            (BindingContext as ContactsPageModel).FilterByGrade.Execute((sender as Button).Text);
+
+        }
     }
 }

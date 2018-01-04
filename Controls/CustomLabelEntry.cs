@@ -8,7 +8,7 @@ namespace voltaire.Controls
     public class CustomLabelEntry : ContentView
     {
 
-        StackLayout container;
+        Grid container;
         string imagesource;
         BorderlessEntry entry;
         Button cancelbutton;
@@ -48,16 +48,19 @@ namespace voltaire.Controls
         void InflateLayout()
         {
             
-            container = new StackLayout()
-            {
-                Orientation = StackOrientation.Horizontal,
+            container = new Grid()
+            {              
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 BackgroundColor = Color.White,
                 Padding = new Thickness(0,0,40,0),
-                Spacing = 25
+                ColumnSpacing = 25
             };
 
+            container.RowDefinitions.Add(new RowDefinition(){ Height = new GridLength(68, GridUnitType.Absolute)});
+            container.ColumnDefinitions.Add(new ColumnDefinition(){ Width = new GridLength(26, GridUnitType.Auto)});
+            container.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(100, GridUnitType.Star) });
+            container.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(26, GridUnitType.Absolute) });
 
 
             var img = new Image() { Source = imagesource , WidthRequest = 24,HeightRequest = 24, IsOpaque = true, VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Start };
@@ -85,13 +88,13 @@ namespace voltaire.Controls
 
 			if (ShowText)
 			{		
-                container.Children.Add(labeltext);
+                container.Children.Add(labeltext,0,0);
             }
             else
-            container.Children.Add(img);
+            container.Children.Add(img,0,0);
 
-            container.Children.Add(entry);
-            container.Children.Add(cancelbutton);
+            container.Children.Add(entry,1,0);
+            container.Children.Add(cancelbutton,2,0);
 
             if(isdisabledstyle)
             {                

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using voltaire.Models.DataObjects;
 using voltaire.PageModels;
 using Xamarin.Forms;
 
@@ -7,34 +8,66 @@ namespace voltaire.Models
 {
     public class QuotationsModel
     {
-        
+
+        public QuotationsModel(SaleOrder model)
+        {
+            if (model != null)
+            {
+                SaleOrder = model;
+                Name = model.Name;
+                Ref = model.ClientOrderRef;
+                var tax = (model.AmountTotal - model.AmountUntaxed);
+               
+                if(model.AmountUntaxed!=0)
+                    TaxAmount = (double) ( (double)tax /(double) model.AmountUntaxed) * 100;
+
+                TotalAmount = model.AmountTotal;
+                SubTotal = model.AmountUntaxed;
+                ApplyTax = (model.AmountTotal - model.AmountUntaxed) == 0 ? false : true;
+                PermanentNote = model.Note;
+                Date = model.DateOrder;
+                Status = model.State;
+            }
+        }
+
+        public SaleOrder SaleOrder { get; set; }
+
         public Color BackColor { get; set; }
 
-        public string Name { get; set; }
+        string name;
+        public string Name { get { return name; } set { name = value; SaleOrder.Name = value; } }
 
-        public string Ref { get; set; }
+        string reference;
+        public string Ref { get { return reference; } set{ reference = value; SaleOrder.ClientOrderRef = value; } }
 
-        public DateTime Date { get; set; }
+        DateTime date;
+        public DateTime Date { get { return date; } set { date = value; SaleOrder.DateOrder = value; } }
 
-        public double TotalAmount { get; set; }
+        double totalAmount;
+        public double TotalAmount { get { return totalAmount; } set { totalAmount = value; SaleOrder.AmountTotal = Convert.ToInt64(value); } }
 
-        public double SubTotal { get; set; }
+        double subTotal;
+        public double SubTotal { get { return subTotal; } set { subTotal = value; SaleOrder.AmountUntaxed = Convert.ToInt64(value); } }
 
-        public bool ApplyTax { get; set; }
+        bool applyTax;
+        public bool ApplyTax { get { return applyTax; } set{ applyTax = value; } }
 
-        public double TaxAmount { get; set; }
+        double taxAmount;
+        public double TaxAmount { get { return taxAmount; } set { taxAmount = value; SaleOrder.AmountTax = Convert.ToInt64(value); } }
 
-        public List<Note> InternalNotes { get; set; } = new List<Note>();
+        string permanote;
+        public string PermanentNote { get { return permanote; } set { permanote = value; SaleOrder.Note = value; } }
 
         public List<Message> Messages { get; set; } = new List<Message>();
 
-        public string PermanentNote { get; set; }
+        string status;
+        public string Status { get { return status; } set { status = value; SaleOrder.State = value; } }
 
-        public QuotationStatus Status { get; set; } = QuotationStatus.Draft;
+        string trainerName;
+        public string TrainerName { get { return trainerName; } set { trainerName = value; } }
 
-        public string TrainerName { get; set; }
-
-        public string HorseShow { get; set; }
+        string horseShow;
+        public string HorseShow { get { return horseShow; } set { horseShow = value; } }
 
         public List<ProductQuotationModel> Products { get; set; } = new List<ProductQuotationModel>();
 
@@ -50,13 +83,13 @@ namespace voltaire.Models
 
         public DateTime? DateSigned { get; set; }
 
-        public List<string> TermsConditions { get; set; } = new List<string> { "20% cancellation fee on any custom order" , "2 weeks return policy on any custom item" };
+        public List<string> TermsConditions { get; set; } = new List<string> { "20% cancellation fee on any custom order", "2 weeks return policy on any custom item" };
 
     }
 
-    public enum QuotationStatus 
+    public enum QuotationStatus
     {
-        Quotation , Draft, Order , Payed , Sent
+        cancel, draft, sale, done, sent
     }
 
     public enum PaymentMethod

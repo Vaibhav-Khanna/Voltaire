@@ -29,6 +29,7 @@
                                                        Keyboard="Email"
                                                        Placeholder="{x:Static resources:AppResources.Username}" 
                                                        Style="{StaticResource EntryLogin}"
+                    IsEnabled="{Binding IsBusy,Converter={converter:BoolInverseConverter}}"
                                                        BackgroundColor="{StaticResource GreyBack}" 
                                                        WidthRequest="250"
                     Text="{Binding UserName, Mode=TwoWay}"
@@ -42,6 +43,7 @@
                                                        Style="{StaticResource EntryLogin}"
                                                        TextColor="{StaticResource GreyishBrown}"
                                                        WidthRequest="250"
+                    IsEnabled="{Binding IsBusy,Converter={converter:BoolInverseConverter}}"
                                                        HeightRequest="40" 
                     Text="{Binding Password, Mode=TwoWay}"
                                                        />

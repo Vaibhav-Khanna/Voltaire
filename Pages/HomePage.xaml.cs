@@ -23,31 +23,31 @@ namespace voltaire.Pages
         }
         public void ChangeToMap(object sender, EventArgs e)
         {
-            changeCurrentView("map");
+            //changeCurrentView("map");
         }
         public void ChangeToTodo(object sender, EventArgs e)
         {
-            changeCurrentView("todo");
+            //changeCurrentView("todo");
         }
         public void ChangeToAgenda(object sender, EventArgs e)
         {
-            changeCurrentView("agenda");
+            //changeCurrentView("agenda");
         }
         public void ChangeToReport(object sender, EventArgs e)
         {
-            changeCurrentView("report");
+            //changeCurrentView("report");
         }
         public void ChangeToQuotations(object sender, EventArgs e)
         {
-            changeCurrentView("quotation");
+            //changeCurrentView("quotation");
         }
         public void ChangeToContract(object sender, EventArgs e)
         {
-            changeCurrentView("contract");
+            //changeCurrentView("contract");
         }
         public void ChangeToGoals(object sender, EventArgs e)
         {
-            changeCurrentView("goals");
+            //changeCurrentView("goals");
         }
 
     }

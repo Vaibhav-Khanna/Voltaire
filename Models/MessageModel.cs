@@ -8,9 +8,10 @@ namespace voltaire.Models
         public MessageModel(Message message)
         {
             Message = message;
-            Name = message.Sender;
-            Date = message.SentDate.ToString("d");
-            Text = message.Text;
+            //TODO get name of sender from another table by using authorID key
+            //Name = message.AuthorId;
+            Date = message.Date.ToString("d");
+            Text = message.Body;
         }
 
         public Message Message { get; set; }

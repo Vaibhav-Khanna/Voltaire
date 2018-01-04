@@ -61,8 +61,7 @@ namespace voltaire.PageModels
 
             // mock data
             var list = new List<QuotationsModel>();
-            list.Add(new QuotationsModel(){ Ref = "1212122"  });
-            list.Add(new QuotationsModel() { Ref = "322323" });
+        
             // mock data
 
             QuotationsItemSource = new ObservableCollection<QuotationsModel>(list);

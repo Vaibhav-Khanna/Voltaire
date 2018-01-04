@@ -11,7 +11,12 @@ namespace voltaire.PageModels
 {
     public class OrderListTabPageModel : BasePageModel
     {
+        public OrderListTabPageModel()
+        {
+            FilterTypes = new ObservableCollection<string>() { "All", "Name", "Status" };
 
+            Filter = 0;
+        }
 		
 		public Command FilterTap => new Command(() =>
 		{
@@ -38,33 +43,7 @@ namespace voltaire.PageModels
 			{
 				customer = value;
 
-				filtertypes = new ObservableCollection<string>() { "All", "Name", "Status" };
-
-				filter = 0;
-
-                List<QuotationsModel> sent_quotations = new List<QuotationsModel>();
-
-                if(customer.Quotations!=null)
-                 sent_quotations = customer.Quotations.Where((arg) => arg.Status == QuotationStatus.Sent).ToList();
-                    
-
-                foreach (var item in sent_quotations)	
-                {	
-                    item.BackColor = sent_quotations.IndexOf(item) % 2 == 0 ? Color.FromRgb(247, 247, 247) : Color.White;		
-                }
-
-
-				all_items = new ObservableCollection<QuotationsModel>(sent_quotations);
-				quotationsitemsource = all_items;
-
-                all_items.Add(new QuotationsModel(){ Status = QuotationStatus.Sent, DateSigned = DateTime.Now, IsSignedValidated = true, IsConditionsAgree = true, Ref = "123434323"  });
-
-
-				RaisePropertyChanged();
-				RaisePropertyChanged(nameof(FilterTypes));
-				RaisePropertyChanged(nameof(Filter));
-				RaisePropertyChanged(nameof(QuotationsItemSource));
-
+				RaisePropertyChanged();			
 			}
 		}
 
@@ -95,8 +74,8 @@ namespace voltaire.PageModels
 
 		ObservableCollection<QuotationsModel> all_items;
 
-		ObservableCollection<QuotationsModel> quotationsitemsource;
 
+		ObservableCollection<QuotationsModel> quotationsitemsource;
 		public ObservableCollection<QuotationsModel> QuotationsItemSource
 		{
 			get { return quotationsitemsource; }
@@ -117,65 +96,98 @@ namespace voltaire.PageModels
 				return;
 
 			Customer = context;
+
+            FetchItems();
 		}
 
+        public override void TabAppearing()
+        {
+            base.TabAppearing();
 
-		void SearchResults(string query_string)
-		{
-			if (all_items.Count == 0)
-				return;
+            FetchItems();
+        }
 
-			List<QuotationsModel> items = new List<QuotationsModel>();
+        async void FetchItems()
+        {
 
-			if (string.IsNullOrWhiteSpace(query_string))
-			{
-				quotationsitemsource = all_items;
-				RaisePropertyChanged(nameof(QuotationsItemSource));
-				return;
-			}
+            var items = await StoreManager.SaleOrderStore.GetOrderItemsByCustomer(Customer.ExternalId);
 
-			query_string = query_string.Trim();
+            List<QuotationsModel> Quotations = new List<QuotationsModel>();
 
-			try
-			{
-
-				switch (Filter)
-				{
-					case 0:
-						{
-							items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string.ToLower()) || arg.Date.ToString().ToLower().Contains(query_string.ToLower()) || arg.Status.ToString().ToLower().Contains(query_string.ToLower()) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.Contains(query_string)).ToList();
-							break;
-						}
-					case 1:
-						{
-							items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string.ToLower())).ToList();
-							break;
-						}
-					case 2:
-						{
-							items = all_items.Where((arg) => arg.Status.ToString().ToLower().Contains(query_string.ToLower())).ToList();
-							break;
-						}
-					default:
-						{
-							items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string.ToLower()) || arg.Date.ToString().ToLower().Contains(query_string.ToLower()) || arg.Status.ToString().ToLower().Contains(query_string.ToLower()) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.Contains(query_string)).ToList();
-							break;
-						}
-
-				}
-			}
-			catch (Exception)
-			{
-			
-			}
-
-			if (items != null)
-			{
-				quotationsitemsource = new ObservableCollection<QuotationsModel>(items);
-				RaisePropertyChanged(nameof(QuotationsItemSource));
-			}
+            foreach (var item in items)
+            {
+                Quotations.Add(new QuotationsModel(item));
+            }
 
 
-		}
+            foreach (var item in Quotations)
+            {
+                item.BackColor = Quotations.IndexOf(item) % 2 == 0 ? Color.FromRgb(247, 247, 247) : Color.White;
+            }
+
+
+            all_items = new ObservableCollection<QuotationsModel>(Quotations);
+            QuotationsItemSource = all_items;
+
+            SearchQuery.Execute(null);
+
+        }
+
+        void SearchResults(string query_string)
+        {
+            if (all_items.Count == 0)
+                return;
+
+            List<QuotationsModel> items = new List<QuotationsModel>();
+
+            if (string.IsNullOrWhiteSpace(query_string))
+            {
+                QuotationsItemSource = all_items;
+                return;
+            }
+
+            query_string = query_string.Trim().ToLower();
+
+            try
+            {
+
+                switch (Filter)
+                {
+                    case 0:
+                        {
+                            items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string) || arg.Date.ToString().ToLower().Contains(query_string) || arg.Status.ToLower().Contains(query_string) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.Trim().ToLower().Contains(query_string)).ToList();
+                            break;
+                        }
+                    case 1:
+                        {
+                            items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string)).ToList();
+                            break;
+                        }
+                    case 2:
+                        {
+                            items = all_items.Where((arg) => arg.Status.ToLower().Contains(query_string)).ToList();
+                            break;
+                        }
+                    default:
+                        {
+                            items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string) || arg.Date.ToString().ToLower().Contains(query_string) || arg.Status.ToLower().Contains(query_string) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.Trim().ToLower().Contains(query_string)).ToList();
+                            break;
+                        }
+
+                }
+            }
+            catch (Exception)
+            {
+                QuotationsItemSource = all_items;
+            }
+
+            if (items != null)
+            {
+                QuotationsItemSource = new ObservableCollection<QuotationsModel>(items);
+            }
+
+        }
+
+
     }
 }

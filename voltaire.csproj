@@ -162,6 +162,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="PopUps\ToastLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -204,7 +208,6 @@
     <Compile Include="Pages\ContactsPage.xaml.cs">
       <DependentUpon>ContactsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Partner.cs" />
     <Compile Include="Helpers\Collections\Grouping.cs" />
     <Compile Include="Controls\Cells\ContactCell.xaml.cs">
       <DependentUpon>ContactCell.xaml</DependentUpon>
@@ -245,7 +248,6 @@
     <Compile Include="PageModels\QuotationDetailViewPageModel.cs" />
     <Compile Include="Models\ProductConstants.cs" />
     <Compile Include="PageModels\ProductQuotationModel.cs" />
-    <Compile Include="Models\Product.cs" />
     <Compile Include="Behaviors\NumberValidationBehaviour.cs" />
     <Compile Include="Behaviors\MaxLengthValidationBehaviour.cs" />
     <Compile Include="Renderers\NumberEntry.cs" />
@@ -262,7 +264,6 @@
     <Compile Include="Pages\GoalsPage.xaml.cs">
       <DependentUpon>GoalsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Salesman.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
@@ -277,7 +278,6 @@
     <Compile Include="Pages\ReportsPage.xaml.cs">
       <DependentUpon>ReportsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\State.cs" />
     <Compile Include="PageModels\ReportsDetailPageModel.cs" />
     <Compile Include="Controls\Cells\ReportCell.xaml.cs">
       <DependentUpon>ReportCell.xaml</DependentUpon>
@@ -292,14 +292,12 @@
     <Compile Include="Pages\ContractListTabPage.xaml.cs">
       <DependentUpon>ContractListTabPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\ContractModel.cs" />
     <Compile Include="Converters\TimeSpanToStringConverter.cs" />
     <Compile Include="Pages\NewContractPage.xaml.cs">
       <DependentUpon>NewContractPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\NewContractPageModel.cs" />
-    <Compile Include="Models\Agreement.cs" />
     <Compile Include="Models\AgreementModel.cs" />
     <Compile Include="Renderers\BorderlessDatePicker.cs" />
     <Compile Include="Pages\ContractPDFViewingPage.xaml.cs">
@@ -324,8 +322,6 @@
       <DependentUpon>QuotationInternalNotesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\QuotationInternalNotesPageModel.cs" />
-    <Compile Include="Models\Note.cs" />
-    <Compile Include="Models\Reminder.cs" />
     <Compile Include="Models\NoteModel.cs" />
     <Compile Include="PopUps\ReminderAddPopUp.xaml.cs">
       <DependentUpon>ReminderAddPopUp.xaml</DependentUpon>
@@ -380,7 +376,6 @@
       <DependentUpon>MessagesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\MessagesPageModel.cs" />
-    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Converters\BoolToLineBreakModeConverter.cs" />
     <Compile Include="Pages\PermanentNotePage.xaml.cs">
@@ -398,24 +393,98 @@
     <Compile Include="Models\ReminderModel.cs" />
     <Compile Include="DataStore\Abstraction\IBaseStore.cs" />
     <Compile Include="DataStore\Abstraction\IStoreManager.cs" />
-    <Compile Include="DataStore\Abstraction\Stores\ICustomerStore.cs" />
-    <Compile Include="Models\Quotation.cs" />
-    <Compile Include="DataStore\Abstraction\Stores\IQuotationStore.cs" />
-    <Compile Include="DataStore\Abstraction\Stores\IContractStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IPartnerStore.cs" />
     <Compile Include="DataStore\Abstraction\IBaseDataObject.cs" />
     <Compile Include="DataStore\Implementation\BaseStore.cs" />
     <Compile Include="DataStore\Implementation\StoreManager.cs" />
-    <Compile Include="DataStore\Implementation\Stores\CustomerStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\PartnerStore.cs" />
     <Compile Include="DataStore\Implementation\JwUtility.cs" />
     <Compile Include="DataStore\Implementation\JwtClaimNames.cs" />
     <Compile Include="DataStore\Implementation\InvalidTokenException.cs" />
-    <Compile Include="DataStore\Implementation\Stores\QuotationStore.cs" />
-    <Compile Include="DataStore\Implementation\Stores\ContractStore.cs" />
     <Compile Include="PageModels\LoginPageModel.cs" />
     <Compile Include="Pages\ContactAddPage.xaml.cs">
       <DependentUpon>ContactAddPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageModels\ContactAddPageModel.cs" />
+    <Compile Include="Models\DataObjects\Partner.cs" />
+    <Compile Include="Models\DataObjects\Agreement.cs" />
+    <Compile Include="Models\DataObjects\Contract.cs" />
+    <Compile Include="Models\DataObjects\Message.cs" />
+    <Compile Include="Models\DataObjects\Note.cs" />
+    <Compile Include="Models\DataObjects\Product.cs" />
+    <Compile Include="Models\DataObjects\Quotation.cs" />
+    <Compile Include="Models\DataObjects\Reminder.cs" />
+    <Compile Include="Models\DataObjects\Salesman.cs" />
+    <Compile Include="Models\DataObjects\State.cs" />
+    <Compile Include="Models\DataObjects\PartnerCategory.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IPartnerCategoryStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\PartnerCategoryStore.cs" />
+    <Compile Include="Models\DataObjects\PartnerGrade.cs" />
+    <Compile Include="Models\DataObjects\PartnerTitle.cs" />
+    <Compile Include="Models\DataObjects\ProductPriceList.cs" />
+    <Compile Include="Models\DataObjects\ProductPriceListItem.cs" />
+    <Compile Include="Models\DataObjects\Currency.cs" />
+    <Compile Include="Models\DataObjects\Country.cs" />
+    <Compile Include="Models\DataObjects\ProductUOM.cs" />
+    <Compile Include="Models\DataObjects\PurchaseOrder.cs" />
+    <Compile Include="Models\DataObjects\PurchaseOrderLine.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\ICountryStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\ICurrencyStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IPartnerGradeStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IPartnerTitleStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IProductPriceListStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IUserStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IProductPriceListItemStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IProductUOMStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IPurchaseOrderStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IPurchaseOrderLineStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\CountryStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\CurrencyStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\PartnerGradeStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\PartnerTitleStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\UserStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\ProductPriceListItemStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\ProductPriceListStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\ProductUOMStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\PurchaseOrderLineStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\PurchaseOrderStore.cs" />
+    <Compile Include="Models\DataObjects\SaleOrder.cs" />
+    <Compile Include="Models\DataObjects\SaleOrderLine.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\ISaleOrderStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\ISaleOrderLineStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\SaleOrderStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\SaleOrderLineStore.cs" />
+    <Compile Include="Models\DataObjects\Event.cs" />
+    <Compile Include="Models\DataObjects\EventAlarm.cs" />
+    <Compile Include="Models\DataObjects\User.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IEventStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IEventAlarmStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IMessageStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\EventStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\EventAlarmStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\MessageStore.cs" />
+    <Compile Include="Converters\PartnerWeightConverter.cs" />
+    <Compile Include="Renderers\ExtendedEditor.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IProductStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\ProductStore.cs" />
+    <Compile Include="NavigationContainer.cs" />
+    <Compile Include="PopUps\ToastService.cs" />
+    <Compile Include="PopUps\ToastLayout.xaml.cs">
+      <DependentUpon>ToastLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataObjects\Accessory.cs" />
+    <Compile Include="Models\DataObjects\AccessoryCategory.cs" />
+    <Compile Include="Models\DataObjects\SaddlePrice.cs" />
+    <Compile Include="Models\DataObjects\Service.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IAccessoryStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IAccessoryCategoryStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\ISaddlePriceStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IServiceStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\AccessoryStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\AccessoryCategoryStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\SaddlePriceStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\ServiceStore.cs" />
+    <Compile Include="Renderers\HtmlFormattedLabel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
@@ -478,15 +547,6 @@
     <Reference Include="Xamarin.Forms.GoogleMaps">
       <HintPath>packages\Xamarin.Forms.GoogleMaps.2.1.1\lib\portable-net45+wp8+wpa81+win8+MonoAndroid70+MonoTouch10+Xamarin.iOS10+UAP10\Xamarin.Forms.GoogleMaps.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Core">
-      <HintPath>packages\Xamarin.Forms.2.4.0.282\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Platform">
-      <HintPath>packages\Xamarin.Forms.2.4.0.282\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.Xaml">
-      <HintPath>packages\Xamarin.Forms.2.4.0.282\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Xaml.dll</HintPath>
-    </Reference>
     <Reference Include="SignaturePad.Forms">
       <HintPath>packages\Xamarin.Controls.SignaturePad.Forms.2.2.0\lib\portable-net45+win+wp8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SignaturePad.Forms.dll</HintPath>
     </Reference>
@@ -544,6 +604,18 @@
     <Reference Include="Acr.UserDialogs.Interface">
       <HintPath>packages\Acr.UserDialogs.6.5.1\lib\netstandard1.1\Acr.UserDialogs.Interface.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>packages\Xamarin.Forms.2.5.0.121934\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform">
+      <HintPath>packages\Xamarin.Forms.2.5.0.121934\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>packages\Xamarin.Forms.2.5.0.121934\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="Lottie.Forms">
+      <HintPath>packages\Com.Airbnb.Xamarin.Forms.Lottie.2.3.4\lib\portable-net45+wp8+win+wpa81+dnxcore50\Lottie.Forms.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -573,9 +645,10 @@
     <Folder Include="DataStore\Implementation\" />
     <Folder Include="DataStore\Abstraction\Stores\" />
     <Folder Include="DataStore\Implementation\Stores\" />
+    <Folder Include="Models\DataObjects\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Import Project="packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('packages\Xamarin.Forms.2.4.0.282\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
+  <Import Project="packages\Xamarin.Forms.2.5.0.121934\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('packages\Xamarin.Forms.2.5.0.121934\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
 </Project>
 
 

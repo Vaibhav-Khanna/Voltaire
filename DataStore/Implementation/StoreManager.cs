@@ -15,6 +15,10 @@ using Xamarin.Forms;
 using Newtonsoft.Json;
 using System.Text;
 using System.Diagnostics;
+using voltaire.Models.DataObjects;
+using voltaire.DataStore.Implementation.Stores;
+using voltaire.PopUps;
+using Plugin.Connectivity;
 
 namespace voltaire.DataStore.Implementation
 {
@@ -26,14 +30,71 @@ namespace voltaire.DataStore.Implementation
         public bool IsInitialized { get; private set; }
 
 
-        ICustomerStore customerStore;
-        public ICustomerStore CustomerStore => customerStore ?? (customerStore = DependencyService.Get<ICustomerStore>());
+        IPartnerStore customerStore;
+        public IPartnerStore CustomerStore => customerStore ?? (customerStore = DependencyService.Get<IPartnerStore>());
 
-        IQuotationStore quotationStore;
-        public IQuotationStore QuotationStore => quotationStore ?? (quotationStore = DependencyService.Get<IQuotationStore>());
+        IPartnerCategoryStore partnerCategoryStore;
+        public IPartnerCategoryStore PartnerCategoryStore => partnerCategoryStore ?? (partnerCategoryStore = DependencyService.Get<IPartnerCategoryStore>());
 
-        IContractStore contractStore;
-        public IContractStore ContractStore => contractStore ?? (contractStore = DependencyService.Get<IContractStore>());
+        ICountryStore countryStore;
+        public ICountryStore CountryStore => countryStore ?? (countryStore = DependencyService.Get<ICountryStore>());
+
+        ICurrencyStore currencyStore;
+        public ICurrencyStore CurrencyStore => currencyStore ?? (currencyStore = DependencyService.Get<ICurrencyStore>());
+
+        IPartnerGradeStore partnerGradeStore;
+        public IPartnerGradeStore PartnerGradeStore => partnerGradeStore ?? (partnerGradeStore = DependencyService.Get<IPartnerGradeStore>());
+
+        IPartnerTitleStore partnerTitleStore;
+        public IPartnerTitleStore PartnerTitleStore => partnerTitleStore ?? (partnerTitleStore = DependencyService.Get<IPartnerTitleStore>());
+
+        IUserStore userStore;
+        public IUserStore UserStore => userStore ?? (userStore = DependencyService.Get<IUserStore>());
+
+        IProductStore productStore;
+        public IProductStore ProductStore => productStore ?? (productStore = DependencyService.Get<IProductStore>());
+
+        IProductPriceListItemStore productPriceListItemStore;
+        public IProductPriceListItemStore ProductPriceListItemStore => productPriceListItemStore ?? (productPriceListItemStore = DependencyService.Get<IProductPriceListItemStore>());
+
+        IProductPriceListStore productPriceListStore;
+        public IProductPriceListStore ProductPriceListStore => productPriceListStore ?? (productPriceListStore = DependencyService.Get<IProductPriceListStore>());
+
+        IProductUOMStore productUOMStore;
+        public IProductUOMStore ProductUOMStore => productUOMStore ?? (productUOMStore = DependencyService.Get<IProductUOMStore>());
+
+        IPurchaseOrderLineStore purchaseOrderLineStore;
+        public IPurchaseOrderLineStore PurchaseOrderLineStore => purchaseOrderLineStore ?? (purchaseOrderLineStore = DependencyService.Get<IPurchaseOrderLineStore>());
+
+        IPurchaseOrderStore purchaseOrderStore;
+        public IPurchaseOrderStore PurchaseOrderStore => purchaseOrderStore ?? (purchaseOrderStore = DependencyService.Get<IPurchaseOrderStore>());
+
+        ISaleOrderStore saleOrderStore;
+        public ISaleOrderStore SaleOrderStore => saleOrderStore ?? (saleOrderStore = DependencyService.Get<ISaleOrderStore>());
+
+        ISaleOrderLineStore saleOrderLineStore;
+        public ISaleOrderLineStore SaleOrderLineStore => saleOrderLineStore ?? (saleOrderLineStore = DependencyService.Get<ISaleOrderLineStore>());
+
+        IEventStore eventStore;
+        public IEventStore EventStore => eventStore ?? (eventStore = DependencyService.Get<IEventStore>());
+
+        IEventAlarmStore eventAlarmStore;
+        public IEventAlarmStore EventAlarmStore => eventAlarmStore ?? (eventAlarmStore = DependencyService.Get<IEventAlarmStore>());
+
+        IMessageStore messageStore;
+        public IMessageStore MessageStore => messageStore ?? (messageStore = DependencyService.Get<IMessageStore>());
+
+        IAccessoryStore accessoryStore;
+        public IAccessoryStore AccessoryStore => accessoryStore ?? (accessoryStore = DependencyService.Get<IAccessoryStore>());
+
+        IAccessoryCategoryStore accessoryCategoryStore;
+        public IAccessoryCategoryStore AccessoryCategoryStore => accessoryCategoryStore ?? (accessoryCategoryStore = DependencyService.Get<IAccessoryCategoryStore>());
+
+        ISaddlePriceStore saddlePriceStore;
+        public ISaddlePriceStore SaddlePriceStore => saddlePriceStore ?? (saddlePriceStore = DependencyService.Get<ISaddlePriceStore>());
+
+        IServiceStore serviceStore;
+        public IServiceStore ServiceStore => serviceStore ?? (serviceStore = DependencyService.Get<IServiceStore>());
 
 
         #region iStoreManager Implementation
@@ -44,8 +105,28 @@ namespace voltaire.DataStore.Implementation
             //TODO Do the update id for settings and add rest of the tables
 
             CustomerStore.DropTable();
-            QuotationStore.DropTable();
-            ContractStore.DropTable();
+            PartnerCategoryStore.DropTable();
+            CountryStore.DropTable();
+            CurrencyStore.DropTable();
+            PartnerGradeStore.DropTable();
+            PartnerTitleStore.DropTable();
+            UserStore.DropTable();
+            ProductStore.DropTable();
+            ProductPriceListItemStore.DropTable();
+            ProductPriceListStore.DropTable();
+            ProductUOMStore.DropTable();
+            PurchaseOrderLineStore.DropTable();
+            PurchaseOrderStore.DropTable();
+            SaleOrderStore.DropTable();
+            SaleOrderLineStore.DropTable();
+            EventStore.DropTable();
+            EventAlarmStore.DropTable();
+            AccessoryStore.DropTable();
+            AccessoryCategoryStore.DropTable();
+            SaddlePriceStore.DropTable();
+            ServiceStore.DropTable();
+            MessageStore.DropTable();
+
 
             IsInitialized = false;
             return Task.FromResult(true);
@@ -69,9 +150,30 @@ namespace voltaire.DataStore.Implementation
                 // var path = $"syncstore{dbId}.db";
                 MobileService = new MobileServiceClient("http://voltairecrm.azurewebsites.net");
                 store = new MobileServiceSQLiteStore("syncstore.db");
+
                 store.DefineTable<Partner>();
-                store.DefineTable<Contract>();
-                store.DefineTable<Quotation>();
+                store.DefineTable<PartnerCategory>();
+                store.DefineTable<Country>();
+                store.DefineTable<Currency>();
+                store.DefineTable<Models.DataObjects.PartnerGrade>();
+                store.DefineTable<PartnerTitle>();
+                store.DefineTable<User>();
+                store.DefineTable<Product>();
+                store.DefineTable<ProductPriceListItem>();
+                store.DefineTable<ProductPriceList>();
+                store.DefineTable<ProductUOM>();
+                store.DefineTable<PurchaseOrderLine>();
+                store.DefineTable<PurchaseOrder>();
+                store.DefineTable<SaleOrder>();
+                store.DefineTable<SaleOrderLine>();
+                store.DefineTable<Event>();
+                store.DefineTable<EventAlarm>();
+                store.DefineTable<Message>();
+                store.DefineTable<Accessory>();
+                store.DefineTable<AccessoryCategory>();
+                store.DefineTable<SaddlePrice>();
+                store.DefineTable<Service>();
+
                 store.DefineTable<StoreSettings>();
 
                 //TODO Add rest of the tables
@@ -88,10 +190,38 @@ namespace voltaire.DataStore.Implementation
             if (!IsInitialized)
                 await InitializeAsync();
 
+
             var taskList = new List<Task<bool>>();
+
+            taskList.Add(UserStore.SyncAsync());
             taskList.Add(CustomerStore.SyncAsync());
-            taskList.Add(QuotationStore.SyncAsync());
-            taskList.Add(ContractStore.SyncAsync());
+            taskList.Add(PartnerCategoryStore.SyncAsync());
+
+            taskList.Add(PartnerGradeStore.SyncAsync());
+            taskList.Add(PartnerTitleStore.SyncAsync());
+            taskList.Add(CurrencyStore.SyncAsync());
+            taskList.Add(CountryStore.SyncAsync());
+            taskList.Add(ProductStore.SyncAsync());
+            taskList.Add(ProductPriceListItemStore.SyncAsync());
+            taskList.Add(ProductPriceListStore.SyncAsync());
+            taskList.Add(ProductUOMStore.SyncAsync());
+            taskList.Add(PurchaseOrderLineStore.SyncAsync());
+            taskList.Add(PurchaseOrderStore.SyncAsync());
+            taskList.Add(SaleOrderStore.SyncAsync());
+            taskList.Add(SaleOrderLineStore.SyncAsync());
+            taskList.Add(EventStore.SyncAsync());
+            taskList.Add(EventAlarmStore.SyncAsync());
+            taskList.Add(AccessoryStore.SyncAsync());
+            taskList.Add(AccessoryCategoryStore.SyncAsync());
+            taskList.Add(SaddlePriceStore.SyncAsync());
+            taskList.Add(ServiceStore.SyncAsync());
+            taskList.Add(MessageStore.SyncAsync());
+
+            Device.BeginInvokeOnMainThread(async () =>
+           {
+               await ToastService.Show("The app is currently syncing... This might take a few minutes");
+           });
+
 
             //TODO add all other stores
 
@@ -101,12 +231,17 @@ namespace voltaire.DataStore.Implementation
             }
 
             var successes = await Task.WhenAll(taskList).ConfigureAwait(false);
+
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await ToastService.Hide();
+            });
+
             return successes.Any(x => !x); //if any were a failure.
+
         }
 
         #endregion
-
-
 
         public async Task<MobileServiceUser> LoginAsync(string username, string password)
         {
@@ -128,15 +263,17 @@ namespace voltaire.DataStore.Implementation
                 var content = new StringContent(json_cred, Encoding.UTF8, "application/json");
 
                 var response = await _client.PostAsync(uri, content);
-       
+
                 if (response.IsSuccessStatusCode)
                 {
                     var content2 = await response.Content.ReadAsStringAsync();
-                   
+
                     var User = JsonConvert.DeserializeObject<USER>(content2);
 
-                    MobileServiceUser user = new MobileServiceUser(User.UserId.ToString()){ MobileServiceAuthenticationToken = User.Token };
-          
+                    MobileServiceUser user = new MobileServiceUser(User.UserId.ToString()) { MobileServiceAuthenticationToken = User.Token };
+
+                    MobileService.CurrentUser = user;
+
                     await CacheToken(user);
 
                     return user;
@@ -150,7 +287,7 @@ namespace voltaire.DataStore.Implementation
             {
                 return null;
             }
-           
+
         }
 
 
@@ -175,26 +312,26 @@ namespace voltaire.DataStore.Implementation
             }
             else
                 return true;
-            
+
         }
 
 
         public async Task<bool> SaveSettingsAsync(StoreSettings settings)
-        { 
+        {
             try
             {
                 await MobileService.SyncContext.Store.UpsertAsync(nameof(StoreSettings), new[] { JObject.FromObject(settings) }, true);
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
                 return false;
-            } 
+            }
 
             return true;
         }
-       
+
 
         public async Task<StoreSettings> ReadSettingsAsync()
         {
@@ -203,13 +340,13 @@ namespace voltaire.DataStore.Implementation
                 var response = (await MobileService.SyncContext.Store.LookupAsync(nameof(StoreSettings), StoreSettings.StoreSettingsId))?.ToObject<StoreSettings>();
                 return response;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return null;
             }
-        } 
-       
-            
+        }
+
+
 
         async Task CacheToken(MobileServiceUser user)
         {
@@ -247,6 +384,78 @@ namespace voltaire.DataStore.Implementation
             }
         }
 
+        public async Task VerifyTokenAsync()
+        {
+
+            StoreSettings settings = await ReadSettingsAsync();
+
+            if (settings != null)
+            {
+                try
+                {
+                    if (!string.IsNullOrEmpty(settings.AuthToken) && JwtUtility.GetTokenExpiration(settings.AuthToken) < DateTime.UtcNow)
+                    {
+                        if (CrossConnectivity.Current.IsConnected)
+                        {
+                            var result = await RegenerateTokenAsync();
+
+                            if (!result)
+                            {
+                                //no token regenerated
+                                await LogoutAsync();
+                            }
+                        }
+                    }
+                }
+                catch (InvalidTokenException)
+                {
+                    //Token exception error
+                    if (CrossConnectivity.Current.IsConnected)
+                    {
+                        await LogoutAsync();
+                    }
+                }
+            }
+
+        }
+
+        private async Task<bool> RegenerateTokenAsync()
+        {
+            var uri = new Uri("http://voltairecrm.azurewebsites.net/api/regenerate");
+
+            StoreSettings settings = await ReadSettingsAsync();
+
+            var actualToken = settings.AuthToken;
+
+            try
+            {
+                var _client = new HttpClient();
+                _client.DefaultRequestHeaders.Add("token", actualToken);
+                _client.DefaultRequestHeaders.Add("ZUMO-API-VERSION", "2.0.0");
+
+                var response = await _client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var User = JsonConvert.DeserializeObject<USER>(content);
+                    MobileServiceUser user = new MobileServiceUser(User.UserId.ToString()) { MobileServiceAuthenticationToken = User.Token };
+                    MobileService.CurrentUser = user;
+
+                    await CacheToken(user);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
 
         public class StoreSettings
         {

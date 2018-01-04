@@ -21,6 +21,7 @@ namespace voltaire.PageModels
     { 
         
         Partner _customer;
+        bool ItemUpdated = false;
 
         public Command tap_Toolbar  => new Command( async () => 
         {
@@ -35,20 +36,22 @@ namespace voltaire.PageModels
             else
             {
                 customer.ContactAddress = address;
-                customer.Weight = weight;
+                customer.PartnerWeight = weight == null ? 0 : Convert.ToInt64(weight);
                 customer.Name = firstname;               
                 customer.Phone = phone;
                 customer.Website = website;
-                customer.LastVisit = lastvisit;
-				customer.PermanentNote = notetext;
+                customer.DateLocalization = lastvisit;
+                customer.Comment = notetext;
                 customer.Email = email;
                 customer.CanEdit = false;
                 customer.CompanyName = companyname;
-                customer.Tags = Tags.Select((arg) => arg.TagText).ToList();
+
+                if(Tags.Any() && ContactsPageModel.GradeValues.Any() )
+                customer.GradeId = ContactsPageModel.GradeValues[Tags.First().TagText].Value;
 
                 Dialog.ShowLoading(null);
 
-                await StoreManager.CustomerStore.UpdateAsync(customer);
+                await StoreManager.CustomerStore.UpdateAsync(customer);             
 
                 Dialog.HideLoading();
 
@@ -69,7 +72,7 @@ namespace voltaire.PageModels
            else
            {
                customer.CanEdit = false;
-               await CoreMethods.PopPageModel(null, false, true);
+               await CoreMethods.PopPageModel(ItemUpdated,false, true);
                ReleaseResources();
            }
 
@@ -98,8 +101,9 @@ namespace voltaire.PageModels
         {
             if(!string.IsNullOrEmpty(Popup_context.SelectedItem))
             {
+                Tags.Clear();
                 Tags.Add(new TagControlModel(Tags){ TagText = Popup_context.SelectedItem, CanEdit = CanEdit });
-                customer.Tags.Add(Popup_context.SelectedItem);
+                //customer.Tags.Add(Popup_context.SelectedItem);
             }
            
             Popup_context.ItemSelectedChanged -= Popup_Context_ItemSelectedChanged;
@@ -136,7 +140,6 @@ namespace voltaire.PageModels
         }
 
         private bool canedit;
-
         public bool CanEdit
 		{
             get { return canedit; }
@@ -148,7 +151,6 @@ namespace voltaire.PageModels
 		}
 
 		private string backbutton;
-
 		public string BackButton
 		{
 			get { return backbutton; }
@@ -161,7 +163,6 @@ namespace voltaire.PageModels
 
 
         private string toolbarbutton;
-
         public string ToolbarButton
 		{
 			get { return toolbarbutton; }
@@ -173,7 +174,6 @@ namespace voltaire.PageModels
 		}
 
         private string firstname;
-
         public string FirstName
 		{
 			get { return firstname; }
@@ -186,7 +186,6 @@ namespace voltaire.PageModels
        		
 
         private int? weight;
-
 		public int? Weight
 		{
             get { return weight; }
@@ -200,18 +199,18 @@ namespace voltaire.PageModels
 		}
 
         private DateTime? lastvisit;
-
         public DateTime? LastVisit
 		{
 			get { return lastvisit; }
 			set
 			{
 				lastvisit = value;
-                customer.LastVisit = lastvisit;
+                customer.DateLocalization = lastvisit;
+                StoreManager.CustomerStore.UpdateAsync(customer);
+                ItemUpdated = true;
 				RaisePropertyChanged();
 			}
 		}
-
 
         private string email;
 
@@ -289,7 +288,7 @@ namespace voltaire.PageModels
             {
                 notetext = value;
 
-                customer.PermanentNote = notetext;
+                customer.Comment = notetext;
 
                 RaisePropertyChanged();
             }
@@ -297,19 +296,36 @@ namespace voltaire.PageModels
 
 
         private int selectedindex = 0;
-
         public int SelectedIndex 
         {
             get { return selectedindex; }
             set
             {
                 selectedindex = value;
+
+                if(selectedindex != 0)
+                {
+                    ToolbarButton = null;
+                }
+                else
+                {
+                    ToolbarButton = AppResources.Modify;
+                }
+
+                lock (this)
+                {
+                    if (Tab != null && Tab.Any())
+                    {
+                        Tab[selectedindex].OnAppearing();
+                    }
+                }
+
                 RaisePropertyChanged(nameof(SelectedIndex));
             }
         }
 
-        ViewPagerTemplateSelector item_template_selector;
 
+        ViewPagerTemplateSelector item_template_selector;
         public ViewPagerTemplateSelector ItemTemplates
         {
             get { return item_template_selector; }
@@ -330,28 +346,27 @@ namespace voltaire.PageModels
 
                 firstname = customer.Name;
                
-                weight = customer.Weight;
+                weight = customer.PartnerWeight == 0 ? null : (int?) Convert.ToInt32(customer.PartnerWeight);
                 email = customer.Email;
                 address = customer.ContactAddress;
                 phone = customer.Phone;
                 website = customer.Website;
-                lastvisit = customer.LastVisit;
+                lastvisit = customer.DateLocalization;
                 canedit = customer.CanEdit;
-                NoteText = customer.PermanentNote;
+                NoteText = customer.Comment;
                 title = canedit ? AppResources.Update : $"{customer.Name}";
                 toolbarbutton = canedit ? AppResources.Save : AppResources.Modify;
                 backbutton = canedit ? AppResources.Cancel : AppResources.Back;
                 companyname = customer.CompanyName;
-
 
                 if (Tags == null)
                     Tags = new ObservableCollection<TagControlModel>();
                 else
                     Tags.Clear();
 
-                foreach (var item in customer.Tags)
+                if ( ContactsPageModel.GradeValues.Where( (arg) => arg.Value == customer.GradeId).Any() )
                 {
-                    Tags.Add(new TagControlModel(Tags){ TagText = item , CanEdit = CanEdit });
+                    Tags.Add(new TagControlModel(Tags){ TagText = ContactsPageModel.GradeValues.Where((arg) => arg.Value == customer.GradeId).First().Key , CanEdit = CanEdit });
                 }
                     
                 //Tags = new ObservableCollection<TagControlModel>(Tags.ToList());
@@ -400,7 +415,7 @@ namespace voltaire.PageModels
                 return;
 
             customer = (Partner)returnedData;
-     
+            ItemUpdated = true; 
         }
 
         public override void Init(object initData)
@@ -436,6 +451,19 @@ namespace voltaire.PageModels
 
         }
 
+        protected override void ViewIsAppearing(object sender, EventArgs e)
+        {
+            base.ViewIsAppearing(sender, e);
+
+            lock (this)
+            {
+                if (Tab != null && Tab.Any())
+                {
+                    Tab[selectedindex].OnAppearing();
+                }
+            }
+
+        }
        
 
     }

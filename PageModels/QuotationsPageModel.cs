@@ -12,39 +12,22 @@ namespace voltaire.PageModels
     public class QuotationsPageModel : BasePageModel
     {
 
-		Partner customer;
+        public QuotationsPageModel()
+        {
+            FilterTypes = new ObservableCollection<string>() { "All", "Name", "Status" };
 
+            Filter = 0;
+        }
+
+		Partner customer;
 		public Partner Customer
 		{
 			get { return customer; }
 			set
 			{
 				customer = value;
-
-                filtertypes = new ObservableCollection<string>() { "All", "Name", "Status" };
-              
-                filter = 0;
-
-				List<QuotationsModel> not_sent_quotations = new List<QuotationsModel>();
-
-				if (customer.Quotations != null)
-					not_sent_quotations = customer.Quotations.Where((arg) => arg.Status != QuotationStatus.Sent).ToList();
-
-
-                foreach (var item in not_sent_quotations)
-                {
-                    item.BackColor = customer.Quotations.IndexOf(item)%2 == 0 ?  Color.FromRgb(247,247,247) : Color.White;
-                }
-
-
-                all_items = new ObservableCollection<QuotationsModel>(not_sent_quotations);
-                quotationsitemsource = all_items;
-                   
                 RaisePropertyChanged();
-                RaisePropertyChanged(nameof(FilterTypes));
-                RaisePropertyChanged(nameof(Filter));
-                RaisePropertyChanged(nameof(QuotationsItemSource));
-
+               
 			}
 		}
 
@@ -98,7 +81,6 @@ namespace voltaire.PageModels
         ObservableCollection<QuotationsModel> all_items;
 
         ObservableCollection<QuotationsModel> quotationsitemsource;
-
         public ObservableCollection<QuotationsModel> QuotationsItemSource 
         {
             get { return quotationsitemsource; }
@@ -119,12 +101,11 @@ namespace voltaire.PageModels
 
             if(string.IsNullOrWhiteSpace(query_string))
             {
-                quotationsitemsource = all_items;
-				RaisePropertyChanged(nameof(QuotationsItemSource));
+                QuotationsItemSource = all_items;
                 return;
             }
 
-			query_string = query_string.Trim();
+            query_string = query_string.Trim().ToLower();
 
             try
             {
@@ -133,40 +114,36 @@ namespace voltaire.PageModels
                 {
                     case 0:
                         {
-                            items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string.ToLower()) || arg.Date.ToString().ToLower().Contains(query_string.ToLower()) || arg.Status.ToString().ToLower().Contains(query_string.ToLower()) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.Contains(query_string)).ToList();
+                            items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string) || arg.Date.ToString().ToLower().Contains(query_string) || arg.Status.ToLower().Contains(query_string) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.ToLower().Contains(query_string)).ToList();
                             break;
                         }
                     case 1:
                         {
-                            items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string.ToLower())).ToList();
+                            items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string)).ToList();
                             break;
                         }
                     case 2:
                         {
-                            items = all_items.Where((arg) => arg.Status.ToString().ToLower().Contains(query_string.ToLower())).ToList();
+                            items = all_items.Where((arg) => arg.Status.ToLower().Contains(query_string)).ToList();
                             break;
                         }
                     default:
                         {
-                            items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string.ToLower()) || arg.Date.ToString().ToLower().Contains(query_string.ToLower()) || arg.Status.ToString().ToLower().Contains(query_string.ToLower()) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.Contains(query_string)).ToList();
+                            items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string) || arg.Date.ToString().ToLower().Contains(query_string) || arg.Status.ToLower().Contains(query_string) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.ToLower().Contains(query_string)).ToList();
                             break;
                         }
 
                 }
             }
-            catch(Exception ex)
+            catch(Exception)
             {
-				//quotationsitemsource = all_items;
-				//RaisePropertyChanged(nameof(QuotationsItemSource));
-				//return;
+                QuotationsItemSource = all_items;
             }
 
             if(items != null)
             { 
-                quotationsitemsource = new ObservableCollection<QuotationsModel>(items);
-                RaisePropertyChanged(nameof(QuotationsItemSource));
+                QuotationsItemSource = new ObservableCollection<QuotationsModel>(items); 
             }
-
 
         }
 
@@ -181,8 +158,40 @@ namespace voltaire.PageModels
 				return;
 
             Customer = context;
+
+            FetchItems();
         }
 
+        public override void TabAppearing()
+        {
+            base.TabAppearing();
+
+            FetchItems();
+        }
+
+        async void FetchItems()
+        {            
+            var items = await StoreManager.SaleOrderStore.GetQuotationItemsByCustomer(Customer.ExternalId);
+
+            List<QuotationsModel> Quotations = new List<QuotationsModel>();
+
+            foreach (var item in items)
+            {
+                Quotations.Add(new QuotationsModel(item));
+            }
+
+           
+            foreach (var item in Quotations)
+            {
+                item.BackColor = Quotations.IndexOf(item) % 2 == 0 ? Color.FromRgb(247, 247, 247) : Color.White;
+            }
+
+
+            all_items = new ObservableCollection<QuotationsModel>(Quotations);
+            QuotationsItemSource = all_items;
+
+            SearchQuery.Execute(null);
+        }
 
     }
 }

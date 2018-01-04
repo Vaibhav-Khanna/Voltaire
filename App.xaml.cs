@@ -22,15 +22,15 @@ namespace voltaire
 
         public App()
         {
-            
+
             InitializeComponent();
 
             ProductConstants.Init();
-           
+
             BasePageModel.Init();
 
             storeManager = DependencyService.Get<IStoreManager>() as StoreManager;
-             
+
             Init();
 
             MainPage = new ContentPage();
@@ -49,6 +49,9 @@ namespace voltaire
             if (!storeManager.IsInitialized)
                 await storeManager.InitializeAsync();
 
+            //verify Token 
+            await storeManager.VerifyTokenAsync();
+
             var setting = await storeManager.ReadSettingsAsync();
 
             if (setting == null || string.IsNullOrWhiteSpace(setting.AuthToken))
@@ -57,7 +60,7 @@ namespace voltaire
                 {
                     var homePage = FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
 
-                    MainPage = new FreshNavigationContainer(homePage) { BarBackgroundColor = (Color)Resources["turquoiseBlue"], BarTextColor = Color.Black };                             
+                    MainPage = new FreshNavigationContainer(homePage) { BarBackgroundColor = (Color)Resources["turquoiseBlue"], BarTextColor = Color.Black };
                 });
             }
             else
@@ -66,15 +69,15 @@ namespace voltaire
                 {
                     var homePage = FreshPageModelResolver.ResolvePageModel<HomePageModel>();
 
-                    var homeContainer = new FreshNavigationContainer(homePage) { BarBackgroundColor = (Color)Resources["turquoiseBlue"], BarTextColor = Color.White };
+                    var homeContainer = new AONNavigationContainer(homePage) { BarBackgroundColor = (Color)Resources["turquoiseBlue"], BarTextColor = Color.White };
 
                     MainPage = homeContainer;
                 });
             }
 
-            if(setting != null && !string.IsNullOrWhiteSpace(setting.AuthToken))
+            if (setting != null && !string.IsNullOrWhiteSpace(setting.AuthToken))
                 await storeManager.SyncAllAsync(true);
-            
+
         }
 
 
@@ -92,7 +95,7 @@ namespace voltaire
 
         protected override void OnSleep()
         {
-			// Handle when your app sleeps
+            // Handle when your app sleeps
 
             // Shutdown the database for integrity			
         }

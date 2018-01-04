@@ -5,8 +5,8 @@ using voltaire.Models;
 
 namespace voltaire.DataStore.Abstraction.Stores
 {
-    public interface IContractStore : IBaseStore<Contract>
+    public interface IMessageStore : IBaseStore<Message>
     {
-        Task<IEnumerable<Contract>> Search(string QueryText);
+        Task<IEnumerable<Message>> GetMessagesByResIdAsync(string saleOrderId, string model);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
 using FreshMvvm;
+using voltaire.PageModels;
 using Xamarin.Forms;
 
 namespace voltaire.Models
@@ -17,6 +18,10 @@ namespace voltaire.Models
 
         public FormattedString DisplayText { get; set; }
 
+       
+        private string _grade;      
+        public string Grade { get { return _grade; } set { _grade = value; RaisePropertyChanged(); } }
+
         public string NameSort
         {
             get
@@ -31,11 +36,12 @@ namespace voltaire.Models
             Customer = customer;
 
             var name_array = Customer.Name?.Split(' ');
+           // var name = Customer.Name;
 
             DisplayText = new FormattedString
             {
                 Spans = {
-                        new Span { Text = name_array?.First() + " " , FontAttributes = FontAttributes.None, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"}
+                    new Span { Text = name_array?.First() + " " , FontAttributes = FontAttributes.None, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"}
                 }
             };
 
@@ -51,7 +57,16 @@ namespace voltaire.Models
                 s = null;
                 DisplayText.Spans.Add(new Span { Text = st.Trim(), FontSize = 20, FontFamily = "SanFranciscoDisplay-Bold" });
             }
-                     
+
+            if (ContactsPageModel.GradeValues != null && ContactsPageModel.GradeValues.Any())
+            {
+                Grade = ContactsPageModel.GradeValues.Where((arg) => arg.Value == Customer?.GradeId)?.FirstOrDefault().Key;
+
+                if(Grade!=null)
+                {
+                    Grade = "   " + Grade + "   "; 
+                }
+            }
         }
     }
 }

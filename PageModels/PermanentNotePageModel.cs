@@ -7,12 +7,11 @@ namespace voltaire.PageModels
 {
     public class PermanentNotePageModel : BasePageModel
     {
-        public PermanentNotePageModel()
-        {
-        }
+        
 
         public Command BackButton => new Command(async(obj) =>
        {
+            StoreManager.SaleOrderStore.UpdateAsync(Quotation.SaleOrder);
             await CoreMethods.PopPageModel();
        });
 
@@ -53,7 +52,7 @@ namespace voltaire.PageModels
 
             NoteText = Quotation.PermanentNote;
 
-            CanEdit = Quotation.Status == QuotationStatus.Sent ? false : true;
+            CanEdit = Quotation.Status == QuotationStatus.sale.ToString() || Quotation.Status == QuotationStatus.done.ToString() ? false : true;
 
         }
 

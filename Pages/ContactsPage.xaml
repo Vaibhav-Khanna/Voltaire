@@ -146,10 +146,9 @@
                 </ListView.Footer>
             </ListView> 
 
-            
-            <StackLayout    
-                            Grid.Column="1" Grid.Row="1"
-                            IsVisible="{Binding filterLayoutVisibility}" 
+             <ScrollView Orientation="Vertical" BackgroundColor="{StaticResource GreyBack}"  Padding="0" Margin="0" Grid.Column="1" IsVisible="{Binding filterLayoutVisibility}"  Grid.Row="1" VerticalOptions="Start">   
+            <StackLayout                                
+                            
                             BackgroundColor="{StaticResource GreyBack}" 
                             Orientation="Vertical"
                             HorizontalOptions="FillAndExpand"
@@ -167,22 +166,28 @@
                         Style="{StaticResource FilterSectionLabelStyle}" />
                 
                 <controls:WrapLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Spacing="10">
-                        <Button Text="0" 
+                        <Button x:Name="bt0" Text="0" Command="{Binding FilterByWeight}" CommandParameter="0"
+                        Clicked="Handle_Clicked"
                                 Style="{StaticResource FilterWeightButtonStyle}" />
                     
-                        <Button Text="1"
+                        <Button  x:Name="bt1" Text="1" Command="{Binding FilterByWeight}" CommandParameter="1"
+                        Clicked="Handle_Clicked"
                                 Style="{StaticResource FilterWeightButtonStyle}" />
                     
-                        <Button Text="2"
+                        <Button  x:Name="bt2" Text="2" Command="{Binding FilterByWeight}" CommandParameter="2"
+                        Clicked="Handle_Clicked"
                                 Style="{StaticResource FilterWeightButtonStyle}" />
                     
-                        <Button Text="3"
-                                Style="{StaticResource FilterWeightClickedButtonStyle}" />
-                    
-                        <Button Text="4"
+                        <Button  x:Name="bt3" Text="3" Command="{Binding FilterByWeight}" CommandParameter="3"
+                        Clicked="Handle_Clicked"
                                 Style="{StaticResource FilterWeightButtonStyle}" />
                     
-                        <Button Text="5"
+                        <Button   x:Name="bt4" Text="4" Command="{Binding FilterByWeight}" CommandParameter="4"
+                        Clicked="Handle_Clicked"
+                                Style="{StaticResource FilterWeightButtonStyle}" />
+                    
+                        <Button   x:Name="bt5" Text="5" Command="{Binding FilterByWeight}" CommandParameter="5"
+                        Clicked="Handle_Clicked"
                                 Style="{StaticResource FilterWeightButtonStyle}" />  
                 </controls:WrapLayout> 
                 
@@ -197,23 +202,24 @@
                         VerticalOptions="Start" 
                         Margin="10" 
                         Style="{StaticResource FilterSectionLabelStyle}"/>
-                
-                    <controls:RepeaterView ItemsSource="{Binding partnerGrades}" VerticalOptions="Start" HorizontalOptions="Start" Orientation="Horizontal" Spacing="10" Margin="10,10">
+
+                           
+                    <controls:RepeaterView x:Name="grades" Padding="0,0,0,60" Margin="10,10,10,20" ItemsSource="{Binding partnerGrades}"  VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand" Orientation="Horizontal" Spacing="10" >
                         <controls:RepeaterView.ItemTemplate>
                           <DataTemplate>
                             <Frame Padding="20,0" Style="{StaticResource PartnerGradeFrame}"> 
-                                <Button Text="{Binding Grade}"  Style="{StaticResource PartnerGradeButton}" />
+                                <Button Text="{Binding Grade}" Clicked="Handle_Grade" Style="{StaticResource PartnerGradeButton}" />
                             </Frame>
                         </DataTemplate>
                         </controls:RepeaterView.ItemTemplate>    
                     </controls:RepeaterView>    
-                
+               
                     
                  <BoxView   HeightRequest="1" 
                             BackgroundColor="{StaticResource GreyLine}" 
                             HorizontalOptions="FillAndExpand" 
                             VerticalOptions="Start" 
-                            Margin="0,20,0,0"/>
+                            Margin="0,0,0,0"/>
                 
                     <Frame   
                         Margin="20"
@@ -230,10 +236,13 @@
                                       Text="{x:Static resources:AppResources.ResetFilters}"
                                       VerticalOptions="Center"  /> 
                             </StackLayout>
-    
-                    </Frame>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Handle_Tapped" Command="{Binding ResetFilter}" />   
+                    </Frame.GestureRecognizers>
+                  </Frame>
                     
             </StackLayout>
+                  </ScrollView>
         </Grid>
     </Grid>
 </base:BasePage>
