@@ -30,7 +30,8 @@
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <PlatformTarget>x86</PlatformTarget>
     <MtouchSdkVersion>11.1</MtouchSdkVersion>
-    <CodesignProvision></CodesignProvision>
+    <CodesignProvision>
+    </CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>pdbonly</DebugType>
@@ -83,6 +84,28 @@
     <PlatformTarget>x86</PlatformTarget>
     <MtouchSdkVersion>11.1</MtouchSdkVersion>
     <CodesignProvision>VS: com.voltaire.crm Development</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'IOS Release|iPhoneSimulator'">
+    <OutputPath>bin\iPhoneSimulator\IOS Release\</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'IOS Release|iPhone'">
+    <OutputPath>bin\iPhone\IOS Release\</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchFloat32>true</MtouchFloat32>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -287,10 +310,7 @@
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
-    <Folder Include="Renderers\" />
     <Folder Include="Effects\" />
-    <Folder Include="Resources\Fonts\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
