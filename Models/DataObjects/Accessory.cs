@@ -22,7 +22,7 @@
         [JsonProperty("deleted")]
         public bool Deleted { get; set; }
 
-        [JsonProperty("externalId")]
+        [JsonProperty("external_id")]
         public string ExternalId { get; set; }
 
         [JsonProperty("name")]

@@ -11,9 +11,6 @@
     {
         
 
-        //[JsonProperty("version")]
-        //public string Version { get; set; }
-
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
 

@@ -311,11 +311,10 @@ namespace voltaire.PageModels
         }
 
 
-
-
         public async override void Init(object initData)
         {
             base.Init(initData);
+          
 
             var _customer = initData as Tuple<Partner, bool, QuotationsModel>;  // T1 represents the customer object data , T2 is a bool which represents if its a new quotationpage
 
@@ -341,7 +340,6 @@ namespace voltaire.PageModels
                     foreach (var item in items)
                     {
                         products.Add(new ProductQuotationModel(item));
-                        //var product = await StoreManager.ProductStore.GetItemsByProductId(item.ProductId);
                     }
                 }
 

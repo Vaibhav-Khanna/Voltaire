@@ -17,7 +17,7 @@ namespace voltaire.DataStore.Implementation.Stores
 
         public async Task<User> GetCurrentUserAsync()
         {
-
+            
             if (currentUser != null)
                 return currentUser;
 
@@ -32,6 +32,7 @@ namespace voltaire.DataStore.Implementation.Stores
             }
 
             var id = StoreManager.MobileService.CurrentUser.UserId;
+
             if (id != null)
             {
                 try

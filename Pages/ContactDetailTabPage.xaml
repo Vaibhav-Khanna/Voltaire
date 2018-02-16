@@ -24,7 +24,7 @@
                 <StackLayout x:Name="topcontainer" Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource White}" Padding="40,20,30,20" Spacing="5" >
                     <renderers:RoundedBoxView HeightRequest="15" WidthRequest="15" Margin="3" Color="{StaticResource Vermillion}" VerticalOptions="Center"/>
                     <Label FontFamily="Raleway-Light" FontSize="18" HorizontalOptions="StartAndExpand" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" Text="{Binding LastVisit, Converter = {StaticResource DateToStringConverter} }"/>
-                    <Button HorizontalOptions="End" VerticalOptions="Center" Margin="0" Text="{x:Static resources:AppResources.CheckIn}" FontSize="20" FontFamily="Raleway-Regular" TextColor="White" BackgroundColor="{StaticResource turquoiseBlue}" BorderRadius="5"  WidthRequest="190" HeightRequest="50" Command="{Binding CheckIn}"/>                  
+                    <Button HorizontalOptions="End" IsEnabled="{Binding CheckinEnable}" VerticalOptions="Center" Margin="0" Text="{x:Static resources:AppResources.CheckIn}" FontSize="20" FontFamily="Raleway-Regular" TextColor="White" BackgroundColor="{StaticResource turquoiseBlue}" BorderRadius="5"  WidthRequest="190" HeightRequest="50" Command="{Binding CheckIn}"/>                  
                 </StackLayout>
                 <Grid RowSpacing="1" Margin="40,0,0,0" BackgroundColor="{StaticResource White}" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                     <Grid.ColumnDefinitions>

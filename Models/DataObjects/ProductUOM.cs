@@ -10,9 +10,6 @@
     public class ProductUOM : BaseDataObject
     {
       
-        //[JsonProperty("version")]
-        //public string Version { get; set; }
-
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
 
@@ -22,7 +19,7 @@
         [JsonProperty("deleted")]
         public bool Deleted { get; set; }
 
-        [JsonProperty("externalId")]
+        [JsonProperty("external_id")]
         public long ExternalId { get; set; }
 
         [JsonProperty("active")]

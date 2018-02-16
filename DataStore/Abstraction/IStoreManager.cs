@@ -32,6 +32,9 @@ namespace voltaire.DataStore.Abstraction
         IAccessoryCategoryStore AccessoryCategoryStore { get; }
         ISaddlePriceStore SaddlePriceStore { get; }
         IServiceStore ServiceStore { get; }
+        ICheckinStore CheckinStore { get; }
+        IDocumentStore DocumentStore { get; }
+        ICompanyStore CompanyStore { get; }
 
         Task<bool> SyncAllAsync(bool syncUserSpecific);
         Task DropEverythingAsync();

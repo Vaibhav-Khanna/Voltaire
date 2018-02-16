@@ -10,9 +10,6 @@
     public class PurchaseOrder : BaseDataObject
     {
        
-        //[JsonProperty("version")]
-        //public string Version { get; set; }
-
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
 
@@ -32,16 +29,16 @@
         public long AmountUntaxed { get; set; }
 
         [JsonProperty("bid_date")]
-        public DateTime BidDate { get; set; }
+        public System.DateTime BidDate { get; set; }
 
         [JsonProperty("bid_validity")]
-        public DateTime BidValidity { get; set; }
+        public System.DateTime BidValidity { get; set; }
 
         [JsonProperty("company_id")]
         public long CompanyId { get; set; }
 
         [JsonProperty("create_date")]
-        public DateTime CreateDate { get; set; }
+        public System.DateTime CreateDate { get; set; }
 
         [JsonProperty("create_uid")]
         public long CreateUid { get; set; }
@@ -50,13 +47,13 @@
         public long CurrencyId { get; set; }
 
         [JsonProperty("date_approve")]
-        public DateTime DateApprove { get; set; }
+        public System.DateTime DateApprove { get; set; }
 
         [JsonProperty("date_planned")]
-        public DateTime DatePlanned { get; set; }
+        public System.DateTime DatePlanned { get; set; }
 
         [JsonProperty("date_order")]
-        public DateTime DateOrder { get; set; }
+        public System.DateTime DateOrder { get; set; }
 
         [JsonProperty("display_name")]
         public string DisplayName { get; set; }
@@ -83,9 +80,9 @@
         public string State { get; set; }
 
         [JsonProperty("write_date")]
-        public DateTime WriteDate { get; set; }
+        public System.DateTime WriteDate { get; set; }
 
-        [JsonProperty("externalId")]
+        [JsonProperty("external_id")]
         public long ExternalId { get; set; }
     }
 }

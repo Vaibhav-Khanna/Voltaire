@@ -87,8 +87,11 @@ namespace voltaire.PageModels.Base
             DependencyService.Register<IStoreManager, StoreManager>();
 
             DependencyService.Register<IPartnerStore, PartnerStore>();
+            DependencyService.Register<ICompanyStore, CompanyStore>();
             DependencyService.Register<IPartnerCategoryStore, PartnerCategoryStore>();
             DependencyService.Register<ICurrencyStore, CurrencyStore>();
+            DependencyService.Register<ICheckinStore, CheckinStore>();
+            DependencyService.Register<IDocumentStore, DocumentStore>();
             DependencyService.Register<ICountryStore, CountryStore>();
             DependencyService.Register<IPartnerGradeStore, PartnerGradeStore>();
             DependencyService.Register<IPartnerTitleStore, PartnerTitleStore>();

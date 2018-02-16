@@ -8,12 +8,9 @@ namespace voltaire.Models.DataObjects
     public class Product : BaseDataObject
     {
 
-        //public double UnitPrice { get; set; }
+       
         [JsonIgnore]
         public List<ProductProperty> Properties { get; set; } = new List<ProductProperty>();
-
-        //[JsonProperty("version")]
-        //public string Version { get; set; }
 
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
@@ -24,7 +21,7 @@ namespace voltaire.Models.DataObjects
         [JsonProperty("deleted")]
         public bool Deleted { get; set; }
 
-        [JsonProperty("externalId")]
+        [JsonProperty("external_id")]
         public long ExternalId { get; set; }
 
         [JsonProperty("write_date")]

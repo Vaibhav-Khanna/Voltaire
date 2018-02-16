@@ -27,15 +27,17 @@ namespace voltaire.DataStore.Implementation.Stores
             return item;
         }
 
-        public override async Task<IEnumerable<Partner>> GetItemsAsync(bool forceRefresh = false)
+        public override async Task<IEnumerable<Partner>> GetItemsAsync(bool forceRefresh = false, bool AllItems = false)
         {
             await InitializeStore().ConfigureAwait(false);
 
             if (forceRefresh)
                 await PullLatestAsync().ConfigureAwait(false);
 
-            return await Table.OrderBy(x => x.Name).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
-
+            if (AllItems)
+                return await Table.OrderBy(x => x.Name).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+            else
+                return await Table.OrderBy(x => x.Name).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<Partner>> GetItemsAsync(int? Weight, long? Grade, bool forceRefresh = false)

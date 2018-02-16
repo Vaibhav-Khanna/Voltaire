@@ -10,9 +10,6 @@
     public class SaleOrderLine : BaseDataObject
     {
       
-        //[JsonProperty("version")]
-        //public string Version { get; set; }
-
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
 
@@ -22,17 +19,17 @@
         [JsonProperty("deleted")]
         public bool Deleted { get; set; }
 
-        [JsonProperty("externalId")]
+        [JsonProperty("external_id")]
         public long ExternalId { get; set; }
 
         [JsonProperty("write_date")]
-        public DateTime WriteDate { get; set; }
+        public System.DateTime WriteDate { get; set; }
 
         [JsonProperty("company_id")]
         public long CompanyId { get; set; }
 
         [JsonProperty("create_date")]
-        public DateTime CreateDate { get; set; }
+        public System.DateTime CreateDate { get; set; }
 
         [JsonProperty("create_uid")]
         public long CreateUid { get; set; }

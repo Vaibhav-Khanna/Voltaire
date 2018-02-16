@@ -22,16 +22,16 @@
         [JsonProperty("deleted")]
         public bool Deleted { get; set; }
 
-        [JsonProperty("externalId")]
+        [JsonProperty("external_id")]
         public long ExternalId { get; set; }
 
         [JsonProperty("write_date")]
-        public DateTime WriteDate { get; set; }
+        public System.DateTime WriteDate { get; set; }
 
         [JsonProperty("author_id")]
-        public string AuthorId { get; set; } //azure Document Author Id
+        public string AuthorId { get; set; }
 
-        [JsonProperty("external_author_id")] //to connect to Partner externalId
+        [JsonProperty("external_author_id")]
         public long ExternalAuthorId { get; set; }
 
         [JsonProperty("body")]
@@ -41,23 +41,25 @@
         public string Subject { get; set; }
 
         [JsonProperty("date")]
-        public DateTime Date { get; set; }
+        public System.DateTime Date { get; set; }
 
-        [JsonProperty("res_id")] //Document relative Id eg 
+        [JsonProperty("subtype_id")]
+        public long SubtypeId { get; set; }
+
+        [JsonProperty("res_id")]
         public string ResId { get; set; }
 
-        [JsonProperty("external_res_id")] //to connect to sale Order externalId
+        [JsonProperty("external_res_id")]
         public long ExternalResId { get; set; }
 
-        [JsonProperty("model")] //Related Document Type eg sale.order
+        [JsonProperty("model")]
         public string Model { get; set; }
 
-        [JsonProperty("message_type")] //Message type: email for email message, notification for system message, comment for other messages such as user replies
-        public MessageType MessageType { get; set; }
+        [JsonProperty("message_type")]
+        public string MessageType { get; set; }
 
-        [JsonProperty("description")] //Message description: either the subject, or the beginning of the body
+        [JsonProperty("description")]
         public string Description { get; set; }
-
 
 
     }

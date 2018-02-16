@@ -96,6 +96,15 @@ namespace voltaire.DataStore.Implementation
         IServiceStore serviceStore;
         public IServiceStore ServiceStore => serviceStore ?? (serviceStore = DependencyService.Get<IServiceStore>());
 
+        ICheckinStore checkinStore;
+        public ICheckinStore CheckinStore => checkinStore ?? (checkinStore = DependencyService.Get<ICheckinStore>());
+
+        IDocumentStore documentStore;
+        public IDocumentStore DocumentStore => documentStore ?? ( documentStore = DependencyService.Get<IDocumentStore>());
+
+        ICompanyStore companyStore;
+        public ICompanyStore CompanyStore => companyStore ?? (companyStore = DependencyService.Get<ICompanyStore>());
+
 
         #region iStoreManager Implementation
 
@@ -126,7 +135,9 @@ namespace voltaire.DataStore.Implementation
             SaddlePriceStore.DropTable();
             ServiceStore.DropTable();
             MessageStore.DropTable();
-
+            CheckinStore.DropTable();
+            DocumentStore.DropTable();
+            CompanyStore.DropTable();
 
             IsInitialized = false;
             return Task.FromResult(true);
@@ -148,7 +159,7 @@ namespace voltaire.DataStore.Implementation
                 IsInitialized = true;
                 // var dbId = Settings.DatabaseId;
                 // var path = $"syncstore{dbId}.db";
-                MobileService = new MobileServiceClient("http://voltairecrm.azurewebsites.net");
+                MobileService = new MobileServiceClient(Constants.EndUrl);
                 store = new MobileServiceSQLiteStore("syncstore.db");
 
                 store.DefineTable<Partner>();
@@ -173,6 +184,9 @@ namespace voltaire.DataStore.Implementation
                 store.DefineTable<AccessoryCategory>();
                 store.DefineTable<SaddlePrice>();
                 store.DefineTable<Service>();
+                store.DefineTable<Checkin>();
+                store.DefineTable<Document>();
+                store.DefineTable<Company>();
 
                 store.DefineTable<StoreSettings>();
 
@@ -196,7 +210,7 @@ namespace voltaire.DataStore.Implementation
             taskList.Add(UserStore.SyncAsync());
             taskList.Add(CustomerStore.SyncAsync());
             taskList.Add(PartnerCategoryStore.SyncAsync());
-
+            taskList.Add(CheckinStore.SyncAsync());
             taskList.Add(PartnerGradeStore.SyncAsync());
             taskList.Add(PartnerTitleStore.SyncAsync());
             taskList.Add(CurrencyStore.SyncAsync());
@@ -216,6 +230,8 @@ namespace voltaire.DataStore.Implementation
             taskList.Add(SaddlePriceStore.SyncAsync());
             taskList.Add(ServiceStore.SyncAsync());
             taskList.Add(MessageStore.SyncAsync());
+            taskList.Add(DocumentStore.SyncAsync());
+            taskList.Add(CompanyStore.SyncAsync());
 
             Device.BeginInvokeOnMainThread(async () =>
            {
@@ -251,16 +267,20 @@ namespace voltaire.DataStore.Implementation
             }
 
             var credentials = new JObject();
-            credentials["username"] = username;
+            credentials["email"] = username;
             credentials["password"] = password;
+            credentials["mobile"] = true;
 
-            var uri = new Uri("http://voltairecrm.azurewebsites.net/api/login");
+            var uri = new Uri(Constants.EndUrl + "/api/login");
 
             try
             {
                 var _client = new HttpClient();
+
+                _client.DefaultRequestHeaders.Add("ZUMO-API-VERSION", "2.0.0");
                 var json_cred = credentials.ToString();
                 var content = new StringContent(json_cred, Encoding.UTF8, "application/json");
+               
 
                 var response = await _client.PostAsync(uri, content);
 
@@ -347,7 +367,6 @@ namespace voltaire.DataStore.Implementation
         }
 
 
-
         async Task CacheToken(MobileServiceUser user)
         {
             var settings = new StoreSettings
@@ -421,7 +440,7 @@ namespace voltaire.DataStore.Implementation
 
         private async Task<bool> RegenerateTokenAsync()
         {
-            var uri = new Uri("http://voltairecrm.azurewebsites.net/api/regenerate");
+            var uri = new Uri(Constants.EndUrl + "/api/regenerate");
 
             StoreSettings settings = await ReadSettingsAsync();
 

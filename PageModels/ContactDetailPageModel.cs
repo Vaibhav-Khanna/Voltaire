@@ -13,6 +13,8 @@ using voltaire.PopUps;
 using Rg.Plugins.Popup.Services;
 using System.Linq;
 using System.Collections.Generic;
+using voltaire.Helpers;
+using voltaire.Models.DataObjects;
 
 namespace voltaire.PageModels
 {
@@ -79,9 +81,30 @@ namespace voltaire.PageModels
 	   });
 
 
-        public Command CheckIn => new Command( () =>
+        public Command CheckIn => new Command(async () =>
        {
-            LastVisit = DateTime.Now;
+           CheckinEnable = false;
+
+           var can_locate = await Permissions.CheckPermissionLocation();
+
+           if (can_locate)
+           {
+               var location = await Location.GetCurrentLocation(true);
+
+               var user = await StoreManager.UserStore.GetCurrentUserAsync();
+
+               if (user == null)
+               {
+                   CheckinEnable = true;
+                   return;
+               }
+
+               LastVisit = DateTime.Now;
+
+               var response = await StoreManager.CheckinStore.InsertAsync(new Checkin() { PartnerId = customer.Id, Latitude = location.Latitude, Longitude = location.Longitude, DoneAt = LastVisit.Value, UserId = user.Id });
+           }
+
+            CheckinEnable = true;
        });
 
 
@@ -115,6 +138,17 @@ namespace voltaire.PageModels
             await CoreMethods.PushPageModel<QuotationInternalNotesPageModel>(customer, false, true);
         });
 
+
+        bool checkinenable = true;
+        public bool CheckinEnable
+        {
+            get { return checkinenable; }
+            set
+            {
+                checkinenable = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private ObservableCollection<TTab> tab;
         public ObservableCollection<TTab> Tab
@@ -205,8 +239,8 @@ namespace voltaire.PageModels
 			set
 			{
 				lastvisit = value;
-                customer.DateLocalization = lastvisit;
-                StoreManager.CustomerStore.UpdateAsync(customer);
+                //customer.DateLocalization = lastvisit;
+                //StoreManager.CustomerStore.UpdateAsync(customer);
                 ItemUpdated = true;
 				RaisePropertyChanged();
 			}

@@ -10,9 +10,6 @@
     public class SaleOrder : BaseDataObject
     {
        
-        //[JsonProperty("version")]
-        //public string Version { get; set; }
-
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
 
@@ -22,7 +19,7 @@
         [JsonProperty("deleted")]
         public bool Deleted { get; set; }
 
-        [JsonProperty("externalId")]
+        [JsonProperty("external_id")]
         public long ExternalId { get; set; }
 
         [JsonProperty("write_date")]
@@ -96,5 +93,11 @@
 
         [JsonProperty("user_id")]
         public long UserId { get; set; }
+
+        [JsonProperty("to_send")]
+        public bool ToSend { get; set; }
+
+        [JsonProperty("file_uploaded")]
+        public bool FileUploaded { get; set; }
     }
 }

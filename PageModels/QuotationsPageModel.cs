@@ -42,7 +42,6 @@ namespace voltaire.PageModels
             }
         }
 
-
         int filter { get; set; }
         public int Filter 
         {

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -47,12 +46,14 @@
     <EmbeddedResource Include="Pages\ContactsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Cells\ContactCell.xaml">
-    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Cells\ContactCell.xaml"></EmbeddedResource>
     <EmbeddedResource Include="Pages\MapTabPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\QuotationsTabPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ReportsDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\QuotationDetailViewPage.xaml">
@@ -79,9 +80,6 @@
     <EmbeddedResource Include="Controls\Cells\ReportCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\ReportsDetailPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pages\ContractListTabPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -98,7 +96,7 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ContactDetailTabPage.xaml">
-        <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\PodiumsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -127,9 +125,9 @@
     <EmbeddedResource Include="Pages\ContractsMainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-		<EmbeddedResource Include="PopUps\UserInfoPopUp.xaml">
-			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-		</EmbeddedResource>
+    <EmbeddedResource Include="PopUps\UserInfoPopUp.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\BindingPinView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -314,7 +312,7 @@
     </Compile>
     <Compile Include="Pages\ContactDetailTabPage.xaml.cs">
       <DependentUpon>ContactDetailTabPage.xaml</DependentUpon>
-      </Compile>
+    </Compile>
     <Compile Include="Pages\PodiumsPage.xaml.cs">
       <DependentUpon>PodiumsPage.xaml</DependentUpon>
     </Compile>
@@ -359,10 +357,10 @@
     <Compile Include="PopUps\CustomerPickerPopUp.xaml.cs">
       <DependentUpon>CustomerPickerPopUp.xaml</DependentUpon>
     </Compile>
-		<Compile Include="PopUps\UserInfoPopUp.xaml.cs">
-			<DependentUpon>UserInfoPopUp.xaml</DependentUpon>
-		</Compile>
-		<Compile Include="PopUps\UserInfoPopupModel.cs" />
+    <Compile Include="PopUps\UserInfoPopUp.xaml.cs">
+      <DependentUpon>UserInfoPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopUps\UserInfoPopupModel.cs" />
     <Compile Include="PopUps\CustomerPickerPopupModel.cs" />
     <Compile Include="Pages\OrderListTabPage.xaml.cs">
       <DependentUpon>OrderListTabPage.xaml</DependentUpon>
@@ -485,6 +483,19 @@
     <Compile Include="DataStore\Implementation\Stores\SaddlePriceStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\ServiceStore.cs" />
     <Compile Include="Renderers\HtmlFormattedLabel.cs" />
+    <Compile Include="Helpers\Location.cs" />
+    <Compile Include="Helpers\Permission.cs" />
+    <Compile Include="Models\DataObjects\Checkin.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\ICheckinStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\CheckinStore.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Models\DataObjects\Document.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IDocumentStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\DocumentStore.cs" />
+    <Compile Include="Models\DataObjects\Company.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\ICompanyStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\CompanyStore.cs" />
+    <Compile Include="Helpers\PclStorage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
@@ -616,6 +627,18 @@
     <Reference Include="Lottie.Forms">
       <HintPath>packages\Com.Airbnb.Xamarin.Forms.Lottie.2.3.4\lib\portable-net45+wp8+win+wpa81+dnxcore50\Lottie.Forms.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.Permissions.Abstractions">
+      <HintPath>packages\Plugin.Permissions.2.2.1\lib\netstandard1.0\Plugin.Permissions.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions">
+      <HintPath>packages\Plugin.Permissions.2.2.1\lib\netstandard1.0\Plugin.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage.Abstractions">
+      <HintPath>packages\PCLStorage.1.0.2\lib\portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac\PCLStorage.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="PCLStorage">
+      <HintPath>packages\PCLStorage.1.0.2\lib\portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac\PCLStorage.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -650,7 +673,3 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="packages\Xamarin.Forms.2.5.0.121934\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('packages\Xamarin.Forms.2.5.0.121934\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
 </Project>
-
-
-
-

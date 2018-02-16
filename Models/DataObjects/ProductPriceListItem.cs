@@ -10,9 +10,6 @@
     public class ProductPriceListItem : BaseDataObject
     {
        
-        //[JsonProperty("version")]
-        //public string Version { get; set; }
-
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
 
@@ -23,10 +20,10 @@
         public bool Deleted { get; set; }
 
         [JsonProperty("date_start")]
-        public DateTime DateStart { get; set; }
+        public System.DateTime DateStart { get; set; }
 
         [JsonProperty("date_end")]
-        public DateTime DateEnd { get; set; }
+        public System.DateTime DateEnd { get; set; }
 
         [JsonProperty("fixed_price")]
         public long FixedPrice { get; set; }
@@ -53,9 +50,9 @@
         public long PriceSurcharge { get; set; }
 
         [JsonProperty("write_date")]
-        public DateTime WriteDate { get; set; }
+        public System.DateTime WriteDate { get; set; }
 
-        [JsonProperty("externalId")]
+        [JsonProperty("external_id")]
         public long ExternalId { get; set; }
 
         [JsonProperty("priceListId")]

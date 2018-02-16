@@ -10,9 +10,6 @@
     public class PurchaseOrderLine : BaseDataObject
     {
       
-        //[JsonProperty("version")]
-        //public string Version { get; set; }
-
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
 
@@ -26,7 +23,7 @@
         public long CompanyId { get; set; }
 
         [JsonProperty("create_date")]
-        public DateTime CreateDate { get; set; }
+        public System.DateTime CreateDate { get; set; }
 
         [JsonProperty("create_uid")]
         public long CreateUid { get; set; }
@@ -35,7 +32,7 @@
         public long CurrencyId { get; set; }
 
         [JsonProperty("date_planned")]
-        public DateTime DatePlanned { get; set; }
+        public System.DateTime DatePlanned { get; set; }
 
         [JsonProperty("invoiced")]
         public bool Invoiced { get; set; }
@@ -58,11 +55,11 @@
         [JsonProperty("price_total")]
         public long PriceTotal { get; set; }
 
-        [JsonProperty("product_id")]
-        public long ProductId { get; set; }
+        [JsonProperty("external_product_id")]
+        public long ExternalProductId { get; set; }
 
-        [JsonProperty("internal_product_id")]
-        public string InternalProductId { get; set; }
+        [JsonProperty("product_id")]
+        public string ProductId { get; set; }
 
         [JsonProperty("product_qty")]
         public long ProductQty { get; set; }
@@ -74,9 +71,9 @@
         public string State { get; set; }
 
         [JsonProperty("write_date")]
-        public DateTime WriteDate { get; set; }
+        public System.DateTime WriteDate { get; set; }
 
-        [JsonProperty("externalId")]
+        [JsonProperty("external_id")]
         public long ExternalId { get; set; }
     }
 }
