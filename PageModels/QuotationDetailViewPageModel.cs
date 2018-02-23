@@ -9,27 +9,41 @@ using voltaire.PageModels.Base;
 using voltaire.PopUps;
 using voltaire.Resources;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace voltaire.PageModels
 {
     public class QuotationDetailViewPageModel : BasePageModel
     {
 
-        ProductPickerPopupModel popup_context = new ProductPickerPopupModel(); //  Popup picker model 
+        ProductPickerPopupModel popup_context = new ProductPickerPopupModel(); //  Popup picker model
 
 
         public Command BackButton => new Command(async () =>
        {
            UserDialogs.Instance.ShowLoading("Just a moment...");
+          
            await StoreManager.SaleOrderStore.UpdateAsync(Quotation.SaleOrder);
+
+           foreach (var item in OrderItemsSource)
+           {
+               await StoreManager.SaleOrderLineStore.UpdateAsync(item.Product);
+           }
+
+           foreach (var item in OrderItemsSource)
+           {
+               item.PropertyChanged -= Item_PropertyChanged;
+           }
+
            UserDialogs.Instance.HideLoading();
            await CoreMethods?.PopPageModel();
        });
 
+
         public Command itemTapped => new Command(async (object obj) =>
         {
             var item = obj as ProductQuotationModel;
-            await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<SaleOrderLine, ProductQuotationModel, bool>(item.Product, item, Quotation.Status == QuotationStatus.draft.ToString() ? false : true));
+            await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<ProductQuotationModel, bool>(item,CanEdit));
         });
 
         public Command ToolbarMenu => new Command(async () =>
@@ -83,18 +97,25 @@ namespace voltaire.PageModels
 
         async void Popup_Context_ItemSelectedChanged() // When an item is selected from the popup then open product customize page
         {
-            if (popup_context.SelectedItem != null)
+            if ( popup_context.SelectedItem != null)
             {
-                //TODO
-                var item = new ProductQuotationModel(null) { Quantity = 1 };
+                var item = new ProductQuotationModel(new SaleOrderLine() { OrderId = Quotation.SaleOrder.Id, CurrencyId = Quotation.SaleOrder.CurrencyId, ProductKind = popup_context.SelectedItem.ProductKind.ToString(), TaxId = 2, PriceUnit = popup_context.SelectedItem.UnitPrice },CurrencyLogo) { Quantity = 1 };               
+                              
+                item.Product.ConfigurationDetail = Newtonsoft.Json.JsonConvert.SerializeObject(popup_context.SelectedItem.Properties);
+
+                item.PropertyChanged += Item_PropertyChanged;
+
                 OrderItemsSource.Add(item);
+
                 quotation.Products.Add(item);
 
-                await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<Product, ProductQuotationModel, bool>(popup_context.SelectedItem, item, Quotation.Status == QuotationStatus.draft.ToString() ? false : true));
+                await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<ProductQuotationModel, bool>( item,CanEdit));
 
-            }
-            // Unsubscribe from the event
+                await StoreManager.SaleOrderLineStore.InsertAsync(item.Product);
+            } 
+           
             popup_context.ItemSelectedChanged -= Popup_Context_ItemSelectedChanged;
+
         }
 
 
@@ -168,7 +189,12 @@ namespace voltaire.PageModels
                 SubTotal = quotation.SubTotal;
 
                 Total = quotation.TotalAmount;
-                               
+
+                if (ProductConstants.CurrencyValues.Any() && ProductConstants.CurrencyValues.Where((arg) => arg.Key == quotation.SaleOrder.CurrencyId).Any())
+                    CurrencyLogo = ProductConstants.CurrencyValues.Where((arg) => arg.Key == quotation.SaleOrder.CurrencyId)?.First().Value;
+                else
+                    CurrencyLogo = "*"; //"€";
+
                 RaisePropertyChanged();
             }
         }
@@ -246,6 +272,9 @@ namespace voltaire.PageModels
             }
         }
 
+        string currencyLogo;
+        public string CurrencyLogo { get { return currencyLogo; } set { currencyLogo = value; RaisePropertyChanged(); } }
+
 
         double taxamount;
         public double TaxAmount
@@ -254,8 +283,11 @@ namespace voltaire.PageModels
             set
             {
                 taxamount = value;
+               
                 quotation.TaxAmount = taxamount;
-                OrderItemsSource_CollectionChanged(null, null);
+               
+                //OrderItemsSource_CollectionChanged(null, null);
+             
                 RaisePropertyChanged();
             }
         }
@@ -267,8 +299,14 @@ namespace voltaire.PageModels
             set
             {
                 applytax = value;
-                quotation.ApplyTax = applytax;
-                OrderItemsSource_CollectionChanged(null, null);
+
+                if (quotation.ApplyTax != value)
+                {
+                    quotation.ApplyTax = applytax;
+
+                    OrderItemsSource_CollectionChanged(null, null);
+                }
+
                 RaisePropertyChanged();
             }
         }
@@ -293,15 +331,29 @@ namespace voltaire.PageModels
 
             SubTotal = 0;
             Total = 0;
+            TaxAmount = 0;
 
             foreach (var item in OrderItemsSource)
             {
                 SubTotal += item.TaxFree;
+
+                if (item.IsTaxApply)
+                    TaxAmount += (Convert.ToInt32(item.UnitPrice) * item.Quantity) - item.TaxFree;
             }
+
+            ApplyTax = OrderItemsSource.Any((arg) => arg.IsTaxApply);
+
+            //if(!ApplyTax)
+            //{
+            //    foreach (var item in OrderItemsSource)
+            //    {
+            //        item.IsTaxApply = false;
+            //    }
+            //}
 
             if (ApplyTax)
             {
-                Total = SubTotal + SubTotal * (TaxAmount / 100);
+                Total = SubTotal + TaxAmount;
             }
             else
             {
@@ -316,7 +368,7 @@ namespace voltaire.PageModels
             base.Init(initData);
           
 
-            var _customer = initData as Tuple<Partner, bool, QuotationsModel>;  // T1 represents the customer object data , T2 is a bool which represents if its a new quotationpage
+            var _customer = initData as Tuple<Partner, bool, QuotationsModel>; 
 
             if (_customer != null)
             {
@@ -326,7 +378,7 @@ namespace voltaire.PageModels
 
                 if (NewQuotation)
                 {
-                    var saleOrder = new SaleOrder(){ PartnerId = Customer.ExternalId };
+                    var saleOrder = new SaleOrder(){ PartnerId = Customer.ExternalId, CurrencyId = ProductConstants.CurrencyValues.Keys.First() };
                     Quotation = new QuotationsModel( saleOrder ) { Date = DateTime.UtcNow, Ref = UnixTimeStamp(), Status = QuotationStatus.draft.ToString() , TotalAmount = 0 };
                     InsertNewQuotation(saleOrder);
                     customer.Quotations.Add(Quotation);
@@ -335,19 +387,30 @@ namespace voltaire.PageModels
                 {
                     Quotation = _customer.Item3;
                   
-                    var items = await StoreManager.SaleOrderLineStore.GetItemsByOrderId(quotation.SaleOrder.ExternalId);
+                    var items = await StoreManager.SaleOrderLineStore.GetItemsByOrderId(quotation.SaleOrder.Id);
                                       
                     foreach (var item in items)
                     {
-                        products.Add(new ProductQuotationModel(item));
+                        products.Add(new ProductQuotationModel(item,CurrencyLogo));
                     }
                 }
 
                 OrderItemsSource = new ObservableCollection<ProductQuotationModel>(products);
                 OrderItemsSource.CollectionChanged += OrderItemsSource_CollectionChanged;
-            
-            }
 
+                foreach (var item in OrderItemsSource)
+                {
+                    item.PropertyChanged += Item_PropertyChanged;
+                }
+            }
+        }
+
+        void Item_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == "UnitPrice" || e.PropertyName == "Quantity")
+            {
+               OrderItemsSource_CollectionChanged(null, null);
+            }
         }
 
         protected override void ViewIsAppearing(object sender, EventArgs e)

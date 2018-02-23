@@ -190,6 +190,8 @@ namespace voltaire.PageModels
             QuotationsItemSource = all_items;
 
             SearchQuery.Execute(null);
+
+            ProductConstants.GenerateProductList();
         }
 
     }

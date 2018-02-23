@@ -49,7 +49,6 @@ namespace voltaire.PageModels
                // Open internal notes
                await CoreMethods.PushPageModel<QuotationInternalNotesPageModel>(Quotation);
           }
-
       });
 
 
@@ -264,11 +263,11 @@ namespace voltaire.PageModels
                 {
                     Quotation = _customer.Item3;
                    
-                    var items = await StoreManager.SaleOrderLineStore.GetItemsByOrderId(quotation.SaleOrder.ExternalId);
+                    var items = await StoreManager.SaleOrderLineStore.GetItemsByOrderId(quotation.SaleOrder.Id);
 
                     foreach (var item in items)
                     {
-                        products.Add(new ProductQuotationModel(item));
+                        products.Add(new ProductQuotationModel(item,null));
                         //var product = await StoreManager.ProductStore.GetItemsByProductId(item.ProductId);
                     }
                 }

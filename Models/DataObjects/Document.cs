@@ -33,13 +33,10 @@ namespace voltaire.Models.DataObjects
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("expireAt")]
-        public string ExpireAt { get; set; }
-
         [JsonProperty("mimeType")]
         public string MimeType { get; set; }
 
-        [JsonIgnore]
+        [JsonProperty("toUpload")]
         public bool ToUpload { get; set; }
 
     }

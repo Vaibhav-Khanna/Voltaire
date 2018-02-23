@@ -138,6 +138,7 @@ namespace voltaire.DataStore.Implementation
             }
            
             return true;
+
         }
 
         public async Task<bool> PullLatestAsync()
@@ -150,8 +151,8 @@ namespace voltaire.DataStore.Implementation
             }
 
             try
-            {
-                await Table.PullAsync<T>($"all{Identifier}", Table.CreateQuery().IncludeTotalCount(), false, new CancellationToken(false), new PullOptions() { MaxPageSize = 150 }).ConfigureAwait(false);
+            {               
+                await Table.PullAsync<T>($"all{Identifier}", Table.IncludeTotalCount(), false, new CancellationToken(false), new PullOptions() { MaxPageSize = 150 }).ConfigureAwait(false);
             }
             catch (Exception ex)
             {

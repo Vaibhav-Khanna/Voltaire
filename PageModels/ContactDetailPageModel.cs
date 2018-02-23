@@ -42,7 +42,7 @@ namespace voltaire.PageModels
                 customer.Name = firstname;               
                 customer.Phone = phone;
                 customer.Website = website;
-                customer.DateLocalization = lastvisit;
+                customer.LastCheckinAt = lastvisit;
                 customer.Comment = notetext;
                 customer.Email = email;
                 customer.CanEdit = false;
@@ -95,6 +95,7 @@ namespace voltaire.PageModels
 
                if (user == null)
                {
+                   await CoreMethods.DisplayAlert("Error", "Try again", "Ok"); 
                    CheckinEnable = true;
                    return;
                }
@@ -239,8 +240,8 @@ namespace voltaire.PageModels
 			set
 			{
 				lastvisit = value;
-                //customer.DateLocalization = lastvisit;
-                //StoreManager.CustomerStore.UpdateAsync(customer);
+                customer.LastCheckinAt = lastvisit;
+                StoreManager.CustomerStore.UpdateAsync(customer);
                 ItemUpdated = true;
 				RaisePropertyChanged();
 			}
@@ -385,7 +386,7 @@ namespace voltaire.PageModels
                 address = customer.ContactAddress;
                 phone = customer.Phone;
                 website = customer.Website;
-                lastvisit = customer.DateLocalization;
+                lastvisit = customer.LastCheckinAt;
                 canedit = customer.CanEdit;
                 NoteText = customer.Comment;
                 title = canedit ? AppResources.Update : $"{customer.Name}";

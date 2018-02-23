@@ -472,7 +472,7 @@
     </Compile>
     <Compile Include="Models\DataObjects\Accessory.cs" />
     <Compile Include="Models\DataObjects\AccessoryCategory.cs" />
-    <Compile Include="Models\DataObjects\SaddlePrice.cs" />
+    <Compile Include="Models\DataObjects\Saddle.cs" />
     <Compile Include="Models\DataObjects\Service.cs" />
     <Compile Include="DataStore\Abstraction\Stores\IAccessoryStore.cs" />
     <Compile Include="DataStore\Abstraction\Stores\IAccessoryCategoryStore.cs" />
@@ -496,6 +496,15 @@
     <Compile Include="DataStore\Abstraction\Stores\ICompanyStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\CompanyStore.cs" />
     <Compile Include="Helpers\PclStorage.cs" />
+    <Compile Include="Models\DataObjects\ProductCategory.cs" />
+    <Compile Include="Models\DataObjects\ProductTemplate.cs" />
+    <Compile Include="Models\DataObjects\AccountTax.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IAccountTaxStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IProductCategoryStore.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IProductTemplateStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\AccountTaxStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\ProductCategoryStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\ProductTemplateStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

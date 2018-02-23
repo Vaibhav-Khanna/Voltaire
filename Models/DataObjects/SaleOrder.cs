@@ -29,13 +29,13 @@
         public bool AllQtyDelivered { get; set; }
 
         [JsonProperty("amount_tax")]
-        public long AmountTax { get; set; }
+        public double AmountTax { get; set; }
 
         [JsonProperty("amount_total")]
-        public long AmountTotal { get; set; }
+        public double AmountTotal { get; set; }
 
         [JsonProperty("amount_untaxed")]
-        public long AmountUntaxed { get; set; }
+        public double AmountUntaxed { get; set; }
 
         [JsonProperty("client_order_ref")]
         public string ClientOrderRef { get; set; }
@@ -73,12 +73,6 @@
         [JsonProperty("partner_id")]
         public long PartnerId { get; set; }
 
-        [JsonProperty("partner_invoice_id")]
-        public long PartnerInvoiceId { get; set; }
-
-        [JsonProperty("partner_shipping_id")]
-        public long PartnerShippingId { get; set; }
-
         [JsonProperty("pricelist_id")]
         public long PricelistId { get; set; }
 
@@ -97,7 +91,11 @@
         [JsonProperty("to_send")]
         public bool ToSend { get; set; }
 
-        [JsonProperty("file_uploaded")]
-        public bool FileUploaded { get; set; }
+        [JsonProperty("horse_show")]
+        public string HorseShow { get; set; }
+
+        [JsonProperty("quotation_name")]
+        public string QuotationName { get; set; }
+
     }
 }

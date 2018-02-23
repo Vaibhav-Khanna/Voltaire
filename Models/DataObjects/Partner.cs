@@ -14,8 +14,6 @@ namespace voltaire.Models
         [JsonIgnore]
         public List<Note> InternalNotes { get; set; } = new List<Note>();
 
-
-
         [JsonIgnore]
         public List<string> Tags { get; set; } = new List<string>();
 
@@ -30,6 +28,7 @@ namespace voltaire.Models
 
         [JsonIgnore]
         public List<Contract> Contracts { get; set; } = new List<Contract>();
+
 
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
@@ -86,10 +85,10 @@ namespace voltaire.Models
         public string CommercialCompanyName { get; set; }
 
         [JsonProperty("partner_longitude")]
-        public long PartnerLongitude { get; set; }
+        public double PartnerLongitude { get; set; }
 
         [JsonProperty("partner_latitude")]
-        public long PartnerLatitude { get; set; }
+        public double PartnerLatitude { get; set; }
 
         [JsonProperty("date_localization")]
         public DateTime? DateLocalization { get; set; }
@@ -106,5 +105,13 @@ namespace voltaire.Models
         [JsonProperty("comment")]
         public string Comment { get; set; }
 
+        [JsonProperty("currency_id")]
+        public long CurrencyId { get; set; }
+
+        [JsonProperty("property_product_pricelist")]
+        public long PropertyProductPricelist { get; set; }
+
+        [JsonProperty("last_checkin_at")]
+        public DateTime? LastCheckinAt { get; set; }
     }
 }

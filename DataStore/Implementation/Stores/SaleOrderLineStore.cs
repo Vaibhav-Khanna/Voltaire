@@ -10,7 +10,7 @@ namespace voltaire.DataStore.Implementation.Stores
     {
         public override string Identifier => "SaleOrderLine";
 
-        public async Task<IEnumerable<SaleOrderLine>> GetItemsByOrderId(long OrderId)
+        public async Task<IEnumerable<SaleOrderLine>> GetItemsByOrderId(string OrderId)
         {
             await InitializeStore().ConfigureAwait(false);
 

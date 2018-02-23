@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace voltaire
 {
     public class Constants
@@ -8,5 +9,8 @@ namespace voltaire
 
         // Production version
         //public static string EndUrl = "https://voltairecrm.azurewebsites.net";
+
+        public static string CompanyName = "Forestier";
+
     }
 }

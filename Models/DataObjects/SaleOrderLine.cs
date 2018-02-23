@@ -37,9 +37,6 @@
         [JsonProperty("currency_id")]
         public long CurrencyId { get; set; }
 
-        [JsonProperty("discount")]
-        public long Discount { get; set; }
-
         [JsonProperty("display_name")]
         public string DisplayName { get; set; }
 
@@ -50,19 +47,10 @@
         public string Name { get; set; }
 
         [JsonProperty("order_id")]
-        public long OrderId { get; set; }
-
-        [JsonProperty("price_subtotal")]
-        public long PriceSubtotal { get; set; }
-
-        [JsonProperty("price_tax")]
-        public long PriceTax { get; set; }
+        public string OrderId { get; set; }
 
         [JsonProperty("price_unit")]
         public long PriceUnit { get; set; }
-
-        [JsonProperty("price_total")]
-        public long PriceTotal { get; set; }
 
         [JsonProperty("product_id")]
         public long ProductId { get; set; }
@@ -84,5 +72,23 @@
 
         [JsonProperty("state")]
         public string State { get; set; }
+
+        [JsonProperty("tax_id")]
+        public long TaxId { get; set; }
+
+        [JsonProperty("configuration_detail")]
+        public string ConfigurationDetail { get; set; }
+
+        [JsonProperty("product_kind")]
+        public string ProductKind { get; set; }
+
+        [JsonProperty("tax_applied")]
+        public bool TaxApplied { get; set; }
     }
+
+    public enum ProductKind
+    {
+        saddle, accessory, other, service, discount, tradein
+    }
+
 }

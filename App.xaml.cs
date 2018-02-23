@@ -40,7 +40,7 @@ namespace voltaire
         }
 
 
-        private StoreManager storeManager { get; set; }
+        public static StoreManager storeManager { get; set; }
 
 
         public async void Init()

@@ -37,7 +37,7 @@ namespace voltaire.PageModels
 
 		Partner customer;
 		public Partner Customer
-		{
+		{ 
 			get { return customer; }
 			set
 			{
@@ -109,8 +109,21 @@ namespace voltaire.PageModels
 
         async void FetchItems()
         {
-
+            
             var items = await StoreManager.SaleOrderStore.GetOrderItemsByCustomer(Customer.ExternalId);
+
+            var a = await StoreManager.AccountTaxStore.GetItemsAsync();
+
+            var b = await StoreManager.AccessoryStore.GetItemsAsync();
+
+            var c = await StoreManager.SaddleStore.GetItemsAsync();
+
+            var d = await StoreManager.ServiceStore.GetItemsAsync();
+
+            var e = await StoreManager.SaleOrderStore.GetItemsAsync();
+
+            var f = await StoreManager.SaleOrderLineStore.GetItemsAsync();
+
 
             List<QuotationsModel> Quotations = new List<QuotationsModel>();
 
@@ -119,7 +132,6 @@ namespace voltaire.PageModels
                 Quotations.Add(new QuotationsModel(item));
             }
 
-
             foreach (var item in Quotations)
             {
                 item.BackColor = Quotations.IndexOf(item) % 2 == 0 ? Color.FromRgb(247, 247, 247) : Color.White;
@@ -127,11 +139,12 @@ namespace voltaire.PageModels
 
 
             all_items = new ObservableCollection<QuotationsModel>(Quotations);
+         
             QuotationsItemSource = all_items;
 
             SearchQuery.Execute(null);
-
         }
+
 
         void SearchResults(string query_string)
         {

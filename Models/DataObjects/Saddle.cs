@@ -7,9 +7,9 @@
     using Newtonsoft.Json;
     using voltaire.DataStore.Abstraction;
 
-    public class Service : BaseDataObject
+    public class Saddle : BaseDataObject
     {
-       
+      
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
 
@@ -25,6 +25,12 @@
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("color")]
+        public string Color { get; set; }
+
+        [JsonProperty("leather")]
+        public string Leather { get; set; }
+
         [JsonProperty("price")]
         public long Price { get; set; }
 
@@ -35,9 +41,10 @@
         public long MinQuantity { get; set; }
 
         [JsonProperty("date_start")]
-        public string DateStart { get; set; }
+        public DateTime DateStart { get; set; }
 
         [JsonProperty("date_end")]
-        public string DateEnd { get; set; }
+        public DateTime DateEnd { get; set; }
+
     }
 }

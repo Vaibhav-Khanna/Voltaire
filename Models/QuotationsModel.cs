@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using voltaire.Models.DataObjects;
 using voltaire.PageModels;
 using Xamarin.Forms;
@@ -16,23 +17,32 @@ namespace voltaire.Models
                 SaleOrder = model;
                 Name = model.Name;
                 Ref = model.ClientOrderRef;
-                var tax = (model.AmountTotal - model.AmountUntaxed);
-               
-                if(model.AmountUntaxed!=0)
-                    TaxAmount = (double) ( (double)tax /(double) model.AmountUntaxed) * 100;
+
+
+                TaxAmount = model.AmountTax;
 
                 TotalAmount = model.AmountTotal;
                 SubTotal = model.AmountUntaxed;
-                ApplyTax = (model.AmountTotal - model.AmountUntaxed) == 0 ? false : true;
+                ApplyTax = (model.AmountTax) <= 0 ? false : true;
                 PermanentNote = model.Note;
                 Date = model.DateOrder;
                 Status = model.State;
+                HorseShow = model.HorseShow;
+
+                if (ProductConstants.CurrencyValues.Any() && ProductConstants.CurrencyValues.Where((arg) => arg.Key == model.CurrencyId).Any())
+                    CurrencyLogo = ProductConstants.CurrencyValues.Where((arg) => arg.Key == model.CurrencyId)?.First().Value;
+                else
+                    CurrencyLogo = "*";
+
             }
         }
 
         public SaleOrder SaleOrder { get; set; }
 
         public Color BackColor { get; set; }
+
+        string currencyLogo;
+        public string CurrencyLogo { get { return currencyLogo; } set { currencyLogo = value; } }
 
         string name;
         public string Name { get { return name; } set { name = value; SaleOrder.Name = value; } }
@@ -67,7 +77,7 @@ namespace voltaire.Models
         public string TrainerName { get { return trainerName; } set { trainerName = value; } }
 
         string horseShow;
-        public string HorseShow { get { return horseShow; } set { horseShow = value; } }
+        public string HorseShow { get { return horseShow; } set { horseShow = value; SaleOrder.HorseShow = horseShow; } }
 
         public List<ProductQuotationModel> Products { get; set; } = new List<ProductQuotationModel>();
 

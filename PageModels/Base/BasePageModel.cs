@@ -96,21 +96,13 @@ namespace voltaire.PageModels.Base
             DependencyService.Register<IPartnerGradeStore, PartnerGradeStore>();
             DependencyService.Register<IPartnerTitleStore, PartnerTitleStore>();
             DependencyService.Register<IUserStore, UserStore>();
-            DependencyService.Register<IProductStore, ProductStore>();
-            DependencyService.Register<IProductPriceListItemStore, ProductPriceListItemStore>();
-            DependencyService.Register<IProductPriceListStore, ProductPriceListStore>();
-            DependencyService.Register<IProductUOMStore, ProductUOMStore>();
-            DependencyService.Register<IPurchaseOrderLineStore, PurchaseOrderLineStore>();
-            DependencyService.Register<IPurchaseOrderStore, PurchaseOrderStore>();
+            DependencyService.Register<IAccountTaxStore, AccountTaxStore>();
+            DependencyService.Register<IAccessoryStore, AccessoryStore>();
+            DependencyService.Register<IServiceStore, ServiceStore>();
+            DependencyService.Register<ISaddlePriceStore, SaddlePriceStore>();         
             DependencyService.Register<ISaleOrderStore, SaleOrderStore>();
-            DependencyService.Register<ISaleOrderLineStore, SaleOrderLineStore>();
-            DependencyService.Register<IEventStore, EventStore>();
-            DependencyService.Register<IEventAlarmStore, EventAlarmStore>();
-            DependencyService.Register<IMessageStore, MessageStore>();
-            DependencyService.Register<IAccessoryStore,AccessoryStore>();
-            DependencyService.Register<IAccessoryCategoryStore,AccessoryCategoryStore>();
-            DependencyService.Register<ISaddlePriceStore,SaddlePriceStore>();
-            DependencyService.Register<IServiceStore,ServiceStore>();
+            DependencyService.Register<ISaleOrderLineStore, SaleOrderLineStore>(); 
+            DependencyService.Register<IMessageStore, MessageStore>(); 
 
         }
 
