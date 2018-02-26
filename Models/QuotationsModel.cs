@@ -28,6 +28,7 @@ namespace voltaire.Models
                 Date = model.DateOrder;
                 Status = model.State;
                 HorseShow = model.HorseShow;
+                TrainerName = model.TrainerName;
 
                 if (ProductConstants.CurrencyValues.Any() && ProductConstants.CurrencyValues.Where((arg) => arg.Key == model.CurrencyId).Any())
                     CurrencyLogo = ProductConstants.CurrencyValues.Where((arg) => arg.Key == model.CurrencyId)?.First().Value;
@@ -74,7 +75,7 @@ namespace voltaire.Models
         public string Status { get { return status; } set { status = value; SaleOrder.State = value; } }
 
         string trainerName;
-        public string TrainerName { get { return trainerName; } set { trainerName = value; } }
+        public string TrainerName { get { return trainerName; } set { trainerName = value; SaleOrder.TrainerName = trainerName; } }
 
         string horseShow;
         public string HorseShow { get { return horseShow; } set { horseShow = value; SaleOrder.HorseShow = horseShow; } }

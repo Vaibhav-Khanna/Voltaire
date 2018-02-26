@@ -51,7 +51,6 @@ namespace voltaire.Pages
                 image.Source = ImageSource.FromStream( () =>  stream);
                 SignContainer.Children.Add(image);
             }
-
         }
 
     }

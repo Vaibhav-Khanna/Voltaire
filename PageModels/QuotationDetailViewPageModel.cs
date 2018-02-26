@@ -91,8 +91,19 @@ namespace voltaire.PageModels
 
         public Command SignCommand => new Command(async () =>
         {
-            await CoreMethods.PushPageModel<QuotationSignPageModel>(Quotation);
+            await CoreMethods.PushPageModel<QuotationSignPageModel>(new Tuple<QuotationsModel,Partner>(Quotation,Customer));
         });
+
+        public Command EmailCommand => new Command(async (obj) =>
+       {
+            // Generate or check PDF file
+
+           Quotation.SaleOrder.ToSend = true;
+           await StoreManager.SaleOrderStore.UpdateAsync(Quotation.SaleOrder);
+
+           Dialog.Toast("Document has been sent.");
+
+       });
 
 
         async void Popup_Context_ItemSelectedChanged() // When an item is selected from the popup then open product customize page

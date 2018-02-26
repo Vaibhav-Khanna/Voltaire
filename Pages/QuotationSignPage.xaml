@@ -70,7 +70,7 @@
                     </Frame>
                     <Label Text="I read and agree with the order and the sales terms and conditions" FontSize="14" TextColor="#4a4a4a" FontFamily="SanFranciscoDisplay-Regular"/>
                 </StackLayout>
-                <signature:SignaturePadCanvasView x:Name="signaturePad"  Margin="0" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#d8d8d8" />
+                <signature:SignaturePadCanvasView x:Name="signaturePad"  Margin="0" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" BackgroundColor="#d8d8d8" />
             </StackLayout>
 
             

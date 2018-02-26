@@ -171,7 +171,7 @@ namespace voltaire.DataStore.Implementation.Stores
             catch (Exception ex)
             {
                 return null;
-                Debug.WriteLine(@"              ERROR {0}", ex.Message);
+                Debug.WriteLine(@"ERROR {0}", ex.Message);
             }
         }
        

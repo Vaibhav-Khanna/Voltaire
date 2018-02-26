@@ -57,7 +57,12 @@
                                 <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Ref}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "0"  />
                                 <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Name}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "1"  />
                                 <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Date, StringFormat = '{0:yyyy MMMM dd}' }" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "2"  />
-                                <Label FontFamily = "SanFranciscoDisplay-Regular"  FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding TotalAmount, StringFormat = '${0:N}' }" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "3"  />
+
+                                  <StackLayout Orientation="Horizontal" Margin="0" Padding="0" Spacing="4" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "3" >
+                                  <Label FontFamily = "SanFranciscoDisplay-Regular"  FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding CurrencyLogo}" VerticalOptions = "Center" HorizontalOptions =  "Start"   />
+                                  <Label FontFamily = "SanFranciscoDisplay-Regular"  FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding TotalAmount, StringFormat = '{0:N}'}"  VerticalOptions = "Center" HorizontalOptions =  "Start"  />
+                                </StackLayout>
+                                
                                 <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Status, Converter = {StaticResource EnumToStringConverter} }" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "4"  />  
                             </Grid>
                         </ViewCell>

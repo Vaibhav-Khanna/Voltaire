@@ -108,22 +108,8 @@ namespace voltaire.PageModels
         }
 
         async void FetchItems()
-        {
-            
+        {            
             var items = await StoreManager.SaleOrderStore.GetOrderItemsByCustomer(Customer.ExternalId);
-
-            var a = await StoreManager.AccountTaxStore.GetItemsAsync();
-
-            var b = await StoreManager.AccessoryStore.GetItemsAsync();
-
-            var c = await StoreManager.SaddleStore.GetItemsAsync();
-
-            var d = await StoreManager.ServiceStore.GetItemsAsync();
-
-            var e = await StoreManager.SaleOrderStore.GetItemsAsync();
-
-            var f = await StoreManager.SaleOrderLineStore.GetItemsAsync();
-
 
             List<QuotationsModel> Quotations = new List<QuotationsModel>();
 
@@ -137,12 +123,13 @@ namespace voltaire.PageModels
                 item.BackColor = Quotations.IndexOf(item) % 2 == 0 ? Color.FromRgb(247, 247, 247) : Color.White;
             }
 
-
             all_items = new ObservableCollection<QuotationsModel>(Quotations);
          
             QuotationsItemSource = all_items;
 
             SearchQuery.Execute(null);
+
+            ProductConstants.GenerateProductList();
         }
 
 

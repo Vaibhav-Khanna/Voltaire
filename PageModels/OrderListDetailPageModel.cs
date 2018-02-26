@@ -24,7 +24,7 @@ namespace voltaire.PageModels
         public Command itemTapped => new Command(async (object obj) =>
         {
             var item = obj as ProductQuotationModel;
-            await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<SaleOrderLine, ProductQuotationModel, bool>(item.Product, item, false));
+            await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<ProductQuotationModel, bool>(item, false));
         });
 
 
@@ -112,6 +112,11 @@ namespace voltaire.PageModels
 
                 Total = quotation.TotalAmount;
 
+                if (ProductConstants.CurrencyValues.Any() && ProductConstants.CurrencyValues.Where((arg) => arg.Key == quotation.SaleOrder.CurrencyId).Any())
+                    CurrencyLogo = ProductConstants.CurrencyValues.Where((arg) => arg.Key == quotation.SaleOrder.CurrencyId)?.First().Value;
+                else
+                    CurrencyLogo = "*"; //"€";
+
                 var format_string = new FormattedString();
 
                 if (quotation.DateSigned != null)
@@ -131,6 +136,9 @@ namespace voltaire.PageModels
                 RaisePropertyChanged();
             }
         }
+
+        string currencyLogo;
+        public string CurrencyLogo { get { return currencyLogo; } set { currencyLogo = value; RaisePropertyChanged(); } }
 
         ObservableCollection<ProductQuotationModel> orderitemssource;
         public ObservableCollection<ProductQuotationModel> OrderItemsSource
@@ -267,8 +275,7 @@ namespace voltaire.PageModels
 
                     foreach (var item in items)
                     {
-                        products.Add(new ProductQuotationModel(item,null));
-                        //var product = await StoreManager.ProductStore.GetItemsByProductId(item.ProductId);
+                        products.Add(new ProductQuotationModel(item,currencyLogo));
                     }
                 }
 

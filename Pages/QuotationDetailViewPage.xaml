@@ -84,8 +84,10 @@
                                     <ColumnDefinition Width="2*" />
                                 </Grid.ColumnDefinitions>
                                 <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Description}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "0"  />
-                                <renderers:BorderlessPicker IsEnabled="{Binding CanEdit}" Title="Select" x:Name = "picker_1" TextColor = "{StaticResource turquoiseBlue}" VerticalOptions = "Center" HorizontalOptions = "FillAndExpand"  SelectedIndex = "{Binding OrderStatusIndex, Mode=TwoWay}" ItemsSource = "{Binding OrderStatusTypes}" Grid.Row = "0" Grid.Column = "1" /> 
-                                <renderers:NumberEntry IsEnabled="{Binding CanEdit}" x:Name ="Qty" Text="{Binding Quantity, Mode=TwoWay}" Keyboard="Numeric" TextColor = "{StaticResource turquoiseBlue}" HorizontalTextAlignment="Center" VerticalOptions = "Center" HorizontalOptions = "FillAndExpand" Grid.Row = "0" Grid.Column = "2"/> 
+
+                              <renderers:BorderlessPicker IsEnabled="{Binding CanEdit}" Title="Select" x:Name = "picker_1" TextColor = "{StaticResource turquoiseBlue}" VerticalOptions = "Center" HorizontalOptions = "FillAndExpand"  SelectedIndex = "{Binding OrderStatusIndex,Mode=TwoWay}" ItemsSource = "{Binding OrderStatusTypes}" Grid.Row = "0" Grid.Column = "1" /> 
+
+                              <renderers:NumberEntry IsEnabled="{Binding CanEdit}" x:Name ="Qty" Text="{Binding Quantity, Mode=TwoWay}" Keyboard="Numeric" TextColor = "{StaticResource turquoiseBlue}" HorizontalTextAlignment="Center" VerticalOptions = "Center" HorizontalOptions = "FillAndExpand" Grid.Row = "0" Grid.Column = "2"/> 
 
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="4" Grid.Row = "0" Grid.Column = "3" >
                                    <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding UnitPrice,StringFormat='{0:N}'}" VerticalOptions = "Center" HorizontalOptions =  "Center"   />
@@ -119,7 +121,7 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Switch IsEnabled="{Binding CanEdit}" IsToggled = "{Binding ApplyTax, Mode=TwoWay}" HorizontalOptions = "End" Margin = "0,0,20,0" VerticalOptions ="Center" />
+                <Switch IsEnabled="{Binding CanEdit}" IsVisible="false" IsToggled = "{Binding ApplyTax, Mode=TwoWay}" HorizontalOptions = "End" Margin = "0,0,20,0" VerticalOptions ="Center" />
                 <Label  Margin = "0,10,0,10"  HorizontalTextAlignment = "End" BackgroundColor = "Transparent"  VerticalOptions = "CenterAndExpand"  HorizontalOptions ="End" Text = "{Binding TaxAmount}" TextColor = "{StaticResource GreyishBrown}" />
                 <Label  Margin = "0,10,0,10"  HorizontalTextAlignment = "End" BackgroundColor = "Transparent"  VerticalOptions = "CenterAndExpand"  HorizontalOptions ="End" Text = "{Binding CurrencyLogo}" TextColor = "{StaticResource GreyishBrown}" />
             </StackLayout>

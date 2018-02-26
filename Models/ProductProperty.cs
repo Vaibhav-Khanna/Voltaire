@@ -33,7 +33,8 @@ namespace voltaire.Models
         string val;
         public string PropertyValue { get { return val; } set { val = value; RaisePropertyChanged(); } }
 
-        public List<string> ItemSource { get; set; }
+        List<string> _source;
+        public List<string> ItemSource { get { return _source; } set{ _source = value; RaisePropertyChanged(); } }
 
         public List<string> AllSource { get; set; }
 

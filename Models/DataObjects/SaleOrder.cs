@@ -97,5 +97,7 @@
         [JsonProperty("quotation_name")]
         public string QuotationName { get; set; }
 
+        [JsonProperty("trainer_name")]
+        public string TrainerName { get; set; }
     }
 }

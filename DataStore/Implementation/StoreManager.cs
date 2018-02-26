@@ -97,8 +97,6 @@ namespace voltaire.DataStore.Implementation
             PartnerTitleStore.DropTable();
             UserStore.DropTable();
           
-      
-           
             SaleOrderStore.DropTable();
             SaleOrderLineStore.DropTable();
            
@@ -200,13 +198,14 @@ namespace voltaire.DataStore.Implementation
 
 
             //TODO add all other stores
+                       
+            var successes = await Task.WhenAll(taskList).ConfigureAwait(false);
 
             if (syncUserSpecific)
             {
                 // add stores that are user specific data
+                await DocumentStore.OfflineUploadSync();
             }
-
-            var successes = await Task.WhenAll(taskList).ConfigureAwait(false);
 
             Device.BeginInvokeOnMainThread(async () =>
             {

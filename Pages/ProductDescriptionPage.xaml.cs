@@ -139,7 +139,7 @@ namespace voltaire.Pages
             label.BindingContext = Bind_Context;
 
             var picker = new BorderlessPicker() { IsEnabled = controlEnabled, TextAlignMent = TextAlignment.End, HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.Center, Title = "Choose", TextColor = (Color)App.Current.Resources["turquoiseBlue"] };
-            picker.SetBinding(Picker.ItemsSourceProperty, "ItemSource",BindingMode.OneWay );
+            picker.SetBinding(Picker.ItemsSourceProperty, "ItemSource",BindingMode.TwoWay );
             picker.SetBinding(Picker.SelectedItemProperty, "PropertyValue", BindingMode.TwoWay);
 
             picker.BindingContext = Bind_Context;

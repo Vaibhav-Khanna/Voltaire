@@ -505,6 +505,7 @@
     <Compile Include="DataStore\Implementation\Stores\AccountTaxStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\ProductCategoryStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\ProductTemplateStore.cs" />
+    <Compile Include="Helpers\InvoiceGenerate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

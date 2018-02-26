@@ -231,8 +231,9 @@ namespace voltaire.PageModels
             if (OrderStatusTypes.Contains(_product.State?.Trim()?.ToLower()))
                 OrderStatusIndex = OrderStatusTypes.IndexOf(_product.State?.Trim()?.ToLower());
             else
-                OrderStatusIndex = 1;
-            
+                OrderStatusIndex = 1;  
+
+            SetOrderStatusIndex(OrderStatusIndex);
         }
 
         async void GetTax()

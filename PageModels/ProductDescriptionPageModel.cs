@@ -132,14 +132,7 @@ namespace voltaire.PageModels
                     
                 }
 
-                if(ProductProperties!=null && ProductProperties.Any())
-                {
-                    foreach (var item in ProductProperties)
-                    {
-                        if(item.PropertyType == PropertyType.IsPicker)
-                        item.PropertyChanged += Handle_PropertyChanged;
-                    }                   
-                }
+              
 
             }
         }
@@ -163,7 +156,16 @@ namespace voltaire.PageModels
                         {
                             var subCat = data.First();
 
-                            subCat.ItemSource = ProductConstants.Accessory.Where((Accessory arg) => arg.CategoryName == item.PropertyValue).Select((arg) => string.IsNullOrWhiteSpace(arg.SubCategoryName) ? "N.A" : arg.SubCategoryName).ToList();
+                            subCat.ItemSource = ProductConstants.Accessory.Where((Accessory arg) => arg.CategoryName == item.PropertyValue).Select((arg) => string.IsNullOrWhiteSpace(arg.SubCategoryName) ? "N.A" : arg.SubCategoryName).Distinct().ToList();
+
+                            if(subCat.ItemSource != null && subCat.ItemSource.Any())
+                            {
+                                
+                            }
+                            else
+                            {
+                                subCat.ItemSource = new List<string>() { "N.A" };
+                            }
 
                             subCat.PropertyValue = null;                               
                         }
@@ -177,11 +179,22 @@ namespace voltaire.PageModels
                     {
                         var data = ProductProperties.Where((arg) => arg.PropertyName == "Name");
 
-                        if (data.Any())
+                        var cat = ProductProperties.Where((arg) => arg.PropertyName == "Category");
+
+                        if (data.Any() && cat.Any())
                         {
                             var name = data.First();
 
-                            name.ItemSource = ProductConstants.Accessory.Where((Accessory arg) => arg.SubCategoryName == item.PropertyValue).Select((arg) => string.IsNullOrWhiteSpace(arg.Name) ? "N.A" : arg.Name).ToList();
+                            name.ItemSource = ProductConstants.Accessory.Where((Accessory arg) => arg.CategoryName == cat.First().PropertyValue && arg.SubCategoryName == item.PropertyValue).Select((arg) => string.IsNullOrWhiteSpace(arg.Name) ? "N.A" : arg.Name).Distinct().ToList();
+
+                            if (name.ItemSource != null && name.ItemSource.Any())
+                            {
+
+                            }
+                            else
+                            {
+                                name.ItemSource = new List<string>() { "N.A" };
+                            }
 
                             name.PropertyValue = null;
                         }
@@ -587,26 +600,22 @@ namespace voltaire.PageModels
             return true;
         }
 
+        protected override void ViewIsAppearing(object sender, EventArgs e)
+        {
+            base.ViewIsAppearing(sender, e);
+
+            if (ProductProperties != null && ProductProperties.Any())
+            {
+                foreach (var item in ProductProperties)
+                {
+                    if (item.PropertyType == PropertyType.IsPicker)
+                        item.PropertyChanged += Handle_PropertyChanged;
+                }
+            }
+        }
+
         void UnsubscribeToEvents()
         {
-            if (saleOrderLine.ProductKind == ProductKind.accessory.ToString())
-            {
-                var Cat = ProductProperties.Where((arg) => arg.PropertyName == "Category");
-
-                var subCat = ProductProperties.Where((arg) => arg.PropertyName == "Sub Category");
-
-                var name = ProductProperties.Where((arg) => arg.PropertyName == "Name");
-
-                if (Cat.Any())
-                    Cat.First().ItemSource = Cat.First().AllSource;
-
-                if (subCat.Any())
-                    subCat.First().ItemSource = subCat.First().AllSource;
-
-                if (name.Any())
-                    name.First().ItemSource = name.First().AllSource;
-            }
-
             if (ProductProperties != null && ProductProperties.Any())
             {
                 foreach (var item in ProductProperties)
@@ -616,6 +625,39 @@ namespace voltaire.PageModels
                 }
             }
 
+            if (ProductProperties != null && ProductProperties.Any())
+                if (saleOrderLine?.ProductKind == ProductKind.accessory.ToString())
+                {
+                    var Cat = ProductProperties.Where((arg) => arg.PropertyName == "Category");
+
+                    var subCat = ProductProperties.Where((arg) => arg.PropertyName == "Sub Category");
+
+                    var name = ProductProperties.Where((arg) => arg.PropertyName == "Name");
+
+                    if (Cat.Any())
+                    {
+                        var selected = Cat.First().PropertyValue;
+                        Cat.First().ItemSource = Cat.First().AllSource;
+                        Cat.First().PropertyValue = selected;
+                    }
+
+                    if (subCat.Any())
+                    {
+                        var selected = subCat.First().PropertyValue;
+                        subCat.First().ItemSource = subCat.First().AllSource;
+                        subCat.First().PropertyValue = selected;
+                    }
+
+                    if (name.Any())
+                    {
+                        var selected = name.First().PropertyValue;
+                        name.First().ItemSource = name.First().AllSource;
+                        name.First().PropertyValue = selected;
+                    }
+                }
         }
+
+
+
     }
 }
