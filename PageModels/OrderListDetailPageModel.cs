@@ -126,10 +126,10 @@ namespace voltaire.PageModels
                 }
 
                 format_string.Spans.Add(new Span() { Text = AppResources.PaymentType, FontSize = 16, FontFamily = "SanFranciscoDisplay-Medium", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });
-                format_string.Spans.Add(new Span() { Text = quotation.PaymentMethod.ToString() + Environment.NewLine, FontSize = 16, FontFamily = "SanFranciscoDisplay-Regular", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });
+                format_string.Spans.Add(new Span() { Text = quotation.SaleOrder.PaymentMethod + Environment.NewLine, FontSize = 16, FontFamily = "SanFranciscoDisplay-Regular", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });
 
                 format_string.Spans.Add(new Span() { Text = AppResources.PaymentInformation, FontSize = 16, FontFamily = "SanFranciscoDisplay-Medium", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });
-                format_string.Spans.Add(new Span() { Text = " ", FontSize = 16, FontFamily = "SanFranciscoDisplay-Regular", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });
+                format_string.Spans.Add(new Span() { Text = quotation.SaleOrder.PaymentNote, FontSize = 16, FontFamily = "SanFranciscoDisplay-Regular", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });
 
                 OrderDetails = format_string;
 

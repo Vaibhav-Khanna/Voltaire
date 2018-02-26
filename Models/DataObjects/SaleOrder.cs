@@ -99,5 +99,11 @@
 
         [JsonProperty("trainer_name")]
         public string TrainerName { get; set; }
+
+        [JsonProperty("payment_note")]
+        public string PaymentNote { get; set; }
+
+        [JsonProperty("payment_method")]
+        public string PaymentMethod { get; set; }
     }
 }

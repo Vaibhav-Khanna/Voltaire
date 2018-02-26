@@ -96,12 +96,13 @@ namespace voltaire.PageModels
 
         public Command EmailCommand => new Command(async (obj) =>
        {
-            // Generate or check PDF file
+           // Generate or check PDF file
 
            Quotation.SaleOrder.ToSend = true;
+
            await StoreManager.SaleOrderStore.UpdateAsync(Quotation.SaleOrder);
 
-           Dialog.Toast("Document has been sent.");
+           await CoreMethods.DisplayAlert("Alerte", "Document has been sent.", "OK");
 
        });
 

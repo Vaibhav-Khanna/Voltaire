@@ -5,6 +5,7 @@ using FreshMvvm;
 using voltaire.DataStore.Abstraction.Stores;
 using voltaire.Models.DataObjects;
 using voltaire.PageModels;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace voltaire.DataStore.Implementation.Stores
@@ -23,12 +24,7 @@ namespace voltaire.DataStore.Implementation.Stores
 
             if (StoreManager.MobileService.CurrentUser == null)
             {
-                Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
-                {
-                    var homePage = FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
-
-                    App.Current.MainPage = new FreshNavigationContainer(homePage) { BarTextColor = Color.Black };
-                });
+                return null;              
             }
 
             var id = StoreManager.MobileService.CurrentUser.UserId;
@@ -39,11 +35,9 @@ namespace voltaire.DataStore.Implementation.Stores
                 {
                     await InitializeStore().ConfigureAwait(false);
 
-                    //var item = await Table.LookupAsync(id).ConfigureAwait(false);
+                    var items = await Table.Where(s => s.PartnerId == id).ToListAsync().ConfigureAwait(false);
 
-                    var items = await Table.Where(s => s.ExternalId.ToString() == id).ToListAsync().ConfigureAwait(false);
-
-                    if (items == null || items.Count == 0)
+                    if (items == null || !items.Any())
                         return null;
 
                     currentUser = items[0];

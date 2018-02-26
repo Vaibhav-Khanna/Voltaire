@@ -464,11 +464,17 @@ namespace voltaire.DataStore.Implementation
 
         public class USER
         {
+            [JsonProperty("userId")]
+            public string UserId { get; set; }
+
+            [JsonProperty("companyId")]
+            public string CompanyId { get; set; }
+
             [JsonProperty("token")]
             public string Token { get; set; }
 
-            [JsonProperty("userId")]
-            public long UserId { get; set; }
+            [JsonProperty("tokenExpiration")]
+            public long TokenExpiration { get; set; }
         }
 
     }

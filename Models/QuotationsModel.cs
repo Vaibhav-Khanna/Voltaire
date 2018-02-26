@@ -82,11 +82,13 @@ namespace voltaire.Models
 
         public List<ProductQuotationModel> Products { get; set; } = new List<ProductQuotationModel>();
 
-        public PaymentMethod PaymentMethod { get; set; } = PaymentMethod.None;
+        PaymentMethod _method = PaymentMethod.None;
+        public PaymentMethod PaymentMethod { get { return _method; } set { _method = value; SaleOrder.PaymentMethod = value.ToString(); } } 
 
         public bool IsConditionsAgree { get; set; }
 
-        public string PaymentNotes { get; set; }
+        string notes;
+        public string PaymentNotes { get { return notes; } set { notes = value; SaleOrder.PaymentNote = notes; } }
 
         public bool IsSignedValidated { get; set; }
 
