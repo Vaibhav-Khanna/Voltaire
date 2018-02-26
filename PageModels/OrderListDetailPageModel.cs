@@ -24,7 +24,7 @@ namespace voltaire.PageModels
         public Command itemTapped => new Command(async (object obj) =>
         {
             var item = obj as ProductQuotationModel;
-            await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<SaleOrderLine, ProductQuotationModel, bool>(item.Product, item, false));
+            await CoreMethods.PushPageModel<ProductDescriptionPageModel>(new Tuple<ProductQuotationModel, bool>(item, false));
         });
 
 
@@ -49,7 +49,6 @@ namespace voltaire.PageModels
                // Open internal notes
                await CoreMethods.PushPageModel<QuotationInternalNotesPageModel>(Quotation);
           }
-
       });
 
 
@@ -113,6 +112,11 @@ namespace voltaire.PageModels
 
                 Total = quotation.TotalAmount;
 
+                if (ProductConstants.CurrencyValues.Any() && ProductConstants.CurrencyValues.Where((arg) => arg.Key == quotation.SaleOrder.CurrencyId).Any())
+                    CurrencyLogo = ProductConstants.CurrencyValues.Where((arg) => arg.Key == quotation.SaleOrder.CurrencyId)?.First().Value;
+                else
+                    CurrencyLogo = "*"; //"€";
+
                 var format_string = new FormattedString();
 
                 if (quotation.DateSigned != null)
@@ -122,16 +126,19 @@ namespace voltaire.PageModels
                 }
 
                 format_string.Spans.Add(new Span() { Text = AppResources.PaymentType, FontSize = 16, FontFamily = "SanFranciscoDisplay-Medium", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });
-                format_string.Spans.Add(new Span() { Text = quotation.PaymentMethod.ToString() + Environment.NewLine, FontSize = 16, FontFamily = "SanFranciscoDisplay-Regular", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });
+                format_string.Spans.Add(new Span() { Text = quotation.SaleOrder.PaymentMethod + Environment.NewLine, FontSize = 16, FontFamily = "SanFranciscoDisplay-Regular", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });
 
                 format_string.Spans.Add(new Span() { Text = AppResources.PaymentInformation, FontSize = 16, FontFamily = "SanFranciscoDisplay-Medium", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });
-                format_string.Spans.Add(new Span() { Text = " ", FontSize = 16, FontFamily = "SanFranciscoDisplay-Regular", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });
+                format_string.Spans.Add(new Span() { Text = quotation.SaleOrder.PaymentNote, FontSize = 16, FontFamily = "SanFranciscoDisplay-Regular", ForegroundColor = (Color)App.Current.Resources["GreyishBrown"] });
 
                 OrderDetails = format_string;
 
                 RaisePropertyChanged();
             }
         }
+
+        string currencyLogo;
+        public string CurrencyLogo { get { return currencyLogo; } set { currencyLogo = value; RaisePropertyChanged(); } }
 
         ObservableCollection<ProductQuotationModel> orderitemssource;
         public ObservableCollection<ProductQuotationModel> OrderItemsSource
@@ -264,12 +271,11 @@ namespace voltaire.PageModels
                 {
                     Quotation = _customer.Item3;
                    
-                    var items = await StoreManager.SaleOrderLineStore.GetItemsByOrderId(quotation.SaleOrder.ExternalId);
+                    var items = await StoreManager.SaleOrderLineStore.GetItemsByOrderId(quotation.SaleOrder.Id);
 
                     foreach (var item in items)
                     {
-                        products.Add(new ProductQuotationModel(item));
-                        //var product = await StoreManager.ProductStore.GetItemsByProductId(item.ProductId);
+                        products.Add(new ProductQuotationModel(item,currencyLogo));
                     }
                 }
 

@@ -46,7 +46,7 @@ namespace voltaire.PageModels
                resId = Customer.Id;
            }
 
-            var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = _messageText, ResId = resId, MessageType = MessageType.comment, Model = modelMessage };
+            var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = _messageText, ResId = resId, MessageType = MessageType.comment.ToString() , Model = modelMessage };
 
            //insertion de message dans la base
            var resul = await StoreManager.MessageStore.InsertAsync(message);

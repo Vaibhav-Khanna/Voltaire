@@ -50,48 +50,33 @@ namespace voltaire.DataStore.Implementation
 
         IUserStore userStore;
         public IUserStore UserStore => userStore ?? (userStore = DependencyService.Get<IUserStore>());
-
-        IProductStore productStore;
-        public IProductStore ProductStore => productStore ?? (productStore = DependencyService.Get<IProductStore>());
-
-        IProductPriceListItemStore productPriceListItemStore;
-        public IProductPriceListItemStore ProductPriceListItemStore => productPriceListItemStore ?? (productPriceListItemStore = DependencyService.Get<IProductPriceListItemStore>());
-
-        IProductPriceListStore productPriceListStore;
-        public IProductPriceListStore ProductPriceListStore => productPriceListStore ?? (productPriceListStore = DependencyService.Get<IProductPriceListStore>());
-
-        IProductUOMStore productUOMStore;
-        public IProductUOMStore ProductUOMStore => productUOMStore ?? (productUOMStore = DependencyService.Get<IProductUOMStore>());
-
-        IPurchaseOrderLineStore purchaseOrderLineStore;
-        public IPurchaseOrderLineStore PurchaseOrderLineStore => purchaseOrderLineStore ?? (purchaseOrderLineStore = DependencyService.Get<IPurchaseOrderLineStore>());
-
-        IPurchaseOrderStore purchaseOrderStore;
-        public IPurchaseOrderStore PurchaseOrderStore => purchaseOrderStore ?? (purchaseOrderStore = DependencyService.Get<IPurchaseOrderStore>());
-
+       
         ISaleOrderStore saleOrderStore;
         public ISaleOrderStore SaleOrderStore => saleOrderStore ?? (saleOrderStore = DependencyService.Get<ISaleOrderStore>());
 
         ISaleOrderLineStore saleOrderLineStore;
         public ISaleOrderLineStore SaleOrderLineStore => saleOrderLineStore ?? (saleOrderLineStore = DependencyService.Get<ISaleOrderLineStore>());
 
-        IEventStore eventStore;
-        public IEventStore EventStore => eventStore ?? (eventStore = DependencyService.Get<IEventStore>());
-
-        IEventAlarmStore eventAlarmStore;
-        public IEventAlarmStore EventAlarmStore => eventAlarmStore ?? (eventAlarmStore = DependencyService.Get<IEventAlarmStore>());
-
         IMessageStore messageStore;
         public IMessageStore MessageStore => messageStore ?? (messageStore = DependencyService.Get<IMessageStore>());
+
+        ICheckinStore checkinStore;
+        public ICheckinStore CheckinStore => checkinStore ?? (checkinStore = DependencyService.Get<ICheckinStore>());
+
+        IDocumentStore documentStore;
+        public IDocumentStore DocumentStore => documentStore ?? ( documentStore = DependencyService.Get<IDocumentStore>());
+
+        ICompanyStore companyStore;
+        public ICompanyStore CompanyStore => companyStore ?? (companyStore = DependencyService.Get<ICompanyStore>());
+
+        IAccountTaxStore accountTaxStore;
+        public IAccountTaxStore AccountTaxStore => accountTaxStore ?? (accountTaxStore = DependencyService.Get<IAccountTaxStore>());
 
         IAccessoryStore accessoryStore;
         public IAccessoryStore AccessoryStore => accessoryStore ?? (accessoryStore = DependencyService.Get<IAccessoryStore>());
 
-        IAccessoryCategoryStore accessoryCategoryStore;
-        public IAccessoryCategoryStore AccessoryCategoryStore => accessoryCategoryStore ?? (accessoryCategoryStore = DependencyService.Get<IAccessoryCategoryStore>());
-
-        ISaddlePriceStore saddlePriceStore;
-        public ISaddlePriceStore SaddlePriceStore => saddlePriceStore ?? (saddlePriceStore = DependencyService.Get<ISaddlePriceStore>());
+        ISaddlePriceStore saddleStore;
+        public ISaddlePriceStore SaddleStore => saddleStore ?? (saddleStore = DependencyService.Get<ISaddlePriceStore>());
 
         IServiceStore serviceStore;
         public IServiceStore ServiceStore => serviceStore ?? (serviceStore = DependencyService.Get<IServiceStore>());
@@ -111,21 +96,19 @@ namespace voltaire.DataStore.Implementation
             PartnerGradeStore.DropTable();
             PartnerTitleStore.DropTable();
             UserStore.DropTable();
-            ProductStore.DropTable();
-            ProductPriceListItemStore.DropTable();
-            ProductPriceListStore.DropTable();
-            ProductUOMStore.DropTable();
-            PurchaseOrderLineStore.DropTable();
-            PurchaseOrderStore.DropTable();
+          
             SaleOrderStore.DropTable();
             SaleOrderLineStore.DropTable();
-            EventStore.DropTable();
-            EventAlarmStore.DropTable();
-            AccessoryStore.DropTable();
-            AccessoryCategoryStore.DropTable();
-            SaddlePriceStore.DropTable();
-            ServiceStore.DropTable();
+           
             MessageStore.DropTable();
+            CheckinStore.DropTable();
+            DocumentStore.DropTable();
+            CompanyStore.DropTable();
+            AccountTaxStore.DropTable();
+          
+            AccessoryStore.DropTable();
+            ServiceStore.DropTable();
+            SaddleStore.DropTable();
 
 
             IsInitialized = false;
@@ -148,7 +131,7 @@ namespace voltaire.DataStore.Implementation
                 IsInitialized = true;
                 // var dbId = Settings.DatabaseId;
                 // var path = $"syncstore{dbId}.db";
-                MobileService = new MobileServiceClient("http://voltairecrm.azurewebsites.net");
+                MobileService = new MobileServiceClient(Constants.EndUrl);
                 store = new MobileServiceSQLiteStore("syncstore.db");
 
                 store.DefineTable<Partner>();
@@ -158,20 +141,16 @@ namespace voltaire.DataStore.Implementation
                 store.DefineTable<Models.DataObjects.PartnerGrade>();
                 store.DefineTable<PartnerTitle>();
                 store.DefineTable<User>();
-                store.DefineTable<Product>();
-                store.DefineTable<ProductPriceListItem>();
-                store.DefineTable<ProductPriceList>();
-                store.DefineTable<ProductUOM>();
-                store.DefineTable<PurchaseOrderLine>();
-                store.DefineTable<PurchaseOrder>();
+                           
                 store.DefineTable<SaleOrder>();
                 store.DefineTable<SaleOrderLine>();
-                store.DefineTable<Event>();
-                store.DefineTable<EventAlarm>();
                 store.DefineTable<Message>();
+                store.DefineTable<Checkin>();
+                store.DefineTable<Document>();
+                store.DefineTable<Company>();
+                store.DefineTable<AccountTax>();
                 store.DefineTable<Accessory>();
-                store.DefineTable<AccessoryCategory>();
-                store.DefineTable<SaddlePrice>();
+                store.DefineTable<Saddle>();
                 store.DefineTable<Service>();
 
                 store.DefineTable<StoreSettings>();
@@ -196,26 +175,21 @@ namespace voltaire.DataStore.Implementation
             taskList.Add(UserStore.SyncAsync());
             taskList.Add(CustomerStore.SyncAsync());
             taskList.Add(PartnerCategoryStore.SyncAsync());
-
+            taskList.Add(CheckinStore.SyncAsync());
             taskList.Add(PartnerGradeStore.SyncAsync());
             taskList.Add(PartnerTitleStore.SyncAsync());
             taskList.Add(CurrencyStore.SyncAsync());
-            taskList.Add(CountryStore.SyncAsync());
-            taskList.Add(ProductStore.SyncAsync());
-            taskList.Add(ProductPriceListItemStore.SyncAsync());
-            taskList.Add(ProductPriceListStore.SyncAsync());
-            taskList.Add(ProductUOMStore.SyncAsync());
-            taskList.Add(PurchaseOrderLineStore.SyncAsync());
-            taskList.Add(PurchaseOrderStore.SyncAsync());
+            taskList.Add(CountryStore.SyncAsync());          
             taskList.Add(SaleOrderStore.SyncAsync());
             taskList.Add(SaleOrderLineStore.SyncAsync());
-            taskList.Add(EventStore.SyncAsync());
-            taskList.Add(EventAlarmStore.SyncAsync());
-            taskList.Add(AccessoryStore.SyncAsync());
-            taskList.Add(AccessoryCategoryStore.SyncAsync());
-            taskList.Add(SaddlePriceStore.SyncAsync());
-            taskList.Add(ServiceStore.SyncAsync());
             taskList.Add(MessageStore.SyncAsync());
+            taskList.Add(DocumentStore.SyncAsync());
+            taskList.Add(CompanyStore.SyncAsync());
+            taskList.Add(AccountTaxStore.SyncAsync());
+            taskList.Add(SaddleStore.SyncAsync());
+            taskList.Add(ServiceStore.SyncAsync());
+            taskList.Add(AccessoryStore.SyncAsync());
+
 
             Device.BeginInvokeOnMainThread(async () =>
            {
@@ -224,13 +198,14 @@ namespace voltaire.DataStore.Implementation
 
 
             //TODO add all other stores
+                       
+            var successes = await Task.WhenAll(taskList).ConfigureAwait(false);
 
             if (syncUserSpecific)
             {
                 // add stores that are user specific data
+                await DocumentStore.OfflineUploadSync();
             }
-
-            var successes = await Task.WhenAll(taskList).ConfigureAwait(false);
 
             Device.BeginInvokeOnMainThread(async () =>
             {
@@ -251,16 +226,20 @@ namespace voltaire.DataStore.Implementation
             }
 
             var credentials = new JObject();
-            credentials["username"] = username;
+            credentials["email"] = username;
             credentials["password"] = password;
+            credentials["mobile"] = true;
 
-            var uri = new Uri("http://voltairecrm.azurewebsites.net/api/login");
+            var uri = new Uri(Constants.EndUrl + "/api/login");
 
             try
             {
                 var _client = new HttpClient();
+
+                _client.DefaultRequestHeaders.Add("ZUMO-API-VERSION", "2.0.0");
                 var json_cred = credentials.ToString();
                 var content = new StringContent(json_cred, Encoding.UTF8, "application/json");
+               
 
                 var response = await _client.PostAsync(uri, content);
 
@@ -347,7 +326,6 @@ namespace voltaire.DataStore.Implementation
         }
 
 
-
         async Task CacheToken(MobileServiceUser user)
         {
             var settings = new StoreSettings
@@ -421,7 +399,7 @@ namespace voltaire.DataStore.Implementation
 
         private async Task<bool> RegenerateTokenAsync()
         {
-            var uri = new Uri("http://voltairecrm.azurewebsites.net/api/regenerate");
+            var uri = new Uri(Constants.EndUrl + "/api/regenerate");
 
             StoreSettings settings = await ReadSettingsAsync();
 
@@ -450,7 +428,7 @@ namespace voltaire.DataStore.Implementation
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -486,11 +464,17 @@ namespace voltaire.DataStore.Implementation
 
         public class USER
         {
+            [JsonProperty("userId")]
+            public string UserId { get; set; }
+
+            [JsonProperty("companyId")]
+            public string CompanyId { get; set; }
+
             [JsonProperty("token")]
             public string Token { get; set; }
 
-            [JsonProperty("userId")]
-            public long UserId { get; set; }
+            [JsonProperty("tokenExpiration")]
+            public long TokenExpiration { get; set; }
         }
 
     }

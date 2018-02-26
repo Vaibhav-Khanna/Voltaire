@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
 namespace voltaire.Models
 {
-    public class ProductProperty
+    public class ProductProperty : INotifyPropertyChanged
     {
 
         public ProductProperty(PropertyType Type)
@@ -14,6 +16,9 @@ namespace voltaire.Models
 
 
         PropertyType propertytype;
+
+      
+
         public PropertyType PropertyType
         {
             get { return propertytype; }
@@ -23,23 +28,34 @@ namespace voltaire.Models
             }
         }
 
-
         public string PropertyName { get; set; }
 
-        public string PropertyValue { get; set; }
+        string val;
+        public string PropertyValue { get { return val; } set { val = value; RaisePropertyChanged(); } }
 
-        public List<string> ItemSource { get; set; }
+        List<string> _source;
+        public List<string> ItemSource { get { return _source; } set{ _source = value; RaisePropertyChanged(); } }
+
+        public List<string> AllSource { get; set; }
+
+        public bool IsNumberKeyboard { get; set; }
 
         public ProductProperty ObjectClone(ProductProperty obj)
         {
             return (ProductProperty)obj.MemberwiseClone();
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        void RaisePropertyChanged([CallerMemberName] string name = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
 
     public enum PropertyType
     {
-        IsText, IsBoolean, IsPicker, IsEditor
+        IsText, IsBoolean, IsPicker, IsEditor, IsLabel
     }
 
 

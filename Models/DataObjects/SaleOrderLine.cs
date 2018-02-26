@@ -10,9 +10,6 @@
     public class SaleOrderLine : BaseDataObject
     {
       
-        //[JsonProperty("version")]
-        //public string Version { get; set; }
-
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
 
@@ -22,26 +19,23 @@
         [JsonProperty("deleted")]
         public bool Deleted { get; set; }
 
-        [JsonProperty("externalId")]
+        [JsonProperty("external_id")]
         public long ExternalId { get; set; }
 
         [JsonProperty("write_date")]
-        public DateTime WriteDate { get; set; }
+        public System.DateTime WriteDate { get; set; }
 
         [JsonProperty("company_id")]
         public long CompanyId { get; set; }
 
         [JsonProperty("create_date")]
-        public DateTime CreateDate { get; set; }
+        public System.DateTime CreateDate { get; set; }
 
         [JsonProperty("create_uid")]
         public long CreateUid { get; set; }
 
         [JsonProperty("currency_id")]
         public long CurrencyId { get; set; }
-
-        [JsonProperty("discount")]
-        public long Discount { get; set; }
 
         [JsonProperty("display_name")]
         public string DisplayName { get; set; }
@@ -53,19 +47,10 @@
         public string Name { get; set; }
 
         [JsonProperty("order_id")]
-        public long OrderId { get; set; }
-
-        [JsonProperty("price_subtotal")]
-        public long PriceSubtotal { get; set; }
-
-        [JsonProperty("price_tax")]
-        public long PriceTax { get; set; }
+        public string OrderId { get; set; }
 
         [JsonProperty("price_unit")]
         public long PriceUnit { get; set; }
-
-        [JsonProperty("price_total")]
-        public long PriceTotal { get; set; }
 
         [JsonProperty("product_id")]
         public long ProductId { get; set; }
@@ -87,5 +72,23 @@
 
         [JsonProperty("state")]
         public string State { get; set; }
+
+        [JsonProperty("tax_id")]
+        public long TaxId { get; set; }
+
+        [JsonProperty("configuration_detail")]
+        public string ConfigurationDetail { get; set; }
+
+        [JsonProperty("product_kind")]
+        public string ProductKind { get; set; }
+
+        [JsonProperty("tax_applied")]
+        public bool TaxApplied { get; set; }
     }
+
+    public enum ProductKind
+    {
+        saddle, accessory, other, service, discount, tradein
+    }
+
 }

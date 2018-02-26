@@ -42,7 +42,6 @@ namespace voltaire.PageModels
             }
         }
 
-
         int filter { get; set; }
         public int Filter 
         {
@@ -191,6 +190,8 @@ namespace voltaire.PageModels
             QuotationsItemSource = all_items;
 
             SearchQuery.Execute(null);
+
+            ProductConstants.GenerateProductList();
         }
 
     }

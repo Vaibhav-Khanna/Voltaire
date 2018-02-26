@@ -3,43 +3,58 @@ using System.Collections.Generic;
 using voltaire.Models;
 using voltaire.PageModels.Base;
 using Xamarin.Forms;
+using voltaire.Helpers;
+using voltaire.Models.DataObjects;
 
 namespace voltaire.PageModels
 {
     public class QuotationSignPageModel : BasePageModel
     {
 
+        Partner Customer { get; set; }
+
         public Command BackButton => new Command((obj) =>
        {
              CoreMethods.PopPageModel();
        });
 
-        public Command SignValidate => new Command( (obj) =>
+        public Command SignValidate => new Command( async (obj) =>
        {
            if (!TermsConditionSelected)
            {
-			   CoreMethods.DisplayAlert("Alert", "Please accept the terms and conditions first in order to validate the quotation.", "Ok");
+                await  CoreMethods.DisplayAlert("Alert", "Please accept the terms and conditions first in order to validate the quotation.", "Ok");
                return;
            }
 
             if(IsSigned)
             {
-                CoreMethods.DisplayAlert("Alert","You have already signed this quotation !","Ok");
+                await CoreMethods.DisplayAlert("Alert","You have already signed this quotation !","Ok");
                 return;
             }
 
-            if (SignImage != null)
-            {             
-                quotation.SignedImage = SignImage; 
-                IsSigned = true;
-                quotation.Status = QuotationStatus.done.ToString();
-                quotation.DateSigned = DateTime.Now;
-                CoreMethods.PopPageModel();
-            }
-            else
-            {
-                CoreMethods.DisplayAlert("Alert", "Please sign the quotation first.", "Ok");
-            }
+           if (SignImage != null)
+           {
+               quotation.SignedImage = SignImage;
+               IsSigned = true;
+
+
+
+               var document = new Document() { Name = UnixTimeStamp(), ReferenceKind = "partner", ReferenceId = Customer.Id, MimeType = "image/png" };
+               await StoreManager.DocumentStore.InsertAsync(document);
+               await PclStorage.SaveFileLocal(SignImage, document.Id);
+
+               quotation.Status = QuotationStatus.done.ToString();
+               quotation.DateSigned = DateTime.Now;
+
+               quotation.SaleOrder.ToSend = true;
+
+               await CoreMethods.PopPageModel();
+
+           }
+           else
+           {
+               await CoreMethods.DisplayAlert("Alert", "Please sign the quotation first.", "Ok");
+           }
 
        });
 
@@ -237,18 +252,25 @@ namespace voltaire.PageModels
         {
             base.Init(initData);
 
-            var context = initData as QuotationsModel;
+            var context = initData as Tuple<QuotationsModel,Partner>;
 
             if (context == null)
                 return;
 
-            Quotation = context;
+            Quotation = context.Item1;
+            Customer = context.Item2;
         }
 
 		public static T ParseEnum<T>(string value)
 		{
 			return (T)Enum.Parse(typeof(T), value, true);
 		}
+
+        string UnixTimeStamp()
+        {
+            Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+            return unixTimestamp.ToString();
+        }
 
 	}
 }

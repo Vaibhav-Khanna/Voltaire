@@ -11,6 +11,7 @@ using voltaire.DataStore;
 using voltaire.PageModels.Base;
 using voltaire.DataStore.Implementation;
 using voltaire.DataStore.Abstraction;
+using voltaire.Helpers;
 
 namespace voltaire
 {
@@ -27,6 +28,8 @@ namespace voltaire
 
             ProductConstants.Init();
 
+            PclStorage.Init();
+
             BasePageModel.Init();
 
             storeManager = DependencyService.Get<IStoreManager>() as StoreManager;
@@ -34,11 +37,10 @@ namespace voltaire
             Init();
 
             MainPage = new ContentPage();
-
         }
 
 
-        private StoreManager storeManager { get; set; }
+        public static StoreManager storeManager { get; set; }
 
 
         public async void Init()

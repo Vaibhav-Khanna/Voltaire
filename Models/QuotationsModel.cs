@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using voltaire.Models.DataObjects;
 using voltaire.PageModels;
 using Xamarin.Forms;
@@ -16,23 +17,33 @@ namespace voltaire.Models
                 SaleOrder = model;
                 Name = model.Name;
                 Ref = model.ClientOrderRef;
-                var tax = (model.AmountTotal - model.AmountUntaxed);
-               
-                if(model.AmountUntaxed!=0)
-                    TaxAmount = (double) ( (double)tax /(double) model.AmountUntaxed) * 100;
+
+
+                TaxAmount = model.AmountTax;
 
                 TotalAmount = model.AmountTotal;
                 SubTotal = model.AmountUntaxed;
-                ApplyTax = (model.AmountTotal - model.AmountUntaxed) == 0 ? false : true;
+                ApplyTax = (model.AmountTax) <= 0 ? false : true;
                 PermanentNote = model.Note;
                 Date = model.DateOrder;
                 Status = model.State;
+                HorseShow = model.HorseShow;
+                TrainerName = model.TrainerName;
+
+                if (ProductConstants.CurrencyValues.Any() && ProductConstants.CurrencyValues.Where((arg) => arg.Key == model.CurrencyId).Any())
+                    CurrencyLogo = ProductConstants.CurrencyValues.Where((arg) => arg.Key == model.CurrencyId)?.First().Value;
+                else
+                    CurrencyLogo = "*";
+
             }
         }
 
         public SaleOrder SaleOrder { get; set; }
 
         public Color BackColor { get; set; }
+
+        string currencyLogo;
+        public string CurrencyLogo { get { return currencyLogo; } set { currencyLogo = value; } }
 
         string name;
         public string Name { get { return name; } set { name = value; SaleOrder.Name = value; } }
@@ -64,18 +75,20 @@ namespace voltaire.Models
         public string Status { get { return status; } set { status = value; SaleOrder.State = value; } }
 
         string trainerName;
-        public string TrainerName { get { return trainerName; } set { trainerName = value; } }
+        public string TrainerName { get { return trainerName; } set { trainerName = value; SaleOrder.TrainerName = trainerName; } }
 
         string horseShow;
-        public string HorseShow { get { return horseShow; } set { horseShow = value; } }
+        public string HorseShow { get { return horseShow; } set { horseShow = value; SaleOrder.HorseShow = horseShow; } }
 
         public List<ProductQuotationModel> Products { get; set; } = new List<ProductQuotationModel>();
 
-        public PaymentMethod PaymentMethod { get; set; } = PaymentMethod.None;
+        PaymentMethod _method = PaymentMethod.None;
+        public PaymentMethod PaymentMethod { get { return _method; } set { _method = value; SaleOrder.PaymentMethod = value.ToString(); } } 
 
         public bool IsConditionsAgree { get; set; }
 
-        public string PaymentNotes { get; set; }
+        string notes;
+        public string PaymentNotes { get { return notes; } set { notes = value; SaleOrder.PaymentNote = notes; } }
 
         public bool IsSignedValidated { get; set; }
 

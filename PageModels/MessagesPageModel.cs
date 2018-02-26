@@ -27,7 +27,7 @@ namespace voltaire.PageModels
 
             MessageText = null;
            // var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = "<p>" + MessageText + "</p>", ResId = Quotation.SaleOrder.Id, MessageType = MessageType.comment, Model = "sale.order" };
-           var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = _messageText, ResId = Quotation.SaleOrder.Id, MessageType = MessageType.comment, Model = "sale.order" };
+            var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = _messageText, ResId = Quotation.SaleOrder.Id, MessageType = MessageType.comment.ToString() , Model = "sale.order" };
 
            //insertion de message dans la base
            var resul = await StoreManager.MessageStore.InsertAsync(message);

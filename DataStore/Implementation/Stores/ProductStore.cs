@@ -11,16 +11,17 @@ namespace voltaire.DataStore.Implementation.Stores
     {
         public override string Identifier => "Product";
 
-        public async Task<Product> GetItemsByProductId(long ProductId)
+        public Task<Product> GetItemsByProductId(long ProductId)
         {
-            await InitializeStore().ConfigureAwait(false);
+            return null;
+            //await InitializeStore().ConfigureAwait(false);
 
-            var items = await Table.Where(x => x.ExternalId == ProductId ).ToEnumerableAsync().ConfigureAwait(false);
+            //var items = await Table.Where(x => x.ExternalId == ProductId ).ToEnumerableAsync().ConfigureAwait(false);
 
-            if (items != null && items.Any())
-                return items.FirstOrDefault();
-            else
-                return null;
+            //if (items != null && items.Any())
+            //    return items.FirstOrDefault();
+            //else
+                //return null;
         }
 
     }

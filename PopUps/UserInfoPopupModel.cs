@@ -120,11 +120,15 @@ namespace voltaire
 
             _currUser = await storeManager.UserStore.GetCurrentUserAsync();
 
-            UserName = !string.IsNullOrWhiteSpace(_currUser.Name) ? _currUser.Name : Resources.AppResources.NotSpecified;
-            Phone = !string.IsNullOrWhiteSpace(_currUser.Phone) ? _currUser.Phone : Resources.AppResources.NotSpecified;
-            Address = !string.IsNullOrWhiteSpace(_currUser.ContactAddress) ? _currUser.ContactAddress : Resources.AppResources.NotSpecified;
-            Email = !string.IsNullOrWhiteSpace(_currUser.Email) ? _currUser.Email : Resources.AppResources.NotSpecified;
-            Website = !string.IsNullOrWhiteSpace(_currUser.Website) ? _currUser.Website : Resources.AppResources.NotSpecified;
+
+            if (_currUser != null)
+            {
+                UserName = !string.IsNullOrWhiteSpace(_currUser.Name) ? _currUser.Name : Resources.AppResources.NotSpecified;
+                Phone = !string.IsNullOrWhiteSpace(_currUser.Phone) ? _currUser.Phone : Resources.AppResources.NotSpecified;
+                Address = !string.IsNullOrWhiteSpace(_currUser.ContactAddress) ? _currUser.ContactAddress : Resources.AppResources.NotSpecified;
+                Email = !string.IsNullOrWhiteSpace(_currUser.Email) ? _currUser.Email : Resources.AppResources.NotSpecified;
+                Website = !string.IsNullOrWhiteSpace(_currUser.Website) ? _currUser.Website : Resources.AppResources.NotSpecified;
+            }
         }
 
     }

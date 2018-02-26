@@ -16,7 +16,7 @@ namespace voltaire.DataStore.Implementation.Stores
         {
             await InitializeStore().ConfigureAwait(false);
 
-            return await Table.Where( x => x.PartnerId == PartnerId ).Where(x =>  x.State == QuotationStatus.sale.ToString() || x.State == QuotationStatus.done.ToString() ).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+            return await Table.Where( x => x.PartnerId == PartnerId ).Where( x => x.State == QuotationStatus.sale.ToString() || x.State == QuotationStatus.done.ToString() ).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<SaleOrder>> GetQuotationItemsByCustomer(long PartnerId)

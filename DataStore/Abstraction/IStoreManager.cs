@@ -16,21 +16,17 @@ namespace voltaire.DataStore.Abstraction
         IPartnerGradeStore PartnerGradeStore { get; }
         IPartnerStore CustomerStore { get; }
         IPartnerTitleStore PartnerTitleStore { get; }
-        IUserStore UserStore { get; }
-        IProductStore ProductStore { get; }
-        IProductPriceListItemStore ProductPriceListItemStore { get; }
-        IProductPriceListStore ProductPriceListStore { get; }
-        IProductUOMStore ProductUOMStore { get; }
-        IPurchaseOrderLineStore PurchaseOrderLineStore { get; }
-        IPurchaseOrderStore PurchaseOrderStore { get; }
+        IUserStore UserStore { get; }      
         ISaleOrderStore SaleOrderStore { get; }
-        ISaleOrderLineStore SaleOrderLineStore { get; }
-        IEventStore EventStore { get; }
-        IEventAlarmStore EventAlarmStore { get; }
-        IMessageStore MessageStore { get; }
+        ISaleOrderLineStore SaleOrderLineStore { get; } 
+        IMessageStore MessageStore { get; } 
+        ICheckinStore CheckinStore { get; }
+        IDocumentStore DocumentStore { get; }
+        ICompanyStore CompanyStore { get; }
+       
+        IAccountTaxStore AccountTaxStore { get; }
         IAccessoryStore AccessoryStore { get; }
-        IAccessoryCategoryStore AccessoryCategoryStore { get; }
-        ISaddlePriceStore SaddlePriceStore { get; }
+        ISaddlePriceStore SaddleStore { get; }
         IServiceStore ServiceStore { get; }
 
         Task<bool> SyncAllAsync(bool syncUserSpecific);

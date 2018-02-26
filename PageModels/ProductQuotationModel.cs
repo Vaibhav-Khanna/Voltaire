@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using voltaire.Models;
 using voltaire.Models.DataObjects;
+using Newtonsoft.Json;
 
 namespace voltaire.PageModels
 {
@@ -14,6 +15,11 @@ namespace voltaire.PageModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+
+        public ProductKind ProductKind { get; set; }
+
+        public string CurrencyLogo { get; set; }
+
         string description;
         public string Description
         {
@@ -21,6 +27,10 @@ namespace voltaire.PageModels
             set
             {
                 description = value;
+
+                if(Product!=null)
+                Product.DisplayName = value;
+
                 RaisePropertyChanged();
             }
         }
@@ -32,24 +42,13 @@ namespace voltaire.PageModels
             set
             {
                 product = value;
-                Init(product);
                 RaisePropertyChanged();
             }
         }
 
-        List<ProductProperty> productproperties;
-        public List<ProductProperty> ProductProperties
-        {
-            get { return productproperties; }
-            set
-            {
-                productproperties = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        List<string> orderstatustypes;
-        public List<string> OrderStatusTypes
+       
+        ObservableCollection<string> orderstatustypes;
+        public ObservableCollection<string> OrderStatusTypes
         {
             get { return orderstatustypes; }
             set
@@ -67,6 +66,9 @@ namespace voltaire.PageModels
             set
             {
                 orderstatusindex = value;
+
+                if (Product != null)
+                Product.State = OrderStatusTypes[value];
 
                 RaisePropertyChanged();
             }
@@ -102,34 +104,54 @@ namespace voltaire.PageModels
             get { return quantity; }
             set
             {
-                quantity = value;
-
-                if (istaxapply)
+                if (value >= MinimumQuantity)
                 {
-                    TaxFree = (UnitPrice - ((ProductConstants.TaxPercent / 100) * UnitPrice)) * Quantity;
+                    quantity = value;
+
+                    if (istaxapply)
+                    {
+                        TaxFree = (UnitPrice - (UnitPrice * (double)(TaxPercent / 100))) * Quantity;
+                    }
+                    else
+                    {
+                        TaxFree = UnitPrice * Quantity;
+                    }
+
+                    if (Product != null)
+                        Product.ProductQty = quantity;
                 }
                 else
-                {
-                    TaxFree = UnitPrice * Quantity;
-                }
+                    quantity = MinimumQuantity;
 
                 RaisePropertyChanged();
             }
         }
 
 
-
-        double unitprice;
-        public double UnitPrice
+        long unitprice;
+        public long UnitPrice
         {
             get { return unitprice; }
             set
             {
                 unitprice = value;
 
+                if (istaxapply)
+                {
+                    TaxFree = (UnitPrice - (UnitPrice * (double)(TaxPercent / 100))) * Quantity;
+                }
+                else
+                {
+                    TaxFree = UnitPrice * Quantity;
+                }
+
+                if (Product != null)
+                Product.PriceUnit = value;
+
                 RaisePropertyChanged();
             }
         }
+
 
         bool istaxapply;
         public bool IsTaxApply
@@ -141,11 +163,16 @@ namespace voltaire.PageModels
 
                 if (istaxapply)
                 {
-                    TaxFree = (UnitPrice - ((ProductConstants.TaxPercent / 100) * UnitPrice)) * Quantity;
+                    TaxFree = (UnitPrice - (UnitPrice * (double)(TaxPercent/ 100))) * Quantity;
                 }
                 else
                 {
                     TaxFree = UnitPrice * Quantity;
+                }
+
+                if (Product != null)
+                {
+                   Product.TaxApplied = IsTaxApply;
                 }
 
                 RaisePropertyChanged();
@@ -174,35 +201,52 @@ namespace voltaire.PageModels
             }
         }
 
+        double TaxAmount { get; set; }
 
-        public ProductQuotationModel(SaleOrderLine _product)
+        double TaxPercent { get; set; } = 20;
+
+        public int MinimumQuantity { get; set; } = 1;
+
+
+        public ProductQuotationModel(SaleOrderLine _product,string currency)
         {
-            OrderStatusTypes = ProductConstants.ProductStatusRange;
+            OrderStatusTypes = new ObservableCollection<string>(ProductConstants.ProductStatusRange);
+
+            CurrencyLogo = currency;
+
             QuantitySource = ProductConstants.QuantityRange;
 
             Init(_product);
 
-            UnitPrice = _product.PriceUnit;
-            Quantity = (int)_product.ProductQty;
-            IsTaxApply = _product.PriceTax == 0 ? false : true;
             Product = _product;
 
-            if (OrderStatusTypes.Contains(_product.State.Trim().ToLower()))
-                OrderStatusIndex = OrderStatusTypes.IndexOf(_product.State.Trim().ToLower());
+            UnitPrice = _product.PriceUnit;
+           
+            Quantity = (int)_product.ProductQty;
 
-            if (ProductProperties == null)
+            IsTaxApply = _product.TaxApplied;
+
+            GetTax();
+
+            if (OrderStatusTypes.Contains(_product.State?.Trim()?.ToLower()))
+                OrderStatusIndex = OrderStatusTypes.IndexOf(_product.State?.Trim()?.ToLower());
+            else
+                OrderStatusIndex = 1;  
+
+            SetOrderStatusIndex(OrderStatusIndex);
+        }
+
+        async void GetTax()
+        {
+            var tax =  await App.storeManager.AccountTaxStore.GetItemsByExternalId(product.TaxId);
+
+            if (tax != null)
             {
-                //TODO
-
-                //var properties = new List<ProductProperty>();
-                //foreach (var item in _product.Properties)
-                //{
-                //    ProductProperty clone = item.ObjectClone(item);
-                //    properties.Add(clone);
-                //}
-                //ProductProperties = properties;
+                TaxPercent = tax.Amount;
+                TaxAmount = product.PriceUnit * (double)(tax.Amount/100);
             }
         }
+
 
         void SetOrderStatusIndex(int _value)
         {

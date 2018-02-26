@@ -10,9 +10,6 @@
     public class Service : BaseDataObject
     {
        
-        //[JsonProperty("version")]
-        //public string Version { get; set; }
-
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
 
@@ -22,31 +19,25 @@
         [JsonProperty("deleted")]
         public bool Deleted { get; set; }
 
-        [JsonProperty("code")]
-        public string Code { get; set; }
+        [JsonProperty("slug")]
+        public string Slug { get; set; }
 
-        [JsonProperty("type")]
-        public string Type { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
-        [JsonProperty("price_dollard")]
-        public long PriceDollard { get; set; }
+        [JsonProperty("price")]
+        public long Price { get; set; }
 
-        [JsonProperty("price_euro")]
-        public long PriceEuro { get; set; }
+        [JsonProperty("currency_id")]
+        public long CurrencyId { get; set; }
 
-        [JsonProperty("price_gpb")]
-        public long PriceGpb { get; set; }
+        [JsonProperty("min_quantity")]
+        public long MinQuantity { get; set; }
 
-        [JsonProperty("price_sek")]
-        public long PriceSek { get; set; }
+        [JsonProperty("date_start")]
+        public string DateStart { get; set; }
 
-        [JsonProperty("price_dkk")]
-        public long PriceDkk { get; set; }
-
-        [JsonProperty("price_chf")]
-        public long PriceChf { get; set; }
-
-        [JsonProperty("price_gbp")]
-        public long PriceGbp { get; set; }
+        [JsonProperty("date_end")]
+        public string DateEnd { get; set; }
     }
 }

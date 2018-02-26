@@ -35,12 +35,12 @@
                  VerticalOptions="Center"
                  HorizontalOptions="FillAndExpand"   
                  Spacing="10"
-                 IsVisible="{Binding Customer.DateLocalization,
+                 IsVisible="{Binding Customer.LastCheckinAt,
                                    Converter={StaticResource DateNullableToBooleanConverter}}"   >
         <Image Source="fgreen" HeightRequest="10" WidthRequest="10"/> 
         <Label  Text="{x:Static resources:AppResources.LastVisit}"
                 Style="{StaticResource CellLabelDescriptionStyle}" /> 
-        <Label  Text="{Binding Customer.DateLocalization, StringFormat='{0:MMMM d, yyyy}'}"
+        <Label  Text="{Binding Customer.LastCheckinAt, StringFormat='{0:MMMM d, yyyy}'}"
                 Style="{StaticResource CellLabelDescriptionStyle}" /> 
     </StackLayout>
     <Button     IsVisible="{Binding Customer.PartnerWeight,

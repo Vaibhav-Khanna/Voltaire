@@ -50,13 +50,16 @@ namespace voltaire.DataStore.Implementation
         }
 
 
-        public virtual async Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false)
+        public virtual async Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false, bool AllItems = false)
         {
             await InitializeStore().ConfigureAwait(false);
             if (forceRefresh)
                 await PullLatestAsync().ConfigureAwait(false);
-
-            return await Table.Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+         
+            if (AllItems)
+                return await Table.IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+            else
+                return await Table.Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
         }
 
 
@@ -133,11 +136,9 @@ namespace voltaire.DataStore.Implementation
                 Debug.WriteLine("Unable to sync items, we have offline capabilities: " + ex);
                 return false;
             }
-            finally
-            {
-
-            }
+           
             return true;
+
         }
 
         public async Task<bool> PullLatestAsync()
@@ -150,8 +151,8 @@ namespace voltaire.DataStore.Implementation
             }
 
             try
-            {
-                await Table.PullAsync<T>($"all{Identifier}", Table.CreateQuery().IncludeTotalCount(), false, new CancellationToken(false), new PullOptions() { MaxPageSize = 150 }).ConfigureAwait(false);
+            {               
+                await Table.PullAsync<T>($"all{Identifier}", Table.IncludeTotalCount(), false, new CancellationToken(false), new PullOptions() { MaxPageSize = 150 }).ConfigureAwait(false);
             }
             catch (Exception ex)
             {

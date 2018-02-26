@@ -3901,6 +3901,8 @@ namespace voltaire.Droid
 			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_view_release_notes = global::voltaire.Droid.Resource.String.mobile_center_distribute_update_dialog_view_release_notes;
 			global::PCLCrypto.Resource.String.ApplicationName = global::voltaire.Droid.Resource.String.ApplicationName;
 			global::PCLCrypto.Resource.String.Hello = global::voltaire.Droid.Resource.String.Hello;
+			global::PCLStorage.Resource.String.ApplicationName = global::voltaire.Droid.Resource.String.ApplicationName;
+			global::PCLStorage.Resource.String.Hello = global::voltaire.Droid.Resource.String.Hello;
 			global::Splat.Resource.String.library_name = global::voltaire.Droid.Resource.String.library_name;
 			global::Syncfusion.ListView.XForms.Android.Resource.Animation.abc_fade_in = global::voltaire.Droid.Resource.Animation.abc_fade_in;
 			global::Syncfusion.ListView.XForms.Android.Resource.Animation.abc_fade_out = global::voltaire.Droid.Resource.Animation.abc_fade_out;

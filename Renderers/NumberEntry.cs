@@ -13,6 +13,14 @@ namespace voltaire.Renderers
             Unfocused += NumberEntry_Unfocused;
         }
 
+        public NumberEntry(int maxLength)
+        {
+            Behaviors.Add(new NumberValidationBehavior());
+            Behaviors.Add(new MaxLengthValidatorBehavior() { MaxLength = maxLength });
+
+            Unfocused += NumberEntry_Unfocused;
+        }
+
         void NumberEntry_Unfocused(object sender, Xamarin.Forms.FocusEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(Text))

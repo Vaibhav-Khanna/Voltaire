@@ -17,7 +17,6 @@ namespace voltaire.Pages
             InitializeComponent();
 
             #region UI_tweaks
-
           
             listview.ItemTapped += Listview_ItemTapped;
 

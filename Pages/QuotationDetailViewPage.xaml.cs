@@ -63,5 +63,10 @@ namespace voltaire.Pages
             
 			(BindingContext as QuotationDetailViewPageModel).OrderItemsSource_CollectionChanged(null, null);
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
     }
 }

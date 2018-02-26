@@ -13,6 +13,8 @@ using voltaire.PopUps;
 using Rg.Plugins.Popup.Services;
 using System.Linq;
 using System.Collections.Generic;
+using voltaire.Helpers;
+using voltaire.Models.DataObjects;
 
 namespace voltaire.PageModels
 {
@@ -40,7 +42,7 @@ namespace voltaire.PageModels
                 customer.Name = firstname;               
                 customer.Phone = phone;
                 customer.Website = website;
-                customer.DateLocalization = lastvisit;
+                customer.LastCheckinAt = lastvisit;
                 customer.Comment = notetext;
                 customer.Email = email;
                 customer.CanEdit = false;
@@ -79,9 +81,31 @@ namespace voltaire.PageModels
 	   });
 
 
-        public Command CheckIn => new Command( () =>
+        public Command CheckIn => new Command(async () =>
        {
-            LastVisit = DateTime.Now;
+           CheckinEnable = false;
+
+           var can_locate = await Permissions.CheckPermissionLocation();
+
+           if (can_locate)
+           {
+               var location = await Location.GetCurrentLocation(true);
+
+               var user = await StoreManager.UserStore.GetCurrentUserAsync();
+
+               if (user == null)
+               {
+                   await CoreMethods.DisplayAlert("Error", "Try again", "Ok"); 
+                   CheckinEnable = true;
+                   return;
+               }
+
+               LastVisit = DateTime.Now;
+
+               var response = await StoreManager.CheckinStore.InsertAsync(new Checkin() { PartnerId = customer.Id, Latitude = location.Latitude, Longitude = location.Longitude, DoneAt = LastVisit.Value, UserId = user.Id });
+           }
+
+            CheckinEnable = true;
        });
 
 
@@ -115,6 +139,17 @@ namespace voltaire.PageModels
             await CoreMethods.PushPageModel<QuotationInternalNotesPageModel>(customer, false, true);
         });
 
+
+        bool checkinenable = true;
+        public bool CheckinEnable
+        {
+            get { return checkinenable; }
+            set
+            {
+                checkinenable = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private ObservableCollection<TTab> tab;
         public ObservableCollection<TTab> Tab
@@ -205,7 +240,7 @@ namespace voltaire.PageModels
 			set
 			{
 				lastvisit = value;
-                customer.DateLocalization = lastvisit;
+                customer.LastCheckinAt = lastvisit;
                 StoreManager.CustomerStore.UpdateAsync(customer);
                 ItemUpdated = true;
 				RaisePropertyChanged();
@@ -351,7 +386,7 @@ namespace voltaire.PageModels
                 address = customer.ContactAddress;
                 phone = customer.Phone;
                 website = customer.Website;
-                lastvisit = customer.DateLocalization;
+                lastvisit = customer.LastCheckinAt;
                 canedit = customer.CanEdit;
                 NoteText = customer.Comment;
                 title = canedit ? AppResources.Update : $"{customer.Name}";
@@ -436,7 +471,7 @@ namespace voltaire.PageModels
                 pages.Add(new TTab(this) { Name = AppResources.Map, View = typeof(Pages.MapTabPage) });
                 pages.Add(new TTab(this) { Name = AppResources.Orders, View = typeof(Pages.OrderListTabPage) });
                 pages.Add(new TTab(this) { Name = AppResources.Quotations, View = typeof(Pages.QuotationsTabPage) });
-                pages.Add(new TTab(this) { Name = AppResources.Contracts, View = typeof(Pages.ContractListTabPage) });
+                //pages.Add(new TTab(this) { Name = AppResources.Contracts, View = typeof(Pages.ContractListTabPage) });
             }
 
             var selector = new ViewPagerTemplateSelector();

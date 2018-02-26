@@ -242,7 +242,6 @@ namespace voltaire.Pages
 
 			if (!Map.Pins.Contains(MyPin) && !string.IsNullOrEmpty(MyPin.Label))
 				Map.Pins.Add(MyPin);
-
 		}
 
 
