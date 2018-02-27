@@ -10,6 +10,7 @@ using voltaire.PopUps;
 using voltaire.Resources;
 using Xamarin.Forms;
 using System.Linq;
+using voltaire.Helpers;
 
 namespace voltaire.PageModels
 {
@@ -91,16 +92,56 @@ namespace voltaire.PageModels
 
         public Command SignCommand => new Command(async () =>
         {
-            await CoreMethods.PushPageModel<QuotationSignPageModel>(new Tuple<QuotationsModel,Partner>(Quotation,Customer));
+            await CoreMethods.PushPageModel<QuotationSignPageModel>(new Tuple<QuotationsModel,Partner,List<ProductQuotationModel>>(Quotation,Customer,OrderItemsSource.ToList()));
         });
 
         public Command EmailCommand => new Command(async (obj) =>
        {
            // Generate or check PDF file
+           Dialog.ShowLoading("");
 
-           Quotation.SaleOrder.ToSend = true;
+           var vendorItem = await StoreManager.DocumentStore.GetItemByEmployeeId(quotation.SaleOrder.Id, "vendor");
 
-           await StoreManager.SaleOrderStore.UpdateAsync(Quotation.SaleOrder);
+           var customeritem = await StoreManager.DocumentStore.GetItemByEmployeeId(quotation.SaleOrder.Id, "customer");
+
+            var invoice = new InvoiceGenerate();
+
+            var customerPDF = invoice.CreatePdfFile(Quotation, OrderItemsSource.ToList(), Customer, null, false);
+
+           var vendorPDF = invoice.CreatePdfFile(Quotation, OrderItemsSource.ToList(), Customer, null, true);
+
+           if (vendorItem == null) // nothing exists in storage
+           {    
+                var document = new Document() { Path = quotation.SaleOrder.Id + '/' + "customer.pdf", Name = quotation.SaleOrder.Id + ".pdf", InternalName = "customer", ReferenceKind = "saleOrder", ReferenceId = quotation.SaleOrder.Id, MimeType = "application/pdf" };
+
+               await StoreManager.DocumentStore.InsertImage(customerPDF, document);
+
+                var documentVendor = new Document() { Path = quotation.SaleOrder.Id + '/' + "vendor.pdf", Name = quotation.SaleOrder.Id + ".pdf", InternalName = "vendor", ReferenceKind = "saleOrder", ReferenceId = quotation.SaleOrder.Id, MimeType = "application/pdf" };
+
+               await StoreManager.DocumentStore.InsertImage(vendorPDF, documentVendor);
+           }
+           else
+           {
+               await PclStorage.SaveFileLocal(vendorPDF, vendorItem.Id);
+
+               await PclStorage.SaveFileLocal(customerPDF, customeritem.Id);
+
+               vendorItem.ToUpload = true;
+               customeritem.ToUpload = true;
+
+               await StoreManager.DocumentStore.UpdateAsync(customeritem);
+               await StoreManager.DocumentStore.UpdateAsync(vendorItem);
+
+               await StoreManager.DocumentStore.OfflineUploadSync();
+
+           }
+
+         
+           quotation.SaleOrder.ToSend = true;
+
+           await StoreManager.SaleOrderStore.UpdateAsync(quotation.SaleOrder);
+
+            Dialog.HideLoading();
 
            await CoreMethods.DisplayAlert("Alerte", "Document has been sent.", "OK");
 

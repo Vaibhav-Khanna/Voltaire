@@ -52,19 +52,19 @@ namespace voltaire.Models
         public string Ref { get { return reference; } set{ reference = value; SaleOrder.ClientOrderRef = value; } }
 
         DateTime date;
-        public DateTime Date { get { return date; } set { date = value; SaleOrder.DateOrder = value; } }
+        public DateTime Date { get { return date; } set { date = value; SaleOrder.DateOrder = value; SaleOrder.CreateDate = value;  } }
 
         double totalAmount;
-        public double TotalAmount { get { return totalAmount; } set { totalAmount = value; SaleOrder.AmountTotal = Convert.ToInt64(value); } }
+        public double TotalAmount { get { return totalAmount; } set { totalAmount = value;  SaleOrder.AmountTotal = value; } }
 
         double subTotal;
-        public double SubTotal { get { return subTotal; } set { subTotal = value; SaleOrder.AmountUntaxed = Convert.ToInt64(value); } }
+        public double SubTotal { get { return subTotal; } set { subTotal = value; SaleOrder.AmountUntaxed = value; } }
 
         bool applyTax;
         public bool ApplyTax { get { return applyTax; } set{ applyTax = value; } }
 
         double taxAmount;
-        public double TaxAmount { get { return taxAmount; } set { taxAmount = value; SaleOrder.AmountTax = Convert.ToInt64(value); } }
+        public double TaxAmount { get { return taxAmount; } set { taxAmount = value; SaleOrder.AmountTax = value; } }
 
         string permanote;
         public string PermanentNote { get { return permanote; } set { permanote = value; SaleOrder.Note = value; } }

@@ -50,7 +50,7 @@
         public string OrderId { get; set; }
 
         [JsonProperty("price_unit")]
-        public long PriceUnit { get; set; }
+        public double PriceUnit { get; set; }
 
         [JsonProperty("product_id")]
         public long ProductId { get; set; }

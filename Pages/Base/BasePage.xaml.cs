@@ -28,7 +28,7 @@ namespace voltaire.Pages.Base
             {
                 new MenuLeftItem {Title = "",  IsEnabled = true, opacity=1, IsSelected = false, IconSource = "home"},
                 new MenuLeftItem {Title = "",  IsEnabled = true, opacity=1, IsSelected = false, IconSource = "contact"},
-                new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5, IsSelected = false, IconSource = "map"},
+                new MenuLeftItem {Title = "", IsEnabled = true, opacity = 1, IsSelected = false, IconSource = "map"},
                 new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5, IsSelected = false, IconSource = "todo"},
                 new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5,IsSelected = false, IconSource = "agenda"},
                 new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5,IsSelected = false, IconSource = "report"},

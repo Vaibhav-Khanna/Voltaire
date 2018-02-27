@@ -19,7 +19,7 @@ namespace voltaire.Pages
 
         async void Handle_Tapped(object sender, System.EventArgs e)
         {
-            var image_stream = await signaturePad.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat.Png, false, true);
+            var image_stream = await signaturePad.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat.Jpeg, false, true);
 
             var context = BindingContext as QuotationSignPageModel;
 
@@ -34,24 +34,24 @@ namespace voltaire.Pages
             context.SignValidate.Execute(null);
         }
 
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
+        //protected override void OnBindingContextChanged()
+        //{
+        //    base.OnBindingContextChanged();
 
-            var context = BindingContext as QuotationSignPageModel;
-            if (context == null)
-                return;
+        //    var context = BindingContext as QuotationSignPageModel;
+        //    if (context == null)
+        //        return;
 
-            if(context.IsSigned && context.SignImage!=null && SignContainer.Children.Contains(signaturePad)) //  if quotation is signed then replace signature pad with image of signature
-            {
-                SignContainer.Children.Remove(signaturePad);
+        //    //if(context.IsSigned && context.SignImage!=null && SignContainer.Children.Contains(signaturePad)) //  if quotation is signed then replace signature pad with image of signature
+        //    //{
+        //    //    SignContainer.Children.Remove(signaturePad);
 
-                var image = new Image {  VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromRgb(216,216,216) };	
-                Stream stream = new MemoryStream(context.SignImage);
-                image.Source = ImageSource.FromStream( () =>  stream);
-                SignContainer.Children.Add(image);
-            }
-        }
+        //    //    var image = new Image {  VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromRgb(216,216,216) };	
+        //    //    Stream stream = new MemoryStream(context.SignImage);
+        //    //    image.Source = ImageSource.FromStream( () =>  stream);
+        //    //    SignContainer.Children.Add(image);
+        //    //}
+        //}
 
     }
 }

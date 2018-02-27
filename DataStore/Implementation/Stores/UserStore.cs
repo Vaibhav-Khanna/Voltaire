@@ -34,13 +34,13 @@ namespace voltaire.DataStore.Implementation.Stores
                 try
                 {
                     await InitializeStore().ConfigureAwait(false);
-
-                    var items = await Table.Where(s => s.PartnerId == id).ToListAsync().ConfigureAwait(false);
+                   
+                    var items = await Table.Where(s => s.ExternalId.ToString() == id).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
 
                     if (items == null || !items.Any())
                         return null;
 
-                    currentUser = items[0];
+                    currentUser = items.First();
 
                     return currentUser;
 

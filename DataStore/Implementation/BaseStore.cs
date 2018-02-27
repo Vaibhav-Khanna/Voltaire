@@ -151,8 +151,9 @@ namespace voltaire.DataStore.Implementation
             }
 
             try
-            {               
-                await Table.PullAsync<T>($"all{Identifier}", Table.IncludeTotalCount(), false, new CancellationToken(false), new PullOptions() { MaxPageSize = 150 }).ConfigureAwait(false);
+            {
+                var query = Table.CreateQuery();
+                await Table.PullAsync<T>($"all{Identifier}",query,false,new CancellationToken(false), new PullOptions() { MaxPageSize = 150 }).ConfigureAwait(false);
             }
             catch (Exception ex)
             {

@@ -23,7 +23,7 @@ namespace voltaire.Pages
         }
         public void ChangeToMap(object sender, EventArgs e)
         {
-            //changeCurrentView("map");
+            changeCurrentView("map");
         }
         public void ChangeToTodo(object sender, EventArgs e)
         {
