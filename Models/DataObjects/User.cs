@@ -53,5 +53,6 @@
         public long ExternalPartnerId { get; set; }
 
         [JsonProperty("partner_id")]
-        public string PartnerId { get; set; }    }
+        public string PartnerId { get; set; }
+    }
 }

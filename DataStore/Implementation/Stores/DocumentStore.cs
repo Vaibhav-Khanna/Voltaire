@@ -81,7 +81,7 @@ namespace voltaire.DataStore.Implementation.Stores
                     }
                 }
 
-                await PullLatest();
+               // await PullLatest();
 
                 return true;
             }
@@ -122,7 +122,7 @@ namespace voltaire.DataStore.Implementation.Stores
                 client.DefaultRequestHeaders.Add("X-ZUMO-AUTH", StoreManager.MobileService.CurrentUser.MobileServiceAuthenticationToken );
                 client.DefaultRequestHeaders.Add("ZUMO-API-VERSION", "2.0.0");
 
-                content.Add(baContent, "uploadedFile", document.Name + document.Path.Substring(document.Path.LastIndexOf('.')));
+                content.Add(baContent, "uploadedFile", document.Name  );
                 content.Add(new StringContent(document.ReferenceId), "referenceId");
                 content.Add(new StringContent(document.ReferenceKind), "referenceKind");
                 content.Add(new StringContent(document.InternalName), "internalName");

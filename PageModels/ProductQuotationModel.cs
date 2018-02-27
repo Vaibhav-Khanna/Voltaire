@@ -128,8 +128,8 @@ namespace voltaire.PageModels
         }
 
 
-        long unitprice;
-        public long UnitPrice
+        double unitprice;
+        public double UnitPrice
         {
             get { return unitprice; }
             set
@@ -203,7 +203,7 @@ namespace voltaire.PageModels
 
         double TaxAmount { get; set; }
 
-        double TaxPercent { get; set; } = 20;
+        public double TaxPercent { get; private set; } = 20;
 
         public int MinimumQuantity { get; set; } = 1;
 

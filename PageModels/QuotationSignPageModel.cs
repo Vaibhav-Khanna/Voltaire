@@ -22,31 +22,70 @@ namespace voltaire.PageModels
        {
            if (!TermsConditionSelected)
            {
-                await  CoreMethods.DisplayAlert("Alert", "Please accept the terms and conditions first in order to validate the quotation.", "Ok");
+               await CoreMethods.DisplayAlert("Alert", "Please accept the terms and conditions first in order to validate the quotation.", "Ok");
                return;
            }
 
-            if(IsSigned)
-            {
-                await CoreMethods.DisplayAlert("Alert","You have already signed this quotation !","Ok");
-                return;
-            }
+           if (IsSigned)
+           {
+               await CoreMethods.DisplayAlert("Alert", "You have already signed this quotation !", "Ok");
+               return;
+           }
 
            if (SignImage != null)
            {
+               Dialog.ShowLoading("");
+
                quotation.SignedImage = SignImage;
+
                IsSigned = true;
 
+                var vendorItem = await StoreManager.DocumentStore.GetItemByEmployeeId(quotation.SaleOrder.Id, "vendor");
 
+               var customeritem = await StoreManager.DocumentStore.GetItemByEmployeeId(quotation.SaleOrder.Id, "customer");
 
-               var document = new Document() { Name = UnixTimeStamp(), ReferenceKind = "partner", ReferenceId = Customer.Id, MimeType = "image/png" };
-               await StoreManager.DocumentStore.InsertAsync(document);
-               await PclStorage.SaveFileLocal(SignImage, document.Id);
+               var invoice = new InvoiceGenerate();
+
+                var customerPDF = invoice.CreatePdfFile(Quotation, Orderitems, Customer, null, false);
+
+                var vendorPDF = invoice.CreatePdfFile(Quotation, Orderitems, Customer, null, true);
+
+               if (vendorItem == null) // nothing exists in storage
+               {
+                    var document = new Document() { Path = quotation.SaleOrder.Id + '/' + "customer.pdf", Name = quotation.SaleOrder.Id + ".pdf", InternalName = "customer", ReferenceKind = "saleOrder", ReferenceId = quotation.SaleOrder.Id, MimeType = "application/pdf" };
+
+                   await StoreManager.DocumentStore.InsertImage(customerPDF, document);
+
+                   var documentVendor = new Document() { Path = quotation.SaleOrder.Id + '/' + "vendor.pdf", Name = quotation.SaleOrder.Id + ".pdf", InternalName = "vendor", ReferenceKind = "saleOrder", ReferenceId = quotation.SaleOrder.Id, MimeType = "application/pdf" };
+
+                   await StoreManager.DocumentStore.InsertImage(vendorPDF, documentVendor);
+               }
+               else
+               {
+                   await PclStorage.SaveFileLocal(vendorPDF, vendorItem.Id);
+
+                   await PclStorage.SaveFileLocal(customerPDF, customeritem.Id);
+
+                   vendorItem.ToUpload = true;
+                   customeritem.ToUpload = true;
+
+                   await StoreManager.DocumentStore.UpdateAsync(customeritem);
+                   await StoreManager.DocumentStore.UpdateAsync(vendorItem);
+
+                   await StoreManager.DocumentStore.OfflineUploadSync();
+               }
 
                quotation.Status = QuotationStatus.done.ToString();
+
                quotation.DateSigned = DateTime.Now;
 
                quotation.SaleOrder.ToSend = true;
+
+               await StoreManager.SaleOrderStore.UpdateAsync(quotation.SaleOrder);
+
+               Dialog.HideLoading();
+
+               await CoreMethods.DisplayAlert("Alerte","Email has been sent","OK");
 
                await CoreMethods.PopPageModel();
 
@@ -87,7 +126,8 @@ namespace voltaire.PageModels
             {
                 selecteditem = value;
 
-                Quotation.PaymentMethod = ParseEnum<PaymentMethod>(SelectedItem);
+                if(!string.IsNullOrEmpty(selecteditem))
+                    Quotation.PaymentMethod = ParseEnum<PaymentMethod>(selecteditem);
 
                 RaisePropertyChanged();
             }
@@ -180,12 +220,11 @@ namespace voltaire.PageModels
 
                 quotation.IsConditionsAgree = value;
               
-
                 RaisePropertyChanged();
             }
         }
 
-
+        private List<ProductQuotationModel> Orderitems { get; set; }
 
 
         Color buttoncolor;
@@ -213,11 +252,13 @@ namespace voltaire.PageModels
 
                 Amount = quotation.TotalAmount;
 
-                SelectedItem = quotation.PaymentMethod.ToString();
+                SelectedItem = quotation.SaleOrder.PaymentMethod;
 
                 TermsConditionSelected = quotation.IsConditionsAgree;
 
                 SignImage = quotation.SignedImage;
+
+                //NoteText = quotation.SaleOrder.PaymentNote;
 
                 string cnd = "";
 
@@ -252,13 +293,14 @@ namespace voltaire.PageModels
         {
             base.Init(initData);
 
-            var context = initData as Tuple<QuotationsModel,Partner>;
+            var context = initData as Tuple<QuotationsModel,Partner,List<ProductQuotationModel>>;
 
             if (context == null)
                 return;
 
             Quotation = context.Item1;
             Customer = context.Item2;
+            Orderitems = context.Item3;
         }
 
 		public static T ParseEnum<T>(string value)
