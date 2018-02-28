@@ -113,7 +113,7 @@ namespace voltaire.PageModels
                 {
                     case 0:
                         {
-                            items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string) || arg.Date.ToString().ToLower().Contains(query_string) || arg.Status.ToLower().Contains(query_string) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.ToLower().Contains(query_string)).ToList();
+                            items = all_items.Where((arg) => !string.IsNullOrWhiteSpace(arg.Name) ? arg.Name.Trim().ToLower().Contains(query_string) : false || arg.Date.ToString().ToLower().Contains(query_string) || !string.IsNullOrWhiteSpace(arg.Status) ? arg.Status.ToLower().Contains(query_string) : false || arg.TotalAmount.ToString().Contains(query_string) || !string.IsNullOrWhiteSpace(arg.Ref) ? arg.Ref.Trim().ToLower().Contains(query_string) : false).ToList();
                             break;
                         }
                     case 1:
@@ -128,7 +128,7 @@ namespace voltaire.PageModels
                         }
                     default:
                         {
-                            items = all_items.Where((arg) => arg.Name.ToLower().Contains(query_string) || arg.Date.ToString().ToLower().Contains(query_string) || arg.Status.ToLower().Contains(query_string) || arg.TotalAmount.ToString().Contains(query_string) || arg.Ref.ToLower().Contains(query_string)).ToList();
+                            items = all_items.Where((arg) => !string.IsNullOrWhiteSpace(arg.Name) ? arg.Name.Trim().ToLower().Contains(query_string) : false || arg.Date.ToString().ToLower().Contains(query_string) || !string.IsNullOrWhiteSpace(arg.Status) ? arg.Status.ToLower().Contains(query_string) : false || arg.TotalAmount.ToString().Contains(query_string) || !string.IsNullOrWhiteSpace(arg.Ref) ? arg.Ref.Trim().ToLower().Contains(query_string) : false).ToList();
                             break;
                         }
 

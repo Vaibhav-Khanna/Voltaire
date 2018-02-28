@@ -122,7 +122,7 @@ namespace voltaire.Pages
 							Label = "Current Location",
 							Type = PinType.SavedPin,
 							IsVisible = true,
-                            Icon = BitmapDescriptorFactory.FromView(new BindingPinView("Me")),
+                            Icon = BitmapDescriptorFactory.FromView(new BindingPinView("Me",Color.Transparent)),
 							Position = new Position(location.Latitude, location.Longitude)
 						});
 
@@ -178,7 +178,7 @@ namespace voltaire.Pages
 							Label = "Current Location",
 							Type = PinType.SavedPin,
 							IsVisible = true,
-                            Icon = BitmapDescriptorFactory.FromView(new BindingPinView("Me")),
+                            Icon = BitmapDescriptorFactory.FromView(new BindingPinView("Me",Color.Transparent)),
 							Position = new Position(location.Latitude, location.Longitude)
 						});
 
@@ -220,7 +220,7 @@ namespace voltaire.Pages
 					Flat = true,
                     Label = item.ContactName,
 					IsVisible = true,
-                    Icon = BitmapDescriptorFactory.FromView(new BindingPinView(item.Index)),
+                    Icon = BitmapDescriptorFactory.FromView(new BindingPinView(item.Index,Color.Transparent)),
 					Position = new Position(item.Latitude, item.Longitude)
 				};
 				Map.Pins.Add(pin);

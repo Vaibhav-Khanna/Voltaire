@@ -659,6 +659,9 @@
     <Reference Include="Microsoft.Azure.Mobile">
       <HintPath>packages\Microsoft.Azure.Mobile.0.18.0\lib\portable-net45+win8+wpa81+wp8\Microsoft.Azure.Mobile.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.CrossPlatformTintedImage.Abstractions">
+      <HintPath>packages\Plugin.CrossPlatformTintedImage.1.0.0\lib\portable-net45+wp80+win8+wpa81\Plugin.CrossPlatformTintedImage.Abstractions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

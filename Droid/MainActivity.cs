@@ -12,6 +12,7 @@ using Microsoft.Azure.Mobile.Distribute;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
 using Plugin.Permissions;
+using Plugin.CrossPlatformTintedImage.Android;
 
 namespace voltaire.Droid
 {
@@ -33,6 +34,8 @@ namespace voltaire.Droid
             App.ScreenHeight = ConvertPixelsToDp(displayMetrics.HeightPixels);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            TintedImageRenderer.Init();
 #if DEBUG
 #else
             MobileCenter.Start("c1308239-5175-41b4-a352-61530846726e", typeof(Distribute), typeof(Analytics), typeof(Crashes));

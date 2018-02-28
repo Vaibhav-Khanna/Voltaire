@@ -51,37 +51,6 @@ namespace voltaire.Pages
 		}
 
 
-        void Handle_Clicked(object sender, System.EventArgs e)
-        {
-            var button = sender as Button;
-
-            W0.Style = (Style) App.Current.Resources["FilterWeightButtonStyle"];
-			W1.Style = (Style)App.Current.Resources["FilterWeightButtonStyle"];
-			W2.Style = (Style)App.Current.Resources["FilterWeightButtonStyle"];
-			W3.Style = (Style)App.Current.Resources["FilterWeightButtonStyle"];
-			W4.Style = (Style)App.Current.Resources["FilterWeightButtonStyle"];
-			W5.Style = (Style)App.Current.Resources["FilterWeightButtonStyle"];
-			
-            button.Style = (Style) App.Current.Resources["FilterWeightClickedButtonStyle"];
-        }
-
-        void Grade_Clicked(object sender, System.EventArgs e)
-        {
-            ViewModel.PartnerGradeFilter.Execute((sender as Button).Text);
-        }  
-
-        void FilterReset(object sender, System.EventArgs e)
-        {
-			W0.Style = (Style)App.Current.Resources["FilterWeightClickedButtonStyle"];
-			W1.Style = (Style)App.Current.Resources["FilterWeightButtonStyle"];
-			W2.Style = (Style)App.Current.Resources["FilterWeightButtonStyle"];
-			W3.Style = (Style)App.Current.Resources["FilterWeightButtonStyle"];
-			W4.Style = (Style)App.Current.Resources["FilterWeightButtonStyle"];
-			W5.Style = (Style)App.Current.Resources["FilterWeightButtonStyle"];
-        }
-
-
-
 
 		async void GetLastCachedLocation()
         {
@@ -103,7 +72,7 @@ namespace voltaire.Pages
 							Flat = true,
 							Label = "Current Location",
 							IsVisible = true,
-                            Icon = BitmapDescriptorFactory.FromView(new BindingPinView("Me")),
+                            Icon = BitmapDescriptorFactory.FromView(new BindingPinView("Me",Color.Transparent)),
 							Position = new Position(location.Latitude, location.Longitude)
 						});
 
@@ -180,7 +149,7 @@ namespace voltaire.Pages
 							Flat = true,
 							Label = "Current Location",							
 							IsVisible = true,
-                            Icon = BitmapDescriptorFactory.FromView(new BindingPinView("Me")),
+                            Icon = BitmapDescriptorFactory.FromView(new BindingPinView("Me",Color.Transparent)),
                             Position = new Position(location.Latitude, location.Longitude)
 						});
 
@@ -214,6 +183,8 @@ namespace voltaire.Pages
             {
                 if (cust.PartnerLatitude != 0 && cust.PartnerLongitude != 0)
                 {
+
+
                     var pin = new Pin()
                     {
                         Address = cust.ContactAddress,
@@ -222,7 +193,7 @@ namespace voltaire.Pages
                         Label = cust.Name,
                         Type = PinType.SavedPin,
                         IsVisible = true,
-                        Icon = BitmapDescriptorFactory.FromView(new BindingPinView( string.IsNullOrWhiteSpace(cust.Name) ? "P" : cust.Name.Trim().Substring(0,1) )),
+                        Icon = BitmapDescriptorFactory.FromView(new BindingPinView( string.IsNullOrWhiteSpace(cust.Name) ? "P" : cust.Name.Trim().Substring(0,1),Convert(cust.LastCheckinAt))),
                         Position = new Position(cust.PartnerLatitude, cust.PartnerLongitude)
                     };
                     Map.Pins.Add(pin);
@@ -231,6 +202,88 @@ namespace voltaire.Pages
 
             if (!Map.Pins.Contains(MyPin) && !string.IsNullOrEmpty(MyPin.Label))
                 Map.Pins.Add(MyPin);
+        }
+
+
+        void Handle_Clicked(object sender, System.EventArgs e)
+        {
+            var normal_style = (Style)App.Current.Resources["FilterWeightButtonStyle"];
+            bt0.Style = normal_style;
+            bt1.Style = normal_style;
+            bt2.Style = normal_style;
+            bt3.Style = normal_style;
+            bt4.Style = normal_style;
+            bt5.Style = normal_style;
+
+            (sender as Button).Style = (Style)App.Current.Resources["FilterWeightClickedButtonStyle"];
+        }
+
+        void Handle_Tapped(object sender, System.EventArgs e)
+        {
+            var normal_style = (Style)App.Current.Resources["FilterWeightButtonStyle"];
+            bt0.Style = normal_style;
+            bt1.Style = normal_style;
+            bt2.Style = normal_style;
+            bt3.Style = normal_style;
+            bt4.Style = normal_style;
+            bt5.Style = normal_style;
+
+            var frame_style = (Style)App.Current.Resources["PartnerGradeFrame"];
+            var button_style = (Style)App.Current.Resources["PartnerGradeButton"];
+
+            foreach (var item in grades.Children)
+            {
+                (item as Frame).Style = frame_style;
+                ((item as Frame).Content as Button).Style = button_style;
+            }
+
+        }
+
+        void Handle_Grade(object sender, System.EventArgs e)
+        {
+            var frame_style = (Style)App.Current.Resources["PartnerGradeFrame"];
+            var button_style = (Style)App.Current.Resources["PartnerGradeButton"];
+
+            foreach (var item in grades.Children)
+            {
+                (item as Frame).Style = frame_style;
+                ((item as Frame).Content as Button).Style = button_style;
+            }
+
+
+            ((sender as Button)).Style = (Style)App.Current.Resources["PartnerGradeButtonSelected"];
+
+            ((sender as Button).Parent as Frame).Style = (Style)App.Current.Resources["PartnerGradeFrameSelected"];
+
+            (BindingContext as MapMainPageModel).PartnerGradeFilter.Execute((sender as Button).Text);
+
+        }
+
+        public Color Convert(DateTime? item)
+        {
+           
+            DateTime date;
+
+            if (item.HasValue)
+                date = item.Value;
+            else
+                return Color.Transparent; // red
+
+            if (DateTime.Now.Subtract(date).Days <= 7)
+            {
+                return Color.FromHex("13c10d"); // green
+            }
+            else if (DateTime.Now.Subtract(date).Days <= 30)
+            {
+                return Color.FromHex("fc9835"); // orange
+            }
+            else if (DateTime.Now.Subtract(date).Days > 30)
+            {
+                return  Color.FromHex("eb1010");  // red
+            }
+            else
+                return Color.Transparent; // red
+
         }
 
     }

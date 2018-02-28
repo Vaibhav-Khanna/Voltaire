@@ -21,17 +21,22 @@ namespace voltaire.PageModels
        {
            Weight = 0;
            GradeFilter = null;
+
+           Customers = AllCustomers;
        });
 
         public Command FilterWeight => new Command((obj) =>
        {
              Weight = Convert.ToInt32(obj as string);
+            FilterOutAddresses();
        });
 
         public Command PartnerGradeFilter => new Command((obj) =>
        {
             GradeFilter = obj as string;
+            FilterOutAddresses();
        });
+
 
         Dictionary<string, long?> GradeValues { get; set; }
 
@@ -93,7 +98,7 @@ namespace voltaire.PageModels
             {
                 case 0:
                     {
-                        filter_list = AllCustomers.Where((arg) => arg.Weight == 0).ToList();
+                        filter_list = AllCustomers.Where((arg) => arg.Weight == 0 ).ToList();
                         break;                                               
                     }
                 case 1:
@@ -124,7 +129,6 @@ namespace voltaire.PageModels
                 default:
                     break;
             }
-
 
             Customers = new List<Partner>(filter_list);
 
@@ -157,7 +161,7 @@ namespace voltaire.PageModels
 
             //Customer
 
-           // FilterOutAddresses();
+         
         }
 
     }

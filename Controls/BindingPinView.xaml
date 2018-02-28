@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <StackLayout xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:Plugin.CrossPlatformTintedImage.Abstractions;assembly=Plugin.CrossPlatformTintedImage.Abstractions"
              WidthRequest="37" 
              HeightRequest="48"
              AnchorX="0.5"
              AnchorY="1.0"
              x:Class="voltaire.Controls.BindingPinView">
     <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-
-        <Image Source="marker.png" 
+            
+        <controls:TintedImage Source="marker.png" 
+            x:Name="tintimage"
             AbsoluteLayout.LayoutBounds="0, 0, 37, 48"
             AbsoluteLayout.LayoutFlags="None" />
 

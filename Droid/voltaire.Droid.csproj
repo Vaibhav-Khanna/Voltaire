@@ -320,6 +320,12 @@
     <Reference Include="PCLStorage">
       <HintPath>..\packages\PCLStorage.1.0.2\lib\monoandroid\PCLStorage.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.CrossPlatformTintedImage.Abstractions">
+      <HintPath>..\packages\Plugin.CrossPlatformTintedImage.1.0.0\lib\MonoAndroid10\Plugin.CrossPlatformTintedImage.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.CrossPlatformTintedImage.Android">
+      <HintPath>..\packages\Plugin.CrossPlatformTintedImage.1.0.0\lib\MonoAndroid10\Plugin.CrossPlatformTintedImage.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\voltaire.csproj">
