@@ -68,14 +68,17 @@ namespace voltaire.PageModels
                 orderstatusindex = value;
 
                 if (Product != null)
-                Product.State = OrderStatusTypes[value];
+                {
+                    Product.State = OrderStatusTypes[value];
+                    OrderStatus = OrderStatusTypes[value];
+                }
 
                 RaisePropertyChanged();
             }
         }
 
-        QuotationStatus orderstatus;
-        public QuotationStatus OrderStatus
+        string orderstatus;
+        public string OrderStatus
         {
             get { return orderstatus; }
             set
@@ -233,7 +236,7 @@ namespace voltaire.PageModels
             else
                 OrderStatusIndex = 1;  
 
-            SetOrderStatusIndex(OrderStatusIndex);
+            //SetOrderStatusIndex(OrderStatusIndex);
         }
 
         async void GetTax()
@@ -248,14 +251,15 @@ namespace voltaire.PageModels
         }
 
 
-        void SetOrderStatusIndex(int _value)
-        {
-            Xamarin.Forms.Device.StartTimer(new TimeSpan(0, 0, 0, 1, 200), () =>
-                {
-                    OrderStatusIndex = _value;
-                    return false;
-                });
-        }
+        //void SetOrderStatusIndex(int _value)
+        //{
+        //     OrderStatus = OrderStatusTypes[_value];
+        //    //Xamarin.Forms.Device.StartTimer(new TimeSpan(0, 0, 0, 1, 200), () =>
+        //        //{
+        //        //    OrderStatusIndex = _value;
+        //        //    return false;
+        //        //});
+        //}
 
         void SetQuantityIndex(int _value)
         {

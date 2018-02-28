@@ -85,8 +85,10 @@
                                 </Grid.ColumnDefinitions>
                                 <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Description}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "0"  />
 
-                              <renderers:BorderlessPicker IsEnabled="{Binding CanEdit}" Title="Select" x:Name = "picker_1" TextColor = "{StaticResource turquoiseBlue}" VerticalOptions = "Center" HorizontalOptions = "FillAndExpand"  SelectedIndex = "{Binding OrderStatusIndex,Mode=TwoWay}" ItemsSource = "{Binding OrderStatusTypes}" Grid.Row = "0" Grid.Column = "1" /> 
-
+                             
+                              <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource turquoiseBlue}" Text = "{Binding OrderStatus}" VerticalOptions = "Center" HorizontalOptions =  "Center" Grid.Row = "0" Grid.Column = "1"  />
+                               <renderers:BorderlessPicker InputTransparent="false" IsEnabled="{Binding CanEdit}" Title=" " x:Name = "picker_1" TextColor = "Transparent" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand"  SelectedIndex = "{Binding OrderStatusIndex,Mode=TwoWay}" ItemsSource = "{Binding OrderStatusTypes}" Grid.Row = "0" Grid.Column = "1" /> 
+                            
                               <renderers:NumberEntry IsEnabled="{Binding CanEdit}" x:Name ="Qty" Text="{Binding Quantity, Mode=TwoWay}" Keyboard="Numeric" TextColor = "{StaticResource turquoiseBlue}" HorizontalTextAlignment="Center" VerticalOptions = "Center" HorizontalOptions = "FillAndExpand" Grid.Row = "0" Grid.Column = "2"/> 
 
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="4" Grid.Row = "0" Grid.Column = "3" >
@@ -117,7 +119,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span ForegroundColor = "{StaticResource GreyishBrown}" FontFamily = "SanFranciscoDisplay-Regular" FontSize ="18"  Text = "Tax"  />
-                            <Span ForegroundColor = "{StaticResource GreyishBrown}" FontFamily = "SanFranciscoDisplay-Regular" FontSize ="14"  Text = "  (US only)"  />
+                            <Span ForegroundColor = "{StaticResource GreyishBrown}" FontFamily = "SanFranciscoDisplay-Regular" FontSize ="14"  Text = ""  />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>

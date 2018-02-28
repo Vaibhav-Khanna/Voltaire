@@ -13,6 +13,7 @@ using Syncfusion.SfPdfViewer.XForms.iOS;
 using KeyboardOverlap.Forms.Plugin.iOSUnified;
 using Syncfusion.ListView.XForms.iOS;
 using Lottie.Forms.iOS.Renderers;
+using Plugin.CrossPlatformTintedImage.iOS;
 
 namespace voltaire.iOS
 {
@@ -26,7 +27,8 @@ namespace voltaire.iOS
             KeyboardOverlapRenderer.Init();
             AnimationViewRenderer.Init();
             Xamarin.FormsGoogleMaps.Init("AIzaSyCxXBNtq5ksFXZJBwW_SRkf3gEMOg4YhPc");
-           
+            TintedImageRenderer.Init();
+
             App.ScreenHeight = UIScreen.MainScreen.Bounds.Height;
             App.ScreenWidth = UIScreen.MainScreen.Bounds.Width;
 

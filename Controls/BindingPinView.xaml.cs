@@ -7,13 +7,16 @@ namespace voltaire.Controls
     public partial class BindingPinView 
     {
 		private string _display;
+        private string _color;
 
-		public BindingPinView(string display)
+        public BindingPinView(string display,Color color)
 		{
 			InitializeComponent();
 			_display = display;
+            tintimage.TintColor = color;
 			BindingContext = this;
 		}
+
 
 		public string Display
 		{
