@@ -33,6 +33,7 @@ namespace voltaire.PageModels
             GradeFilter = obj as string;
        });
 
+        Dictionary<string, long?> GradeValues { get; set; }
 
         int weight=0;
         public int Weight 
@@ -68,11 +69,11 @@ namespace voltaire.PageModels
 			}
 		}
 
-
-        public ObservableCollection<PartnerGrade> partnerGrades { get; set; }
-
+        ObservableCollection<PartnerGrade> partnerGrades;
+        public ObservableCollection<PartnerGrade> PartnerGrades { get { return partnerGrades; } set { partnerGrades = value;  RaisePropertyChanged(); } }
 
         List<Partner> AllCustomers;
+      
         List<Partner> customers;
         public List<Partner> Customers
         {
@@ -92,32 +93,32 @@ namespace voltaire.PageModels
             {
                 case 0:
                     {
-                        filter_list = AllCustomers.Where((arg) => arg.Weight == null).ToList();
+                        filter_list = AllCustomers.Where((arg) => arg.Weight == 0).ToList();
                         break;                                               
                     }
                 case 1:
                     {
-                        filter_list = AllCustomers.Where((arg) => arg.Weight != null && arg.Weight == 1).ToList();
+                        filter_list = AllCustomers.Where((arg) =>  arg.Weight == 1).ToList();
 						break;
 					}
 				case 2:
 					{
-						filter_list = AllCustomers.Where((arg) => arg.Weight != null && arg.Weight == 2).ToList();
+						filter_list = AllCustomers.Where((arg) =>  arg.Weight == 2).ToList();
 						break;
 					}
 				case 3:
 					{
-						filter_list = AllCustomers.Where((arg) => arg.Weight != null && arg.Weight == 3).ToList();
+						filter_list = AllCustomers.Where((arg) =>  arg.Weight == 3).ToList();
 						break;
 					}
 				case 4:
 					{
-						filter_list = AllCustomers.Where((arg) => arg.Weight != null && arg.Weight == 4).ToList();
+						filter_list = AllCustomers.Where((arg) =>  arg.Weight == 4).ToList();
 						break;
 					}
 				case 5:
 					{
-						filter_list = AllCustomers.Where((arg) => arg.Weight != null && arg.Weight == 5).ToList();
+						filter_list = AllCustomers.Where((arg) => arg.Weight == 5).ToList();
 						break;
 					}
                 default:
@@ -129,26 +130,34 @@ namespace voltaire.PageModels
 
         }
 
-        public override void Init(object initData)
+        public async override void Init(object initData)
         {
             base.Init(initData);
 
-            // Mock Data
-            AllCustomers = new List<Partner>();
+            //PartnerGrades 
+            var _grades = await StoreManager.PartnerGradeStore.GetItemsAsync();
 
-			partnerGrades = new ObservableCollection<PartnerGrade>
-			{
-				new PartnerGrade {Grade="CCE"},
-				new PartnerGrade {Grade="CSO"},
-				new PartnerGrade {Grade="DRE"},
-				new PartnerGrade {Grade="Endurance"},
-				new PartnerGrade {Grade="PRO"},
-				new PartnerGrade {Grade="Particulier"},
-				new PartnerGrade {Grade="Ecuries"}
-            };
-            // mock data
+            GradeValues = new Dictionary<string, long?>();
 
-            FilterOutAddresses();
+            foreach (var item in _grades)
+            {
+                GradeValues.Add(item.Name, item.ExternalId);
+            }
+          
+            PartnerGrades = new ObservableCollection<PartnerGrade>(_grades?.Select((arg) => new PartnerGrade() { Grade = arg.Name }));
+
+            //PartnerGrades 
+
+            // Customer
+            var Customer_list = await StoreManager.CustomerStore.GetItemsWithValidCordinates();
+
+            Customers = Customer_list;
+
+            AllCustomers = Customer_list;
+
+            //Customer
+
+           // FilterOutAddresses();
         }
 
     }

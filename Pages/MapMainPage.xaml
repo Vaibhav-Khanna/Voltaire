@@ -46,7 +46,7 @@
             <!--  Main Layout  -->
 
             <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1" Grid.Column="1">
-                <maps:Map x:Name="Map" HasZoomEnabled="true" HasScrollEnabled="true" IsShowingUser="true" MyLocationButtonClicked="Handle_MyLocationButtonClicked" MyLocationEnabled="true" MapType="Street" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
+                <maps:Map x:Name="Map" HasZoomEnabled="true" HasScrollEnabled="true" IsShowingUser="true" MyLocationButtonClicked="Handle_MyLocationButtonClicked" IsTrafficEnabled="true" IsIndoorEnabled="true" MyLocationEnabled="true" MapType="Street" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
                 <BoxView InputTransparent="true" BackgroundColor="{StaticResource turquoiseBlue}" Opacity="0.2" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />             
                  <Image HeightRequest="60" WidthRequest="60" Source="filter.png"  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.95,0.04,AutoSize,AutoSize">
                     <Image.GestureRecognizers>

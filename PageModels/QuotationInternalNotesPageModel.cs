@@ -46,7 +46,7 @@ namespace voltaire.PageModels
                resId = Customer.Id;
            }
 
-            var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = _messageText, ResId = resId, MessageType = MessageType.comment.ToString() , Model = modelMessage };
+           var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = _messageText, ResId = resId, MessageType = MessageType.comment.ToString() , Model = modelMessage };
 
            //insertion de message dans la base
            var resul = await StoreManager.MessageStore.InsertAsync(message);
@@ -109,7 +109,7 @@ namespace voltaire.PageModels
                             //Name récupération
                             var partner = await StoreManager.CustomerStore.GetCustomerByMessageAuthorIdAsync(item.AuthorId);
 
-                            message_models.Add(new MessageModel(item) { Index = message_models.Count + 1, Name = partner.Name });
+                            message_models.Add(new MessageModel(item) { Index = message_models.Count + 1, Name = partner?.Name });
                         }
                         MessageSource = new ObservableCollection<MessageModel>(message_models);
                     }
@@ -137,7 +137,7 @@ namespace voltaire.PageModels
                             //Name récupération
                             var partner = await StoreManager.CustomerStore.GetCustomerByMessageAuthorIdAsync(item.AuthorId);
 
-                            message_models.Add(new MessageModel(item) { Index = message_models.Count + 1, Name = partner.Name });
+                            message_models.Add(new MessageModel(item) { Index = message_models.Count + 1, Name = partner?.Name });
                         }
                         MessageSource = new ObservableCollection<MessageModel>(message_models);
                     }

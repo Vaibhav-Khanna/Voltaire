@@ -14,5 +14,7 @@ namespace voltaire.DataStore.Abstraction.Stores
         Task<IEnumerable<Partner>> GetNextItemsAsync(int currentitemCount, int? Weight, long? Grade, bool forceRefresh = false);
 
         Task<IEnumerable<Partner>> Search(string QueryText, int? Weight, long? Grade);
+
+        Task<List<Partner>> GetItemsWithValidCordinates();
     }
 }

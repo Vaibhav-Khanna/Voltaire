@@ -17,14 +17,14 @@ namespace voltaire.DataStore.Implementation.Stores
             await InitializeStore().ConfigureAwait(false);
             await PullLatestAsync().ConfigureAwait(false);
 
-            var item = await Table.LookupAsync(messageAuthorId);
-            /* var items = await Table.Where(s => s.Id == messageAuthorId).ToListAsync().ConfigureAwait(false);
+            // var item = await Table.LookupAsync(messageAuthorId);
+            var items = await Table.Where(s => s.ExternalId.ToString() == messageAuthorId).ToListAsync().ConfigureAwait(false);
 
             if (items == null || items.Count == 0)
                 return null;
 
-            return items[0]; */
-            return item;
+            return items[0];
+            // return item;
         }
 
         public override async Task<IEnumerable<Partner>> GetItemsAsync(bool forceRefresh = false, bool AllItems = false)
@@ -63,6 +63,13 @@ namespace voltaire.DataStore.Implementation.Stores
             {
                 return await Table.OrderBy( x => x.Name ).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
             }
+        }
+
+        public async Task<List<Partner>> GetItemsWithValidCordinates()
+        {
+            await InitializeStore().ConfigureAwait(false);
+
+            return await Table.Where(x => x.PartnerLatitude != 0 && x.PartnerLongitude != 0 ).IncludeTotalCount().ToListAsync().ConfigureAwait(false);
         }
 
         public override async Task<IEnumerable<Partner>> GetNextItemsAsync(int currentitemCount)
