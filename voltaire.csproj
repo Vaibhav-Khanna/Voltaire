@@ -572,9 +572,6 @@
     <Reference Include="CarouselView.FormsPlugin.Abstractions">
       <HintPath>packages\CarouselView.FormsPlugin.4.4.5\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+Xamarin.iOS10\CarouselView.FormsPlugin.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.GoogleMaps">
-      <HintPath>packages\Xamarin.Forms.GoogleMaps.2.1.1\lib\portable-net45+wp8+wpa81+win8+MonoAndroid70+MonoTouch10+Xamarin.iOS10+UAP10\Xamarin.Forms.GoogleMaps.dll</HintPath>
-    </Reference>
     <Reference Include="SignaturePad.Forms">
       <HintPath>packages\Xamarin.Controls.SignaturePad.Forms.2.2.0\lib\portable-net45+win+wp8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SignaturePad.Forms.dll</HintPath>
     </Reference>
@@ -661,6 +658,9 @@
     </Reference>
     <Reference Include="Plugin.CrossPlatformTintedImage.Abstractions">
       <HintPath>packages\Plugin.CrossPlatformTintedImage.1.0.0\lib\portable-net45+wp80+win8+wpa81\Plugin.CrossPlatformTintedImage.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.GoogleMaps">
+      <HintPath>packages\Xamarin.Forms.GoogleMaps.2.3.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid70+MonoTouch10+Xamarin.iOS10+UAP10\Xamarin.Forms.GoogleMaps.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
