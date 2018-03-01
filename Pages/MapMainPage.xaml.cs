@@ -183,8 +183,6 @@ namespace voltaire.Pages
             {
                 if (cust.PartnerLatitude != 0 && cust.PartnerLongitude != 0)
                 {
-
-
                     var pin = new Pin()
                     {
                         Address = cust.ContactAddress,
