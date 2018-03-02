@@ -94,7 +94,7 @@ namespace voltaire.PageModels
         {
             List<Partner> filter_list = new List<Partner>();
 
-            return;
+           
 
             switch (Weight)
             {
@@ -140,29 +140,28 @@ namespace voltaire.PageModels
         {
             base.Init(initData);
 
-            ////PartnerGrades 
-            //var _grades = await StoreManager.PartnerGradeStore.GetItemsAsync();
+            //PartnerGrades 
+            var _grades = await StoreManager.PartnerGradeStore.GetItemsAsync();
 
-            //GradeValues = new Dictionary<string, long?>();
+            GradeValues = new Dictionary<string, long?>();
 
-            //foreach (var item in _grades)
-            //{
-            //    GradeValues.Add(item.Name, item.ExternalId);
-            //}
+            foreach (var item in _grades)
+            {
+                GradeValues.Add(item.Name, item.ExternalId);
+            }
           
-            //PartnerGrades = new ObservableCollection<PartnerGrade>(_grades?.Select((arg) => new PartnerGrade() { Grade = arg.Name }));
+            PartnerGrades = new ObservableCollection<PartnerGrade>(_grades?.Select((arg) => new PartnerGrade() { Grade = arg.Name }));
 
-            ////PartnerGrades 
+            //PartnerGrades 
 
-            //// Customer
-            //var Customer_list = await StoreManager.CustomerStore.GetItemsWithValidCordinates();
+            // Customer
+            var Customer_list = await StoreManager.CustomerStore.GetItemsWithValidCordinates();
 
             //Customers = Customer_list;
 
             //AllCustomers = Customer_list;
 
-            //Customer
-
+           // Customer
          
         }
 
