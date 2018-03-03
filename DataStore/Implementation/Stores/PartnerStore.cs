@@ -69,7 +69,14 @@ namespace voltaire.DataStore.Implementation.Stores
         {
             await InitializeStore().ConfigureAwait(false);
 
-            return await Table.Where(x => x.PartnerLatitude != 0 && x.PartnerLongitude != 0 ).IncludeTotalCount().ToListAsync().ConfigureAwait(false);
+            try
+            {
+                return await Table.Where(x => x.PartnerLatitude != 0 && x.PartnerLongitude != 0 ).IncludeTotalCount().ToListAsync().ConfigureAwait(false);
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
         }
 
         public override async Task<IEnumerable<Partner>> GetNextItemsAsync(int currentitemCount)

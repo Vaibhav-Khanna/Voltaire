@@ -94,7 +94,8 @@ namespace voltaire.PageModels
         {
             List<Partner> filter_list = new List<Partner>();
 
-           
+            if (AllCustomers == null)
+                return;
 
             switch (Weight)
             {
@@ -157,10 +158,17 @@ namespace voltaire.PageModels
             // Customer
             var Customer_list = await StoreManager.CustomerStore.GetItemsWithValidCordinates();
 
-            //Customers = Customer_list;
 
-            //AllCustomers = Customer_list;
+            Customers = Customer_list;
 
+
+            AllCustomers = Customer_list;
+
+
+            if(Customers==null)
+            {
+                await CoreMethods.DisplayAlert("Alerte","No customer addresses could be found.","Ok");
+            }
            // Customer
          
         }
