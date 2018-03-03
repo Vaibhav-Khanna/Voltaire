@@ -192,7 +192,7 @@ namespace voltaire.Pages
                         Type = PinType.SavedPin,
                         IsVisible = true,
                         Icon = BitmapDescriptorFactory.FromView(new BindingPinView( string.IsNullOrWhiteSpace(cust.Name) ? "P" : cust.Name.Trim().Substring(0,1),Convert(cust.LastCheckinAt))),
-                        Position = new Position(cust.PartnerLatitude, cust.PartnerLongitude)
+                        Position = new Position(cust.PartnerLatitude.HasValue ? cust.PartnerLatitude.Value : 0, cust.PartnerLongitude.HasValue ? cust.PartnerLongitude.Value : 0)
                     };
                     Map.Pins.Add(pin);
                 }

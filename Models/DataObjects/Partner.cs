@@ -85,10 +85,10 @@ namespace voltaire.Models
         public string CommercialCompanyName { get; set; }
 
         [JsonProperty("partner_longitude")]
-        public double PartnerLongitude { get; set; }
+        public double? PartnerLongitude { get; set; }
 
         [JsonProperty("partner_latitude")]
-        public double PartnerLatitude { get; set; }
+        public double? PartnerLatitude { get; set; }
 
         [JsonProperty("date_localization")]
         public DateTime? DateLocalization { get; set; }

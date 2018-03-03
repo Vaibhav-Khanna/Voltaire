@@ -40,7 +40,7 @@ namespace voltaire.Pages
             #region Map_Pins_Set
 
 
-            map.InitialCameraUpdate = CameraUpdateFactory.NewPositionZoom(new Position(context.Customer.PartnerLatitude, context.Customer.PartnerLongitude), 12d);
+            map.InitialCameraUpdate = CameraUpdateFactory.NewPositionZoom(new Position(context.Customer.PartnerLatitude.HasValue ? context.Customer.PartnerLatitude.Value : 0, context.Customer.PartnerLongitude.HasValue ? context.Customer.PartnerLongitude.Value : 0), 12d);
 
 
             //foreach (var item in context.Customer.CustomerAddresses)
@@ -53,7 +53,7 @@ namespace voltaire.Pages
                 Label = context.Customer.Name,
                 Type = PinType.SavedPin,
                 IsVisible = true,
-                Position = new Position(context.Customer.PartnerLatitude, context.Customer.PartnerLongitude)
+                Position = new Position(context.Customer.PartnerLatitude.HasValue ? context.Customer.PartnerLatitude.Value : 0, context.Customer.PartnerLongitude.HasValue ? context.Customer.PartnerLongitude.Value : 0)
             };
             map.Pins.Add(pin);
             //}
