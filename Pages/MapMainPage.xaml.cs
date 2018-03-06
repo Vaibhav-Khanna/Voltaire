@@ -234,7 +234,6 @@ namespace voltaire.Pages
                 (item as Frame).Style = frame_style;
                 ((item as Frame).Content as Button).Style = button_style;
             }
-
         }
 
         void Handle_Grade(object sender, System.EventArgs e)

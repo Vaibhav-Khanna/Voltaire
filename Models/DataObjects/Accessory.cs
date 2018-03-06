@@ -46,5 +46,8 @@
 
         [JsonProperty("date_end")]
         public string DateEnd { get; set; }
+
+        [JsonProperty("reference")]
+        public string Reference { get; set; }
     }
 }

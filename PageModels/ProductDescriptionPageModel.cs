@@ -267,12 +267,12 @@ namespace voltaire.PageModels
                     return false;
                 }
 
-                var items = ProductConstants.Saddles.Where( (arg) => arg.Color == ColorProperty.PropertyValue && arg.Leather == LeatherProperty.PropertyValue && ModelProperty.PropertyValue == arg.Name );
+                var items = ProductConstants.Saddles.Where( (arg) => arg.Leather == LeatherProperty.PropertyValue && ModelProperty.PropertyValue == arg.Name );
 
                 if(items==null|| !items.Any())
                 {
                     if (shouldDisplayPopup)
-                    CoreMethods.DisplayAlert("Alert","The given combination of "+ ModelProperty.PropertyName + "," + ColorProperty.PropertyName + "," + LeatherProperty.PropertyName + " does not exist in pricing. Please choose another one.","OK");
+                    CoreMethods.DisplayAlert("Alert","The given combination of "+ ModelProperty.PropertyName  + "," + LeatherProperty.PropertyName + " does not exist in pricing. Please choose another one.","OK");
                     
                     return false;
                 }
@@ -324,6 +324,7 @@ namespace voltaire.PageModels
                 ProductProperty AccessoryNameProperty = null;
                 ProductProperty AccessoryCategoryProperty = null;
                 ProductProperty AccessorySubCategoryProperty = null;
+                ProductProperty ReferenceProperty = null;
 
                 var categories = ProductProperties.Where((arg) => arg.PropertyName == "Category");
 
@@ -334,6 +335,12 @@ namespace voltaire.PageModels
 
                 if (subcategories.Any())
                     AccessorySubCategoryProperty = subcategories.First();
+
+                var reference = ProductProperties.Where((arg) => arg.PropertyName == "Reference");
+
+                if (reference.Any())
+                    ReferenceProperty = reference.First();
+
 
                 var names = ProductProperties.Where((arg) => arg.PropertyName == "Name");
 
@@ -397,7 +404,8 @@ namespace voltaire.PageModels
                         }
 
                         ProductProperties.Where((arg) => arg.PropertyName == "Unit Price").First().PropertyValue = item.Price.ToString() + productModel.CurrencyLogo;
-                                
+                        if(ReferenceProperty!=null)
+                        ReferenceProperty.PropertyValue = item.Reference;
                     }
                     else
                     {
@@ -413,7 +421,8 @@ namespace voltaire.PageModels
                         }
 
                         ProductProperties.Where((arg) => arg.PropertyName == "Unit Price").First().PropertyValue = items.First().Price.ToString() + productModel.CurrencyLogo;
-                       
+                        if (ReferenceProperty != null)
+                        ReferenceProperty.PropertyValue = items.First().Reference;
                     }
 
                     return true;
@@ -422,7 +431,8 @@ namespace voltaire.PageModels
             else if(saleOrderLine.ProductKind == ProductKind.service.ToString())
             {
                 ProductProperty ServiceNameProperty = null;
-                      
+                ProductProperty ReferenceProperty = null;      
+
                 var names = ProductProperties.Where((arg) => arg.PropertyName == "Name");
 
                 if (names.Any())
@@ -431,6 +441,10 @@ namespace voltaire.PageModels
                 if (ServiceNameProperty == null)
                     return false;
 
+                var reference = ProductProperties.Where((arg) => arg.PropertyName == "Reference");
+
+                if (reference.Any())
+                    ReferenceProperty = reference.First();
 
                 if (ServiceNameProperty.PropertyValue == null)
                 {
@@ -468,6 +482,8 @@ namespace voltaire.PageModels
                         }
 
                         ProductProperties.Where((arg) => arg.PropertyName == "Unit Price").First().PropertyValue = item.Price.ToString() + productModel.CurrencyLogo;
+                        if (ReferenceProperty != null)
+                            ReferenceProperty.PropertyValue = item.Reference;
                     }
                     else
                     {
@@ -483,7 +499,8 @@ namespace voltaire.PageModels
                         }
 
                         ProductProperties.Where((arg) => arg.PropertyName == "Unit Price").First().PropertyValue = items.First().Price.ToString() + productModel.CurrencyLogo;
-
+                        if (ReferenceProperty != null)
+                        ReferenceProperty.PropertyValue = items.First().Reference;
                     }
 
                     return true;

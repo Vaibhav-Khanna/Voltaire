@@ -18,6 +18,8 @@ namespace voltaire.PageModels
 
         AddTagsPopUpModel Popup_context = new AddTagsPopUpModel();
 
+        AddCustomerPopUpModel Customer_Popup = new AddCustomerPopUpModel();
+
 
         public Command AddTags => new Command( async() =>
        {
@@ -25,6 +27,23 @@ namespace voltaire.PageModels
             await PopupNavigation.PushAsync(new AddTagsPopUp() { BindingContext = Popup_context }, true);
        });
 
+
+        public Command AddCustomer => new Command(async() =>
+       {
+            Customer_Popup = new AddCustomerPopUpModel();
+            Customer_Popup.ItemSelectedChanged += CustomerAdded;
+            await PopupNavigation.PushAsync(new AddCustomerPopUp() { BindingContext = Customer_Popup }, true);
+       });
+
+        void CustomerAdded()
+        {
+            if (!string.IsNullOrEmpty(Customer_Popup.SelectedItem))
+            {
+                CompanyName = Customer_Popup.SelectedItem;
+            }
+
+            Customer_Popup.ItemSelectedChanged -= CustomerAdded;
+        }
 
         void Popup_Context_ItemSelectedChanged()
         {
@@ -43,12 +62,6 @@ namespace voltaire.PageModels
            if (string.IsNullOrWhiteSpace(Name))
            {
                 await CoreMethods.DisplayAlert(AppResources.Alert, AppResources.FillInCustomerName, AppResources.Ok);
-               return;
-           }
-
-            if (string.IsNullOrWhiteSpace(CompanyName))
-           {
-                await CoreMethods.DisplayAlert(AppResources.Alert, AppResources.FillInCompanyName, AppResources.Ok);
                return;
            }
 

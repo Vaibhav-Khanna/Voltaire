@@ -57,7 +57,7 @@ namespace voltaire.Models
             if (saddles.Any())
             {
                 SaddleModel.AddRange(saddles.Select((arg) => string.IsNullOrWhiteSpace(arg.Name) ? "N.A" : arg.Name));
-                SaddleColor.AddRange(saddles.Select((arg) => string.IsNullOrWhiteSpace(arg.Color) ? "N.A" : arg.Color));
+               
                 SaddleLeather.AddRange(saddles.Select((arg) => string.IsNullOrWhiteSpace(arg.Leather) ? "N.A" : arg.Leather ));
                 Saddles.Clear();
                
@@ -84,7 +84,8 @@ namespace voltaire.Models
 
             SaddleModel = SaddleModel.Distinct().ToList();
 
-            SaddleColor = SaddleColor.Distinct().ToList();
+            SaddleColor.Add("Black");
+            SaddleColor.Add("Brown");
 
             SaddleLeather = SaddleLeather.Distinct().ToList();
 
@@ -101,8 +102,6 @@ namespace voltaire.Models
             {
                 if (string.IsNullOrWhiteSpace(item.Name))
                     item.Name = "N.A";
-                if (string.IsNullOrWhiteSpace(item.Color))
-                    item.Color = "N.A";
                 if (string.IsNullOrWhiteSpace(item.Leather))
                     item.Leather = "N.A";
             }
@@ -137,7 +136,8 @@ namespace voltaire.Models
                     new ProductProperty(PropertyType.IsPicker) { PropertyName = "Color", PropertyValue = null, ItemSource = SaddleColor },
                     new ProductProperty(PropertyType.IsPicker) { PropertyName = "Leather", PropertyValue = null, ItemSource = SaddleLeather },
                     new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price", PropertyValue = null },
-                  
+
+
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Rider Name" , PropertyValue = null },
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Seat" , PropertyValue = null },
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Tree" , PropertyValue = null },
@@ -158,7 +158,6 @@ namespace voltaire.Models
                     new ProductProperty(PropertyType.IsBoolean){ PropertyName = "Greasing" , PropertyValue = null },
                     new ProductProperty(PropertyType.IsBoolean){ PropertyName = "Sp Saddle" , PropertyValue = null },
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Note" , PropertyValue = null },
-
                 }
             });
 
@@ -173,6 +172,7 @@ namespace voltaire.Models
                     new ProductProperty(PropertyType.IsPicker){ PropertyName = "Sub Category" , PropertyValue = null,AllSource = AccessorySubCategory, ItemSource = AccessorySubCategory },
                     new ProductProperty(PropertyType.IsPicker){ PropertyName = "Name", PropertyValue = null, AllSource = AccessoryModel, ItemSource = AccessoryModel },
                     new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price", PropertyValue = null },
+                    new ProductProperty(PropertyType.IsLabel) { PropertyName = "Reference", PropertyValue = null },
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Note", PropertyValue = null },
                 }
             }); 
@@ -189,6 +189,7 @@ namespace voltaire.Models
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Model", PropertyValue = null },
                     new ProductProperty(PropertyType.IsPicker) { PropertyName = "Name", PropertyValue = null, ItemSource = ServiceModel },
                     new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price", PropertyValue = null },
+                    new ProductProperty(PropertyType.IsLabel) { PropertyName = "Reference", PropertyValue = null },
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Seat size", PropertyValue = null},
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Flap size", PropertyValue = null},
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Leather", PropertyValue = null},

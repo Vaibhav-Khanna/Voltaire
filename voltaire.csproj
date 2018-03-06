@@ -169,6 +169,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Raleway-Regular.ttf" />
+    <EmbeddedResource Include="PopUps\AddCustomerPopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -516,6 +520,10 @@
     </Compile>
     <Compile Include="PageModels\EmailPDFPageModel.cs" />
     <Compile Include="Converters\DateToColorConverter.cs" />
+    <Compile Include="PopUps\AddCustomerPopUp.xaml.cs">
+      <DependentUpon>AddCustomerPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopUps\AddCustomerPopUpModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

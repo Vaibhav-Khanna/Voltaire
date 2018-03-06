@@ -676,5 +676,11 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("NotSpecified", resourceCulture);
             }
         }
+        
+        internal static string SearchPartner {
+            get {
+                return ResourceManager.GetString("SearchPartner", resourceCulture);
+            }
+        }
     }
 }
