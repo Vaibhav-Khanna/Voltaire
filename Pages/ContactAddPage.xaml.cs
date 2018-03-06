@@ -14,6 +14,7 @@ namespace voltaire.Pages
         {
             NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
+           
         }
 
         void Handle_SelectedScaleChanged()
@@ -86,6 +87,14 @@ namespace voltaire.Pages
             }
         }
 
+
+        async void Handle_Focused()
+        {
+            entry.Unfocus();
+           (BindingContext as ContactAddPageModel).AddCustomer.Execute(null);
+            await System.Threading.Tasks.Task.Delay(100);
+            entry.Unfocus();
+        }
 
     }
 }

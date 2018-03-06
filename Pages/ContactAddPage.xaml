@@ -55,7 +55,7 @@
 
               </StackLayout>
                     
-                <Grid RowSpacing="1" Margin="40,0,0,0" BackgroundColor="{StaticResource White}" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                <Grid RowSpacing="1" Margin="40,0,0,0" BackgroundColor="{StaticResource White}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
@@ -70,14 +70,27 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                         
-                    <controls:WeightScale MaxWeight="5" SelectedScale="{Binding Weight, Mode=TwoWay}"  IsEnabled="{Binding CanEdit}" SelectedScaleChanged="Handle_SelectedScaleChanged" Grid.Row="0" Grid.Column="0"/>    
-                    <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding CompanyName, Mode=TwoWay}" Keyboard="Text" Grid.Row="1" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                    <controls:WeightScale MaxWeight="5" SelectedScale="{Binding Weight, Mode=TwoWay}" IsEnabled="{Binding CanEdit}" SelectedScaleChanged="Handle_SelectedScaleChanged" Grid.Row="0" Grid.Column="0"/>    
+
+                    <StackLayout Orientation="Horizontal" BackgroundColor="White" Spacing="20" Grid.Row="1" Grid.Column="0"  >
+
+                            <Label Text="Search " FontSize="20" BackgroundColor="White" VerticalOptions="Center" TextColor="{StaticResource GreyishBrown}" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command = "{Binding AddCustomer}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            
+                            <controls:CustomLabelEntry x:Name="entry" HorizontalOptions="FillAndExpand" Text="{Binding CompanyName, Mode=TwoWay}" Keyboard="Text"  IsEnabled="{Binding CanEdit}" >
                         <x:Arguments>
                             <x:String>Parent Partner    </x:String>
                             <x:Boolean>true</x:Boolean>
                             <x:Boolean>false</x:Boolean>
                         </x:Arguments>
                     </controls:CustomLabelEntry> 
+
+                        </StackLayout>
+                    
+                        
                     <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding Phone, Mode=TwoWay}" Keyboard="Numeric" Grid.Row="2" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
                         <x:Arguments>
                             <x:String>phone.png</x:String>

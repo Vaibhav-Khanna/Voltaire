@@ -26,11 +26,19 @@
                 </Label>
                 </controls:TToolBar.RightToolbarItems>
             </controls:TToolBar>
-        <Grid x:Name = "grid" RowSpacing="1" ColumnSpacing="1" Margin="20" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" >
+
+        <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+           <!-- <controls:WrapLayout  x:Name = "grid" BackgroundColor="White" Spacing="20" Orientation="Horizontal"  Margin="20"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                
+            </controls:WrapLayout>-->
+
+            <Grid x:Name = "grid" RowSpacing="1" ColumnSpacing="1" Margin="20" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
         </Grid>
+        </ScrollView>       
+        
         </StackLayout>
 </base:FreshBaseContentPage>

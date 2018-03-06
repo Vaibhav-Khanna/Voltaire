@@ -16,6 +16,10 @@ namespace voltaire.Controls
         Label labeltext;
         bool isdisabledstyle;
 
+        public delegate void EventHandler();
+
+        public event EventHandler FocusChanged;
+
 		public static readonly BindableProperty TextProperty =
             BindableProperty.Create("Text", typeof(string), typeof(CustomLabelEntry), null);
 
@@ -41,6 +45,7 @@ namespace voltaire.Controls
         {
             ShowText = isText;
             isdisabledstyle = isDisabledStyle;
+          
             imagesource = image;
             InflateLayout();
         }
@@ -67,6 +72,7 @@ namespace voltaire.Controls
 
             entry = new BorderlessEntry() { FontFamily = "SanFranciscoDisplay-Regular", FontSize = 20, HorizontalTextAlignment = TextAlignment.Start, TextColor = Color.Black, HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.Center };
 
+            entry.Focused += entryFocused;
             entry.Unfocused += Cancelbutton_Unfocused;
 
             cancelbutton = new Button { WidthRequest = 20, HeightRequest = 20, BackgroundColor = Color.Red, Text = "X",TextColor = Color.White, BorderColor = Color.Red, BorderRadius = 10, VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.End };
@@ -109,7 +115,13 @@ namespace voltaire.Controls
         void Cancelbutton_Clicked(object sender, EventArgs e)
         {
             Text = "";
-            entry.Focus();
+            //entry.Focus();
+        }
+
+        void entryFocused (object sender, FocusEventArgs e)
+        {
+            if(e.IsFocused)
+            FocusChanged?.Invoke();
         }
 
         void Cancelbutton_Unfocused(object sender, FocusEventArgs e)
