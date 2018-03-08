@@ -106,7 +106,7 @@ namespace voltaire.PageModels
 
         public ContactsPageModel()
         {
-           
+
         }
 
         private void FiltersLayoutAppearing()
@@ -222,7 +222,7 @@ namespace voltaire.PageModels
         public Command RefreshList => new Command(async (obj) =>
        {
            if (!string.IsNullOrWhiteSpace(SearchText))
-           {             
+           {
                SearchContact.Execute(null);
                await Task.Delay(1000);
                IsRefreshing = false;
@@ -353,7 +353,10 @@ namespace voltaire.PageModels
 
             if (returnedData != null)
             {
-                if ((bool)returnedData)
+                if (returnedData is bool)
+                    RefreshList.Execute(null);
+
+                if (returnedData is Partner)
                     RefreshList.Execute(null);
             }
 
