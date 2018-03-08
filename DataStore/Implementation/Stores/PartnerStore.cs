@@ -61,9 +61,10 @@ namespace voltaire.DataStore.Implementation.Stores
             }
             else
             {
-                return await Table.OrderBy( x => x.Name ).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+                return await Table.OrderBy(x => x.Name).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
             }
         }
+
 
         public async Task<List<Partner>> GetItemsWithValidCordinates()
         {
@@ -71,9 +72,10 @@ namespace voltaire.DataStore.Implementation.Stores
 
             try
             {
-                return await Table.Where(x => x.PartnerLatitude != 0 && x.PartnerLongitude != 0 ).IncludeTotalCount().ToListAsync().ConfigureAwait(false);
+                return await Table.IncludeTotalCount().ToListAsync().ConfigureAwait(false);
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return null;
             }
