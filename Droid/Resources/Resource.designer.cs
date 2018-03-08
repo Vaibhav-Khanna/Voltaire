@@ -11451,9 +11451,6 @@ namespace voltaire.Droid
 			// aapt resource value: 0x7f0c0170
 			public const int Animation_Design_BottomSheetDialog = 2131493232;
 			
-			// aapt resource value: 0x7f0c018e
-			public const int AppCompatDialogStyle = 2131493262;
-			
 			// aapt resource value: 0x7f0c00b2
 			public const int Base_AlertDialog_AppCompat = 2131493042;
 			
@@ -11927,12 +11924,6 @@ namespace voltaire.Droid
 			
 			// aapt resource value: 0x7f0c000e
 			public const int CardView_Light = 2131492878;
-			
-			// aapt resource value: 0x7f0c018c
-			public const int MyTheme = 2131493260;
-			
-			// aapt resource value: 0x7f0c018d
-			public const int MyTheme_Base = 2131493261;
 			
 			// aapt resource value: 0x7f0c002d
 			public const int Platform_AppCompat = 2131492909;
