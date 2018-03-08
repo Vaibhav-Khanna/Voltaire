@@ -9,6 +9,9 @@ using voltaire.PopUps;
 using Rg.Plugins.Popup.Services;
 using Acr.UserDialogs;
 using System.Linq;
+using Xamarin.Forms.GoogleMaps;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace voltaire.PageModels
 {
@@ -20,6 +23,11 @@ namespace voltaire.PageModels
 
         AddCustomerPopUpModel Customer_Popup = new AddCustomerPopUpModel();
 
+        Geocoder geocoder;
+
+        Position position = new Position();
+
+        Partner SearchedPartner;
 
         public Command AddTags => new Command( async() =>
        {
@@ -37,9 +45,10 @@ namespace voltaire.PageModels
 
         void CustomerAdded()
         {
-            if (!string.IsNullOrEmpty(Customer_Popup.SelectedItem))
+            if (Customer_Popup.SelectedItem != null)
             {
-                CompanyName = Customer_Popup.SelectedItem;
+                SearchedPartner = Customer_Popup.SelectedItem;
+                CompanyName = Customer_Popup.SelectedItem.Name;
             }
 
             Customer_Popup.ItemSelectedChanged -= CustomerAdded;
@@ -69,8 +78,16 @@ namespace voltaire.PageModels
 
             CanEdit = false;
 
-            var customer = new Partner() { Name = Name, CompanyName = CompanyName, Phone = Phone, Email = Email, Website = Website, Comment = NoteText, PartnerWeight = Weight != null ? Convert.ToInt64(Weight) : 0 , ContactAddress = Address };
-          
+            var customer = new Partner() { Name = Name, CompanyName = CompanyName, Phone = Phone, Email = Email, Website = Website, Comment = NoteText, PartnerWeight = Weight != null ? Convert.ToInt64(Weight) : 0 , ContactAddress = Address, PartnerLatitude = position.Latitude, PartnerLongitude = position.Longitude };
+
+           if (SearchedPartner != null)
+           {
+               if (customer.CompanyName?.Trim() == SearchedPartner.Name)
+               {
+                   customer.ParentId = SearchedPartner.ExternalId;
+               }
+           }
+
             if (Tags.Any() && ContactsPageModel.GradeValues.Any())
                customer.GradeId = ContactsPageModel.GradeValues[Tags.First().TagText].Value;
 
@@ -80,8 +97,7 @@ namespace voltaire.PageModels
 
             await CoreMethods.PopPageModel(customer);
 
-            CanEdit = true; 
-
+            CanEdit = true;
        });
 
         bool canedit = true;
@@ -154,6 +170,8 @@ namespace voltaire.PageModels
             {
                 address = value;
 
+                SearchLocation();
+
                 RaisePropertyChanged();
             }
         }
@@ -211,7 +229,32 @@ namespace voltaire.PageModels
             }
         }
 
+		public override void Init(object initData)
+		{
+            base.Init(initData);
 
+            geocoder = new Geocoder();
+		}
 
-    }
+        async void SearchLocation()
+        {
+            if (String.IsNullOrWhiteSpace(Address))
+                return;
+
+            var possibleAddresses = await geocoder.GetPositionsForAddressAsync(Address);
+
+            if (possibleAddresses != null && possibleAddresses.Any())
+            {
+                position = possibleAddresses.FirstOrDefault();
+
+                foreach (var item in possibleAddresses)
+                {
+                    Debug.WriteLine($"Lat:{item.Latitude}, Long:{item.Longitude}");
+                }
+            }
+
+            return;
+        }
+
+	}
 }
