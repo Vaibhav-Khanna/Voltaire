@@ -72,15 +72,15 @@
                         
                     <controls:WeightScale MaxWeight="5" SelectedScale="{Binding Weight, Mode=TwoWay}" IsEnabled="{Binding CanEdit}" SelectedScaleChanged="Handle_SelectedScaleChanged" Grid.Row="0" Grid.Column="0"/>    
 
-                    <StackLayout Orientation="Horizontal" BackgroundColor="White" Spacing="20" Grid.Row="1" Grid.Column="0"  >
+                 <!--   <StackLayout Orientation="Horizontal" BackgroundColor="White" Spacing="20"   >
 
                             <Label Text="Search " FontSize="20" BackgroundColor="White" VerticalOptions="Center" TextColor="{StaticResource GreyishBrown}" >
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command = "{Binding AddCustomer}"/>
                                 </Label.GestureRecognizers>
-                            </Label>
+                            </Label>-->
                             
-                            <controls:CustomLabelEntry x:Name="entry" HorizontalOptions="FillAndExpand" Text="{Binding CompanyName, Mode=TwoWay}" Keyboard="Text"  IsEnabled="{Binding CanEdit}" >
+                    <controls:CustomLabelEntry x:Name="entry" HorizontalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0" Text="{Binding CompanyName, Mode=TwoWay}" Keyboard="Text"  IsEnabled="{Binding CanEdit}" >
                         <x:Arguments>
                             <x:String>Parent Partner    </x:String>
                             <x:Boolean>true</x:Boolean>
@@ -88,7 +88,7 @@
                         </x:Arguments>
                     </controls:CustomLabelEntry> 
 
-                        </StackLayout>
+                      <!--  </StackLayout>-->
                     
                         
                     <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding Phone, Mode=TwoWay}" Keyboard="Numeric" Grid.Row="2" Grid.Column="0" IsEnabled="{Binding CanEdit}" >

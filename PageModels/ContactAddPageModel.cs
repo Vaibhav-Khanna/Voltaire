@@ -67,7 +67,6 @@ namespace voltaire.PageModels
 
         public Command SaveContact => new Command( async(obj) =>
        {
-
            if (string.IsNullOrWhiteSpace(Name))
            {
                 await CoreMethods.DisplayAlert(AppResources.Alert, AppResources.FillInCustomerName, AppResources.Ok);
@@ -78,11 +77,11 @@ namespace voltaire.PageModels
 
             CanEdit = false;
 
-            var customer = new Partner() { Name = Name, CompanyName = CompanyName, Phone = Phone, Email = Email, Website = Website, Comment = NoteText, PartnerWeight = Weight != null ? Convert.ToInt64(Weight) : 0 , ContactAddress = Address, PartnerLatitude = position.Latitude, PartnerLongitude = position.Longitude };
+            var customer = new Partner() { Name = Name, ParentName = CompanyName, Phone = Phone, Email = Email, Website = Website, Comment = NoteText, PartnerWeight = Weight != null ? Convert.ToInt64(Weight) : 0 , ContactAddress = Address, PartnerLatitude = position.Latitude, PartnerLongitude = position.Longitude };
 
            if (SearchedPartner != null)
            {
-               if (customer.CompanyName?.Trim() == SearchedPartner.Name)
+                if (customer.ParentName?.Trim() == SearchedPartner.Name)
                {
                    customer.ParentId = SearchedPartner.ExternalId;
                }
@@ -162,7 +161,6 @@ namespace voltaire.PageModels
         }
 
         private string address;
-
         public string Address
         {
             get { return address; }

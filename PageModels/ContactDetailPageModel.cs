@@ -46,7 +46,7 @@ namespace voltaire.PageModels
                 customer.Comment = notetext;
                 customer.Email = email;
                 customer.CanEdit = false;
-                customer.CompanyName = companyname;
+                customer.ParentName = companyname;
 
                 if(Tags.Any() && ContactsPageModel.GradeValues.Any() )
                 customer.GradeId = ContactsPageModel.GradeValues[Tags.First().TagText].Value;
@@ -299,8 +299,7 @@ namespace voltaire.PageModels
 			}
 		}
 
-        string companyname;
-	
+        string companyname;	
         public string CompanyName
 		{
 			get
@@ -392,7 +391,7 @@ namespace voltaire.PageModels
                 title = canedit ? AppResources.Update : $"{customer.Name}";
                 toolbarbutton = canedit ? AppResources.Save : AppResources.Modify;
                 backbutton = canedit ? AppResources.Cancel : AppResources.Back;
-                companyname = customer.CompanyName;
+                companyname = customer.ParentName;
 
                 if (Tags == null)
                     Tags = new ObservableCollection<TagControlModel>();

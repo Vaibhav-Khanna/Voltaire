@@ -13,8 +13,12 @@ namespace voltaire.Pages
         public QuotationSignPage()
         {
             NavigationPage.SetHasNavigationBar(this, false);
-            InitializeComponent();
-         
+            InitializeComponent(); 
+        }
+
+        void Handle_Tapped_1(object sender, System.EventArgs e)
+        {
+            picker.Focus();
         }
 
         async void Handle_Tapped(object sender, System.EventArgs e)
