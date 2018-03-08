@@ -17,6 +17,13 @@ namespace voltaire.Pages
             listview.ItemTapped += Listview_ItemTapped;
 		}
 
+        void Handle_Clicked(object sender, System.EventArgs e)
+        {
+            var item = sender as MenuItem;
+
+            (BindingContext as QuotationDetailViewPageModel).DeleteItemCommand.Execute(item.BindingContext);
+        }
+
         void Listview_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var item = e.Item as ProductQuotationModel;
@@ -66,6 +73,7 @@ namespace voltaire.Pages
 
         protected override bool OnBackButtonPressed()
         {
+            (BindingContext as QuotationDetailViewPageModel).BackButton.Execute(null);
             return true;
         }
     }

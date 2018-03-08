@@ -5,6 +5,7 @@ using voltaire.Models;
 using Xamarin.Forms;
 using System.Linq;
 using System.Collections.ObjectModel;
+using Acr.UserDialogs;
 
 namespace voltaire.PageModels
 {
@@ -27,21 +28,21 @@ namespace voltaire.PageModels
 
         public Command FilterWeight => new Command((obj) =>
        {
-             Weight = Convert.ToInt32(obj as string);
-            FilterOutAddresses();
+           Weight = Convert.ToInt32(obj as string);
+           FilterOutAddresses();
        });
 
         public Command PartnerGradeFilter => new Command((obj) =>
        {
-            GradeFilter = obj as string;
-            FilterOutAddresses();
+           GradeFilter = obj as string;
+           FilterOutAddresses();
        });
 
 
         Dictionary<string, long?> GradeValues { get; set; }
 
-        int weight=0;
-        public int Weight 
+        int weight = 0;
+        public int Weight
         {
             get { return weight; }
             set
@@ -53,7 +54,7 @@ namespace voltaire.PageModels
 
 
         bool filtervisible = false;
-        public bool FilterLayoutVisibility 
+        public bool FilterLayoutVisibility
         {
             get { return filtervisible; }
             set
@@ -65,20 +66,20 @@ namespace voltaire.PageModels
 
         string gradefilter;
         public string GradeFilter
-		{
-			get { return gradefilter; }
-			set
-			{
-				gradefilter = value;
-				RaisePropertyChanged();
-			}
-		}
+        {
+            get { return gradefilter; }
+            set
+            {
+                gradefilter = value;
+                RaisePropertyChanged();
+            }
+        }
 
         ObservableCollection<PartnerGrade> partnerGrades;
-        public ObservableCollection<PartnerGrade> PartnerGrades { get { return partnerGrades; } set { partnerGrades = value;  RaisePropertyChanged(); } }
+        public ObservableCollection<PartnerGrade> PartnerGrades { get { return partnerGrades; } set { partnerGrades = value; RaisePropertyChanged(); } }
 
         List<Partner> AllCustomers;
-      
+
         List<Partner> customers;
         public List<Partner> Customers
         {
@@ -101,34 +102,34 @@ namespace voltaire.PageModels
             {
                 case 0:
                     {
-                        filter_list = AllCustomers.Where((arg) => arg.Weight == 0 ).ToList();
-                        break;                                               
+                        filter_list = AllCustomers.Where((arg) => arg.Weight == 0).ToList();
+                        break;
                     }
                 case 1:
                     {
-                        filter_list = AllCustomers.Where((arg) =>  arg.Weight == 1).ToList();
-						break;
-					}
-				case 2:
-					{
-						filter_list = AllCustomers.Where((arg) =>  arg.Weight == 2).ToList();
-						break;
-					}
-				case 3:
-					{
-						filter_list = AllCustomers.Where((arg) =>  arg.Weight == 3).ToList();
-						break;
-					}
-				case 4:
-					{
-						filter_list = AllCustomers.Where((arg) =>  arg.Weight == 4).ToList();
-						break;
-					}
-				case 5:
-					{
-						filter_list = AllCustomers.Where((arg) => arg.Weight == 5).ToList();
-						break;
-					}
+                        filter_list = AllCustomers.Where((arg) => arg.Weight == 1).ToList();
+                        break;
+                    }
+                case 2:
+                    {
+                        filter_list = AllCustomers.Where((arg) => arg.Weight == 2).ToList();
+                        break;
+                    }
+                case 3:
+                    {
+                        filter_list = AllCustomers.Where((arg) => arg.Weight == 3).ToList();
+                        break;
+                    }
+                case 4:
+                    {
+                        filter_list = AllCustomers.Where((arg) => arg.Weight == 4).ToList();
+                        break;
+                    }
+                case 5:
+                    {
+                        filter_list = AllCustomers.Where((arg) => arg.Weight == 5).ToList();
+                        break;
+                    }
                 default:
                     break;
             }
@@ -150,27 +151,30 @@ namespace voltaire.PageModels
             {
                 GradeValues.Add(item.Name, item.ExternalId);
             }
-          
+
             PartnerGrades = new ObservableCollection<PartnerGrade>(_grades?.Select((arg) => new PartnerGrade() { Grade = arg.Name }));
 
             //PartnerGrades 
 
             // Customer
-            var Customer_list = await StoreManager.CustomerStore.GetItemsWithValidCordinates();
 
-
-            Customers = Customer_list;
-
-
-            AllCustomers = Customer_list;
-
-
-            if(Customers==null)
+            using (UserDialogs.Instance.Loading())
             {
-                await CoreMethods.DisplayAlert("Alerte","No customer addresses could be found.","Ok");
+                var Customer_list = await StoreManager.CustomerStore.GetItemsWithValidCordinates();
+
+                Customer_list.Select(x => (x.PartnerLatitude != 0) && (x.PartnerLongitude != 0)).ToList();
+
+                Customers = Customer_list;
+
+                AllCustomers = Customer_list;
             }
-           // Customer
-         
+
+            if (Customers == null)
+            {
+                await CoreMethods.DisplayAlert("Alerte", "No customer addresses could be found.", "Ok");
+            }
+            // Customer
+
         }
 
     }

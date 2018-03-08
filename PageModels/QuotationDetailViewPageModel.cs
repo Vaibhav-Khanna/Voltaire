@@ -40,6 +40,25 @@ namespace voltaire.PageModels
            await CoreMethods?.PopPageModel();
        });
 
+        public Command DeleteItemCommand => new Command(async (obj) =>
+        {
+            if (obj != null && obj is ProductQuotationModel)
+            {
+                var item = (ProductQuotationModel)obj;
+
+                if (OrderItemsSource.Contains(item))
+                {
+                    Dialog.ShowLoading("");
+                   
+                    OrderItemsSource.Remove(item);
+                    quotation.Products.Remove(item);
+                    await StoreManager.SaleOrderLineStore.RemoveAsync(item.Product);
+
+                    Dialog.HideLoading();
+                }
+            }
+        });
+
 
         public Command itemTapped => new Command(async (object obj) =>
         {
@@ -98,7 +117,12 @@ namespace voltaire.PageModels
         public Command EmailCommand => new Command(async (obj) =>
        {
            // Generate or check PDF file
-           Dialog.ShowLoading("");
+            var resp = await CoreMethods.DisplayAlert("Alerte", "Do you want to send it now ?", "Yes", "Not now");
+
+           if (!resp)
+               return;
+
+           Dialog.ShowLoading("Sending mail...");
 
            var vendorItem = await StoreManager.DocumentStore.GetItemByEmployeeId(quotation.SaleOrder.Id, "vendor");
 
@@ -396,13 +420,6 @@ namespace voltaire.PageModels
 
             ApplyTax = OrderItemsSource.Any((arg) => arg.IsTaxApply);
 
-            //if(!ApplyTax)
-            //{
-            //    foreach (var item in OrderItemsSource)
-            //    {
-            //        item.IsTaxApply = false;
-            //    }
-            //}
 
             if (ApplyTax)
             {

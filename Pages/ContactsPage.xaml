@@ -146,7 +146,7 @@
                 </ListView.Footer>
             </ListView> 
 
-             <ScrollView Orientation="Vertical" BackgroundColor="{StaticResource GreyBack}"  Padding="0" Margin="0" Grid.Column="1" IsVisible="{Binding filterLayoutVisibility}"  Grid.Row="1" VerticalOptions="Start">   
+             <ScrollView Orientation="Vertical" BackgroundColor="{StaticResource GreyBack}"  Padding="0" Margin="0" Grid.Column="1" IsVisible="{Binding filterLayoutVisibility}"  Grid.Row="1" VerticalOptions="FillAndExpand">   
             <StackLayout                                
                             
                             BackgroundColor="{StaticResource GreyBack}" 
