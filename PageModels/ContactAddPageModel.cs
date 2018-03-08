@@ -67,7 +67,6 @@ namespace voltaire.PageModels
 
         public Command SaveContact => new Command( async(obj) =>
        {
-
            if (string.IsNullOrWhiteSpace(Name))
            {
                 await CoreMethods.DisplayAlert(AppResources.Alert, AppResources.FillInCustomerName, AppResources.Ok);
@@ -162,7 +161,6 @@ namespace voltaire.PageModels
         }
 
         private string address;
-
         public string Address
         {
             get { return address; }

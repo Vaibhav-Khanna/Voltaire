@@ -36,8 +36,11 @@
 
                 <StackLayout Margin="30,5,30,10" Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="50" BackgroundColor="#979797" Padding="1"  >
                     <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start" WidthRequest="20"/>
-                    <renderers:BorderlessPicker TextColor="{StaticResource GreyishBrown}" BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="FillAndExpand" ItemsSource="{Binding PaymentSource}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Title="Choose" />
+                    <renderers:BorderlessPicker x:Name="picker" TextColor="{StaticResource GreyishBrown}" BackgroundColor="White" HorizontalOptions="Start" VerticalOptions="FillAndExpand" ItemsSource="{Binding PaymentSource}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Title="Choose" />
                     <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                    <StackLayout.GestureRecognizers>
+                       <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="Handle_Tapped_1" />
+                   </StackLayout.GestureRecognizers> 
                 </StackLayout>
 
                 <Label FontFamily="SanFranciscoDisplay-Semibold" FontSize="14" Text="Terms &amp; Conditions:" Margin="30,0,30,5" TextColor="#f5a623" />

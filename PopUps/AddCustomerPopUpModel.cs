@@ -18,8 +18,13 @@ namespace voltaire.PopUps
         public ObservableCollection<Partner> Partners { get { return partners; } set { partners = value; RaisePropertyChanged(); } }
 
         string search;
-        public string SearchQuery { get { return search; } set { search = value; Search(); RaisePropertyChanged(); } }
+        public string SearchQuery { get { return search; } set { search = value; SearchQueryText = $"''{value?.Trim()}'' ?"; Search(); RaisePropertyChanged(); } }
 
+        bool isVisible = false;
+        public bool IsVisible { get { return isVisible; } set { isVisible = value; RaisePropertyChanged(); } }
+
+        string _search;
+        public string SearchQueryText { get { return _search; } set { _search = value; RaisePropertyChanged(); } }
 
         public delegate void EventHandler();
 
@@ -30,10 +35,13 @@ namespace voltaire.PopUps
             if (string.IsNullOrWhiteSpace(SearchQuery))
             {
                 Partners = new ObservableCollection<Partner>();
+                IsVisible = false;
                 return;
             }
 
             var result = await StoreManager.CustomerStore.Search(SearchQuery.Trim(),null, null);
+
+            IsVisible = true;
 
             if(result!=null && result.Any())
             {
@@ -45,6 +53,10 @@ namespace voltaire.PopUps
                 {
                     Partners = new ObservableCollection<Partner>();
                 }
+            }
+            else
+            {
+                Partners = new ObservableCollection<Partner>();
             }
         }
 
@@ -61,6 +73,18 @@ namespace voltaire.PopUps
            ItemSelectedChanged.Invoke();
            PopupNavigation.PopAsync(true);
        });
+
+        public Command AddManuallyCommand => new Command(() =>
+        {
+            if (!string.IsNullOrWhiteSpace(SearchQuery))
+            {
+                // Create a manual partner 
+                SelectedItem = new Partner() { Name = SearchQuery.Trim() };
+                ItemSelectedChanged.Invoke();
+                PopupNavigation.PopAsync(true);
+            }
+        });
+
 
     }
 }
