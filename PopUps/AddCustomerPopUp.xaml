@@ -35,8 +35,16 @@
                     
             <SearchBar x:Name="search" Text="{Binding SearchQuery,Mode=TwoWay}" Placeholder="Search" />
 
-            <ListView x:Name="list" ItemTapped="Handle_ItemTapped" ItemsSource="{Binding Partners}" HeightRequest="300" >
-                
+            <ListView x:Name="list" ItemTapped="Handle_ItemTapped" HasUnevenRows="true" ItemsSource="{Binding Partners}" HeightRequest="300" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="15,10,5,10" >
+                                <Label FontSize="16" Text="{Binding Name}" VerticalOptions="Center" LineBreakMode="WordWrap" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
 
         </StackLayout>

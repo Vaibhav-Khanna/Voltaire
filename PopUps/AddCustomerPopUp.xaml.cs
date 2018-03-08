@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Rg.Plugins.Popup.Pages;
+using voltaire.Models;
 using Xamarin.Forms;
 
 namespace voltaire.PopUps
@@ -23,7 +24,7 @@ namespace voltaire.PopUps
 
         void Handle_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
         {
-            (BindingContext as AddCustomerPopUpModel).SelectedItem = (string)e.Item;
+            (BindingContext as AddCustomerPopUpModel).SelectedItem = (Partner)e.Item;
             (BindingContext as AddCustomerPopUpModel).Done.Execute(null);
             list.SelectedItem = null;
         }

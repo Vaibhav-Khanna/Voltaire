@@ -5,16 +5,17 @@ using voltaire.Models;
 using voltaire.PageModels.Base;
 using Xamarin.Forms;
 using System.Linq;
+using Xamarin.Forms.GoogleMaps;
 
 namespace voltaire.PopUps
 {
     public class AddCustomerPopUpModel : BasePageModel
     {
 
-        public string SelectedItem { get; set; }
+        public Partner SelectedItem { get; set; }
 
-        ObservableCollection<string> partners;
-        public ObservableCollection<string> Partners { get { return partners; } set { partners = value; RaisePropertyChanged(); } }
+        ObservableCollection<Partner> partners;
+        public ObservableCollection<Partner> Partners { get { return partners; } set { partners = value; RaisePropertyChanged(); } }
 
         string search;
         public string SearchQuery { get { return search; } set { search = value; Search(); RaisePropertyChanged(); } }
@@ -28,7 +29,7 @@ namespace voltaire.PopUps
         {
             if (string.IsNullOrWhiteSpace(SearchQuery))
             {
-                Partners = new ObservableCollection<string>();
+                Partners = new ObservableCollection<Partner>();
                 return;
             }
 
@@ -38,17 +39,17 @@ namespace voltaire.PopUps
             {
                 try
                 {
-                    Partners = new ObservableCollection<string>(result.Select((arg) => arg.Name));
+                    Partners = new ObservableCollection<Partner>(result);
                 }
-                catch(Exception ex)
+                catch(Exception)
                 {
-                    Partners = new ObservableCollection<string>();
+                    Partners = new ObservableCollection<Partner>();
                 }
             }
         }
 
         public Command Done => new Command(() =>
-        {         
+        {        
             ItemSelectedChanged.Invoke();
             PopupNavigation.PopAsync(true);
         });
