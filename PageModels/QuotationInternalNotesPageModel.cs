@@ -20,7 +20,12 @@ namespace voltaire.PageModels
       });
 
         public Command AddNote => new Command(async (obj) =>
-       {
+       {          
+           if (string.IsNullOrWhiteSpace(MessageText))
+           {
+               return;
+           }
+
            if (currUser == null)
            {
                await CoreMethods.DisplayAlert("Error", "Experienced internal error sending this message. Reopen the app to try sending the message", "Ok");
@@ -34,8 +39,8 @@ namespace voltaire.PageModels
            //déterminantion du model de message
            string modelMessage;
            string resId;
-          
-            if (Quotation != null)
+
+           if (Quotation != null)
            {
                modelMessage = "sale.order";
                resId = Quotation.SaleOrder.Id;
@@ -46,7 +51,7 @@ namespace voltaire.PageModels
                resId = Customer.Id;
            }
 
-           var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = _messageText, ResId = resId, MessageType = MessageType.comment.ToString() , Model = modelMessage };
+           var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = _messageText, ResId = resId, MessageType = MessageType.comment.ToString(), Model = modelMessage };
 
            //insertion de message dans la base
            var resul = await StoreManager.MessageStore.InsertAsync(message);

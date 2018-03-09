@@ -494,6 +494,7 @@ namespace voltaire.PageModels
                 QuotationNumber = AppResources.Quotation + " " + quotation.Ref + " - " + quotation.Status.ToString();
             }
 
+            if(OrderItemsSource!=null)
             foreach (var item in OrderItemsSource)
             {
                 item.CanEdit = CanEdit;
