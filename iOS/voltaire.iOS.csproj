@@ -592,6 +592,7 @@
     <BundleResource Include="Resources\filterlist%403x.png" />
     <BundleResource Include="data.json" />
     <BundleResource Include="round.json" />
+    <BundleResource Include="Resources\splash.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="styles.xml" />

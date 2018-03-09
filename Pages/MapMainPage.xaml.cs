@@ -76,7 +76,7 @@ namespace voltaire.Pages
 							Position = new Position(location.Latitude, location.Longitude)
 						});
 
-                        Map.InitialCameraUpdate = (CameraUpdateFactory.NewPositionZoom(new Position(location.Latitude, location.Longitude),12d));
+                        Map.InitialCameraUpdate = (CameraUpdateFactory.NewPositionZoom(new Position(location.Latitude, location.Longitude),1d));
 
                     }
                     else
@@ -153,7 +153,7 @@ namespace voltaire.Pages
                             Position = new Position(location.Latitude, location.Longitude)
 						});
 
-                        await Map.AnimateCamera(CameraUpdateFactory.NewPositionZoom(new Position(location.Latitude,location.Longitude),12d),new TimeSpan(0,0,3));
+                        await Map.AnimateCamera(CameraUpdateFactory.NewPositionZoom(new Position(location.Latitude,location.Longitude),1d),new TimeSpan(0,0,3));
                     }
 
                     await locator.StopListeningAsync();

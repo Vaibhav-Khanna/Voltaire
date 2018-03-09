@@ -66,16 +66,15 @@ namespace voltaire.DataStore.Implementation.Stores
         }
 
 
-        public async Task<List<Partner>> GetItemsWithValidCordinates()
+        public async Task<IEnumerable<Partner>> GetItemsWithValidCordinates()
         {
             await InitializeStore().ConfigureAwait(false);
 
             try
             {
-                return await Table.IncludeTotalCount().ToListAsync().ConfigureAwait(false);
-
+                return await Table.ToEnumerableAsync().ConfigureAwait(false);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }

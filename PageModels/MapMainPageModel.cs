@@ -158,21 +158,29 @@ namespace voltaire.PageModels
 
             // Customer
 
-            using (UserDialogs.Instance.Loading())
+            Dialog.ShowLoading();
+
+            var Customer_list = await StoreManager.CustomerStore.GetItemsWithValidCordinates();
+
+            if (Customer_list == null)
             {
-                var Customer_list = await StoreManager.CustomerStore.GetItemsWithValidCordinates();
+                Dialog.HideLoading();
 
-                Customer_list.Select(x => (x.PartnerLatitude != 0) && (x.PartnerLongitude != 0)).ToList();
-
-                Customers = Customer_list;
-
-                AllCustomers = Customer_list;
-            }
-
-            if (Customers == null)
-            {
                 await CoreMethods.DisplayAlert("Alerte", "No customer addresses could be found.", "Ok");
             }
+            else
+            {
+                var Filter_list = Customer_list.Where(x => x.PartnerLatitude != 0 && x.PartnerLongitude != 0 );
+
+                var cust_list = new List<Partner>(Filter_list);
+
+                Customers = cust_list;
+
+                AllCustomers = cust_list;
+
+                Dialog.HideLoading();
+            }
+
             // Customer
 
         }
