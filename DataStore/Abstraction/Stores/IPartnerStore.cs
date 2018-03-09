@@ -15,6 +15,6 @@ namespace voltaire.DataStore.Abstraction.Stores
 
         Task<IEnumerable<Partner>> Search(string QueryText, int? Weight, long? Grade);
 
-        Task<List<Partner>> GetItemsWithValidCordinates();
+        Task<IEnumerable<Partner>> GetItemsWithValidCordinates();
     }
 }
