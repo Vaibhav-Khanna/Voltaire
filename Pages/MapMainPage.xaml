@@ -52,6 +52,12 @@
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Filter}" />
                     </Image.GestureRecognizers>
+                    <Image.TranslationX>
+                        <OnPlatform x:TypeArguments="x:Double" Android="-30" iOS="0" />
+                    </Image.TranslationX>
+                    <Image.TranslationY>
+                        <OnPlatform x:TypeArguments="x:Double" Android="-5" iOS="0" />
+                    </Image.TranslationY>
                 </Image>
 
 

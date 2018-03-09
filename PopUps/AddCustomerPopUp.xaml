@@ -31,12 +31,16 @@
 
 
          
-             <Label TranslationY="-20" FontAttributes="Bold" Text="{x:Static resources:AppResources.SearchPartner}" TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Semibold" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" />
+             <Label TranslationY="-20" FontSize="20" FontAttributes="Bold" Text="{x:Static resources:AppResources.SearchPartner}" TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Semibold" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" />
 
              
 
                     
-            <SearchBar x:Name="search" Text="{Binding SearchQuery,Mode=TwoWay}" Placeholder="Search" />
+            <SearchBar x:Name="search" Text="{Binding SearchQuery,Mode=TwoWay}" Placeholder="Search" >
+                <SearchBar.HeightRequest>
+                    <OnPlatform x:TypeArguments="x:Double" Android="50" />
+                </SearchBar.HeightRequest>
+            </SearchBar>
 
             <ListView x:Name="list" ItemTapped="Handle_ItemTapped" HasUnevenRows="true" ItemsSource="{Binding Partners}" HeightRequest="300" >
                 <ListView.ItemTemplate>

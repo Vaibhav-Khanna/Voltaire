@@ -93,7 +93,9 @@ namespace voltaire.Droid.Renderers
             if (e.OldElement == null)
             {
                 Control.SetAllCaps(false);
-                Control.SetPadding(Control.PaddingLeft, 0, Control.PaddingRight, 0);
+                Control.SetPadding(Control.PaddingLeft, 5, Control.PaddingRight, 5);
+                Control.Elevation = 0;
+                Control.SetShadowLayer(0, 0, 0, Android.Graphics.Color.Transparent);
             }
 		}
 	}

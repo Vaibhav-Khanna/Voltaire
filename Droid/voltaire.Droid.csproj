@@ -111,12 +111,6 @@
     <Reference Include="Xamarin.GooglePlayServices.Maps">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Maps.42.1021.1\lib\MonoAndroid70\Xamarin.GooglePlayServices.Maps.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.GoogleMaps.Android">
-      <HintPath>..\packages\Xamarin.Forms.GoogleMaps.2.1.0\lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.GoogleMaps">
-      <HintPath>..\packages\Xamarin.Forms.GoogleMaps.2.1.0\lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.dll</HintPath>
-    </Reference>
     <Reference Include="Rg.Plugins.Popup">
       <HintPath>..\packages\Rg.Plugins.Popup.1.0.4\lib\MonoAndroid\Rg.Plugins.Popup.dll</HintPath>
     </Reference>
@@ -146,12 +140,6 @@
     </Reference>
     <Reference Include="Plugin.CurrentActivity">
       <HintPath>..\packages\Plugin.CurrentActivity.1.0.1\lib\MonoAndroid10\Plugin.CurrentActivity.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Geolocator.Abstractions">
-      <HintPath>..\packages\Xam.Plugin.Geolocator.4.0.1\lib\MonoAndroid10\Plugin.Geolocator.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Plugin.Geolocator">
-      <HintPath>..\packages\Xam.Plugin.Geolocator.4.0.1\lib\MonoAndroid10\Plugin.Geolocator.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.Core.XForms">
       <HintPath>..\packages\Syncfusion.Xamarin.Core.15.3.0.33\lib\portable-win+net45+wp80+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Syncfusion.Core.XForms.dll</HintPath>
@@ -325,6 +313,18 @@
     </Reference>
     <Reference Include="Plugin.CrossPlatformTintedImage.Android">
       <HintPath>..\packages\Plugin.CrossPlatformTintedImage.1.0.0\lib\MonoAndroid10\Plugin.CrossPlatformTintedImage.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Geolocator.Abstractions">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.4.2.0\lib\MonoAndroid10\Plugin.Geolocator.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Geolocator">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.4.2.0\lib\MonoAndroid10\Plugin.Geolocator.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.GoogleMaps.Android">
+      <HintPath>..\packages\Xamarin.Forms.GoogleMaps.2.3.0\lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.GoogleMaps">
+      <HintPath>..\packages\Xamarin.Forms.GoogleMaps.2.3.0\lib\MonoAndroid70\Xamarin.Forms.GoogleMaps.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

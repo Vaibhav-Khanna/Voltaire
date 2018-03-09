@@ -90,6 +90,12 @@
                         WidthRequest="130" 
                         HeightRequest= "35"
                         BackgroundColor="{StaticResource White}"> 
+                    <Frame.Padding>
+                        <OnPlatform x:TypeArguments="Thickness" Android="2" iOS="0" />
+                    </Frame.Padding>
+                    <Frame.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android="50" iOS="35" />
+                    </Frame.HeightRequest>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" attachedProperties:TappedGestureAttached.Command="{Binding FiltersLayoutCommand}"   >
                                <Image Source="{Binding filterImage}" HeightRequest="20" WidthRequest="20"/>
                                <Label Style="{StaticResource CommonLabelStyle}"
@@ -117,6 +123,7 @@
                 RefreshCommand="{Binding RefreshList}"   
                 IsVisible="{Binding IsLoading,Converter={converter:BoolInverseConverter}}"
                 ItemAppearing="Handle_ItemAppearing"
+                                      
                                        IsGroupingEnabled="True"
                                        ItemsSource="{Binding CustomersItems}">
                 <x:Arguments>

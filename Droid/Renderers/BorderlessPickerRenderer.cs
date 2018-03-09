@@ -26,21 +26,21 @@ namespace voltaire.Droid.Renderers
 		{
             base.OnElementChanged(e);
 
-            if (e.OldElement == null)
+            if (e.NewElement != null)
             {
                 Control.Background = null;
 
                 Control.SetRawInputType(Android.Text.InputTypes.TextFlagNoSuggestions);
 
+
                 var element = Element as BorderlessPicker;
 
                 if (element.TextAlignMent == Xamarin.Forms.TextAlignment.End)
-                    Control.TextAlignment = Android.Views.TextAlignment.ViewEnd;
+                    Control.Gravity = Android.Views.GravityFlags.End;
                 else if (element.TextAlignMent == Xamarin.Forms.TextAlignment.Start)
-                    Control.TextAlignment = Android.Views.TextAlignment.ViewStart;
+                    Control.Gravity = Android.Views.GravityFlags.Start;
                 else if (element.TextAlignMent == Xamarin.Forms.TextAlignment.Center)
-                    Control.TextAlignment = Android.Views.TextAlignment.Center;
-
+                    Control.Gravity = Android.Views.GravityFlags.Center;
             }
 		}
 

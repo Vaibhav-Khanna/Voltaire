@@ -55,7 +55,7 @@ namespace voltaire.Models
                     st += " " + item;
                 }
                 s = null;
-                DisplayText.Spans.Add(new Span { Text = st.Trim(), FontSize = 20, FontFamily = "SanFranciscoDisplay-Bold" });
+                DisplayText.Spans.Add(new Span { Text = st.Trim(), ForegroundColor = Color.Black, FontAttributes = FontAttributes.Bold, FontSize = 20, FontFamily = "SanFranciscoDisplay-Bold" });
             }
 
             if (ContactsPageModel.GradeValues != null && ContactsPageModel.GradeValues.Any())

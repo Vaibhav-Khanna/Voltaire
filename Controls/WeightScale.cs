@@ -71,7 +71,7 @@ namespace voltaire.Controls
                 Spacing = 15,
                 BackgroundColor = Color.White,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                VerticalOptions = LayoutOptions.Center
+                VerticalOptions = LayoutOptions.CenterAndExpand
             };
 
 
@@ -130,7 +130,7 @@ namespace voltaire.Controls
             {
                 WidthRequest = 36,
                 Text = number,
-                VerticalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.FillAndExpand,
                 HeightRequest = 36,
                 BackgroundColor = Color.Transparent,
                 BorderRadius = 18,

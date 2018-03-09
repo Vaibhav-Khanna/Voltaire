@@ -93,7 +93,7 @@ namespace voltaire.PageModels
 
                var user = await StoreManager.UserStore.GetCurrentUserAsync();
 
-               if (user == null)
+                if (user == null || location == null)
                {
                    await CoreMethods.DisplayAlert("Error", "Try again", "Ok"); 
                    CheckinEnable = true;
