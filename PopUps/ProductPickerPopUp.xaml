@@ -26,11 +26,13 @@
             </Image.GestureRecognizers>
                 </Image>
                 <Label TranslationY="-20" FontAttributes="Bold" Text="Select a product" TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Semibold" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" />
-            <ListView x:Name="listview" ItemsSource="{Binding ItemSource}" SeparatorColor="{StaticResource GreyishBrown}" HasUnevenRows="false" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
+            <ListView x:Name="listview" ItemsSource="{Binding ItemSource}" SeparatorColor="{StaticResource GreyishBrown}" HasUnevenRows="true" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                        <ViewCell>
-                            <Label Text="{Binding Name}" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" Margin="15"/>
+                            <StackLayout Padding="15" >
+                                <Label Text="{Binding Name}" FontSize="16" FontFamily="SanFranciscoDisplay-Regular" TextColor="{StaticResource GreyishBrown}" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
+                            </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

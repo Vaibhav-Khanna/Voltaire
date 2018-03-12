@@ -220,6 +220,7 @@ namespace voltaire.Pages
 
         protected override bool OnBackButtonPressed()
         {
+            (BindingContext as ProductDescriptionPageModel).BackButton.Execute(null);
             return true;
         }
     }

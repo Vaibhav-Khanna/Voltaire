@@ -27,5 +27,10 @@ namespace voltaire.PopUps
 			listview.SelectedItem = null;
 		}
 
+        protected override bool OnBackButtonPressed()
+        {
+            (BindingContext as CustomerPickerPopupModel).Close.Execute(null);
+            return true;
+        }
     }
 }

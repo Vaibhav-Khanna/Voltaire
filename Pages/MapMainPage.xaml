@@ -28,7 +28,7 @@
             
         <controls:TToolBar Title="{x:Static resources:AppResources.Map}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <controls:TToolBar.LeftToolbarItems>
-                <Entry Placeholder="{x:Static resources:AppResources.SearchContact}" Keyboard="Text" HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}"  />
+                <renderers:CustomSearchBar x:Name="searchBar" Text="{Binding SearchText,Mode=TwoWay}" SearchCommand="{Binding SearchContact}" Placeholder="{x:Static resources:AppResources.SearchContact}"  HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}"  />
           </controls:TToolBar.LeftToolbarItems>
         </controls:TToolBar>
 
@@ -52,6 +52,12 @@
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Filter}" />
                     </Image.GestureRecognizers>
+                    <Image.TranslationX>
+                        <OnPlatform x:TypeArguments="x:Double" Android="-30" iOS="0" />
+                    </Image.TranslationX>
+                    <Image.TranslationY>
+                        <OnPlatform x:TypeArguments="x:Double" Android="-5" iOS="0" />
+                    </Image.TranslationY>
                 </Image>
 
 

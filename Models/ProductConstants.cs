@@ -25,8 +25,10 @@ namespace voltaire.Models
             Agreements.Add(new Agreement() { Title = "12) You will have to obey to all the rules and regulations mentioned by the company." });
             Agreements.Add(new Agreement() { Title = "13) You will have to obey to all the rules and regulations mentioned by the company." });
 
+            CurrencyValues.Clear();
+
             if (Constants.CompanyName == "Forestier")
-            {
+            {                
                 CurrencyValues.Add(1, "€");
             }
         }

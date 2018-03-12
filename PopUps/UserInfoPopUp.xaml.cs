@@ -11,7 +11,7 @@ namespace voltaire.PopUps
 		public UserInfoPopUp()
 		{
 			InitializeComponent();
-			Padding = new Thickness(150, 150, 150, 150);
+			
 			CloseWhenBackgroundIsClicked = false;
 		}
 
@@ -23,6 +23,12 @@ namespace voltaire.PopUps
             {
                 (this.BindingContext as UserInfoPopupModel).SignOut.Execute(null);
             }
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            (BindingContext as UserInfoPopupModel).CloseCommand.Execute(null);
+            return true;
         }
     }
 }

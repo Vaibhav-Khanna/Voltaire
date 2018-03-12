@@ -39,20 +39,45 @@
             <Color x:Key="darkGrey">#4A4A4A</Color>
 
             <!-- LOGIN PAGE -->
-            <Style x:Key="EntryLogin" TargetType="Entry">
-                <Setter Property="FontFamily" Value="Raleway-Regular" />
+            
+             <Style x:Key="BaseLabelStyle" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Regular</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Regular.ttf#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <Style x:Key="EntryLogin"  TargetType="Entry">
+                 <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Regular</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Regular.ttf#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
                 <Setter Property="BackgroundColor" Value="{StaticResource GreyBack}" />
                 <Setter Property="PlaceholderColor" Value="{StaticResource PinkishGrey}" />
             </Style>
-            <Style x:Key="EntryButton" TargetType="Button">
-                <Setter Property="FontFamily" Value="Raleway-Regular" />
+            <Style x:Key="EntryButton"  TargetType="Button">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.iOS>Raleway-Regular</OnPlatform.iOS>
+                            <OnPlatform.Android>fonts/Raleway-Regular.ttf#Raleway</OnPlatform.Android>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="BackgroundColor"    Value="{StaticResource AquaBlue}" />
                 <Setter Property="TextColor" Value="#ffffff" />
             </Style>
             <!-- TOOLBAR -->
-            <Style x:Key="ToolbarTitleLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="Raleway-Regular" />
+            <Style x:Key="ToolbarTitleLabelStyle" BasedOn="{StaticResource BaseLabelStyle}" TargetType="Label">               
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="FontSize" Value="24" />
                 <Setter Property="TextColor" Value="White" />
@@ -121,16 +146,7 @@
                 <Setter Property="VerticalOptions" Value="Start" />
                 <Setter Property="Spacing" Value="15" />
             </Style>
-            <Style x:Key="BaseLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily">
-                    <Setter.Value>
-                        <OnPlatform x:TypeArguments="x:String">
-                            <OnPlatform.iOS>Raleway-Regular</OnPlatform.iOS>
-                            <OnPlatform.Android>fonts/Raleway-Regular.ttf#Raleway</OnPlatform.Android>
-                        </OnPlatform>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+           
             <Style x:Key="ProgressBarLabel"
                    BasedOn="{StaticResource BaseLabelStyle}"
                    TargetType="Label">

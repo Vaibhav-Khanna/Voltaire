@@ -18,7 +18,7 @@
        <StackLayout Orientation = "Horizontal" Padding = "10,10,10,10" VerticalOptions = "Start" HorizontalOptions = "FillAndExpand">
        <renderer:CustomSearchBar  Text = "{Binding SearchText,Mode = TwoWay }" SearchCommand = "{Binding SearchQuery}" x:Name = "search_bar" FontSize = "16" FontFamily = "Raleway-Regular" BackgroundColor = "{StaticResource GreyBack}" PlaceholderColor = "{StaticResource GreyPlaceholder}" Placeholder = "Search                                                  "  WidthRequest = "320" HeightRequest = "50" HorizontalOptions = "Start" VerticalOptions = "Center" HorizontalTextAlignment = "Start" />
        <Label Text = "{x:Static resources:AppResources.Filters}" TextColor = "{StaticResource GreyPlaceholder}" VerticalOptions = "Center" FontSize = "16" HorizontalOptions = "Start" Margin = "20,0,20,0" />
-       <renderer:BorderlessPicker x:Name = "picker" Title = "Select" SelectedIndex = "{Binding Filter, Mode =TwoWay}"  ItemsSource = "{Binding FilterTypes}"   HeightRequest = "35" WidthRequest = "80" TextColor = "Black" VerticalOptions = "Center" HorizontalOptions = "StartAndExpand" />
+       <renderer:BorderlessPicker x:Name = "picker" Title = "Select" SelectedIndex = "{Binding Filter, Mode =TwoWay}"  ItemsSource = "{Binding FilterTypes}" WidthRequest = "80" TextColor = "Black" VerticalOptions = "Center" HorizontalOptions = "StartAndExpand" />
      </StackLayout>
             <BoxView Color = "{StaticResource GreyBack}" HeightRequest = "1" HorizontalOptions = "FillAndExpand" />
             <Grid HorizontalOptions = "FillAndExpand" VerticalOptions = "Start" Padding = "15,15,15,15" BackgroundColor = "White" >

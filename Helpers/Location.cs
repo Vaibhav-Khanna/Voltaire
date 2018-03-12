@@ -27,6 +27,11 @@ namespace voltaire.Helpers
                     return position;
                 }
 
+                if(!IsLocationAvailable())
+                {
+                    return null;
+                }
+
                 if (!locator.IsGeolocationAvailable || !locator.IsGeolocationEnabled)
                 {
                     //not available or enabled
@@ -36,7 +41,7 @@ namespace voltaire.Helpers
                 position = await locator.GetPositionAsync(TimeSpan.FromSeconds(20), null, false);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //Display error as we have timed out or can't get location.
             }
@@ -49,6 +54,15 @@ namespace voltaire.Helpers
                 position.Altitude, position.AltitudeAccuracy, position.Accuracy, position.Heading, position.Speed);
 
             return position;
+        }
+
+
+        public static bool IsLocationAvailable()
+        {
+            if (!CrossGeolocator.IsSupported)
+                return false;
+
+            return CrossGeolocator.Current.IsGeolocationAvailable;
         }
     }
 }

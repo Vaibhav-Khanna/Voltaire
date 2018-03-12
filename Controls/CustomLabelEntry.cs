@@ -65,7 +65,7 @@ namespace voltaire.Controls
             container.RowDefinitions.Add(new RowDefinition(){ Height = new GridLength(68, GridUnitType.Absolute)});
             container.ColumnDefinitions.Add(new ColumnDefinition(){ Width = new GridLength(26, GridUnitType.Auto)});
             container.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(100, GridUnitType.Star) });
-            container.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(26, GridUnitType.Absolute) });
+            container.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(Device.RuntimePlatform == Device.Android ? 36 : 26, GridUnitType.Absolute) });
 
 
             var img = new Image() { Source = imagesource , WidthRequest = 24,HeightRequest = 24, IsOpaque = true, VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Start };
@@ -76,6 +76,15 @@ namespace voltaire.Controls
             entry.Unfocused += Cancelbutton_Unfocused;
 
             cancelbutton = new Button { WidthRequest = 20, HeightRequest = 20, BackgroundColor = Color.Red, Text = "X",TextColor = Color.White, BorderColor = Color.Red, BorderRadius = 10, VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.End };
+
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                cancelbutton.WidthRequest = 36;
+                cancelbutton.HeightRequest = 36;
+                cancelbutton.BorderRadius = 18;
+                cancelbutton.FontSize = 12;
+                cancelbutton.BorderWidth = 1;                   
+            }
 
             cancelbutton.Clicked += Cancelbutton_Clicked;
 

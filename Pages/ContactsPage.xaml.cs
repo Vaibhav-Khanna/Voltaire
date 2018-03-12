@@ -16,6 +16,7 @@ namespace voltaire.Pages
         {
             NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
+          
         }
 
         protected override void OnAppearing()

@@ -67,5 +67,9 @@ namespace voltaire.PopUps
             goto here;
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
     }
 }

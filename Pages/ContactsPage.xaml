@@ -85,11 +85,24 @@
                         Padding="0" 
                         OutlineColor="#666666" 
                         HasShadow="false" 
+                        CornerRadius="0"
                         VerticalOptions="Center"
                         HorizontalOptions="End"
-                        WidthRequest="130" 
+                        WidthRequest="140" 
                         HeightRequest= "35"
                         BackgroundColor="{StaticResource White}"> 
+                     <Frame.HasShadow>
+                        <OnPlatform x:TypeArguments="x:Boolean" Android="true" iOS="false" />
+                    </Frame.HasShadow>
+
+                      <Frame.BackgroundColor>
+                        <OnPlatform x:TypeArguments="Color" Android="#ffffff" iOS="{StaticResource White}" />
+                    </Frame.BackgroundColor>
+                    
+                    <Frame.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double" Android="32" iOS="35" />
+                    </Frame.HeightRequest>
+                    
                             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" attachedProperties:TappedGestureAttached.Command="{Binding FiltersLayoutCommand}"   >
                                <Image Source="{Binding filterImage}" HeightRequest="20" WidthRequest="20"/>
                                <Label Style="{StaticResource CommonLabelStyle}"
@@ -117,6 +130,7 @@
                 RefreshCommand="{Binding RefreshList}"   
                 IsVisible="{Binding IsLoading,Converter={converter:BoolInverseConverter}}"
                 ItemAppearing="Handle_ItemAppearing"
+                                      
                                        IsGroupingEnabled="True"
                                        ItemsSource="{Binding CustomersItems}">
                 <x:Arguments>

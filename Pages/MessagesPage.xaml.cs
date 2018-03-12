@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using System.Linq;
 using voltaire.Models;
 using Syncfusion.ListView.XForms;
+using voltaire.PageModels;
 
 namespace voltaire.Pages
 {
@@ -28,6 +29,11 @@ namespace voltaire.Pages
             listview.SelectedItem = null;
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            (BindingContext as MessagesPageModel).BackButton.Execute(null);
+            return true;
+        }
        
     }
 }

@@ -96,5 +96,11 @@ namespace voltaire.Pages
             entry.Unfocus();
         }
 
-    }
+
+		protected override bool OnBackButtonPressed()
+		{
+            (BindingContext as ContactAddPageModel).BackCommand.Execute(null);
+            return true;
+		}
+	}
 }

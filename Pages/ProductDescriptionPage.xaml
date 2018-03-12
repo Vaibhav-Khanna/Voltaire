@@ -9,8 +9,15 @@
     xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
     xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
      x:Class="voltaire.Pages.ProductDescriptionPage">
-        <StackLayout BackgroundColor = "White" Orientation = "Vertical" Spacing = "0" Padding= "0" VerticalOptions = "StartAndExpand" >
-            <controls:TToolBar x:Name="toolbar" BackgroundColor = "{StaticResource turquoiseBlue}" HeightRequest = "90" Title = "{Binding ProductName}" VerticalOptions = "StartAndExpand" HorizontalOptions = "FillAndExpand" >
+        <StackLayout BackgroundColor = "White" Orientation = "Vertical" Spacing = "0" Padding= "0" VerticalOptions = "FillAndExpand" >
+        <Grid RowSpacing="0" VerticalOptions="FillAndExpand" ColumnSpacing="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+       
+            <controls:TToolBar Grid.Row="0" x:Name="toolbar" BackgroundColor = "{StaticResource turquoiseBlue}" HeightRequest = "70" Title = "{Binding ProductName}" VerticalOptions = "Start" HorizontalOptions = "FillAndExpand" >
                 <controls:TToolBar.LeftToolbarItems>
                     <Image Source = "back.png" HeightRequest = "25" WidthRequest = "30" VerticalOptions = "Center" HorizontalOptions = "Start" >
                         <Image.GestureRecognizers>
@@ -27,7 +34,7 @@
                 </controls:TToolBar.RightToolbarItems>
             </controls:TToolBar>
 
-        <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+        <ScrollView Grid.Row="1" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
            <!-- <controls:WrapLayout  x:Name = "grid" BackgroundColor="White" Spacing="20" Orientation="Horizontal"  Margin="20"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
                 
             </controls:WrapLayout>-->
@@ -39,6 +46,7 @@
             </Grid.ColumnDefinitions>
         </Grid>
         </ScrollView>       
-        
+
+        </Grid>
         </StackLayout>
 </base:FreshBaseContentPage>

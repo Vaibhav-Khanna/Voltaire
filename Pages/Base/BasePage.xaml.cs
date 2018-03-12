@@ -49,7 +49,7 @@ namespace voltaire.Pages.Base
             }
         }
 
-        protected void changeCurrentView(string pageName)
+        protected async void changeCurrentView(string pageName)
         {
             // change view
             Page page = null;
@@ -91,15 +91,28 @@ namespace voltaire.Pages.Base
 
             if (page != null)
             {
+
                 if (_selectedPage != null && Navigation.NavigationStack.Contains(_selectedPage))
                 {
                     Navigation.InsertPageBefore(page, _selectedPage);
-                    Navigation.PopAsync();
+                    await Navigation.PopAsync();
                 }
                 else
                 {
-                    Navigation.PushAsync(page, false);
+                    await Navigation.PushAsync(page, false);
+
+                    var list = Navigation.NavigationStack.ToList();
+
+                    if (list != null)
+                    {
+                        foreach (var item in list)
+                        {
+                            if (item != page)
+                                Navigation.RemovePage(item);
+                        }
+                    }                                     
                 }
+
                 _selectedPage = page;
             }
         }

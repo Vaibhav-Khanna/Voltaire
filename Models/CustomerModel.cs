@@ -41,7 +41,7 @@ namespace voltaire.Models
             DisplayText = new FormattedString
             {
                 Spans = {
-                    new Span { Text = name_array?.First() + " " , FontAttributes = FontAttributes.None, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"}
+                    new Span { Text = name_array?.First() + " " , ForegroundColor = Color.Black, FontAttributes = FontAttributes.None, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"}
                 }
             };
 
@@ -55,7 +55,7 @@ namespace voltaire.Models
                     st += " " + item;
                 }
                 s = null;
-                DisplayText.Spans.Add(new Span { Text = st.Trim(), FontSize = 20, FontFamily = "SanFranciscoDisplay-Bold" });
+                DisplayText.Spans.Add(new Span { Text = st.Trim(), ForegroundColor = Color.Black, FontAttributes = FontAttributes.Bold, FontSize = 20, FontFamily = "SanFranciscoDisplay-Bold" });
             }
 
             if (ContactsPageModel.GradeValues != null && ContactsPageModel.GradeValues.Any())

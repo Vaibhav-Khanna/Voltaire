@@ -162,10 +162,22 @@
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding NotesCommand}" />
                     </StackLayout.GestureRecognizers>
-                </StackLayout>              
-                <Button IsEnabled="{Binding CanEdit}" Command = "{Binding EmailCommand}" FontSize ="20" BackgroundColor = "#f7f7f7" Text = "E-mail" FontFamily ="Raleway-Regular"  TextColor = "{StaticResource turquoiseBlue}" VerticalOptions = "FillAndExpand" HorizontalOptions ="FillAndExpand" Grid.Row ="0" Grid.Column ="1" BorderRadius= "0"  />
-                <Button IsEnabled="{Binding CanEdit}" Command = "{Binding SignCommand}" FontSize ="20" BackgroundColor = "Transparent" Text = "Proceed Signing" FontFamily ="Raleway-Regular"  TextColor = "White" VerticalOptions = "FillAndExpand" HorizontalOptions ="FillAndExpand" Grid.Row ="0" Grid.Column ="2" BorderRadius= "0"  />
-            </Grid>
+                </StackLayout> 
+
+            <StackLayout IsEnabled="{Binding CanEdit}" Orientation="Vertical" Grid.Row ="0" Grid.Column ="1" VerticalOptions="FillAndExpand" BackgroundColor = "#f7f7f7" Spacing="0" >
+                     <Label Text="E-mail" FontFamily ="Raleway-Regular"  TextColor = "{StaticResource turquoiseBlue}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize ="20"/>
+                <StackLayout.GestureRecognizers>
+
+                    <TapGestureRecognizer Command = "{Binding EmailCommand}" />
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+<!--
+            <Button  Command = "{Binding EmailCommand}" FontSize ="20" BackgroundColor = "#f7f7f7" Text = "E-mail" FontFamily ="Raleway-Regular"  TextColor = "{StaticResource turquoiseBlue}" VerticalOptions = "FillAndExpand" HorizontalOptions ="FillAndExpand"  BorderRadius= "0"  />
+-->
+            <Button IsEnabled="{Binding CanEdit}" Command = "{Binding SignCommand}" FontSize ="20" BackgroundColor = "Transparent" Text = "Proceed Signing" FontFamily ="Raleway-Regular"  TextColor = "White" VerticalOptions = "FillAndExpand" HorizontalOptions ="FillAndExpand" Grid.Row ="0" Grid.Column ="2" BorderRadius= "0"  />
+
         </Grid>
+
+    </Grid>
     
 </base:FreshBaseContentPage>

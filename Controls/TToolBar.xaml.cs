@@ -28,6 +28,11 @@ namespace voltaire.Controls
             CentralToolBarItems = centralToolbarItems;
 
             Title = null;
+
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                this.Padding = new Thickness(0, 0, 0, 20);
+            }
         }
 
         public IList<View> RightToolbarItems { get; set; }
@@ -75,6 +80,7 @@ namespace voltaire.Controls
         protected override void OnPropertyChanged(string propertyName = null)
         {
             base.OnPropertyChanged(propertyName);
+           
             if (propertyName == nameof(Title))
             {
                 if (!string.IsNullOrWhiteSpace(Title))
@@ -89,6 +95,14 @@ namespace voltaire.Controls
                 }
 
                 TitleLabel.Text = Title;
+            }
+           
+            if(propertyName == nameof(Padding))
+            {
+                if (Device.RuntimePlatform == Device.Android)
+                {
+                    this.Padding = new Thickness(0,0,0,20);
+                }
             }
         }
 
