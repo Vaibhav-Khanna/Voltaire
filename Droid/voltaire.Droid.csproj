@@ -343,6 +343,7 @@
     <Compile Include="Renderers\BorderlessDatePickerRenderer.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <Compile Include="Renderers\BorderlessPickerRenderer.cs" />
+    <Compile Include="Splashscreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -642,7 +643,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\agendaBig.png" />
     <AndroidResource Include="Resources\drawable-hdpi\agenda.png" />
     <AndroidResource Include="Resources\drawable-hdpi\back.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\check.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\check2.png" />
     <AndroidResource Include="Resources\drawable-hdpi\Close1.png" />
     <AndroidResource Include="Resources\drawable-hdpi\contact.png" />
     <AndroidResource Include="Resources\drawable-hdpi\contactsBig.png" />
@@ -661,7 +662,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\map.png" />
     <AndroidResource Include="Resources\drawable-hdpi\messages.png" />
     <AndroidResource Include="Resources\drawable-hdpi\more.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\note.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\notewhite.png" />
     <AndroidResource Include="Resources\drawable-hdpi\phone.png" />
     <AndroidResource Include="Resources\drawable-hdpi\podiums.png" />
     <AndroidResource Include="Resources\drawable-hdpi\quotation.png" />
@@ -678,7 +679,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\agendaBig.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\agenda.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\back.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\check.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\check2.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\Close1.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\contact.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\contactsBig.png" />
@@ -697,7 +698,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\map.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\messages.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\more.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\note.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\notewhite.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\phone.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\podiums.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\quotation.png" />
@@ -714,7 +715,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\agendaBig.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\agenda.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\back.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\check.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\check2.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\Close1.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\contact.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\contactsBig.png" />
@@ -733,7 +734,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\map.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\messages.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\more.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\note.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\notewhite.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\phone.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\podiums.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\quotation.png" />
@@ -770,6 +771,13 @@
     <AndroidResource Include="Resources\drawable-xhdpi\marker.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\logo.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\marker.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\icon_android.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\icon_android.9.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\icon_android.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\check_validate.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\check_validate.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\check_validate.png" />
+    <AndroidResource Include="Resources\drawable\splashscreen.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renderers\" />

@@ -21,5 +21,11 @@ namespace voltaire.PopUps
 
             (BindingContext as AddTagsPopUpModel).SelectedItem = null;
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            (BindingContext as AddTagsPopUpModel).Close.Execute(null);
+            return true;
+        }
     }
 }

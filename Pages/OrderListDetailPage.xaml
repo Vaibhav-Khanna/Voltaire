@@ -152,8 +152,20 @@
                     <ColumnDefinition Width = "*" />
                     <ColumnDefinition Width = "*"/>                   
             </Grid.ColumnDefinitions>
-                <Button Command = "{Binding NotesCommand}"  FontSize ="20" BackgroundColor = "#f7f7f7" Text = "{x:Static resources:AppResources.PermanentNotes}" FontFamily ="Raleway-Regular"  TextColor = "{StaticResource turquoiseBlue}" VerticalOptions = "FillAndExpand" HorizontalOptions ="FillAndExpand" Grid.Row ="0" Grid.Column ="0" BorderRadius= "0"  />               
-                <Button Command = "{Binding MessageCommand}" Image="messages.png" ContentLayout="Left,5" FontSize ="20" BackgroundColor = "Transparent" Text = "{x:Static resources:AppResources.Messages}" FontFamily ="Raleway-Regular"  TextColor = "White" VerticalOptions = "FillAndExpand" HorizontalOptions ="FillAndExpand" Grid.Row ="0" Grid.Column ="1" BorderRadius= "0"  />
+
+                <StackLayout  Orientation="Vertical" Grid.Row ="0" Grid.Column ="0" VerticalOptions="FillAndExpand" BackgroundColor = "#f7f7f7" Spacing="0" >
+                     <Label Text = "{x:Static resources:AppResources.PermanentNotes}" FontFamily ="Raleway-Regular"  TextColor = "{StaticResource turquoiseBlue}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize ="20"/>
+                      <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command = "{Binding NotesCommand}" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+               <!-- <Button Command = "{Binding NotesCommand}"  FontSize ="20" BackgroundColor = "#f7f7f7" Text = "{x:Static resources:AppResources.PermanentNotes}" FontFamily ="Raleway-Regular"  TextColor = "{StaticResource turquoiseBlue}" VerticalOptions = "FillAndExpand" HorizontalOptions ="FillAndExpand" Grid.Row ="0" Grid.Column ="0" BorderRadius= "0"  />               -->
+                <Button Command = "{Binding MessageCommand}" ContentLayout="Left,5" FontSize ="20" BackgroundColor = "Transparent" Text = "{x:Static resources:AppResources.Messages}" FontFamily ="Raleway-Regular"  TextColor = "White" VerticalOptions = "FillAndExpand" HorizontalOptions ="FillAndExpand" Grid.Row ="0" Grid.Column ="1" BorderRadius= "0" >
+                    <Button.Image >
+                        <OnPlatform x:TypeArguments="FileImageSource" Android="" iOS="messages.png" />
+                    </Button.Image>
+                </Button>
             </Grid>
 
             

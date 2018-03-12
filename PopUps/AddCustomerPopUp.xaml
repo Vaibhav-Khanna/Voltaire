@@ -38,7 +38,7 @@
                     
             <SearchBar x:Name="search" Text="{Binding SearchQuery,Mode=TwoWay}" Placeholder="Search" >
                 <SearchBar.HeightRequest>
-                    <OnPlatform x:TypeArguments="x:Double" Android="50" />
+                    <OnPlatform x:TypeArguments="x:Double" Android="50" iOS="50" />
                 </SearchBar.HeightRequest>
             </SearchBar>
 

@@ -41,7 +41,7 @@ namespace voltaire.Models
             DisplayText = new FormattedString
             {
                 Spans = {
-                    new Span { Text = name_array?.First() + " " , FontAttributes = FontAttributes.None, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"}
+                    new Span { Text = name_array?.First() + " " , ForegroundColor = Color.Black, FontAttributes = FontAttributes.None, FontSize = 20, FontFamily="SanFranciscoDisplay-Regular"}
                 }
             };
 

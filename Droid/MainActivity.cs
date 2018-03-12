@@ -16,7 +16,7 @@ using Plugin.CrossPlatformTintedImage.Android;
 
 namespace voltaire.Droid
 {
-    [Activity(Label = "Voltaire", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ScreenOrientation = ScreenOrientation.Landscape, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Voltaire", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = false, ScreenOrientation = ScreenOrientation.Landscape, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)

@@ -44,6 +44,8 @@ namespace voltaire.Droid.Renderers
             }
 		}
 
+
+
 	}
 
     public class BorderlessTimePickerRenderer : TimePickerRenderer

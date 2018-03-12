@@ -15,7 +15,7 @@
 		<!--  Toolbar  -->
 		<controls:TToolBar Title="{x:Static resources:AppResources.Dashboard}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
 			<controls:TToolBar.LeftToolbarItems>
-				<Entry Placeholder="{x:Static resources:AppResources.SearchContact}" Keyboard="Text" HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}" />
+				<renderers:CustomSearchBar x:Name="searchBar" Text="{Binding SearchText,Mode=TwoWay}" SearchCommand="{Binding SearchContact}" Placeholder="{x:Static resources:AppResources.SearchContact}"  HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}"  />
 			</controls:TToolBar.LeftToolbarItems>
 			<controls:TToolBar.RightToolbarItems>
 				<Grid>

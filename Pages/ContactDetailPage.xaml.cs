@@ -47,5 +47,10 @@ namespace voltaire.Pages
 		}
 
 
+        protected override bool OnBackButtonPressed()
+        {
+            (BindingContext as ContactDetailPageModel).tap_Back.Execute(null);
+            return true;
+        }
 	}
 }

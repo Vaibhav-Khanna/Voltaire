@@ -28,5 +28,11 @@ namespace voltaire.PopUps
             (BindingContext as AddCustomerPopUpModel).Done.Execute(null);
             list.SelectedItem = null;
         }
-    }
+
+		protected override bool OnBackButtonPressed()
+		{
+            (BindingContext as AddCustomerPopUpModel).Close.Execute(null);
+            return true;
+		}
+	}
 }

@@ -23,6 +23,10 @@ namespace voltaire.Pages
 			listview.SelectedItem = null;
 		}
 
-
+        protected override bool OnBackButtonPressed()
+        {
+            (BindingContext as OrderListDetailPageModel).BackButton.Execute(null);
+            return true;
+        }
     }
 }

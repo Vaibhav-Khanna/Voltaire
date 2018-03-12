@@ -38,6 +38,12 @@ namespace voltaire.Pages
             context.SignValidate.Execute(null);
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            (BindingContext as QuotationSignPageModel).BackButton.Execute(null);
+            return true;
+        }
+
         //protected override void OnBindingContextChanged()
         //{
         //    base.OnBindingContextChanged();

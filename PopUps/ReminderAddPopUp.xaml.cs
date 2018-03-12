@@ -33,5 +33,11 @@ namespace voltaire.PopUps
             }
 
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            (BindingContext as ReminderAddPopUpModel).Close.Execute(null);
+            return true;
+        }
     }
 }
