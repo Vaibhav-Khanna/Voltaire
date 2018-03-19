@@ -50,8 +50,6 @@ namespace voltaire.Pages
             ViewModel.PropertyChanged += null;
         }
 
-
-
         async void GetLastCachedLocation()
         {
             try

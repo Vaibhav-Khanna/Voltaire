@@ -47,7 +47,12 @@ namespace voltaire.PageModels
             UserName = _currUser != null ? _currUser.Name : string.Empty;
         }
 
+        protected async override void ViewIsAppearing(object sender, EventArgs e)
+        {
+            base.ViewIsAppearing(sender, e);
 
+            var Has_Permission = await Helpers.Permissions.CheckPermissionLocation();
+        }
 
     }
 }
