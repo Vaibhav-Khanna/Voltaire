@@ -111,7 +111,11 @@ namespace voltaire.Pages
             {
                 if (e.PropertyName == "Customers")
                 {
-                    SetPins(ViewModel);
+                    if (ViewModel.Customers != null && ViewModel.Customers.Count > 0)
+                    {
+                        SetPins(ViewModel);
+                    }
+
                 }
             };
 
