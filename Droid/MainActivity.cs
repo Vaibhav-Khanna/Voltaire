@@ -22,14 +22,14 @@ namespace voltaire.Droid
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
-          
+
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
 
             CarouselView.FormsPlugin.Android.CarouselViewRenderer.Init();
 
-            Xamarin.FormsGoogleMaps.Init(this,bundle);           
+            Xamarin.FormsGoogleMaps.Init(this, bundle);
 
             Acr.UserDialogs.UserDialogs.Init(this);
 
@@ -51,13 +51,13 @@ namespace voltaire.Droid
 
         }
 
-		private int ConvertPixelsToDp(float pixelValue)
-		{
-			var dp = (int)((pixelValue) / Resources.DisplayMetrics.Density);
-			return dp;
-		}
+        private int ConvertPixelsToDp(float pixelValue)
+        {
+            var dp = (int)((pixelValue) / Resources.DisplayMetrics.Density);
+            return dp;
+        }
 
-		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
