@@ -36,7 +36,7 @@ namespace voltaire.Helpers
                     var result = await App.Current.MainPage.DisplayAlert("Accès à la location", "Vous avez refusé l'accès à la location. Nous ne pouvons continuer.", "Settings", "Maybe Later");
 
                     if (result)
-                        Plugin.Permissions.CrossPermissions.Current.OpenAppSettings();
+                        CrossPermissions.Current.OpenAppSettings();
 
                     return false;
                 }

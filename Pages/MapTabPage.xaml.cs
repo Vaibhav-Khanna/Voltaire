@@ -18,8 +18,8 @@ namespace voltaire.Pages
 
             #region map_UI_settings
 
-            map.UiSettings.CompassEnabled = true;
-            map.UiSettings.MyLocationButtonEnabled = true;
+            map.UiSettings.CompassEnabled = false;
+            map.UiSettings.MyLocationButtonEnabled = false;
             map.UiSettings.ZoomControlsEnabled = true;
             map.UiSettings.ZoomGesturesEnabled = true;
 
@@ -27,7 +27,7 @@ namespace voltaire.Pages
 
         }
 
-        protected override void BindingContextSet()
+        protected async override void BindingContextSet()
         {
             base.BindingContextSet();
 
@@ -36,15 +36,17 @@ namespace voltaire.Pages
             if (context == null || context.Customer.PartnerLatitude == 0 || context.Customer.PartnerLongitude == 0)
                 return;
 
+            var Has_Permission = await Helpers.Permissions.CheckPermissionLocation();
+
+            if (!Has_Permission)
+            {
+                return;
+            }
 
             #region Map_Pins_Set
 
-
             map.InitialCameraUpdate = CameraUpdateFactory.NewPositionZoom(new Position(context.Customer.PartnerLatitude.HasValue ? context.Customer.PartnerLatitude.Value : 0, context.Customer.PartnerLongitude.HasValue ? context.Customer.PartnerLongitude.Value : 0), 12d);
 
-
-            //foreach (var item in context.Customer.CustomerAddresses)
-            //{
             var pin = new Pin()
             {
                 Address = context.Customer.ContactAddress,
@@ -56,7 +58,6 @@ namespace voltaire.Pages
                 Position = new Position(context.Customer.PartnerLatitude.HasValue ? context.Customer.PartnerLatitude.Value : 0, context.Customer.PartnerLongitude.HasValue ? context.Customer.PartnerLongitude.Value : 0)
             };
             map.Pins.Add(pin);
-            //}
 
             #endregion
 
