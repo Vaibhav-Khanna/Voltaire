@@ -8,6 +8,6 @@
 	<ContentView.Content>
         <maps:Map x:Name="map"
                       VerticalOptions="FillAndExpand" HorizontalOptions = "FillAndExpand" HasZoomEnabled = "true"
-         MyLocationEnabled = "true" />
+         MyLocationEnabled = "false" />
 	</ContentView.Content>
 </base:BaseViewPagerPage>

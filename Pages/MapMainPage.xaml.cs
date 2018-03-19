@@ -56,6 +56,11 @@ namespace voltaire.Pages
         {
             try
             {
+                var Has_Permission = await Helpers.Permissions.CheckPermissionLocation();
+
+                if (!Has_Permission)
+                    return;
+
                 if (CrossGeolocator.IsSupported && CrossGeolocator.Current.IsGeolocationEnabled)
                 {
 
@@ -124,6 +129,14 @@ namespace voltaire.Pages
                 return;
 
             IsBusy = true;
+
+            var Has_Permission = await Helpers.Permissions.CheckPermissionLocation();
+
+            if (!Has_Permission)
+            {
+                IsBusy = false;
+                return;
+            }
 
             try
             {
