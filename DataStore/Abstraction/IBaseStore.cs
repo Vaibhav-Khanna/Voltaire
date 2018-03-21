@@ -17,7 +17,7 @@ namespace voltaire.DataStore.Abstraction
         Task<bool> RemoveAsync(T item);
         Task<bool> SyncAsync();
 
-        void DropTable();
+        Task DropTable();
 
         string Identifier { get; }
 

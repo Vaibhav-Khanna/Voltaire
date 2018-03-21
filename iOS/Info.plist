@@ -67,5 +67,7 @@
 	<string>UIStatusBarStyleLightContent</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Allow voltaire to access location for check-in&apos;s and client location check-in&apos;s</string>
+	<key>UIStatusBarHidden</key>
+	<true/>
 </dict>
 </plist>

@@ -63,6 +63,11 @@
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="70"/>
+                             <RowDefinition Height="70"/>
+                             <RowDefinition Height="70"/>
+                             <RowDefinition Height="70"/>
+                             <RowDefinition Height="70"/>
+                             <RowDefinition Height="70"/>
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="70"/>
@@ -98,21 +103,67 @@
                             <x:Boolean>false</x:Boolean>
                         </x:Arguments>
                     </controls:CustomLabelEntry>
-                    <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding Address, Mode=TwoWay}" Keyboard="Text" Grid.Row="3" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+
+                         <controls:CustomLabelEntry PlaceHolder="Street 1"  HorizontalOptions="FillAndExpand" Text="{Binding Street1, Mode=TwoWay}" Keyboard="Text" Grid.Row="3" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
                         <x:Arguments>
                             <x:String>location.png</x:String>
                             <x:Boolean>false</x:Boolean>
                             <x:Boolean>false</x:Boolean>
                         </x:Arguments>
                     </controls:CustomLabelEntry>
-                    <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding Email, Mode=TwoWay}" Keyboard="Email" Grid.Row="4" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                         <controls:CustomLabelEntry PlaceHolder="Street 2" HorizontalOptions="FillAndExpand" Text="{Binding Street2, Mode=TwoWay}" Keyboard="Text" Grid.Row="4" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                        <x:Arguments>
+                            <x:String>location.png</x:String>
+                            <x:Boolean>false</x:Boolean>
+                            <x:Boolean>false</x:Boolean>
+                        </x:Arguments>
+                    </controls:CustomLabelEntry>
+                         <controls:CustomLabelEntry PlaceHolder="Zip" HorizontalOptions="FillAndExpand" Text="{Binding Zip, Mode=TwoWay}" Keyboard="Text" Grid.Row="5" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                        <x:Arguments>
+                            <x:String>location.png</x:String>
+                            <x:Boolean>false</x:Boolean>
+                            <x:Boolean>false</x:Boolean>
+                        </x:Arguments>
+                    </controls:CustomLabelEntry>
+                         <controls:CustomLabelEntry PlaceHolder="City" HorizontalOptions="FillAndExpand" Text="{Binding City, Mode=TwoWay}" Keyboard="Text" Grid.Row="6" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                        <x:Arguments>
+                            <x:String>location.png</x:String>
+                            <x:Boolean>false</x:Boolean>
+                            <x:Boolean>false</x:Boolean>
+                        </x:Arguments>
+                    </controls:CustomLabelEntry>
+                         <controls:CustomLabelEntry PlaceHolder="State" HorizontalOptions="FillAndExpand" Text="{Binding State, Mode=TwoWay}" Keyboard="Text" Grid.Row="7" Grid.Column="0" IsEnabled="false"  >
+                        <x:Arguments>
+                            <x:String>location.png</x:String>
+                            <x:Boolean>false</x:Boolean>
+                            <x:Boolean>false</x:Boolean>
+                        </x:Arguments>
+                    </controls:CustomLabelEntry>
+
+                          <renderers:BorderlessPicker InputTransparent="false" Opacity="0.1" TextAlignMent="Start" IsEnabled="{Binding CanEdit}" Title=" " x:Name = "picker_1" TextColor = "White" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand"  SelectedIndex = "{Binding StateIndex,Mode=TwoWay}" ItemsSource = "{Binding StateItems}" Grid.Row = "7" Grid.Column = "0" /> 
+
+                        
+                         <controls:CustomLabelEntry PlaceHolder="Country" HorizontalOptions="FillAndExpand" Text="{Binding Country, Mode=TwoWay}" Keyboard="Text" Grid.Row="8" Grid.Column="0" IsEnabled="false"  >
+                        <x:Arguments>
+                            <x:String>location.png</x:String>
+                            <x:Boolean>false</x:Boolean>
+                            <x:Boolean>false</x:Boolean>
+                        </x:Arguments>
+                    </controls:CustomLabelEntry>
+
+                      <renderers:BorderlessPicker InputTransparent="false" Opacity="0.1" TextAlignMent="Start" IsEnabled="{Binding CanEdit}" Title=" " x:Name = "picker_2" TextColor = "White" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand"  SelectedIndex = "{Binding CountryIndex,Mode=TwoWay}" ItemsSource = "{Binding CountryItems}" Grid.Row = "8" Grid.Column = "0" /> 
+
+                        
+
+                        
+                    <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding Email, Mode=TwoWay}" Keyboard="Email" Grid.Row="9" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
                         <x:Arguments>
                             <x:String>email.png</x:String>
                             <x:Boolean>false</x:Boolean>
                             <x:Boolean>false</x:Boolean>
                         </x:Arguments>
                     </controls:CustomLabelEntry>
-                    <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding Website, Mode=TwoWay}" Keyboard="Url" Grid.Row="5" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                    <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding Website, Mode=TwoWay}" Keyboard="Url" Grid.Row="10" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
                         <x:Arguments>
                             <x:String>www.png</x:String>
                             <x:Boolean>false</x:Boolean>
@@ -121,14 +172,14 @@
                     </controls:CustomLabelEntry>
 
                         
-                    <StackLayout Spacing="10" Orientation="Vertical" BackgroundColor="White" Padding="0,30,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="6" Grid.Column="0">
+                    <StackLayout Spacing="10" Orientation="Vertical" BackgroundColor="White" Padding="0,30,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="11" Grid.Column="0">
                         <Label FontFamily="Raleway-Medium" TextColor="{StaticResource GreyishBrown}" FontSize="24" Text="{x:Static resources:AppResources.Tags}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
                         <controls:WrapLayout x:Name = "tagContainer" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
                             </controls:WrapLayout>    
                         <Button FontFamily="Raleway-Regular" FontSize="16" TextColor="{StaticResource turquoiseBlue}" Text="{x:Static resources:AppResources.addtags}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Command="{Binding AddTags}"/>
                     </StackLayout>
                     
-                    <StackLayout Spacing="20" Orientation="Vertical" BackgroundColor="White" Padding="0,30,0,130" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="7" Grid.Column="0">
+                    <StackLayout Spacing="20" Orientation="Vertical" BackgroundColor="White" Padding="0,30,0,130" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="12" Grid.Column="0">
                         <Label FontFamily="Raleway-Medium" TextColor="{StaticResource GreyishBrown}" FontSize="24" Text="{x:Static resources:AppResources.PermanentNote}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
                         <StackLayout Margin="0,0,40,0" Padding="1" BackgroundColor="{StaticResource warmGrey}"  Grid.Row="1" >
                             <StackLayout BackgroundColor="White" Padding="15" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >

@@ -51,6 +51,24 @@ namespace voltaire.Models
         [JsonProperty("contact_address")]
         public string ContactAddress { get; set; }
 
+        [JsonProperty("street")]
+        public string Street { get; set; }
+
+        [JsonProperty("street2")]
+        public string Street2 { get; set; }
+
+        [JsonProperty("zip")]
+        public string Zip { get; set; }
+
+        [JsonProperty("city")]
+        public string City { get; set; }
+
+        [JsonProperty("state_id")]
+        public long StateId { get; set; }
+
+        [JsonProperty("country_id")]
+        public long CountryId { get; set; }
+
         [JsonProperty("phone")]
         public string Phone { get; set; }
 
@@ -113,5 +131,8 @@ namespace voltaire.Models
 
         [JsonProperty("last_checkin_at")]
         public DateTime? LastCheckinAt { get; set; }
+
+        [JsonProperty("company_type")]
+        public string CompanyType { get; set; }
     }
 }

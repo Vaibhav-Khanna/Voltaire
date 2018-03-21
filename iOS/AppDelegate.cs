@@ -46,7 +46,13 @@ namespace voltaire.iOS
 
             SfPdfDocumentViewRenderer.Init();
 
-            return base.FinishedLaunching(app, options);
+
+
+            var result = base.FinishedLaunching(app, options);
+
+            UIApplication.SharedApplication.StatusBarHidden = false;
+
+            return result;
         }
     }
 }

@@ -34,8 +34,9 @@ namespace voltaire.DataStore.Implementation
         }
 
 
-        public void DropTable()
+        public async Task DropTable()
         {
+            await Table.PurgeAsync();
             table = null;
         }
 
@@ -138,7 +139,6 @@ namespace voltaire.DataStore.Implementation
             }
            
             return true;
-
         }
 
         public async Task<bool> PullLatestAsync()

@@ -23,6 +23,11 @@ namespace voltaire.Controls
 		public static readonly BindableProperty TextProperty =
             BindableProperty.Create("Text", typeof(string), typeof(CustomLabelEntry), null);
 
+
+        string placeholder;
+        public string PlaceHolder { get { return placeholder; } set { placeholder = value; entry.Placeholder = value; } }
+
+
         Keyboard keyboard;
 
         public Keyboard Keyboard { get { return keyboard; } set { keyboard = value; entry.Keyboard = keyboard; } }
