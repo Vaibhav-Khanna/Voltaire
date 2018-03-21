@@ -23,7 +23,7 @@ namespace voltaire.DataStore.Abstraction
         ICheckinStore CheckinStore { get; }
         IDocumentStore DocumentStore { get; }
         ICompanyStore CompanyStore { get; }
-       
+        IStateStore StateStore { get; }
         IAccountTaxStore AccountTaxStore { get; }
         IAccessoryStore AccessoryStore { get; }
         ISaddlePriceStore SaddleStore { get; }

@@ -9,9 +9,7 @@
 
     public class Country : BaseDataObject
     {
-        //[JsonProperty("version")]
-        //public string Version { get; set; }
-
+       
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
 
@@ -25,7 +23,7 @@
         public long ExternalId { get; set; }
 
         [JsonProperty("write_date")]
-        public System.DateTime WriteDate { get; set; }
+        public DateTime WriteDate { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }

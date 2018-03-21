@@ -25,6 +25,75 @@ namespace voltaire.PageModels
         Partner _customer;
         bool ItemUpdated = false;
 
+
+        string street1;
+        public string Street1 { get { return street1; } set { street1 = value; RaisePropertyChanged(); } }
+
+        string street2;
+        public string Street2 { get { return street2; } set { street2 = value; RaisePropertyChanged(); } }
+
+        string zip;
+        public string Zip { get { return zip; } set { zip = value; RaisePropertyChanged(); } }
+
+        string city;
+        public string City { get { return city; } set { city = value; RaisePropertyChanged(); } }
+
+        string state;
+        public string State { get { return state; } set { state = value; RaisePropertyChanged(); } }
+
+        string country;
+        public string Country { get { return country; } set { country = value; RaisePropertyChanged(); } }
+
+        int stateIndex;
+        public int StateIndex { get { return stateIndex; } set { stateIndex = value; if(StateItems!=null)State = StateItems[value];  RaisePropertyChanged(); } }
+
+        int countryIndex;
+        public int CountryIndex { get { return countryIndex; } set { countryIndex = value; if (CountryItems != null)Country = CountryItems[value]; RaisePropertyChanged(); } }
+
+        ObservableCollection<string> _stateItems = new ObservableCollection<string>();
+        public ObservableCollection<string> StateItems { get { return _stateItems; } set { _stateItems = value; RaisePropertyChanged(); } }
+
+        ObservableCollection<string> _countryItems = new ObservableCollection<string>();
+        public ObservableCollection<string> CountryItems { get { return _countryItems; } set { _countryItems = value; RaisePropertyChanged(); } }
+
+        List<Country> Countries = new List<Country>();
+
+        List<Models.DataObjects.State> States = new List<Models.DataObjects.State>();
+
+
+        public ContactDetailPageModel()
+        {
+            FetchAdditionalData();
+        }
+
+        async void FetchAdditionalData()
+        {
+            var t1 = await StoreManager.CountryStore.GetItemsAsync();
+
+            var t2 = await StoreManager.StateStore.GetItemsAsync();
+
+            Countries = t1?.ToList();
+
+            States = t2?.ToList();
+
+            CountryItems = new ObservableCollection<string>(Countries?.Select(x => x.Name));
+
+            StateItems = new ObservableCollection<string>(States?.Select(x => x.Name));
+
+            if (Countries != null && Countries.Any() && customer!=null )
+            {
+                if (Countries.Where((arg) => arg.ExternalId == customer.CountryId).Any())
+                    CountryIndex = Countries.IndexOf(Countries?.Where((arg) => arg.ExternalId == customer.CountryId).First());
+            }
+
+            if (States != null && States.Any() && customer != null)
+            {
+                if (States.Where((arg) => arg.ExternalId == customer.StateId).Any())
+                    StateIndex = States.IndexOf(States?.Where((arg) => arg.ExternalId == customer.StateId).First());
+            }
+        }
+
+
         public Command tap_Toolbar  => new Command( async () => 
         {
             if (!customer.CanEdit)
@@ -37,7 +106,21 @@ namespace voltaire.PageModels
             }
             else
             {
-                customer.ContactAddress = address;
+                customer.Street = Street1;
+                customer.Street2 = Street2;
+                customer.Zip = Zip;
+                customer.City = City;
+
+                if(!string.IsNullOrEmpty(State) && States != null)
+                {
+                    customer.StateId = States[StateIndex].ExternalId;
+                }
+
+                if (!string.IsNullOrEmpty(Country) && Countries != null)
+                {
+                    customer.CountryId = Countries[CountryIndex].ExternalId;
+                } 
+
                 customer.PartnerWeight = weight == null ? 0 : Convert.ToInt64(weight);
                 customer.Name = firstname;               
                 customer.Phone = phone;
@@ -382,7 +465,24 @@ namespace voltaire.PageModels
                
                 weight = customer.PartnerWeight == 0 ? null : (int?) Convert.ToInt32(customer.PartnerWeight);
                 email = customer.Email;
-                address = customer.ContactAddress;
+
+                Street1 = customer.Street?.Trim();
+                Street2 = customer.Street2?.Trim();
+                Zip = customer.Zip?.Trim();
+                City = customer.City?.Trim();
+
+                if (Countries != null && Countries.Any() && customer != null)
+                {
+                    if (Countries.Where((arg) => arg.ExternalId == customer.CountryId).Any())
+                        CountryIndex = Countries.IndexOf(Countries?.Where((arg) => arg.ExternalId == customer.CountryId).First());
+                }
+
+                if (States != null && States.Any() && customer != null)
+                {
+                    if (States.Where((arg) => arg.ExternalId == customer.StateId).Any())
+                        StateIndex = States.IndexOf(States?.Where((arg) => arg.ExternalId == customer.StateId).First());
+                }
+
                 phone = customer.Phone;
                 website = customer.Website;
                 lastvisit = customer.LastCheckinAt;
@@ -423,10 +523,7 @@ namespace voltaire.PageModels
 
         }
 
-        public ContactDetailPageModel()
-        {
-            
-        }
+       
 
         private string title;
 

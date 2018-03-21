@@ -1,14 +1,33 @@
 ﻿using System;
-namespace voltaire.Models
+using Newtonsoft.Json;
+using voltaire.DataStore.Abstraction;
+
+namespace voltaire.Models.DataObjects
 {
-    public class State
+    public class State : BaseDataObject
     {
-        public int? Red { get; set; }
+        [JsonProperty("createdAt")]
+        public DateTime CreatedAt { get; set; }
 
-        public int? Orange { get; set; }
+        [JsonProperty("updatedAt")]
+        public DateTime UpdatedAt { get; set; }
 
-        public int? Green { get; set; }
+        [JsonProperty("deleted")]
+        public bool Deleted { get; set; }
 
-        public int? Gray { get; set; }
+        [JsonProperty("external_id")]
+        public long ExternalId { get; set; }
+
+        [JsonProperty("write_date")]
+        public DateTime WriteDate { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("code")]
+        public string Code { get; set; }
+
+        [JsonProperty("country_id")]
+        public long CountryId { get; set; }
     }
 }

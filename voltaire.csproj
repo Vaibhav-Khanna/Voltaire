@@ -422,7 +422,6 @@
     <Compile Include="Models\DataObjects\Quotation.cs" />
     <Compile Include="Models\DataObjects\Reminder.cs" />
     <Compile Include="Models\DataObjects\Salesman.cs" />
-    <Compile Include="Models\DataObjects\State.cs" />
     <Compile Include="Models\DataObjects\PartnerCategory.cs" />
     <Compile Include="DataStore\Abstraction\Stores\IPartnerCategoryStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\PartnerCategoryStore.cs" />
@@ -524,6 +523,12 @@
       <DependentUpon>AddCustomerPopUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="PopUps\AddCustomerPopUpModel.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Models\State.cs" />
+    <Compile Include="Models\DataObjects\State.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IStateStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\StateStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
@@ -669,6 +674,12 @@
     </Reference>
     <Reference Include="Plugin.Geolocator">
       <HintPath>packages\Xam.Plugin.Geolocator.4.2.0\lib\netstandard1.0\Plugin.Geolocator.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions">
+      <HintPath>packages\Xam.Plugins.Settings.3.1.1\lib\netstandard1.0\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings">
+      <HintPath>packages\Xam.Plugins.Settings.3.1.1\lib\netstandard1.0\Plugin.Settings.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

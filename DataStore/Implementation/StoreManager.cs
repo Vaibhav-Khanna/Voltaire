@@ -81,38 +81,42 @@ namespace voltaire.DataStore.Implementation
         IServiceStore serviceStore;
         public IServiceStore ServiceStore => serviceStore ?? (serviceStore = DependencyService.Get<IServiceStore>());
 
+        IStateStore stateStore;
+        public IStateStore StateStore => stateStore ?? (stateStore = DependencyService.Get<IStateStore>());
+
 
         #region iStoreManager Implementation
 
-        public Task DropEverythingAsync()
+        public async Task DropEverythingAsync()
         {
             //Settings.UpdateDatabaseId();
             //TODO Do the update id for settings and add rest of the tables
 
-            CustomerStore.DropTable();
-            PartnerCategoryStore.DropTable();
-            CountryStore.DropTable();
-            CurrencyStore.DropTable();
-            PartnerGradeStore.DropTable();
-            PartnerTitleStore.DropTable();
-            UserStore.DropTable();
-          
-            SaleOrderStore.DropTable();
-            SaleOrderLineStore.DropTable();
-           
-            MessageStore.DropTable();
-            CheckinStore.DropTable();
-            DocumentStore.DropTable();
-            CompanyStore.DropTable();
-            AccountTaxStore.DropTable();
-          
-            AccessoryStore.DropTable();
-            ServiceStore.DropTable();
-            SaddleStore.DropTable();
+            await CustomerStore.DropTable();
+            await PartnerCategoryStore.DropTable();
+            await CountryStore.DropTable();
+            await CurrencyStore.DropTable();
+            await PartnerGradeStore.DropTable();
+            await PartnerTitleStore.DropTable();
+            await UserStore.DropTable();
 
+            await SaleOrderStore.DropTable();
+            await SaleOrderLineStore.DropTable();
+
+            await MessageStore.DropTable();
+            await CheckinStore.DropTable();
+            await DocumentStore.DropTable();
+            await CompanyStore.DropTable();
+            await AccountTaxStore.DropTable();
+
+            await AccessoryStore.DropTable();
+            await ServiceStore.DropTable();
+            await SaddleStore.DropTable();
+            await StateStore.DropTable();
 
             IsInitialized = false;
-            return Task.FromResult(true);
+
+            Settings.UpdateDatabaseId();
         }
 
 
@@ -129,10 +133,19 @@ namespace voltaire.DataStore.Implementation
                     return;
 
                 IsInitialized = true;
-                // var dbId = Settings.DatabaseId;
-                // var path = $"syncstore{dbId}.db";
+
+
+                var dbId = Settings.DatabaseId;
+
+                string path = "";
+
+                if (dbId == 0)
+                    path = $"syncstore.db";
+                else
+                    path = $"syncstore{dbId}.db";
+
                 MobileService = new MobileServiceClient(Constants.EndUrl);
-                store = new MobileServiceSQLiteStore("syncstore.db");
+                store = new MobileServiceSQLiteStore(path);
 
                 store.DefineTable<Partner>();
                 store.DefineTable<PartnerCategory>();
@@ -152,6 +165,7 @@ namespace voltaire.DataStore.Implementation
                 store.DefineTable<Accessory>();
                 store.DefineTable<Saddle>();
                 store.DefineTable<Service>();
+                store.DefineTable<Models.DataObjects.State>();
 
                 store.DefineTable<StoreSettings>();
 
@@ -189,6 +203,7 @@ namespace voltaire.DataStore.Implementation
             taskList.Add(SaddleStore.SyncAsync());
             taskList.Add(ServiceStore.SyncAsync());
             taskList.Add(AccessoryStore.SyncAsync());
+            taskList.Add(StateStore.SyncAsync());
 
 
             Device.BeginInvokeOnMainThread(async () =>
