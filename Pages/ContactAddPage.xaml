@@ -5,6 +5,7 @@
     xmlns:local="clr-namespace:voltaire.Converters;assembly=voltaire"
     xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire" 
     xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire"
+    xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
     xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
     xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
     x:Class="voltaire.Pages.ContactAddPage">
@@ -140,8 +141,20 @@
                         </x:Arguments>
                     </controls:CustomLabelEntry>
 
-                          <renderers:BorderlessPicker InputTransparent="false" Opacity="0.1" TextAlignMent="Start" IsEnabled="{Binding CanEdit}" Title=" " x:Name = "picker_1" TextColor = "White" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand"  SelectedIndex = "{Binding StateIndex,Mode=TwoWay}" ItemsSource = "{Binding StateItems}" Grid.Row = "7" Grid.Column = "0" /> 
+                        <BoxView Grid.Row="7" Grid.Column="0" BackgroundColor="Transparent" InputTransparent="false">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StateCommand}" />
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
 
+                        
+<!--
+                        <renderers:BorderlessPicker InputTransparent="false" Opacity="0.1" TextAlignMent="Start" IsEnabled="{Binding CanEdit}" Title=" " x:Name = "picker_1" TextColor = "White" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand"  SelectedIndex = "{Binding StateIndex,Mode=TwoWay}" ItemsSource = "{Binding StateItems}" Grid.Row = "7" Grid.Column = "0" /> 
+
+                        <autocomplete:SfAutoComplete Grid.Row="7" Margin="30,0,30,0" DisplayMemberPath="{Binding .}" ItemsSource="{Binding StateItems}" Grid.Column="0" HeightRequest="70" BorderColor="Transparent" BackgroundColor="Transparent" TextColor="Black" WatermarkColor="Silver" HighlightedTextColor="Black" DropDownTextColor="Silver" DropDownBackgroundColor="White" x:Name="autoCompletestate">
+
+                        </autocomplete:SfAutoComplete>  -->
+                        
                         
                          <controls:CustomLabelEntry PlaceHolder="Country" HorizontalOptions="FillAndExpand" Text="{Binding Country, Mode=TwoWay}" Keyboard="Text" Grid.Row="8" Grid.Column="0" IsEnabled="false"  >
                         <x:Arguments>
@@ -151,8 +164,19 @@
                         </x:Arguments>
                     </controls:CustomLabelEntry>
 
+                         <BoxView Grid.Row="8" Grid.Column="0" BackgroundColor="Transparent" InputTransparent="false">
+                             <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CountryCommand}" />
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+
+                        
+<!--
+                        
                       <renderers:BorderlessPicker InputTransparent="false" Opacity="0.1" TextAlignMent="Start" IsEnabled="{Binding CanEdit}" Title=" " x:Name = "picker_2" TextColor = "White" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand"  SelectedIndex = "{Binding CountryIndex,Mode=TwoWay}" ItemsSource = "{Binding CountryItems}" Grid.Row = "8" Grid.Column = "0" /> 
 
+                      <autocomplete:SfAutoComplete Grid.Row="8" Margin="30,0,30,0" ItemsSource="{Binding CountryItems}" Grid.Column="0" HeightRequest="70" BorderColor="Transparent" BackgroundColor="Transparent" TextColor="Black" WatermarkColor="Silver" HighlightedTextColor="Black" DropDownTextColor="Silver" DropDownBackgroundColor="White" x:Name="autoCompleteCountry"/>
+-->
                         
 
                         

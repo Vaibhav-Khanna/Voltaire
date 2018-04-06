@@ -414,4 +414,8 @@
     <data name="SearchPartner" xml:space="preserve">
         <value>Search Partner</value>   
     </data>
+
+     <data name="Search" xml:space="preserve">
+        <value>Search</value>   
+    </data>
 </root>

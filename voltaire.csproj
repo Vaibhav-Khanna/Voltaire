@@ -173,6 +173,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="PopUps\SearchStateCountryPopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -529,6 +533,10 @@
     <Compile Include="Models\DataObjects\State.cs" />
     <Compile Include="DataStore\Abstraction\Stores\IStateStore.cs" />
     <Compile Include="DataStore\Implementation\Stores\StateStore.cs" />
+    <Compile Include="PopUps\SearchStateCountryPopUp.xaml.cs">
+      <DependentUpon>SearchStateCountryPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopUps\SearchStateCountryPopUpModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
@@ -680,6 +688,9 @@
     </Reference>
     <Reference Include="Plugin.Settings">
       <HintPath>packages\Xam.Plugins.Settings.3.1.1\lib\netstandard1.0\Plugin.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfAutoComplete.XForms">
+      <HintPath>packages\Syncfusion.Xamarin.SfAutoComplete.16.1.0.32\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.SfAutoComplete.XForms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -15,6 +15,7 @@ namespace voltaire.Pages
             NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
             entry.FocusChanged += Handle_Focused;
+           
         }
 
         void Handle_SelectedScaleChanged()
@@ -34,7 +35,6 @@ namespace voltaire.Pages
             main_context.PropertyChanged += Main_Context_PropertyChanged;
 
             main_context.Tags.CollectionChanged += Tags_CollectionChanged;
-
         }
 
 

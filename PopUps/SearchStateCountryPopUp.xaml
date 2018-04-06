@@ -6,7 +6,7 @@
              xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire"
              xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
              xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
-             x:Class="voltaire.PopUps.AddCustomerPopUp">
+    x:Class="voltaire.PopUps.SearchStateCountryPopUp">
     <pages:PopupPage.Animation>
     <animations:ScaleAnimation 
       PositionIn="Center"
@@ -19,9 +19,10 @@
       EasingOut="SinIn"
       HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
+
     <pages:PopupPage.Content>
 
-        <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" WidthRequest="400" Spacing="0" Padding="15" BackgroundColor="White" >            
+          <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" WidthRequest="400" Spacing="0" Padding="15" BackgroundColor="White" >            
 
             <Image Source="Close1.png" Margin="10" HeightRequest="25" WidthRequest="25" VerticalOptions="Start" HorizontalOptions="Start" >
                 <Image.GestureRecognizers>
@@ -31,7 +32,7 @@
 
 
          
-             <Label TranslationY="-20" FontSize="20" FontAttributes="Bold" Text="{x:Static resources:AppResources.SearchPartner}" TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Semibold" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" />
+             <Label TranslationY="-20" FontSize="20" FontAttributes="Bold" Text="{x:Static resources:AppResources.Search}" TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Semibold" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" />
 
              
 
@@ -42,31 +43,20 @@
                 </SearchBar.HeightRequest>
             </SearchBar>
 
-            <ListView x:Name="list" ItemTapped="Handle_ItemTapped" HasUnevenRows="true" ItemsSource="{Binding Partners}" HeightRequest="300" >
+            <ListView x:Name="list" ItemTapped="Handle_ItemTapped" HasUnevenRows="true" ItemsSource="{Binding ItemSource}" HeightRequest="300" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="15,10,5,10" >
-                                <Label FontSize="16" Text="{Binding Name}" VerticalOptions="Center" LineBreakMode="WordWrap" />
+                                <Label FontSize="16" Text="{Binding .}" VerticalOptions="Center" LineBreakMode="WordWrap" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.Header>
-                    <StackLayout Spacing="10" IsVisible="{Binding IsVisible}" Padding="20,10,20,10" Orientation="Vertical">
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Use " TextColor="#01abc4" FontFamily="SanFranciscoDisplay-Regular" VerticalOptions="Start" HorizontalOptions="EndAndExpand"/>
-                            <Label Text="{Binding SearchQueryText}"  TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Regular" VerticalOptions="Start" HorizontalOptions="StartAndExpand" />
-                        </StackLayout>
-                         <Label Text="Or" FontSize="12" TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Regular" VerticalOptions="Start" HorizontalOptions="CenterAndExpand"/>
-                        <StackLayout.GestureRecognizers>
-                               <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding AddManuallyCommand}" />
-                        </StackLayout.GestureRecognizers> 
-                    </StackLayout>
-                </ListView.Header>
+                </ListView.ItemTemplate>               
             </ListView>
 
         </StackLayout>
         
     </pages:PopupPage.Content>
+    
 </pages:PopupPage>
