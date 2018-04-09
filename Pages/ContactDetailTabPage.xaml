@@ -96,8 +96,15 @@
                         </x:Arguments>
                     </controls:CustomLabelEntry>
 
+                          <BoxView Grid.Row="7" Grid.Column="0" BackgroundColor="Transparent" InputTransparent="false">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StateCommand}" />
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+                        
+<!--
                           <renderers:BorderlessPicker InputTransparent="false" Opacity="0.1" TextAlignMent="Start" IsEnabled="{Binding CanEdit}" Title=" " x:Name = "picker_1" TextColor = "White" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand"  SelectedIndex = "{Binding StateIndex,Mode=TwoWay}" ItemsSource = "{Binding StateItems}" Grid.Row = "7" Grid.Column = "0" /> 
-
+-->
                         
                          <controls:CustomLabelEntry PlaceHolder="Country" HorizontalOptions="FillAndExpand" Text="{Binding Country, Mode=TwoWay}" Keyboard="Text" Grid.Row="8" Grid.Column="0" IsEnabled="false"  >
                         <x:Arguments>
@@ -107,8 +114,14 @@
                         </x:Arguments>
                     </controls:CustomLabelEntry>
 
-                      <renderers:BorderlessPicker InputTransparent="false" Opacity="0.1" TextAlignMent="Start" IsEnabled="{Binding CanEdit}" Title=" " x:Name = "picker_2" TextColor = "White" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand"  SelectedIndex = "{Binding CountryIndex,Mode=TwoWay}" ItemsSource = "{Binding CountryItems}" Grid.Row = "8" Grid.Column = "0" /> 
-
+                          <BoxView Grid.Row="8" Grid.Column="0" BackgroundColor="Transparent" InputTransparent="false">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CountryCommand}" />
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+                        
+                     <!-- <renderers:BorderlessPicker InputTransparent="false" Opacity="0.1" TextAlignMent="Start" IsEnabled="{Binding CanEdit}" Title=" " x:Name = "picker_2" TextColor = "White" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand"  SelectedIndex = "{Binding CountryIndex,Mode=TwoWay}" ItemsSource = "{Binding CountryItems}" Grid.Row = "8" Grid.Column = "0" /> 
+-->
                         
                     <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding Email, Mode=TwoWay}" Keyboard="Email" Grid.Row="9" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
                         <x:Arguments>

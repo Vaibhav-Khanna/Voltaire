@@ -7,6 +7,8 @@ namespace voltaire.DataStore.Abstraction.Stores
 {
     public interface ICountryStore : IBaseStore<Country>
     {
+        Task<Country> GetCountryByExternalId(long Id);
+
         Task<IEnumerable<Country>> Search(string QueryText);
     }
 }

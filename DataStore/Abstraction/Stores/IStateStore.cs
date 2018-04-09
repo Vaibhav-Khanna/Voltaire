@@ -7,6 +7,8 @@ namespace voltaire.DataStore.Abstraction.Stores
 {
     public interface IStateStore : IBaseStore<State>
     {
+        Task<State> GetStateByExternalId(long Id);
+
         Task<IEnumerable<State>> Search(string QueryText);
     }
 }
