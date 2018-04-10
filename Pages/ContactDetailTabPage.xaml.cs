@@ -13,8 +13,7 @@ namespace voltaire.Pages
         public ContactDetailTabPage()
         {
             InitializeComponent();
-            picker_1.TextColor = Color.Transparent;
-            picker_2.TextColor = Color.Transparent;
+           
         }
 
         void Handle_SelectedScaleChanged()
@@ -103,13 +102,7 @@ namespace voltaire.Pages
             }
         }
 
-		protected override void OnAppearing()
-		{
-            base.OnAppearing();
-
-            picker_1.TextColor = Color.Transparent;
-            picker_2.TextColor = Color.Transparent;
-		}
+		
 
 	}
 }

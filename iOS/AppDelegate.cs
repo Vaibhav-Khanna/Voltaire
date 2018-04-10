@@ -22,10 +22,13 @@ namespace voltaire.iOS
     {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            var renderer = new Syncfusion.SfAutoComplete.XForms.iOS.SfAutoCompleteRenderer();
+           
             global::Xamarin.Forms.Forms.Init();
             CarouselViewRenderer.Init();  
             KeyboardOverlapRenderer.Init();
             AnimationViewRenderer.Init();
+
             Xamarin.FormsGoogleMaps.Init("AIzaSyCxXBNtq5ksFXZJBwW_SRkf3gEMOg4YhPc");
             TintedImageRenderer.Init();
 

@@ -25,6 +25,8 @@ namespace voltaire.PageModels
 
         AddCustomerPopUpModel Customer_Popup = new AddCustomerPopUpModel();
 
+        SearchStateCountryPopUpModel StateCountry_Popup = new SearchStateCountryPopUpModel();
+
         Geocoder geocoder;
 
         Position position = new Position();
@@ -33,8 +35,23 @@ namespace voltaire.PageModels
 
         public ContactAddPageModel()
         {
-            FetchAdditionalData();
+            
         }
+
+
+        public Command StateCommand => new Command(async() =>
+        {
+            StateCountry_Popup = new SearchStateCountryPopUpModel(){ IsCountry = false };
+            StateCountry_Popup.ItemSelectedChanged += StateCountryAdded;
+            await PopupNavigation.PushAsync(new SearchStateCountryPopUp() { BindingContext = StateCountry_Popup }, true);
+        });
+
+        public Command CountryCommand => new Command(async() =>
+        {
+            StateCountry_Popup = new SearchStateCountryPopUpModel(){ IsCountry = true };
+            StateCountry_Popup.ItemSelectedChanged += StateCountryAdded;
+            await PopupNavigation.PushAsync(new SearchStateCountryPopUp() { BindingContext = StateCountry_Popup }, true);
+        });
 
         public Command AddTags => new Command( async() =>
        {
@@ -59,6 +76,25 @@ namespace voltaire.PageModels
             }
 
             Customer_Popup.ItemSelectedChanged -= CustomerAdded;
+        }
+
+        void StateCountryAdded()
+        {
+            if (StateCountry_Popup.SelectedItem != null)
+            {
+                if(!StateCountry_Popup.IsCountry)
+                {
+                    StateObject = (StateCountry_Popup.SelectedItem as Models.DataObjects.State);
+                    State = (StateCountry_Popup.SelectedItem as Models.DataObjects.State).Name;
+                }
+                else
+                {
+                    CountryObject = (StateCountry_Popup.SelectedItem as Models.DataObjects.Country);
+                    Country = (StateCountry_Popup.SelectedItem as Models.DataObjects.Country).Name;
+                }
+            }
+
+            StateCountry_Popup.ItemSelectedChanged -= StateCountryAdded;
         }
 
         void Popup_Context_ItemSelectedChanged()
@@ -88,16 +124,15 @@ namespace voltaire.PageModels
 
           var customer = new Partner() { Name = Name, ParentName = CompanyName, Phone = Phone, Email = Email, Website = Website, Comment = NoteText, PartnerWeight = Weight != null ? Convert.ToInt64(Weight) : 0, Street = street1, Street2 = street2, City = city, Zip = zip, PartnerLatitude = position.Latitude, PartnerLongitude = position.Longitude };
 
-          if (!string.IsNullOrEmpty(State) && States != null)
+          if (!string.IsNullOrEmpty(State) && StateObject!=null)
           {
-              customer.StateId = States[StateIndex].ExternalId;
+              customer.StateId = StateObject.ExternalId;
           }
 
-          if (!string.IsNullOrEmpty(Country) && Countries != null)
+            if (!string.IsNullOrEmpty(Country) && CountryObject!=null)
           {
-              customer.CountryId = Countries[CountryIndex].ExternalId;
+              customer.CountryId = CountryObject.ExternalId;
           }
-
 
           if (SearchedPartner != null)
           {
@@ -233,22 +268,25 @@ namespace voltaire.PageModels
         string country;
         public string Country { get { return country; } set { country = value; RaisePropertyChanged(); } }
 
-        int stateIndex;
-        public int StateIndex { get { return stateIndex; } set { stateIndex = value; if (StateItems != null) State = StateItems[value]; RaisePropertyChanged(); } }
+        Models.DataObjects.State StateObject { get; set; }
 
-        int countryIndex;
-        public int CountryIndex { get { return countryIndex; } set { countryIndex = value; if (CountryItems != null) Country = CountryItems[value]; RaisePropertyChanged(); } }
+        Country CountryObject { get; set; }
 
-        ObservableCollection<string> _stateItems = new ObservableCollection<string>();
-        public ObservableCollection<string> StateItems { get { return _stateItems; } set { _stateItems = value; RaisePropertyChanged(); } }
+        //int stateIndex;
+        //public int StateIndex { get { return stateIndex; } set { stateIndex = value; if (StateItems != null) State = StateItems[value]; RaisePropertyChanged(); } }
 
-        ObservableCollection<string> _countryItems = new ObservableCollection<string>();
-        public ObservableCollection<string> CountryItems { get { return _countryItems; } set { _countryItems = value; RaisePropertyChanged(); } }
+        //int countryIndex;
+        //public int CountryIndex { get { return countryIndex; } set { countryIndex = value; if (CountryItems != null) Country = CountryItems[value]; RaisePropertyChanged(); } }
 
-        List<Country> Countries = new List<Country>();
+        //ObservableCollection<string> _stateItems = new ObservableCollection<string>();
+        //public ObservableCollection<string> StateItems { get { return _stateItems; } set { _stateItems = value; RaisePropertyChanged(); } }
 
-        List<Models.DataObjects.State> States = new List<Models.DataObjects.State>();
+        //ObservableCollection<string> _countryItems = new ObservableCollection<string>();
+        //public ObservableCollection<string> CountryItems { get { return _countryItems; } set { _countryItems = value; RaisePropertyChanged(); } }
 
+        //List<Country> Countries = new List<Country>();
+
+        //List<Models.DataObjects.State> States = new List<Models.DataObjects.State>();
 
 
         string notetext;
@@ -307,21 +345,21 @@ namespace voltaire.PageModels
 
         }
 
-        async void FetchAdditionalData()
-        {
-            var t1 = await StoreManager.CountryStore.GetItemsAsync();
+        //async void FetchAdditionalData()
+        //{
+        //    //var t1 = await StoreManager.CountryStore.GetItemsAsync(false, true);
 
-            var t2 = await StoreManager.StateStore.GetItemsAsync();
+        //    //var t2 = await StoreManager.StateStore.GetItemsAsync(false,true);
 
-            Countries = t1?.ToList();
+        //    //Countries = t1?.ToList();
 
-            States = t2?.ToList();
+        //    //States = t2?.ToList();
 
-            CountryItems = new ObservableCollection<string>(Countries?.Select(x => x.Name));
+        //    //CountryItems = new ObservableCollection<string>(Countries?.Select(x => x.Name));
 
-            StateItems = new ObservableCollection<string>(States?.Select(x => x.Name));
+        //    //StateItems = new ObservableCollection<string>(States?.Select(x => x.Name));
            
-        }
+        //}
 
 	}
 }

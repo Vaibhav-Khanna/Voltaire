@@ -44,54 +44,65 @@ namespace voltaire.PageModels
         string country;
         public string Country { get { return country; } set { country = value; RaisePropertyChanged(); } }
 
-        int stateIndex;
-        public int StateIndex { get { return stateIndex; } set { stateIndex = value; if(StateItems!=null)State = StateItems[value];  RaisePropertyChanged(); } }
+        Models.DataObjects.State StateObject { get; set; }
 
-        int countryIndex;
-        public int CountryIndex { get { return countryIndex; } set { countryIndex = value; if (CountryItems != null)Country = CountryItems[value]; RaisePropertyChanged(); } }
+        Country CountryObject { get; set; }
 
-        ObservableCollection<string> _stateItems = new ObservableCollection<string>();
-        public ObservableCollection<string> StateItems { get { return _stateItems; } set { _stateItems = value; RaisePropertyChanged(); } }
+        SearchStateCountryPopUpModel StateCountry_Popup = new SearchStateCountryPopUpModel();
+       
 
-        ObservableCollection<string> _countryItems = new ObservableCollection<string>();
-        public ObservableCollection<string> CountryItems { get { return _countryItems; } set { _countryItems = value; RaisePropertyChanged(); } }
-
-        List<Country> Countries = new List<Country>();
-
-        List<Models.DataObjects.State> States = new List<Models.DataObjects.State>();
-
-
-        public ContactDetailPageModel()
+        void StateCountryAdded()
         {
-            FetchAdditionalData();
+            if (StateCountry_Popup.SelectedItem != null)
+            {
+                if (!StateCountry_Popup.IsCountry)
+                {
+                    StateObject = (StateCountry_Popup.SelectedItem as Models.DataObjects.State);
+                    State = (StateCountry_Popup.SelectedItem as Models.DataObjects.State).Name;
+                }
+                else
+                {
+                    CountryObject = (StateCountry_Popup.SelectedItem as Models.DataObjects.Country);
+                    Country = (StateCountry_Popup.SelectedItem as Models.DataObjects.Country).Name;
+                }
+            }
+
+            StateCountry_Popup.ItemSelectedChanged -= StateCountryAdded;
         }
 
+      
         async void FetchAdditionalData()
         {
-            var t1 = await StoreManager.CountryStore.GetItemsAsync();
+            var _country = await StoreManager.CountryStore.GetCountryByExternalId(customer.CountryId);
 
-            var t2 = await StoreManager.StateStore.GetItemsAsync();
+            var _state = await StoreManager.StateStore.GetStateByExternalId(customer.StateId);
 
-            Countries = t1?.ToList();
+            CountryObject = _country;
+            StateObject = _state;
 
-            States = t2?.ToList();
-
-            CountryItems = new ObservableCollection<string>(Countries?.Select(x => x.Name));
-
-            StateItems = new ObservableCollection<string>(States?.Select(x => x.Name));
-
-            if (Countries != null && Countries.Any() && customer!=null )
-            {
-                if (Countries.Where((arg) => arg.ExternalId == customer.CountryId).Any())
-                    CountryIndex = Countries.IndexOf(Countries?.Where((arg) => arg.ExternalId == customer.CountryId).First());
-            }
-
-            if (States != null && States.Any() && customer != null)
-            {
-                if (States.Where((arg) => arg.ExternalId == customer.StateId).Any())
-                    StateIndex = States.IndexOf(States?.Where((arg) => arg.ExternalId == customer.StateId).First());
-            }
+            Country = CountryObject?.Name;
+            State = StateObject?.Name;
         }
+
+        public Command StateCommand => new Command(async () =>
+        {
+            if (!customer.CanEdit)
+                return;
+
+            StateCountry_Popup = new SearchStateCountryPopUpModel() { IsCountry = false };
+            StateCountry_Popup.ItemSelectedChanged += StateCountryAdded;
+            await PopupNavigation.PushAsync(new SearchStateCountryPopUp() { BindingContext = StateCountry_Popup }, true);
+        });
+
+        public Command CountryCommand => new Command(async () =>
+        {
+            if (!customer.CanEdit)
+                return;
+            
+            StateCountry_Popup = new SearchStateCountryPopUpModel() { IsCountry = true };
+            StateCountry_Popup.ItemSelectedChanged += StateCountryAdded;
+            await PopupNavigation.PushAsync(new SearchStateCountryPopUp() { BindingContext = StateCountry_Popup }, true);
+        });
 
 
         public Command tap_Toolbar  => new Command( async () => 
@@ -111,15 +122,15 @@ namespace voltaire.PageModels
                 customer.Zip = Zip;
                 customer.City = City;
 
-                if(!string.IsNullOrEmpty(State) && States != null)
+                if(!string.IsNullOrEmpty(State) && StateObject != null)
                 {
-                    customer.StateId = States[StateIndex].ExternalId;
+                    customer.StateId = StateObject.ExternalId;
                 }
 
-                if (!string.IsNullOrEmpty(Country) && Countries != null)
+                if(!string.IsNullOrEmpty(Country) && CountryObject != null)
                 {
-                    customer.CountryId = Countries[CountryIndex].ExternalId;
-                } 
+                    customer.CountryId = CountryObject.ExternalId;
+                }
 
                 customer.PartnerWeight = weight == null ? 0 : Convert.ToInt64(weight);
                 customer.Name = firstname;               
@@ -471,17 +482,7 @@ namespace voltaire.PageModels
                 Zip = customer.Zip?.Trim();
                 City = customer.City?.Trim();
 
-                if (Countries != null && Countries.Any() && customer != null)
-                {
-                    if (Countries.Where((arg) => arg.ExternalId == customer.CountryId).Any())
-                        CountryIndex = Countries.IndexOf(Countries?.Where((arg) => arg.ExternalId == customer.CountryId).First());
-                }
-
-                if (States != null && States.Any() && customer != null)
-                {
-                    if (States.Where((arg) => arg.ExternalId == customer.StateId).Any())
-                        StateIndex = States.IndexOf(States?.Where((arg) => arg.ExternalId == customer.StateId).First());
-                }
+                FetchAdditionalData();
 
                 phone = customer.Phone;
                 website = customer.Website;

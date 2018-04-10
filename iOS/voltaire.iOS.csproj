@@ -278,15 +278,6 @@
     <Reference Include="Lottie.Forms.iOS">
       <HintPath>..\packages\Com.Airbnb.Xamarin.Forms.Lottie.2.3.4\lib\xamarinios\Lottie.Forms.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Maps">
-      <HintPath>..\packages\Xamarin.Google.iOS.Maps.2.5.0\lib\Xamarin.iOS10\Google.Maps.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.GoogleMaps">
-      <HintPath>..\packages\Xamarin.Forms.GoogleMaps.2.3.0\lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Forms.GoogleMaps.iOS">
-      <HintPath>..\packages\Xamarin.Forms.GoogleMaps.2.3.0\lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.iOS.dll</HintPath>
-    </Reference>
     <Reference Include="Plugin.Permissions.Abstractions">
       <HintPath>..\packages\Plugin.Permissions.2.2.1\lib\Xamarin.iOS10\Plugin.Permissions.Abstractions.dll</HintPath>
     </Reference>
@@ -322,6 +313,24 @@
     </Reference>
     <Reference Include="Plugin.Settings">
       <HintPath>..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfAutoComplete.iOS">
+      <HintPath>..\packages\Syncfusion.Xamarin.SfAutoComplete.16.1.0.32\lib\Xamarin.iOS10\Syncfusion.SfAutoComplete.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfAutoComplete.XForms">
+      <HintPath>..\packages\Syncfusion.Xamarin.SfAutoComplete.16.1.0.32\lib\Xamarin.iOS10\Syncfusion.SfAutoComplete.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfAutoComplete.XForms.iOS">
+      <HintPath>..\packages\Syncfusion.Xamarin.SfAutoComplete.16.1.0.32\lib\Xamarin.iOS10\Syncfusion.SfAutoComplete.XForms.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Maps">
+      <HintPath>..\packages\Xamarin.Google.iOS.Maps.2.5.0\lib\Xamarin.iOS10\Google.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.GoogleMaps">
+      <HintPath>..\packages\Xamarin.Forms.GoogleMaps.2.3.0\lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.GoogleMaps.iOS">
+      <HintPath>..\packages\Xamarin.Forms.GoogleMaps.2.3.0\lib\Xamarin.iOS10\Xamarin.Forms.GoogleMaps.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
