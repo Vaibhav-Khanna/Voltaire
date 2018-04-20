@@ -43,7 +43,7 @@ namespace voltaire.Models
         public long ExternalId { get; set; }
 
         [JsonProperty("write_date")]
-        public DateTime WriteDate { get; set; }
+        public DateTime? WriteDate { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -112,7 +112,7 @@ namespace voltaire.Models
         public DateTime? DateLocalization { get; set; }
 
         [JsonProperty("parent_id")]
-        public long ParentId { get; set; }
+        public string ParentId { get; set; }
 
         [JsonProperty("parent_name")]
         public string ParentName { get; set; }

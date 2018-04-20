@@ -138,7 +138,7 @@ namespace voltaire.PageModels
           {
               if (customer.ParentName?.Trim() == SearchedPartner.Name)
               {
-                  customer.ParentId = SearchedPartner.ExternalId;
+                  customer.ParentId = SearchedPartner.ExternalId.ToString();
               }
           }
 
