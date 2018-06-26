@@ -40,6 +40,8 @@ namespace voltaire.Models
 
         public bool IsNumberKeyboard { get; set; }
 
+        public bool IsVisible { get; set; } = true;
+
         public ProductProperty ObjectClone(ProductProperty obj)
         {
             return (ProductProperty)obj.MemberwiseClone();

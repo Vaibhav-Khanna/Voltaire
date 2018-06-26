@@ -6,6 +6,7 @@ using voltaire.PageModels.Base;
 using Xamarin.Forms;
 using System.Linq;
 using FreshMvvm;
+using System.Threading.Tasks;
 
 namespace voltaire.PageModels
 {
@@ -168,8 +169,13 @@ namespace voltaire.PageModels
             FetchItems();
         }
 
-        async void FetchItems()
-        {            
+        async Task FetchItems()
+        {
+            if (IsLoading)
+                return;
+
+            IsLoading = true;
+
             var items = await StoreManager.SaleOrderStore.GetQuotationItemsByCustomer(Customer.ExternalId);
 
             List<QuotationsModel> Quotations = new List<QuotationsModel>();
@@ -178,7 +184,6 @@ namespace voltaire.PageModels
             {
                 Quotations.Add(new QuotationsModel(item));
             }
-
            
             foreach (var item in Quotations)
             {
@@ -192,6 +197,8 @@ namespace voltaire.PageModels
             SearchQuery.Execute(null);
 
             ProductConstants.GenerateProductList();
+
+            IsLoading = false;
         }
 
     }

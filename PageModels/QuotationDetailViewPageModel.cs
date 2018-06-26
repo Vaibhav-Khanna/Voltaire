@@ -449,7 +449,7 @@ namespace voltaire.PageModels
                 if (NewQuotation)
                 {
                     var saleOrder = new SaleOrder(){ PartnerId = Customer.ExternalId, CurrencyId = ProductConstants.CurrencyValues.Keys.First() };
-                    Quotation = new QuotationsModel( saleOrder ) { Date = DateTime.UtcNow, Ref = UnixTimeStamp(), Status = QuotationStatus.draft.ToString() , TotalAmount = 0 };
+                    Quotation = new QuotationsModel( saleOrder ) { Date = DateTime.UtcNow, Ref = Customer.ExternalId + "-" + UnixTimeStamp(), Status = QuotationStatus.draft.ToString() , TotalAmount = 0 };
                     InsertNewQuotation(saleOrder);
                     customer.Quotations.Add(Quotation);
                 }

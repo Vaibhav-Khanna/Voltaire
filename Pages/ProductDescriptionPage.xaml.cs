@@ -201,6 +201,9 @@ namespace voltaire.Pages
             stack.Children.Add(label);
             stack.Children.Add(text);
 
+            stack.SetBinding(IsVisibleProperty, "IsVisible");
+            stack.BindingContext = Bind_Context;
+
             return stack;
         }
 
