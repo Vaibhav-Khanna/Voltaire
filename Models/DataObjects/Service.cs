@@ -28,6 +28,9 @@
         [JsonProperty("price")]
         public long Price { get; set; }
 
+        [JsonProperty("sub_category_name")]
+        public string SubCategoryName { get; set; }
+
         [JsonProperty("currency_id")]
         public long CurrencyId { get; set; }
 
@@ -40,7 +43,7 @@
         [JsonProperty("date_end")]
         public string DateEnd { get; set; }
 
-        [JsonProperty("reference")]
+        [JsonProperty("default_code")]
         public string Reference { get; set; }
     }
 }

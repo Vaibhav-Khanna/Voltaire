@@ -35,6 +35,17 @@ namespace voltaire.PageModels
             await item.Item1.PushPageModel<OrderListDetailPageModel>(new Tuple<Partner, bool, QuotationsModel>(customer, false, item.Item2));
 		});
 
+        public Command AddQuotation => new Command(async (object NavigationService) =>
+        {
+            if (IsLoading)
+                return;
+
+            IsLoading = true;
+
+            await ((IPageModelCoreMethods)NavigationService).PushPageModel<QuotationDetailViewPageModel>(new Tuple<Partner, bool, QuotationsModel>(customer, true, null));
+
+            IsLoading = false;
+        });
 
 		Partner customer;
 		public Partner Customer

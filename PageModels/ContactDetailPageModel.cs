@@ -25,7 +25,6 @@ namespace voltaire.PageModels
         Partner _customer;
         bool ItemUpdated = false;
 
-
         string street1;
         public string Street1 { get { return street1; } set { street1 = value; RaisePropertyChanged(); } }
 
@@ -50,6 +49,7 @@ namespace voltaire.PageModels
 
         SearchStateCountryPopUpModel StateCountry_Popup = new SearchStateCountryPopUpModel();
        
+        AddCustomerPopUpModel Customer_Popup = new AddCustomerPopUpModel();
 
         void StateCountryAdded()
         {
@@ -104,6 +104,23 @@ namespace voltaire.PageModels
             await PopupNavigation.PushAsync(new SearchStateCountryPopUp() { BindingContext = StateCountry_Popup }, true);
         });
 
+        public Command AddCustomer => new Command(async () =>
+        {
+            Customer_Popup = new AddCustomerPopUpModel();
+            Customer_Popup.ItemSelectedChanged += CustomerAdded;
+            await PopupNavigation.PushAsync(new AddCustomerPopUp() { BindingContext = Customer_Popup }, true);
+        });
+
+        void CustomerAdded()
+        {
+            if (Customer_Popup.SelectedItem != null)
+            {
+                var SearchedPartner = Customer_Popup.SelectedItem;
+                CompanyName = Customer_Popup.SelectedItem.Name;
+            }
+
+            Customer_Popup.ItemSelectedChanged -= CustomerAdded;
+        }
 
         public Command tap_Toolbar  => new Command( async () => 
         {
@@ -451,7 +468,6 @@ namespace voltaire.PageModels
                 RaisePropertyChanged(nameof(SelectedIndex));
             }
         }
-
 
         ViewPagerTemplateSelector item_template_selector;
         public ViewPagerTemplateSelector ItemTemplates

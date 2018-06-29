@@ -19,9 +19,11 @@ namespace voltaire.PageModels
         public Command BackButton => new Command(async () =>
         {
             UnsubscribeToEvents();
-           
-            await CoreMethods.PopPageModel();
 
+            if (string.IsNullOrEmpty(productModel.Description))
+                await CoreMethods.PopPageModel(productModel);
+            else
+                await CoreMethods.PopPageModel();
         });
 
         public Command SaveProduct => new Command(async () =>
@@ -29,8 +31,7 @@ namespace voltaire.PageModels
             var isCalculated = CalculatePrice(true);
 
             if (isCalculated)
-            {
-              
+            {              
                 UnsubscribeToEvents();
 
                 SaleOrderLine.ConfigurationDetail = JsonConvert.SerializeObject(ProductProperties);
@@ -44,7 +45,6 @@ namespace voltaire.PageModels
                 if (ProductProperties.Where((arg) => arg.PropertyName == "Unit Price").Any())
                 ProductProperties.Where((arg) => arg.PropertyName == "Unit Price").First().PropertyValue = "Not Found";
             }      
-
         });
 
 
@@ -139,7 +139,6 @@ namespace voltaire.PageModels
 
         void Handle_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-
             if (saleOrderLine.ProductKind == ProductKind.accessory.ToString())
             {
                 var item = sender as ProductProperty;
@@ -201,6 +200,160 @@ namespace voltaire.PageModels
                     }
                 }
             }
+            else if(saleOrderLine.ProductKind == ProductKind.service.ToString())
+            {
+                var item = sender as ProductProperty;
+
+                if (item.PropertyValue != null)
+                {
+                    if (item.PropertyName == "Category")
+                    {
+                        var data_name = ProductProperties.Where((arg) => arg.PropertyName == "Name");
+
+                        if (data_name.Any())
+                        {
+                            var subCat = data_name.First();
+
+                            subCat.ItemSource = ProductConstants.Services.Where((Service arg) => arg.SubCategoryName == item.PropertyValue).Select((arg) => string.IsNullOrWhiteSpace(arg.Name) ? "N.A" : arg.Name).Distinct().ToList();
+
+                            if (subCat.ItemSource != null && subCat.ItemSource.Any())
+                            {
+
+                            }
+                            else
+                            {
+                                subCat.ItemSource = new List<string>() { "N.A" };
+                            }
+
+                            subCat.PropertyValue = null;
+                        }
+
+                        if (data_name.Any())
+                        {
+                            data_name.First().PropertyValue = null;
+                        }
+                    }                 
+                }
+            }
+            else if(saleOrderLine.ProductKind == ProductKind.saddle.ToString())
+            {
+                var item = sender as ProductProperty;
+
+                if (item.PropertyValue != null)
+                {
+                    if (item.PropertyName == "Model")
+                    {
+                        var data_name = ProductProperties.Where((arg) => arg.PropertyName == "Model");
+
+                        if (data_name.Any())
+                        {
+                            var model_property = data_name.First();
+
+                            if(model_property != null)
+                            {
+                                var currentModel_attrs = ProductConstants.SaddleModels.Where((arg) => arg.Name == model_property.PropertyValue);
+
+                                var color_id = ProductConstants.SaddleAttributes.Where((arg) => arg.En == "Color")?.First()?.Id;
+
+                                var leather_id = ProductConstants.SaddleAttributes.Where((arg) => arg.En == "Leather")?.First()?.Id;
+
+                                var frontblock_id = ProductConstants.SaddleAttributes.Where((arg) => arg.En == "Front Block")?.First()?.Id;
+
+                                var rearblock_id = ProductConstants.SaddleAttributes.Where((arg) => arg.En == "Rear Block")?.First()?.Id;
+
+                                var panel_id = ProductConstants.SaddleAttributes.Where((arg) => arg.En == "Pannel")?.First()?.Id;
+
+                                if(color_id!=null)
+                                {
+                                    var data = currentModel_attrs.Where((arg) => arg.AttributeId == color_id.Value);
+                                   
+                                    if(data.Any())
+                                    {
+                                        var colors = ProductProperties.Where((arg) => arg.PropertyName == "Color").First();
+                                        colors.ItemSource = new List<string>();
+                                        colors.PropertyValue = null;
+
+                                        foreach (var _item in data.First().AttributeValueList)
+                                        {
+                                            colors.ItemSource.Add(ProductConstants.SaddleValues.Where((arg) => arg.Id.ToString() == _item).First().EnUs);
+                                        }
+                                    }
+                                }
+
+                                if (leather_id != null)
+                                {
+                                    var data = currentModel_attrs.Where((arg) => arg.AttributeId == leather_id.Value);
+
+                                    if (data.Any())
+                                    {
+                                        var leather = ProductProperties.Where((arg) => arg.PropertyName == "Leather").First();
+                                        leather.ItemSource = new List<string>();
+                                        leather.PropertyValue = null;
+
+                                        foreach (var _item in data.First().AttributeValueList)
+                                        {
+                                            leather.ItemSource.Add(ProductConstants.SaddleValues.Where((arg) => arg.Id.ToString() == _item).First().EnUs);
+                                        }
+                                    }
+                                }
+
+                                if (frontblock_id != null)
+                                {
+                                    var data = currentModel_attrs.Where((arg) => arg.AttributeId == frontblock_id.Value);
+
+                                    if (data.Any())
+                                    {
+                                        var f_block = ProductProperties.Where((arg) => arg.PropertyName == "Front Block").First();
+                                        f_block.ItemSource = new List<string>();
+                                        f_block.PropertyValue = null;
+
+                                        foreach (var _item in data.First().AttributeValueList)
+                                        {
+                                            f_block.ItemSource.Add(ProductConstants.SaddleValues.Where((arg) => arg.Id.ToString() == _item).First().EnUs);
+                                        }
+                                    }
+                                }
+
+                                if (rearblock_id != null)
+                                {
+                                    var data = currentModel_attrs.Where((arg) => arg.AttributeId == rearblock_id.Value);
+
+                                    if (data.Any())
+                                    {
+                                        var r_block = ProductProperties.Where((arg) => arg.PropertyName == "Rear Block").First();
+                                        r_block.ItemSource = new List<string>();
+                                        r_block.PropertyValue = null;
+
+                                        foreach (var _item in data.First().AttributeValueList)
+                                        {
+                                            r_block.ItemSource.Add(ProductConstants.SaddleValues.Where((arg) => arg.Id.ToString() == _item).First().EnUs);
+                                        }
+                                    }
+                                }
+
+                                if (panel_id != null)
+                                {
+                                    var data = currentModel_attrs.Where((arg) => arg.AttributeId == panel_id.Value);
+
+                                    if (data.Any())
+                                    {
+                                        var panel = ProductProperties.Where((arg) => arg.PropertyName == "Panel Base").First();
+                                        panel.ItemSource = new List<string>();
+                                        panel.PropertyValue = null;
+
+                                        foreach (var _item in data.First().AttributeValueList)
+                                        {
+                                            panel.ItemSource.Add(ProductConstants.SaddleValues.Where((arg) => arg.Id.ToString() == _item).First().EnUs);
+                                        }
+                                    }
+                                }
+
+                            }
+
+                        }
+                    }
+                }
+            }
 
 
             var price = CalculatePrice(false);
@@ -210,7 +363,6 @@ namespace voltaire.PageModels
                 if(ProductProperties.Where((arg) => arg.PropertyName == "Unit Price").Any())
                 ProductProperties.Where((arg) => arg.PropertyName == "Unit Price").First().PropertyValue = "Not Found";
             }
-
         }
 
 

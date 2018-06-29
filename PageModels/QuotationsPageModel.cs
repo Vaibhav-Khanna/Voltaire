@@ -56,7 +56,14 @@ namespace voltaire.PageModels
 
         public Command AddQuotation => new Command(async (object NavigationService) =>
        {
-            await ((IPageModelCoreMethods)NavigationService).PushPageModel<QuotationDetailViewPageModel>(new Tuple<Partner,bool,QuotationsModel>(customer,true,null));
+           if (IsLoading)
+               return;
+
+           IsLoading = true;
+
+           await ((IPageModelCoreMethods)NavigationService).PushPageModel<QuotationDetailViewPageModel>(new Tuple<Partner, bool, QuotationsModel>(customer, true, null));
+
+           IsLoading = false;
        });
 
 
@@ -160,6 +167,8 @@ namespace voltaire.PageModels
             Customer = context;
 
             FetchItems();
+
+            ProductConstants.GenerateProductList();
         }
 
         public override void TabAppearing()
@@ -196,7 +205,7 @@ namespace voltaire.PageModels
 
             SearchQuery.Execute(null);
 
-            ProductConstants.GenerateProductList();
+
 
             IsLoading = false;
         }

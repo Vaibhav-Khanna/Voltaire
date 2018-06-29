@@ -511,5 +511,15 @@ namespace voltaire.PageModels
         {
             await StoreManager.SaleOrderStore.InsertAsync(order);
         }
+
+        public override void ReverseInit(object returnedData)
+        {
+            base.ReverseInit(returnedData);
+
+            if(returnedData is ProductQuotationModel)
+            {
+                DeleteItemCommand.Execute(returnedData);
+            }
+        }
     }
 }

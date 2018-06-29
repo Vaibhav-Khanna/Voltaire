@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using voltaire.Models.DataObjects;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace voltaire.Models
 {
@@ -33,13 +34,29 @@ namespace voltaire.Models
             }
         }
 
-        public async static void GenerateProductList()
+        public async static Task GenerateProductList()
         {
             var saddles = await App.storeManager.SaddleStore.GetItemsAsync(false, true);
 
             var accessory = await App.storeManager.AccessoryStore.GetItemsAsync(false, true);
 
             var service = await App.storeManager.ServiceStore.GetItemsAsync(false, true);
+
+            var saddle_attrs = await App.storeManager.SaddleStore.GetSaddleAttributes();
+
+            var saddle_values = await App.storeManager.SaddleStore.GetSaddleValue();
+
+            var saddke_models = await App.storeManager.SaddleStore.GetSaddleModel();
+
+
+            if (saddle_attrs != null)
+                SaddleAttributes.AddRange(saddle_attrs);
+
+            if (saddke_models != null)
+                SaddleModels.AddRange(saddke_models);
+
+            if (saddle_values != null)
+                SaddleValues.AddRange(saddle_values);
 
 
             List<string> SaddleModel = new List<string>();
@@ -50,11 +67,14 @@ namespace voltaire.Models
 
             List<string> ServiceModel = new List<string>();
 
+            List<string> ServiceSubCategoryModel = new List<string>();
+
             List<string> AccessoryModel = new List<string>();
 
             List<string> AccessoryCategory = new List<string>();
 
             List<string> AccessorySubCategory = new List<string>();
+
 
             if (saddles.Any())
             {
@@ -69,6 +89,7 @@ namespace voltaire.Models
             if (service.Any())
             {
                 ServiceModel.AddRange(service.Select((arg) => string.IsNullOrWhiteSpace(arg.Name) ? "N.A" : arg.Name));
+                ServiceSubCategoryModel.AddRange(service.Select((arg) => string.IsNullOrWhiteSpace(arg.SubCategoryName) ? "N.A" : arg.SubCategoryName));
                 Services.Clear();
                 Services.AddRange(service);
             }
@@ -93,6 +114,8 @@ namespace voltaire.Models
 
             ServiceModel = ServiceModel.Distinct().ToList();
 
+            ServiceSubCategoryModel = ServiceSubCategoryModel.Distinct().ToList();
+
             AccessoryModel = AccessoryModel.Distinct().ToList();
 
             AccessoryCategory = AccessoryCategory.Distinct().ToList();
@@ -111,7 +134,9 @@ namespace voltaire.Models
             foreach (var item in Services)
             {
                 if (string.IsNullOrWhiteSpace(item.Name))
-                    item.Name = "N.A";              
+                    item.Name = "N.A";   
+                if (string.IsNullOrWhiteSpace(item.SubCategoryName))
+                    item.SubCategoryName = "N.A";   
             }
 
             foreach (var item in Accessory)
@@ -121,7 +146,7 @@ namespace voltaire.Models
                 if (string.IsNullOrWhiteSpace(item.CategoryName))
                     item.CategoryName = "N.A"; 
                 if (string.IsNullOrWhiteSpace(item.SubCategoryName))
-                    item.CategoryName = "N.A"; 
+                    item.SubCategoryName = "N.A"; 
             }
 
 
@@ -135,10 +160,9 @@ namespace voltaire.Models
                 Properties = new List<ProductProperty>()
                 {
                     new ProductProperty(PropertyType.IsPicker) { PropertyName = "Model" , PropertyValue = null, ItemSource = SaddleModel },
-                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Color", PropertyValue = null, ItemSource = SaddleColor },
-                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Leather", PropertyValue = null, ItemSource = SaddleLeather },
+                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Color" },
+                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Leather" },
                     new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price", PropertyValue = null },
-
 
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Rider Name" , PropertyValue = null },
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Seat" , PropertyValue = null },
@@ -148,9 +172,10 @@ namespace voltaire.Models
                     new ProductProperty(PropertyType.IsBoolean){ PropertyName = "2nd Skin" , PropertyValue = null },
                     new ProductProperty(PropertyType.IsBoolean){ PropertyName = "RBQ grained" , PropertyValue = null },
 
-                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Front Block" , PropertyValue = null, ItemSource = new List<string>(){ "S","M","L","No Blocks" } },
-                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Rear Block" , PropertyValue = null, ItemSource = new List<string>(){ "S", "M", "L", "No Blocks" } },
-                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Panel Base" , PropertyValue = null, ItemSource = new List<string>(){ "XFin","Fin","Pro" } },
+                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Front Block" , PropertyValue = null },
+                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Rear Block" , PropertyValue = null  },
+                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Panel Base" , PropertyValue = null },
+
                     new ProductProperty(PropertyType.IsText){ PropertyName = "A" , PropertyValue = null },
                     new ProductProperty(PropertyType.IsText){ PropertyName = "B" , PropertyValue = null },
                     new ProductProperty(PropertyType.IsText){ PropertyName = "C" , PropertyValue = null },
@@ -159,7 +184,7 @@ namespace voltaire.Models
                     new ProductProperty(PropertyType.IsBoolean){ PropertyName = "NamePlate" , PropertyValue = null },
                     new ProductProperty(PropertyType.IsBoolean){ PropertyName = "Greasing" , PropertyValue = null },
                     new ProductProperty(PropertyType.IsBoolean){ PropertyName = "Sp Saddle" , PropertyValue = null },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Note" , PropertyValue = null },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Note" , PropertyValue = null }
                 }
             });
 
@@ -174,7 +199,7 @@ namespace voltaire.Models
                     new ProductProperty(PropertyType.IsPicker){ PropertyName = "Sub Category" , PropertyValue = null,AllSource = AccessorySubCategory, ItemSource = AccessorySubCategory },
                     new ProductProperty(PropertyType.IsPicker){ PropertyName = "Name", PropertyValue = null, AllSource = AccessoryModel, ItemSource = AccessoryModel },
                     new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price", PropertyValue = null },
-                    new ProductProperty(PropertyType.IsLabel) { PropertyName = "Reference", PropertyValue = null },
+                    new ProductProperty(PropertyType.IsLabel) { PropertyName = "Reference", PropertyValue = null, IsVisible = false },
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Note", PropertyValue = null },
                 }
             }); 
@@ -189,7 +214,8 @@ namespace voltaire.Models
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Serial number", PropertyValue = null },
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Brand", PropertyValue = null},
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Model", PropertyValue = null },
-                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Name", PropertyValue = null, ItemSource = ServiceModel },
+                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Category", PropertyValue = null, ItemSource = ServiceSubCategoryModel },
+                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Name", PropertyValue = null, AllSource = ServiceModel, ItemSource = ServiceModel },
                     new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price", PropertyValue = null },
                     new ProductProperty(PropertyType.IsLabel) { PropertyName = "Reference", PropertyValue = null },
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Seat size", PropertyValue = null},
@@ -274,6 +300,12 @@ namespace voltaire.Models
         public static List<string> TagList { get; set; } = new List<string>() { "Pro", "Nice", "Late Payment", "Behaviour" };
 
         public static List<string> ProductStatusRange { get; set; } = new List<string>() { QuotationStatus.sent.ToString(), QuotationStatus.draft.ToString(), QuotationStatus.cancel.ToString(), QuotationStatus.done.ToString(), QuotationStatus.sale.ToString() };
-   
+
+        public static List<SaddleAttribute> SaddleAttributes { get; set; } = new List<SaddleAttribute>();
+
+        public static List<SaddleModel> SaddleModels { get; set; } = new List<SaddleModel>();
+
+        public static List<SaddleValue> SaddleValues { get; set; } = new List<SaddleValue>();
+
     }
 }

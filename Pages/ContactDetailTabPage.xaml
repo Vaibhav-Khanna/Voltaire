@@ -46,7 +46,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <controls:WeightScale MaxWeight="5" SelectedScale="{Binding Weight, Mode=TwoWay}"  IsEnabled="{Binding CanEdit}" SelectedScaleChanged="Handle_SelectedScaleChanged" Grid.Row="0" Grid.Column="0"/>    
-                    <controls:CustomLabelEntry HorizontalOptions="FillAndExpand" Text="{Binding CompanyName, Mode=TwoWay}" Keyboard="Text" Grid.Row="1" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                    <controls:CustomLabelEntry x:Name="entry" HorizontalOptions="FillAndExpand" Text="{Binding CompanyName, Mode=TwoWay}" Keyboard="Text" Grid.Row="1" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
                         <x:Arguments>
                             <x:String>Parent Partner    </x:String>
                             <x:Boolean>true</x:Boolean>

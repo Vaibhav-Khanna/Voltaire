@@ -38,6 +38,11 @@ namespace voltaire.Pages
 			if (context == null)
 				return;
 
+            bt_add.Clicked += (sender, e) =>
+            {
+                context.AddQuotation.Execute(NavigationService);
+            };
+
 			search_bar.TextChanged += (sender, e) =>
 			{
 				context.SearchQuery.Execute(null);
