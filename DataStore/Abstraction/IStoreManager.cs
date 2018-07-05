@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using voltaire.DataStore.Abstraction.Stores;
 
 namespace voltaire.DataStore.Abstraction
@@ -31,5 +32,9 @@ namespace voltaire.DataStore.Abstraction
 
         Task<bool> SyncAllAsync(bool syncUserSpecific);
         Task DropEverythingAsync();
+
+        Task<bool> SyncLegalFiles();
+
+        Task<Dictionary<string, byte[]>> GetLegalFiles();
     }
 }

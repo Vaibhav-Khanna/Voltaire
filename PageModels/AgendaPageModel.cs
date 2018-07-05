@@ -75,8 +75,7 @@ namespace voltaire.PageModels
         {
             if (AllCheckInItems == null || AllCheckInItems.Count == 0)
                 return;
-
-
+                
             List<CourseAgendaCellModel> new_filter_list;
 
             if (SelectedFilter==AppResources.None)

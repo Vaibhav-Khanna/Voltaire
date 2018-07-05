@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Distribute;
-
 using Foundation;
 using UIKit;
+using Akavache;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
 using CarouselView.FormsPlugin.iOS;
@@ -35,6 +35,7 @@ namespace voltaire.iOS
             App.ScreenHeight = UIScreen.MainScreen.Bounds.Height;
             App.ScreenWidth = UIScreen.MainScreen.Bounds.Width;
 
+            BlobCache.ApplicationName = "Voltaire";
 
             // Code for starting up the Xamarin Test Cloud Agent
 #if DEBUG

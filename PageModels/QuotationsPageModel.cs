@@ -6,6 +6,7 @@ using voltaire.PageModels.Base;
 using Xamarin.Forms;
 using System.Linq;
 using FreshMvvm;
+using System.Threading.Tasks;
 
 namespace voltaire.PageModels
 {
@@ -55,7 +56,14 @@ namespace voltaire.PageModels
 
         public Command AddQuotation => new Command(async (object NavigationService) =>
        {
-            await ((IPageModelCoreMethods)NavigationService).PushPageModel<QuotationDetailViewPageModel>(new Tuple<Partner,bool,QuotationsModel>(customer,true,null));
+           if (IsLoading)
+               return;
+
+           IsLoading = true;
+
+           await ((IPageModelCoreMethods)NavigationService).PushPageModel<QuotationDetailViewPageModel>(new Tuple<Partner, bool, QuotationsModel>(customer, true, null));
+
+           IsLoading = false;
        });
 
 
@@ -159,6 +167,8 @@ namespace voltaire.PageModels
             Customer = context;
 
             FetchItems();
+
+            ProductConstants.GenerateProductList();
         }
 
         public override void TabAppearing()
@@ -168,8 +178,13 @@ namespace voltaire.PageModels
             FetchItems();
         }
 
-        async void FetchItems()
-        {            
+        async Task FetchItems()
+        {
+            if (IsLoading)
+                return;
+
+            IsLoading = true;
+
             var items = await StoreManager.SaleOrderStore.GetQuotationItemsByCustomer(Customer.ExternalId);
 
             List<QuotationsModel> Quotations = new List<QuotationsModel>();
@@ -178,7 +193,6 @@ namespace voltaire.PageModels
             {
                 Quotations.Add(new QuotationsModel(item));
             }
-
            
             foreach (var item in Quotations)
             {
@@ -191,7 +205,9 @@ namespace voltaire.PageModels
 
             SearchQuery.Execute(null);
 
-            ProductConstants.GenerateProductList();
+
+
+            IsLoading = false;
         }
 
     }

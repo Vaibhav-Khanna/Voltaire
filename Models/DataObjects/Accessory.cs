@@ -26,10 +26,10 @@
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("category_name")]
+        [JsonProperty("parent_category_name")]
         public string CategoryName { get; set; }
 
-        [JsonProperty("sub_category_name")]
+        [JsonProperty("category_name")]
         public string SubCategoryName { get; set; }
 
         [JsonProperty("price")]
@@ -47,7 +47,7 @@
         [JsonProperty("date_end")]
         public string DateEnd { get; set; }
 
-        [JsonProperty("reference")]
+        [JsonProperty("default_code")]
         public string Reference { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using voltaire.PageModels.Base;
 using Xamarin.Forms;
 using System.Linq;
 using FreshMvvm;
+using System.Threading.Tasks;
 
 namespace voltaire.PageModels 
 {
@@ -34,6 +35,17 @@ namespace voltaire.PageModels
             await item.Item1.PushPageModel<OrderListDetailPageModel>(new Tuple<Partner, bool, QuotationsModel>(customer, false, item.Item2));
 		});
 
+        public Command AddQuotation => new Command(async (object NavigationService) =>
+        {
+            if (IsLoading)
+                return;
+
+            IsLoading = true;
+
+            await ((IPageModelCoreMethods)NavigationService).PushPageModel<QuotationDetailViewPageModel>(new Tuple<Partner, bool, QuotationsModel>(customer, true, null));
+
+            IsLoading = false;
+        });
 
 		Partner customer;
 		public Partner Customer
@@ -107,8 +119,13 @@ namespace voltaire.PageModels
             FetchItems();
         }
 
-        async void FetchItems()
-        {            
+        async Task FetchItems()
+        {         
+            if (IsLoading)
+                return;
+
+            IsLoading = true;
+
             var items = await StoreManager.SaleOrderStore.GetOrderItemsByCustomer(Customer.ExternalId);
 
             List<QuotationsModel> Quotations = new List<QuotationsModel>();
@@ -130,6 +147,8 @@ namespace voltaire.PageModels
             SearchQuery.Execute(null);
 
             ProductConstants.GenerateProductList();
+
+            IsLoading = false;
         }
 
 

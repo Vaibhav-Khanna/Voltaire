@@ -5,6 +5,7 @@ using voltaire.PageModels.Base;
 using Xamarin.Forms;
 using voltaire.Helpers;
 using voltaire.Models.DataObjects;
+using voltaire.DataStore.Implementation;
 
 namespace voltaire.PageModels
 {
@@ -17,6 +18,16 @@ namespace voltaire.PageModels
        {
              CoreMethods.PopPageModel();
        });
+
+        public Command OpenTermsCommand => new Command(async() =>
+        {
+            var files =  await StoreManager.GetLegalFiles();
+
+            if(files.ContainsKey(StorageKeys.TermsConditions))
+            {
+                await CoreMethods.PushPageModel<PdfViewerPageModel>(new Tuple<string,byte[]>("Terms & Conditions",files[StorageKeys.TermsConditions]));
+            }
+        });
 
         public Command SignValidate => new Command( async (obj) =>
        {

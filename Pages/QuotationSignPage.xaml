@@ -71,7 +71,16 @@
                     <Frame WidthRequest="15" CornerRadius="0" HasShadow="false" HeightRequest="15" VerticalOptions="Center" HorizontalOptions="Start" BackgroundColor="#4a4a4a" Padding="1">
                         <Image Source="{Binding ConditionImageSource}" VerticalOptions="Fill" HorizontalOptions="Fill" BackgroundColor="{Binding ButtonColor}" />
                     </Frame>
-                    <Label Text="I read and agree with the order and the sales terms and conditions" FontSize="14" TextColor="#4a4a4a" FontFamily="SanFranciscoDisplay-Regular"/>
+
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="I read and agree with the order and the sales" FontSize="14" TextColor="#4a4a4a" FontFamily="SanFranciscoDisplay-Regular"/>
+                        <Label Text="terms and conditions." FontSize="14" TextColor="Blue" FontFamily="SanFranciscoDisplay-Regular">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenTermsCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+
                 </StackLayout>
                 <signature:SignaturePadCanvasView x:Name="signaturePad"  Margin="0" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" BackgroundColor="#d8d8d8" />
             </StackLayout>

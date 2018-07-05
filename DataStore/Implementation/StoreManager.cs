@@ -18,7 +18,9 @@ using System.Diagnostics;
 using voltaire.Models.DataObjects;
 using voltaire.DataStore.Implementation.Stores;
 using voltaire.PopUps;
+using Akavache;
 using Plugin.Connectivity;
+using System.Reactive.Linq;
 
 namespace voltaire.DataStore.Implementation
 {
@@ -220,6 +222,8 @@ namespace voltaire.DataStore.Implementation
             {
                 // add stores that are user specific data
                 await DocumentStore.OfflineUploadSync();
+
+                await SyncLegalFiles();
             }
 
             Device.BeginInvokeOnMainThread(async () =>
@@ -476,6 +480,65 @@ namespace voltaire.DataStore.Implementation
             }
         }
 
+        public async Task<bool> SyncLegalFiles()
+        {
+            var language = "en";
+
+            var uri = new Uri($"{Constants.EndUrl}/api/legalFiles?language={language}");
+
+            try
+            {
+                var actualToken = StoreManager.MobileService.CurrentUser.MobileServiceAuthenticationToken;
+
+                var _client = new HttpClient();
+                _client.DefaultRequestHeaders.Add("token", actualToken);
+
+                var response = await _client.GetAsync(uri);
+                var data_string = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = JsonConvert.DeserializeObject<LegalFilesModel>(data_string);
+
+                    // download terms and conditions
+                    if (!string.IsNullOrEmpty(data.TermAndConditions))
+                    {
+                        var file = await BlobCache.UserAccount.DownloadUrl(key:StorageKeys.TermsConditions,url:data.TermAndConditions,fetchAlways: true);
+
+                        if (file != null)
+                            return true;
+                    }
+                } 
+            }
+            catch (Exception ex)
+            {
+                
+            }
+
+            return false;
+        }
+
+        public async Task<Dictionary<string, byte[]>> GetLegalFiles()
+        {
+            var list = new Dictionary<string, byte[]>();
+
+            // Terms conditions
+            try
+            {
+                var file = await BlobCache.UserAccount.Get(StorageKeys.TermsConditions);
+
+                if(file!=null)
+                {
+                    list.Add(StorageKeys.TermsConditions,file);
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+
+            return list;
+        }
 
         public class USER
         {

@@ -19,12 +19,12 @@ namespace voltaire
         }
     }
 
-
     public class AONNavigationPage : NavigationPage
     {
         public AONNavigationPage()
         {
-        }
+            
+        } 
 
         public AONNavigationPage(Page page) : base(page)
         {

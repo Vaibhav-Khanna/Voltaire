@@ -13,12 +13,20 @@ namespace voltaire.Pages
         public ContactDetailTabPage()
         {
             InitializeComponent();
-           
+            entry.FocusChanged += Handle_Focused;
         }
 
         void Handle_SelectedScaleChanged()
         {
             
+        }
+
+        async void Handle_Focused()
+        {
+            entry.Unfocus();
+            (BindingContext as ContactDetailPageModel).AddCustomer.Execute(null);
+            await System.Threading.Tasks.Task.Delay(100);
+            entry.Unfocus();
         }
 
         protected override void OnBindingContextChanged()

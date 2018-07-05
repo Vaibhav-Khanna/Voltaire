@@ -97,7 +97,7 @@ namespace voltaire.Controls
 
             scrollview = new CustomScrollView { Orientation = ScrollOrientation.Horizontal, BackgroundColor = (Color)Application.Current.Resources["turquoiseBlue"],  Content = main_Container, HorizontalOptions = LayoutOptions.FillAndExpand,
                 Padding = 0, Margin = 0 };
-
+            
             Content = scrollview;
         }
 
@@ -126,7 +126,10 @@ namespace voltaire.Controls
             if(new_selected!=null)
             {
                 new_selected.TextColor = Color.White;
-                scrollview.ScrollToAsync(new_selected,ScrollToPosition.Center,true);
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+                    scrollview.ScrollToAsync(new_selected, ScrollToPosition.Center, true);
+                }
                 slider.WidthRequest = new_selected.Width;
                 slider.TranslateTo(Container.X + new_selected.X, 0);
             }
