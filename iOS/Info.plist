@@ -3,9 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>voltaire</string>
-	<key>CFBundleName</key>
-	<string>voltaire</string>
+	<string>TEST VoltaireCRM</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.voltaire.mobilecenter.crm</string>
 	<key>CFBundleShortVersionString</key>
@@ -14,6 +12,21 @@
 	<true/>
 	<key>MinimumOSVersion</key>
 	<string>10.0</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow voltaire to access location for check-in's and client location check-in's</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Fonts/Raleway-Bold.ttf</string>
+		<string>Fonts/Raleway-Heavy.ttf</string>
+		<string>Fonts/Raleway-Medium.ttf</string>
+		<string>Fonts/Raleway-Regular.ttf</string>
+		<string>Fonts/Raleway-SemiBold.ttf</string>
+		<string>Fonts/SanFranciscoDisplay-Light.otf</string>
+		<string>Fonts/SanFranciscoDisplay-Semibold.otf</string>
+		<string>Fonts/SanFranciscoDisplay-Bold.otf</string>
+		<string>Fonts/SanFranciscoDisplay-Regular.otf</string>
+		<string>Fonts/SanFranciscoDisplay-Medium.otf</string>
+	</array>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>2</integer>
@@ -24,6 +37,10 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarHidden</key>
+	<true/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
