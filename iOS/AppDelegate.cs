@@ -25,6 +25,8 @@ namespace voltaire.iOS
             var renderer = new Syncfusion.SfAutoComplete.XForms.iOS.SfAutoCompleteRenderer();
 
             global::Xamarin.Forms.Forms.Init();
+
+
             CarouselViewRenderer.Init();
             KeyboardOverlapRenderer.Init();
             AnimationViewRenderer.Init();
