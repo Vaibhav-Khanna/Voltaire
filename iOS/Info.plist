@@ -6,21 +6,8 @@
 	<string>TEST VoltaireCRM</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.voltaire.mobilecenter.crm</string>
-	<key>CFBundleName</key>
-	<string>VoltaireCRM</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.3319</string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>mobilecenter-3d0ef256-3c90-4860-b789-63ff7e930523</string>
-			</array>
-		</dict>
-	</array>
-	<key>CFBundleVersion</key>
-	<string>3319</string>
+	<string>1.0.3322</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -64,9 +51,39 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Fonts/Raleway-Bold.ttf</string>
+		<string>Fonts/Raleway-Heavy.ttf</string>
+		<string>Fonts/Raleway-Medium.ttf</string>
+		<string>Fonts/Raleway-Regular.ttf</string>
+		<string>Fonts/Raleway-SemiBold.ttf</string>
+		<string>Fonts/SanFranciscoDisplay-Light.otf</string>
+		<string>Fonts/SanFranciscoDisplay-Semibold.otf</string>
+		<string>Fonts/SanFranciscoDisplay-Bold.otf</string>
+		<string>Fonts/SanFranciscoDisplay-Regular.otf</string>
+		<string>Fonts/SanFranciscoDisplay-Medium.otf</string>
+	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>appcenter-3d0ef256-3c90-4860-b789-63ff7e930523</string>
+			</array>
+		</dict>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow voltaire to access location for check-in&apos;s and client location check-in&apos;s</string>
+	<key>UIStatusBarHidden</key>
+	<true/>
+	<key>CFBundleVersion</key>
+	<string>3322</string>
 </dict>
 </plist>
