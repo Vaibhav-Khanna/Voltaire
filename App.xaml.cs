@@ -26,9 +26,6 @@ namespace voltaire
 
             InitializeComponent();
 
-            SQLitePCL.Batteries_V2.Init();
-            SQLitePCL.raw.FreezeProvider();
-
             ProductConstants.Init();
 
             PclStorage.Init();
