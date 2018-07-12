@@ -7,11 +7,9 @@
 	<key>CFBundleName</key>
 	<string>voltaire</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.voltaire.crm</string>
+	<string>com.voltaire.mobilecenter.crm</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.0.3322</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -56,7 +54,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>mobilecenter-3d0ef256-3c90-4860-b789-63ff7e930523</string>
+				<string>appcenter-3d0ef256-3c90-4860-b789-63ff7e930523</string>
 			</array>
 		</dict>
 	</array>
@@ -68,5 +66,7 @@
 	<string>Allow voltaire to access location for check-in&apos;s and client location check-in&apos;s</string>
 	<key>UIStatusBarHidden</key>
 	<true/>
+	<key>CFBundleVersion</key>
+	<string>3322</string>
 </dict>
 </plist>

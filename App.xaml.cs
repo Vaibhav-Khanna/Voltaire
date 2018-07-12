@@ -2,10 +2,10 @@ using FreshMvvm;
 using voltaire.PageModels;
 using voltaire.Pages;
 using Xamarin.Forms;
-using Microsoft.Azure.Mobile;
-using Microsoft.Azure.Mobile.Analytics;
-using Microsoft.Azure.Mobile.Crashes;
-using Microsoft.Azure.Mobile.Distribute;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Distribute;
 using voltaire.Models;
 using voltaire.DataStore;
 using voltaire.PageModels.Base;
@@ -88,7 +88,7 @@ namespace voltaire
             // Handle when your app starts
 #if DEBUG
 #else
-            MobileCenter.Start("ios=3d0ef256-3c90-4860-b789-63ff7e930523;" +
+            AppCenter.Start("ios=3d0ef256-3c90-4860-b789-63ff7e930523;" +
                                "android=c1308239-5175-41b4-a352-61530846726e;",
                                typeof(Analytics), typeof(Crashes), typeof(Distribute));
             Distribute.SetEnabledAsync(true);
