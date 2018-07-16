@@ -3876,6 +3876,25 @@ namespace voltaire.Droid
 			global::Lottie.Forms.Droid.Resource.Styleable.ViewStubCompat_android_id = global::voltaire.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::Lottie.Forms.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId = global::voltaire.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::Lottie.Forms.Droid.Resource.Styleable.ViewStubCompat_android_layout = global::voltaire.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_dialog_actioned_on_disabled_toast = global::voltaire.Droid.Resource.String.appcenter_distribute_dialog_actioned_on_disabled_toast;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_download_progress_number_format = global::voltaire.Droid.Resource.String.appcenter_distribute_download_progress_number_format;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_downloading_mandatory_update = global::voltaire.Droid.Resource.String.appcenter_distribute_downloading_mandatory_update;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_install = global::voltaire.Droid.Resource.String.appcenter_distribute_install;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_install_ready_message = global::voltaire.Droid.Resource.String.appcenter_distribute_install_ready_message;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_install_ready_title = global::voltaire.Droid.Resource.String.appcenter_distribute_install_ready_title;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_notification_category = global::voltaire.Droid.Resource.String.appcenter_distribute_notification_category;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_unknown_sources_dialog_message = global::voltaire.Droid.Resource.String.appcenter_distribute_unknown_sources_dialog_message;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_unknown_sources_dialog_settings = global::voltaire.Droid.Resource.String.appcenter_distribute_unknown_sources_dialog_settings;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_dialog_download = global::voltaire.Droid.Resource.String.appcenter_distribute_update_dialog_download;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_dialog_message_mandatory = global::voltaire.Droid.Resource.String.appcenter_distribute_update_dialog_message_mandatory;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_dialog_message_optional = global::voltaire.Droid.Resource.String.appcenter_distribute_update_dialog_message_optional;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_dialog_postpone = global::voltaire.Droid.Resource.String.appcenter_distribute_update_dialog_postpone;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_dialog_title = global::voltaire.Droid.Resource.String.appcenter_distribute_update_dialog_title;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_dialog_view_release_notes = global::voltaire.Droid.Resource.String.appcenter_distribute_update_dialog_view_release_notes;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_failed_dialog_ignore = global::voltaire.Droid.Resource.String.appcenter_distribute_update_failed_dialog_ignore;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_failed_dialog_message = global::voltaire.Droid.Resource.String.appcenter_distribute_update_failed_dialog_message;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_failed_dialog_reinstall = global::voltaire.Droid.Resource.String.appcenter_distribute_update_failed_dialog_reinstall;
+			global::Microsoft.AppCenter.Distribute.Resource.String.appcenter_distribute_update_failed_dialog_title = global::voltaire.Droid.Resource.String.appcenter_distribute_update_failed_dialog_title;
 			global::Xamarin.Auth._MobileServices.Resource.Animation.slide_in_right = global::voltaire.Droid.Resource.Animation.slide_in_right;
 			global::Xamarin.Auth._MobileServices.Resource.Animation.slide_out_left = global::voltaire.Droid.Resource.Animation.slide_out_left;
 			global::Xamarin.Auth._MobileServices.Resource.Drawable.ic_arrow_back = global::voltaire.Droid.Resource.Drawable.ic_arrow_back;
@@ -3884,21 +3903,6 @@ namespace voltaire.Droid
 			global::Xamarin.Auth._MobileServices.Resource.String.ApplicationName = global::voltaire.Droid.Resource.String.ApplicationName;
 			global::Xamarin.Auth._MobileServices.Resource.String.Hello = global::voltaire.Droid.Resource.String.Hello;
 			global::Xamarin.Auth._MobileServices.Resource.String.title_activity_webview = global::voltaire.Droid.Resource.String.title_activity_webview;
-			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_dialog_actioned_on_disabled_toast = global::voltaire.Droid.Resource.String.mobile_center_distribute_dialog_actioned_on_disabled_toast;
-			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_download_progress_number_format = global::voltaire.Droid.Resource.String.mobile_center_distribute_download_progress_number_format;
-			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_downloading_mandatory_update = global::voltaire.Droid.Resource.String.mobile_center_distribute_downloading_mandatory_update;
-			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_install = global::voltaire.Droid.Resource.String.mobile_center_distribute_install;
-			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_install_ready_message = global::voltaire.Droid.Resource.String.mobile_center_distribute_install_ready_message;
-			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_install_ready_title = global::voltaire.Droid.Resource.String.mobile_center_distribute_install_ready_title;
-			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_notification_category = global::voltaire.Droid.Resource.String.mobile_center_distribute_notification_category;
-			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_unknown_sources_dialog_message = global::voltaire.Droid.Resource.String.mobile_center_distribute_unknown_sources_dialog_message;
-			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_unknown_sources_dialog_settings = global::voltaire.Droid.Resource.String.mobile_center_distribute_unknown_sources_dialog_settings;
-			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_download = global::voltaire.Droid.Resource.String.mobile_center_distribute_update_dialog_download;
-			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_message_mandatory = global::voltaire.Droid.Resource.String.mobile_center_distribute_update_dialog_message_mandatory;
-			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_message_optional = global::voltaire.Droid.Resource.String.mobile_center_distribute_update_dialog_message_optional;
-			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_postpone = global::voltaire.Droid.Resource.String.mobile_center_distribute_update_dialog_postpone;
-			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_title = global::voltaire.Droid.Resource.String.mobile_center_distribute_update_dialog_title;
-			global::Microsoft.Azure.Mobile.Distribute.Resource.String.mobile_center_distribute_update_dialog_view_release_notes = global::voltaire.Droid.Resource.String.mobile_center_distribute_update_dialog_view_release_notes;
 			global::PCLCrypto.Resource.String.ApplicationName = global::voltaire.Droid.Resource.String.ApplicationName;
 			global::PCLCrypto.Resource.String.Hello = global::voltaire.Droid.Resource.String.Hello;
 			global::PCLStorage.Resource.String.ApplicationName = global::voltaire.Droid.Resource.String.ApplicationName;
@@ -11431,6 +11435,63 @@ namespace voltaire.Droid
 			// aapt resource value: 0x7f070049
 			public const int appbar_scrolling_view_behavior = 2131165257;
 			
+			// aapt resource value: 0x7f070054
+			public const int appcenter_distribute_dialog_actioned_on_disabled_toast = 2131165268;
+			
+			// aapt resource value: 0x7f070055
+			public const int appcenter_distribute_download_progress_number_format = 2131165269;
+			
+			// aapt resource value: 0x7f070056
+			public const int appcenter_distribute_downloading_mandatory_update = 2131165270;
+			
+			// aapt resource value: 0x7f070057
+			public const int appcenter_distribute_install = 2131165271;
+			
+			// aapt resource value: 0x7f070058
+			public const int appcenter_distribute_install_ready_message = 2131165272;
+			
+			// aapt resource value: 0x7f070059
+			public const int appcenter_distribute_install_ready_title = 2131165273;
+			
+			// aapt resource value: 0x7f07005a
+			public const int appcenter_distribute_notification_category = 2131165274;
+			
+			// aapt resource value: 0x7f07005b
+			public const int appcenter_distribute_unknown_sources_dialog_message = 2131165275;
+			
+			// aapt resource value: 0x7f07005c
+			public const int appcenter_distribute_unknown_sources_dialog_settings = 2131165276;
+			
+			// aapt resource value: 0x7f07005d
+			public const int appcenter_distribute_update_dialog_download = 2131165277;
+			
+			// aapt resource value: 0x7f07005e
+			public const int appcenter_distribute_update_dialog_message_mandatory = 2131165278;
+			
+			// aapt resource value: 0x7f07005f
+			public const int appcenter_distribute_update_dialog_message_optional = 2131165279;
+			
+			// aapt resource value: 0x7f070060
+			public const int appcenter_distribute_update_dialog_postpone = 2131165280;
+			
+			// aapt resource value: 0x7f070061
+			public const int appcenter_distribute_update_dialog_title = 2131165281;
+			
+			// aapt resource value: 0x7f070062
+			public const int appcenter_distribute_update_dialog_view_release_notes = 2131165282;
+			
+			// aapt resource value: 0x7f070063
+			public const int appcenter_distribute_update_failed_dialog_ignore = 2131165283;
+			
+			// aapt resource value: 0x7f070064
+			public const int appcenter_distribute_update_failed_dialog_message = 2131165284;
+			
+			// aapt resource value: 0x7f070065
+			public const int appcenter_distribute_update_failed_dialog_reinstall = 2131165285;
+			
+			// aapt resource value: 0x7f070066
+			public const int appcenter_distribute_update_failed_dialog_title = 2131165286;
+			
 			// aapt resource value: 0x7f07004a
 			public const int bottom_sheet_behavior = 2131165258;
 			
@@ -11490,51 +11551,6 @@ namespace voltaire.Droid
 			
 			// aapt resource value: 0x7f070052
 			public const int library_name = 2131165266;
-			
-			// aapt resource value: 0x7f070053
-			public const int mobile_center_distribute_dialog_actioned_on_disabled_toast = 2131165267;
-			
-			// aapt resource value: 0x7f070054
-			public const int mobile_center_distribute_download_progress_number_format = 2131165268;
-			
-			// aapt resource value: 0x7f070055
-			public const int mobile_center_distribute_downloading_mandatory_update = 2131165269;
-			
-			// aapt resource value: 0x7f070056
-			public const int mobile_center_distribute_install = 2131165270;
-			
-			// aapt resource value: 0x7f070057
-			public const int mobile_center_distribute_install_ready_message = 2131165271;
-			
-			// aapt resource value: 0x7f070058
-			public const int mobile_center_distribute_install_ready_title = 2131165272;
-			
-			// aapt resource value: 0x7f070059
-			public const int mobile_center_distribute_notification_category = 2131165273;
-			
-			// aapt resource value: 0x7f07005a
-			public const int mobile_center_distribute_unknown_sources_dialog_message = 2131165274;
-			
-			// aapt resource value: 0x7f07005b
-			public const int mobile_center_distribute_unknown_sources_dialog_settings = 2131165275;
-			
-			// aapt resource value: 0x7f07005c
-			public const int mobile_center_distribute_update_dialog_download = 2131165276;
-			
-			// aapt resource value: 0x7f07005d
-			public const int mobile_center_distribute_update_dialog_message_mandatory = 2131165277;
-			
-			// aapt resource value: 0x7f07005e
-			public const int mobile_center_distribute_update_dialog_message_optional = 2131165278;
-			
-			// aapt resource value: 0x7f07005f
-			public const int mobile_center_distribute_update_dialog_postpone = 2131165279;
-			
-			// aapt resource value: 0x7f070060
-			public const int mobile_center_distribute_update_dialog_title = 2131165280;
-			
-			// aapt resource value: 0x7f070061
-			public const int mobile_center_distribute_update_dialog_view_release_notes = 2131165281;
 			
 			// aapt resource value: 0x7f070013
 			public const int mr_button_content_description = 2131165203;
@@ -11623,8 +11639,8 @@ namespace voltaire.Droid
 			// aapt resource value: 0x7f07003c
 			public const int status_bar_notification_info_overflow = 2131165244;
 			
-			// aapt resource value: 0x7f070062
-			public const int title_activity_webview = 2131165282;
+			// aapt resource value: 0x7f070053
+			public const int title_activity_webview = 2131165267;
 			
 			static String()
 			{

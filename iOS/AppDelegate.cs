@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Azure.Mobile;
-using Microsoft.Azure.Mobile.Distribute;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Distribute;
 using Foundation;
 using UIKit;
+
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
+
 using CarouselView.FormsPlugin.iOS;
 using Syncfusion.SfPdfViewer.XForms.iOS;
 using KeyboardOverlap.Forms.Plugin.iOSUnified;
@@ -22,9 +24,11 @@ namespace voltaire.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             var renderer = new Syncfusion.SfAutoComplete.XForms.iOS.SfAutoCompleteRenderer();
-           
+
             global::Xamarin.Forms.Forms.Init();
-            CarouselViewRenderer.Init();  
+
+
+            CarouselViewRenderer.Init();
             KeyboardOverlapRenderer.Init();
             AnimationViewRenderer.Init();
 
@@ -40,7 +44,7 @@ namespace voltaire.iOS
 #if DEBUG
             Xamarin.Calabash.Start();
 #else
-            MobileCenter.Start("3d0ef256-3c90-4860-b789-63ff7e930523",
+            AppCenter.Start("3d0ef256-3c90-4860-b789-63ff7e930523",
                                typeof(Distribute), typeof(Analytics), typeof(Crashes));
             Distribute.DontCheckForUpdatesInDebug();
 #endif
