@@ -251,7 +251,7 @@ namespace voltaire.PageModels
 
                             if(model_property != null)
                             {
-                                var currentModel_attrs = ProductConstants.SaddleModels.Where((arg) => arg.Name == model_property.PropertyValue);
+                                var currentModel_attrs = ProductConstants.SaddleModels.Where((arg) => arg.Name?.ToLower()?.Trim() == model_property.PropertyValue?.ToLower()?.Trim());
 
                                 var color_id = ProductConstants.SaddleAttributes.Where((arg) => arg.En == "Color")?.First()?.Id;
 

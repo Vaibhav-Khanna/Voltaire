@@ -6,7 +6,6 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Akavache;
 using Android.OS;
 using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Distribute;
@@ -32,7 +31,7 @@ namespace voltaire.Droid
 
             Xamarin.FormsGoogleMaps.Init(this, bundle);
 
-            BlobCache.ApplicationName = "Voltaire";
+            //BlobCache.ApplicationName = "Voltaire";
 
             Acr.UserDialogs.UserDialogs.Init(this);
 

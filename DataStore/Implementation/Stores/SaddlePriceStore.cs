@@ -11,6 +11,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
+using Newtonsoft.Json.Linq;
 
 namespace voltaire.DataStore.Implementation.Stores
 {
@@ -18,13 +19,10 @@ namespace voltaire.DataStore.Implementation.Stores
     {
         public override string Identifier => "Saddle";
 
-        private IBlobCache Storage => BlobCache.UserAccount;
-
         IConnectivity Connectivity => CrossConnectivity.Current;
 
-
         public async Task<IEnumerable<SaddleAttribute>> GetSaddleAttributes()
-        {
+        {              
             try
             {
                 if (await Connectivity.IsRemoteReachable("https://www.google.com"))
@@ -43,14 +41,7 @@ namespace voltaire.DataStore.Implementation.Stores
 
                         if (list != null && list.Any())
                         {
-                            var dictionary = new Dictionary<string, SaddleAttribute>();
-
-                            foreach (var item in list)
-                            {
-                                dictionary.Add(item.Id.ToString(), item);
-                            }
-
-                            await Storage.InsertObjects<SaddleAttribute>(dictionary);
+                            await StoreManager.MobileService.SyncContext.Store.UpsertAsync(nameof(SaddleAttribute), list.Select((arg) => JObject.FromObject(arg)),true);
                         }
 
                         return list;
@@ -58,13 +49,17 @@ namespace voltaire.DataStore.Implementation.Stores
                 }
                 else
                 {
-                    var objects = await Storage.GetAllObjects<SaddleAttribute>();
-                    return objects;
+                    var objects = await StoreManager.MobileService.SyncContext.Store.ReadAsync(new Microsoft.WindowsAzure.MobileServices.Query.MobileServiceTableQueryDescription(nameof(SaddleAttribute)){ IncludeTotalCount = true });
+
+                    var str = objects.Value<JArray>("results");
+
+                    var items = str.Select((arg) => arg.ToObject<SaddleAttribute>());                 
+
+                    return items;
                 }
             }
-            catch(Exception ex)
-            {
-                
+            catch(Exception)
+            {                
             }
 
             return null;
@@ -72,6 +67,8 @@ namespace voltaire.DataStore.Implementation.Stores
 
         public async Task<IEnumerable<SaddleModel>> GetSaddleModel()
         {
+           
+
             try
             {
                 if (await Connectivity.IsRemoteReachable("https://www.google.com"))
@@ -90,14 +87,7 @@ namespace voltaire.DataStore.Implementation.Stores
 
                         if (list != null && list.Any())
                         {
-                            var dictionary = new Dictionary<string, SaddleModel>();
-
-                            foreach (var item in list)
-                            {
-                                dictionary.Add(item.AttributeId.ToString(), item);
-                            }
-
-                            await Storage.InsertObjects<SaddleModel>(dictionary);
+                            await StoreManager.MobileService.SyncContext.Store.UpsertAsync(nameof(SaddleModel), list.Select((arg) => JObject.FromObject(arg)), true);
                         }
 
                         return list;
@@ -105,13 +95,17 @@ namespace voltaire.DataStore.Implementation.Stores
                 }
                 else
                 {
-                    var objects = await Storage.GetAllObjects<SaddleModel>();
-                    return objects;
+                    var objects = await StoreManager.MobileService.SyncContext.Store.ReadAsync(new Microsoft.WindowsAzure.MobileServices.Query.MobileServiceTableQueryDescription(nameof(SaddleModel)) { IncludeTotalCount = true });
+
+                    var str = objects.Value<JArray>("results");
+
+                    var items = str.Select((arg) => arg.ToObject<SaddleModel>());
+
+                    return items;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
             }
 
             return null;
@@ -119,6 +113,8 @@ namespace voltaire.DataStore.Implementation.Stores
 
         public async Task<IEnumerable<SaddleValue>> GetSaddleValue()
         {
+           
+
             try
             {
                 if (await Connectivity.IsRemoteReachable("https://www.google.com"))
@@ -137,14 +133,7 @@ namespace voltaire.DataStore.Implementation.Stores
 
                         if (list != null && list.Any())
                         {
-                            var dictionary = new Dictionary<string, SaddleValue>();
-
-                            foreach (var item in list)
-                            {
-                                dictionary.Add(item.Id.ToString(), item);
-                            }
-
-                            await Storage.InsertObjects<SaddleValue>(dictionary);
+                            await StoreManager.MobileService.SyncContext.Store.UpsertAsync(nameof(SaddleValue), list.Select((arg) => JObject.FromObject(arg)), true);
                         }
 
                         return list;
@@ -152,13 +141,17 @@ namespace voltaire.DataStore.Implementation.Stores
                 }
                 else
                 {
-                    var objects = await Storage.GetAllObjects<SaddleValue>();
-                    return objects;
+                    var objects = await StoreManager.MobileService.SyncContext.Store.ReadAsync(new Microsoft.WindowsAzure.MobileServices.Query.MobileServiceTableQueryDescription(nameof(SaddleValue)) { IncludeTotalCount = true });
+
+                    var str = objects.Value<JArray>("results");
+
+                    var items = str.Select((arg) => arg.ToObject<SaddleValue>());
+
+                    return items;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
             }
 
             return null;
