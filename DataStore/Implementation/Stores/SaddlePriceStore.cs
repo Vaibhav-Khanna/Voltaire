@@ -58,8 +58,9 @@ namespace voltaire.DataStore.Implementation.Stores
                     return items;
                 }
             }
-            catch(Exception)
-            {                
+            catch(Exception ex)
+            { 
+                
             }
 
             return null;

@@ -13,9 +13,9 @@ namespace voltaire.PageModels
         Stream stream;
         public Stream PdfDocumentStream { get { return stream; } set { stream = value; RaisePropertyChanged(); } }
 
-        public Command BackButton => new Command(() =>
+        public Command BackButton => new Command(async() =>
         {
-            
+            await CoreMethods.PopPageModel();
         });
 
         public override void Init(object initData)

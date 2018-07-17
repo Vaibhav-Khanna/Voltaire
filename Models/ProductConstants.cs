@@ -195,8 +195,8 @@ namespace voltaire.Models
                 ProductKind = ProductKind.accessory,
                 Properties = new List<ProductProperty>()
                 {
-                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Category" , PropertyValue = null, AllSource = AccessoryCategory, ItemSource = AccessoryCategory },
-                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Sub Category" , PropertyValue = null,AllSource = AccessorySubCategory, ItemSource = AccessorySubCategory },
+                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Parent Category" , PropertyValue = null, AllSource = AccessoryCategory, ItemSource = AccessoryCategory },
+                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Category" , PropertyValue = null,AllSource = AccessorySubCategory, ItemSource = AccessorySubCategory },
                     new ProductProperty(PropertyType.IsPicker){ PropertyName = "Name", PropertyValue = null, AllSource = AccessoryModel, ItemSource = AccessoryModel },
                     new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price", PropertyValue = null },
                     new ProductProperty(PropertyType.IsLabel) { PropertyName = "Reference", PropertyValue = null, IsVisible = false },

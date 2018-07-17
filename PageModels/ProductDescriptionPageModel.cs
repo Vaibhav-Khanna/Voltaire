@@ -145,9 +145,9 @@ namespace voltaire.PageModels
 
                 if (item.PropertyValue != null)
                 {
-                    if (item.PropertyName == "Category")
+                    if (item.PropertyName == "Parent Category")
                     {
-                        var data = ProductProperties.Where((arg) => arg.PropertyName == "Sub Category");
+                        var data = ProductProperties.Where((arg) => arg.PropertyName == "Category");
 
                         var data_name = ProductProperties.Where((arg) => arg.PropertyName == "Name");
 
@@ -174,11 +174,11 @@ namespace voltaire.PageModels
                             data_name.First().PropertyValue = null;
                         }
                     }
-                    else if (item.PropertyName == "Sub Category")
+                    else if (item.PropertyName == "Category")
                     {
                         var data = ProductProperties.Where((arg) => arg.PropertyName == "Name");
 
-                        var cat = ProductProperties.Where((arg) => arg.PropertyName == "Category");
+                        var cat = ProductProperties.Where((arg) => arg.PropertyName == "Parent Category");
 
                         if (data.Any() && cat.Any())
                         {
@@ -478,12 +478,12 @@ namespace voltaire.PageModels
                 ProductProperty AccessorySubCategoryProperty = null;
                 ProductProperty ReferenceProperty = null;
 
-                var categories = ProductProperties.Where((arg) => arg.PropertyName == "Category");
+                var categories = ProductProperties.Where((arg) => arg.PropertyName == "Parent Category");
 
                 if (categories.Any())
                     AccessoryCategoryProperty = categories.First();
 
-                var subcategories = ProductProperties.Where((arg) => arg.PropertyName == "Sub Category");
+                var subcategories = ProductProperties.Where((arg) => arg.PropertyName == "Category");
 
                 if (subcategories.Any())
                     AccessorySubCategoryProperty = subcategories.First();
@@ -797,9 +797,9 @@ namespace voltaire.PageModels
             if (ProductProperties != null && ProductProperties.Any())
                 if (saleOrderLine?.ProductKind == ProductKind.accessory.ToString())
                 {
-                    var Cat = ProductProperties.Where((arg) => arg.PropertyName == "Category");
+                    var Cat = ProductProperties.Where((arg) => arg.PropertyName == "Parent Category");
 
-                    var subCat = ProductProperties.Where((arg) => arg.PropertyName == "Sub Category");
+                    var subCat = ProductProperties.Where((arg) => arg.PropertyName == "Category");
 
                     var name = ProductProperties.Where((arg) => arg.PropertyName == "Name");
 

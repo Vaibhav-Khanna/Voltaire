@@ -170,6 +170,10 @@ namespace voltaire.DataStore.Implementation
 
                 store.DefineTable<StoreSettings>();
 
+                store.DefineTable<SaddleAttribute>();
+                store.DefineTable<SaddleModel>();
+                store.DefineTable<SaddleValue>();
+
                 //TODO Add rest of the tables
             }
 
