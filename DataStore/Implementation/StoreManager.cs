@@ -18,7 +18,6 @@ using System.Diagnostics;
 using voltaire.Models.DataObjects;
 using voltaire.DataStore.Implementation.Stores;
 using voltaire.PopUps;
-using Akavache;
 using Plugin.Connectivity;
 using System.Reactive.Linq;
 
@@ -503,14 +502,24 @@ namespace voltaire.DataStore.Implementation
                     // download terms and conditions
                     if (!string.IsNullOrEmpty(data.TermAndConditions))
                     {
-                        var file = await BlobCache.UserAccount.DownloadUrl(key:StorageKeys.TermsConditions,url:data.TermAndConditions,fetchAlways: true);
+                        _client = new HttpClient();
 
-                        if (file != null)
-                            return true;
+                        response = await _client.GetAsync(data.TermAndConditions);
+
+                        var file = await response.Content.ReadAsByteArrayAsync();
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            if (file != null)
+                            {
+                                var isSaved = await Helpers.PclStorage.SaveFileLocal(file, StorageKeys.TermsConditions);
+                                return isSaved;
+                            }
+                        }
                     }
                 } 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 
             }
@@ -525,14 +534,14 @@ namespace voltaire.DataStore.Implementation
             // Terms conditions
             try
             {
-                var file = await BlobCache.UserAccount.Get(StorageKeys.TermsConditions);
+                var file = await Helpers.PclStorage.LoadFileLocal(StorageKeys.TermsConditions);
 
                 if(file!=null)
                 {
                     list.Add(StorageKeys.TermsConditions,file);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 
             }

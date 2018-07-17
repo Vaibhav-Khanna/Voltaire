@@ -6,8 +6,8 @@ using Microsoft.AppCenter.Distribute;
 using Foundation;
 using UIKit;
 
-using Microsoft.Azure.Mobile.Analytics;
-using Microsoft.Azure.Mobile.Crashes;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 using CarouselView.FormsPlugin.iOS;
 using Syncfusion.SfPdfViewer.XForms.iOS;
@@ -52,8 +52,6 @@ namespace voltaire.iOS
             LoadApplication(new App());
 
             SfPdfDocumentViewRenderer.Init();
-
-
 
             var result = base.FinishedLaunching(app, options);
 

@@ -6,7 +6,7 @@ using voltaire.Models.DataObjects;
 using System.Net.Http;
 using Newtonsoft.Json;
 using voltaire.Models;
-using Akavache;
+
 using System.Linq;
 using System.Reactive.Linq;
 using Plugin.Connectivity;
