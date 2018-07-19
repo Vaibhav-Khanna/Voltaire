@@ -131,9 +131,6 @@ namespace voltaire.PageModels
                 {
                     
                 }
-
-              
-
             }
         }
 
@@ -263,16 +260,16 @@ namespace voltaire.PageModels
 
                                 var panel_id = ProductConstants.SaddleAttributes.Where((arg) => arg.En == "Pannel")?.First()?.Id;
 
+                                var colors = ProductProperties.Where((arg) => arg.PropertyName == "Color").First();
+                                colors.ItemSource = new List<string>();
+                                colors.PropertyValue = null;
+
                                 if(color_id!=null)
                                 {
                                     var data = currentModel_attrs.Where((arg) => arg.AttributeId == color_id.Value);
                                    
                                     if(data.Any())
                                     {
-                                        var colors = ProductProperties.Where((arg) => arg.PropertyName == "Color").First();
-                                        colors.ItemSource = new List<string>();
-                                        colors.PropertyValue = null;
-
                                         foreach (var _item in data.First().AttributeValueList)
                                         {
                                             colors.ItemSource.Add(ProductConstants.SaddleValues.Where((arg) => arg.Id.ToString() == _item).First().EnUs);
@@ -280,16 +277,17 @@ namespace voltaire.PageModels
                                     }
                                 }
 
+                                var leather = ProductProperties.Where((arg) => arg.PropertyName == "Leather").First();
+                                leather.ItemSource = new List<string>();
+                                leather.PropertyValue = null;
+
                                 if (leather_id != null)
                                 {
                                     var data = currentModel_attrs.Where((arg) => arg.AttributeId == leather_id.Value);
 
                                     if (data.Any())
                                     {
-                                        var leather = ProductProperties.Where((arg) => arg.PropertyName == "Leather").First();
-                                        leather.ItemSource = new List<string>();
-                                        leather.PropertyValue = null;
-
+                                        
                                         foreach (var _item in data.First().AttributeValueList)
                                         {
                                             leather.ItemSource.Add(ProductConstants.SaddleValues.Where((arg) => arg.Id.ToString() == _item).First().EnUs);
@@ -297,15 +295,17 @@ namespace voltaire.PageModels
                                     }
                                 }
 
+                                var f_block = ProductProperties.Where((arg) => arg.PropertyName == "Front Block").First();
+                                f_block.ItemSource = new List<string>();
+                                f_block.PropertyValue = null;
+
                                 if (frontblock_id != null)
                                 {
                                     var data = currentModel_attrs.Where((arg) => arg.AttributeId == frontblock_id.Value);
 
                                     if (data.Any())
                                     {
-                                        var f_block = ProductProperties.Where((arg) => arg.PropertyName == "Front Block").First();
-                                        f_block.ItemSource = new List<string>();
-                                        f_block.PropertyValue = null;
+                                        
 
                                         foreach (var _item in data.First().AttributeValueList)
                                         {
@@ -314,15 +314,17 @@ namespace voltaire.PageModels
                                     }
                                 }
 
+                                var r_block = ProductProperties.Where((arg) => arg.PropertyName == "Rear Block").First();
+                                r_block.ItemSource = new List<string>();
+                                r_block.PropertyValue = null;
+
                                 if (rearblock_id != null)
                                 {
                                     var data = currentModel_attrs.Where((arg) => arg.AttributeId == rearblock_id.Value);
 
                                     if (data.Any())
                                     {
-                                        var r_block = ProductProperties.Where((arg) => arg.PropertyName == "Rear Block").First();
-                                        r_block.ItemSource = new List<string>();
-                                        r_block.PropertyValue = null;
+                                        
 
                                         foreach (var _item in data.First().AttributeValueList)
                                         {
@@ -331,16 +333,17 @@ namespace voltaire.PageModels
                                     }
                                 }
 
+                                var panel = ProductProperties.Where((arg) => arg.PropertyName == "Panel Base").First();
+                                panel.ItemSource = new List<string>();
+                                panel.PropertyValue = null;
+
                                 if (panel_id != null)
                                 {
                                     var data = currentModel_attrs.Where((arg) => arg.AttributeId == panel_id.Value);
 
                                     if (data.Any())
                                     {
-                                        var panel = ProductProperties.Where((arg) => arg.PropertyName == "Panel Base").First();
-                                        panel.ItemSource = new List<string>();
-                                        panel.PropertyValue = null;
-
+                                        
                                         foreach (var _item in data.First().AttributeValueList)
                                         {
                                             panel.ItemSource.Add(ProductConstants.SaddleValues.Where((arg) => arg.Id.ToString() == _item).First().EnUs);

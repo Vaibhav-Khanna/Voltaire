@@ -23,7 +23,6 @@ namespace voltaire.DataStore.Implementation
         protected IMobileServiceTable<T> OnlineTable
         {
             get { return onlinetable ?? (onlinetable = StoreManager.MobileService.GetTable<T>()); }
-
         }
 
 
