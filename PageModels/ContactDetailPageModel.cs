@@ -580,6 +580,8 @@ namespace voltaire.PageModels
    
             if (!CanEdit)
             {
+                ProductConstants.GenerateProductList();
+
                 //pages.Add(new TTab(this) { Name = AppResources.Reminder, View = typeof(ContentView) });
                 pages.Add(new TTab(this) { Name = AppResources.Map, View = typeof(Pages.MapTabPage) });
                 pages.Add(new TTab(this) { Name = AppResources.Quotations, View = typeof(Pages.QuotationsTabPage) });

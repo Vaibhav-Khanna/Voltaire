@@ -31,6 +31,9 @@
         [JsonProperty("leather")]
         public string Leather { get; set; }
 
+        [JsonProperty("grained")]
+        public string Grained { get; set; }
+
         [JsonProperty("price")]
         public long Price { get; set; }
 
@@ -45,6 +48,9 @@
 
         [JsonProperty("date_end")]
         public DateTime DateEnd { get; set; }
+
+        [JsonProperty("pricelist_item_id")]
+        public long PricelistItemId { get; set; }
 
     }
 }

@@ -162,6 +162,7 @@ namespace voltaire.Models
                     new ProductProperty(PropertyType.IsPicker) { PropertyName = "Model" , PropertyValue = null, ItemSource = SaddleModel },
                     new ProductProperty(PropertyType.IsPicker) { PropertyName = "Color" },
                     new ProductProperty(PropertyType.IsPicker) { PropertyName = "Leather" },
+                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Grained" },
                     new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price", PropertyValue = null },
 
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Rider Name" , PropertyValue = null },

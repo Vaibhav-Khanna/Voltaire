@@ -7,17 +7,23 @@ namespace voltaire.Models
 {
     public class SaddleModel
     {
-        [JsonProperty("attribute_values")]
-        public string AttributeValues { get; set; }
+        [JsonProperty("attribute_name")]
+        public string AttributeName { get; set; }
 
         [JsonProperty("attribute_id")]
         public long AttributeId { get; set; }
 
+        [JsonProperty("code")]
+        public string Code { get; set; }
+
         [JsonProperty("id")]
         public long Id { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonProperty("attribute_values_ids")]
+        public string AttributeValuesIds { get; set; }
+
+        [JsonProperty("saddle_name")]
+        public string SaddleName { get; set; }
 
 
         [JsonIgnore]
@@ -25,11 +31,11 @@ namespace voltaire.Models
         {
             get
             {
-                if (string.IsNullOrEmpty(AttributeValues))
+                if (string.IsNullOrEmpty(AttributeValuesIds))
                     return new List<string>();
                 else
                 {
-                    var string_array = AttributeValues.TrimEnd(',').Split(',');
+                    var string_array = AttributeValuesIds.TrimEnd(',').Split(',');
                     return string_array.ToList();
                 }
             }

@@ -248,17 +248,23 @@ namespace voltaire.PageModels
 
                             if(model_property != null)
                             {
-                                var currentModel_attrs = ProductConstants.SaddleModels.Where((arg) => arg.Name?.ToLower()?.Trim() == model_property.PropertyValue?.ToLower()?.Trim());
+                                
+                                var currentModel_attrs = ProductConstants.SaddleModels.Where((arg) => arg.SaddleName?.ToLower()?.Trim() == model_property.PropertyValue?.ToLower()?.Trim());
 
-                                var color_id = ProductConstants.SaddleAttributes.Where((arg) => arg.En == "Color")?.First()?.Id;
+                                var color_id = ProductConstants.SaddleAttributes.Where((arg) => arg.Code == "c_color")?.First()?.EnUs;
 
-                                var leather_id = ProductConstants.SaddleAttributes.Where((arg) => arg.En == "Leather")?.First()?.Id;
+                                var leather_id = ProductConstants.SaddleAttributes.Where((arg) => arg.Code == "c_leather")?.First()?.EnUs;
 
-                                var frontblock_id = ProductConstants.SaddleAttributes.Where((arg) => arg.En == "Front Block")?.First()?.Id;
+                                var frontblock_id = ProductConstants.SaddleAttributes.Where((arg) => arg.Code == "c_fblock")?.First()?.EnUs;
 
-                                var rearblock_id = ProductConstants.SaddleAttributes.Where((arg) => arg.En == "Rear Block")?.First()?.Id;
+                                var rearblock_id = ProductConstants.SaddleAttributes.Where((arg) => arg.Code == "c_rblock")?.First()?.EnUs;
 
-                                var panel_id = ProductConstants.SaddleAttributes.Where((arg) => arg.En == "Pannel")?.First()?.Id;
+                                var panel_id = ProductConstants.SaddleAttributes.Where((arg) => arg.Code == "c_panel")?.First()?.EnUs;
+
+                                var grained_id = ProductConstants.SaddleAttributes.Where((arg) => arg.Code == "c_grained")?.First()?.EnUs;
+
+
+                                // replace the attribute id matching with code in each of the below properties
 
                                 var colors = ProductProperties.Where((arg) => arg.PropertyName == "Color").First();
                                 colors.ItemSource = new List<string>();
@@ -266,7 +272,7 @@ namespace voltaire.PageModels
 
                                 if(color_id!=null)
                                 {
-                                    var data = currentModel_attrs.Where((arg) => arg.AttributeId == color_id.Value);
+                                    var data = currentModel_attrs.Where((arg) => arg.AttributeName == color_id);
                                    
                                     if(data.Any())
                                     {
@@ -283,7 +289,7 @@ namespace voltaire.PageModels
 
                                 if (leather_id != null)
                                 {
-                                    var data = currentModel_attrs.Where((arg) => arg.AttributeId == leather_id.Value);
+                                    var data = currentModel_attrs.Where((arg) => arg.AttributeName == leather_id);
 
                                     if (data.Any())
                                     {
@@ -295,13 +301,34 @@ namespace voltaire.PageModels
                                     }
                                 }
 
+                                var grains = ProductProperties.Where((arg) => arg.PropertyName == "Grained");
+                                if (grains != null && grains.Any())
+                                {
+                                    var grained = grains.First();
+                                    grained.ItemSource = new List<string>();
+                                    grained.PropertyValue = null;
+
+                                    if (grained_id != null)
+                                    {
+                                        var data = currentModel_attrs.Where((arg) => arg.AttributeName == grained_id);
+
+                                        if (data.Any())
+                                        {
+                                            foreach (var _item in data.First().AttributeValueList)
+                                            {
+                                                grained.ItemSource.Add(ProductConstants.SaddleValues.Where((arg) => arg.Id.ToString() == _item).First().EnUs);
+                                            }
+                                        }
+                                    }
+                                }
+
                                 var f_block = ProductProperties.Where((arg) => arg.PropertyName == "Front Block").First();
                                 f_block.ItemSource = new List<string>();
                                 f_block.PropertyValue = null;
 
                                 if (frontblock_id != null)
                                 {
-                                    var data = currentModel_attrs.Where((arg) => arg.AttributeId == frontblock_id.Value);
+                                    var data = currentModel_attrs.Where((arg) => arg.AttributeName == frontblock_id);
 
                                     if (data.Any())
                                     {
@@ -320,7 +347,7 @@ namespace voltaire.PageModels
 
                                 if (rearblock_id != null)
                                 {
-                                    var data = currentModel_attrs.Where((arg) => arg.AttributeId == rearblock_id.Value);
+                                    var data = currentModel_attrs.Where((arg) => arg.AttributeName == rearblock_id);
 
                                     if (data.Any())
                                     {
@@ -339,7 +366,7 @@ namespace voltaire.PageModels
 
                                 if (panel_id != null)
                                 {
-                                    var data = currentModel_attrs.Where((arg) => arg.AttributeId == panel_id.Value);
+                                    var data = currentModel_attrs.Where((arg) => arg.AttributeName == panel_id);
 
                                     if (data.Any())
                                     {
@@ -379,6 +406,7 @@ namespace voltaire.PageModels
                 ProductProperty ModelProperty = null;
                 ProductProperty ColorProperty = null;
                 ProductProperty LeatherProperty = null;
+                ProductProperty GrainedProperty = null;
 
                 var models = ProductProperties.Where( (arg) => arg.PropertyName == "Model" );
 
@@ -395,7 +423,12 @@ namespace voltaire.PageModels
                 if (leathers.Any())
                     LeatherProperty = leathers.First();
 
-                if (ModelProperty == null || ColorProperty == null || LeatherProperty == null)
+                var grained = ProductProperties.Where((arg) => arg.PropertyName == "Grained");
+
+                if (grained.Any())
+                    GrainedProperty = grained.First();
+
+                if (ModelProperty == null || LeatherProperty == null )
                     return false;
 
                 if (ModelProperty.PropertyValue == null)
@@ -406,10 +439,10 @@ namespace voltaire.PageModels
                     return false;
                 }
 
-                if (ColorProperty.PropertyValue == null)
+                if (ColorProperty?.PropertyValue == null)
                 {
                     if (shouldDisplayPopup)
-                    CoreMethods.DisplayAlert("Alert", "Please select " + ColorProperty.PropertyName, "Ok");
+                    CoreMethods.DisplayAlert("Alert", "Please select " + ColorProperty?.PropertyName, "Ok");
                     
                     return false;
                 }
@@ -419,6 +452,14 @@ namespace voltaire.PageModels
                     if (shouldDisplayPopup)
                     CoreMethods.DisplayAlert("Alert", "Please select " + LeatherProperty.PropertyName, "Ok");
                     
+                    return false;
+                }
+
+                if (GrainedProperty != null && GrainedProperty?.PropertyValue == null)
+                {
+                    if (shouldDisplayPopup)
+                        CoreMethods.DisplayAlert("Alert", "Please select grained.", "Ok");
+
                     return false;
                 }
 

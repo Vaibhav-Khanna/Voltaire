@@ -167,8 +167,6 @@ namespace voltaire.PageModels
             Customer = context;
 
             FetchItems();
-
-            ProductConstants.GenerateProductList();
         }
 
         public override void TabAppearing()

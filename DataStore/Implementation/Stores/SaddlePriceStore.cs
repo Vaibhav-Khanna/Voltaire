@@ -22,7 +22,7 @@ namespace voltaire.DataStore.Implementation.Stores
         IConnectivity Connectivity => CrossConnectivity.Current;
 
         public async Task<IEnumerable<SaddleAttribute>> GetSaddleAttributes()
-        {              
+        {
             try
             {
                 if (await Connectivity.IsRemoteReachable("https://www.google.com"))
@@ -88,6 +88,14 @@ namespace voltaire.DataStore.Implementation.Stores
 
                         if (list != null && list.Any())
                         {
+                            int i = 0;
+
+                            foreach (var item in list)
+                            {
+                                item.Id = i;
+                                i++;
+                            }
+
                             await StoreManager.MobileService.SyncContext.Store.UpsertAsync(nameof(SaddleModel), list.Select((arg) => JObject.FromObject(arg)), true);
                         }
 
@@ -113,9 +121,7 @@ namespace voltaire.DataStore.Implementation.Stores
         }
 
         public async Task<IEnumerable<SaddleValue>> GetSaddleValue()
-        {
-           
-
+        {         
             try
             {
                 if (await Connectivity.IsRemoteReachable("https://www.google.com"))
