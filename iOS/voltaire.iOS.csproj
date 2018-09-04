@@ -369,6 +369,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Effects\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -394,6 +395,7 @@
     <Compile Include="Renderers\ExtendedEditorRenderer.cs" />
     <Compile Include="Renderers\HtmlFormattedLabelRenderer.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Services\Localize.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.png" />

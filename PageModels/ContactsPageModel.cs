@@ -179,6 +179,7 @@ namespace voltaire.PageModels
                 if (result != null && result.Any())
                 {
                     var list = customers.ToList();
+
                     list.AddRange(result);
 
                     Debug.WriteLine("Fetched " + result.Count());

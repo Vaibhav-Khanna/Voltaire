@@ -362,6 +362,7 @@
     <Compile Include="Renderers\BorderlessPickerRenderer.cs" />
     <Compile Include="Splashscreen.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Services\Localize.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -524,6 +525,7 @@
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Resources\values\" />
     <Folder Include="Assets\fonts\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fonts\Raleway-Bold.otf" />

@@ -204,9 +204,9 @@ namespace voltaire.PageModels
 
                var user = await StoreManager.UserStore.GetCurrentUserAsync();
 
-                if (user == null || location == null)
+               if (user == null || location == null)
                {
-                   await CoreMethods.DisplayAlert("Error", "Try again", "Ok"); 
+                   await CoreMethods.DisplayAlert(AppResources.Error, AppResources.TryAgain, AppResources.Ok);
                    CheckinEnable = true;
                    return;
                }

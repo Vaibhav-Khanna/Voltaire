@@ -182,6 +182,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppResources.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -551,6 +555,13 @@
     <Compile Include="Models\SaddleAttribute.cs" />
     <Compile Include="Models\SaddleModel.cs" />
     <Compile Include="Models\SaddleValue.cs" />
+    <Compile Include="Helpers\LanguageService.cs" />
+    <Compile Include="Services\ILocalize.cs" />
+    <Compile Include="Resources\PlatformCulture.cs" />
+    <Compile Include="Resources\TranslateExtension.cs" />
+    <Compile Include="Resources\AppResources.fr.Designer.cs">
+      <DependentUpon>AppResources.fr.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
@@ -751,6 +762,7 @@
     <Folder Include="DataStore\Abstraction\Stores\" />
     <Folder Include="DataStore\Implementation\Stores\" />
     <Folder Include="Models\DataObjects\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="packages\Xamarin.Forms.3.1.0.583944\build\netstandard1.0\Xamarin.Forms.targets" Condition="Exists('packages\Xamarin.Forms.3.1.0.583944\build\netstandard1.0\Xamarin.Forms.targets')" />

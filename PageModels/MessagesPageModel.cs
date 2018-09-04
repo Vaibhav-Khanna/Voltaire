@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using voltaire.Models.DataObjects;
+using voltaire.Resources;
 
 namespace voltaire.PageModels
 {
@@ -17,16 +18,17 @@ namespace voltaire.PageModels
 
         public Command AddMessage => new Command(async (obj) =>
        {
-            if (currUser == null)
+           if (currUser == null)
            {
-               await CoreMethods.DisplayAlert("Error", "Experienced internal error sending this message. Reopen the app to try sending the message", "Ok");
+               await CoreMethods.DisplayAlert(AppResources.Error, AppResources.MessageInternalError, AppResources.Ok);
                return;
            }
 
            var _messageText = MessageText;
 
             MessageText = null;
-           // var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = "<p>" + MessageText + "</p>", ResId = Quotation.SaleOrder.Id, MessageType = MessageType.comment, Model = "sale.order" };
+          
+            // var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = "<p>" + MessageText + "</p>", ResId = Quotation.SaleOrder.Id, MessageType = MessageType.comment, Model = "sale.order" };
             var message = new Message() { AuthorId = currUser.PartnerId, ExternalAuthorId = currUser.ExternalPartnerId, Date = DateTime.Now, Body = _messageText, ResId = Quotation.SaleOrder.Id, MessageType = MessageType.comment.ToString() , Model = "sale.order" };
 
            //insertion de message dans la base
@@ -45,8 +47,6 @@ namespace voltaire.PageModels
 
 
         QuotationsModel Quotation { get; set; }
-
-
         ObservableCollection<MessageModel> messagesource;
         public ObservableCollection<MessageModel> MessageSource
         {
@@ -57,8 +57,6 @@ namespace voltaire.PageModels
                 RaisePropertyChanged();
             }
         }
-
-
 
         string messagetext;
         public string MessageText

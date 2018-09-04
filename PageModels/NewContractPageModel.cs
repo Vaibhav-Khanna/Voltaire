@@ -7,6 +7,7 @@ using Syncfusion.Drawing;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
 using voltaire.Models;
+using voltaire.Resources;
 using Xamarin.Forms;
 
 
@@ -85,7 +86,7 @@ namespace voltaire.PageModels
        {
             if(string.IsNullOrWhiteSpace(OrderN))
             {
-                await CoreMethods.DisplayAlert("Fill Information","Please enter the order number,","Ok");
+                await CoreMethods.DisplayAlert(AppResources.FillInformation,AppResources.EnterOrderNumber ,AppResources.Ok);
                return;
             }
 
@@ -182,7 +183,7 @@ namespace voltaire.PageModels
                 var _contract = new Contract(){ Customer = Customer, ModifiedDateTime = DateTime.Now };
                 customer.Contracts.Add(_contract);
                 Contract = _contract;
-				NewContract = $"New contract for {customer.Name}";
+                NewContract = $"{AppResources.NewContractFor} {customer.Name}";
             }
             else
             {

@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using System.Linq;
 using FreshMvvm;
 using System.Threading.Tasks;
+using voltaire.Resources;
 
 namespace voltaire.PageModels
 {
@@ -15,7 +16,7 @@ namespace voltaire.PageModels
 
         public QuotationsPageModel()
         {
-            FilterTypes = new ObservableCollection<string>() { "All", "Name", "Status" };
+            FilterTypes = new ObservableCollection<string>() { AppResources.All, AppResources.Name, AppResources.Status };
 
             Filter = 0;
         }

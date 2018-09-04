@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using voltaire.Helpers;
 using voltaire.Models.DataObjects;
 using voltaire.DataStore.Implementation;
+using voltaire.Resources;
 
 namespace voltaire.PageModels
 {
@@ -25,7 +26,7 @@ namespace voltaire.PageModels
 
             if(files.ContainsKey(StorageKeys.TermsConditions))
             {
-                await CoreMethods.PushPageModel<PdfViewerPageModel>(new Tuple<string,byte[]>("Terms & Conditions",files[StorageKeys.TermsConditions]));
+                await CoreMethods.PushPageModel<PdfViewerPageModel>(new Tuple<string,byte[]>(AppResources.TermsConditions,files[StorageKeys.TermsConditions]));
             }
         });
 
@@ -33,13 +34,13 @@ namespace voltaire.PageModels
        {
            if (!TermsConditionSelected)
            {
-               await CoreMethods.DisplayAlert("Alert", "Please accept the terms and conditions first in order to validate the quotation.", "Ok");
+                await CoreMethods.DisplayAlert(AppResources.Alert, AppResources.AcceptTCForQuotation, AppResources.Ok);
                return;
            }
 
            if (IsSigned)
            {
-               await CoreMethods.DisplayAlert("Alert", "You have already signed this quotation !", "Ok");
+                await CoreMethods.DisplayAlert(AppResources.Alert, AppResources.AlreadySigned, AppResources.Ok);
                return;
            }
 
@@ -96,14 +97,14 @@ namespace voltaire.PageModels
 
                Dialog.HideLoading();
 
-               await CoreMethods.DisplayAlert("Alerte","Email has been sent","OK");
+                await CoreMethods.DisplayAlert(AppResources.Alert,AppResources.EmailSent,AppResources.Ok);
 
                await CoreMethods.PopPageModel();
 
            }
            else
            {
-               await CoreMethods.DisplayAlert("Alert", "Please sign the quotation first.", "Ok");
+                await CoreMethods.DisplayAlert(AppResources.Alert, AppResources.SignQuoatationFirst, AppResources.Ok);
            }
 
        });
@@ -259,7 +260,7 @@ namespace voltaire.PageModels
             {
                 quotation = value;
 
-                Title = "Order "+ quotation.Ref;
+                Title = AppResources.Order + " "+ quotation.Ref;
 
                 Amount = quotation.TotalAmount;
 

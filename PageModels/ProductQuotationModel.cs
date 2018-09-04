@@ -251,16 +251,6 @@ namespace voltaire.PageModels
         }
 
 
-        //void SetOrderStatusIndex(int _value)
-        //{
-        //     OrderStatus = OrderStatusTypes[_value];
-        //    //Xamarin.Forms.Device.StartTimer(new TimeSpan(0, 0, 0, 1, 200), () =>
-        //        //{
-        //        //    OrderStatusIndex = _value;
-        //        //    return false;
-        //        //});
-        //}
-
         void SetQuantityIndex(int _value)
         {
             Xamarin.Forms.Device.StartTimer(new TimeSpan(0, 0, 0, 0, 600), () =>

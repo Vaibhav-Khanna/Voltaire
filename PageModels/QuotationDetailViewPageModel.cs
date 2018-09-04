@@ -22,7 +22,7 @@ namespace voltaire.PageModels
 
         public Command BackButton => new Command(async () =>
        {
-           UserDialogs.Instance.ShowLoading("Just a moment...");
+            UserDialogs.Instance.ShowLoading($"{AppResources.JustAMoment}...");
           
            await StoreManager.SaleOrderStore.UpdateAsync(Quotation.SaleOrder);
 
@@ -88,7 +88,7 @@ namespace voltaire.PageModels
             else if (response == AppResources.DeleteQuotation)
             {
                 // delete quotation 
-                UserDialogs.Instance.ShowLoading("Deleting...");
+                UserDialogs.Instance.ShowLoading($"{AppResources.Deleting}...");
                 await StoreManager.SaleOrderStore.RemoveAsync(Quotation.SaleOrder);
                 UserDialogs.Instance.HideLoading();
                 await CoreMethods?.PopPageModel();
@@ -117,12 +117,12 @@ namespace voltaire.PageModels
         public Command EmailCommand => new Command(async (obj) =>
        {
            // Generate or check PDF file
-            var resp = await CoreMethods.DisplayAlert("Alerte", "Do you want to send it now ?", "Yes", "Not now");
+            var resp = await CoreMethods.DisplayAlert(AppResources.Alert, AppResources.WantToSendNow, AppResources.Yes, AppResources.NotNow);
 
            if (!resp)
                return;
 
-           Dialog.ShowLoading("Sending mail...");
+            Dialog.ShowLoading($"{AppResources.SendingMail}...");
 
            var vendorItem = await StoreManager.DocumentStore.GetItemByEmployeeId(quotation.SaleOrder.Id, "vendor");
 
@@ -167,7 +167,7 @@ namespace voltaire.PageModels
 
             Dialog.HideLoading();
 
-           await CoreMethods.DisplayAlert("Alerte", "Document has been sent.", "OK");
+            await CoreMethods.DisplayAlert(AppResources.Alert,AppResources.DocumentSent, AppResources.Ok);
 
        });
 

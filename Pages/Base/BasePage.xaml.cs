@@ -4,6 +4,7 @@ using FreshMvvm;
 using voltaire.Controls.Items;
 using voltaire.Models;
 using voltaire.PageModels;
+using voltaire.Resources;
 using Xamarin.Forms;
 
 namespace voltaire.Pages.Base
@@ -16,7 +17,7 @@ namespace voltaire.Pages.Base
 
         public BasePage()
         {
-            NavigationPage.SetBackButtonTitle(this,"Back");
+            NavigationPage.SetBackButtonTitle(this,AppResources.Back);
             InitializeComponent();
         }
 
@@ -37,6 +38,7 @@ namespace voltaire.Pages.Base
                 new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5,IsSelected = false, IconSource = "goals"},
                 new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5, IsSelected = false, IconSource = "podiums"},
             };
+
             _pageIcons[selectedIndex].IsSelected = true;
             _selectedMenuItem = _pageIcons[selectedIndex];
 

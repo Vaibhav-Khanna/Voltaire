@@ -6,6 +6,7 @@ using voltaire.Models;
 using voltaire.Models.DataObjects;
 using voltaire.PageModels.Base;
 using Xamarin.Forms;
+using voltaire.Resources;
 
 namespace voltaire.PageModels
 {
@@ -28,7 +29,7 @@ namespace voltaire.PageModels
 
            if (currUser == null)
            {
-               await CoreMethods.DisplayAlert("Error", "Experienced internal error sending this message. Reopen the app to try sending the message", "Ok");
+                await CoreMethods.DisplayAlert(AppResources.Alert, AppResources.MessageInternalError, AppResources.Ok);
                return;
            }
 

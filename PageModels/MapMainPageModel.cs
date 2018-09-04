@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using System.Linq;
 using System.Collections.ObjectModel;
 using Acr.UserDialogs;
+using voltaire.Resources;
 
 namespace voltaire.PageModels
 {
@@ -166,7 +167,7 @@ namespace voltaire.PageModels
             {
                 Dialog.HideLoading();
 
-                await CoreMethods.DisplayAlert("Alerte", "No customer addresses could be found.", "Ok");
+                await CoreMethods.DisplayAlert(AppResources.Alert,AppResources.NoCustomerFound,AppResources.Ok);
             }
             else
             {

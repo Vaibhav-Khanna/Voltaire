@@ -6,6 +6,7 @@ using voltaire.PageModels.Base;
 using Xamarin.Forms;
 using System.Linq;
 using FreshMvvm;
+using voltaire.Resources;
 using System.Threading.Tasks;
 
 namespace voltaire.PageModels 
@@ -14,7 +15,7 @@ namespace voltaire.PageModels
     {
         public OrderListTabPageModel()
         {
-            FilterTypes = new ObservableCollection<string>() { "All", "Name", "Status" };
+            FilterTypes = new ObservableCollection<string>() { AppResources.All ,AppResources.Name, AppResources.Status };
 
             Filter = 0;
         }
@@ -195,7 +196,7 @@ namespace voltaire.PageModels
 
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 QuotationsItemSource = all_items;
             }

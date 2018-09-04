@@ -33,7 +33,7 @@
                 </Image>
             </controls:TToolBar.LeftToolbarItems>
                 <controls:TToolBar.RightToolbarItems>
-                  <Label  WidthRequest="80"  HorizontalTextAlignment="End" IsEnabled="{Binding CanEdit}" Text="Save" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center">
+                  <Label  WidthRequest="80"  HorizontalTextAlignment="End" IsEnabled="{Binding CanEdit}" Text="{x:Static resources:AppResources.Save}" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center">
                      <Label.GestureRecognizers>
                             <TapGestureRecognizer NumberOfTapsRequired="1" Command = "{Binding SaveContact}" />
                         </Label.GestureRecognizers> 

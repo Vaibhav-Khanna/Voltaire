@@ -418,4 +418,116 @@
      <data name="Search" xml:space="preserve">
         <value>Search</value>   
     </data>
+    
+    <!-- Newly Added-->    
+    <data name="TryAgain" xml:space="preserve">
+        <value>Please try again</value>   
+    </data>
+    
+    <data name="NoCustomerFound" xml:space="preserve">
+        <value>No customer addresses could be found.</value>   
+    </data>
+    
+    <data name="MessageInternalError" xml:space="preserve">
+        <value>Experienced internal error sending this message. Reopen the app to try sending the message</value>   
+    </data>
+    <data name="FillInformation" xml:space="preserve">
+        <value>Fill in information</value>   
+    </data>
+    <data name="EnterOrderNumber" xml:space="preserve">
+        <value>Please enter the order number,</value>   
+    </data>
+    
+    <data name="NewContractFor" xml:space="preserve">
+        <value>New contract for</value>   
+    </data>
+    
+    <data name="All" xml:space="preserve">
+        <value>All</value>   
+    </data>
+    
+    <data name="Status" xml:space="preserve">
+        <value>Status</value>   
+    </data>
+    
+    <data name="Name" xml:space="preserve">
+        <value>Name</value>   
+    </data>
+    
+    <data name="PleaseSelect" xml:space="preserve">
+        <value>Please select </value>   
+    </data>
+    
+    <data name="GivenCombination" xml:space="preserve">
+        <value>The given combination of </value>   
+    </data>
+    
+    <data name="ChooseAnotherOne" xml:space="preserve">
+        <value> does not exist in pricing. Please choose another one.</value>   
+    </data>
+    
+     <data name="SelectGrained" xml:space="preserve">
+        <value>Please select grained.</value>   
+    </data>
+    
+    <data name="Deleting" xml:space="preserve">
+        <value>Deleting</value>   
+    </data>
+    
+    <data name="JustAMoment" xml:space="preserve">
+        <value>Just a moment</value>   
+    </data>
+    
+    <data name="WantToSendNow" xml:space="preserve">
+        <value>Do you want to send it now ?</value>   
+    </data>
+    
+    <data name="Yes" xml:space="preserve">
+        <value>Yes</value>   
+    </data>
+    
+    <data name="SendingMail" xml:space="preserve">
+        <value>Sending mail</value>   
+    </data>
+    
+    <data name="DocumentSent" xml:space="preserve">
+        <value>Document has been sent.</value>   
+    </data>
+    
+    <data name="TermsConditions" xml:space="preserve">
+        <value>Terms and Conditions</value>   
+    </data>
+    
+    <data name="AcceptTCForQuotation" xml:space="preserve">
+        <value>Please accept the terms and conditions first in order to validate the quotation.</value>   
+    </data>
+    
+    <data name="AlreadySigned" xml:space="preserve">
+        <value>You have already signed this quotation !</value>   
+    </data>
+    
+    <data name="EmailSent" xml:space="preserve">
+        <value>"Email has been sent"</value>   
+    </data>
+    
+    <data name="SignQuoatationFirst" xml:space="preserve">
+        <value>Please sign the quotation first.</value>   
+    </data>
+    
+    <data name="Order" xml:space="preserve">
+        <value>Order</value>   
+    </data>
+    
+    <data name="Name" xml:space="preserve">
+        <value>Name</value>   
+    </data>
+    
+    <data name="Name" xml:space="preserve">
+        <value>Name</value>   
+    </data>
+    
+    <data name="Name" xml:space="preserve">
+        <value>Name</value>   
+    </data>
+    
 </root>

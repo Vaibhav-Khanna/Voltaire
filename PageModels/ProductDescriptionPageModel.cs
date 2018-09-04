@@ -9,6 +9,7 @@ using voltaire.PopUps;
 using Xamarin.Forms;
 using Newtonsoft.Json;
 using System.Linq;
+using voltaire.Resources;
 
 namespace voltaire.PageModels
 {
@@ -25,6 +26,7 @@ namespace voltaire.PageModels
             else
                 await CoreMethods.PopPageModel();
         });
+
 
         public Command SaveProduct => new Command(async () =>
         {            
@@ -434,7 +436,7 @@ namespace voltaire.PageModels
                 if (ModelProperty.PropertyValue == null)
                 {
                     if(shouldDisplayPopup)
-                    CoreMethods.DisplayAlert("Alert", "Please select " + ModelProperty.PropertyName, "Ok");
+                        CoreMethods.DisplayAlert(AppResources.Alert, AppResources.PleaseSelect + ModelProperty.PropertyName, AppResources.Ok);
                    
                     return false;
                 }
@@ -442,7 +444,7 @@ namespace voltaire.PageModels
                 if (ColorProperty?.PropertyValue == null)
                 {
                     if (shouldDisplayPopup)
-                    CoreMethods.DisplayAlert("Alert", "Please select " + ColorProperty?.PropertyName, "Ok");
+                    CoreMethods.DisplayAlert(AppResources.Alert, AppResources.PleaseSelect + ColorProperty?.PropertyName, AppResources.Ok);
                     
                     return false;
                 }
@@ -450,7 +452,7 @@ namespace voltaire.PageModels
                 if (LeatherProperty.PropertyValue == null)
                 {
                     if (shouldDisplayPopup)
-                    CoreMethods.DisplayAlert("Alert", "Please select " + LeatherProperty.PropertyName, "Ok");
+                    CoreMethods.DisplayAlert(AppResources.Alert, AppResources.PleaseSelect + LeatherProperty.PropertyName, AppResources.Ok);
                     
                     return false;
                 }
@@ -458,7 +460,7 @@ namespace voltaire.PageModels
                 if (GrainedProperty != null && GrainedProperty?.PropertyValue == null)
                 {
                     if (shouldDisplayPopup)
-                        CoreMethods.DisplayAlert("Alert", "Please select grained.", "Ok");
+                        CoreMethods.DisplayAlert(AppResources.Alert, AppResources.SelectGrained, AppResources.Ok);
 
                     return false;
                 }
@@ -468,7 +470,7 @@ namespace voltaire.PageModels
                 if(items==null|| !items.Any())
                 {
                     if (shouldDisplayPopup)
-                    CoreMethods.DisplayAlert("Alert","The given combination of "+ ModelProperty.PropertyName  + "," + LeatherProperty.PropertyName + " does not exist in pricing. Please choose another one.","OK");
+                    CoreMethods.DisplayAlert(AppResources.Alert, AppResources.GivenCombination+ ModelProperty.PropertyName  + "," + LeatherProperty.PropertyName + AppResources.ChooseAnotherOne,AppResources.Ok);
                     
                     return false;
                 }
@@ -551,7 +553,7 @@ namespace voltaire.PageModels
                 if (AccessoryNameProperty.PropertyValue == null)
                 {
                     if (shouldDisplayPopup)
-                    CoreMethods.DisplayAlert("Alert", "Please select " + AccessoryNameProperty.PropertyName, "Ok");
+                    CoreMethods.DisplayAlert(AppResources.Alert, AppResources.PleaseSelect + AccessoryNameProperty.PropertyName, AppResources.Ok);
                     
                     return false;
                 }
@@ -559,7 +561,7 @@ namespace voltaire.PageModels
                 if (AccessoryCategoryProperty.PropertyValue == null)
                 {
                     if (shouldDisplayPopup)
-                    CoreMethods.DisplayAlert("Alert", "Please select " + AccessoryCategoryProperty.PropertyName, "Ok");
+                    CoreMethods.DisplayAlert(AppResources.Alert, AppResources.PleaseSelect + AccessoryCategoryProperty.PropertyName, AppResources.Ok);
                     
                     return false;
                 }
@@ -567,7 +569,7 @@ namespace voltaire.PageModels
                 if (AccessorySubCategoryProperty.PropertyValue == null)
                 {
                     if (shouldDisplayPopup)
-                        CoreMethods.DisplayAlert("Alert", "Please select " + AccessorySubCategoryProperty.PropertyName, "Ok");
+                        CoreMethods.DisplayAlert(AppResources.Alert, AppResources.PleaseSelect + AccessorySubCategoryProperty.PropertyName, AppResources.Ok);
 
                     return false;
                 }
@@ -578,7 +580,7 @@ namespace voltaire.PageModels
                 if (items == null || !items.Any())
                 {
                     if (shouldDisplayPopup)
-                        CoreMethods.DisplayAlert("Alert", "The given combination of " + AccessoryNameProperty.PropertyName + "," + AccessorySubCategoryProperty.PropertyName + "," + AccessoryCategoryProperty.PropertyName  + " does not exist in pricing. Please choose another one.", "OK");
+                        CoreMethods.DisplayAlert(AppResources.Alert, AppResources.GivenCombination + AccessoryNameProperty.PropertyName + "," + AccessorySubCategoryProperty.PropertyName + "," + AccessoryCategoryProperty.PropertyName  + AppResources.ChooseAnotherOne, AppResources.Ok);
                     
                     return false;
                 }
@@ -645,7 +647,7 @@ namespace voltaire.PageModels
                 if (ServiceNameProperty.PropertyValue == null)
                 {
                     if (shouldDisplayPopup)
-                        CoreMethods.DisplayAlert("Alert", "Please select " + ServiceNameProperty.PropertyName, "Ok");
+                        CoreMethods.DisplayAlert(AppResources.Alert, AppResources.PleaseSelect + ServiceNameProperty.PropertyName, AppResources.Ok);
 
                     return false;
                 }          
@@ -656,7 +658,7 @@ namespace voltaire.PageModels
                 if (items == null || !items.Any())
                 {
                     if (shouldDisplayPopup)
-                        CoreMethods.DisplayAlert("Alert", "The given combination of " + ServiceNameProperty.PropertyName +  " does not exist in pricing. Please choose another one.", "OK");
+                        CoreMethods.DisplayAlert(AppResources.Alert, AppResources.GivenCombination + ServiceNameProperty.PropertyName +  AppResources.ChooseAnotherOne, AppResources.Ok);
 
                     return false;
                 }

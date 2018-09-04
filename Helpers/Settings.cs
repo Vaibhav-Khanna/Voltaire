@@ -22,6 +22,8 @@ namespace voltaire.Helpers
 		#region Setting Constants
 
 		private const string SettingsKey = "settings_key";
+        private const string LanguageKey = "language_key";
+
 		private static readonly string SettingsDefault = string.Empty;
 
 		#endregion
@@ -39,5 +41,17 @@ namespace voltaire.Helpers
 			}
 		}
 
-	}
+        public static string DeviceLanguage
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(LanguageKey, SettingsDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(LanguageKey, value);
+            }
+        }
+
+    }
 }

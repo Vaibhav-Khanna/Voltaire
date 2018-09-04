@@ -9,6 +9,7 @@ using voltaire.DataStore.Implementation.Stores;
 using voltaire.Pages.Base;
 using Xamarin.Forms;
 using voltaire.Resources;
+using voltaire.Helpers;
 using Acr.UserDialogs;
 
 namespace voltaire.PageModels.Base

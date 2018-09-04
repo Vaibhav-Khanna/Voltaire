@@ -53,7 +53,6 @@ namespace voltaire.PageModels
             NoteText = Quotation.PermanentNote;
 
             CanEdit = Quotation.Status == QuotationStatus.sale.ToString() || Quotation.Status == QuotationStatus.done.ToString() ? false : true;
-
         }
 
     }

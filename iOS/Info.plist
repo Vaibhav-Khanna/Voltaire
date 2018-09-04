@@ -52,9 +52,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-
 				<string>appcenter-3d0ef256-3c90-4860-b789-63ff7e930523</string>
-
 			</array>
 		</dict>
 	</array>
@@ -68,5 +66,12 @@
 	<true/>
 	<key>CFBundleVersion</key>
 	<string>3322</string>
+	<key>CFBundleName</key>
+	<string>VoltaireCRM </string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>fr</string>
+	</array>
 </dict>
 </plist>

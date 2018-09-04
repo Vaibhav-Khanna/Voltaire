@@ -85,6 +85,9 @@ namespace voltaire
 
         protected override void OnStart()
         {
+
+            new LanguageService().SetLanguage(); // Set device language 
+
             // Handle when your app starts
 #if DEBUG
 #else
