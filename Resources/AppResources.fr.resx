@@ -60,476 +60,461 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     
-   <!-- LOGIN PAGE -->
-    <data name="Username" xml:space="preserve">
-        <value>Nom de user</value>
+ <!-- LOGIN PAGE -->
+  <data name="Username" xml:space="preserve">
+        <value>Nom d'utilisateur</value>
     </data>
-    <data name="Password" xml:space="preserve">
+  <data name="Password" xml:space="preserve">
         <value>Mot de passe</value>
     </data>
-    <data name="Login" xml:space="preserve">
-        <value>Se connecter</value>
+  <data name="Login" xml:space="preserve">
+        <value>Relier</value>
     </data>
-    <!-- HOME PAGE -->
-    <data name="Dashboard" xml:space="preserve">
-        <value>Dashboard</value>
+  <!-- HOME PAGE -->
+  <data name="Dashboard" xml:space="preserve">
+        <value>Tableau de bord</value>
     </data>
-    <data name="SearchContact" xml:space="preserve">
-        <value>Search Contact</value>
+  <data name="SearchContact" xml:space="preserve">
+        <value>Recherche Contact</value>
     </data>
-    <data name="Goals" xml:space="preserve">
-        <value>Goals</value>
+  <data name="Goals" xml:space="preserve">
+        <value>Buts</value>
     </data>
-    <data name="TopSalesman" xml:space="preserve">
-        <value>Top Salesman</value>
+  <data name="TopSalesman" xml:space="preserve">
+        <value>Top vendeur</value>
     </data>
-    <data name="Sales" xml:space="preserve">
-        <value>Sales: </value>
+  <data name="Sales" xml:space="preserve">
+        <value>Ventes:</value>
     </data>
-    <data name="CheckIn" xml:space="preserve">
-        <value>Check-In: </value>
+  <data name="CheckIn" xml:space="preserve">
+        <value>Enregistrement:</value>
     </data>
-    <!-- CONTACTS PAGE -->
-    <data name="Contacts" xml:space="preserve">
+  <!-- CONTACTS PAGE -->
+  <data name="Contacts" xml:space="preserve">
         <value>Contacts</value>
     </data>
-    <data name="Filters" xml:space="preserve">
-        <value>Filtres</value>
+  <data name="Filters" xml:space="preserve">
+        <value>Des filtres</value>
     </data>
-    <data name="Weight" xml:space="preserve">
-        <value>Weight</value>
+  <data name="Weight" xml:space="preserve">
+        <value>Poids</value>
     </data>
-    <data name="PartnerGrade" xml:space="preserve">
-        <value>Partner Grade</value>
+  <data name="PartnerGrade" xml:space="preserve">
+        <value>Grade partenaire</value>
     </data>
-    <data name="ResetFilters" xml:space="preserve">
-        <value>Reset Filters</value>
+  <data name="ResetFilters" xml:space="preserve">
+        <value>Réinitialiser les filtres</value>
     </data>
-    <data name="ParentPartner" xml:space="preserve">
-        <value>Parent Partner    </value>
+  <data name="ParentPartner" xml:space="preserve">
+        <value>Parent partenaire    </value>
     </data>
-    <data name="LastVisit" xml:space="preserve">
-        <value>Last visit</value>
+  <data name="LastVisit" xml:space="preserve">
+        <value>Derniere visite</value>
     </data>
-    <!-- CONTACTS DETAIL PAGE -->
-    <data name="Modify" xml:space="preserve">
-        <value>Modify</value>
+  <!-- CONTACTS DETAIL PAGE -->
+  <data name="Modify" xml:space="preserve">
+        <value>Modifier</value>
     </data>
-    <data name="Save" xml:space="preserve">
-        <value>Save</value>
+  <data name="Save" xml:space="preserve">
+        <value>sauvegarder</value>
     </data>
-    <data name="ContactDetails" xml:space="preserve">
-        <value>Contact Details</value>
+  <data name="ContactDetails" xml:space="preserve">
+        <value>Détails du contact</value>
     </data>
-    <data name="Reminder" xml:space="preserve">
-        <value>Reminders &amp; notes</value>
+  <data name="Reminder" xml:space="preserve">
+        <value>Rappels et notes</value>
     </data>
-    <data name="Map" xml:space="preserve">
-        <value>Map</value>
+  <data name="Map" xml:space="preserve">
+        <value>Carte</value>
     </data>
-    <data name="Quotations" xml:space="preserve">
-        <value>Quotations</value>
+  <data name="Quotations" xml:space="preserve">
+        <value>Citations</value>
     </data>
-    <data name="Quotation" xml:space="preserve">
-        <value>Quotation</value>
+  <data name="Quotation" xml:space="preserve">
+        <value>Citation</value>
     </data>
-    <data name="Contracts" xml:space="preserve">
-        <value>Contracts</value>
+  <data name="Contracts" xml:space="preserve">
+        <value>Les contrats</value>
     </data>
-    <data name="LastVisit" xml:space="preserve">
+  <data name="LastVisit" xml:space="preserve">
         <value>Dernière visite le</value>
     </data>
-    <data name="Weight" xml:space="preserve">
-        <value>Weight</value>
+  <data name="Weight" xml:space="preserve">
+        <value>Poids</value>
     </data>
-    <data name="ParentPartner" xml:space="preserve">
-        <value>Parent Partner   &gt;  </value>
+  <data name="ParentPartner" xml:space="preserve">
+        <value>Parent partenaire&gt;</value>
     </data>
-    <data name="Tags" xml:space="preserve">
-        <value>Grade</value>
+  <data name="Tags" xml:space="preserve">
+        <value>Qualité</value>
     </data>
-    <data name="addtags" xml:space="preserve">
-        <value>+ Add grade</value>
+  <data name="addtags" xml:space="preserve">
+        <value>+ Ajouter une note</value>
     </data>
-    <data name="Cancel" xml:space="preserve">
-        <value>Cancel</value>
+  <data name="Cancel" xml:space="preserve">
+        <value>Annuler</value>
     </data>
-    <data name="Back" xml:space="preserve">
-        <value>Back</value>
+  <data name="Back" xml:space="preserve">
+        <value>Arrière</value>
     </data>
-    <data name="Update" xml:space="preserve">
-        <value>Update customer</value>
+  <data name="Update" xml:space="preserve">
+        <value>Mettre à jour le client</value>
     </data>
-    <data name="Filters" xml:space="preserve">
-        <value>Filters</value>
+  <data name="Filters" xml:space="preserve">
+        <value>Des filtres</value>
     </data>
-    <!-- CONTRACT NEW PAGE -->
-    <data name="RiderHeader" xml:space="preserve">
-        <value>The rider hereby must agrees to the following during the Term of the agreement:</value>
+  <!-- CONTRACT NEW PAGE -->
+  <data name="RiderHeader" xml:space="preserve">
+        <value>Le coureur doit accepter les conditions suivantes pendant la durée du contrat:</value>
     </data>
-    <data name="OrderN" xml:space="preserve">
-        <value>Order No.:</value>
+  <data name="OrderN" xml:space="preserve">
+        <value>N ° de commande:</value>
     </data>
-    <data name="Period" xml:space="preserve">
-        <value>Period:</value>
+  <data name="Period" xml:space="preserve">
+        <value>Période:</value>
     </data>
-    <data name="Subject" xml:space="preserve">
-        <value>Subject:</value>
+  <data name="Subject" xml:space="preserve">
+        <value>Assujettir:</value>
     </data>
-    <data name="GeneratePDF" xml:space="preserve">
-        <value>Generate PDF</value>
+  <data name="GeneratePDF" xml:space="preserve">
+        <value>Générer un PDF</value>
     </data>
-    <data name="Title" xml:space="preserve">
-        <value>New contract for</value>
+  <data name="Title" xml:space="preserve">
+        <value>Nouveau contrat pour</value>
     </data>
-    <data name="Notes" xml:space="preserve">
-        <value>Notes</value>
+  <data name="Notes" xml:space="preserve">
+        <value>Remarques</value>
     </data>
-    <!-->GOALS PAGE <-->
-    <data name="Salesmens" xml:space="preserve">
+  <!-->GOALS PAGE <-->
+  <data name="Salesmens" xml:space="preserve">
         <value>Salesmens</value>
     </data>
-    <data name="Salesman" xml:space="preserve">
-        <value>Salesman </value>
+  <data name="Salesman" xml:space="preserve">
+        <value>Vendeur</value>
     </data>
-    <data name="SearchSalesman" xml:space="preserve">
-        <value>Search a salesman</value>
+  <data name="SearchSalesman" xml:space="preserve">
+        <value>Rechercher un vendeur</value>
     </data>
-    <!-->REPORTS PAGE <-->
-    <data name="Reports" xml:space="preserve">
-        <value>Reports</value>
+  <!-->REPORTS PAGE <-->
+  <data name="Reports" xml:space="preserve">
+        <value>Rapports</value>
     </data>
-    <!-->REPORTS DETAIL PAGE <-->
-    <data name="Report" xml:space="preserve">
-        <value>Report</value>
+  <!-->REPORTS DETAIL PAGE <-->
+  <data name="Report" xml:space="preserve">
+        <value>rapport</value>
     </data>
-    <!--PODIUMS PAGE-->
-    <data name="Leaderboards" xml:space="preserve">
-        <value>Leaderboards</value>
+  <!--PODIUMS PAGE-->
+  <data name="Leaderboards" xml:space="preserve">
+        <value>Les classements</value>
     </data>
-    <data name="SalesTitle" xml:space="preserve">
-        <value>Sales</value>
+  <data name="SalesTitle" xml:space="preserve">
+        <value>Ventes</value>
     </data>
-    <data name="CheckIns" xml:space="preserve">
+  <data name="CheckIns" xml:space="preserve">
         <value>Check-Ins</value>
     </data>
-    <!--MAP PAGE-->
-    <data name="LocationEnableAlert" xml:space="preserve">
-        <value>Please enable the location services in the app settings to use this feature.</value>
+  <!--MAP PAGE-->
+  <data name="LocationEnableAlert" xml:space="preserve">
+        <value>Veuillez activer les services de localisation dans les paramètres de l'application pour utiliser cette fonctionnalité.</value>
     </data>
-    <data name="Ok" xml:space="preserve">
-        <value>Ok</value>   
+  <data name="Ok" xml:space="preserve">
+        <value>D'accord</value>   
     </data>
-    <data name="Cancel" xml:space="preserve">
-        <value>Cancel</value>   
+  <data name="Cancel" xml:space="preserve">
+        <value>Annuler</value>   
     </data>
-    <data name="NotNow" xml:space="preserve">
-        <value>Not Now</value>   
+  <data name="NotNow" xml:space="preserve">
+        <value>Pas maintenant</value>   
     </data>
-    <data name="Alert" xml:space="preserve">
-        <value>Alert</value>   
+  <data name="Alert" xml:space="preserve">
+        <value>Alerte</value>   
     </data>
-    <!--RETROSEPECTIVE COURSE PAGE-->
-    <data name="RetrospectiveCourse" xml:space="preserve">
-        <value>Retrospective course</value>   
+  <!--RETROSEPECTIVE COURSE PAGE-->
+  <data name="RetrospectiveCourse" xml:space="preserve">
+        <value>Cours rétrospectif</value>   
     </data>
-    <data name="PickStartEnd" xml:space="preserve">
-        <value>Pick start and end date</value>   
+  <data name="PickStartEnd" xml:space="preserve">
+        <value>Choisissez les dates de début et de fin</value>   
     </data>
-    <data name="ChooseFilter" xml:space="preserve">
-        <value>Or choose a filter</value>   
+  <data name="ChooseFilter" xml:space="preserve">
+        <value>Ou choisissez un filtre</value>   
     </data>
-    <data name="None" xml:space="preserve">
-        <value>None</value>   
+  <data name="None" xml:space="preserve">
+        <value>Aucun</value>   
     </data>
-    <data name="Today" xml:space="preserve">
-        <value>Today</value>   
+  <data name="Today" xml:space="preserve">
+        <value>Aujourd'hui</value>   
     </data>
-    <data name="ThisWeek" xml:space="preserve">
-        <value>This week</value>   
+  <data name="ThisWeek" xml:space="preserve">
+        <value>Cette semaine</value>   
     </data>
-    <data name="ThisMonth" xml:space="preserve">
-        <value>This month</value>   
+  <data name="ThisMonth" xml:space="preserve">
+        <value>Ce mois-ci</value>   
     </data>
-    <data name="CoursesDetails" xml:space="preserve">
-        <value>Courses details</value>   
+  <data name="CoursesDetails" xml:space="preserve">
+        <value>Détails des cours</value>   
     </data>
-    <data name="Start" xml:space="preserve">
-        <value>Start</value>   
+  <data name="Start" xml:space="preserve">
+        <value>Début</value>   
     </data>
-    <data name="End" xml:space="preserve">
-        <value>End</value>   
+  <data name="End" xml:space="preserve">
+        <value>Fin</value>   
     </data>
-    <data name="Check" xml:space="preserve">
-        <value>Check-in</value>   
+  <data name="Check" xml:space="preserve">
+        <value>Enregistrement</value>   
     </data>
-    <data name="Duration" xml:space="preserve">
-        <value>Duration</value>   
+  <data name="Duration" xml:space="preserve">
+        <value>Durée</value>   
     </data>
-    <data name="SelectACustomer" xml:space="preserve">
-        <value>Select a customer</value>   
+  <data name="SelectACustomer" xml:space="preserve">
+        <value>Sélectionnez un client</value>   
     </data>
-    <!--Order List page-->
-    <data name="Orders" xml:space="preserve">
-        <value>Orders</value>   
+  <!--Order List page-->
+  <data name="Orders" xml:space="preserve">
+        <value>Ordres</value>   
     </data>
-    <data name="PermanentNote" xml:space="preserve">
-        <value>Permanent note</value>   
+  <data name="PermanentNote" xml:space="preserve">
+        <value>Note permanente</value>   
     </data>
-    <data name="Messages" xml:space="preserve">
-        <value>Messages</value>   
+  <data name="Messages" xml:space="preserve">
+        <value>messages</value>   
     </data>
-    <data name="SignedDate" xml:space="preserve">
-        <value>Signed date : </value>   
+  <data name="SignedDate" xml:space="preserve">
+        <value>Date de signature:</value>   
     </data>
-    <data name="PaymentType" xml:space="preserve">
-        <value>Payment type : </value>   
+  <data name="PaymentType" xml:space="preserve">
+        <value>Type de paiement :</value>   
     </data>
-    <data name="PaymentInformation" xml:space="preserve">
-        <value>Payment information : </value>   
+  <data name="PaymentInformation" xml:space="preserve">
+        <value>Informations de paiement :</value>   
     </data>
-    <data name="PermanentNotes" xml:space="preserve">
-        <value>Permanent Notes</value>   
+  <data name="PermanentNotes" xml:space="preserve">
+        <value>Notes permanentes</value>   
     </data>
-    <data name="InternalNotes" xml:space="preserve">
-        <value>Internal notes</value>   
+  <data name="InternalNotes" xml:space="preserve">
+        <value>Notes internes</value>   
     </data>
-    <data name="DeleteQuotation" xml:space="preserve">
-        <value>Delete quotation</value>   
+  <data name="DeleteQuotation" xml:space="preserve">
+        <value>Supprimer la citation</value>   
     </data>
-    <data name="Select" xml:space="preserve">
-        <value>Select</value>   
+  <data name="Select" xml:space="preserve">
+        <value>Sélectionner</value>   
     </data>
-    <data name="Permanent" xml:space="preserve">
+  <data name="Permanent" xml:space="preserve">
         <value>Permanent</value>   
     </data>
-    <data name="Note" xml:space="preserve">
-        <value>Note</value>   
+  <data name="Note" xml:space="preserve">
+        <value>Remarque</value>   
     </data>
-    <data name="WriteAMesage" xml:space="preserve">
-        <value>Write a message</value>   
+  <data name="WriteAMesage" xml:space="preserve">
+        <value>Écrire un message</value>   
     </data>
-    <data name="MyAccount" xml:space="preserve">
-        <value>My Account</value>
+  <data name="MyAccount" xml:space="preserve">
+        <value>Mon compte</value>
     </data>
-    <data name="PermanentNote" xml:space="preserve">
-        <value>Permanent note</value>   
+  <data name="PermanentNote" xml:space="preserve">
+        <value>Note permanente</value>   
     </data>
-    <data name="PaymentInfo" xml:space="preserve">
-        <value>Payment information</value>   
+  <data name="PaymentInfo" xml:space="preserve">
+        <value>Informations de paiement</value>   
     </data>
-    <data name="AddTagsTitle" xml:space="preserve">
-        <value>Add grade</value>   
+  <data name="AddTagsTitle" xml:space="preserve">
+        <value>Ajouter une note</value>   
     </data>
-    <data name="SelectTag" xml:space="preserve">
-        <value>Select a grade in the list</value>   
+  <data name="SelectTag" xml:space="preserve">
+        <value>Sélectionnez une note dans la liste</value>   
     </data>
-    <data name="Reminders" xml:space="preserve">
-        <value>Reminders</value>   
+  <data name="Reminders" xml:space="preserve">
+        <value>Rappels</value>   
     </data>
-    <data name="Titles" xml:space="preserve">
-        <value>Title</value>   
+  <data name="Titles" xml:space="preserve">
+        <value>Titre</value>   
     </data>
-    <data name="Date" xml:space="preserve">
-        <value>Date</value>   
+  <data name="Date" xml:space="preserve">
+        <value>Rendez-vous amoureux</value>   
     </data>
-    <data name="Time" xml:space="preserve">
-        <value>Time</value>   
+  <data name="Time" xml:space="preserve">
+        <value>Temps</value>   
     </data>
-    <data name="Priority" xml:space="preserve">
-        <value>Priority</value>   
+  <data name="Priority" xml:space="preserve">
+        <value>Priorité</value>   
     </data>
-    <data name="NewReminder" xml:space="preserve">
-        <value>New Reminder</value>   
+  <data name="NewReminder" xml:space="preserve">
+        <value>Nouveau rappel</value>   
     </data>
-    <data name="Modify" xml:space="preserve">
-        <value>Modify</value>   
+  <data name="Modify" xml:space="preserve">
+        <value>Modifier</value>   
     </data>
-    <data name="Delete" xml:space="preserve">
-        <value>Delete</value>   
+  <data name="Delete" xml:space="preserve">
+        <value>Effacer</value>   
     </data>
-    <data name="DeleteConfirm" xml:space="preserve">
-        <value>Are you sure you want to delete this reminder ?</value>   
+  <data name="DeleteConfirm" xml:space="preserve">
+        <value>Êtes-vous sûr de vouloir supprimer ce rappel?</value>   
     </data>
-    <data name="NotNow" xml:space="preserve">
-        <value>Not now</value>   
+  <data name="NotNow" xml:space="preserve">
+        <value>Pas maintenant</value>   
     </data>
-    <data name="UsernameMissing" xml:space="preserve">
-        <value>Please enter the username above</value>   
+  <data name="UsernameMissing" xml:space="preserve">
+        <value>Veuillez entrer le nom d'utilisateur ci-dessus</value>   
     </data>
-    <data name="PasswordMissing" xml:space="preserve">
-        <value>Please enter the password above</value>   
+  <data name="PasswordMissing" xml:space="preserve">
+        <value>Veuillez entrer le mot de passe ci-dessus</value>   
     </data>
-    <data name="InformationMissing" xml:space="preserve">
-        <value>Information Missing</value>   
+  <data name="InformationMissing" xml:space="preserve">
+        <value>Informations manquantes</value>   
     </data>
-    <data name="IncorrectInfo" xml:space="preserve">
-        <value>The given credentials do not match or are incorrect. Please try again with the correct values.</value>   
+  <data name="IncorrectInfo" xml:space="preserve">
+        <value>Les informations d'identification fournies ne correspondent pas ou sont incorrectes. Veuillez réessayer avec les valeurs correctes.</value>   
     </data>
-    <data name="Error" xml:space="preserve">
-        <value>Wait</value>   
+  <data name="Error" xml:space="preserve">
+        <value>Attendez</value>   
     </data>
-    <data name="LogOut" xml:space="preserve">
-        <value>Log out</value>   
+  <data name="LogOut" xml:space="preserve">
+        <value>Connectez - Out</value>   
     </data>
-    <data name="LogOutMessage" xml:space="preserve">
-        <value>Are you sure you want to log out of this application ? Any unsycned changes will be saved first. Wish to Continue ?</value>   
+  <data name="LogOutMessage" xml:space="preserve">
+        <value>Êtes-vous sûr de vouloir vous déconnecter de cette application? Toute modification non notifiée sera enregistrée en premier. Souhaite continuer?</value>   
     </data>
-    <data name="Loading" xml:space="preserve">
-        <value>Loading...</value>   
+  <data name="Loading" xml:space="preserve">
+        <value>Chargement...</value>   
     </data>
-    <data name="FetchingData" xml:space="preserve">
-        <value>Fetching data from server...</value>   
+  <data name="FetchingData" xml:space="preserve">
+        <value>Récupérer des données du serveur ...</value>   
     </data>
-    <data name="Refreshing" xml:space="preserve">
-        <value>Refreshing...</value>   
+  <data name="Refreshing" xml:space="preserve">
+        <value>Rafraîchissant...</value>   
     </data>
-    <data name="SingingIn" xml:space="preserve">
-        <value>Signing In...</value>   
+  <data name="SingingIn" xml:space="preserve">
+        <value>Connectez-vous...</value>   
     </data>
-    <data name="SyncingData" xml:space="preserve">
-        <value>Syncing Data...</value>   
+  <data name="SyncingData" xml:space="preserve">
+        <value>Synchroniser les données ...</value>   
     </data>
-    <data name="NewContact" xml:space="preserve">
-        <value>New Contact</value>   
+  <data name="NewContact" xml:space="preserve">
+        <value>Nouveau contact</value>   
     </data>
-    <data name="FillInCustomerName" xml:space="preserve">
-        <value>Please fill in the customer name</value>   
+  <data name="FillInCustomerName" xml:space="preserve">
+        <value>Merci de renseigner le nom du client</value>   
     </data>
-    <data name="FillInCompanyName" xml:space="preserve">
-        <value>Please fill in the company name</value>   
+  <data name="FillInCompanyName" xml:space="preserve">
+        <value>S'il vous plaît remplir le nom de l'entreprise</value>   
     </data>
-    <data name="LoadMore" xml:space="preserve">
-        <value>Load more</value>   
+  <data name="LoadMore" xml:space="preserve">
+        <value>Charger plus</value>   
     </data>
-    <data name="Contact" xml:space="preserve">
+  <data name="Contact" xml:space="preserve">
         <value>Contact</value>   
     </data>
-    <data name="MatchingSearch" xml:space="preserve">
-        <value>matching your search</value>   
+  <data name="MatchingSearch" xml:space="preserve">
+        <value>correspondant à votre recherche</value>   
     </data>
-    <!-- User PopUp -->
-    <data name="NotSpecified" xml:space="preserve">
-        <value>Not specified</value>   
+  <!-- User PopUp -->
+  <data name="NotSpecified" xml:space="preserve">
+        <value>Non précisé</value>   
     </data>
-
-    <data name="SearchPartner" xml:space="preserve">
-        <value>Search Partner</value>   
+  <data name="SearchPartner" xml:space="preserve">
+        <value>Partenaire de recherche</value>   
     </data>
-
-     <data name="Search" xml:space="preserve">
-        <value>Search</value>   
+  <data name="Search" xml:space="preserve">
+        <value>Chercher</value>   
     </data>
-    
-    <!-- Newly Added-->    
-    <data name="TryAgain" xml:space="preserve">
-        <value>Please try again</value>   
+  <!-- Newly Added-->
+  <data name="TryAgain" xml:space="preserve">
+        <value>Veuillez réessayer</value>   
     </data>
-    
-    <data name="NoCustomerFound" xml:space="preserve">
-        <value>No customer addresses could be found.</value>   
+  <data name="NoCustomerFound" xml:space="preserve">
+        <value>Aucune adresse de client n'a pu être trouvée.</value>   
     </data>
-    
-    <data name="MessageInternalError" xml:space="preserve">
-        <value>Experienced internal error sending this message. Reopen the app to try sending the message</value>   
+  <data name="MessageInternalError" xml:space="preserve">
+        <value>Erreur interne rencontrée lors de l'envoi de ce message. Rouvrez l'application pour essayer d'envoyer le message</value>   
     </data>
-    <data name="FillInformation" xml:space="preserve">
-        <value>Fill in information</value>   
+  <data name="FillInformation" xml:space="preserve">
+        <value>Remplissez les informations</value>   
     </data>
-    <data name="EnterOrderNumber" xml:space="preserve">
-        <value>Please enter the order number,</value>   
+  <data name="EnterOrderNumber" xml:space="preserve">
+        <value>S'il vous plaît entrer le numéro de commande,</value>   
     </data>
-    
-    <data name="NewContractFor" xml:space="preserve">
-        <value>New contract for</value>   
+  <data name="NewContractFor" xml:space="preserve">
+        <value>Nouveau contrat pour</value>   
     </data>
-    
-    <data name="All" xml:space="preserve">
-        <value>All</value>   
+  <data name="All" xml:space="preserve">
+        <value>Tout</value>   
     </data>
-    
-    <data name="Status" xml:space="preserve">
-        <value>Status</value>   
+  <data name="Status" xml:space="preserve">
+        <value>Statut</value>   
     </data>
-    
-    <data name="Name" xml:space="preserve">
-        <value>Name</value>   
+  <data name="Name" xml:space="preserve">
+        <value>Prénom </value>   
     </data>
-    
-    <data name="PleaseSelect" xml:space="preserve">
-        <value>Please select </value>   
+  <data name="PleaseSelect" xml:space="preserve">
+        <value>Veuillez sélectionner</value>   
     </data>
-    
-    <data name="GivenCombination" xml:space="preserve">
-        <value>The given combination of </value>   
+  <data name="GivenCombination" xml:space="preserve">
+        <value>La combinaison donnée de</value>   
     </data>
-    
-    <data name="ChooseAnotherOne" xml:space="preserve">
-        <value> does not exist in pricing. Please choose another one.</value>   
+  <data name="ChooseAnotherOne" xml:space="preserve">
+        <value>n'existe pas dans la tarification. Veuillez en choisir un autre.</value>   
     </data>
-    
-     <data name="SelectGrained" xml:space="preserve">
-        <value>Please select grained.</value>   
+  <data name="SelectGrained" xml:space="preserve">
+        <value>Veuillez sélectionner le grain.</value>   
     </data>
-    
-    <data name="Deleting" xml:space="preserve">
-        <value>Deleting</value>   
+  <data name="Deleting" xml:space="preserve">
+        <value>Effacer</value>   
     </data>
-    
-    <data name="JustAMoment" xml:space="preserve">
-        <value>Just a moment</value>   
+  <data name="JustAMoment" xml:space="preserve">
+        <value>Juste un moment</value>   
     </data>
-    
-    <data name="WantToSendNow" xml:space="preserve">
-        <value>Do you want to send it now ?</value>   
+  <data name="WantToSendNow" xml:space="preserve">
+        <value>Voulez-vous l'envoyer maintenant?</value>   
     </data>
-    
-    <data name="Yes" xml:space="preserve">
-        <value>Yes</value>   
+  <data name="Yes" xml:space="preserve">
+        <value>Oui</value>   
     </data>
-    
-    <data name="SendingMail" xml:space="preserve">
-        <value>Sending mail</value>   
+  <data name="SendingMail" xml:space="preserve">
+        <value>Envoi de mail</value>   
     </data>
-    
-    <data name="DocumentSent" xml:space="preserve">
-        <value>Document has been sent.</value>   
+  <data name="DocumentSent" xml:space="preserve">
+        <value>Le document a été envoyé.</value>   
     </data>
-    
-    <data name="TermsConditions" xml:space="preserve">
-        <value>Terms and Conditions</value>   
+  <data name="TermsConditions" xml:space="preserve">
+        <value>Termes et conditions</value>   
+    </data>
+  <data name="AcceptTCForQuotation" xml:space="preserve">
+        <value>Veuillez accepter les termes et conditions pour valider le devis.</value>   
+    </data>
+  <data name="AlreadySigned" xml:space="preserve">
+        <value>Vous avez déjà signé cette citation!</value>   
+    </data>
+  <data name="EmailSent" xml:space="preserve">
+        <value>"L'email a été envoyé"</value>   
+    </data>
+  <data name="SignQuoatationFirst" xml:space="preserve">
+        <value>Veuillez d'abord signer le devis.</value>   
+    </data>
+  <data name="Order" xml:space="preserve">
+        <value>Commande</value>   
     </data>
     
-    <data name="AcceptTCForQuotation" xml:space="preserve">
-        <value>Please accept the terms and conditions first in order to validate the quotation.</value>   
+         <data name="Street1" xml:space="preserve">
+        <value>Rue 1</value>   
     </data>
-    
-    <data name="AlreadySigned" xml:space="preserve">
-        <value>You have already signed this quotation !</value>   
+     <data name="Street2" xml:space="preserve">
+        <value>Rue 2</value>   
     </data>
-    
-    <data name="EmailSent" xml:space="preserve">
-        <value>"Email has been sent"</value>   
+     <data name="Zip" xml:space="preserve">
+        <value>Zip</value>   
     </data>
-    
-    <data name="SignQuoatationFirst" xml:space="preserve">
-        <value>Please sign the quotation first.</value>   
+     <data name="City" xml:space="preserve">
+        <value>Ville</value>   
     </data>
-    
-    <data name="Order" xml:space="preserve">
-        <value>Order</value>   
+     <data name="State" xml:space="preserve">
+        <value>Etat</value>   
     </data>
-    
-    <data name="Name" xml:space="preserve">
-        <value>Name</value>   
-    </data>
-    
-    <data name="Name" xml:space="preserve">
-        <value>Name</value>   
-    </data>
-    
-    <data name="Name" xml:space="preserve">
-        <value>Name</value>   
+     <data name="Country" xml:space="preserve">
+        <value>Pays</value>   
+    </data>  
+     <data name="AppSyncing" xml:space="preserve">
+        <value>L'application est en cours de synchronisation...Cela peut prendre quelques minutes</value>   
     </data>
     
 </root>

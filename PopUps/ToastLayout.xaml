@@ -2,9 +2,14 @@
 <pages:PopupPage  xmlns="http://xamarin.com/schemas/2014/forms" 
      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
      xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-    xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" 
-    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
-    x:Class="voltaire.PopUps.ToastLayout" HasSystemPadding="false" InputTransparent="true" BackgroundColor="Transparent" CloseWhenBackgroundIsClicked="true" >
+     xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" 
+     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+     xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+     x:Class="voltaire.PopUps.ToastLayout" 
+                  HasSystemPadding="false" 
+                  InputTransparent="true" 
+                  BackgroundColor="Transparent" 
+                  CloseWhenBackgroundIsClicked="true" >
 <pages:PopupPage.Animation>
     <animations:ScaleAnimation 
       PositionIn="Center"
@@ -17,12 +22,14 @@
       EasingOut="SinIn"
       HasBackgroundAnimation="True"/>
   </pages:PopupPage.Animation>
+    
     <pages:PopupPage.Content>
         <Frame x:Name="container"  CornerRadius="0" VerticalOptions="Start" HorizontalOptions="FillAndExpand" HeightRequest="35" Margin="0" Padding="0,15,0,0"  BackgroundColor="#1FACFF" OutlineColor="#1FACFF" HasShadow="true">
            <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand" >
             <forms:AnimationView x:Name="anim" Animation="data.json" HeightRequest="30" HorizontalOptions="EndAndExpand"  Scale="1" VerticalOptions="Center" WidthRequest="30" AutoPlay="false" Loop="true" />
-            <Label x:Name="ToastLabel" Text="The app is currently syncing... This might take a few minutes" TextColor="White" LineBreakMode="TailTruncation" FontAttributes="Bold" FontSize="16"  HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" />
+            <Label x:Name="ToastLabel" Text="{x:Static resources:AppResources.AppSyncing}" TextColor="White" LineBreakMode="TailTruncation" FontAttributes="Bold" FontSize="16"  HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" />
             </StackLayout>
         </Frame> 
     </pages:PopupPage.Content>
+    
 </pages:PopupPage>

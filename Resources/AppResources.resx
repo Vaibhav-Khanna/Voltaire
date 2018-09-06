@@ -518,16 +518,83 @@
         <value>Order</value>   
     </data>
     
-    <data name="Name" xml:space="preserve">
-        <value>Name</value>   
+     <data name="Street1" xml:space="preserve">
+        <value>Street 1</value>   
     </data>
-    
-    <data name="Name" xml:space="preserve">
-        <value>Name</value>   
+     <data name="Street2" xml:space="preserve">
+        <value>Street 2</value>   
     </data>
-    
-    <data name="Name" xml:space="preserve">
-        <value>Name</value>   
+     <data name="Zip" xml:space="preserve">
+        <value>Zip</value>   
     </data>
-    
+     <data name="City" xml:space="preserve">
+        <value>City</value>   
+    </data>
+     <data name="State" xml:space="preserve">
+        <value>State</value>   
+    </data>
+     <data name="Country" xml:space="preserve">
+        <value>Country</value>   
+    </data>  
+     <data name="AppSyncing" xml:space="preserve">
+        <value>The app is currently syncing... This might take a few minutes</value>   
+    </data>
+     <data name="AddContract" xml:space="preserve">
+        <value>  + Add contract   </value>   
+    </data>
+     <data name="SearchSpace" xml:space="preserve">
+        <value>Search                                                  </value>   
+    </data>
+     <data name="Sign" xml:space="preserve">
+        <value>Sign</value>   
+    </data>
+     <data name="Validate" xml:space="preserve">
+        <value>Validate</value>   
+    </data>
+     <data name="Order" xml:space="preserve">
+        <value>Order</value>   
+    </data>
+     <data name="Order" xml:space="preserve">
+        <value>Order</value>   
+    </data>
+     <data name="Order" xml:space="preserve">
+        <value>Order</value>   
+    </data>
+     <data name="Order" xml:space="preserve">
+        <value>Order</value>   
+    </data>
+     <data name="Order" xml:space="preserve">
+        <value>Order</value>   
+    </data>
+     <data name="Order" xml:space="preserve">
+        <value>Order</value>   
+    </data>
+     <data name="Order" xml:space="preserve">
+        <value>Order</value>   
+    </data>
+     <data name="Order" xml:space="preserve">
+        <value>Order</value>   
+    </data>
+     <data name="Order" xml:space="preserve">
+        <value>Order</value>   
+    </data>
+     <data name="Order" xml:space="preserve">
+        <value>Order</value>   
+    </data>
+     <data name="Order" xml:space="preserve">
+        <value>Order</value>   
+    </data>
+     <data name="Order" xml:space="preserve">
+        <value>Order</value>   
+    </data>
+     <data name="Order" xml:space="preserve">
+        <value>Order</value>   
+    </data>
+     <data name="Order" xml:space="preserve">
+        <value>Order</value>   
+    </data>
+     <data name="Order" xml:space="preserve">
+        <value>Order</value>   
+    </data>
+   
 </root>

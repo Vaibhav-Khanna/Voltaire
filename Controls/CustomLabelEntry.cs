@@ -9,7 +9,7 @@ namespace voltaire.Controls
     {
 
         Grid container;
-        string imagesource;
+
         BorderlessEntry entry;
         Button cancelbutton;
         bool ShowText;
@@ -29,8 +29,10 @@ namespace voltaire.Controls
 
 
         Keyboard keyboard;
-
         public Keyboard Keyboard { get { return keyboard; } set { keyboard = value; entry.Keyboard = keyboard; } }
+
+        string imagesource;
+        public string ImageSource { get { return imagesource; } set { imagesource = value; labeltext.Text = value; OnPropertyChanged(nameof(ImageSource)); } }
 
         public string Text
 		{

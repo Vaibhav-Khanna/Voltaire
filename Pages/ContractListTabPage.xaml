@@ -16,8 +16,8 @@
     <base:BaseViewPagerPage.Content>
         <StackLayout Orientation = "Vertical" Spacing = "0" >
             <StackLayout Orientation = "Horizontal" Padding = "10,10,10,10" VerticalOptions = "Start" HorizontalOptions = "FillAndExpand">
-                <renderer:CustomSearchBar  Text = "{Binding SearchText,Mode = TwoWay }" SearchCommand = "{Binding SearchQuery}" x:Name = "search_bar" FontSize = "16" FontFamily = "Raleway-Regular" BackgroundColor = "{StaticResource GreyBack}" PlaceholderColor = "{StaticResource GreyPlaceholder}" Placeholder = "Search                                                  "  WidthRequest = "320" HeightRequest = "50" HorizontalOptions = "StartAndExpand" VerticalOptions = "Center" HorizontalTextAlignment = "Start" />          
-                <Button x:Name = "bt_add"  BackgroundColor = "{StaticResource turquoiseBlue}" TextColor = "White" VerticalOptions = "Center" HorizontalOptions = "End" HeightRequest = "35" Text = "  + Add contract   " FontSize = "12" />
+                <renderer:CustomSearchBar  Text = "{Binding SearchText,Mode = TwoWay }" SearchCommand = "{Binding SearchQuery}" x:Name = "search_bar" FontSize = "16" FontFamily = "Raleway-Regular" BackgroundColor = "{StaticResource GreyBack}" PlaceholderColor = "{StaticResource GreyPlaceholder}" Placeholder = "{x:Static resources:AppResources.SearchSpace}"  WidthRequest = "320" HeightRequest = "50" HorizontalOptions = "StartAndExpand" VerticalOptions = "Center" HorizontalTextAlignment = "Start" />          
+                <Button x:Name = "bt_add"  BackgroundColor = "{StaticResource turquoiseBlue}" TextColor = "White" VerticalOptions = "Center" HorizontalOptions = "End" HeightRequest = "35" Text = "{x:Static resources:AppResources.AddContact}" FontSize = "12" />
      </StackLayout>
             <BoxView Color = "{StaticResource GreyBack}" HeightRequest = "1" HorizontalOptions = "FillAndExpand" />
             <ListView x:Name ="listview" Refreshing="Handle_Refreshing" IsPullToRefreshEnabled="true" SeparatorColor = "{StaticResource GreyBack}" ItemsSource = "{Binding ContractsItemSource}" HasUnevenRows ="true" >
@@ -27,7 +27,7 @@
                             <Grid  x:Name = "grid" HorizontalOptions = "FillAndExpand" VerticalOptions = "Center" Margin ="0" Padding = "15,15,15,15" BackgroundColor = "{Binding BackColor}" >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height= "Auto" />
-                                </Grid.RowDefinitions>
+                                </Grid.RowDefinitions>F
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="8*" />                             
                                     <ColumnDefinition Width="2*" />

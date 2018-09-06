@@ -28,16 +28,23 @@
                 </Image.GestureRecognizers> 
                 </Image>
             </controls:TToolBar.LeftToolbarItems>
-    </controls:TToolBar>
+    
+            </controls:TToolBar>
+            
             <syncfusion:SfPdfViewer  BackgroundColor="{StaticResource GreyishBrown}" x:Name="pdfViewerControl" InputFileStream="{Binding PdfDocumentStream}" Margin="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0"    />
-        <StackLayout Orientation="Horizontal" Spacing="10" HeightRequest="90"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" Grid.Row="2" Grid.Column="0" >
+        
+            <StackLayout Orientation="Horizontal" Spacing="10" HeightRequest="90"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" Grid.Row="2" Grid.Column="0" >
+                
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding SignPDF}">
                     </TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
-            <Image Source="sign1.png" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
-            <Label FontFamily="Raleway-Bold" TextColor="{StaticResource turquoiseBlue}" FontSize="22" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Text="Sign"/>
-        </StackLayout>
+            
+                <Image Source="sign1.png" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+            
+                <Label FontFamily="Raleway-Bold" TextColor="{StaticResource turquoiseBlue}" FontSize="22" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Text="{x:Static resources:AppResources.NewContact}" />
+        
+            </StackLayout>
     </Grid>
 	</ContentPage.Content>
 </ContentPage>

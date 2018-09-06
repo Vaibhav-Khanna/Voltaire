@@ -838,5 +838,71 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("Order", resourceCulture);
             }
         }
+        
+        internal static string Street1 {
+            get {
+                return ResourceManager.GetString("Street1", resourceCulture);
+            }
+        }
+        
+        internal static string Street2 {
+            get {
+                return ResourceManager.GetString("Street2", resourceCulture);
+            }
+        }
+        
+        internal static string Zip {
+            get {
+                return ResourceManager.GetString("Zip", resourceCulture);
+            }
+        }
+        
+        internal static string City {
+            get {
+                return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        internal static string State {
+            get {
+                return ResourceManager.GetString("State", resourceCulture);
+            }
+        }
+        
+        internal static string Country {
+            get {
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        internal static string AppSyncing {
+            get {
+                return ResourceManager.GetString("AppSyncing", resourceCulture);
+            }
+        }
+        
+        internal static string AddContract {
+            get {
+                return ResourceManager.GetString("AddContract", resourceCulture);
+            }
+        }
+        
+        internal static string SearchSpace {
+            get {
+                return ResourceManager.GetString("SearchSpace", resourceCulture);
+            }
+        }
+        
+        internal static string Sign {
+            get {
+                return ResourceManager.GetString("Sign", resourceCulture);
+            }
+        }
+        
+        internal static string Validate {
+            get {
+                return ResourceManager.GetString("Validate", resourceCulture);
+            }
+        }
     }
 }

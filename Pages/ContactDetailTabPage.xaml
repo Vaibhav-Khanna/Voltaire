@@ -46,7 +46,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <controls:WeightScale MaxWeight="5" SelectedScale="{Binding Weight, Mode=TwoWay}"  IsEnabled="{Binding CanEdit}" SelectedScaleChanged="Handle_SelectedScaleChanged" Grid.Row="0" Grid.Column="0"/>    
-                    <controls:CustomLabelEntry x:Name="entry" HorizontalOptions="FillAndExpand" Text="{Binding CompanyName, Mode=TwoWay}" Keyboard="Text" Grid.Row="1" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                    <controls:CustomLabelEntry x:Name="entry" ImageSource="{x:Static resources:AppResources.ParentPartner}" HorizontalOptions="FillAndExpand" Text="{Binding CompanyName, Mode=TwoWay}" Keyboard="Text" Grid.Row="1" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
                         <x:Arguments>
                             <x:String>Parent Partner    </x:String>
                             <x:Boolean>true</x:Boolean>
@@ -60,35 +60,35 @@
                             <x:Boolean>false</x:Boolean>
                         </x:Arguments>
                     </controls:CustomLabelEntry>
-                    <controls:CustomLabelEntry PlaceHolder="Street 1"  HorizontalOptions="FillAndExpand" Text="{Binding Street1, Mode=TwoWay}" Keyboard="Text" Grid.Row="3" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                    <controls:CustomLabelEntry PlaceHolder="{x:Static resources:AppResources.Street1}"  HorizontalOptions="FillAndExpand" Text="{Binding Street1, Mode=TwoWay}" Keyboard="Text" Grid.Row="3" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
                         <x:Arguments>
                             <x:String>location.png</x:String>
                             <x:Boolean>false</x:Boolean>
                             <x:Boolean>false</x:Boolean>
                         </x:Arguments>
                     </controls:CustomLabelEntry>
-                         <controls:CustomLabelEntry PlaceHolder="Street 2" HorizontalOptions="FillAndExpand" Text="{Binding Street2, Mode=TwoWay}" Keyboard="Text" Grid.Row="4" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                         <controls:CustomLabelEntry PlaceHolder="{x:Static resources:AppResources.Street2}" HorizontalOptions="FillAndExpand" Text="{Binding Street2, Mode=TwoWay}" Keyboard="Text" Grid.Row="4" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
                         <x:Arguments>
                             <x:String>location.png</x:String>
                             <x:Boolean>false</x:Boolean>
                             <x:Boolean>false</x:Boolean>
                         </x:Arguments>
                     </controls:CustomLabelEntry>
-                         <controls:CustomLabelEntry PlaceHolder="Zip" HorizontalOptions="FillAndExpand" Text="{Binding Zip, Mode=TwoWay}" Keyboard="Text" Grid.Row="5" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                         <controls:CustomLabelEntry PlaceHolder="{x:Static resources:AppResources.Zip}" HorizontalOptions="FillAndExpand" Text="{Binding Zip, Mode=TwoWay}" Keyboard="Text" Grid.Row="5" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
                         <x:Arguments>
                             <x:String>location.png</x:String>
                             <x:Boolean>false</x:Boolean>
                             <x:Boolean>false</x:Boolean>
                         </x:Arguments>
                     </controls:CustomLabelEntry>
-                         <controls:CustomLabelEntry PlaceHolder="City" HorizontalOptions="FillAndExpand" Text="{Binding City, Mode=TwoWay}" Keyboard="Text" Grid.Row="6" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
+                         <controls:CustomLabelEntry PlaceHolder="{x:Static resources:AppResources.City}" HorizontalOptions="FillAndExpand" Text="{Binding City, Mode=TwoWay}" Keyboard="Text" Grid.Row="6" Grid.Column="0" IsEnabled="{Binding CanEdit}" >
                         <x:Arguments>
                             <x:String>location.png</x:String>
                             <x:Boolean>false</x:Boolean>
                             <x:Boolean>false</x:Boolean>
                         </x:Arguments>
                     </controls:CustomLabelEntry>
-                         <controls:CustomLabelEntry PlaceHolder="State" HorizontalOptions="FillAndExpand" Text="{Binding State, Mode=TwoWay}" Keyboard="Text" Grid.Row="7" Grid.Column="0" IsEnabled="false"  >
+                         <controls:CustomLabelEntry PlaceHolder="{x:Static resources:AppResources.State}" HorizontalOptions="FillAndExpand" Text="{Binding State, Mode=TwoWay}" Keyboard="Text" Grid.Row="7" Grid.Column="0" IsEnabled="false"  >
                         <x:Arguments>
                             <x:String>location.png</x:String>
                             <x:Boolean>false</x:Boolean>
@@ -106,7 +106,7 @@
                           <renderers:BorderlessPicker InputTransparent="false" Opacity="0.1" TextAlignMent="Start" IsEnabled="{Binding CanEdit}" Title=" " x:Name = "picker_1" TextColor = "White" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand"  SelectedIndex = "{Binding StateIndex,Mode=TwoWay}" ItemsSource = "{Binding StateItems}" Grid.Row = "7" Grid.Column = "0" /> 
 -->
                         
-                         <controls:CustomLabelEntry PlaceHolder="Country" HorizontalOptions="FillAndExpand" Text="{Binding Country, Mode=TwoWay}" Keyboard="Text" Grid.Row="8" Grid.Column="0" IsEnabled="false"  >
+                         <controls:CustomLabelEntry PlaceHolder="{x:Static resources:AppResources.Country}" HorizontalOptions="FillAndExpand" Text="{Binding Country, Mode=TwoWay}" Keyboard="Text" Grid.Row="8" Grid.Column="0" IsEnabled="false"  >
                         <x:Arguments>
                             <x:String>location.png</x:String>
                             <x:Boolean>false</x:Boolean>

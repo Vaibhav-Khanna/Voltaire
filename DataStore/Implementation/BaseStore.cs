@@ -142,7 +142,6 @@ namespace voltaire.DataStore.Implementation
 
         public async Task<bool> PullLatestAsync()
         {
-
             if (!Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
             {
                 Debug.WriteLine("Unable to pull items, we are offline");
@@ -152,7 +151,8 @@ namespace voltaire.DataStore.Implementation
             try
             {
                 var query = Table.CreateQuery();
-                await Table.PullAsync<T>($"all{Identifier}",query,false,new CancellationToken(false), new PullOptions() { MaxPageSize = 150 }).ConfigureAwait(false);
+
+                await Table.PullAsync<T>($"all{Identifier}",query.IncludeTotalCount(),false,new CancellationToken(false), new PullOptions() { MaxPageSize = 150 }).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -162,7 +162,6 @@ namespace voltaire.DataStore.Implementation
 
             return true;
         }
-
 
     }
 }

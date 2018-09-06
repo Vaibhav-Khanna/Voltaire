@@ -26,7 +26,7 @@ namespace voltaire.Models
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(Customer.Name) || Customer.Name.Length == 0 || Regex.IsMatch(Customer.Name, @"^\d")) return "#";
+                if (string.IsNullOrWhiteSpace(Customer.Name) || Customer.Name.Length == 0 || Regex.IsMatch(Customer.Name.Trim(), @"^\d")) return "#";
                 return Customer.Name.Trim()[0].ToString().ToUpper();
             }
         }

@@ -10,10 +10,12 @@ using voltaire.Models;
 using voltaire.PageModels.Base;
 using Xamarin.Forms;
 using voltaire.Resources;
+using Newtonsoft.Json;
 using System.Reflection;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace voltaire.PageModels
 {
@@ -106,7 +108,7 @@ namespace voltaire.PageModels
 
         public ContactsPageModel()
         {
-
+           
         }
 
         private void FiltersLayoutAppearing()
@@ -232,7 +234,9 @@ namespace voltaire.PageModels
 
            IsLoading = true;
            IsLoadingText = AppResources.Refreshing;
-           var result = await CustomerStore.GetItemsAsync(FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade], true);
+
+            var result = await CustomerStore.GetItemsAsync(FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade], obj == null ? true : (bool)obj );
+         
            CreateGroupedCollection(result);
            IsRefreshing = false;
            IsLoading = false;
@@ -303,7 +307,7 @@ namespace voltaire.PageModels
                 }
             }
 
-            list = list.OrderBy((arg) => arg.Name);
+            list = list.OrderBy((arg) => arg.Name.Trim());
 
             Customers = new ObservableCollection<Partner>(list);
 
@@ -347,7 +351,6 @@ namespace voltaire.PageModels
             Get();
         }
 
-
         public override void ReverseInit(object returnedData)
         {
             base.ReverseInit(returnedData);
@@ -355,12 +358,11 @@ namespace voltaire.PageModels
             if (returnedData != null)
             {
                 if (returnedData is bool)
-                    RefreshList.Execute(null);
+                    RefreshList.Execute(returnedData);
 
                 if (returnedData is Partner)
                     RefreshList.Execute(null);
             }
-
         }
 
 

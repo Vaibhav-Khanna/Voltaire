@@ -8,8 +8,7 @@
     using voltaire.DataStore.Abstraction;
 
     public class SaleOrder : BaseDataObject
-    {
-       
+    {      
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
 

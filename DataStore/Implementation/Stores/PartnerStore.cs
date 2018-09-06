@@ -61,7 +61,7 @@ namespace voltaire.DataStore.Implementation.Stores
             }
             else
             {
-                return await Table.OrderBy(x => x.Name).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+                return await Table.OrderBy(x => x.Name ).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
             }
         }
 
