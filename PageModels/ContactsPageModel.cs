@@ -307,8 +307,6 @@ namespace voltaire.PageModels
                 }
             }
 
-            list = list.OrderBy((arg) => arg.Name.Trim());
-
             Customers = new ObservableCollection<Partner>(list);
 
             var models = Customers.Select(i => new CustomerModel(i) { navigation = CoreMethods }).ToList();
