@@ -113,7 +113,7 @@ namespace voltaire.Pages
             {
                 if (e.PropertyName == "Customers")
                 {
-                    if (ViewModel.Customers != null && ViewModel.Customers.Count > 0)
+                    if (ViewModel.Customers != null && ViewModel.Customers.Count >= 0)
                     {
                         SetPins(ViewModel);
                     }
@@ -135,6 +135,8 @@ namespace voltaire.Pages
         void Handle_CameraIdled(object sender, Xamarin.Forms.GoogleMaps.CameraIdledEventArgs e)
         {
             bt_search.IsEnabled = true;
+
+            (BindingContext as MapMainPageModel).FilterVisibleRegion(Map.VisibleRegion);
         }
 
         void SearchAreaClicked(object sender, System.EventArgs e)

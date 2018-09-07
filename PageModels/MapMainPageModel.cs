@@ -207,7 +207,7 @@ namespace voltaire.PageModels
         {
             if (AllPartners != null && AllPartners.Any())
             {
-                Dialog.ShowLoading(AppResources.Loading);
+                //Dialog.ShowLoading(AppResources.Loading);
 
                 var region_bounds = CalculateBoundingCoordinates(region);
 
@@ -216,13 +216,13 @@ namespace voltaire.PageModels
                 var right = region_bounds.Item3;
                 var bottom = region_bounds.Item4;
 
-                var points = AllPartners.Where((arg) => arg.PartnerLongitude <= right && arg.PartnerLongitude >= left && arg.PartnerLatitude >= bottom && arg.PartnerLatitude <= top);
+                var points = AllPartners.Where((arg) => arg.PartnerLongitude <= right && arg.PartnerLongitude >= left && arg.PartnerLatitude >= bottom && arg.PartnerLatitude <= top).Take(250);
 
                 VisiblePartners = points.ToList();
 
                 FilterOutAddresses();
 
-                Dialog.HideLoading();
+                //Dialog.HideLoading();
             }
         }
 
