@@ -904,5 +904,41 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("Validate", resourceCulture);
             }
         }
+        
+        internal static string ToDoList {
+            get {
+                return ResourceManager.GetString("ToDoList", resourceCulture);
+            }
+        }
+        
+        internal static string RetrospectiveAgenda {
+            get {
+                return ResourceManager.GetString("RetrospectiveAgenda", resourceCulture);
+            }
+        }
+        
+        internal static string PeriodFrom {
+            get {
+                return ResourceManager.GetString("PeriodFrom", resourceCulture);
+            }
+        }
+        
+        internal static string To {
+            get {
+                return ResourceManager.GetString("To", resourceCulture);
+            }
+        }
+        
+        internal static string SearchArea {
+            get {
+                return ResourceManager.GetString("SearchArea", resourceCulture);
+            }
+        }
+        
+        internal static string Searching {
+            get {
+                return ResourceManager.GetString("Searching", resourceCulture);
+            }
+        }
     }
 }

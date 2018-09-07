@@ -7,6 +7,7 @@ using Xamarin.Forms.GoogleMaps;
 using voltaire.Resources;
 using voltaire.Controls;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace voltaire.Pages
 {
@@ -87,6 +88,7 @@ namespace voltaire.Pages
                         Handle_MyLocationButtonClicked(null, null);
                     }
 
+
                 }
             }
             catch (Exception)
@@ -122,7 +124,32 @@ namespace voltaire.Pages
             SetPins(ViewModel);
 
             #endregion
+        }
 
+        void Handle_CameraMoveStarted(object sender, Xamarin.Forms.GoogleMaps.CameraMoveStartedEventArgs e)
+        {
+            bt_search.IsVisible = true;
+            bt_search.IsEnabled = false;
+        }
+
+        void Handle_CameraIdled(object sender, Xamarin.Forms.GoogleMaps.CameraIdledEventArgs e)
+        {
+            bt_search.IsEnabled = true;
+        }
+
+        void SearchAreaClicked(object sender, System.EventArgs e)
+        {
+            Map.IsEnabled = false;
+            bt_search.IsEnabled = false;
+            bt_search.Text = AppResources.Searching;
+
+            var area_visible =  Map.VisibleRegion;
+
+            (BindingContext as MapMainPageModel).FilterVisibleRegion(area_visible);
+
+            Map.IsEnabled = true;
+            bt_search.IsVisible = false;
+            bt_search.Text = AppResources.SearchArea;
         }
 
         async void Handle_MyLocationButtonClicked(object sender, Xamarin.Forms.GoogleMaps.MyLocationButtonClickedEventArgs e)
@@ -144,7 +171,6 @@ namespace voltaire.Pages
             {
                 if (CrossGeolocator.IsSupported && CrossGeolocator.Current.IsGeolocationEnabled)
                 {
-
                     var locator = CrossGeolocator.Current;
                     locator.DesiredAccuracy = 50;
 
@@ -172,7 +198,6 @@ namespace voltaire.Pages
                     }
 
                     await locator.StopListeningAsync();
-
                 }
                 else
                 {
@@ -185,7 +210,6 @@ namespace voltaire.Pages
 
             IsBusy = false;
         }
-
 
 
         void SetPins(MapMainPageModel context)
@@ -270,7 +294,6 @@ namespace voltaire.Pages
             ((sender as Button).Parent as Frame).Style = (Style)App.Current.Resources["PartnerGradeFrameSelected"];
 
             (BindingContext as MapMainPageModel).PartnerGradeFilter.Execute((sender as Button).Text);
-
         }
 
         public Color Convert(DateTime? item)

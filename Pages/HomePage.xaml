@@ -14,10 +14,12 @@
 		</Grid.ColumnDefinitions>
 		<!--  Toolbar  -->
 		<controls:TToolBar Title="{x:Static resources:AppResources.Dashboard}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-			<controls:TToolBar.LeftToolbarItems>
-				<renderers:CustomSearchBar x:Name="searchBar" Text="{Binding SearchText,Mode=TwoWay}" SearchCommand="{Binding SearchContact}" Placeholder="{x:Static resources:AppResources.SearchContact}"  HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}"  />
+		
+            <controls:TToolBar.LeftToolbarItems>
+				<renderers:CustomSearchBar x:Name="searchBar" IsVisible="false" Text="{Binding SearchText,Mode=TwoWay}" SearchCommand="{Binding SearchContact}" Placeholder="{x:Static resources:AppResources.SearchContact}"  HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}"  />
 			</controls:TToolBar.LeftToolbarItems>
-			<controls:TToolBar.RightToolbarItems>
+			
+            <controls:TToolBar.RightToolbarItems>
 				<Grid>
 					<Grid.GestureRecognizers>
 						<TapGestureRecognizer Command="{Binding UserInfoCommand}" />
@@ -150,7 +152,7 @@
 					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToContacts" />
 				</StackLayout.GestureRecognizers>
 				<Image Source="contactsBig" Style="{StaticResource CircleMenuIconStyle}" />
-				<Label Style="{StaticResource MenuItemLabelStyle}" Text="Contacts" />
+				<Label Style="{StaticResource MenuItemLabelStyle}" Text="{x:Static resources:AppResources.Contacts}" />
 			</StackLayout>
 			<!--  Map  -->
 			<StackLayout Grid.Row="0" Grid.Column="1" Margin="0,20,0,0" Style="{StaticResource CircleMenuStyle}"> <!-- Grid.Row="1" Grid.Column="1" -->
@@ -158,7 +160,7 @@
 					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToMap" />
 				</StackLayout.GestureRecognizers>
 				<Image Source="mapBig" Style="{StaticResource CircleMenuIconStyle}" />
-				<Label Style="{StaticResource MenuItemLabelStyle}" Text="Map" />
+				<Label Style="{StaticResource MenuItemLabelStyle}" Text="{x:Static resources:AppResources.Map}" />
 			</StackLayout>
 			<!--  Todo  -->
 			<StackLayout Opacity="0.5" Grid.Row="0" Grid.Column="2" Margin="0,20,0,0" Style="{StaticResource CircleMenuStyle}"><!-- Grid.Row="1" Grid.Column="2" -->
@@ -166,7 +168,7 @@
 					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToTodo" />
 				</StackLayout.GestureRecognizers>
 				<Image Source="todoBig" Style="{StaticResource CircleMenuIconStyle}" />
-				<Label Style="{StaticResource MenuItemLabelStyle}" Text="Todo list" />
+				<Label Style="{StaticResource MenuItemLabelStyle}" Text="{x:Static resources:AppResources.ToDoList}" />
 			</StackLayout>
 			<!--  Agenda  -->
 			<StackLayout  Opacity="0.5" Grid.Row="0" Grid.Column="3" Margin="0,20,0,0" Style="{StaticResource CircleMenuStyle}"><!-- Grid.Row="1" Grid.Column="3" -->
@@ -174,7 +176,7 @@
 					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToAgenda" />
 				</StackLayout.GestureRecognizers>
 				<Image Source="agendaBig" Style="{StaticResource CircleMenuIconStyle}" />
-				<Label Style="{StaticResource MenuItemLabelStyle}" Text="Retrospective agenda" />
+				<Label Style="{StaticResource MenuItemLabelStyle}" Text="{x:Static resources:AppResources.RetrospectiveAgenda}" />
 			</StackLayout>
 			<!--  Reports  -->
 			<StackLayout  Opacity="0.5" Grid.Row="1" Grid.Column="0" Margin="0,20,0,0" Style="{StaticResource CircleMenuSecondLineStyle}"> <!-- Grid.Row="2" Grid.Column="0" -->
@@ -182,7 +184,7 @@
 					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToReport" />
 				</StackLayout.GestureRecognizers>
 				<Image Source="reportsBig" Style="{StaticResource CircleMenuIconStyle}" />
-				<Label Style="{StaticResource MenuItemLabelStyle}" Text="Reports" />
+				<Label Style="{StaticResource MenuItemLabelStyle}" Text="{x:Static resources:AppResources.Reports}" />
 			</StackLayout>
 			<!--  Manage users  -->
 			<StackLayout  Opacity="0.5" Grid.Row="1" Grid.Column="1" Margin="0,20,0,0" Style="{StaticResource CircleMenuSecondLineStyle}"> <!-- Grid.Row="2" Grid.Column="1" -->
@@ -190,7 +192,7 @@
 					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToQuotations" />
 				</StackLayout.GestureRecognizers>
 				<Image Source="quotationsBig" Style="{StaticResource CircleMenuIconStyle}" />
-				<Label Style="{StaticResource MenuItemLabelStyle}" Text="Quotations" />
+				<Label Style="{StaticResource MenuItemLabelStyle}" Text="{x:Static resources:AppResources.Quotations}" />
 			</StackLayout>
 			<!--  Contract  -->
 			<StackLayout  Opacity="0.5" Grid.Row="1" Grid.Column="2" Margin="0,20,0,0" Style="{StaticResource CircleMenuSecondLineStyle}"><!-- Grid.Row="2" Grid.Column="2" -->
@@ -198,7 +200,7 @@
 					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToContract" />
 				</StackLayout.GestureRecognizers>
 				<Image Source="contractsBig" Style="{StaticResource CircleMenuIconStyle}" />
-				<Label Style="{StaticResource MenuItemLabelStyle}" Text="Contracts" />
+				<Label Style="{StaticResource MenuItemLabelStyle}" Text="{x:Static resources:AppResources.Contracts}" />
 			</StackLayout>
 			<!--  Goals  -->
 			<StackLayout  Opacity="0.5" Grid.Row="1" Grid.Column="3" Margin="0,20,0,0" Style="{StaticResource CircleMenuSecondLineStyle}"><!-- Grid.Row="2" Grid.Column="3"  -->
@@ -206,7 +208,7 @@
 					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToGoals" />
 				</StackLayout.GestureRecognizers>
 				<Image Source="goalsBig" Style="{StaticResource CircleMenuIconStyle}" />
-				<Label Style="{StaticResource MenuItemLabelStyle}" Text="Goals" />
+				<Label Style="{StaticResource MenuItemLabelStyle}" Text="{x:Static resources:AppResources.Goals}" />
 			</StackLayout>
 		</Grid>
 

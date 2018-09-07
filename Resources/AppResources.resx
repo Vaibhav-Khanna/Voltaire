@@ -551,23 +551,23 @@
      <data name="Validate" xml:space="preserve">
         <value>Validate</value>   
     </data>
-     <data name="Order" xml:space="preserve">
-        <value>Order</value>   
+     <data name="ToDoList" xml:space="preserve">
+        <value>ToDo list</value>   
     </data>
-     <data name="Order" xml:space="preserve">
-        <value>Order</value>   
+     <data name="RetrospectiveAgenda" xml:space="preserve">
+        <value>Retrospective agenda</value>   
     </data>
-     <data name="Order" xml:space="preserve">
-        <value>Order</value>   
+     <data name="PeriodFrom" xml:space="preserve">
+        <value>Period From:</value>   
     </data>
-     <data name="Order" xml:space="preserve">
-        <value>Order</value>   
+     <data name="To" xml:space="preserve">
+        <value>To:</value>   
     </data>
-     <data name="Order" xml:space="preserve">
-        <value>Order</value>   
+     <data name="SearchArea" xml:space="preserve">
+        <value>    Search partners in this area    </value>   
     </data>
-     <data name="Order" xml:space="preserve">
-        <value>Order</value>   
+     <data name="Searching" xml:space="preserve">
+        <value>    Searching...   </value>   
     </data>
      <data name="Order" xml:space="preserve">
         <value>Order</value>   

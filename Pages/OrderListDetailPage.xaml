@@ -34,6 +34,7 @@
                 </Image.GestureRecognizers> 
                 </Image>
             </controls:TToolBar.LeftToolbarItems>
+                
           <!--  <controls:TToolBar.RightToolbarItems>
                     <Image Source = "more.png"  HeightRequest = "25" WidthRequest = "60" VerticalOptions = "Center" HorizontalOptions = "End" TranslationX="10" >
                          <Image.GestureRecognizers>

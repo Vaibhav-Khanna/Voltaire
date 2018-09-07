@@ -172,47 +172,53 @@ namespace voltaire.PageModels
             if (!IsLoadMore || Loadingmore)
                 return;
 
+
+            Loadingmore = true;
+
+            IEnumerable<Partner> result;
+
             if (string.IsNullOrWhiteSpace(SearchText))
+                result = await CustomerStore.GetNextItemsAsync(Customers.Count, FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade]);
+            else 
+                result = await CustomerStore.Search(SearchText.Trim(), FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade], Customers.Count);
+
+
+            if (result != null && result.Any())
             {
-                Loadingmore = true;
+                var list = customers.ToList();
 
-                var result = await CustomerStore.GetNextItemsAsync(Customers.Count, FilterWeight, FilterGrade == null ? null : GradeValues[FilterGrade]);
+                list.AddRange(result);
 
-                if (result != null && result.Any())
+                if ((result as IQueryResultEnumerable<Partner>) != null)
                 {
-                    var list = customers.ToList();
+                    var totalCount = (result as IQueryResultEnumerable<Partner>).TotalCount;
 
-                    list.AddRange(result);
 
-                    Debug.WriteLine("Fetched " + result.Count());
+                    if (totalCount != 1)
+                        CustomersCount = totalCount.ToString() + " " + AppResources.Contacts;
+                    else
+                        CustomersCount = totalCount.ToString() + " " + AppResources.Contact;
 
-                    if ((result as IQueryResultEnumerable<Partner>) != null)
-                    {
-                        var totalCount = (result as IQueryResultEnumerable<Partner>).TotalCount;
 
-                        if (totalCount != 1)
-                            CustomersCount = totalCount.ToString() + " " + AppResources.Contacts;
-                        else
-                            CustomersCount = totalCount.ToString() + " " + AppResources.Contact;
+                    if (Convert.ToInt32(totalCount) - list.Count() > 0)
+                        IsLoadMore = true;
+                    else
+                        IsLoadMore = false;
 
-                        if (!string.IsNullOrWhiteSpace(SearchText))
-                            IsLoadMore = false;
-                        else
-                        {
-                            if (Convert.ToInt32(totalCount) - list.Count() > 0)
-                                IsLoadMore = true;
-                            else
-                                IsLoadMore = false;
-                        }
-                    }
-
-                    CreateGroupedCollection(list);
                 }
-                else
-                    IsLoadMore = false;
 
-                Loadingmore = false;
+                CreateGroupedCollection(list);
+
+                if(!string.IsNullOrWhiteSpace(SearchText))
+                {
+                    CustomersCount += " " + AppResources.MatchingSearch;
+                }
             }
+            else
+                IsLoadMore = false;
+
+            Loadingmore = false;
+
         });
 
 
@@ -240,7 +246,6 @@ namespace voltaire.PageModels
            CreateGroupedCollection(result);
            IsRefreshing = false;
            IsLoading = false;
-
        });
 
 
@@ -296,9 +301,9 @@ namespace voltaire.PageModels
                 else
                     CustomersCount = totalCount.ToString() + " " + AppResources.Contact;
 
-                if (!string.IsNullOrWhiteSpace(SearchText))
-                    IsLoadMore = false;
-                else
+                //if (!string.IsNullOrWhiteSpace(SearchText))
+                //    IsLoadMore = false;
+                //else
                 {
                     if (Convert.ToInt32(totalCount) - list.Count() > 0)
                         IsLoadMore = true;
@@ -362,6 +367,7 @@ namespace voltaire.PageModels
                     RefreshList.Execute(null);
             }
         }
+
 
 
     }

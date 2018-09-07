@@ -28,7 +28,7 @@
             
         <controls:TToolBar Title="{x:Static resources:AppResources.Map}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <controls:TToolBar.LeftToolbarItems>
-                <renderers:CustomSearchBar x:Name="searchBar" Text="{Binding SearchText,Mode=TwoWay}" SearchCommand="{Binding SearchContact}" Placeholder="{x:Static resources:AppResources.SearchContact}"  HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}"  />
+                <renderers:CustomSearchBar x:Name="searchBar" IsVisible="false" Text="{Binding SearchText,Mode=TwoWay}" SearchCommand="{Binding SearchContact}" Placeholder="{x:Static resources:AppResources.SearchContact}"  HeightRequest="40" WidthRequest="180" Style="{StaticResource SearchContact}"  />
           </controls:TToolBar.LeftToolbarItems>
         </controls:TToolBar>
 
@@ -46,9 +46,12 @@
             <!--  Main Layout  -->
 
             <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1" Grid.Column="1">
-                <maps:Map x:Name="Map" HasZoomEnabled="true" HasScrollEnabled="true" IsShowingUser="true" MyLocationButtonClicked="Handle_MyLocationButtonClicked" IsTrafficEnabled="true" IsIndoorEnabled="true" MyLocationEnabled="true" MapType="Street" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
+               
+                <maps:Map x:Name="Map" CameraMoveStarted="Handle_CameraMoveStarted" CameraIdled="Handle_CameraIdled" HasZoomEnabled="true" HasScrollEnabled="true" IsShowingUser="true" MyLocationButtonClicked="Handle_MyLocationButtonClicked" IsTrafficEnabled="true" IsIndoorEnabled="true" MyLocationEnabled="true" MapType="Street" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />
+               
                 <BoxView InputTransparent="true" BackgroundColor="{StaticResource turquoiseBlue}" Opacity="0.2" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" />             
-                 <Image HeightRequest="60" WidthRequest="60" Source="filter.png"  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.95,0.04,AutoSize,AutoSize">
+                
+                <Image HeightRequest="60" WidthRequest="60" Source="filter.png"  AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.95,0.04,AutoSize,AutoSize">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Filter}" />
                     </Image.GestureRecognizers>
@@ -59,7 +62,10 @@
                         <OnPlatform x:TypeArguments="x:Double" Android="-5" iOS="0" />
                     </Image.TranslationY>
                 </Image>
-
+                
+                
+                <Button x:Name="bt_search" Clicked="SearchAreaClicked" IsVisible="true" Text="{x:Static resources:AppResources.SearchArea}" HorizontalOptions="Start" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.02,0.02,AutoSize,AutoSize" FontSize="14" TextColor="Gray" BackgroundColor="White" />
+                
 
             <ScrollView Orientation="Vertical" BackgroundColor="{StaticResource GreyBack}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,0.3,0.8"  Padding="0" Margin="0" IsVisible="{Binding FilterLayoutVisibility}"  VerticalOptions="Start">   
             <StackLayout                                

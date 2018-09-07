@@ -126,7 +126,7 @@ namespace voltaire.DataStore.Implementation.Stores
             }
         }
 
-        public async Task<IEnumerable<Partner>> Search(string QueryText, int? Weight, long? Grade)
+        public async Task<IEnumerable<Partner>> Search(string QueryText, int? Weight, long? Grade,int CurrentItems = 0)
         {
             await InitializeStore().ConfigureAwait(false);
 
@@ -134,19 +134,19 @@ namespace voltaire.DataStore.Implementation.Stores
 
             if (Weight != null && Grade == null)
             {
-                items = await Table.Where(x => x.PartnerWeight == Weight).Where(s => s.Name.Contains(QueryText) || s.ParentName.Contains(QueryText)).OrderBy(x => x.Name).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+                items = await Table.Where(x => x.PartnerWeight == Weight).Where(s => s.Name.Contains(QueryText) || s.ParentName.Contains(QueryText)).OrderBy(x => x.Name).Skip(CurrentItems).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
             }
             else if (Weight != null && Grade != null)
             {
-                items = await Table.Where(x => x.PartnerWeight == Weight && x.GradeId == Grade).Where(s => s.Name.Contains(QueryText) || s.ParentName.Contains(QueryText)).OrderBy(x => x.Name).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+                items = await Table.Where(x => x.PartnerWeight == Weight && x.GradeId == Grade).Where(s => s.Name.Contains(QueryText) || s.ParentName.Contains(QueryText)).OrderBy(x => x.Name).Skip(CurrentItems).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
             }
             else if (Weight == null && Grade != null)
             {
-                items = await Table.Where(x => x.GradeId == Grade).Where(s => s.Name.Contains(QueryText) || s.ParentName.Contains(QueryText)).OrderBy(x => x.Name).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+                items = await Table.Where(x => x.GradeId == Grade).Where(s => s.Name.Contains(QueryText) || s.ParentName.Contains(QueryText)).OrderBy(x => x.Name).Skip(CurrentItems).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
             }
             else
             {
-                items = await Table.Where(s => s.Name.Contains(QueryText) || s.ParentName.Contains(QueryText)).OrderBy(x => x.Name).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+                items = await Table.Where(s => s.Name.Contains(QueryText) || s.ParentName.Contains(QueryText)).OrderBy(x => x.Name).Skip(CurrentItems).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
             }
 
             if (items == null)
