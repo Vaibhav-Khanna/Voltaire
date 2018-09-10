@@ -119,11 +119,11 @@ namespace voltaire.DataStore.Implementation
 
         public virtual async Task<bool> SyncAsync()
         {
-            if (!Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
-            {
-                Debug.WriteLine("Unable to sync items, we are offline");
-                return false;
-            }
+            //if (!Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
+            //{
+            //    Debug.WriteLine("Unable to sync items, we are offline");
+            //    return false;
+            //}
 
             try
             {
@@ -142,11 +142,11 @@ namespace voltaire.DataStore.Implementation
 
         public async Task<bool> PullLatestAsync()
         {
-            if (!Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
-            {
-                Debug.WriteLine("Unable to pull items, we are offline");
-                return false;
-            }
+            //if (!Plugin.Connectivity.CrossConnectivity.Current.IsConnected)
+            //{
+            //    Debug.WriteLine("Unable to pull items, we are offline");
+            //    return false;
+            //}
 
             try
             {

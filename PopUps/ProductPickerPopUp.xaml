@@ -25,7 +25,7 @@
                 <TapGestureRecognizer Command="{Binding Close}" />
             </Image.GestureRecognizers>
                 </Image>
-                <Label TranslationY="-20" FontAttributes="Bold" Text="Select a product" TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Semibold" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" />
+                <Label TranslationY="-20" FontAttributes="Bold" Text="{x:Static resources:AppResources.SelectAProduct}" TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Semibold" VerticalOptions="Start" HorizontalOptions="CenterAndExpand" />
             <ListView x:Name="listview" ItemsSource="{Binding ItemSource}" SeparatorColor="{StaticResource GreyishBrown}" HasUnevenRows="true" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
                 <ListView.ItemTemplate>
                     <DataTemplate>

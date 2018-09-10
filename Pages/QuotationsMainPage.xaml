@@ -62,11 +62,11 @@
                <ColumnDefinition Width="2*" />
                <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-                <Label FontFamily = "Raleway-Bold" FontSize = "16" FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "REF" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "0"  />
-                            <Label FontFamily = "Raleway-Bold"  FontAttributes = "Bold" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "Name" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "1"  />
-                            <Label FontFamily = "Raleway-Bold"  FontAttributes = "Bold" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "Date" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "2"  />
-               <Label FontFamily = "Raleway-Bold"  FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "Total" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "3"  />
-               <Label FontFamily = "Raleway-Bold" FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "Status" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "4"  />  
+                <Label FontFamily = "Raleway-Bold" FontSize = "16" FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "{x:Static resources:AppResources.REF}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "0"  />
+                            <Label FontFamily = "Raleway-Bold"  FontAttributes = "Bold" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{x:Static resources:AppResources.Name}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "1"  />
+                            <Label FontFamily = "Raleway-Bold"  FontAttributes = "Bold" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{x:Static resources:AppResources.Date}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "2"  />
+               <Label FontFamily = "Raleway-Bold"  FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "{x:Static resources:AppResources.Total}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "3"  />
+               <Label FontFamily = "Raleway-Bold" FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "{x:Static resources:AppResources.Status}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "4"  />  
             </Grid>
 
                 <BoxView Color = "{StaticResource GreyBack}" HeightRequest = "1" HorizontalOptions = "FillAndExpand" />

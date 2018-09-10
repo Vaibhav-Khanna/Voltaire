@@ -96,7 +96,7 @@ namespace voltaire.Models
 
         public DateTime? DateSigned { get; set; }
 
-        public List<string> TermsConditions { get; set; } = new List<string> { "20% cancellation fee on any custom order", "2 weeks return policy on any custom item" };
+        public List<string> TermsConditions { get; set; } = new List<string> { Resources.AppResources.Terms1, Resources.AppResources.Terms2 };
 
     }
 

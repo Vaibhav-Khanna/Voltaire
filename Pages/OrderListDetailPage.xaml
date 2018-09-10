@@ -10,6 +10,7 @@
     xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
     x:Class="voltaire.Pages.OrderListDetailPage">
 	<base:BasePage.Content>
+        
         <Grid ColumnSpacing = "1" RowSpacing = "1" Padding = "0" Margin = "0" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand" BackgroundColor ="#d8d8d8" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="90" />
@@ -59,12 +60,12 @@
                             <ColumnDefinition Width="2*" />
                             <ColumnDefinition Width="2*" />
                         </Grid.ColumnDefinitions>
-                        <Label FontFamily = "Raleway-Bold" FontSize = "16" FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "Description" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "0"  />
-                        <Label FontFamily = "Raleway-Bold"  FontAttributes = "Bold" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "Status" VerticalOptions = "Center" HorizontalOptions =  "Center" Grid.Row = "0" Grid.Column = "1"  />
-                        <Label FontFamily = "Raleway-Bold"  FontAttributes = "Bold" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "Qty" VerticalOptions = "Center" HorizontalOptions =  "Center" Grid.Row = "0" Grid.Column = "2"  />
-                        <Label FontFamily = "Raleway-Bold"  FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "Unit Price" VerticalOptions = "Center" HorizontalOptions =  "Center" Grid.Row = "0" Grid.Column = "3"  />
-                        <Label FontFamily = "Raleway-Bold" FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "Tax Apply" VerticalOptions = "Center" HorizontalOptions =  "Center" Grid.Row = "0" Grid.Column = "4"  />  
-                        <Label FontFamily = "Raleway-Bold" FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "Tax Free" VerticalOptions = "Center" HorizontalOptions =  "Center" Grid.Row = "0" Grid.Column = "5"  />   
+                        <Label FontFamily = "Raleway-Bold" FontSize = "16" FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "{x:Static resources:AppResources.Description}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "0"  />
+                        <Label FontFamily = "Raleway-Bold"  FontAttributes = "Bold" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{x:Static resources:AppResources.Status}" VerticalOptions = "Center" HorizontalOptions =  "Center" Grid.Row = "0" Grid.Column = "1"  />
+                        <Label FontFamily = "Raleway-Bold"  FontAttributes = "Bold" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{x:Static resources:AppResources.Quantity}" VerticalOptions = "Center" HorizontalOptions =  "Center" Grid.Row = "0" Grid.Column = "2"  />
+                        <Label FontFamily = "Raleway-Bold"  FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "{x:Static resources:AppResources.UnitPrice}" VerticalOptions = "Center" HorizontalOptions =  "Center" Grid.Row = "0" Grid.Column = "3"  />
+                        <Label FontFamily = "Raleway-Bold" FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "{x:Static resources:AppResources.TaxApply}" VerticalOptions = "Center" HorizontalOptions =  "Center" Grid.Row = "0" Grid.Column = "4"  />  
+                        <Label FontFamily = "Raleway-Bold" FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "{x:Static resources:AppResources.TaxFree}" VerticalOptions = "Center" HorizontalOptions =  "Center" Grid.Row = "0" Grid.Column = "5"  />   
                     </Grid>
 
               <!-- Listview -->
@@ -118,7 +119,7 @@
                 <Label HorizontalOptions ="StartAndExpand" VerticalOptions = "Center" >
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span ForegroundColor = "{StaticResource GreyishBrown}" FontFamily = "SanFranciscoDisplay-Regular" FontSize ="18"  Text = "Tax"  />
+                            <Span ForegroundColor = "{StaticResource GreyishBrown}" FontFamily = "SanFranciscoDisplay-Regular" FontSize ="18"  Text = "{x:Static resources:AppResources.Tax}"  />
                             <Span ForegroundColor = "{StaticResource GreyishBrown}" FontFamily = "SanFranciscoDisplay-Regular" FontSize ="14"  Text = ""  />
                         </FormattedString>
                     </Label.FormattedText>
@@ -129,21 +130,21 @@
             </StackLayout>
             
             <StackLayout BackgroundColor = "White" Orientation = "Horizontal" Grid.Row = "5" Grid.Column = "1" Padding = "30,0,20,0">
-                <Label FontSize = "20" Text = "Sub total" FontAttributes ="Bold" VerticalOptions ="Center" HorizontalOptions ="StartAndExpand" TextColor ="{StaticResource GreyishBrown}" FontFamily ="SanFranciscoDisplay-Medium"  />
+                <Label FontSize = "20" Text = "{x:Static resources:AppResources.SubTotal}" FontAttributes ="Bold" VerticalOptions ="Center" HorizontalOptions ="StartAndExpand" TextColor ="{StaticResource GreyishBrown}" FontFamily ="SanFranciscoDisplay-Medium"  />
                 <Label FontSize = "20" Text = "{Binding SubTotal,StringFormat='{0:N}'}" VerticalOptions = "Center" HorizontalOptions ="End" TextColor = "{StaticResource GreyishBrown}" />
                 <Label FontSize = "20" Text = "{Binding CurrencyLogo}" VerticalOptions = "Center" HorizontalOptions ="End" TextColor = "{StaticResource GreyishBrown}" />
             </StackLayout>
              <StackLayout BackgroundColor = "#515151" Orientation = "Horizontal" Grid.Row = "6" Grid.Column = "1" Padding = "30,0,20,0">
-                <Label FontSize = "24" Text = "Total" FontAttributes ="Bold" VerticalOptions ="Center" HorizontalOptions ="StartAndExpand" TextColor ="White" FontFamily ="SanFranciscoDisplay-Bold"  />
+                <Label FontSize = "24" Text = "{x:Static resources:AppResources.Total}" FontAttributes ="Bold" VerticalOptions ="Center" HorizontalOptions ="StartAndExpand" TextColor ="White" FontFamily ="SanFranciscoDisplay-Bold"  />
                 <Label FontSize = "24" Text = "{Binding Total,StringFormat='{0:N}'}" FontAttributes = "Bold" VerticalOptions = "Center" HorizontalOptions ="End" TextColor = "White" /> 
                 <Label FontSize = "24" Text = "{Binding CurrencyLogo}" FontAttributes = "Bold" VerticalOptions = "Center" HorizontalOptions ="End" TextColor = "White" />                
             </StackLayout>
             <StackLayout Orientation = "Vertical" HorizontalOptions ="FillAndExpand" VerticalOptions ="FillAndExpand" Padding ="15,20,15,20" Grid.Row ="4" Grid.Column ="0" Grid.RowSpan ="2" BackgroundColor = "White" >
                 <StackLayout Orientation ="Horizontal" Spacing = "10" VerticalOptions = "CenterAndExpand" HorizontalOptions = "FillAndExpand" >
-                    <Entry IsEnabled="false" Text = "{Binding TrainerName, Mode = TwoWay}" Placeholder ="Trainer" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="Center"/>
-                    <Entry IsEnabled="false" Text = "{Binding HorseShow, Mode= TwoWay}" Placeholder ="Horse show" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="Center"/>
+                    <Entry IsEnabled="false" Text = "{Binding TrainerName, Mode = TwoWay}" Placeholder ="{x:Static resources:AppResources.Trainer}" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="Center"/>
+                    <Entry IsEnabled="false" Text = "{Binding HorseShow, Mode= TwoWay}" Placeholder ="{x:Static resources:AppResources.HorseShow}" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="Center"/>
                 </StackLayout>
-                <Entry IsEnabled="false" Text = "{Binding QuotationName, Mode=TwoWay}" Placeholder ="Quotation name" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="CenterAndExpand"/>
+                <Entry IsEnabled="false" Text = "{Binding QuotationName, Mode=TwoWay}" Placeholder ="{x:Static resources:AppResources.QuotationName}" TextColor = "{StaticResource GreyishBrown}" PlaceholderColor ="{StaticResource GreyishBrown}" HorizontalOptions = "FillAndExpand" VerticalOptions ="CenterAndExpand"/>
                 </StackLayout>
             <Grid ColumnSpacing = "1" RowSpacing = "1" Padding = "1" Margin = "0" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand" BackgroundColor ="{StaticResource turquoiseBlue}" Grid.Row ="6" Grid.Column ="0" >
                 <Grid.RowDefinitions>
@@ -168,8 +169,7 @@
                     </Button.Image>
                 </Button>
             </Grid>
-
-            
+                       
         </Grid>
 	</base:BasePage.Content>
 </base:BasePage>

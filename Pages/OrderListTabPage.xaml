@@ -16,11 +16,11 @@
     <base:BaseViewPagerPage.Content>
         <StackLayout Orientation = "Vertical" Spacing = "0" >
        <StackLayout Orientation = "Horizontal" Padding = "10,10,10,10" VerticalOptions = "Start" HorizontalOptions = "FillAndExpand">
-       <renderer:CustomSearchBar  Text = "{Binding SearchText,Mode = TwoWay }" SearchCommand = "{Binding SearchQuery}" x:Name = "search_bar" FontSize = "16" FontFamily = "Raleway-Regular" BackgroundColor = "{StaticResource GreyBack}" PlaceholderColor = "{StaticResource GreyPlaceholder}" Placeholder = "Search                                                  "  WidthRequest = "320" HeightRequest = "50" HorizontalOptions = "Start" VerticalOptions = "Center" HorizontalTextAlignment = "Start" />
+       <renderer:CustomSearchBar  Text = "{Binding SearchText,Mode = TwoWay }" SearchCommand = "{Binding SearchQuery}" x:Name = "search_bar" FontSize = "16" FontFamily = "Raleway-Regular" BackgroundColor = "{StaticResource GreyBack}" PlaceholderColor = "{StaticResource GreyPlaceholder}" Placeholder = "{x:Static resources:AppResources.SearchSpace}"  WidthRequest = "320" HeightRequest = "50" HorizontalOptions = "Start" VerticalOptions = "Center" HorizontalTextAlignment = "Start" />
        <Label Text = "{x:Static resources:AppResources.Filters}" TextColor = "{StaticResource GreyPlaceholder}" VerticalOptions = "Center" FontSize = "16" HorizontalOptions = "Start" Margin = "20,0,20,0" />
-       <renderer:BorderlessPicker x:Name = "picker" Title = "Select" SelectedIndex = "{Binding Filter, Mode =TwoWay}"  ItemsSource = "{Binding FilterTypes}" WidthRequest = "80" TextColor = "Black" VerticalOptions = "Center" HorizontalOptions = "StartAndExpand" />
+       <renderer:BorderlessPicker x:Name = "picker" Title = "{x:Static resources:AppResources.Select}" SelectedIndex = "{Binding Filter, Mode =TwoWay}"  ItemsSource = "{Binding FilterTypes}" WidthRequest = "80" TextColor = "Black" VerticalOptions = "Center" HorizontalOptions = "StartAndExpand" />
 
-                <Button x:Name = "bt_add" BackgroundColor = "{StaticResource turquoiseBlue}" TextColor = "White" VerticalOptions = "Center" HorizontalOptions = "End" HeightRequest = "35" Text = "  + Add quotation   " FontSize = "12" >
+                <Button x:Name = "bt_add" BackgroundColor = "{StaticResource turquoiseBlue}" TextColor = "White" VerticalOptions = "Center" HorizontalOptions = "End" HeightRequest = "35" Text = "{x:Static resources:AppResources.AddQuotation}" FontSize = "12" >
                     <Button.HeightRequest>
                         <OnPlatform x:TypeArguments="x:Double" Android="35" iOS="35" />
                     </Button.HeightRequest>
@@ -39,11 +39,11 @@
                <ColumnDefinition Width="2*" />
                <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-                <Label FontFamily = "Raleway-Bold" FontSize = "16" FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "REF" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "0"  />
-                            <Label FontFamily = "Raleway-Bold"  FontAttributes = "Bold" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "Name" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "1"  />
-                            <Label FontFamily = "Raleway-Bold"  FontAttributes = "Bold" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "Date" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "2"  />
-               <Label FontFamily = "Raleway-Bold"  FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "Total" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "3"  />
-               <Label FontFamily = "Raleway-Bold" FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "Status" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "4"  />  
+                <Label FontFamily = "Raleway-Bold" FontSize = "16" FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "{x:Static resources:AppResources.REF}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "0"  />
+                            <Label FontFamily = "Raleway-Bold"  FontAttributes = "Bold" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{x:Static resources:AppResources.Name}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "1"  />
+                            <Label FontFamily = "Raleway-Bold"  FontAttributes = "Bold" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{x:Static resources:AppResources.Date}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "2"  />
+               <Label FontFamily = "Raleway-Bold"  FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "{x:Static resources:AppResources.Total}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "3"  />
+               <Label FontFamily = "Raleway-Bold" FontSize = "16"  FontAttributes = "Bold" TextColor = "{StaticResource GreyishBrown}" Text = "{x:Static resources:AppResources.Status}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "4"  />  
             </Grid>
                       <BoxView Color = "{StaticResource GreyBack}" HeightRequest = "1" HorizontalOptions = "FillAndExpand" />
             <ListView x:Name ="listview" Refreshing="Handle_Refreshing" IsPullToRefreshEnabled="true" SeparatorColor = "{StaticResource GreyBack}" ItemsSource = "{Binding QuotationsItemSource}" HasUnevenRows ="true" >

@@ -23,7 +23,6 @@ namespace voltaire.PageModels
             }
         }
 
-
         public HomePageModel()
         {
             LoadData();
@@ -40,6 +39,7 @@ namespace voltaire.PageModels
                 });
             }
         }
+
         private async void LoadData()
         {
             _currUser = await StoreManager.UserStore.GetCurrentUserAsync();

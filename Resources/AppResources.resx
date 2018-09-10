@@ -495,7 +495,7 @@
     </data>
     
     <data name="TermsConditions" xml:space="preserve">
-        <value>Terms and Conditions</value>   
+        <value>Terms &amp; Conditions:</value>   
     </data>
     
     <data name="AcceptTCForQuotation" xml:space="preserve">
@@ -564,37 +564,120 @@
         <value>To:</value>   
     </data>
      <data name="SearchArea" xml:space="preserve">
-        <value>    Search partners in this area    </value>   
+        <value>    Refresh area    </value>   
     </data>
      <data name="Searching" xml:space="preserve">
         <value>    Searching...   </value>   
     </data>
-     <data name="Order" xml:space="preserve">
-        <value>Order</value>   
+     <data name="Description" xml:space="preserve">
+        <value>Description</value>   
+    </data>   
+     <data name="Quantity" xml:space="preserve">
+        <value>Qty</value>   
     </data>
-     <data name="Order" xml:space="preserve">
-        <value>Order</value>   
+     <data name="UnitPrice" xml:space="preserve">
+        <value>Unit Price</value>   
     </data>
-     <data name="Order" xml:space="preserve">
-        <value>Order</value>   
+     <data name="TaxApply" xml:space="preserve">
+        <value>Tax Apply</value>   
     </data>
-     <data name="Order" xml:space="preserve">
-        <value>Order</value>   
+     <data name="TaxFree" xml:space="preserve">
+        <value>Tax Free</value>   
     </data>
-     <data name="Order" xml:space="preserve">
-        <value>Order</value>   
+     <data name="Tax" xml:space="preserve">
+        <value>Tax</value>   
     </data>
-     <data name="Order" xml:space="preserve">
-        <value>Order</value>   
+     <data name="SubTotal" xml:space="preserve">
+        <value>Sub total</value>   
     </data>
-     <data name="Order" xml:space="preserve">
-        <value>Order</value>   
+     <data name="Total" xml:space="preserve">
+        <value>Total</value>   
     </data>
-     <data name="Order" xml:space="preserve">
-        <value>Order</value>   
+    
+     <data name="Trainer" xml:space="preserve">
+        <value>Trainer</value>   
     </data>
-     <data name="Order" xml:space="preserve">
-        <value>Order</value>   
+     <data name="HorseShow" xml:space="preserve">
+        <value>Horse show</value>   
     </data>
-   
+     <data name="QuotationName" xml:space="preserve">
+        <value>Quotation name</value>   
+    </data>
+     <data name="AddQuotation" xml:space="preserve">
+        <value>  + Add quotation   </value>   
+    </data>
+     <data name="REF" xml:space="preserve">
+        <value>REF</value>   
+    </data>
+     <data name="SaveProduct" xml:space="preserve">
+        <value>Save product</value>   
+    </data>
+     <data name="AddProduct" xml:space="preserve">
+        <value>+ Add product</value>   
+    </data>
+     <data name="Email" xml:space="preserve">
+        <value>E-mail</value>   
+    </data>
+     <data name="ProceedSigning" xml:space="preserve">
+        <value>Proceed Signing</value>   
+    </data>
+     <data name="AddNote" xml:space="preserve">
+        <value>Add a note...</value>   
+    </data>
+     <data name="PaymentType" xml:space="preserve">
+        <value>Payment Type</value>   
+    </data>
+     <data name="Choose" xml:space="preserve">
+        <value>Choose</value>   
+    </data>
+     <data name="ExpressOrder" xml:space="preserve">
+        <value>Must be sent as express order</value>   
+    </data>
+     <data name="Amount" xml:space="preserve">
+        <value>Amount</value>   
+    </data>
+     <data name="IReadTerms" xml:space="preserve">
+        <value>I read and agree with the order and the sales</value>   
+    </data>
+     <data name="LTermsConditions" xml:space="preserve">
+        <value>terms and conditions.</value>   
+    </data>
+     <data name="Or" xml:space="preserve">
+        <value>Or</value>   
+    </data>
+     <data name="Use" xml:space="preserve">
+        <value>Use </value>   
+    </data>
+     <data name="SelectAProduct" xml:space="preserve">
+        <value>Select a product</value>   
+    </data>
+     <data name="Reminder" xml:space="preserve">
+        <value>Reminder</value>   
+    </data>
+     <data name="RemindOnThisDay" xml:space="preserve">
+        <value>Remind me on this day</value>   
+    </data>
+     <data name="AtSpace" xml:space="preserve">
+        <value> at </value>   
+    </data>
+     <data name="Done" xml:space="preserve">
+        <value>Done</value>   
+    </data>
+    
+     <data name="Low" xml:space="preserve">
+        <value>Low</value>   
+    </data>
+     <data name="Medium" xml:space="preserve">
+        <value>Medium</value>   
+    </data>
+     <data name="High" xml:space="preserve">
+        <value>High</value>   
+    </data>
+     <data name="Terms1" xml:space="preserve">
+        <value>20% cancellation fee on any custom order</value>   
+    </data>
+    <data name="Terms2" xml:space="preserve">
+        <value>2 weeks return policy on any custom item</value>   
+    </data>
+    
 </root>

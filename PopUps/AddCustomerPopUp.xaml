@@ -55,10 +55,10 @@
                 <ListView.Header>
                     <StackLayout Spacing="10" IsVisible="{Binding IsVisible}" Padding="20,10,20,10" Orientation="Vertical">
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Use " TextColor="#01abc4" FontFamily="SanFranciscoDisplay-Regular" VerticalOptions="Start" HorizontalOptions="EndAndExpand"/>
+                            <Label Text="{x:Static resources:AppResources.Use}" TextColor="#01abc4" FontFamily="SanFranciscoDisplay-Regular" VerticalOptions="Start" HorizontalOptions="EndAndExpand"/>
                             <Label Text="{Binding SearchQueryText}"  TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Regular" VerticalOptions="Start" HorizontalOptions="StartAndExpand" />
                         </StackLayout>
-                         <Label Text="Or" FontSize="12" TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Regular" VerticalOptions="Start" HorizontalOptions="CenterAndExpand"/>
+                         <Label Text="{x:Static resources:AppResources.Or}" FontSize="12" TextColor="{StaticResource GreyishBrown}" FontFamily="SanFranciscoDisplay-Regular" VerticalOptions="Start" HorizontalOptions="CenterAndExpand"/>
                         <StackLayout.GestureRecognizers>
                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding AddManuallyCommand}" />
                         </StackLayout.GestureRecognizers> 

@@ -81,14 +81,11 @@ namespace voltaire.Pages
                         });
 
                         Map.InitialCameraUpdate = (CameraUpdateFactory.NewPositionZoom(new Position(location.Latitude, location.Longitude), 12d));
-
                     }
                     else
                     {
                         Handle_MyLocationButtonClicked(null, null);
                     }
-
-
                 }
             }
             catch (Exception)
@@ -117,7 +114,11 @@ namespace voltaire.Pages
                     {
                         SetPins(ViewModel);
                     }
-
+                }
+                else if(e.PropertyName == "AllPartners")
+                {
+                    (BindingContext as MapMainPageModel).FilterVisibleRegion(Map.VisibleRegion);
+                    bt_search.IsVisible = true;
                 }
             };
 

@@ -940,5 +940,209 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("Searching", resourceCulture);
             }
         }
+        
+        internal static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        internal static string Quantity {
+            get {
+                return ResourceManager.GetString("Quantity", resourceCulture);
+            }
+        }
+        
+        internal static string UnitPrice {
+            get {
+                return ResourceManager.GetString("UnitPrice", resourceCulture);
+            }
+        }
+        
+        internal static string TaxApply {
+            get {
+                return ResourceManager.GetString("TaxApply", resourceCulture);
+            }
+        }
+        
+        internal static string TaxFree {
+            get {
+                return ResourceManager.GetString("TaxFree", resourceCulture);
+            }
+        }
+        
+        internal static string Tax {
+            get {
+                return ResourceManager.GetString("Tax", resourceCulture);
+            }
+        }
+        
+        internal static string SubTotal {
+            get {
+                return ResourceManager.GetString("SubTotal", resourceCulture);
+            }
+        }
+        
+        internal static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+        
+        internal static string Trainer {
+            get {
+                return ResourceManager.GetString("Trainer", resourceCulture);
+            }
+        }
+        
+        internal static string HorseShow {
+            get {
+                return ResourceManager.GetString("HorseShow", resourceCulture);
+            }
+        }
+        
+        internal static string QuotationName {
+            get {
+                return ResourceManager.GetString("QuotationName", resourceCulture);
+            }
+        }
+        
+        internal static string AddQuotation {
+            get {
+                return ResourceManager.GetString("AddQuotation", resourceCulture);
+            }
+        }
+        
+        internal static string REF {
+            get {
+                return ResourceManager.GetString("REF", resourceCulture);
+            }
+        }
+        
+        internal static string SaveProduct {
+            get {
+                return ResourceManager.GetString("SaveProduct", resourceCulture);
+            }
+        }
+        
+        internal static string AddProduct {
+            get {
+                return ResourceManager.GetString("AddProduct", resourceCulture);
+            }
+        }
+        
+        internal static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        internal static string ProceedSigning {
+            get {
+                return ResourceManager.GetString("ProceedSigning", resourceCulture);
+            }
+        }
+        
+        internal static string AddNote {
+            get {
+                return ResourceManager.GetString("AddNote", resourceCulture);
+            }
+        }
+        
+        internal static string Choose {
+            get {
+                return ResourceManager.GetString("Choose", resourceCulture);
+            }
+        }
+        
+        internal static string ExpressOrder {
+            get {
+                return ResourceManager.GetString("ExpressOrder", resourceCulture);
+            }
+        }
+        
+        internal static string Amount {
+            get {
+                return ResourceManager.GetString("Amount", resourceCulture);
+            }
+        }
+        
+        internal static string IReadTerms {
+            get {
+                return ResourceManager.GetString("IReadTerms", resourceCulture);
+            }
+        }
+        
+        internal static string LTermsConditions {
+            get {
+                return ResourceManager.GetString("LTermsConditions", resourceCulture);
+            }
+        }
+        
+        internal static string Or {
+            get {
+                return ResourceManager.GetString("Or", resourceCulture);
+            }
+        }
+        
+        internal static string Use {
+            get {
+                return ResourceManager.GetString("Use", resourceCulture);
+            }
+        }
+        
+        internal static string SelectAProduct {
+            get {
+                return ResourceManager.GetString("SelectAProduct", resourceCulture);
+            }
+        }
+        
+        internal static string RemindOnThisDay {
+            get {
+                return ResourceManager.GetString("RemindOnThisDay", resourceCulture);
+            }
+        }
+        
+        internal static string AtSpace {
+            get {
+                return ResourceManager.GetString("AtSpace", resourceCulture);
+            }
+        }
+        
+        internal static string Done {
+            get {
+                return ResourceManager.GetString("Done", resourceCulture);
+            }
+        }
+        
+        internal static string Low {
+            get {
+                return ResourceManager.GetString("Low", resourceCulture);
+            }
+        }
+        
+        internal static string Medium {
+            get {
+                return ResourceManager.GetString("Medium", resourceCulture);
+            }
+        }
+        
+        internal static string High {
+            get {
+                return ResourceManager.GetString("High", resourceCulture);
+            }
+        }
+        
+        internal static string Terms1 {
+            get {
+                return ResourceManager.GetString("Terms1", resourceCulture);
+            }
+        }
+        
+        internal static string Terms2 {
+            get {
+                return ResourceManager.GetString("Terms2", resourceCulture);
+            }
+        }
     }
 }

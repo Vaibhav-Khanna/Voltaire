@@ -82,6 +82,7 @@ namespace voltaire.PageModels
         public ObservableCollection<PartnerGrade> PartnerGrades { get { return partnerGrades; } set { partnerGrades = value; RaisePropertyChanged(); } }
 
         List<Partner> VisiblePartners;
+       
         List<Partner> AllPartners;
 
         List<Partner> customers;
@@ -178,6 +179,8 @@ namespace voltaire.PageModels
 
                 AllPartners = cust_list;
 
+                RaisePropertyChanged("AllPartners");
+
                 Dialog.HideLoading();
             }
             // Customer
@@ -207,8 +210,6 @@ namespace voltaire.PageModels
         {
             if (AllPartners != null && AllPartners.Any())
             {
-                //Dialog.ShowLoading(AppResources.Loading);
-
                 var region_bounds = CalculateBoundingCoordinates(region);
 
                 var left = region_bounds.Item1;
@@ -221,8 +222,6 @@ namespace voltaire.PageModels
                 VisiblePartners = points.ToList();
 
                 FilterOutAddresses();
-
-                //Dialog.HideLoading();
             }
         }
 

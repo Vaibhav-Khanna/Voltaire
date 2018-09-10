@@ -2,6 +2,7 @@
 using voltaire.Models;
 using Xamarin.Forms;
 using Rg.Plugins.Popup.Services;
+using voltaire.Resources;
 using System.Collections.Generic;
 using FreshMvvm;
 
@@ -119,7 +120,7 @@ namespace voltaire.PopUps
             }
         }
 
-        public List<string> Source { get; set; } = new List<string>() { "None", "Low", "Medium", "High" };
+        public List<string> Source { get; set; } = new List<string>() { AppResources.None, AppResources.Low, AppResources.Medium, AppResources.High };
 
 		public static T ParseEnum<T>(string value)
 		{

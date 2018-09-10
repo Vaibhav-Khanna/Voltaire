@@ -9,6 +9,7 @@
     xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
     xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
     x:Class="voltaire.Pages.PermanentNotePage">
+    
 	<ContentPage.Content>
          <Grid x:Name="grid" RowSpacing="30" BackgroundColor = "White" Padding= "0" VerticalOptions = "FillAndExpand" >
         <Grid.ColumnDefinitions>

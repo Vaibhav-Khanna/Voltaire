@@ -61,7 +61,7 @@
 
         <StackLayout BackgroundColor="#e9e9e9" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15" Orientation="Horizontal" Spacing="0" Grid.Row="2" Grid.Column="0">
             <BoxView Color="White" VerticalOptions="FillAndExpand" WidthRequest="20" HorizontalOptions="Start" Margin="0"/>
-            <renderers:BorderlessEntry Text="{Binding MessageText,Mode=TwoWay}" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Placeholder="Add a note..." FontSize="14"/>
+            <renderers:BorderlessEntry Text="{Binding MessageText,Mode=TwoWay}" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Placeholder="{x:Static resources:AppResources.AddNote}" FontSize="14"/>
             <StackLayout BackgroundColor="{StaticResource turquoiseBlue}" HorizontalOptions="End" VerticalOptions="FillAndExpand" Margin="15,0,0,0" Padding="15,5,10,10" >
                 <Image TranslationY="2" VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFit" Scale="0.7" Source="send.png" />
                  <StackLayout.GestureRecognizers>
@@ -69,5 +69,6 @@
                 </StackLayout.GestureRecognizers> 
             </StackLayout>
         </StackLayout>
+        
     </Grid>
 </base:BaseDisposePage>
