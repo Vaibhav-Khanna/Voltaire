@@ -49,7 +49,6 @@ namespace voltaire.PageModels
             }      
         });
 
-
         string productname;
         public string ProductName
         {

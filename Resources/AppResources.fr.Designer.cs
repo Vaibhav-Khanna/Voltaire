@@ -137,12 +137,6 @@ namespace voltaire.Resources {
             }
         }
         
-        internal static string LastVisit {
-            get {
-                return ResourceManager.GetString("LastVisit", resourceCulture);
-            }
-        }
-        
         internal static string Modify {
             get {
                 return ResourceManager.GetString("Modify", resourceCulture);
@@ -188,6 +182,12 @@ namespace voltaire.Resources {
         internal static string Contracts {
             get {
                 return ResourceManager.GetString("Contracts", resourceCulture);
+            }
+        }
+        
+        internal static string LastVisit {
+            get {
+                return ResourceManager.GetString("LastVisit", resourceCulture);
             }
         }
         
@@ -878,6 +878,558 @@ namespace voltaire.Resources {
         internal static string AppSyncing {
             get {
                 return ResourceManager.GetString("AppSyncing", resourceCulture);
+            }
+        }
+        
+        internal static string AddContract {
+            get {
+                return ResourceManager.GetString("AddContract", resourceCulture);
+            }
+        }
+        
+        internal static string SearchSpace {
+            get {
+                return ResourceManager.GetString("SearchSpace", resourceCulture);
+            }
+        }
+        
+        internal static string Sign {
+            get {
+                return ResourceManager.GetString("Sign", resourceCulture);
+            }
+        }
+        
+        internal static string Validate {
+            get {
+                return ResourceManager.GetString("Validate", resourceCulture);
+            }
+        }
+        
+        internal static string ToDoList {
+            get {
+                return ResourceManager.GetString("ToDoList", resourceCulture);
+            }
+        }
+        
+        internal static string RetrospectiveAgenda {
+            get {
+                return ResourceManager.GetString("RetrospectiveAgenda", resourceCulture);
+            }
+        }
+        
+        internal static string PeriodFrom {
+            get {
+                return ResourceManager.GetString("PeriodFrom", resourceCulture);
+            }
+        }
+        
+        internal static string To {
+            get {
+                return ResourceManager.GetString("To", resourceCulture);
+            }
+        }
+        
+        internal static string SearchArea {
+            get {
+                return ResourceManager.GetString("SearchArea", resourceCulture);
+            }
+        }
+        
+        internal static string Searching {
+            get {
+                return ResourceManager.GetString("Searching", resourceCulture);
+            }
+        }
+        
+        internal static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        internal static string Quantity {
+            get {
+                return ResourceManager.GetString("Quantity", resourceCulture);
+            }
+        }
+        
+        internal static string UnitPrice {
+            get {
+                return ResourceManager.GetString("UnitPrice", resourceCulture);
+            }
+        }
+        
+        internal static string TaxApply {
+            get {
+                return ResourceManager.GetString("TaxApply", resourceCulture);
+            }
+        }
+        
+        internal static string TaxFree {
+            get {
+                return ResourceManager.GetString("TaxFree", resourceCulture);
+            }
+        }
+        
+        internal static string Tax {
+            get {
+                return ResourceManager.GetString("Tax", resourceCulture);
+            }
+        }
+        
+        internal static string SubTotal {
+            get {
+                return ResourceManager.GetString("SubTotal", resourceCulture);
+            }
+        }
+        
+        internal static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+        
+        internal static string Trainer {
+            get {
+                return ResourceManager.GetString("Trainer", resourceCulture);
+            }
+        }
+        
+        internal static string HorseShow {
+            get {
+                return ResourceManager.GetString("HorseShow", resourceCulture);
+            }
+        }
+        
+        internal static string QuotationName {
+            get {
+                return ResourceManager.GetString("QuotationName", resourceCulture);
+            }
+        }
+        
+        internal static string AddQuotation {
+            get {
+                return ResourceManager.GetString("AddQuotation", resourceCulture);
+            }
+        }
+        
+        internal static string REF {
+            get {
+                return ResourceManager.GetString("REF", resourceCulture);
+            }
+        }
+        
+        internal static string SaveProduct {
+            get {
+                return ResourceManager.GetString("SaveProduct", resourceCulture);
+            }
+        }
+        
+        internal static string AddProduct {
+            get {
+                return ResourceManager.GetString("AddProduct", resourceCulture);
+            }
+        }
+        
+        internal static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        internal static string ProceedSigning {
+            get {
+                return ResourceManager.GetString("ProceedSigning", resourceCulture);
+            }
+        }
+        
+        internal static string AddNote {
+            get {
+                return ResourceManager.GetString("AddNote", resourceCulture);
+            }
+        }
+        
+        internal static string Choose {
+            get {
+                return ResourceManager.GetString("Choose", resourceCulture);
+            }
+        }
+        
+        internal static string ExpressOrder {
+            get {
+                return ResourceManager.GetString("ExpressOrder", resourceCulture);
+            }
+        }
+        
+        internal static string Amount {
+            get {
+                return ResourceManager.GetString("Amount", resourceCulture);
+            }
+        }
+        
+        internal static string IReadTerms {
+            get {
+                return ResourceManager.GetString("IReadTerms", resourceCulture);
+            }
+        }
+        
+        internal static string LTermsConditions {
+            get {
+                return ResourceManager.GetString("LTermsConditions", resourceCulture);
+            }
+        }
+        
+        internal static string Or {
+            get {
+                return ResourceManager.GetString("Or", resourceCulture);
+            }
+        }
+        
+        internal static string Use {
+            get {
+                return ResourceManager.GetString("Use", resourceCulture);
+            }
+        }
+        
+        internal static string SelectAProduct {
+            get {
+                return ResourceManager.GetString("SelectAProduct", resourceCulture);
+            }
+        }
+        
+        internal static string RemindOnThisDay {
+            get {
+                return ResourceManager.GetString("RemindOnThisDay", resourceCulture);
+            }
+        }
+        
+        internal static string AtSpace {
+            get {
+                return ResourceManager.GetString("AtSpace", resourceCulture);
+            }
+        }
+        
+        internal static string Done {
+            get {
+                return ResourceManager.GetString("Done", resourceCulture);
+            }
+        }
+        
+        internal static string Low {
+            get {
+                return ResourceManager.GetString("Low", resourceCulture);
+            }
+        }
+        
+        internal static string Medium {
+            get {
+                return ResourceManager.GetString("Medium", resourceCulture);
+            }
+        }
+        
+        internal static string High {
+            get {
+                return ResourceManager.GetString("High", resourceCulture);
+            }
+        }
+        
+        internal static string Terms1 {
+            get {
+                return ResourceManager.GetString("Terms1", resourceCulture);
+            }
+        }
+        
+        internal static string Terms2 {
+            get {
+                return ResourceManager.GetString("Terms2", resourceCulture);
+            }
+        }
+        
+        internal static string Disconnect {
+            get {
+                return ResourceManager.GetString("Disconnect", resourceCulture);
+            }
+        }
+        
+        internal static string Me {
+            get {
+                return ResourceManager.GetString("Me", resourceCulture);
+            }
+        }
+        
+        internal static string CurrentLocation {
+            get {
+                return ResourceManager.GetString("CurrentLocation", resourceCulture);
+            }
+        }
+        
+        internal static string P_Model {
+            get {
+                return ResourceManager.GetString("P_Model", resourceCulture);
+            }
+        }
+        
+        internal static string P_Color {
+            get {
+                return ResourceManager.GetString("P_Color", resourceCulture);
+            }
+        }
+        
+        internal static string P_Leather {
+            get {
+                return ResourceManager.GetString("P_Leather", resourceCulture);
+            }
+        }
+        
+        internal static string P_Grained {
+            get {
+                return ResourceManager.GetString("P_Grained", resourceCulture);
+            }
+        }
+        
+        internal static string P_UnitPrice {
+            get {
+                return ResourceManager.GetString("P_UnitPrice", resourceCulture);
+            }
+        }
+        
+        internal static string P_RiderName {
+            get {
+                return ResourceManager.GetString("P_RiderName", resourceCulture);
+            }
+        }
+        
+        internal static string P_Seat {
+            get {
+                return ResourceManager.GetString("P_Seat", resourceCulture);
+            }
+        }
+        
+        internal static string P_Tree {
+            get {
+                return ResourceManager.GetString("P_Tree", resourceCulture);
+            }
+        }
+        
+        internal static string P_Flaps {
+            get {
+                return ResourceManager.GetString("P_Flaps", resourceCulture);
+            }
+        }
+        
+        internal static string P_2ndSkin {
+            get {
+                return ResourceManager.GetString("P_2ndSkin", resourceCulture);
+            }
+        }
+        
+        internal static string P_RBQgrained {
+            get {
+                return ResourceManager.GetString("P_RBQgrained", resourceCulture);
+            }
+        }
+        
+        internal static string P_FrontBlock {
+            get {
+                return ResourceManager.GetString("P_FrontBlock", resourceCulture);
+            }
+        }
+        
+        internal static string P_RearBlock {
+            get {
+                return ResourceManager.GetString("P_RearBlock", resourceCulture);
+            }
+        }
+        
+        internal static string P_PanelBase {
+            get {
+                return ResourceManager.GetString("P_PanelBase", resourceCulture);
+            }
+        }
+        
+        internal static string P_Comments {
+            get {
+                return ResourceManager.GetString("P_Comments", resourceCulture);
+            }
+        }
+        
+        internal static string P_NamePlate {
+            get {
+                return ResourceManager.GetString("P_NamePlate", resourceCulture);
+            }
+        }
+        
+        internal static string P_Greasing {
+            get {
+                return ResourceManager.GetString("P_Greasing", resourceCulture);
+            }
+        }
+        
+        internal static string P_SpSaddle {
+            get {
+                return ResourceManager.GetString("P_SpSaddle", resourceCulture);
+            }
+        }
+        
+        internal static string P_Note {
+            get {
+                return ResourceManager.GetString("P_Note", resourceCulture);
+            }
+        }
+        
+        internal static string P_Saddle {
+            get {
+                return ResourceManager.GetString("P_Saddle", resourceCulture);
+            }
+        }
+        
+        internal static string P_Accessory {
+            get {
+                return ResourceManager.GetString("P_Accessory", resourceCulture);
+            }
+        }
+        
+        internal static string P_ParentCategory {
+            get {
+                return ResourceManager.GetString("P_ParentCategory", resourceCulture);
+            }
+        }
+        
+        internal static string P_Category {
+            get {
+                return ResourceManager.GetString("P_Category", resourceCulture);
+            }
+        }
+        
+        internal static string P_Reference {
+            get {
+                return ResourceManager.GetString("P_Reference", resourceCulture);
+            }
+        }
+        
+        internal static string P_Service {
+            get {
+                return ResourceManager.GetString("P_Service", resourceCulture);
+            }
+        }
+        
+        internal static string P_Serial_number {
+            get {
+                return ResourceManager.GetString("P_Serial number", resourceCulture);
+            }
+        }
+        
+        internal static string P_Brand {
+            get {
+                return ResourceManager.GetString("P_Brand", resourceCulture);
+            }
+        }
+        
+        internal static string P_Seatsize {
+            get {
+                return ResourceManager.GetString("P_Seatsize", resourceCulture);
+            }
+        }
+        
+        internal static string P_Flapsize {
+            get {
+                return ResourceManager.GetString("P_Flapsize", resourceCulture);
+            }
+        }
+        
+        internal static string P_Other {
+            get {
+                return ResourceManager.GetString("P_Other", resourceCulture);
+            }
+        }
+        
+        internal static string P_Price {
+            get {
+                return ResourceManager.GetString("P_Price", resourceCulture);
+            }
+        }
+        
+        internal static string P_Description {
+            get {
+                return ResourceManager.GetString("P_Description", resourceCulture);
+            }
+        }
+        
+        internal static string P_Size {
+            get {
+                return ResourceManager.GetString("P_Size", resourceCulture);
+            }
+        }
+        
+        internal static string P_Blocks {
+            get {
+                return ResourceManager.GetString("P_Blocks", resourceCulture);
+            }
+        }
+        
+        internal static string P_Discount {
+            get {
+                return ResourceManager.GetString("P_Discount", resourceCulture);
+            }
+        }
+        
+        internal static string P_TradeIn {
+            get {
+                return ResourceManager.GetString("P_TradeIn", resourceCulture);
+            }
+        }
+        
+        internal static string BillingAddress {
+            get {
+                return ResourceManager.GetString("BillingAddress", resourceCulture);
+            }
+        }
+        
+        internal static string OrderNumber {
+            get {
+                return ResourceManager.GetString("OrderNumber", resourceCulture);
+            }
+        }
+        
+        internal static string OrderDate {
+            get {
+                return ResourceManager.GetString("OrderDate", resourceCulture);
+            }
+        }
+        
+        internal static string Prescriber {
+            get {
+                return ResourceManager.GetString("Prescriber", resourceCulture);
+            }
+        }
+        
+        internal static string PaymentMethod {
+            get {
+                return ResourceManager.GetString("PaymentMethod", resourceCulture);
+            }
+        }
+        
+        internal static string PaymentNote {
+            get {
+                return ResourceManager.GetString("PaymentNote", resourceCulture);
+            }
+        }
+        
+        internal static string TotalHT {
+            get {
+                return ResourceManager.GetString("TotalHT", resourceCulture);
+            }
+        }
+        
+        internal static string Price {
+            get {
+                return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        internal static string Taxes {
+            get {
+                return ResourceManager.GetString("Taxes", resourceCulture);
             }
         }
     }

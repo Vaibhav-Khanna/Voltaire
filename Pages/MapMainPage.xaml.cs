@@ -74,9 +74,9 @@ namespace voltaire.Pages
                             Address = "",
                             IsDraggable = false,
                             Flat = true,
-                            Label = "Current Location",
+                            Label = AppResources.CurrentLocation,
                             IsVisible = true,
-                            Icon = BitmapDescriptorFactory.FromView(new BindingPinView("Me", Color.Transparent)),
+                            Icon = BitmapDescriptorFactory.FromView(new BindingPinView(AppResources.Me, Color.Transparent)),
                             Position = new Position(location.Latitude, location.Longitude)
                         });
 
@@ -191,9 +191,9 @@ namespace voltaire.Pages
                             Address = "",
                             IsDraggable = false,
                             Flat = true,
-                            Label = "Current Location",
+                            Label = AppResources.CurrentLocation,
                             IsVisible = true,
-                            Icon = BitmapDescriptorFactory.FromView(new BindingPinView("Me", Color.Transparent)),
+                            Icon = BitmapDescriptorFactory.FromView(new BindingPinView(AppResources.Me, Color.Transparent)),
                             Position = new Position(location.Latitude, location.Longitude)
                         });
 

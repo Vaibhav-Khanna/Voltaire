@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using voltaire.Models.DataObjects;
 using System.Linq;
 using System.Threading.Tasks;
+using voltaire.Helpers;
+using voltaire.Resources;
 
 namespace voltaire.Models
 {
@@ -12,19 +14,7 @@ namespace voltaire.Models
         public static void Init()
         {
             
-            Agreements.Add(new Agreement() { Title = "1) You will have to obey to all the rules and regulations mentioned by the company." });
-            Agreements.Add(new Agreement() { Title = "2) You will have to obey to all the rules and regulations mentioned by the company." });
-            Agreements.Add(new Agreement() { Title = "3) You will have to obey to all the rules and regulations mentioned by the company." });
-            Agreements.Add(new Agreement() { Title = "4) You will have to obey to all the rules and regulations mentioned by the company." });
-            Agreements.Add(new Agreement() { Title = "5) You will have to obey to all the rules and regulations mentioned by the company." });
-            Agreements.Add(new Agreement() { Title = "6) You will have to obey to all the rules and regulations mentioned by the company." });
-            Agreements.Add(new Agreement() { Title = "7) You will have to obey to all the rules and regulations mentioned by the company." });
-            Agreements.Add(new Agreement() { Title = "8) You will have to obey to all the rules and regulations mentioned by the company." });
-            Agreements.Add(new Agreement() { Title = "9) You will have to obey to all the rules and regulations mentioned by the company." });
-            Agreements.Add(new Agreement() { Title = "10) You will have to obey to all the rules and regulations mentioned by the company." });
-            Agreements.Add(new Agreement() { Title = "11) You will have to obey to all the rules and regulations mentioned by the company." });
-            Agreements.Add(new Agreement() { Title = "12) You will have to obey to all the rules and regulations mentioned by the company." });
-            Agreements.Add(new Agreement() { Title = "13) You will have to obey to all the rules and regulations mentioned by the company." });
+            //Agreements.Add(new Agreement() { Title = "1) You will have to obey to all the rules and regulations mentioned by the company." });
 
             CurrencyValues.Clear();
 
@@ -104,7 +94,6 @@ namespace voltaire.Models
                 Accessory.AddRange(accessory);
             }
 
-
             SaddleModel = SaddleModel.Distinct().ToList();
 
             SaddleColor.Add("Black");
@@ -121,8 +110,7 @@ namespace voltaire.Models
             AccessoryCategory = AccessoryCategory.Distinct().ToList();
 
             AccessorySubCategory = AccessorySubCategory.Distinct().ToList();
-
-
+                      
             foreach (var item in Saddles)
             {
                 if (string.IsNullOrWhiteSpace(item.Name))
@@ -156,36 +144,37 @@ namespace voltaire.Models
             {
                 Description = "Saddle",
                 Name = "Saddle",
+                Name_FR = AppResources.P_Saddle,
                 ProductKind = ProductKind.saddle,
                 Properties = new List<ProductProperty>()
                 {
-                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Model" , PropertyValue = null, ItemSource = SaddleModel },
-                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Color" },
-                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Leather" },
-                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Grained" },
-                    new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price", PropertyValue = null },
+                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Model" , PropertyName_FR = AppResources.P_Model , PropertyValue = null, ItemSource = SaddleModel },
+                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Color", PropertyName_FR = AppResources.P_Color },
+                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Leather", PropertyName_FR = AppResources.P_Leather },
+                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Grained",PropertyName_FR = AppResources.P_Grained },
+                    new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price",PropertyName_FR = AppResources.P_UnitPrice, PropertyValue = null },
 
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Rider Name" , PropertyValue = null },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Seat" , PropertyValue = null },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Tree" , PropertyValue = null },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Flaps" , PropertyValue = null },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Rider Name" , PropertyValue = null, PropertyName_FR = AppResources.P_RiderName },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Seat" , PropertyValue = null, PropertyName_FR = AppResources.P_Seat },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Tree" , PropertyValue = null, PropertyName_FR = AppResources.P_Tree },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Flaps" , PropertyValue = null, PropertyName_FR = AppResources.P_Flaps },
 
-                    new ProductProperty(PropertyType.IsBoolean){ PropertyName = "2nd Skin" , PropertyValue = null },
-                    new ProductProperty(PropertyType.IsBoolean){ PropertyName = "RBQ grained" , PropertyValue = null },
+                    new ProductProperty(PropertyType.IsBoolean){ PropertyName = "2nd Skin" , PropertyValue = null, PropertyName_FR = AppResources.P_2ndSkin },
+                    new ProductProperty(PropertyType.IsBoolean){ PropertyName = "RBQ grained" , PropertyValue = null, PropertyName_FR = AppResources.P_RBQgrained },
 
-                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Front Block" , PropertyValue = null },
-                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Rear Block" , PropertyValue = null  },
-                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Panel Base" , PropertyValue = null },
+                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Front Block" , PropertyValue = null, PropertyName_FR = AppResources.P_FrontBlock },
+                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Rear Block" , PropertyValue = null, PropertyName_FR = AppResources.P_RearBlock  },
+                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Panel Base" , PropertyValue = null, PropertyName_FR = AppResources.P_PanelBase },
 
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "A" , PropertyValue = null },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "B" , PropertyValue = null },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "C" , PropertyValue = null },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "D" , PropertyValue = null },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Comments" , PropertyValue = null },
-                    new ProductProperty(PropertyType.IsBoolean){ PropertyName = "NamePlate" , PropertyValue = null },
-                    new ProductProperty(PropertyType.IsBoolean){ PropertyName = "Greasing" , PropertyValue = null },
-                    new ProductProperty(PropertyType.IsBoolean){ PropertyName = "Sp Saddle" , PropertyValue = null },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Note" , PropertyValue = null }
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "A" , PropertyValue = null, PropertyName_FR = "A" },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "B" , PropertyValue = null, PropertyName_FR = "B" },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "C" , PropertyValue = null, PropertyName_FR = "C" },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "D" , PropertyValue = null, PropertyName_FR = "D" },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Comments" , PropertyValue = null, PropertyName_FR = AppResources.P_Comments },
+                    new ProductProperty(PropertyType.IsBoolean){ PropertyName = "NamePlate" , PropertyValue = null, PropertyName_FR = AppResources.P_NamePlate },
+                    new ProductProperty(PropertyType.IsBoolean){ PropertyName = "Greasing" , PropertyValue = null, PropertyName_FR = AppResources.P_Greasing },
+                    new ProductProperty(PropertyType.IsBoolean){ PropertyName = "Sp Saddle" , PropertyValue = null, PropertyName_FR = AppResources.P_SpSaddle },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Note" , PropertyValue = null, PropertyName_FR = AppResources.Note }
                 }
             });
 
@@ -193,15 +182,16 @@ namespace voltaire.Models
             {
                 Description = "Accessory",
                 Name = "Accessory",
+                Name_FR = AppResources.P_Accessory,
                 ProductKind = ProductKind.accessory,
                 Properties = new List<ProductProperty>()
                 {
-                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Parent Category" , PropertyValue = null, AllSource = AccessoryCategory, ItemSource = AccessoryCategory },
-                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Category" , PropertyValue = null,AllSource = AccessorySubCategory, ItemSource = AccessorySubCategory },
-                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Name", PropertyValue = null, AllSource = AccessoryModel, ItemSource = AccessoryModel },
-                    new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price", PropertyValue = null },
-                    new ProductProperty(PropertyType.IsLabel) { PropertyName = "Reference", PropertyValue = null, IsVisible = false },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Note", PropertyValue = null },
+                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Parent Category" , PropertyValue = null, AllSource = AccessoryCategory, ItemSource = AccessoryCategory, PropertyName_FR = AppResources.P_ParentCategory },
+                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Category" , PropertyValue = null,AllSource = AccessorySubCategory, ItemSource = AccessorySubCategory, PropertyName_FR = AppResources.P_Category },
+                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Name", PropertyValue = null, AllSource = AccessoryModel, ItemSource = AccessoryModel, PropertyName_FR = AppResources.Name },
+                    new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price", PropertyValue = null, PropertyName_FR = AppResources.P_UnitPrice },
+                    new ProductProperty(PropertyType.IsLabel) { PropertyName = "Reference", PropertyValue = null, IsVisible = false, PropertyName_FR = AppResources.P_Reference },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Note", PropertyValue = null, PropertyName_FR = AppResources.P_Note },
                 }
             }); 
 
@@ -209,22 +199,23 @@ namespace voltaire.Models
             {
                 Description = "Service",
                 Name = "Service",
+                Name_FR = AppResources.P_Service,
                 ProductKind = ProductKind.service,
                 Properties = new List<ProductProperty>()
                 {
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Serial number", PropertyValue = null },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Brand", PropertyValue = null},
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Model", PropertyValue = null },
-                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Category", PropertyValue = null, ItemSource = ServiceSubCategoryModel },
-                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Name", PropertyValue = null, AllSource = ServiceModel, ItemSource = ServiceModel },
-                    new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price", PropertyValue = null },
-                    new ProductProperty(PropertyType.IsLabel) { PropertyName = "Reference", PropertyValue = null },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Seat size", PropertyValue = null},
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Flap size", PropertyValue = null},
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Leather", PropertyValue = null},
-                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Color", PropertyValue = null, ItemSource = new List<string>(){ "Light Brown", "Chocolate", "Black" }  },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Category", PropertyValue = null},
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Comments", PropertyValue = null},
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Serial number", PropertyValue = null, PropertyName_FR = AppResources.P_Serial_number },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Brand", PropertyValue = null, PropertyName_FR = AppResources.P_Brand},
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Model", PropertyValue = null, PropertyName_FR = AppResources.P_Model },
+                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Category", PropertyValue = null, ItemSource = ServiceSubCategoryModel, PropertyName_FR = AppResources.P_Category },
+                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Name", PropertyValue = null, AllSource = ServiceModel, ItemSource = ServiceModel, PropertyName_FR = AppResources.Name },
+                    new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price", PropertyValue = null, PropertyName_FR = AppResources.P_UnitPrice },
+                    new ProductProperty(PropertyType.IsLabel) { PropertyName = "Reference", PropertyValue = null, PropertyName_FR = AppResources.P_Reference },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Seat size", PropertyValue = null, PropertyName_FR = AppResources.P_Seatsize},
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Flap size", PropertyValue = null, PropertyName_FR = AppResources.P_Flapsize},
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Leather", PropertyValue = null, PropertyName_FR = AppResources.P_Leather},
+                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Color", PropertyValue = null, ItemSource = new List<string>(){ "Light Brown", "Chocolate", "Black" }, PropertyName_FR = AppResources.P_Color  },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Category", PropertyValue = null, PropertyName_FR = AppResources.P_Category},
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Comments", PropertyValue = null, PropertyName_FR = AppResources.P_Comments},
                 }
             });
 
@@ -232,12 +223,13 @@ namespace voltaire.Models
             {
                 Description = "Other",
                 Name = "Other",
+                Name_FR = AppResources.P_Other,
                 ProductKind = ProductKind.other,
                 Properties = new List<ProductProperty>()
                 {
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Name", PropertyValue = null },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Price", PropertyValue = null, IsNumberKeyboard = true },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Description", PropertyValue = null}
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Name", PropertyValue = null, PropertyName_FR = AppResources.Name },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Price", PropertyValue = null, IsNumberKeyboard = true, PropertyName_FR = AppResources.P_Price },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Description", PropertyValue = null, PropertyName_FR = AppResources.P_Description}
                 }
 
             });
@@ -246,20 +238,21 @@ namespace voltaire.Models
             {
                 Description = "TradeIn",
                 Name = "TradeIn",
+                Name_FR  = AppResources.P_TradeIn,
                 ProductKind = ProductKind.tradein,
                 Properties = new List<ProductProperty>()
                 {
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Serial number", PropertyValue = null },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Brand", PropertyValue = null},
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Model", PropertyValue = null},
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Size", PropertyValue = null},
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Flap", PropertyValue = null},
-                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Color", PropertyValue = null, ItemSource = new List<string>(){ "Light Brown", "Chocolate", "Black" } },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Leather", PropertyValue = null},
-                    new ProductProperty(PropertyType.IsBoolean) { PropertyName = "Blocks", PropertyValue = null},
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Other", PropertyValue = null},
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Amount", PropertyValue = null, IsNumberKeyboard = true },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Note", PropertyValue = null},
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Serial number", PropertyValue = null, PropertyName_FR = AppResources.P_Serial_number },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Brand", PropertyValue = null, PropertyName_FR = AppResources.P_Brand},
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Model", PropertyValue = null, PropertyName_FR = AppResources.P_Model},
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Size", PropertyValue = null, PropertyName_FR = AppResources.P_Size},
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Flap", PropertyValue = null, PropertyName_FR = AppResources.P_Flaps},
+                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Color", PropertyValue = null, ItemSource = new List<string>(){ "Light Brown", "Chocolate", "Black" }, PropertyName_FR = AppResources.P_Color },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Leather", PropertyValue = null, PropertyName_FR = AppResources.P_Leather},
+                    new ProductProperty(PropertyType.IsBoolean) { PropertyName = "Blocks", PropertyValue = null, PropertyName_FR = AppResources.P_Blocks},
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Other", PropertyValue = null, PropertyName_FR = AppResources.P_Other},
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Amount", PropertyValue = null, IsNumberKeyboard = true, PropertyName_FR = AppResources.Amount },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Note", PropertyValue = null, PropertyName_FR = AppResources.P_Note},
                 }
 
             });
@@ -268,12 +261,13 @@ namespace voltaire.Models
             {
                 Description = "Discount",
                 Name = "Discount",
+                Name_FR = AppResources.P_Discount,
                 ProductKind = ProductKind.discount,
                 Properties = new List<ProductProperty>()
                 {
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Name", PropertyValue = null },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Price", PropertyValue = null, IsNumberKeyboard = true },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Note", PropertyValue = null}
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Name", PropertyValue = null, PropertyName_FR = AppResources.Name },
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Price", PropertyValue = null, IsNumberKeyboard = true , PropertyName_FR = AppResources.P_Price},
+                    new ProductProperty(PropertyType.IsText){ PropertyName = "Note", PropertyValue = null, PropertyName_FR = AppResources.P_Note }
                 }
             }); 
 
@@ -290,15 +284,15 @@ namespace voltaire.Models
 
         public static List<Product> Products { get; set; } = new List<Product>() { };
 
-        public static List<Agreement> Agreements { get; set; } = new List<Agreement>();
+        //public static List<Agreement> Agreements { get; set; } = new List<Agreement>();
 
-        public static List<string> SeatTypes { get; set; } = new List<string>() { "Big", "Small", "Medium", "Extra Large" };
+        //public static List<string> SeatTypes { get; set; } = new List<string>() { "Big", "Small", "Medium", "Extra Large" };
 
-        public static List<string> TreeTypes { get; set; } = new List<string>() { "Oak", "Mahogany", "Pine", "Spruce" };
+        //public static List<string> TreeTypes { get; set; } = new List<string>() { "Oak", "Mahogany", "Pine", "Spruce" };
 
         public static List<string> QuantityRange { get; set; } = new List<string>() { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
 
-        public static List<string> TagList { get; set; } = new List<string>() { "Pro", "Nice", "Late Payment", "Behaviour" };
+        //public static List<string> TagList { get; set; } = new List<string>() { "Pro", "Nice", "Late Payment", "Behaviour" };
 
         public static List<string> ProductStatusRange { get; set; } = new List<string>() { QuotationStatus.sent.ToString(), QuotationStatus.draft.ToString(), QuotationStatus.cancel.ToString(), QuotationStatus.done.ToString(), QuotationStatus.sale.ToString() };
 

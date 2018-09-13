@@ -107,7 +107,7 @@
         <value>Parent Partner    </value>
     </data>
 	<data name="LastVisit" xml:space="preserve">
-        <value>Last visit</value>
+        <value>Last visit on </value>
     </data>
 	<!-- CONTACTS DETAIL PAGE -->
 	<data name="Modify" xml:space="preserve">
@@ -133,10 +133,7 @@
     </data>
 	<data name="Contracts" xml:space="preserve">
         <value>Contracts</value>
-	</data>
-	<data name="LastVisit" xml:space="preserve">
-        <value>Dernière visite le</value>
-    </data>
+	</data>	
 	<data name="Weight" xml:space="preserve">
         <value>Weight</value>
     </data>
@@ -625,7 +622,7 @@
         <value>Add a note...</value>   
     </data>
      <data name="PaymentType" xml:space="preserve">
-        <value>Payment Type</value>   
+        <value>Payment Type </value>   
     </data>
      <data name="Choose" xml:space="preserve">
         <value>Choose</value>   
@@ -678,6 +675,154 @@
     </data>
     <data name="Terms2" xml:space="preserve">
         <value>2 weeks return policy on any custom item</value>   
+    </data>
+     <data name="Disconnect" xml:space="preserve">
+        <value>Disconnect</value>   
+    </data>
+    <data name="Me" xml:space="preserve">
+        <value>Me</value>   
+    </data>
+    <data name="CurrentLocation" xml:space="preserve">
+        <value>Current Location</value>   
+    </data>
+    
+   
+    <data name="P_Model" xml:space="preserve">
+        <value>Modèle</value>   
+    </data>
+  <data name="P_Color" xml:space="preserve">
+        <value>Couleur</value>   
+    </data>
+  <data name="P_Leather" xml:space="preserve">
+        <value>Cuir</value>   
+    </data>
+  <data name="P_Grained" xml:space="preserve">
+        <value>À grain</value>   
+    </data>
+  <data name="P_UnitPrice" xml:space="preserve">
+        <value>Prix ​​unitaire</value>   
+    </data>
+  <data name="P_RiderName" xml:space="preserve">
+        <value>Nom du coureur</value>   
+    </data>
+  <data name="P_Seat" xml:space="preserve">
+        <value>Siège</value>   
+    </data>
+  <data name="P_Tree" xml:space="preserve">
+        <value>Arbre</value>   
+    </data>
+  <data name="P_Flaps" xml:space="preserve">
+        <value>Volets</value>   
+    </data>
+  <data name="P_2ndSkin" xml:space="preserve">
+        <value>2ème peau</value>   
+    </data>
+  <data name="P_RBQgrained" xml:space="preserve">
+        <value>RBQ grained</value>   
+    </data>
+  <data name="P_FrontBlock" xml:space="preserve">
+        <value>Bloc avant</value>   
+    </data>
+  <data name="P_RearBlock" xml:space="preserve">
+        <value>Bloc arrière</value>   
+    </data>
+  <data name="P_PanelBase" xml:space="preserve">
+        <value>Base du panneau</value>   
+    </data>
+  <data name="P_Comments" xml:space="preserve">
+        <value>commentaires</value>   
+    </data>
+  <data name="P_NamePlate" xml:space="preserve">
+        <value>Plaque signalétique</value>   
+    </data>
+  <data name="P_Greasing" xml:space="preserve">
+        <value>Graissage</value>   
+    </data>
+  <data name="P_SpSaddle" xml:space="preserve">
+        <value>Sp Selle</value>   
+    </data>
+  <data name="P_Note" xml:space="preserve">
+        <value>Remarque</value>   
+    </data>
+  <data name="P_Saddle" xml:space="preserve">
+        <value>Selle</value>   
+    </data>
+  <data name="P_Accessory" xml:space="preserve">
+        <value>Accessoire</value>   
+    </data>
+  <data name="P_ParentCategory" xml:space="preserve">
+        <value>Catégorie Parentale</value>   
+    </data>
+  <data name="P_Category" xml:space="preserve">
+        <value>Catégorie</value>   
+    </data>
+  <data name="P_Reference" xml:space="preserve">
+        <value>Référence</value>   
+    </data>
+  <data name="P_Service" xml:space="preserve">
+        <value>Un service</value>   
+    </data>
+  <data name="P_Serial number" xml:space="preserve">
+        <value>Numéro de série</value>   
+    </data>
+  <data name="P_Brand" xml:space="preserve">
+        <value>Marque</value>   
+    </data>
+  <data name="P_Seatsize" xml:space="preserve">
+        <value>Taille du siège</value>   
+    </data>
+  <data name="P_Flapsize" xml:space="preserve">
+        <value>Taille du rabat</value>   
+    </data>
+  <data name="P_Other" xml:space="preserve">
+        <value>Autre</value>   
+    </data>
+  <data name="P_Price" xml:space="preserve">
+        <value>Prix</value>   
+    </data>
+  <data name="P_Description" xml:space="preserve">
+        <value>La description</value>   
+    </data>
+  <data name="P_Size" xml:space="preserve">
+        <value>Taille</value>   
+    </data>
+  <data name="P_Blocks" xml:space="preserve">
+        <value>Blocs</value>   
+    </data>
+  <data name="P_Discount" xml:space="preserve">
+        <value>Remise</value>   
+    </data>
+  <data name="P_TradeIn" xml:space="preserve">
+        <value>TradeIn</value>   
+    </data>
+    
+   
+    <data name="BillingAddress" xml:space="preserve">
+        <value>Billing and Delivery Address</value>   
+    </data>  
+    <data name="OrderNumber" xml:space="preserve">
+        <value>Order number  </value>   
+    </data>
+    <data name="OrderDate" xml:space="preserve">
+        <value>Order date :</value>   
+    </data> 
+    <data name="Prescriber" xml:space="preserve">
+        <value>Prescriber :</value>   
+    </data>
+    <data name="PaymentMethod" xml:space="preserve">
+        <value>Payment Method :</value>
+    </data>
+    <data name="PaymentNote" xml:space="preserve">
+        <value>Payment Note :</value> 
+    </data>
+    <data name="TotalHT" xml:space="preserve">
+        <value>Total HT</value>   
+    </data>
+    <data name="Price" xml:space="preserve">
+        <value>Price</value>   
+    </data>
+    <data name="Taxes" xml:space="preserve">
+        <value>Taxes</value>   
     </data>
     
 </root>

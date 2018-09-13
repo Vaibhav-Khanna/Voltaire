@@ -30,6 +30,9 @@ namespace voltaire.Models
 
         public string PropertyName { get; set; }
 
+        string name_fr;
+        public string PropertyName_FR { get { return string.IsNullOrEmpty(name_fr) ? PropertyName : name_fr; } set { name_fr = value; } }
+
         string val;
         public string PropertyValue { get { return val; } set { val = value; RaisePropertyChanged(); } }
 

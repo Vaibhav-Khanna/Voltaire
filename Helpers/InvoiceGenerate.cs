@@ -20,6 +20,7 @@ using voltaire.Pages;
 using System.Reflection;
 using Newtonsoft.Json;
 using System.Linq;
+using voltaire.Resources;
 
 namespace voltaire.Helpers
 {
@@ -34,7 +35,7 @@ namespace voltaire.Helpers
         private const string header5 = "France";
 
 
-        private const string footerPage = "Rebelle : 09 72 42 27 19 - Forestier : 09 72 45 66 46 | jeanne@rebellesellier.com - forever@forestier.com | RebelleSellier.com - Forestier.com Siret: 805075702 00011 Compte bancaire: CIC: 10057 19014 00020008603 35";
+        private readonly string footerPage = Settings.DeviceLanguage == "fr" ? "Rebelle : 09 72 42 27 19 - Forestier : 09 72 45 66 46 | jeanne@rebellesellier.com - forever@forestier.com | RebelleSellier.com - Forestier.com Siret: 805075702 00011 Compte bancaire: CIC: 10057 19014 00020008603 35" : "Rebelle: 09 72 42 27 19 - Forestry: 09 72 45 66 46 | jeanne@rebellesellier.com - forever@forestier.com | RebelleSellier.com - Forestier.com Siret: 805075702 00011 Bank account: CIC: 10057 19014 00020008603 35";
 
         private const int ItemHeight = 50;
 
@@ -199,7 +200,7 @@ namespace voltaire.Helpers
                         {
                             if (!string.IsNullOrWhiteSpace(properties[i].PropertyValue))
                             {
-                                graphics.DrawString(properties[i].PropertyName+" :", _font10Regular, _brushBlack,
+                                graphics.DrawString( (Settings.DeviceLanguage == "fr" ? properties[i].PropertyName_FR : properties[i].PropertyName) + " :", _font10Regular, _brushBlack,
                                  new PointF(0, y));
                                 y = y + 15;
                                 graphics.DrawString(properties[i].PropertyValue, _font10Regular, _brushGreyishBrownTwo,
@@ -260,11 +261,11 @@ namespace voltaire.Helpers
             pdfGridHeader.Style.Font = new PdfStandardFont(PdfFontFamily.Helvetica, 14);
 
            
-            pdfGridHeader.Cells[0].Value = "Description";
-            pdfGridHeader.Cells[1].Value = "Taxes";
-            pdfGridHeader.Cells[2].Value = "Quantité";
-            pdfGridHeader.Cells[3].Value = "Prix unitaire";
-            pdfGridHeader.Cells[4].Value = "Prix";         
+            pdfGridHeader.Cells[0].Value = AppResources.Description;
+            pdfGridHeader.Cells[1].Value = AppResources.Taxes;
+            pdfGridHeader.Cells[2].Value = AppResources.Quantity;
+            pdfGridHeader.Cells[3].Value = AppResources.UnitPrice;
+            pdfGridHeader.Cells[4].Value = AppResources.Price;         
 
 
             //centre text dans cellule
@@ -308,7 +309,7 @@ namespace voltaire.Helpers
             PdfGridRow pdfGridRowTotal = pdfGrid.Rows.Add();
             pdfGridRowTotal.Style.Font = new PdfTrueTypeFont(fontstream, 12);
             pdfGridRowTotal.Cells[0].ColumnSpan = 4;
-            pdfGridRowTotal.Cells[0].Value = "Total HT";
+            pdfGridRowTotal.Cells[0].Value = AppResources.TotalHT;
             pdfGridRowTotal.Cells[0].StringFormat = rightText;
 
             pdfGridRowTotal.Cells[4].Value = SaleOrder.AmountUntaxed + logo;
@@ -321,7 +322,7 @@ namespace voltaire.Helpers
                 pdfGridRowDeposit.Style.Font = new PdfTrueTypeFont(fontstream, 12);
 
                 pdfGridRowDeposit.Cells[0].ColumnSpan = 4;
-                pdfGridRowDeposit.Cells[0].Value = "Taxes";
+                pdfGridRowDeposit.Cells[0].Value = AppResources.Taxes;
                 pdfGridRowDeposit.Cells[0].StringFormat = rightText;
 
                 pdfGridRowDeposit.Cells[4].Value = SaleOrder.AmountTax + logo;
@@ -333,7 +334,7 @@ namespace voltaire.Helpers
             pdfGridRowtotal.Style.Font = new PdfTrueTypeFont(fontstream, 12);
 
             pdfGridRowtotal.Cells[0].ColumnSpan = 4;
-            pdfGridRowtotal.Cells[0].Value = "Total";
+            pdfGridRowtotal.Cells[0].Value = AppResources.Total;
             pdfGridRowtotal.Cells[0].StringFormat = rightText;
 
             pdfGridRowtotal.Cells[4].Value = $"{SaleOrder.AmountTotal}{logo}";
@@ -362,9 +363,6 @@ namespace voltaire.Helpers
 
             //ecriture du pdfGrid
             resultDataTable = pdfGrid.Draw(page, new Syncfusion.Drawing.PointF(0, 300), layoutFormat);
-
-
-
         }
 
         private void DrawHeaderOfDocument(PdfGraphics graphics)
@@ -384,7 +382,7 @@ namespace voltaire.Helpers
           
             graphics.DrawLine(new PdfPen(Color.FromArgb(255, 0, 0, 0)){ Width = 0.25f },0,90,_document.PageSettings.Width-10,90);
 
-            graphics.DrawString("Adresse de facturation et livraison", _font14Bold, _brushGreyishBrownTwo,
+            graphics.DrawString(AppResources.BillingAddress, _font14Bold, _brushGreyishBrownTwo,
                         new PointF(0, 100));
 
             graphics.DrawString(string.IsNullOrEmpty(Customer.Name) ? "" :Customer.Name, _font10Regular, _brushGreyishBrownTwo,
@@ -399,26 +397,26 @@ namespace voltaire.Helpers
              new PointF(0, 185));
 
 
-            graphics.DrawString("N° de commande  " + SaleOrder.ClientOrderRef, _font14Bold, _brushGreyishBrownTwo,
+            graphics.DrawString(AppResources.OrderNumber + SaleOrder.ClientOrderRef, _font14Bold, _brushGreyishBrownTwo,
                        new PointF(0, 210));
 
-            graphics.DrawString("Date de commande :", _font10Regular, _brushBlack,
+            graphics.DrawString(AppResources.OrderDate, _font10Regular, _brushBlack,
               new PointF(0, 230));
             graphics.DrawString(SaleOrder.CreateDate.ToString("G"), _font10Regular, _brushGreyishBrownTwo,
               new PointF(0, 245));
 
-            graphics.DrawString("Prescripteur :", _font10Regular, _brushBlack,
+            graphics.DrawString(AppResources.Prescriber, _font10Regular, _brushBlack,
              new PointF(150, 230));
             graphics.DrawString(string.IsNullOrEmpty(SaleOrder.TrainerName) ? "" : SaleOrder.TrainerName, _font10Regular, _brushGreyishBrownTwo,
               new PointF(150, 245));
 
 
-            graphics.DrawString("Payment Method :", _font10Regular, _brushBlack,
+            graphics.DrawString(AppResources.PaymentMethod, _font10Regular, _brushBlack,
              new PointF(0, 260));
             graphics.DrawString(string.IsNullOrEmpty(SaleOrder.PaymentMethod) ? "" : SaleOrder.PaymentMethod, _font10Regular, _brushGreyishBrownTwo,
               new PointF(0, 275));
 
-            graphics.DrawString("Payment Note :", _font10Regular, _brushBlack,
+            graphics.DrawString(AppResources.PaymentNote, _font10Regular, _brushBlack,
             new PointF(150, 260));
             graphics.DrawString(string.IsNullOrWhiteSpace(SaleOrder.PaymentNote) ? "" : SaleOrder.PaymentNote, _font10Regular, _brushGreyishBrownTwo,
               new PointF(150, 275));

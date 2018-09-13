@@ -20,6 +20,7 @@ using voltaire.DataStore.Implementation.Stores;
 using voltaire.PopUps;
 using Plugin.Connectivity;
 using System.Reactive.Linq;
+using voltaire.Helpers;
 
 namespace voltaire.DataStore.Implementation
 {
@@ -117,6 +118,7 @@ namespace voltaire.DataStore.Implementation
 
             IsInitialized = false;
 
+
             Settings.UpdateDatabaseId();
         }
 
@@ -213,7 +215,7 @@ namespace voltaire.DataStore.Implementation
 
             Device.BeginInvokeOnMainThread(async () =>
            {
-               await ToastService.Show("The app is currently syncing... This might take a few minutes");
+                await ToastService.Show(Resources.AppResources.AppSyncing);
            });
 
 

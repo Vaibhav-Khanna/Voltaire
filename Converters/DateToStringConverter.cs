@@ -17,7 +17,7 @@ namespace voltaire.Converters
 
             var dt = (DateTime)date;
 
-            return string.Format( AppResources.LastVisit + " {0:D1}/{1:D2}/{2:D3}", dt.Day, dt.Month, dt.Year );
+            return string.Format(AppResources.LastVisit + " {0:D1}/{1:D2}/{2:D3}", dt.Day, dt.Month, dt.Year );
 
         }
 

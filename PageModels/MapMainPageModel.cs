@@ -163,7 +163,7 @@ namespace voltaire.PageModels
 
             // Customer
 
-            Dialog.ShowLoading();
+            Dialog.ShowLoading(AppResources.Loading);
 
             var Customer_list = await StoreManager.CustomerStore.GetItemsWithValidCordinates();
 

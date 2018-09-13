@@ -39,10 +39,10 @@ namespace voltaire.PageModels
 				{
 					List<Agreement> agreements = new List<Agreement>();
 
-					foreach (var item in ProductConstants.Agreements)
-					{
-						agreements.Add(item.ObjectClone());
-					}
+					//foreach (var item in ProductConstants.Agreements)
+					//{
+					//	agreements.Add(item.ObjectClone());
+					//}
 
                     contract.Agreements = agreements;
                 }

@@ -26,10 +26,32 @@ namespace voltaire.Helpers
 
 		private static readonly string SettingsDefault = string.Empty;
 
-		#endregion
+        #endregion
 
+        //Settings settings;
+        //public static Settings Current
+        //{
+        //    get { return settings ?? (settings = new Settings()); }
+        //}
 
-		public static string GeneralSettings
+        const string DatabaseIdKey = "azure_database";
+        static readonly int DatabaseIdDefault = 0;
+
+        public static int DatabaseId
+        {
+            get { return AppSettings.GetValueOrDefault(DatabaseIdKey, DatabaseIdDefault); }
+            set
+            {
+                AppSettings.AddOrUpdateValue(DatabaseIdKey, value);
+            }
+        }
+
+        public static int UpdateDatabaseId()
+        {
+            return DatabaseId++;
+        }
+
+        public static string GeneralSettings
 		{
 			get
 			{

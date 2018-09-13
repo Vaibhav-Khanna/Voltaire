@@ -14,7 +14,7 @@ namespace voltaire.Helpers
 
 			AppResources.Culture = ci;
 
-			Settings.DeviceLanguage = ci.TwoLetterISOLanguageName == "fr" ? "French" : "English";
+			Settings.DeviceLanguage = ci.TwoLetterISOLanguageName == "fr" ? "fr" : "en";
            
 			DependencyService.Get<ILocalize>().SetLocale(ci);
 		}

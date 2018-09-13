@@ -72,7 +72,7 @@
                     <DataTemplate>
                        <ViewCell  x:Name = "view_cell" BindingContextChanged="Handle_BindingContextChanged" >
                                <ViewCell.ContextActions>
-                                    <MenuItem Text="Remove" IsDestructive="true" Clicked="Handle_Clicked" />
+                                    <MenuItem Text="{x:Static resources:AppResources.Delete}" IsDestructive="true" Clicked="Handle_Clicked" />
                                 </ViewCell.ContextActions>
                             <Grid  HorizontalOptions = "FillAndExpand" VerticalOptions = "Center" Margin ="0" Padding = "15,15,15,15" BackgroundColor = "{Binding BackColor}" >
                                 <Grid.RowDefinitions>

@@ -35,7 +35,14 @@ namespace voltaire.DataStore.Implementation
 
         public async Task DropTable()
         {
-            await Table.PurgeAsync();
+            try
+            {
+                await Table.PurgeAsync(true);
+            }
+            catch(Exception) 
+            {
+            }
+
             table = null;
         }
 

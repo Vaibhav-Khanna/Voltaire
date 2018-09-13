@@ -48,7 +48,7 @@ namespace voltaire.Pages
 			{
 				topcontainer.Children.Clear();
 
-				var lb_firstName = new CustomLabelEntry("Name", true) { Keyboard = Keyboard.Text, HorizontalOptions = LayoutOptions.FillAndExpand };
+                var lb_firstName = new CustomLabelEntry(voltaire.Resources.AppResources.Name, true) { Keyboard = Keyboard.Text, HorizontalOptions = LayoutOptions.FillAndExpand };
                 lb_firstName.SetBinding(CustomLabelEntry.TextProperty, "FirstName", BindingMode.TwoWay);
 				lb_firstName.SetBinding(VisualElement.IsEnabledProperty, "CanEdit");
 				

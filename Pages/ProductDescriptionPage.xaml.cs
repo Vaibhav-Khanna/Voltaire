@@ -8,6 +8,7 @@ using voltaire.PageModels;
 using voltaire.Pages.Base;
 using voltaire.Renderers;
 using Xamarin.Forms;
+using voltaire.Helpers;
 
 namespace voltaire.Pages
 {
@@ -113,7 +114,7 @@ namespace voltaire.Pages
                 return stack;
 
             var label = new Label { FontFamily = "SanFranciscoDisplay-Regular", HorizontalOptions = LayoutOptions.StartAndExpand, VerticalOptions = LayoutOptions.Center, TextColor = (Color)App.Current.Resources["GreyishBrown"] };
-            label.SetBinding(Label.TextProperty, "PropertyName");
+            label.SetBinding(Label.TextProperty, Settings.DeviceLanguage == "en" ? "PropertyName" : "PropertyName_FR");
             label.BindingContext = Bind_Context;
 
             var sw = new Switch() { IsEnabled = controlEnabled, HorizontalOptions = LayoutOptions.End, VerticalOptions = LayoutOptions.Center };
@@ -135,7 +136,7 @@ namespace voltaire.Pages
                 return stack;
 
             var label = new Label { FontFamily = "SanFranciscoDisplay-Regular", HorizontalOptions = LayoutOptions.Start, VerticalOptions = LayoutOptions.Center, TextColor = (Color)App.Current.Resources["GreyishBrown"] };
-            label.SetBinding(Label.TextProperty, "PropertyName", BindingMode.OneWay);
+            label.SetBinding(Label.TextProperty, Settings.DeviceLanguage == "en" ? "PropertyName" : "PropertyName_FR", BindingMode.OneWay);
             label.BindingContext = Bind_Context;
 
             var picker = new BorderlessPicker() { IsEnabled = controlEnabled, TextAlignMent = TextAlignment.End, HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.Center, Title = "Choose", TextColor = (Color)App.Current.Resources["turquoiseBlue"] };
@@ -173,7 +174,7 @@ namespace voltaire.Pages
             entry.BindingContext = Bind_Context;
 
             var label = new Label { FontFamily = "SanFranciscoDisplay-Regular", HorizontalOptions = LayoutOptions.Start, VerticalOptions = LayoutOptions.Center, TextColor = (Color)App.Current.Resources["GreyishBrown"] };
-            label.SetBinding(Label.TextProperty, "PropertyName");
+            label.SetBinding(Label.TextProperty, Settings.DeviceLanguage == "en" ? "PropertyName" : "PropertyName_FR");
             label.BindingContext = Bind_Context;
 
           
@@ -195,7 +196,7 @@ namespace voltaire.Pages
             text.BindingContext = Bind_Context;
 
             var label = new Label { FontFamily = "SanFranciscoDisplay-Regular", HorizontalOptions = LayoutOptions.StartAndExpand, VerticalOptions = LayoutOptions.Center, TextColor = (Color)App.Current.Resources["GreyishBrown"] };
-            label.SetBinding(Label.TextProperty, "PropertyName");
+            label.SetBinding(Label.TextProperty, Settings.DeviceLanguage == "en" ? "PropertyName" : "PropertyName_FR");
             label.BindingContext = Bind_Context;
 
             stack.Children.Add(label);
