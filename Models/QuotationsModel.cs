@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace voltaire.Models
 {
-    public class QuotationsModel
+    public class QuotationsModel : BaseModel
     {
 
         public QuotationsModel(SaleOrder model)
@@ -43,52 +43,52 @@ namespace voltaire.Models
         public Color BackColor { get; set; }
 
         string currencyLogo;
-        public string CurrencyLogo { get { return currencyLogo; } set { currencyLogo = value; } }
+        public string CurrencyLogo { get { return currencyLogo; } set { currencyLogo = value; RaisePropertyChanged(); } }
 
         string name;
-        public string Name { get { return name; } set { name = value; SaleOrder.Name = value; } }
+        public string Name { get { return name; } set { name = value; SaleOrder.Name = value; RaisePropertyChanged(); } }
 
         string reference;
-        public string Ref { get { return reference; } set{ reference = value; SaleOrder.ClientOrderRef = value; } }
+        public string Ref { get { return reference; } set{ reference = value; SaleOrder.ClientOrderRef = value; RaisePropertyChanged(); } }
 
         DateTime date;
-        public DateTime Date { get { return date; } set { date = value; SaleOrder.DateOrder = value; SaleOrder.CreateDate = value;  } }
+        public DateTime Date { get { return date; } set { date = value; SaleOrder.DateOrder = value; SaleOrder.CreateDate = value; RaisePropertyChanged();  } }
 
         double totalAmount;
-        public double TotalAmount { get { return totalAmount; } set { totalAmount = value;  SaleOrder.AmountTotal = value; } }
+        public double TotalAmount { get { return totalAmount; } set { totalAmount = value;  SaleOrder.AmountTotal = value; RaisePropertyChanged(); } }
 
         double subTotal;
-        public double SubTotal { get { return subTotal; } set { subTotal = value; SaleOrder.AmountUntaxed = value; } }
+        public double SubTotal { get { return subTotal; } set { subTotal = value; SaleOrder.AmountUntaxed = value; RaisePropertyChanged(); } }
 
         bool applyTax;
-        public bool ApplyTax { get { return applyTax; } set{ applyTax = value; } }
+        public bool ApplyTax { get { return applyTax; } set{ applyTax = value; RaisePropertyChanged(); } }
 
         double taxAmount;
-        public double TaxAmount { get { return taxAmount; } set { taxAmount = value; SaleOrder.AmountTax = value; } }
+        public double TaxAmount { get { return taxAmount; } set { taxAmount = value; SaleOrder.AmountTax = value; RaisePropertyChanged(); } }
 
         string permanote;
-        public string PermanentNote { get { return permanote; } set { permanote = value; SaleOrder.Note = value; } }
+        public string PermanentNote { get { return permanote; } set { permanote = value; SaleOrder.Note = value; RaisePropertyChanged(); } }
 
         public List<Message> Messages { get; set; } = new List<Message>();
 
         string status;
-        public string Status { get { return status; } set { status = value; SaleOrder.State = value; } }
+        public string Status { get { return status; } set { status = value; SaleOrder.State = value; RaisePropertyChanged(); } }
 
         string trainerName;
-        public string TrainerName { get { return trainerName; } set { trainerName = value; SaleOrder.TrainerName = trainerName; } }
+        public string TrainerName { get { return trainerName; } set { trainerName = value; SaleOrder.TrainerName = trainerName; RaisePropertyChanged(); } }
 
         string horseShow;
-        public string HorseShow { get { return horseShow; } set { horseShow = value; SaleOrder.HorseShow = horseShow; } }
+        public string HorseShow { get { return horseShow; } set { horseShow = value; SaleOrder.HorseShow = horseShow; RaisePropertyChanged(); } }
 
         public List<ProductQuotationModel> Products { get; set; } = new List<ProductQuotationModel>();
 
         PaymentMethod _method = PaymentMethod.None;
-        public PaymentMethod PaymentMethod { get { return _method; } set { _method = value; SaleOrder.PaymentMethod = value.ToString(); } } 
+        public PaymentMethod PaymentMethod { get { return _method; } set { _method = value; SaleOrder.PaymentMethod = value.ToString(); RaisePropertyChanged(); } } 
 
         public bool IsConditionsAgree { get; set; }
 
         string notes;
-        public string PaymentNotes { get { return notes; } set { notes = value; SaleOrder.PaymentNote = notes; } }
+        public string PaymentNotes { get { return notes; } set { notes = value; SaleOrder.PaymentNote = notes; RaisePropertyChanged(); } }
 
         public bool IsSignedValidated { get; set; }
 

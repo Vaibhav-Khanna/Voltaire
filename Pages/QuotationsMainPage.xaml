@@ -3,9 +3,11 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:base="clr-namespace:voltaire.Pages.Base;assembly=voltaire" 
+    xmlns:xamcontrols="clr-namespace:SegmentedControl.FormsPlugin.Abstractions;assembly=SegmentedControl.FormsPlugin.Abstractions"
     xmlns:controls="clr-namespace:voltaire.Controls;assembly=voltaire"
     xmlns:local="clr-namespace:voltaire.Converters;assembly=voltaire"
-    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire" 
+    xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire"
+    xmlns:converter="clr-namespace:voltaire.Converters;assembly=voltaire"
     xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
     xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
     xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
@@ -30,8 +32,19 @@
 
              <!--  Toolbar  -->
             
-        <controls:TToolBar Title="{x:Static resources:AppResources.Quotations}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            <controls:TToolBar.RightToolbarItems>
+        <controls:TToolBar  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+               
+                <controls:TToolBar.CentralToolBarItems>
+                    <xamcontrols:SegmentedControl IsVisible="false" HeightRequest="40" WidthRequest="300" x:Name="SegControl" TintColor="#ffffff" SelectedTextColor="{StaticResource turquoiseBlue}" ValueChanged="Handle_ValueChanged" >
+     <xamcontrols:SegmentedControl.Children>
+       <xamcontrols:SegmentedControlOption Text="{x:Static resources:AppResources.Quotations}" />
+       <xamcontrols:SegmentedControlOption Text="{x:Static resources:AppResources.Orders}" />
+    
+     </xamcontrols:SegmentedControl.Children>
+   </xamcontrols:SegmentedControl>
+                    </controls:TToolBar.CentralToolBarItems>
+            
+                <controls:TToolBar.RightToolbarItems>
                 <Button Command="{Binding AddQuotation}" WidthRequest="34" HeightRequest="34" BorderRadius="17" BorderColor="White" Text="+" FontSize="25" TextColor="White" BorderWidth="1" VerticalOptions="Center" HorizontalOptions="Center"  />
           </controls:TToolBar.RightToolbarItems>
         </controls:TToolBar>
@@ -70,8 +83,10 @@
             </Grid>
 
                 <BoxView Color = "{StaticResource GreyBack}" HeightRequest = "1" HorizontalOptions = "FillAndExpand" />
-
-                <ListView x:Name ="listview" Refreshing="Handle_Refreshing" IsPullToRefreshEnabled="true" SeparatorColor = "{StaticResource GreyBack}" ItemsSource = "{Binding QuotationsItemSource}" HasUnevenRows ="true" >
+                
+                <ActivityIndicator IsRunning="true" IsVisible="{Binding IsLoading}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/> 
+                
+                <ListView x:Name ="listview" ItemAppearing="Handle_ItemAppearing" IsVisible="{Binding IsLoading,Converter={converter:BoolInverseConverter}}" IsRefreshing="{Binding IsRefreshing}" RefreshCommand="{Binding RefreshCommand}" IsPullToRefreshEnabled="true" SeparatorColor = "{StaticResource GreyBack}" ItemsSource = "{Binding QuotationsItemSource}" HasUnevenRows ="true" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                        <ViewCell> 
@@ -89,13 +104,26 @@
                                 <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Ref}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "0"  />
                                 <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Name}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "1"  />
                                 <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Date, StringFormat = '{0:yyyy MMMM dd}' }" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "2"  />
-                                <Label FontFamily = "SanFranciscoDisplay-Regular"  FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding TotalAmount, StringFormat = '${0:N}' }" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "3"  />
+                               
+                                    <StackLayout Orientation="Horizontal" Margin="0" Padding="0" Spacing="4" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "3" >
+                                        <Label FontFamily = "SanFranciscoDisplay-Regular"  FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding CurrencyLogo}" VerticalOptions = "Center" HorizontalOptions =  "Start"   />
+                                        <Label FontFamily = "SanFranciscoDisplay-Regular"  FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding TotalAmount, StringFormat = '{0:N}'}"  VerticalOptions = "Center" HorizontalOptions =  "Start"  />
+                                    </StackLayout>
+                                    
                                 <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Status, Converter = {StaticResource EnumToStringConverter} }" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "4"  />  
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                    
+                    <ListView.Footer>
+                        <ContentView IsVisible="{Binding IsLoadMore}" HorizontalOptions="FillAndExpand" HeightRequest="90">
+                          <ActivityIndicator Color="Gray" IsRunning="true" HorizontalOptions="Center"  HeightRequest="50" VerticalOptions="Center" />
+                        </ContentView>
+                    </ListView.Footer>
+                    
             </ListView>
+                
             </StackLayout>
             
             

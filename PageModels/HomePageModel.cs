@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using Rg.Plugins.Popup.Services;
+using voltaire.Models;
 using voltaire.Models.DataObjects;
 using voltaire.PageModels.Base;
 using voltaire.PopUps;
@@ -52,6 +53,8 @@ namespace voltaire.PageModels
             base.ViewIsAppearing(sender, e);
 
             var Has_Permission = await Helpers.Permissions.CheckPermissionLocation();
+
+            await ProductConstants.GenerateProductList();
         }
 
     }

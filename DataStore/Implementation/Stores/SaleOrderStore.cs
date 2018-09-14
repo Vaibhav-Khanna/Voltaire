@@ -25,5 +25,20 @@ namespace voltaire.DataStore.Implementation.Stores
 
             return await Table.Where(x => x.PartnerId == PartnerId).Where(x => x.State == QuotationStatus.draft.ToString() || x.State == QuotationStatus.sent.ToString()).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
         }
+
+        public async Task<IEnumerable<SaleOrder>> GetQuotations(int currentCount)
+        {
+            await InitializeStore().ConfigureAwait(false);
+
+            return await Table.Where(x => x.State == QuotationStatus.draft.ToString() || x.State == QuotationStatus.sent.ToString()).OrderByDescending(x => x.CreateDate).Skip(currentCount).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+        }
+
+        public async Task<IEnumerable<SaleOrder>> GetOrders(int currentCount)
+        {
+            await InitializeStore().ConfigureAwait(false);
+
+            return await Table.Where(x => x.State == QuotationStatus.sale.ToString() || x.State == QuotationStatus.done.ToString()).OrderByDescending(x => x.CreateDate).Skip(currentCount).Take(50).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+        }
+
     }
 }

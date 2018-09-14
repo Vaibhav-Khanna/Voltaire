@@ -10,5 +10,9 @@ namespace voltaire.DataStore.Abstraction.Stores
         Task<IEnumerable<SaleOrder>> GetQuotationItemsByCustomer(long PartnerId);
 
         Task<IEnumerable<SaleOrder>> GetOrderItemsByCustomer(long PartnerId);
+
+        Task<IEnumerable<SaleOrder>> GetQuotations(int currentCount);
+
+        Task<IEnumerable<SaleOrder>> GetOrders(int currentCount);
     }
 }

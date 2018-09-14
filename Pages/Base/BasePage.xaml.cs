@@ -33,7 +33,7 @@ namespace voltaire.Pages.Base
                 new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5, IsSelected = false, IconSource = "todo"},
                 new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5,IsSelected = false, IconSource = "agenda"},
                 new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5,IsSelected = false, IconSource = "report"},
-                new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5,IsSelected = false, IconSource = "quotation"},
+                new MenuLeftItem {Title = "", IsEnabled = true, opacity = 1, IsSelected = false, IconSource = "quotation"},
                 new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5,IsSelected = false, IconSource = "contract"},
                 new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5,IsSelected = false, IconSource = "goals"},
                 new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5, IsSelected = false, IconSource = "podiums"},

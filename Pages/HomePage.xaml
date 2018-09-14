@@ -187,7 +187,7 @@
 				<Label Style="{StaticResource MenuItemLabelStyle}" Text="{x:Static resources:AppResources.Reports}" />
 			</StackLayout>
 			<!--  Manage users  -->
-			<StackLayout  Opacity="0.5" Grid.Row="1" Grid.Column="1" Margin="0,20,0,0" Style="{StaticResource CircleMenuSecondLineStyle}"> <!-- Grid.Row="2" Grid.Column="1" -->
+			<StackLayout  Grid.Row="1" Grid.Column="1" Margin="0,20,0,0" Style="{StaticResource CircleMenuSecondLineStyle}"> <!-- Grid.Row="2" Grid.Column="1" -->
 				<StackLayout.GestureRecognizers>
 					<TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ChangeToQuotations" />
 				</StackLayout.GestureRecognizers>

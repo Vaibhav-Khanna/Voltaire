@@ -22,7 +22,7 @@ namespace voltaire.PageModels
 
         public Command BackButton => new Command(async () =>
        {
-            UserDialogs.Instance.ShowLoading($"{AppResources.JustAMoment}...");
+           UserDialogs.Instance.ShowLoading($"{AppResources.JustAMoment}...");
           
            await StoreManager.SaleOrderStore.UpdateAsync(Quotation.SaleOrder);
 
@@ -37,7 +37,8 @@ namespace voltaire.PageModels
            }
 
            UserDialogs.Instance.HideLoading();
-           await CoreMethods?.PopPageModel();
+             
+            await CoreMethods?.PopPageModel(NewQuotation ? Quotation : null);
        });
 
         public Command DeleteItemCommand => new Command(async (obj) =>
@@ -91,7 +92,7 @@ namespace voltaire.PageModels
                 UserDialogs.Instance.ShowLoading($"{AppResources.Deleting}...");
                 await StoreManager.SaleOrderStore.RemoveAsync(Quotation.SaleOrder);
                 UserDialogs.Instance.HideLoading();
-                await CoreMethods?.PopPageModel();
+                await CoreMethods?.PopPageModel(Quotation);
             }
 
         });

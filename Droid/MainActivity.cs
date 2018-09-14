@@ -13,6 +13,7 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Plugin.Permissions;
 using Plugin.CrossPlatformTintedImage.Android;
+using SegmentedControl.FormsPlugin.Android;
 
 namespace voltaire.Droid
 {
@@ -42,6 +43,8 @@ namespace voltaire.Droid
             App.ScreenHeight = ConvertPixelsToDp(displayMetrics.HeightPixels);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            SegmentedControlRenderer.Init();
 
             TintedImageRenderer.Init();
 #if DEBUG

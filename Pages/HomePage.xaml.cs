@@ -39,7 +39,7 @@ namespace voltaire.Pages
         }
         public void ChangeToQuotations(object sender, EventArgs e)
         {
-            //changeCurrentView("quotation");
+            changeCurrentView("quotation");
         }
         public void ChangeToContract(object sender, EventArgs e)
         {

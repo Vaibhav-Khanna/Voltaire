@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>TEST VoltaireCRM</string>
+	<string>VoltaireCRM</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.voltaire.mobilecenter.crm</string>
 	<key>CFBundleShortVersionString</key>

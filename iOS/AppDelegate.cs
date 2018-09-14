@@ -15,6 +15,7 @@ using KeyboardOverlap.Forms.Plugin.iOSUnified;
 using Syncfusion.ListView.XForms.iOS;
 using Lottie.Forms.iOS.Renderers;
 using Plugin.CrossPlatformTintedImage.iOS;
+using SegmentedControl.FormsPlugin.iOS;
 
 namespace voltaire.iOS
 {
@@ -27,7 +28,7 @@ namespace voltaire.iOS
 
             global::Xamarin.Forms.Forms.Init();
 
-
+            SegmentedControlRenderer.Init();
             CarouselViewRenderer.Init();
             KeyboardOverlapRenderer.Init();
             AnimationViewRenderer.Init();

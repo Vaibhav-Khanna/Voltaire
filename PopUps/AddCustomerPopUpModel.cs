@@ -29,7 +29,20 @@ namespace voltaire.PopUps
         public delegate void EventHandler();
 
         public event EventHandler ItemSelectedChanged; //  event handler when a item is selected
-       
+
+        public bool manualAddEnable;
+
+        public AddCustomerPopUpModel()
+        {
+            manualAddEnable = true;
+        }
+
+        public AddCustomerPopUpModel(bool IsManualAddEnable)
+        {
+            manualAddEnable = IsManualAddEnable;
+        }
+
+
         async void Search()
         {
             if (string.IsNullOrWhiteSpace(SearchQuery))
@@ -76,7 +89,7 @@ namespace voltaire.PopUps
 
         public Command AddManuallyCommand => new Command(() =>
         {
-            if (!string.IsNullOrWhiteSpace(SearchQuery))
+            if (!string.IsNullOrWhiteSpace(SearchQuery) && manualAddEnable)
             {
                 // Create a manual partner 
                 SelectedItem = new Partner() { Name = SearchQuery.Trim() };
