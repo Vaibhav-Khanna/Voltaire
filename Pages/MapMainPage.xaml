@@ -87,7 +87,7 @@
                         Style="{StaticResource FilterSectionLabelStyle}" />
                 
                 <controls:WrapLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Spacing="10">
-                        <Button x:Name="bt0" Text="0" Command="{Binding FilterWeight}" CommandParameter="0"
+                        <Button x:Name="bt0" Text="0" IsVisible="false" Command="{Binding FilterWeight}" CommandParameter="0"
                         Clicked="Handle_Clicked"
                                 Style="{StaticResource FilterWeightButtonStyle}" />
                     

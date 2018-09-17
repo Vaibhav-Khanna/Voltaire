@@ -10,6 +10,7 @@ using voltaire.Resources;
 using Xamarin.Forms.GoogleMaps;
 using System.Threading.Tasks;
 using voltaire.Pages;
+using System.Diagnostics;
 
 namespace voltaire.PageModels
 {
@@ -107,7 +108,7 @@ namespace voltaire.PageModels
             {
                 case 0:
                     {
-                        filter_list = VisiblePartners.Where((arg) => arg.Weight == 0).ToList();
+                        filter_list = VisiblePartners.ToList();
                         break;
                     }
                 case 1:
@@ -159,6 +160,20 @@ namespace voltaire.PageModels
 
             PartnerGrades = new ObservableCollection<PartnerGrade>(_grades?.Select((arg) => new PartnerGrade() { Grade = arg.Name }));
 
+
+            // Only show partners with a cateogry called "Stable"
+            var categories = await StoreManager.PartnerCategoryStore.GetItemsAsync();
+
+            long? category_toShow = null;
+
+            category_toShow = categories.Where((arg) => arg.Name == "Stable")?.First()?.ExternalId;
+
+            if (category_toShow == 0)
+                category_toShow = null;
+
+            // Only show partners with a cateogry called "Stable"
+
+
             //PartnerGrades 
 
             // Customer
@@ -174,8 +189,8 @@ namespace voltaire.PageModels
                 await CoreMethods.DisplayAlert(AppResources.Alert,AppResources.NoCustomerFound,AppResources.Ok);
             }
             else
-            {     
-                var cust_list = new List<Partner>(Customer_list);
+            {
+                var cust_list = new List<Partner>(Customer_list.Where((arg) => arg.Weight != 0 && arg.CategoryId == category_toShow));
 
                 AllPartners = cust_list;
 
@@ -183,6 +198,7 @@ namespace voltaire.PageModels
 
                 Dialog.HideLoading();
             }
+
             // Customer
         }
 
