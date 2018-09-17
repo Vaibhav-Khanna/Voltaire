@@ -15,7 +15,6 @@ namespace voltaire.PageModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-
         public ProductKind ProductKind { get; set; }
 
         public string CurrencyLogo { get; set; }
@@ -213,7 +212,43 @@ namespace voltaire.PageModels
 
         public ProductQuotationModel(SaleOrderLine _product,string currency)
         {
-            OrderStatusTypes = new ObservableCollection<string>(ProductConstants.ProductStatusRange);
+        
+            switch (_product.ProductKind)
+            {
+                case "saddle":
+                    {
+                        OrderStatusTypes = new ObservableCollection<string>(ProductConstants.ProductStatusRangeSaddle);
+                        break;
+                    }
+                case "accessory":
+                    {
+                        OrderStatusTypes = new ObservableCollection<string>(ProductConstants.ProductStatusRangeAccessories);
+                        break;
+                    }
+                case "other":
+                    {
+                        OrderStatusTypes = new ObservableCollection<string>(ProductConstants.ProductStatusRangeOther);
+                        break;
+                    }
+                case "service":
+                    {
+                        OrderStatusTypes = new ObservableCollection<string>(ProductConstants.ProductStatusRangeService);
+                        break;
+                    }
+                case "discount":
+                    {
+                        OrderStatusTypes = new ObservableCollection<string>(ProductConstants.ProductStatusRangeDiscount);
+                        break;
+                    }
+                case "tradein":
+                    {
+                        OrderStatusTypes = new ObservableCollection<string>(ProductConstants.ProductStatusRangeTradeIn);
+                        break;
+                    }
+                default:
+                    OrderStatusTypes = new ObservableCollection<string>(ProductConstants.ProductStatusRangeOther);
+                    break;                
+            }
 
             CurrencyLogo = currency;
 
@@ -234,7 +269,7 @@ namespace voltaire.PageModels
             if (OrderStatusTypes.Contains(_product.State?.Trim()?.ToLower()))
                 OrderStatusIndex = OrderStatusTypes.IndexOf(_product.State?.Trim()?.ToLower());
             else
-                OrderStatusIndex = 1;  
+                OrderStatusIndex = 0;  
 
             //SetOrderStatusIndex(OrderStatusIndex);
         }

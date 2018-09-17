@@ -294,7 +294,21 @@ namespace voltaire.Models
 
         //public static List<string> TagList { get; set; } = new List<string>() { "Pro", "Nice", "Late Payment", "Behaviour" };
 
-        public static List<string> ProductStatusRange { get; set; } = new List<string>() { QuotationStatus.sent.ToString(), QuotationStatus.draft.ToString(), QuotationStatus.cancel.ToString(), QuotationStatus.done.ToString(), QuotationStatus.sale.ToString() };
+        public static List<string> ProductStatusRangeSaddle { get; set; } = new List<string>() { ProductStatus.Order.ToString() };
+
+        public static List<string> ProductStatusRangeService { get; set; } = new List<string>() { ProductStatus.Delivered.ToString(), ProductStatus.Received.ToString(), ProductStatus.ToBeReceived.ToString() };
+
+        public static List<string> ProductStatusRangeAccessories { get; set; } = new List<string>() { ProductStatus.Order.ToString(), ProductStatus.Delivered.ToString() };
+
+
+        public static List<string> ProductStatusRangeTradeIn { get; set; } = new List<string>() {  ProductStatus.Received.ToString(), ProductStatus.ToBeReceived.ToString() };
+
+
+        public static List<string> ProductStatusRangeOther { get; set; } = new List<string>() { ProductStatus.Order.ToString(), ProductStatus.Delivered.ToString(), ProductStatus.Received.ToString(), ProductStatus.ToBeReceived.ToString() };
+
+
+        public static List<string> ProductStatusRangeDiscount { get; set; } = new List<string>() { " " };
+
 
         public static List<SaddleAttribute> SaddleAttributes { get; set; } = new List<SaddleAttribute>();
 

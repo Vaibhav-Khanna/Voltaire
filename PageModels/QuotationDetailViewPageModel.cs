@@ -41,6 +41,7 @@ namespace voltaire.PageModels
             await CoreMethods?.PopPageModel(NewQuotation ? Quotation : null);
        });
 
+
         public Command DeleteItemCommand => new Command(async (obj) =>
         {
             if (obj != null && obj is ProductQuotationModel)

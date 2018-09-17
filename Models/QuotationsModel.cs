@@ -97,7 +97,6 @@ namespace voltaire.Models
         public DateTime? DateSigned { get; set; }
 
         public List<string> TermsConditions { get; set; } = new List<string> { Resources.AppResources.Terms1, Resources.AppResources.Terms2 };
-
     }
 
     public enum QuotationStatus
@@ -105,10 +104,14 @@ namespace voltaire.Models
         cancel, draft, sale, done, sent
     }
 
+    public enum ProductStatus
+    {
+        Order, Delivered, Received, ToBeReceived
+    }
+
     public enum PaymentMethod
     {
         None, CreditCard, WireTransfer, Cash, Cheque
     }
-
 
 }
