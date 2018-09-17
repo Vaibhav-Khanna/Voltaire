@@ -21,6 +21,15 @@ namespace voltaire.Pages
             picker.Focus();
         }
 
+        void Handle_Tapped_2(object sender, System.EventArgs e)
+        {
+            signaturePad.Clear();
+
+            var context = BindingContext as QuotationSignPageModel;
+
+            context.SignImage = null;
+        }
+
         async void Handle_Tapped(object sender, System.EventArgs e)
         {
             var image_stream = await signaturePad.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat.Jpeg, false, true);

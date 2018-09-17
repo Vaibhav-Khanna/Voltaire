@@ -128,7 +128,7 @@ namespace voltaire.PageModels
             }
         }
 
-        public List<string> PaymentSource { get; set; } = new List<string> { PaymentMethod.None.ToString(), PaymentMethod.Cash.ToString(), PaymentMethod.CreditCard.ToString(), PaymentMethod.DebitCard.ToString() };
+        public List<string> PaymentSource { get; set; } = new List<string> { PaymentMethod.None.ToString(), PaymentMethod.Cash.ToString(), PaymentMethod.CreditCard.ToString(), PaymentMethod.WireTransfer.ToString(), PaymentMethod.Cheque.ToString() };
 
         string selecteditem;
         public string SelectedItem
@@ -317,7 +317,14 @@ namespace voltaire.PageModels
 
 		public static T ParseEnum<T>(string value)
 		{
-			return (T)Enum.Parse(typeof(T), value, true);
+            try
+            {
+                return (T)Enum.Parse(typeof(T), value, true);
+            }
+            catch(Exception)
+            {
+                return default(T);
+            }	
 		}
 
         string UnixTimeStamp()

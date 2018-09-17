@@ -107,7 +107,7 @@ namespace voltaire.Models
 
     public enum PaymentMethod
     {
-        None, CreditCard, DebitCard, Cash
+        None, CreditCard, WireTransfer, Cash, Cheque
     }
 
 

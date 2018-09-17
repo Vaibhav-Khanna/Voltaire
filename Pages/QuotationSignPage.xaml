@@ -51,7 +51,7 @@
 
                 <StackLayout Margin="30,5,30,10" Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand" HeightRequest="50" BackgroundColor="#979797" Padding="1"  >
                     <BoxView Color="White" VerticalOptions="FillAndExpand" HorizontalOptions="Start" WidthRequest="20"/>                 
-                   <renderers:BorderlessEntry x:Name="noteEntry" Text="{Binding NoteText, Mode=TwoWay}" TextColor="{StaticResource GreyishBrown}" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Placeholder="{x:Static resources:AppResources.ExpressOrder}"/>
+                   <renderers:BorderlessEntry x:Name="noteEntry" Text="{Binding NoteText, Mode=TwoWay}" TextColor="{StaticResource GreyishBrown}" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
                 </StackLayout>
 
               
@@ -68,6 +68,7 @@
                     <TapGestureRecognizer Command="{Binding ConditionTapped}" >
                     </TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
+                    
                     <Frame WidthRequest="15" CornerRadius="0" HasShadow="false" HeightRequest="15" VerticalOptions="Center" HorizontalOptions="Start" BackgroundColor="#4a4a4a" Padding="1">
                         <Image Source="{Binding ConditionImageSource}" VerticalOptions="Fill" HorizontalOptions="Fill" BackgroundColor="{Binding ButtonColor}" />
                     </Frame>
@@ -82,10 +83,23 @@
                     </StackLayout>
 
                 </StackLayout>
-                <signature:SignaturePadCanvasView x:Name="signaturePad"  Margin="0" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" BackgroundColor="#d8d8d8" />
+                
+                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" Grid.Column="0">
+                  
+                    <signature:SignaturePadCanvasView x:Name="signaturePad"  Margin="0"  HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" BackgroundColor="#d8d8d8" />    
+                    
+                    <ContentView HorizontalOptions="End" BackgroundColor="#595959" VerticalOptions="Start" Margin="15" Padding="10" WidthRequest="30" HeightRequest="30" >
+                        <Image Source="reset.png" VerticalOptions="Center" HorizontalOptions="Center" />
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Handle_Tapped_2"/>
+                        </ContentView.GestureRecognizers>
+                    </ContentView> 
+                    
+                </Grid>
+               
+                
             </StackLayout>
-
-            
+             
         <StackLayout Orientation="Horizontal" Spacing="10" HeightRequest="100"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{Binding ButtonColor}" Grid.Row="2" Grid.Column="1" >
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Handle_Tapped">
