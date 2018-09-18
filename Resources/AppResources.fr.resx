@@ -766,7 +766,12 @@
   <data name="P_TradeIn" xml:space="preserve">
         <value>TradeIn</value>   
     </data>
-    
+    <data name="P_ServiceCategory" xml:space="preserve">
+        <value>Catégorie de service</value>   
+    </data>
+     <data name="P_AfterSale" xml:space="preserve">
+        <value>service après-vente</value>   
+    </data>
   
     <data name="BillingAddress" xml:space="preserve">
         <value>Adresse de facturation et livraison</value>   

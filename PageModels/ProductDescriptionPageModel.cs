@@ -204,19 +204,26 @@ namespace voltaire.PageModels
 
                 if (item.PropertyValue != null)
                 {
-                    if (item.PropertyName == "Category")
+                    if (item.PropertyName == "After sale service")
                     {
-                        var data_name = ProductProperties.Where((arg) => arg.PropertyName == "Name");
+                        var data_name = ProductProperties.Where((arg) => arg.PropertyName == "Service category");
 
                         if (data_name.Any())
                         {
                             var subCat = data_name.First();
 
-                            subCat.ItemSource = ProductConstants.Services.Where((Service arg) => arg.SubCategoryName == item.PropertyValue).Select((arg) => string.IsNullOrWhiteSpace(arg.Name) ? "N.A" : arg.Name).Distinct().ToList();
-
-                            if (subCat.ItemSource != null && subCat.ItemSource.Any())
+                            if (item.PropertyValue == "true")
                             {
+                                subCat.ItemSource = ProductConstants.Services.Where((Service arg) => arg.SubCategoryName == "SAV").Select((arg) => string.IsNullOrWhiteSpace(arg.Name) ? "N.A" : arg.Name).Distinct().ToList();
 
+                                if (subCat.ItemSource != null && subCat.ItemSource.Any())
+                                {
+
+                                }
+                                else
+                                {
+                                    subCat.ItemSource = new List<string>() { "N.A" };
+                                }
                             }
                             else
                             {
@@ -630,7 +637,7 @@ namespace voltaire.PageModels
                 ProductProperty ServiceNameProperty = null;
                 ProductProperty ReferenceProperty = null;      
 
-                var names = ProductProperties.Where((arg) => arg.PropertyName == "Name");
+                var names = ProductProperties.Where((arg) => arg.PropertyName == "Service category");
 
                 if (names.Any())
                     ServiceNameProperty = names.First();
@@ -822,7 +829,7 @@ namespace voltaire.PageModels
             {
                 foreach (var item in ProductProperties)
                 {
-                    if (item.PropertyType == PropertyType.IsPicker)
+                    if (item.PropertyType == PropertyType.IsPicker || item.PropertyType == PropertyType.IsBoolean)
                         item.PropertyChanged += Handle_PropertyChanged;
                 }
             }
@@ -834,7 +841,7 @@ namespace voltaire.PageModels
             {
                 foreach (var item in ProductProperties)
                 {
-                    if (item.PropertyType == PropertyType.IsPicker)
+                    if (item.PropertyType == PropertyType.IsPicker || item.PropertyType == PropertyType.IsBoolean)
                         item.PropertyChanged -= Handle_PropertyChanged;
                 }
             }

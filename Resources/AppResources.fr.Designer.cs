@@ -1379,6 +1379,18 @@ namespace voltaire.Resources {
             }
         }
         
+        internal static string P_ServiceCategory {
+            get {
+                return ResourceManager.GetString("P_ServiceCategory", resourceCulture);
+            }
+        }
+        
+        internal static string P_AfterSale {
+            get {
+                return ResourceManager.GetString("P_AfterSale", resourceCulture);
+            }
+        }
+        
         internal static string BillingAddress {
             get {
                 return ResourceManager.GetString("BillingAddress", resourceCulture);

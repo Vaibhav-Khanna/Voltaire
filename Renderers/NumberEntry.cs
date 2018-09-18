@@ -1,9 +1,10 @@
 ﻿using System;
 using voltaire.Behaviors;
+using Xamarin.Forms;
 
 namespace voltaire.Renderers
 {
-    public class NumberEntry : BorderlessEntry
+    public class NumberEntry : Entry
     {
         public NumberEntry()
         {
