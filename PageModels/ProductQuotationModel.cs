@@ -110,14 +110,9 @@ namespace voltaire.PageModels
                 {
                     quantity = value;
 
-                    if (istaxapply)
-                    {
-                        TaxFree = (UnitPrice - (UnitPrice * (double)(TaxPercent / 100))) * Quantity;
-                    }
-                    else
-                    {
-                        TaxFree = UnitPrice * Quantity;
-                    }
+                    TaxFree = (UnitPrice - (UnitPrice * (double)(TaxPercent / 100))) * Quantity;
+
+                    TaxIncluded = UnitPrice * Quantity;
 
                     if (Product != null)
                         Product.ProductQty = quantity;
@@ -138,14 +133,9 @@ namespace voltaire.PageModels
             {
                 unitprice = value;
 
-                if (istaxapply)
-                {
-                    TaxFree = (UnitPrice - (UnitPrice * (double)(TaxPercent / 100))) * Quantity;
-                }
-                else
-                {
-                    TaxFree = UnitPrice * Quantity;
-                }
+                TaxFree = (UnitPrice - (UnitPrice * (double)(TaxPercent / 100))) * Quantity;
+
+                TaxIncluded = UnitPrice * Quantity;
 
                 if (Product != null)
                 Product.PriceUnit = value;
@@ -163,18 +153,13 @@ namespace voltaire.PageModels
             {
                 istaxapply = value;
 
-                if (istaxapply)
-                {
-                    TaxFree = (UnitPrice - (UnitPrice * (double)(TaxPercent/ 100))) * Quantity;
-                }
-                else
-                {
-                    TaxFree = UnitPrice * Quantity;
-                }
+                TaxFree = (UnitPrice - (UnitPrice * (double)(TaxPercent / 100))) * Quantity;
+
+                TaxIncluded = UnitPrice * Quantity;
 
                 if (Product != null)
                 {
-                   Product.TaxApplied = IsTaxApply;
+                    Product.TaxApplied = Convert.ToInt32(TaxPercent) != 0;
                 }
 
                 RaisePropertyChanged();
@@ -192,6 +177,17 @@ namespace voltaire.PageModels
             }
         }
 
+        double taxincluded;
+        public double TaxIncluded
+        {
+            get { return taxincluded; }
+            set
+            {
+                taxincluded = value;
+                RaisePropertyChanged();
+            }
+        }
+
         bool canedit = true;
         public bool CanEdit
         {
@@ -203,9 +199,8 @@ namespace voltaire.PageModels
             }
         }
 
-        double TaxAmount { get; set; }
 
-        public double TaxPercent { get; private set; } = 20;
+        public double TaxPercent { get; set; } = 0;
 
         public int MinimumQuantity { get; set; } = 1;
 
@@ -262,27 +257,13 @@ namespace voltaire.PageModels
            
             Quantity = (int)_product.ProductQty;
 
-            IsTaxApply = _product.TaxApplied;
-
-            GetTax();
+            ProductKind = QuotationSignPageModel.ParseEnum<ProductKind>(_product.ProductKind);
 
             if (OrderStatusTypes.Contains(_product.State?.Trim()?.ToLower()))
                 OrderStatusIndex = OrderStatusTypes.IndexOf(_product.State?.Trim()?.ToLower());
             else
                 OrderStatusIndex = 0;  
 
-            //SetOrderStatusIndex(OrderStatusIndex);
-        }
-
-        async void GetTax()
-        {
-            var tax =  await App.storeManager.AccountTaxStore.GetItemsByExternalId(product.TaxId);
-
-            if (tax != null)
-            {
-                TaxPercent = tax.Amount;
-                TaxAmount = product.PriceUnit * (double)(tax.Amount/100);
-            }
         }
 
 

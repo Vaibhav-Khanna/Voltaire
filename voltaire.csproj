@@ -562,6 +562,7 @@
     <Compile Include="Resources\AppResources.fr.Designer.cs">
       <DependentUpon>AppResources.fr.resx</DependentUpon>
     </Compile>
+    <Compile Include="Converters\StringToDoubleConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

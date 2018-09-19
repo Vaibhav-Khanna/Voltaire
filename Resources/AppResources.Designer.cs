@@ -1444,5 +1444,29 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("Taxes", resourceCulture);
             }
         }
+        
+        internal static string TaxPercent {
+            get {
+                return ResourceManager.GetString("TaxPercent", resourceCulture);
+            }
+        }
+        
+        internal static string ShippingCost {
+            get {
+                return ResourceManager.GetString("ShippingCost", resourceCulture);
+            }
+        }
+        
+        internal static string TotalTTC {
+            get {
+                return ResourceManager.GetString("TotalTTC", resourceCulture);
+            }
+        }
+        
+        internal static string SelectShipping {
+            get {
+                return ResourceManager.GetString("SelectShipping", resourceCulture);
+            }
+        }
     }
 }

@@ -24,6 +24,9 @@ namespace voltaire.Models
                 TotalAmount = model.AmountTotal;
                 SubTotal = model.AmountUntaxed;
                 ApplyTax = (model.AmountTax) <= 0 ? false : true;
+
+                TaxPercent = model.TaxPercent;
+
                 PermanentNote = model.Note;
                 Date = model.DateOrder;
                 Status = model.State;
@@ -41,6 +44,9 @@ namespace voltaire.Models
         public SaleOrder SaleOrder { get; set; }
 
         public Color BackColor { get; set; }
+
+        double _taxpercent;
+        public double TaxPercent { get { return _taxpercent; } set { _taxpercent = value; SaleOrder.TaxPercent = value; RaisePropertyChanged(); } }
 
         string currencyLogo;
         public string CurrencyLogo { get { return currencyLogo; } set { currencyLogo = value; RaisePropertyChanged(); } }

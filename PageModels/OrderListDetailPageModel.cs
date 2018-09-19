@@ -112,6 +112,8 @@ namespace voltaire.PageModels
 
                 Total = quotation.TotalAmount;
 
+                TaxPercent = quotation.TaxPercent;
+
                 if (ProductConstants.CurrencyValues.Any() && ProductConstants.CurrencyValues.Where((arg) => arg.Key == quotation.SaleOrder.CurrencyId).Any())
                     CurrencyLogo = ProductConstants.CurrencyValues.Where((arg) => arg.Key == quotation.SaleOrder.CurrencyId)?.First().Value;
                 else
@@ -233,11 +235,16 @@ namespace voltaire.PageModels
             set
             {
                 applytax = value;
+
                 quotation.ApplyTax = applytax;
 
                 RaisePropertyChanged();
             }
         }
+
+        double _taxPercent;
+        public double TaxPercent { get { return _taxPercent; } set { _taxPercent = value; RaisePropertyChanged(); } }
+
 
         FormattedString orderdetails;
         public FormattedString OrderDetails
@@ -275,7 +282,7 @@ namespace voltaire.PageModels
 
                     foreach (var item in items)
                     {
-                        products.Add(new ProductQuotationModel(item,currencyLogo));
+                        products.Add(new ProductQuotationModel(item,currencyLogo){ TaxPercent = TaxPercent });
                     }
                 }
 

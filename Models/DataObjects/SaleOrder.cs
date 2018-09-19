@@ -104,5 +104,8 @@
 
         [JsonProperty("payment_method")]
         public string PaymentMethod { get; set; }
+
+        [JsonProperty("taxPercent")]
+        public double TaxPercent { get; set; }
     }
 }

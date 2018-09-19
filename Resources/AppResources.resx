@@ -799,7 +799,7 @@
         <value>Catégorie de service</value>   
     </data>
     <data name="P_AfterSale" xml:space="preserve">
-        <value>service après-vente</value>   
+        <value>Service après vente</value>   
     </data>
    
     <data name="BillingAddress" xml:space="preserve">
@@ -828,6 +828,19 @@
     </data>
     <data name="Taxes" xml:space="preserve">
         <value>Taxes</value>   
+    </data>
+    
+    <data name="TaxPercent" xml:space="preserve">
+        <value>Tax (%)</value>   
+    </data>
+    <data name="ShippingCost" xml:space="preserve">
+        <value>Shipping cost</value>   
+    </data>
+    <data name="TotalTTC" xml:space="preserve">
+        <value>Total TTC</value>   
+    </data>
+    <data name="SelectShipping" xml:space="preserve">
+        <value>Select a shipping cost</value>   
     </data>
     
 </root>

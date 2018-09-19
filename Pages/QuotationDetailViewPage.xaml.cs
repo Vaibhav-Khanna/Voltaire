@@ -39,18 +39,18 @@ namespace voltaire.Pages
 
             var grid = viewcell.View as Grid;
 
-            var taxswt = grid.FindByName<Switch>("taxswitch");
+            //var taxswt = grid.FindByName<Switch>("taxswitch");
             var quantity = grid.FindByName<Entry>("Qty");
 
 
             if (BindingContext != null)
             {
                 quantity.TextChanged += Quantity_TextChanged;
-                taxswt.Toggled += Taxswitch_Toggled;
+                //taxswt.Toggled += Taxswitch_Toggled;
             }
             else
             {
-                taxswt.Toggled -= Taxswitch_Toggled;
+                //taxswt.Toggled -= Taxswitch_Toggled;
                 quantity.TextChanged -= Quantity_TextChanged;
             }
         }

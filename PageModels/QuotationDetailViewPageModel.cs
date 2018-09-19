@@ -269,6 +269,8 @@ namespace voltaire.PageModels
 
                 Total = quotation.TotalAmount;
 
+                TaxPercent = quotation.TaxPercent;
+
                 if (ProductConstants.CurrencyValues.Any() && ProductConstants.CurrencyValues.Where((arg) => arg.Key == quotation.SaleOrder.CurrencyId).Any())
                     CurrencyLogo = ProductConstants.CurrencyValues.Where((arg) => arg.Key == quotation.SaleOrder.CurrencyId)?.First().Value;
                 else
@@ -363,13 +365,14 @@ namespace voltaire.PageModels
             {
                 taxamount = value;
                
-                quotation.TaxAmount = taxamount;
-               
-                //OrderItemsSource_CollectionChanged(null, null);
+                quotation.TaxAmount = taxamount;              
              
                 RaisePropertyChanged();
             }
         }
+
+        double _taxPercent;
+        public double TaxPercent { get { return _taxPercent; } set { _taxPercent = value; OrderItemsSource_CollectionChanged(null, null); ApplyTax = Convert.ToInt32(value) != 0; RaisePropertyChanged(); } }
 
         bool applytax;
         public bool ApplyTax
@@ -414,24 +417,18 @@ namespace voltaire.PageModels
 
             foreach (var item in OrderItemsSource)
             {
+                item.TaxPercent = item.ProductKind == ProductKind.discount ? 0 : TaxPercent;
+                item.IsTaxApply = true;
+            }
+
+            foreach (var item in OrderItemsSource)
+            {
                 SubTotal += item.TaxFree;
 
-                if (item.IsTaxApply)
-                    TaxAmount += (Convert.ToInt32(item.UnitPrice) * item.Quantity) - item.TaxFree;
+                TaxAmount += (Convert.ToInt32(item.UnitPrice) * item.Quantity) - item.TaxFree;
             }
 
-            ApplyTax = OrderItemsSource.Any((arg) => arg.IsTaxApply);
-
-
-            if (ApplyTax)
-            {
-                Total = SubTotal + TaxAmount;
-            }
-            else
-            {
-                Total = SubTotal;
-            }
-
+            Total = SubTotal + TaxAmount; 
         }
 
 
