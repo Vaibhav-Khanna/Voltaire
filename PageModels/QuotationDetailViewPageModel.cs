@@ -161,7 +161,6 @@ namespace voltaire.PageModels
                await StoreManager.DocumentStore.OfflineUploadSync();
 
            }
-
          
            quotation.SaleOrder.ToSend = true;
 
@@ -372,7 +371,15 @@ namespace voltaire.PageModels
         }
 
         double _taxPercent;
-        public double TaxPercent { get { return _taxPercent; } set { _taxPercent = value; OrderItemsSource_CollectionChanged(null, null); ApplyTax = Convert.ToInt32(value) != 0; RaisePropertyChanged(); } }
+        public double TaxPercent { get { return _taxPercent; } set { _taxPercent = value; OrderItemsSource_CollectionChanged(null, null); quotation.TaxPercent = value; ApplyTax = Convert.ToInt32(value) != 0; RaisePropertyChanged(); } }
+
+
+        ObservableCollection<DeliveryFee> deliverySource;
+        public ObservableCollection<DeliveryFee> DeliverySource { get { return deliverySource; } set { deliverySource = value; RaisePropertyChanged(); } }
+
+        DeliveryFee deliveryFee;
+        public DeliveryFee DeliveryFee { get { return deliveryFee; } set { deliveryFee = value; quotation.DeliveryPrice = value.Price; OrderItemsSource_CollectionChanged(null, null); RaisePropertyChanged(); } }
+
 
         bool applytax;
         public bool ApplyTax
@@ -428,6 +435,14 @@ namespace voltaire.PageModels
                 TaxAmount += (Convert.ToInt32(item.UnitPrice) * item.Quantity) - item.TaxFree;
             }
 
+            //add delivery fee
+            if (DeliveryFee != null)
+            {
+                SubTotal += deliveryFee.Price;
+
+                TaxAmount += deliveryFee.Price * (double)TaxPercent/100;
+            }
+
             Total = SubTotal + TaxAmount; 
         }
 
@@ -471,6 +486,17 @@ namespace voltaire.PageModels
                 {
                     item.PropertyChanged += Item_PropertyChanged;
                 }
+
+                var deliveryData = await StoreManager.SaleOrderStore.GetDeliveryFees(false);
+
+                if(deliveryData!=null)
+                {
+                    DeliverySource = new ObservableCollection<DeliveryFee>(deliveryData);
+
+                    if (DeliverySource.Where((arg) => quotation.DeliveryPrice == arg.Price).Any())
+                        DeliveryFee = DeliverySource.Where((arg) => quotation.DeliveryPrice == arg.Price).First();
+                }
+
             }
         }
 

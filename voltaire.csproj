@@ -563,6 +563,7 @@
       <DependentUpon>AppResources.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="Converters\StringToDoubleConverter.cs" />
+    <Compile Include="Models\DataObjects\DeliveryFee.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">

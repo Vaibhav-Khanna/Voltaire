@@ -58,7 +58,7 @@
         public long DeliveryCount { get; set; }
 
         [JsonProperty("delivery_price")]
-        public long DeliveryPrice { get; set; }
+        public double DeliveryPrice { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -105,7 +105,7 @@
         [JsonProperty("payment_method")]
         public string PaymentMethod { get; set; }
 
-        [JsonProperty("taxPercent")]
+        [JsonProperty("tax_percent")]
         public double TaxPercent { get; set; }
     }
 }

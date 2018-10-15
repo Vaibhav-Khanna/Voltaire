@@ -23,8 +23,9 @@ namespace voltaire.Helpers
 
 		private const string SettingsKey = "settings_key";
         private const string LanguageKey = "language_key";
+        private const string Delivery_Fee = "delivery_fee";
 
-		private static readonly string SettingsDefault = string.Empty;
+        private static readonly string SettingsDefault = string.Empty;
 
         #endregion
 
@@ -72,6 +73,18 @@ namespace voltaire.Helpers
             set
             {
                 AppSettings.AddOrUpdateValue(LanguageKey, value);
+            }
+        }
+
+        public static string DeliveryFee
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(Delivery_Fee, SettingsDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(Delivery_Fee, value);
             }
         }
 

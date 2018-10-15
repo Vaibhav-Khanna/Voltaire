@@ -559,11 +559,12 @@ namespace voltaire.PageModels
         {
             base.ReverseInit(returnedData);
 
-            if (returnedData == null)
-                return;
+            if (returnedData is Partner)
+            {
+                customer = (Partner)returnedData;
 
-            customer = (Partner)returnedData;
-            ItemUpdated = true; 
+                ItemUpdated = true;
+            }
         }
 
         public override void Init(object initData)

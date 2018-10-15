@@ -246,6 +246,13 @@ namespace voltaire.PageModels
         public double TaxPercent { get { return _taxPercent; } set { _taxPercent = value; RaisePropertyChanged(); } }
 
 
+        ObservableCollection<DeliveryFee> deliverySource;
+        public ObservableCollection<DeliveryFee> DeliverySource { get { return deliverySource; } set { deliverySource = value; RaisePropertyChanged(); } }
+
+        DeliveryFee deliveryFee;
+        public DeliveryFee DeliveryFee { get { return deliveryFee; } set { deliveryFee = value; RaisePropertyChanged(); } }
+         
+
         FormattedString orderdetails;
         public FormattedString OrderDetails
         {
@@ -287,7 +294,16 @@ namespace voltaire.PageModels
                 }
 
                 OrderItemsSource = new ObservableCollection<ProductQuotationModel>(products);
-            
+
+                var deliveryData = await StoreManager.SaleOrderStore.GetDeliveryFees(false);
+
+                if (deliveryData != null)
+                {
+                    DeliverySource = new ObservableCollection<DeliveryFee>(deliveryData);
+
+                    if (DeliverySource.Where((arg) => quotation.DeliveryPrice == arg.Price).Any())
+                        DeliveryFee = DeliverySource.Where((arg) => quotation.DeliveryPrice == arg.Price).First();
+                }
             }
         }
 

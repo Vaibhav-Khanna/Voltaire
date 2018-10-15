@@ -225,6 +225,9 @@ namespace voltaire.DataStore.Implementation
 
             if (syncUserSpecific)
             {
+                //Syncs the Delivery Fee api data
+                await SaleOrderStore.GetDeliveryFees(true);
+
                 // add stores that are user specific data
                 await DocumentStore.OfflineUploadSync();
 

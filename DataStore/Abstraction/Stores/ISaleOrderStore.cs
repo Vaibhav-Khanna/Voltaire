@@ -7,6 +7,8 @@ namespace voltaire.DataStore.Abstraction.Stores
 {
     public interface ISaleOrderStore : IBaseStore<SaleOrder>
     {
+        Task<IEnumerable<DeliveryFee>> GetDeliveryFees(bool forceRefresh);
+
         Task<IEnumerable<SaleOrder>> GetQuotationItemsByCustomer(long PartnerId);
 
         Task<IEnumerable<SaleOrder>> GetOrderItemsByCustomer(long PartnerId);

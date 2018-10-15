@@ -57,7 +57,8 @@
               
                 <StackLayout Orientation="Horizontal" Margin="0,30,0,0" Padding="30,0,30,0" BackgroundColor="#333333" HeightRequest="60" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                     <Label TextColor="White" FontFamily="SanFranciscoDisplay-Semibold" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Text="{x:Static resources:AppResources.Amount}" FontSize="20"/>
-                    <Label Text="{Binding Amount, StringFormat = '{0:N}$' }" TextColor="White" FontFamily="SanFranciscoDisplay-Semibold" VerticalOptions="Center" HorizontalOptions="EndAndExpand" FontSize="20"  />
+                    <Label Text="{Binding Amount}" TextColor="White" FontFamily="SanFranciscoDisplay-Semibold" VerticalOptions="Center" HorizontalOptions="End" FontSize="20"  />
+                    <Label Text="{Binding Quotation.CurrencyLogo}" TextColor="White" FontFamily="SanFranciscoDisplay-Semibold" VerticalOptions="Center" HorizontalOptions="End" FontSize="20"  />
                 </StackLayout>
 
             </StackLayout>

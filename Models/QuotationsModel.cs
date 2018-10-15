@@ -26,6 +26,7 @@ namespace voltaire.Models
                 ApplyTax = (model.AmountTax) <= 0 ? false : true;
 
                 TaxPercent = model.TaxPercent;
+                DeliveryPrice = model.DeliveryPrice;
 
                 PermanentNote = model.Note;
                 Date = model.DateOrder;
@@ -37,13 +38,15 @@ namespace voltaire.Models
                     CurrencyLogo = ProductConstants.CurrencyValues.Where((arg) => arg.Key == model.CurrencyId)?.First().Value;
                 else
                     CurrencyLogo = "*";
-
             }
         }
 
         public SaleOrder SaleOrder { get; set; }
 
         public Color BackColor { get; set; }
+
+        double _deliveryPrice;
+        public double DeliveryPrice { get { return _deliveryPrice; } set { _deliveryPrice = value; SaleOrder.DeliveryPrice = value; RaisePropertyChanged(); } }
 
         double _taxpercent;
         public double TaxPercent { get { return _taxpercent; } set { _taxpercent = value; SaleOrder.TaxPercent = value; RaisePropertyChanged(); } }
