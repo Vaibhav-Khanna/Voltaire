@@ -26,9 +26,6 @@ namespace voltaire.Models
         [JsonIgnore]
         public List<QuotationsModel> Quotations { get; set; } = new List<QuotationsModel>();
 
-        [JsonIgnore]
-        public List<Contract> Contracts { get; set; } = new List<Contract>();
-
 
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }

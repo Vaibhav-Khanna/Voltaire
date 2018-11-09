@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using voltaire.DataStore.Abstraction.Stores;
 using voltaire.Models;
@@ -25,6 +26,18 @@ namespace voltaire.DataStore.Implementation.Stores
 
             return items[0];
             // return item;
+        }
+
+        public async Task<Partner> GetItemByExternalId(long id)
+        {
+            await InitializeStore().ConfigureAwait(false);
+
+            var items = await Table.Where(x => x.ExternalId == id).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+
+            if (items != null && items.Any())
+                return items.First();
+
+            return null;
         }
 
         public override async Task<IEnumerable<Partner>> GetItemsAsync(bool forceRefresh = false, bool AllItems = false)

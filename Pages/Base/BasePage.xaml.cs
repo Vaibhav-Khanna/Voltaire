@@ -36,7 +36,7 @@ namespace voltaire.Pages.Base
                 new MenuLeftItem {Title = "", IsEnabled = true, opacity = 1, IsSelected = false, IconSource = "quotation"},
                 new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5,IsSelected = false, IconSource = "contract"},
                 new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5,IsSelected = false, IconSource = "goals"},
-                new MenuLeftItem {Title = "", IsEnabled = false, opacity = 0.5, IsSelected = false, IconSource = "podiums"},
+                new MenuLeftItem {Title = "", IsEnabled = true, opacity = 1, IsSelected = false, IconSource = "podiums"},
             };
 
             _pageIcons[selectedIndex].IsSelected = true;
@@ -88,7 +88,6 @@ namespace voltaire.Pages.Base
                 case "podiums":
                     page = FreshPageModelResolver.ResolvePageModel<PodiumsPageModel>();
                     break;
-
             }
 
             if (page != null)

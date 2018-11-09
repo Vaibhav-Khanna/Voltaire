@@ -11,7 +11,9 @@
     xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
     x:Class="voltaire.Pages.ContractPDFViewingPage">
 	<ContentPage.Content>
-         <Grid BackgroundColor = "{StaticResource GreyishBrown}" Padding= "0" RowSpacing="0" VerticalOptions = "FillAndExpand" >
+        
+        
+        <Grid BackgroundColor = "{StaticResource GreyishBrown}" Padding= "0" RowSpacing="0" VerticalOptions = "FillAndExpand" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -20,7 +22,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
-        <controls:TToolBar BackgroundColor = "{StaticResource turquoiseBlue}" HeightRequest = "80" Title = "{Binding Title}" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand" Grid.Row="0" Grid.Column="0" >
+        
+            <controls:TToolBar BackgroundColor = "{StaticResource turquoiseBlue}" HeightRequest = "80" Title = "{Binding Title}" VerticalOptions = "FillAndExpand" HorizontalOptions = "FillAndExpand" Grid.Row="0" Grid.Column="0" >
             <controls:TToolBar.LeftToolbarItems>
                 <Image Source = "back.png" HeightRequest = "25" WidthRequest = "30" VerticalOptions = "Center" HorizontalOptions = "Start"  >
                     <Image.GestureRecognizers>
@@ -42,7 +45,7 @@
             
                 <Image Source="sign1.png" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
             
-                <Label FontFamily="Raleway-Bold" TextColor="{StaticResource turquoiseBlue}" FontSize="22" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Text="{x:Static resources:AppResources.NewContact}" />
+                <Label FontFamily="Raleway-Bold" TextColor="{StaticResource turquoiseBlue}" FontSize="22" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Text="{x:Static resources:AppResources.Validate}" />
         
             </StackLayout>
     </Grid>

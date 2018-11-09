@@ -174,7 +174,17 @@ namespace voltaire.DataStore.Implementation.Stores
                 Debug.WriteLine(@"ERROR {0}", ex.Message);
             }
         }
-       
 
+        public async Task<Document> GetItemByContractId(string ID, string internalName)
+        {
+            await InitializeStore().ConfigureAwait(false);
+
+            var items = await Table.Where(x => x.ReferenceId == ID && x.InternalName == internalName && x.ReferenceKind == "contract" ).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+
+            if (items != null && items.Any())
+                return items.FirstOrDefault();
+            else
+                return null;
+        }
     }
 }

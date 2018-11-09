@@ -8,11 +8,22 @@ using voltaire.Models;
 using voltaire.PageModels.Base;
 using Xamarin.Forms;
 using System.Linq;
+using voltaire.Helpers;
+using System.Text;
+using System.Collections.Generic;
+using Syncfusion.Pdf.Parsing;
+using voltaire.DataStore.Implementation;
+using voltaire.Resources;
 
 namespace voltaire.PageModels
 {
     public class ContractPDFViewingPageModel : BasePageModel
     {
+
+        List<AgreementModel> agreements;
+        string ContractTemplatePDF;
+        PdfDocument document;
+
 
         public Command BackButton => new Command( async(obj) =>
        {
@@ -21,6 +32,12 @@ namespace voltaire.PageModels
 
         public Command SignPDF => new Command(async (obj) =>
 		{
+            if(Contract.ToSend)
+            {
+                await CoreMethods.DisplayAlert(AppResources.Alert,AppResources.AlreadySigned,AppResources.Ok);
+                return;
+            }
+
             await CoreMethods.PushPageModel<ContractSignValidatePageModel>(Contract);
 		});
 
@@ -47,7 +64,7 @@ namespace voltaire.PageModels
             {
                 contract = value;
 
-                Title = contract.Name;
+                Title = contract.OrderNumber;
 
                 RaisePropertyChanged();
             }
@@ -68,91 +85,69 @@ namespace voltaire.PageModels
         {
             base.Init(initData);
 
-            var _contract = initData as Contract;
+            var _contract = initData as Tuple<Contract, string, List<AgreementModel>>;
 
             if(_contract!=null)
             {
-                Contract = _contract;
+                ContractTemplatePDF = _contract.Item2;
+
+                agreements = _contract.Item3;
+
+                Contract = _contract.Item1;
+
                 GeneratePDF();
             }
         }
+
 
         public override void ReverseInit(object returnedData)
         {
             base.ReverseInit(returnedData);
 
-            Init(returnedData);
+            if (returnedData is Contract)
+            {
+                Contract = returnedData as Contract;
+
+                GeneratePDF();    
+            }
         }
 
 
-        void GeneratePDF()
+        async void GeneratePDF()
         {
-			using (PdfDocument document = new PdfDocument())
-			{
-				
-                PdfPage page = document.Pages.Add();     //Add a page in the PDF document.
 
-				WriteToPDF(page);
+            var pdf = await Helpers.PclStorage.LoadFileLocal(StorageKeys.SaleContract);
 
-				MemoryStream m = new MemoryStream();
+            if (pdf != null)
+            {
+                //Load the PDF document.
 
-				document.Save(m);
+                PdfLoadedDocument loadedDocument = new PdfLoadedDocument(pdf);
+
+                //Create a new PDF document.
+                document = new PdfDocument();
+
+                int startIndex = 0;
+
+                int endIndex = loadedDocument.Pages.Count - 1;
+
+                //Import all the pages to the new PDF document.
+                document.ImportPageRange(loadedDocument, startIndex, endIndex);
+
+                MemoryStream m = new MemoryStream();
+
+                document.Save(m);
+
+                //Close both document instances.
+                //loadedDocument.Close(true);
+
+                Contract.Document = document;
 
                 PdfDocumentStream = m;
-			}
+            }
+
         }
 
-
-        void WriteToPDF(PdfPage page)
-        {
-            var height = page.GetClientSize().Height;
-            var width = page.GetClientSize().Width;
-
-            // graphics element for the page
-			PdfGraphics graphics = page.Graphics;
-			
-            // custom fonts for labels
-            var Titlefont = new PdfStandardFont(PdfFontFamily.Helvetica, 18, PdfFontStyle.Bold);
-            var ContractHeaderFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 14, PdfFontStyle.Bold);
-            var ContractLineFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 12, PdfFontStyle.Regular);
-
-            // Normal line format
-            PdfStringFormat format = new PdfStringFormat();
-            format.WordWrap = PdfWordWrapType.Word;
-
-			// title line format
-			PdfStringFormat formatTitle = new PdfStringFormat();
-            formatTitle.Alignment = PdfTextAlignment.Center;
-
-           // text elements
-            PdfTextElement titleElement = new PdfTextElement(Contract.Name.ToUpper(), Titlefont, null, PdfBrushes.Black, formatTitle);
-			titleElement.Draw(page, new RectangleF(0,0, page.GetClientSize().Width, 40));
-
-			var agreements = Contract.Agreements.Where((arg) => arg.IsSelected).ToList();
-
-            int y = 40;
-
-            // layout each of the selected contracts
-            foreach (var item in agreements)
-            {
-                graphics.DrawString((agreements.IndexOf(item)+1) + ".  "+ item.ContractString.Title.ToUpper(), ContractHeaderFont, PdfBrushes.Black, new PointF(20,y));
-                y += 20;
-
-                PdfTextElement textElement = new PdfTextElement(item.ContractString.Description, ContractLineFont, null, PdfBrushes.Black, format);
-                textElement.Draw(page, new RectangleF(20, y, page.GetClientSize().Width-20 , 40)); 
-                y += 40;
-            }
-
-
-            if(contract.SignImageSource!=null)
-            {
-                PdfBitmap image = new PdfBitmap(new MemoryStream(contract.SignImageSource) );
-
-                graphics.DrawImage(image,new RectangleF(20,y,width/2,60));
-            }
-
-
-		}
 
 
 

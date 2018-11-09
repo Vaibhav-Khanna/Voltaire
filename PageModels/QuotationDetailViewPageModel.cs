@@ -460,9 +460,11 @@ namespace voltaire.PageModels
                 Customer = _customer.Item1;
                 var products = new List<ProductQuotationModel>();
 
+                var currUser = await StoreManager.UserStore.GetCurrentUserAsync();
+
                 if (NewQuotation)
                 {
-                    var saleOrder = new SaleOrder(){ PartnerId = Customer.ExternalId, CurrencyId = ProductConstants.CurrencyValues.Keys.First() };
+                    var saleOrder = new SaleOrder(){ PartnerId = Customer.ExternalId, UserId = currUser.ExternalId, CurrencyId = ProductConstants.CurrencyValues.Keys.First() };
                     Quotation = new QuotationsModel( saleOrder ) { Date = DateTime.UtcNow, Ref = Customer.ExternalId + "-" + UnixTimeStamp(), Status = QuotationStatus.draft.ToString() , TotalAmount = 0 };
                     InsertNewQuotation(saleOrder);
                     customer.Quotations.Add(Quotation);

@@ -1,26 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
+using Syncfusion.Pdf;
 using voltaire.DataStore.Abstraction;
 
 namespace voltaire.Models
 {
     public class Contract : BaseDataObject
-    {       
-        public Partner Customer { get; set; }
+    {
+       
+        [JsonProperty("createdAt")]
+        public DateTime CreatedAt { get; set; }
 
-        public string Name { get; set; }
+        [JsonProperty("updatedAt")]
+        public DateTime UpdatedAt { get; set; }
 
-        public DateTime ModifiedDateTime { get; set; }
+        [JsonProperty("deleted")]
+        public bool Deleted { get; set; }
 
+
+        [JsonProperty("order_number")]
+        public string OrderNumber { get; set; }
+
+        [JsonProperty("period_begin")]
+        public DateTime? PeriodBegin { get; set; }
+
+        [JsonProperty("period_end")]
+        public DateTime? PeriodEnd { get; set; }
+
+        [JsonProperty("subject")]
         public string Subject { get; set; }
 
-        public DateTime? DateFrom { get; set; } = DateTime.Now;
+        [JsonProperty("description")]
+        public string Description { get; set; }
 
-        public DateTime? DateTo { get; set; } = DateTime.Now.AddDays(1);
+        [JsonProperty("partner_id")]
+        public long PartnerId { get; set; }
 
-        public List<Agreement> Agreements { get; set; }
+        [JsonProperty("to_send")]
+        public bool ToSend { get; set; }
 
+        [JsonIgnore]
         public byte[] SignImageSource { get; set; }
+
+        [JsonIgnore]
+        public PdfDocument Document { get; set; }
+
     }
 }

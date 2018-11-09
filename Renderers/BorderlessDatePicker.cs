@@ -7,6 +7,7 @@ namespace voltaire.Renderers
     {
         public BorderlessDatePicker()
         {
+
         }
     }
 }

@@ -10,27 +10,19 @@ namespace voltaire.Models
         public ContractModel(Contract contract)
         {
             Contract = contract;
+
+            Name = contract.OrderNumber;
+            Date = contract.CreatedAt;
+            Time = contract.CreatedAt.TimeOfDay;
         }
 
 
-        Contract contract;
-        public Contract Contract 
-        {
-            get { return contract; }
-            set
-            {
-                contract = value;
+        public Contract Contract { get; set; }
 
-                Name = contract.Name;
-				Date = contract.ModifiedDateTime.Date;
-				Time = contract.ModifiedDateTime.TimeOfDay;
-                CustomerName = contract.Customer.Name;
-            }
-        }
 
         public string CustomerName { get; set; }
 
-        public Color BackColor { get; set; }
+        public Color BackColor { get; set; } = Color.White;
 
         public string Name { get; set; }
 

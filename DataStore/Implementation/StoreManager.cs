@@ -86,6 +86,9 @@ namespace voltaire.DataStore.Implementation
         IStateStore stateStore;
         public IStateStore StateStore => stateStore ?? (stateStore = DependencyService.Get<IStateStore>());
 
+        IContractStore contractStore;
+        public IContractStore ContractStore => contractStore ?? (contractStore = DependencyService.Get<IContractStore>());
+
 
         #region iStoreManager Implementation
 
@@ -115,6 +118,7 @@ namespace voltaire.DataStore.Implementation
             await ServiceStore.DropTable();
             await SaddleStore.DropTable();
             await StateStore.DropTable();
+            await ContractStore.DropTable();
 
             IsInitialized = false;
 
@@ -169,6 +173,7 @@ namespace voltaire.DataStore.Implementation
                 store.DefineTable<Saddle>();
                 store.DefineTable<Service>();
                 store.DefineTable<Models.DataObjects.State>();
+                store.DefineTable<Contract>();
 
                 store.DefineTable<StoreSettings>();
 
@@ -211,7 +216,7 @@ namespace voltaire.DataStore.Implementation
             taskList.Add(ServiceStore.SyncAsync());
             taskList.Add(AccessoryStore.SyncAsync());
             taskList.Add(StateStore.SyncAsync());
-
+            taskList.Add(ContractStore.SyncAsync());
 
             Device.BeginInvokeOnMainThread(async () =>
            {
@@ -231,6 +236,7 @@ namespace voltaire.DataStore.Implementation
                 // add stores that are user specific data
                 await DocumentStore.OfflineUploadSync();
 
+
                 await SyncLegalFiles();
             }
 
@@ -240,7 +246,6 @@ namespace voltaire.DataStore.Implementation
             });
 
             return successes.Any(x => !x); //if any were a failure.
-
         }
 
         #endregion
@@ -490,7 +495,7 @@ namespace voltaire.DataStore.Implementation
 
         public async Task<bool> SyncLegalFiles()
         {
-            var language = "en";
+            var language = Settings.DeviceLanguage;
 
             var uri = new Uri($"{Constants.EndUrl}/api/legalFiles?language={language}");
 

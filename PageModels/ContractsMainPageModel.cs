@@ -39,7 +39,10 @@ namespace voltaire.PageModels
         public Command ItemTapped => new Command(async (obj) =>
 		{
 			var contract = obj as Contract;
-            await CoreMethods.PushPageModel<NewContractPageModel>(new Tuple<Partner, Contract>(contract.Customer, contract));
+
+            var partner = await StoreManager.CustomerStore.GetItemByExternalId(contract.PartnerId);
+
+            await CoreMethods.PushPageModel<NewContractPageModel>(new Tuple<Partner,Contract>(partner, contract));
 		});
 
         	
@@ -64,9 +67,7 @@ namespace voltaire.PageModels
             // Mock Data
 
             var list = new List<Contract>();
-            list.Add(new Contract { Customer = new Partner() { Name = "Johnny" }, Name = "New Dummy Contract" ,ModifiedDateTime = DateTime.Now  });
-            list.Add( new Contract(){ Customer = new Partner() { Name = "Nicki" },  Name = "New Dummy Contract", ModifiedDateTime = DateTime.Now });
-
+         
             var Mock_list = new List<ContractModel>();
           
             foreach (var item in list)
@@ -78,7 +79,7 @@ namespace voltaire.PageModels
 
             foreach (var item in list)
             {
-                list_customer.Add(item.Customer);
+               
             }
             popup_context.ItemSource = new ObservableCollection<Partner>(list_customer);
 

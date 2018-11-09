@@ -17,31 +17,21 @@ namespace voltaire.PageModels
             set
             {
                 customer = value;
-
-
-                List<ContractModel> contract_list = new List<ContractModel>();
-
-                foreach (var item in customer.Contracts)
-                {
-                    contract_list.Add(new ContractModel(item){ BackColor = contract_list.Count%2 == 0? Color.White : Color.FromRgb(247,247,247) });
-                }
-
-                all_items = new ObservableCollection<ContractModel>(contract_list);
-
-                ContractsItemSource = all_items;
-
             }
         }
 
         public Command AddContract => new Command( async(obj) =>
        {
             var navigation = obj as FreshMvvm.IPageModelCoreMethods;
+
             await navigation.PushPageModel<NewContractPageModel>(new Tuple<Partner,Contract>(Customer,null));
        });
+
 
         public Command ItemTapped => new Command( async(obj) =>
        {
             var navigation = obj as Tuple<FreshMvvm.IPageModelCoreMethods, Contract>;
+
             await navigation.Item1.PushPageModel<NewContractPageModel>(new Tuple<Partner,Contract>(Customer,navigation.Item2));
        });
 
@@ -51,11 +41,7 @@ namespace voltaire.PageModels
             SearchResults(SearchText);
        });
 
-        public string SearchText 
-        {
-            get;
-            set;
-        }
+        public string SearchText { get; set; }
 
         ObservableCollection<ContractModel> all_items;
 
@@ -81,6 +67,34 @@ namespace voltaire.PageModels
                 return;
 
             Customer = context;
+
+            GetData();
+        }
+
+        public override void TabAppearing()
+        {
+            base.TabAppearing();
+
+            if(contractsitemsource!=null && customer!=null)
+            GetData();
+        }
+
+        async void GetData()
+        {
+            var items = await StoreManager.ContractStore.GetContractsByPartnerExternalId(customer.ExternalId);
+
+            List<ContractModel> contract_list = new List<ContractModel>();
+
+            if (items != null)
+                foreach (var item in items)
+                {
+                    contract_list.Add(new ContractModel(item) { CustomerName = Customer.Name, BackColor = contract_list.Count % 2 == 0 ? Color.White : Color.FromRgb(247, 247, 247) });
+                }
+
+
+            ContractsItemSource = new ObservableCollection<ContractModel>(contract_list);
+
+            all_items = contractsitemsource;
         }
 
 
@@ -105,7 +119,7 @@ namespace voltaire.PageModels
                 items = all_items.Where((arg) => arg.Name.ToLower().Trim().Contains(query_string.ToLower().Trim())).ToList();
 							
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
                 
 			}
@@ -114,8 +128,6 @@ namespace voltaire.PageModels
 			{
 				ContractsItemSource = new ObservableCollection<ContractModel>(items);
 			}
-
-
 		}
 
 

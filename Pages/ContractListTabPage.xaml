@@ -17,17 +17,17 @@
         <StackLayout Orientation = "Vertical" Spacing = "0" >
             <StackLayout Orientation = "Horizontal" Padding = "10,10,10,10" VerticalOptions = "Start" HorizontalOptions = "FillAndExpand">
                 <renderer:CustomSearchBar  Text = "{Binding SearchText,Mode = TwoWay }" SearchCommand = "{Binding SearchQuery}" x:Name = "search_bar" FontSize = "16" FontFamily = "Raleway-Regular" BackgroundColor = "{StaticResource GreyBack}" PlaceholderColor = "{StaticResource GreyPlaceholder}" Placeholder = "{x:Static resources:AppResources.SearchSpace}"  WidthRequest = "320" HeightRequest = "50" HorizontalOptions = "StartAndExpand" VerticalOptions = "Center" HorizontalTextAlignment = "Start" />          
-                <Button x:Name = "bt_add"  BackgroundColor = "{StaticResource turquoiseBlue}" TextColor = "White" VerticalOptions = "Center" HorizontalOptions = "End" HeightRequest = "35" Text = "{x:Static resources:AppResources.AddContact}" FontSize = "12" />
+                <Button x:Name = "bt_add"  BackgroundColor = "{StaticResource turquoiseBlue}" TextColor = "White" VerticalOptions = "Center" HorizontalOptions = "End" WidthRequest="150" HeightRequest = "35" Text = "{x:Static resources:AppResources.AddContract}" FontSize = "12" />
      </StackLayout>
             <BoxView Color = "{StaticResource GreyBack}" HeightRequest = "1" HorizontalOptions = "FillAndExpand" />
-            <ListView x:Name ="listview" Refreshing="Handle_Refreshing" IsPullToRefreshEnabled="true" SeparatorColor = "{StaticResource GreyBack}" ItemsSource = "{Binding ContractsItemSource}" HasUnevenRows ="true" >
+            <ListView x:Name ="listview" Refreshing="Handle_Refreshing" IsPullToRefreshEnabled="true" SeparatorColor="{StaticResource GreyBack}" ItemsSource = "{Binding ContractsItemSource}" HasUnevenRows ="true" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                        <ViewCell> 
-                            <Grid  x:Name = "grid" HorizontalOptions = "FillAndExpand" VerticalOptions = "Center" Margin ="0" Padding = "15,15,15,15" BackgroundColor = "{Binding BackColor}" >
+                            <Grid  x:Name = "grid" HorizontalOptions = "FillAndExpand" VerticalOptions = "Center" Margin ="0" Padding = "15,15,15,15" BackgroundColor = "White" >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height= "Auto" />
-                                </Grid.RowDefinitions>F
+                                </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="8*" />                             
                                     <ColumnDefinition Width="2*" />
@@ -37,7 +37,7 @@
                                     <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Name}" VerticalOptions = "Center" HorizontalOptions =  "Start"   />
                                     <Image Source="pdf.png" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="Start" />
                                 </StackLayout>
-                                <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Date, StringFormat = '{0:yyyy MMM dd}' }" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "1"  />
+                                <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Date, StringFormat = '{0:yyyy MMM dd}'}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "1"  />
                                 <Label FontFamily = "SanFranciscoDisplay-Regular" FontSize = "16" TextColor = "{StaticResource GreyishBrown}" Text = "{Binding Time, Converter = {StaticResource TimeSpanToStringConverter}}" VerticalOptions = "Center" HorizontalOptions =  "Start" Grid.Row = "0" Grid.Column = "2"  />                              
                             </Grid>
                         </ViewCell>

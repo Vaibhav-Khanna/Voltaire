@@ -8,6 +8,7 @@
     xmlns:renderers="clr-namespace:voltaire.Renderers;assembly=voltaire" 
     xmlns:behaviors="clr-namespace:voltaire.Behaviors;assembly=voltaire" 
     xmlns:resources="clr-namespace:voltaire.Resources;assembly=voltaire"
+    xmlns:converter="clr-namespace:voltaire.Converters;assembly=voltaire"
     xmlns:cells="clr-namespace:voltaire.Controls.Cells;assembly=voltaire"
     xmlns:attachedProperties="clr-namespace:voltaire.Helpers.AttachedProperties;assembly=voltaire"
     >
@@ -38,8 +39,10 @@
             WidthRequest="80" />
         </renderers:CustomScrollView>   
            <!--  Main Layout  -->
-
-           <Grid Grid.Row="1" Grid.Column="1" ColumnSpacing="0" RowSpacing="0" Padding="0" BackgroundColor="White" x:Name="GridMainLayout">
+           
+         <ActivityIndicator IsVisible="{Binding IsLoading}" Grid.Row="1" Grid.Column="1" HeightRequest="80" WidthRequest="80" IsRunning="true" VerticalOptions="Center" HorizontalOptions="Center" />
+        
+           <Grid IsVisible="{Binding IsLoading,Converter={converter:BoolInverseConverter}}" Grid.Row="1" Grid.Column="1" ColumnSpacing="0" RowSpacing="0" Padding="0" BackgroundColor="White" x:Name="GridMainLayout">
              <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
@@ -60,7 +63,7 @@
 
             <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="White" Padding="0,0,0,15">
 
-            <Grid>
+            <Grid HorizontalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="33*" />
                     <ColumnDefinition Width="33*" />
@@ -74,46 +77,46 @@
                         <RowDefinition Height="33*" />   
                      </Grid.RowDefinitions>
                         
-                    <Label Text="June" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource MonthLabel}" />
+                    <Label Text="{Binding SaleMonth1.Title}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource MonthLabel}" />
                         
-                    <Grid Grid.Row="1">
-                                        <Image Source="firstmonth" HorizontalOptions="CenterAndExpand"/>
+                    <Grid IsVisible="{Binding SaleMonth1.IsFirstVisible}" Grid.Row="1">
+                                        <Image Source="firstseason" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="30" VerticalOptions="CenterAndExpand">
-                                            <Label Text="1" Style="{StaticResource CircleNumber3}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding SaleMonth1.First.Rank}" Style="{StaticResource CircleNumber5}" FontSize="17"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" />
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0" >
-                                                    <Label Text="Eddy Murphy"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanFirstLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding SaleMonth1.First.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanFirstLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
                                                         <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail3}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail4}"/>
+                                                        <Label Text="{Binding SaleMonth1.First.TotalSales}"  Style="{StaticResource SalesmanDetail4}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
                       </Grid>
-                      <Grid Grid.Row="2">
+                      <Grid IsVisible="{Binding SaleMonth1.IsSecondVisible}" Grid.Row="2">
                                         <Image Source="second" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="25" VerticalOptions="CenterAndExpand">
-                                            <Label Text="2" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding SaleMonth1.Second.Rank}" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0">
-                                                    <Label Text="Bruce Willis"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding SaleMonth1.Second.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
                                                         <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail5}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail6}"/>
+                                                        <Label Text="{Binding SaleMonth1.Second.TotalSales}"  Style="{StaticResource SalesmanDetail6}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
                       </Grid>
-                      <Grid Grid.Row="3">
+                      <Grid IsVisible="{Binding SaleMonth1.IsThirdVisible}" Grid.Row="3">
                                         <Image Source="second" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="25" VerticalOptions="CenterAndExpand">
-                                            <Label Text="3" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding SaleMonth1.Third.Rank}" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0">
-                                                    <Label Text="Jim Carey"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding SaleMonth1.Third.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
                                                         <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail5}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail6}"/>
+                                                        <Label Text="{Binding SaleMonth1.Third.TotalSales}"  Style="{StaticResource SalesmanDetail6}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
@@ -128,46 +131,46 @@
                         <RowDefinition Height="33*" />   
                      </Grid.RowDefinitions>
                         
-                    <Label Text="May" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource MonthLabel}"/>
+                    <Label Text="{Binding SaleMonth2.Title}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource MonthLabel}"/>
                         
-                    <Grid Grid.Row="1">
+                    <Grid IsVisible="{Binding SaleMonth2.IsFirstVisible}" Grid.Row="1">
                                         <Image Source="firstmonth" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="30" VerticalOptions="CenterAndExpand">
-                                            <Label Text="1" Style="{StaticResource CircleNumber3}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding SaleMonth2.First.Rank}" Style="{StaticResource CircleNumber3}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0" >
-                                                    <Label Text="Eddy Murphy"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanFirstLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding SaleMonth2.First.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanFirstLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
                                                         <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail3}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail4}"/>
+                                                        <Label Text="{Binding SaleMonth2.First.TotalSales}"  Style="{StaticResource SalesmanDetail4}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
                       </Grid>
-                      <Grid Grid.Row="2">
+                      <Grid IsVisible="{Binding SaleMonth2.IsSecondVisible}" Grid.Row="2">
                                         <Image Source="second" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="25" VerticalOptions="CenterAndExpand">
-                                            <Label Text="2" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding SaleMonth2.Second.Rank}" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0">
-                                                    <Label Text="Bruce Willis"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding SaleMonth2.Second.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
                                                         <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail5}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail6}"/>
+                                                        <Label Text="{Binding SaleMonth2.Second.TotalSales}"  Style="{StaticResource SalesmanDetail6}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
                       </Grid>
-                      <Grid Grid.Row="3">
+                      <Grid IsVisible="{Binding SaleMonth2.IsThirdVisible}" Grid.Row="3">
                                         <Image Source="second" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="25" VerticalOptions="CenterAndExpand">
-                                            <Label Text="3" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding SaleMonth2.Third.Rank}" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0">
-                                                    <Label Text="Jim Carey"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding SaleMonth2.Third.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
                                                         <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail5}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail6}"/>
+                                                        <Label Text="{Binding SaleMonth2.Third.TotalSales}"  Style="{StaticResource SalesmanDetail6}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
@@ -182,46 +185,46 @@
                         <RowDefinition Height="33*" />   
                      </Grid.RowDefinitions>
                         
-                    <Label Text="Juanary to June" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource MonthLabel}"/>
+                    <Label Text="{Binding SaleMonth3.Title}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource MonthLabel}"/>
                         
-                    <Grid Grid.Row="1">
-                                        <Image Source="firstseason" HorizontalOptions="CenterAndExpand"/>
+                    <Grid IsVisible="{Binding SaleMonth3.IsFirstVisible}" Grid.Row="1">
+                                        <Image Source="firstmonth" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="30" VerticalOptions="CenterAndExpand">
-                                            <Label Text="1" Style="{StaticResource CircleNumber5}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding SaleMonth3.First.Rank}" Style="{StaticResource CircleNumber3}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0" >
-                                                    <Label Text="Eddy Murphy"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanFirstLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding SaleMonth3.First.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanFirstLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
                                                         <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail3}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail4}"/>
+                                                        <Label Text="{Binding SaleMonth3.First.TotalSales}"  Style="{StaticResource SalesmanDetail4}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
                       </Grid>
-                      <Grid Grid.Row="2">
+                      <Grid IsVisible="{Binding SaleMonth3.IsSecondVisible}" Grid.Row="2">
                                         <Image Source="second" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="25" VerticalOptions="CenterAndExpand">
-                                            <Label Text="2" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding SaleMonth3.Second.Rank}" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0">
-                                                    <Label Text="Bruce Willis"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding SaleMonth3.Second.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
                                                         <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail5}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail6}"/>
+                                                        <Label Text="{Binding SaleMonth3.Second.TotalSales}"  Style="{StaticResource SalesmanDetail6}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
                       </Grid>
-                      <Grid Grid.Row="3">
+                      <Grid IsVisible="{Binding SaleMonth3.IsThirdVisible}" Grid.Row="3">
                                         <Image Source="second" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="25" VerticalOptions="CenterAndExpand">
-                                            <Label Text="3" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding SaleMonth3.Third.Rank}" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0">
-                                                    <Label Text="Jim Carey"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding SaleMonth3.Third.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
                                                         <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail5}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail6}"/>
+                                                        <Label Text="{Binding SaleMonth3.Third.TotalSales}"  Style="{StaticResource SalesmanDetail6}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
@@ -247,7 +250,7 @@
 
             <StackLayout Grid.Row="3" Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="White" Padding="0,0,0,15">
 
-            <Grid>
+            <Grid HorizontalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="33*" />
                     <ColumnDefinition Width="33*" />
@@ -261,46 +264,46 @@
                         <RowDefinition Height="33*" />   
                      </Grid.RowDefinitions>
                         
-                    <Label Text="June" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource MonthLabel}"/>
+                    <Label Text="{Binding cMonth1.Title}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource MonthLabel}"/>
                         
-                    <Grid Grid.Row="1">
-                                        <Image Source="firstmonth" HorizontalOptions="CenterAndExpand"/>
+                    <Grid IsVisible="{Binding cMonth1.IsFirstVisible}" Grid.Row="1">
+                                        <Image Source="firstseason" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="30" VerticalOptions="CenterAndExpand">
-                                            <Label Text="1" Style="{StaticResource CircleNumber3}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding cMonth1.First.Rank}" Style="{StaticResource CircleNumber5}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0" >
-                                                    <Label Text="Eddy Murphy"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanFirstLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding cMonth1.First.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanFirstLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
-                                                        <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail3}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail4}"/>
+                                                        <Label Text="{x:Static resources:AppResources.CheckIns}"   Style="{StaticResource SalesmanDetail3}"/>
+                                                        <Label Text="{Binding cMonth1.First.TotalSales}"  Style="{StaticResource SalesmanDetail4}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
                       </Grid>
-                      <Grid Grid.Row="2">
+                      <Grid IsVisible="{Binding cMonth1.IsSecondVisible}" Grid.Row="2">
                                         <Image Source="second" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="25" VerticalOptions="CenterAndExpand">
-                                            <Label Text="2" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding cMonth1.Second.Rank}" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0">
-                                                    <Label Text="Bruce Willis"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding cMonth1.Second.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
-                                                        <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail5}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail6}"/>
+                                                        <Label Text="{x:Static resources:AppResources.CheckIns}"   Style="{StaticResource SalesmanDetail5}"/>
+                                                        <Label Text="{Binding cMonth1.Second.TotalSales}"  Style="{StaticResource SalesmanDetail6}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
                       </Grid>
-                      <Grid Grid.Row="3">
+                      <Grid IsVisible="{Binding cMonth1.IsThirdVisible}" Grid.Row="3">
                                         <Image Source="second" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="25" VerticalOptions="CenterAndExpand">
-                                            <Label Text="3" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding cMonth1.Third.Rank}" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0">
-                                                    <Label Text="Jim Carey"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding cMonth1.Third.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
-                                                        <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail5}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail6}"/>
+                                                        <Label Text="{x:Static resources:AppResources.CheckIns}"   Style="{StaticResource SalesmanDetail5}"/>
+                                                        <Label Text="{Binding cMonth1.Third.TotalSales}"  Style="{StaticResource SalesmanDetail6}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
@@ -315,46 +318,46 @@
                         <RowDefinition Height="33*" />   
                      </Grid.RowDefinitions>
                         
-                    <Label Text="May" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource MonthLabel}"/>
+                    <Label Text="{Binding cMonth2.Title}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource MonthLabel}"/>
                         
-                    <Grid Grid.Row="1">
+                    <Grid IsVisible="{Binding cMonth2.IsFirstVisible}" Grid.Row="1">
                                         <Image Source="firstmonth" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="30" VerticalOptions="CenterAndExpand">
-                                            <Label Text="1" Style="{StaticResource CircleNumber3}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding cMonth2.First.Rank}" Style="{StaticResource CircleNumber3}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0" >
-                                                    <Label Text="Eddy Murphy"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanFirstLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding cMonth2.First.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanFirstLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
-                                                        <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail3}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail4}"/>
+                                                        <Label Text="{x:Static resources:AppResources.CheckIns}"   Style="{StaticResource SalesmanDetail3}"/>
+                                                        <Label Text="{Binding cMonth2.First.TotalSales}"  Style="{StaticResource SalesmanDetail4}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
                       </Grid>
-                      <Grid Grid.Row="2">
+                      <Grid IsVisible="{Binding cMonth2.IsSecondVisible}" Grid.Row="2">
                                         <Image Source="second" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="25" VerticalOptions="CenterAndExpand">
-                                            <Label Text="2" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding cMonth2.Second.Rank}" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0">
-                                                    <Label Text="Bruce Willis"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding cMonth2.Second.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
-                                                        <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail5}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail6}"/>
+                                                        <Label Text="{x:Static resources:AppResources.CheckIns}"   Style="{StaticResource SalesmanDetail5}"/>
+                                                        <Label Text="{Binding cMonth2.Second.TotalSales}"  Style="{StaticResource SalesmanDetail6}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
                       </Grid>
-                      <Grid Grid.Row="3">
+                      <Grid IsVisible="{Binding cMonth2.IsThirdVisible}" Grid.Row="3">
                                         <Image Source="second" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="25" VerticalOptions="CenterAndExpand">
-                                            <Label Text="3" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding cMonth2.Third.Rank}" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0">
-                                                    <Label Text="Jim Carey"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding cMonth2.Third.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
-                                                        <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail5}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail6}"/>
+                                                        <Label Text="{x:Static resources:AppResources.CheckIns}"   Style="{StaticResource SalesmanDetail5}"/>
+                                                        <Label Text="{Binding cMonth2.Third.TotalSales}"  Style="{StaticResource SalesmanDetail6}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
@@ -369,46 +372,46 @@
                         <RowDefinition Height="33*" />   
                      </Grid.RowDefinitions>
                         
-                    <Label Text="Juanary to June" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource MonthLabel}"/>
+                    <Label Text="{Binding cMonth3.Title}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{StaticResource MonthLabel}"/>
                         
-                    <Grid Grid.Row="1">
-                                        <Image Source="firstseason" HorizontalOptions="CenterAndExpand"/>
+                    <Grid IsVisible="{Binding cMonth3.IsFirstVisible}" Grid.Row="1">
+                                        <Image Source="firstmonth" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="30" VerticalOptions="CenterAndExpand">
-                                            <Label Text="1" Style="{StaticResource CircleNumber5}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding cMonth3.First.Rank}" Style="{StaticResource CircleNumber3}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0" >
-                                                    <Label Text="Eddy Murphy"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanFirstLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding cMonth3.First.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanFirstLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
-                                                        <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail3}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail4}"/>
+                                                        <Label Text="{x:Static resources:AppResources.CheckIns}"   Style="{StaticResource SalesmanDetail3}"/>
+                                                        <Label Text="{Binding cMonth3.First.TotalSales}"  Style="{StaticResource SalesmanDetail4}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
                       </Grid>
-                      <Grid Grid.Row="2">
+                      <Grid IsVisible="{Binding cMonth3.IsSecondVisible}" Grid.Row="2">
                                         <Image Source="second" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="25" VerticalOptions="CenterAndExpand">
-                                            <Label Text="2" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding cMonth3.Second.Rank}" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0">
-                                                    <Label Text="Bruce Willis"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding cMonth3.Second.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
-                                                        <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail5}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail6}"/>
+                                                        <Label Text="{x:Static resources:AppResources.CheckIns}"   Style="{StaticResource SalesmanDetail5}"/>
+                                                        <Label Text="{Binding cMonth3.Second.TotalSales}"  Style="{StaticResource SalesmanDetail6}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
                       </Grid>
-                      <Grid Grid.Row="3">
+                      <Grid IsVisible="{Binding cMonth3.IsThirdVisible}" Grid.Row="3">
                                         <Image Source="second" HorizontalOptions="CenterAndExpand"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="25" VerticalOptions="CenterAndExpand">
-                                            <Label Text="3" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
+                                            <Label Text="{Binding cMonth3.Third.Rank}" Style="{StaticResource CircleNumber4}"  Margin="62,-5,0,0" VerticalOptions="CenterAndExpand"/>
                                             <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" Spacing="0" VerticalOptions="CenterAndExpand" Margin="5,0">
-                                                    <Label Text="Jim Carey"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
+                                                    <Label Text="{Binding cMonth3.Third.Name}"  HorizontalOptions="StartAndExpand" Style="{StaticResource SalesmanSecondLabelStyle}" Margin="5,0"/>
                                                     <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="5,0">
-                                                        <Label Text="{x:Static resources:AppResources.Sales}"   Style="{StaticResource SalesmanDetail5}"/>
-                                                        <Label Text="259"  Style="{StaticResource SalesmanDetail6}"/>
+                                                        <Label Text="{x:Static resources:AppResources.CheckIns}"   Style="{StaticResource SalesmanDetail5}"/>
+                                                        <Label Text="{Binding cMonth3.Third.TotalSales}"  Style="{StaticResource SalesmanDetail6}"/>
                                                     </StackLayout>
                                             </StackLayout>
                                         </StackLayout>

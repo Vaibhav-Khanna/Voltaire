@@ -9,6 +9,8 @@ namespace voltaire.DataStore.Abstraction.Stores
     {
         Task<Partner> GetCustomerByMessageAuthorIdAsync(string messageAuthorId);
 
+        Task<Partner> GetItemByExternalId(long id);
+
         Task<IEnumerable<Partner>> GetItemsAsync(int? Weight, long? Grade, bool forceRefresh = false);
 
         Task<IEnumerable<Partner>> GetNextItemsAsync(int currentitemCount, int? Weight, long? Grade, bool forceRefresh = false);

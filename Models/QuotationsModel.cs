@@ -18,7 +18,6 @@ namespace voltaire.Models
                 Name = model.Name;
                 Ref = model.ClientOrderRef;
 
-
                 TaxAmount = model.AmountTax;
 
                 TotalAmount = model.AmountTotal;

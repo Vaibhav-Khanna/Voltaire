@@ -564,6 +564,12 @@
     </Compile>
     <Compile Include="Converters\StringToDoubleConverter.cs" />
     <Compile Include="Models\DataObjects\DeliveryFee.cs" />
+    <Compile Include="Models\DataObjects\ContractTemplate.cs" />
+    <Compile Include="Models\PodiumModel.cs" />
+    <Compile Include="Models\UserPodiumModel.cs" />
+    <Compile Include="Models\UserSale.cs" />
+    <Compile Include="DataStore\Abstraction\Stores\IContractStore.cs" />
+    <Compile Include="DataStore\Implementation\Stores\ContractStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FreshIOC">
@@ -736,6 +742,9 @@
     </Reference>
     <Reference Include="SegmentedControl.FormsPlugin.Abstractions">
       <HintPath>packages\SegmentedControl.FormsPlugin.2.0.1\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+Xamarin.iOS10\SegmentedControl.FormsPlugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Portable.Text.Encoding">
+      <HintPath>packages\Portable.Text.Encoding.0.8.3.0\lib\portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\Portable.Text.Encoding.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

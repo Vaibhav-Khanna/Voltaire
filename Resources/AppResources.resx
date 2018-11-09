@@ -62,6 +62,9 @@
 	<data name="Username" xml:space="preserve">
         <value>Username</value>
     </data>
+    <data name="AddContact" xml:space="preserve">
+        <value>Add Contact</value>
+    </data>
 	<data name="Password" xml:space="preserve">
         <value>Password</value>
     </data>

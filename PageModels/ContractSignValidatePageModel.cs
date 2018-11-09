@@ -5,6 +5,12 @@ using voltaire.Models;
 using System.IO;
 using voltaire.DataStore;
 using voltaire.DataStore.Implementation;
+using Syncfusion.Pdf.Graphics;
+using Syncfusion.Drawing;
+using voltaire.Models.DataObjects;
+using voltaire.Helpers;
+using voltaire.Resources;
+using Syncfusion.Pdf;
 
 namespace voltaire.PageModels
 {
@@ -24,7 +30,7 @@ namespace voltaire.PageModels
 			{
 				contract = value;
 
-				Title = contract.Name;
+                Title = contract.OrderNumber;
 
 				RaisePropertyChanged();
 			}
@@ -38,9 +44,9 @@ namespace voltaire.PageModels
             {
                 imagestream = value;
 
-                contract.SignImageSource = voltaire.DataStore.Implementation.StoreManager.ReadFully(imagestream);
+                Contract.SignImageSource = voltaire.DataStore.Implementation.StoreManager.ReadFully(imagestream);
 
-                BackButton.Execute(null);
+                ValidateSignatureAndUpload();
             }
         }
 
@@ -67,6 +73,64 @@ namespace voltaire.PageModels
 			}
 		}
 
+        async void ValidateSignatureAndUpload()
+        {
+            Dialog.ShowLoading("");
+
+            if (Contract.SignImageSource != null)
+            {
+                PdfDocument duplicate = (PdfDocument)Contract.Document.Clone();
+
+
+                var addPage = duplicate.Pages.Add();
+
+                var width = addPage.GetClientSize().Width;
+
+                PdfGraphics graphics = addPage.Graphics;
+
+                PdfBitmap image = new PdfBitmap(new MemoryStream(contract.SignImageSource));
+
+                graphics.DrawImage(image, new RectangleF(20, 40, width / 2, 60));
+
+
+                MemoryStream m = new MemoryStream();
+
+                duplicate.Save(m);
+
+                var document = await StoreManager.DocumentStore.GetItemByContractId(Contract.Id, "saleContract");
+
+                if( document == null)
+                {
+                    var documentItem = new Document() { Path = Contract.Id + '/' + "saleContract.pdf", Name = contract.Id + ".pdf", InternalName = "saleContract", ReferenceKind = "contract", ReferenceId = contract.Id, MimeType = "application/pdf" };
+
+                    var uploaded = await StoreManager.DocumentStore.InsertImage(m.ToArray(), documentItem);
+                }
+                else
+                {
+                    await PclStorage.SaveFileLocal(m.ToArray(), document.Id);
+
+                    document.ToUpload = true;
+
+                    await StoreManager.DocumentStore.UpdateAsync(document);
+                   
+                    await StoreManager.DocumentStore.OfflineUploadSync();
+                }
+
+                Contract.ToSend = true;
+
+                var isSent = await StoreManager.ContractStore.UpdateAsync(Contract);
+
+                if(isSent)
+                {
+                    await CoreMethods.DisplayAlert(AppResources.Alert, AppResources.EmailSent, AppResources.Ok);
+                    BackButton.Execute(null);
+                }
+
+            }
+
+            Dialog.HideLoading();
+             
+        }
 
     }
 }

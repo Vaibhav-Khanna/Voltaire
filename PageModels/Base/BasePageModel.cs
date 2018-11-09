@@ -105,6 +105,7 @@ namespace voltaire.PageModels.Base
             DependencyService.Register<ISaleOrderLineStore, SaleOrderLineStore>(); 
             DependencyService.Register<IMessageStore, MessageStore>();
             DependencyService.Register<IStateStore, StateStore>();
+            DependencyService.Register<IContractStore, ContractStore>();
 
         }
 

@@ -7,6 +7,11 @@ using voltaire.Models.DataObjects;
 using voltaire.PageModels;
 using System.Linq;
 using Xamarin.Forms;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
+using System.Text;
+using Newtonsoft.Json;
+using voltaire.Models;
 
 namespace voltaire.DataStore.Implementation.Stores
 {
@@ -73,6 +78,47 @@ namespace voltaire.DataStore.Implementation.Stores
             {
                 return null;
             }
+        }
+
+        public async Task<List<UserSale>> GetSalesForMonth(int month, int year, bool IsSales)
+        {
+            var credentials = new JObject();
+            credentials["month"] = month;
+            credentials["year"] = year;
+            credentials["typeOfSearch"] = IsSales ? "sales" : "checkins";
+
+            var uri = new Uri(Constants.EndUrl + "/api/podium");
+
+            try
+            {
+                var _client = new HttpClient();
+
+                _client.DefaultRequestHeaders.Add("X-ZUMO-AUTH", StoreManager.MobileService.CurrentUser.MobileServiceAuthenticationToken);
+                _client.DefaultRequestHeaders.Add("ZUMO-API-VERSION", "2.0.0");
+
+
+                var json_cred = credentials.ToString();
+                var content = new StringContent(json_cred, Encoding.UTF8, "application/json");
+
+
+                var response = await _client.PostAsync(uri, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content2 = await response.Content.ReadAsStringAsync();
+
+                    var UserList = JsonConvert.DeserializeObject<List<UserSale>>(content2);
+
+                    return UserList;
+                }
+               
+            }
+            catch (Exception)
+            {
+
+            }
+
+            return null;
         }
     }
 }

@@ -655,14 +655,17 @@
             <Style x:Key="CircleNumber3" TargetType="Label"
                 BasedOn="{StaticResource CircleNumber1}">
                 <Setter Property="TextColor" Value="{StaticResource turquoiseBlue}" />
+                <Setter Property="FontSize" Value="17" />
             </Style>
             <Style x:Key="CircleNumber4" TargetType="Label"
                 BasedOn="{StaticResource CircleNumber1}">
                 <Setter Property="TextColor" Value="{StaticResource WarmGrey}" />
+                <Setter Property="FontSize" Value="17" />
             </Style>
             <Style x:Key="CircleNumber5" TargetType="Label"
                 BasedOn="{StaticResource CircleNumber1}">
                 <Setter Property="TextColor" Value="{StaticResource GreyishBrown}" />
+                <Setter Property="FontSize" Value="17" />
             </Style>
             <Style x:Key="SalesmanSecondLabelStyle" TargetType="Label"
                 BasedOn="{StaticResource SalesmanFirstLabelStyle}">

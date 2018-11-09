@@ -8,6 +8,8 @@ namespace voltaire.DataStore.Abstraction.Stores
     {
         Task<Document> GetItemByEmployeeId(string ID, string internalName);
 
+        Task<Document> GetItemByContractId(string ID, string internalName);
+
         Task<byte[]> GetDocumentDataById(string key);
 
         Task<bool> InsertImage(byte[] data, Document document);

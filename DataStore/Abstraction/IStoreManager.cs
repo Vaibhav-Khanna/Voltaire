@@ -10,7 +10,7 @@ namespace voltaire.DataStore.Abstraction
         bool IsInitialized { get; }
         Task InitializeAsync();
 
-
+        IContractStore ContractStore { get; }
         ICountryStore CountryStore { get; }
         ICurrencyStore CurrencyStore { get; }
         IPartnerCategoryStore PartnerCategoryStore { get; }

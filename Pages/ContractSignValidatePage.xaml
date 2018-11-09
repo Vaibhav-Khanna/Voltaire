@@ -41,8 +41,9 @@
                     </TapGestureRecognizer>
                 </StackLayout.GestureRecognizers>
             <Image Source="check2.png" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
-            <Label FontFamily="Raleway-Bold" TextColor="White" FontSize="22" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Text="{x:Static resources:AppResources.Validate"/>
-        </StackLayout>
+            <Label FontFamily="Raleway-Bold" TextColor="White" FontSize="22" HorizontalOptions="StartAndExpand" VerticalOptions="Center" Text="{x:Static resources:AppResources.Validate}" />
+       
+            </StackLayout>
     </Grid>
 	</ContentPage.Content>
 </ContentPage>

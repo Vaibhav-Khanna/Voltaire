@@ -63,7 +63,7 @@ namespace voltaire
                     var homePage = FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
 
                     MainPage = new FreshNavigationContainer(homePage) { BarBackgroundColor = (Color)Resources["turquoiseBlue"], BarTextColor = Color.Black };
-                });
+                });              
             }
             else
             {

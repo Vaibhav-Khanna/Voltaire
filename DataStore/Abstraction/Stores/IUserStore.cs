@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using voltaire.Models.DataObjects;
+using System.Collections.Generic;
+using voltaire.Models;
 
 namespace voltaire.DataStore.Abstraction.Stores
 {
@@ -10,5 +12,6 @@ namespace voltaire.DataStore.Abstraction.Stores
 
         Task<User> GetUserByExternalIdAsync(long externalId);
 
+        Task<List<UserSale>> GetSalesForMonth(int month, int year, bool IsSales);
     }
 }

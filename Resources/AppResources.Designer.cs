@@ -53,6 +53,12 @@ namespace voltaire.Resources {
             }
         }
         
+        internal static string AddContact {
+            get {
+                return ResourceManager.GetString("AddContact", resourceCulture);
+            }
+        }
+        
         internal static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
