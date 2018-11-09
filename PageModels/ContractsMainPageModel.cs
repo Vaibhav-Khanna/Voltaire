@@ -12,15 +12,15 @@ namespace voltaire.PageModels
     public class ContractsMainPageModel : BasePageModel
     {
 
-        CustomerPickerPopupModel popup_context = new CustomerPickerPopupModel(); //  Popup picker model 
+        AddCustomerPopUpModel popup_context; //  Popup picker model 
 
-
-
-		public Command AddContract => new Command(async (obj) =>
+        public Command AddContract => new Command(async (obj) =>
 		{
-			popup_context.ItemSelectedChanged += Popup_Context_ItemSelectedChanged;    // Subscribe to the event
-         
-            await PopupNavigation.PushAsync(new CustomerPickerPopUp() { BindingContext = popup_context }, true);
+            popup_context = new AddCustomerPopUpModel(false);
+
+            popup_context.ItemSelectedChanged += Popup_Context_ItemSelectedChanged;    // Subscribe to the event
+
+            await PopupNavigation.PushAsync(new AddCustomerPopUp() { BindingContext = popup_context }, true);
 		});
 
 
@@ -57,37 +57,28 @@ namespace voltaire.PageModels
 			}
 		}
 
-
-
-        public override void Init(object initData)
+        protected override void ViewIsAppearing(object sender, EventArgs e)
         {
-            base.Init(initData);
+            base.ViewIsAppearing(sender, e);
+
+            GetData();
+        }
+
+        async void GetData()
+        {
+            var items = await StoreManager.ContractStore.GetItemsAsync(false, true);
+
+            List<ContractModel> contract_list = new List<ContractModel>();
+
+            if (items != null)
+                foreach (var item in items)
+                {
+                    contract_list.Add(new ContractModel(item) { BackColor = contract_list.Count % 2 == 0 ? Color.White : Color.FromRgb(247, 247, 247) });
+                }
 
 
-            // Mock Data
+            ContractsItemSource = new ObservableCollection<ContractModel>(contract_list);
+        }
 
-            var list = new List<Contract>();
-         
-            var Mock_list = new List<ContractModel>();
-          
-            foreach (var item in list)
-            {
-                Mock_list.Add(new ContractModel(item));
-            }
-
-            var list_customer = new List<Partner>();
-
-            foreach (var item in list)
-            {
-               
-            }
-            popup_context.ItemSource = new ObservableCollection<Partner>(list_customer);
-
-            // Mock Data
-
-            ContractsItemSource = new ObservableCollection<ContractModel>(Mock_list);
-
-		}
-
-	}
+    }
 }

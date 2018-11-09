@@ -43,7 +43,7 @@ namespace voltaire.Pages
         }
         public void ChangeToContract(object sender, EventArgs e)
         {
-            //changeCurrentView("contract");
+            changeCurrentView("contract");
         }
         public void ChangeToGoals(object sender, EventArgs e)
         {
