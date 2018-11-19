@@ -76,7 +76,6 @@ namespace voltaire.PageModels
                     contract_list.Add(new ContractModel(item) { BackColor = contract_list.Count % 2 == 0 ? Color.White : Color.FromRgb(247, 247, 247) });
                 }
 
-
             ContractsItemSource = new ObservableCollection<ContractModel>(contract_list);
         }
 

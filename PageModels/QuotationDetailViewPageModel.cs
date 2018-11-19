@@ -371,7 +371,24 @@ namespace voltaire.PageModels
         }
 
         double _taxPercent;
-        public double TaxPercent { get { return _taxPercent; } set { _taxPercent = value; OrderItemsSource_CollectionChanged(null, null); quotation.TaxPercent = value; ApplyTax = Convert.ToInt32(value) != 0; RaisePropertyChanged(); } }
+        public double TaxPercent
+        {
+            get { return _taxPercent; }
+            set
+            {
+                _taxPercent = value;
+                OrderItemsSource_CollectionChanged(null, null);
+
+                if (quotation != null)
+                {
+                    quotation.TaxPercent = value;
+
+                    ApplyTax = Convert.ToInt32(value) != 0;
+                }
+
+                RaisePropertyChanged();
+            }
+        }
 
 
         ObservableCollection<DeliveryFee> deliverySource;
@@ -389,6 +406,7 @@ namespace voltaire.PageModels
             {
                 applytax = value;
 
+                if(quotation!=null)
                 if (quotation.ApplyTax != value)
                 {
                     quotation.ApplyTax = applytax;
@@ -462,9 +480,13 @@ namespace voltaire.PageModels
 
                 var currUser = await StoreManager.UserStore.GetCurrentUserAsync();
 
+                if (currUser == null)
+                    return;
+
                 if (NewQuotation)
                 {
                     var saleOrder = new SaleOrder(){ PartnerId = Customer.ExternalId, UserId = currUser.ExternalId, CurrencyId = ProductConstants.CurrencyValues.Keys.First() };
+
                     Quotation = new QuotationsModel( saleOrder ) { Date = DateTime.UtcNow, Ref = Customer.ExternalId + "-" + UnixTimeStamp(), Status = QuotationStatus.draft.ToString() , TotalAmount = 0 };
                     InsertNewQuotation(saleOrder);
                     customer.Quotations.Add(Quotation);

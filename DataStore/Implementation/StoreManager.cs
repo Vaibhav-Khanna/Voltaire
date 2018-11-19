@@ -195,8 +195,13 @@ namespace voltaire.DataStore.Implementation
             if (!IsInitialized)
                 await InitializeAsync();
 
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await ToastService.Show(Resources.AppResources.AppSyncing);
+            });
 
-            var taskList = new List<Task<bool>>();
+
+        here:  var taskList = new List<Task<bool>>();
 
             taskList.Add(UserStore.SyncAsync());
             taskList.Add(CustomerStore.SyncAsync());
@@ -217,16 +222,14 @@ namespace voltaire.DataStore.Implementation
             taskList.Add(AccessoryStore.SyncAsync());
             taskList.Add(StateStore.SyncAsync());
             taskList.Add(ContractStore.SyncAsync());
-
-            Device.BeginInvokeOnMainThread(async () =>
-           {
-                await ToastService.Show(Resources.AppResources.AppSyncing);
-           });
-
-
-            //TODO add all other stores
-                       
+                   
             var successes = await Task.WhenAll(taskList).ConfigureAwait(false);
+
+            if (successes.Any(x => x == false))
+            {
+                if(await Plugin.Connectivity.CrossConnectivity.Current.IsRemoteReachable("https://www.google.com"))
+                goto here;
+            }
 
             if (syncUserSpecific)
             {
@@ -236,8 +239,8 @@ namespace voltaire.DataStore.Implementation
                 // add stores that are user specific data
                 await DocumentStore.OfflineUploadSync();
 
-
                 await SyncLegalFiles();
+
             }
 
             Device.BeginInvokeOnMainThread(async () =>

@@ -40,7 +40,7 @@ namespace voltaire.DataStore.Implementation.Stores
                 {
                     await InitializeStore().ConfigureAwait(false);
                    
-                    var items = await Table.Where(s => s.ExternalId.ToString() == id).IncludeTotalCount().ToEnumerableAsync().ConfigureAwait(false);
+                    var items = await Table.Where(s => s.ExternalId == Convert.ToInt64(id)).ToEnumerableAsync().ConfigureAwait(false);
 
                     if (items == null || !items.Any())
                         return null;
