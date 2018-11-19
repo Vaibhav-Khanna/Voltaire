@@ -523,6 +523,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\check_validate.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\check_validate.png" />
     <AndroidResource Include="Resources\drawable\splashscreen.axml" />
+    <AndroidResource Include="Resources\drawable\check1.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renderers\" />

@@ -34,7 +34,7 @@
     
             </controls:TToolBar>
             
-            <syncfusion:SfPdfViewer  BackgroundColor="{StaticResource GreyishBrown}" x:Name="pdfViewerControl" InputFileStream="{Binding PdfDocumentStream}" Margin="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0"    />
+            <syncfusion:SfPdfViewer BackgroundColor="{StaticResource GreyishBrown}" x:Name="pdfViewerControl" InputFileStream="{Binding PdfDocumentStream}" Margin="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0"    />
         
             <StackLayout Orientation="Horizontal" Spacing="10" HeightRequest="90"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" Grid.Row="2" Grid.Column="0" >
                 

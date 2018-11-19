@@ -233,6 +233,8 @@ namespace voltaire.DataStore.Implementation
 
             if (syncUserSpecific)
             {
+                await ContractStore.GetContractTemplate();
+
                 //Syncs the Delivery Fee api data
                 await SaleOrderStore.GetDeliveryFees(true);
 

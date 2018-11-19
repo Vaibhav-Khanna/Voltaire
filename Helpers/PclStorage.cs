@@ -144,6 +144,7 @@ namespace voltaire.Helpers
                 IFolder folder = await rootFolder.CreateFolderAsync(folderName, CreationCollisionOption.OpenIfExists);
                 IFile file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
                 // populate the file with image data  
+
                 System.IO.Stream stream = await file.OpenAsync(FileAccess.ReadAndWrite);
                 if (stream != null)
                 {

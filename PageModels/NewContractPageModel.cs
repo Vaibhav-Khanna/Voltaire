@@ -11,6 +11,7 @@ using voltaire.PageModels.Base;
 using voltaire.Resources;
 using Xamarin.Forms;
 using System.Linq;
+using voltaire.DataStore.Implementation;
 
 namespace voltaire.PageModels
 {
@@ -193,7 +194,7 @@ namespace voltaire.PageModels
         {
             var conditions = await StoreManager.ContractStore.GetTermsConditionsOfContract();
 
-            ContractTemplate = await StoreManager.ContractStore.GetContractTemplate();
+            ContractTemplate = await Helpers.PclStorage.IsFileExistAsync(StorageKeys.SaleContract) ? "exists" : null;
 
             List<AgreementModel> agreementmodel = new List<AgreementModel>();
 
