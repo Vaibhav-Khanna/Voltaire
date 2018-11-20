@@ -116,7 +116,18 @@ namespace voltaire.PageModels
         async void GeneratePDF()
         {
 
-            var pdf = await Helpers.PclStorage.LoadFileLocal(StorageKeys.SaleContract);
+            var table_document = await StoreManager.DocumentStore.GetItemByContractId(Contract.Id, "saleContract");
+
+            byte[] pdf = null;
+
+            if (table_document != null)
+            {
+                var data = await StoreManager.DocumentStore.GetDocumentDataById(table_document.Id);
+
+                pdf = data ?? await Helpers.PclStorage.LoadFileLocal(StorageKeys.SaleContract);
+            }
+            else
+            pdf = await Helpers.PclStorage.LoadFileLocal(StorageKeys.SaleContract);
 
             if (pdf != null)
             {

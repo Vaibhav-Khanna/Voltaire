@@ -159,7 +159,6 @@ namespace voltaire.PageModels
                await StoreManager.DocumentStore.UpdateAsync(vendorItem);
 
                await StoreManager.DocumentStore.OfflineUploadSync();
-
            }
          
            quotation.SaleOrder.ToSend = true;
@@ -334,7 +333,11 @@ namespace voltaire.PageModels
             set
             {
                 subtotal = value;
-                quotation.SubTotal = subtotal;
+
+
+                if (quotation != null)
+                    quotation.SubTotal = subtotal;
+
                 RaisePropertyChanged();
             }
         }
@@ -347,7 +350,10 @@ namespace voltaire.PageModels
             set
             {
                 total = value;
-                quotation.TotalAmount = total;
+
+                if (quotation != null)
+                    quotation.TotalAmount = total;
+
                 RaisePropertyChanged();
             }
         }
@@ -363,7 +369,8 @@ namespace voltaire.PageModels
             set
             {
                 taxamount = value;
-               
+
+                if(quotation!=null)
                 quotation.TaxAmount = taxamount;              
              
                 RaisePropertyChanged();
@@ -395,7 +402,23 @@ namespace voltaire.PageModels
         public ObservableCollection<DeliveryFee> DeliverySource { get { return deliverySource; } set { deliverySource = value; RaisePropertyChanged(); } }
 
         DeliveryFee deliveryFee;
-        public DeliveryFee DeliveryFee { get { return deliveryFee; } set { deliveryFee = value; quotation.DeliveryPrice = value.Price; OrderItemsSource_CollectionChanged(null, null); RaisePropertyChanged(); } }
+        public DeliveryFee DeliveryFee
+        {
+            get { return deliveryFee; }
+            set
+            {
+                if (value == null)
+                    return;
+
+                deliveryFee = value;
+
+                quotation.DeliveryPrice = value.Price;
+
+                OrderItemsSource_CollectionChanged(null, null);
+
+                RaisePropertyChanged();
+            }
+        }
 
 
         bool applytax;
@@ -479,6 +502,7 @@ namespace voltaire.PageModels
                 var products = new List<ProductQuotationModel>();
 
                 var currUser = await StoreManager.UserStore.GetCurrentUserAsync();
+                var deliveryData = await StoreManager.SaleOrderStore.GetDeliveryFees(false);
 
                 if (currUser == null)
                     return;
@@ -493,10 +517,10 @@ namespace voltaire.PageModels
                 }
                 else
                 {
+                    var items = await StoreManager.SaleOrderLineStore.GetItemsByOrderId(_customer.Item3.SaleOrder.Id);
+
                     Quotation = _customer.Item3;
-                  
-                    var items = await StoreManager.SaleOrderLineStore.GetItemsByOrderId(quotation.SaleOrder.Id);
-                                      
+
                     foreach (var item in items)
                     {
                         products.Add(new ProductQuotationModel(item,CurrencyLogo));
@@ -511,7 +535,6 @@ namespace voltaire.PageModels
                     item.PropertyChanged += Item_PropertyChanged;
                 }
 
-                var deliveryData = await StoreManager.SaleOrderStore.GetDeliveryFees(false);
 
                 if(deliveryData!=null)
                 {
@@ -535,6 +558,9 @@ namespace voltaire.PageModels
         protected override void ViewIsAppearing(object sender, EventArgs e)
         {
             base.ViewIsAppearing(sender, e);
+
+            if (quotation == null)
+                return;
 
             CanEdit = Quotation.Status == QuotationStatus.sale.ToString() || Quotation.Status == QuotationStatus.done.ToString() ? false : true;
 

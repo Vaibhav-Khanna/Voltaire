@@ -250,7 +250,7 @@ namespace voltaire.PageModels
         public ObservableCollection<DeliveryFee> DeliverySource { get { return deliverySource; } set { deliverySource = value; RaisePropertyChanged(); } }
 
         DeliveryFee deliveryFee;
-        public DeliveryFee DeliveryFee { get { return deliveryFee; } set { deliveryFee = value; RaisePropertyChanged(); } }
+        public DeliveryFee DeliveryFee { get { return deliveryFee; } set { if (value == null) return; deliveryFee = value; RaisePropertyChanged(); } }
          
 
         FormattedString orderdetails;

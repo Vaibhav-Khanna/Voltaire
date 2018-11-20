@@ -38,9 +38,11 @@ namespace voltaire.Pages
             {
                 Context = (BindingContext as QuotationsMainPageModel);
 
-                Context.PropertyChanged -= Context_PropertyChanged;
+                //Context.PropertyChanged -= Context_PropertyChanged;
                 Context.PropertyChanged += Context_PropertyChanged;
             }
+
+            SegControl.IsVisible = !Context.IsLoading;
         }
 
         void Context_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
