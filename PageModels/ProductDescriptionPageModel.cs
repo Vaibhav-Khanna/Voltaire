@@ -153,7 +153,7 @@ namespace voltaire.PageModels
                         {
                             var subCat = data.First();
 
-                            subCat.ItemSource = ProductConstants.Accessory.Where((Accessory arg) => arg.CategoryName == item.PropertyValue).Select((arg) => string.IsNullOrWhiteSpace(arg.SubCategoryName) ? "N.A" : arg.SubCategoryName).Distinct().ToList();
+                            subCat.ItemSource = ProductConstants.Accessory.Where((Accessory arg) => arg.CategoryName == item.PropertyValue).Select((arg) => string.IsNullOrWhiteSpace(arg.SubCategoryName) ? "N.A" : arg.SubCategoryName).Distinct().OrderBy((arg) => arg).ToList();
 
                             if(subCat.ItemSource != null && subCat.ItemSource.Any())
                             {
@@ -182,7 +182,7 @@ namespace voltaire.PageModels
                         {
                             var name = data.First();
 
-                            name.ItemSource = ProductConstants.Accessory.Where((Accessory arg) => arg.CategoryName == cat.First().PropertyValue && arg.SubCategoryName == item.PropertyValue).Select((arg) => string.IsNullOrWhiteSpace(arg.Name) ? "N.A" : arg.Name).Distinct().ToList();
+                            name.ItemSource = ProductConstants.Accessory.Where((Accessory arg) => arg.CategoryName == cat.First().PropertyValue && arg.SubCategoryName == item.PropertyValue).Select((arg) => string.IsNullOrWhiteSpace(arg.Name) ? "N.A" : arg.Name).Distinct().OrderBy((arg) => arg ).ToList();
 
                             if (name.ItemSource != null && name.ItemSource.Any())
                             {

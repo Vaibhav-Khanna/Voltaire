@@ -818,4 +818,9 @@
         <value>Sélectionnez un coût d'expédition</value>
     </data>
     
+    <data name="AddAProduct" xml:space="preserve">
+        <value>Ajoutez au moins un produit à cette citation.</value>
+    </data>
+    
+    
 </root>

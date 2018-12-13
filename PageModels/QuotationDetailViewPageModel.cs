@@ -113,7 +113,17 @@ namespace voltaire.PageModels
 
         public Command SignCommand => new Command(async () =>
         {
-            await CoreMethods.PushPageModel<QuotationSignPageModel>(new Tuple<QuotationsModel,Partner,List<ProductQuotationModel>>(Quotation,Customer,OrderItemsSource.ToList()));
+            if (OrderItemsSource != null && OrderItemsSource.Any() && DeliveryFee != null)
+            {
+                await CoreMethods.PushPageModel<QuotationSignPageModel>(new Tuple<QuotationsModel, Partner, List<ProductQuotationModel>>(Quotation, Customer, OrderItemsSource.ToList()));
+            }
+            else
+            {
+                if (OrderItemsSource == null || !OrderItemsSource.Any())
+                    await CoreMethods.DisplayAlert(AppResources.Alert, AppResources.AddAProduct, AppResources.Ok);
+                else
+                    await CoreMethods.DisplayAlert(AppResources.Alert, AppResources.SelectShipping, AppResources.Ok);
+            }
         });
 
         public Command EmailCommand => new Command(async (obj) =>

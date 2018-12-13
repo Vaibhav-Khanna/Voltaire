@@ -66,11 +66,13 @@ namespace voltaire.PageModels
             {
                 orderstatusindex = value;
 
+
                 if (Product != null)
                 {
                     Product.State = OrderStatusTypes[value];
                     OrderStatus = OrderStatusTypes[value];
                 }
+
 
                 RaisePropertyChanged();
             }
@@ -259,10 +261,10 @@ namespace voltaire.PageModels
 
             ProductKind = QuotationSignPageModel.ParseEnum<ProductKind>(_product.ProductKind);
 
-            if (OrderStatusTypes.Contains(_product.State?.Trim()?.ToLower()))
-                OrderStatusIndex = OrderStatusTypes.IndexOf(_product.State?.Trim()?.ToLower());
+            if (OrderStatusTypes.Contains(_product.State?.Trim()))
+                OrderStatusIndex = OrderStatusTypes.IndexOf(_product.State?.Trim());
             else
-                OrderStatusIndex = 0;  
+                OrderStatusIndex = 0; 
 
         }
 

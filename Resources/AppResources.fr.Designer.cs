@@ -1474,5 +1474,11 @@ namespace voltaire.Resources {
                 return ResourceManager.GetString("SelectShipping", resourceCulture);
             }
         }
+        
+        internal static string AddAProduct {
+            get {
+                return ResourceManager.GetString("AddAProduct", resourceCulture);
+            }
+        }
     }
 }

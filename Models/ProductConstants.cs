@@ -148,33 +148,42 @@ namespace voltaire.Models
                 ProductKind = ProductKind.saddle,
                 Properties = new List<ProductProperty>()
                 {
-                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Model" , PropertyName_FR = AppResources.P_Model , PropertyValue = null, ItemSource = SaddleModel },
-                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Color", PropertyName_FR = AppResources.P_Color },
-                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Leather", PropertyName_FR = AppResources.P_Leather },
-                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Grained",PropertyName_FR = AppResources.P_Grained },
-                    new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price",PropertyName_FR = AppResources.P_UnitPrice, PropertyValue = null },
-
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Rider Name" , PropertyValue = null, PropertyName_FR = AppResources.P_RiderName },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Seat" , PropertyValue = null, PropertyName_FR = AppResources.P_Seat },
+                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Model" , PropertyName_FR = AppResources.P_Model , PropertyValue = null, ItemSource = SaddleModel },
+
+                     new ProductProperty(PropertyType.IsBoolean){ PropertyName = "2nd Skin" , PropertyValue = null, PropertyName_FR = AppResources.P_2ndSkin },
+                    new ProductProperty(PropertyType.IsBoolean){ PropertyName = "RBQ grained" , PropertyValue = null, PropertyName_FR = AppResources.P_RBQgrained },
+
+                     new ProductProperty(PropertyType.IsText){ PropertyName = "Seat" , PropertyValue = null, PropertyName_FR = AppResources.P_Seat },
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Tree" , PropertyValue = null, PropertyName_FR = AppResources.P_Tree },
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Flaps" , PropertyValue = null, PropertyName_FR = AppResources.P_Flaps },
 
-                    new ProductProperty(PropertyType.IsBoolean){ PropertyName = "2nd Skin" , PropertyValue = null, PropertyName_FR = AppResources.P_2ndSkin },
-                    new ProductProperty(PropertyType.IsBoolean){ PropertyName = "RBQ grained" , PropertyValue = null, PropertyName_FR = AppResources.P_RBQgrained },
 
+
+                     new ProductProperty(PropertyType.IsPicker) { PropertyName = "Color", PropertyName_FR = AppResources.P_Color },
+                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Leather", PropertyName_FR = AppResources.P_Leather },
                     new ProductProperty(PropertyType.IsPicker){ PropertyName = "Front Block" , PropertyValue = null, PropertyName_FR = AppResources.P_FrontBlock },
                     new ProductProperty(PropertyType.IsPicker){ PropertyName = "Rear Block" , PropertyValue = null, PropertyName_FR = AppResources.P_RearBlock  },
-                    new ProductProperty(PropertyType.IsPicker){ PropertyName = "Panel Base" , PropertyValue = null, PropertyName_FR = AppResources.P_PanelBase },
+
+                     new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price",PropertyName_FR = AppResources.P_UnitPrice, PropertyValue = null },
+
+                                      new ProductProperty(PropertyType.IsPicker){ PropertyName = "Panel Base" , PropertyValue = null, PropertyName_FR = AppResources.P_PanelBase },
 
                     new ProductProperty(PropertyType.IsText){ PropertyName = "A" , PropertyValue = null, PropertyName_FR = "A" },
                     new ProductProperty(PropertyType.IsText){ PropertyName = "B" , PropertyValue = null, PropertyName_FR = "B" },
                     new ProductProperty(PropertyType.IsText){ PropertyName = "C" , PropertyValue = null, PropertyName_FR = "C" },
                     new ProductProperty(PropertyType.IsText){ PropertyName = "D" , PropertyValue = null, PropertyName_FR = "D" },
-                    new ProductProperty(PropertyType.IsText){ PropertyName = "Comments" , PropertyValue = null, PropertyName_FR = AppResources.P_Comments },
+                      new ProductProperty(PropertyType.IsText){ PropertyName = "Comments" , PropertyValue = null, PropertyName_FR = AppResources.P_Comments },
                     new ProductProperty(PropertyType.IsBoolean){ PropertyName = "NamePlate" , PropertyValue = null, PropertyName_FR = AppResources.P_NamePlate },
                     new ProductProperty(PropertyType.IsBoolean){ PropertyName = "Greasing" , PropertyValue = null, PropertyName_FR = AppResources.P_Greasing },
+
                     new ProductProperty(PropertyType.IsBoolean){ PropertyName = "Sp Saddle" , PropertyValue = null, PropertyName_FR = AppResources.P_SpSaddle },
+
+                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Grained",PropertyName_FR = AppResources.P_Grained },
+
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Note" , PropertyValue = null, PropertyName_FR = AppResources.Note }
+
+
                 }
             });
 
@@ -202,7 +211,7 @@ namespace voltaire.Models
                 Name_FR = AppResources.P_Service,
                 ProductKind = ProductKind.service,
                 Properties = new List<ProductProperty>()
-                {
+                {                
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Serial number", PropertyValue = null, PropertyName_FR = AppResources.P_Serial_number },
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Brand", PropertyValue = null, PropertyName_FR = AppResources.P_Brand},
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Model", PropertyValue = null, PropertyName_FR = AppResources.P_Model },
@@ -294,17 +303,17 @@ namespace voltaire.Models
 
         //public static List<string> TagList { get; set; } = new List<string>() { "Pro", "Nice", "Late Payment", "Behaviour" };
 
-        public static List<string> ProductStatusRangeSaddle { get; set; } = new List<string>() { ProductStatus.Order.ToString() };
+        public static List<string> ProductStatusRangeSaddle { get; set; } = new List<string>() { String.Empty, ProductStatus.Order.ToString() };
 
-        public static List<string> ProductStatusRangeService { get; set; } = new List<string>() { ProductStatus.Delivered.ToString(), ProductStatus.Received.ToString(), ProductStatus.ToBeReceived.ToString() };
+        public static List<string> ProductStatusRangeService { get; set; } = new List<string>() { String.Empty, ProductStatus.Delivered.ToString(), ProductStatus.Received.ToString(), ProductStatus.ToBeReceived.ToString() };
 
-        public static List<string> ProductStatusRangeAccessories { get; set; } = new List<string>() { ProductStatus.Order.ToString(), ProductStatus.Delivered.ToString() };
-
-
-        public static List<string> ProductStatusRangeTradeIn { get; set; } = new List<string>() {  ProductStatus.Received.ToString(), ProductStatus.ToBeReceived.ToString() };
+        public static List<string> ProductStatusRangeAccessories { get; set; } = new List<string>() { String.Empty, ProductStatus.Order.ToString(), ProductStatus.Delivered.ToString() };
 
 
-        public static List<string> ProductStatusRangeOther { get; set; } = new List<string>() { ProductStatus.Order.ToString(), ProductStatus.Delivered.ToString(), ProductStatus.Received.ToString(), ProductStatus.ToBeReceived.ToString() };
+        public static List<string> ProductStatusRangeTradeIn { get; set; } = new List<string>() { String.Empty, ProductStatus.Received.ToString(), ProductStatus.ToBeReceived.ToString() };
+
+
+        public static List<string> ProductStatusRangeOther { get; set; } = new List<string>() { String.Empty, ProductStatus.Order.ToString(), ProductStatus.Delivered.ToString(), ProductStatus.Received.ToString(), ProductStatus.ToBeReceived.ToString() };
 
 
         public static List<string> ProductStatusRangeDiscount { get; set; } = new List<string>() { " " };

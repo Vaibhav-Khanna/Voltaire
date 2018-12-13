@@ -845,5 +845,8 @@
     <data name="SelectShipping" xml:space="preserve">
         <value>Select a shipping cost</value>   
     </data>
+     <data name="AddAProduct" xml:space="preserve">
+        <value>Add atlease one product to this quotation.</value>   
+    </data>
     
 </root>
