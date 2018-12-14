@@ -160,12 +160,17 @@ namespace voltaire.Models
 
 
 
-                     new ProductProperty(PropertyType.IsPicker) { PropertyName = "Color", PropertyName_FR = AppResources.P_Color },
+                   
+                       new ProductProperty(PropertyType.IsPicker) { PropertyName = "Color", PropertyName_FR = AppResources.P_Color },
                     new ProductProperty(PropertyType.IsPicker) { PropertyName = "Leather", PropertyName_FR = AppResources.P_Leather },
                     new ProductProperty(PropertyType.IsPicker){ PropertyName = "Front Block" , PropertyValue = null, PropertyName_FR = AppResources.P_FrontBlock },
                     new ProductProperty(PropertyType.IsPicker){ PropertyName = "Rear Block" , PropertyValue = null, PropertyName_FR = AppResources.P_RearBlock  },
 
-                     new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price",PropertyName_FR = AppResources.P_UnitPrice, PropertyValue = null },
+
+                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Grained",PropertyName_FR = AppResources.P_Grained },
+
+                   
+                       new ProductProperty(PropertyType.IsLabel) { PropertyName = "Unit Price",PropertyName_FR = AppResources.P_UnitPrice, PropertyValue = null },
 
                                       new ProductProperty(PropertyType.IsPicker){ PropertyName = "Panel Base" , PropertyValue = null, PropertyName_FR = AppResources.P_PanelBase },
 
@@ -175,11 +180,10 @@ namespace voltaire.Models
                     new ProductProperty(PropertyType.IsText){ PropertyName = "D" , PropertyValue = null, PropertyName_FR = "D" },
                       new ProductProperty(PropertyType.IsText){ PropertyName = "Comments" , PropertyValue = null, PropertyName_FR = AppResources.P_Comments },
                     new ProductProperty(PropertyType.IsBoolean){ PropertyName = "NamePlate" , PropertyValue = null, PropertyName_FR = AppResources.P_NamePlate },
-                    new ProductProperty(PropertyType.IsBoolean){ PropertyName = "Greasing" , PropertyValue = null, PropertyName_FR = AppResources.P_Greasing },
+
+                     new ProductProperty(PropertyType.IsBoolean){ PropertyName = "Greasing" , PropertyValue = null, PropertyName_FR = AppResources.P_Greasing },
 
                     new ProductProperty(PropertyType.IsBoolean){ PropertyName = "Sp Saddle" , PropertyValue = null, PropertyName_FR = AppResources.P_SpSaddle },
-
-                    new ProductProperty(PropertyType.IsPicker) { PropertyName = "Grained",PropertyName_FR = AppResources.P_Grained },
 
                     new ProductProperty(PropertyType.IsText){ PropertyName = "Note" , PropertyValue = null, PropertyName_FR = AppResources.Note }
 

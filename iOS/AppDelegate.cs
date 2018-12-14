@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Distribute;
-using Foundation;
+﻿using Foundation;
 using UIKit;
-
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
 
 using CarouselView.FormsPlugin.iOS;
 using Syncfusion.SfPdfViewer.XForms.iOS;
-using KeyboardOverlap.Forms.Plugin.iOSUnified;
 using Syncfusion.ListView.XForms.iOS;
 using Lottie.Forms.iOS.Renderers;
 using Plugin.CrossPlatformTintedImage.iOS;
 using SegmentedControl.FormsPlugin.iOS;
+using KeyboardOverlap.Forms.Plugin.iOSUnified;
 
 namespace voltaire.iOS
 {
@@ -30,10 +22,13 @@ namespace voltaire.iOS
 
             SegmentedControlRenderer.Init();
             CarouselViewRenderer.Init();
+
             KeyboardOverlapRenderer.Init();
-            AnimationViewRenderer.Init();
+           
+             AnimationViewRenderer.Init();
 
             Xamarin.FormsGoogleMaps.Init("AIzaSyCxXBNtq5ksFXZJBwW_SRkf3gEMOg4YhPc");
+
             TintedImageRenderer.Init();
 
             App.ScreenHeight = UIScreen.MainScreen.Bounds.Height;
