@@ -848,5 +848,8 @@
      <data name="AddAProduct" xml:space="preserve">
         <value>Add atlease one product to this quotation.</value>   
     </data>
+     <data name="SelectStatus" xml:space="preserve">
+        <value>Select status of all items in the list.</value>   
+    </data>
     
 </root>

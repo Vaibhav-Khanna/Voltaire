@@ -115,7 +115,10 @@ namespace voltaire.PageModels
         {
             if (OrderItemsSource != null && OrderItemsSource.Any() && DeliveryFee != null)
             {
-                await CoreMethods.PushPageModel<QuotationSignPageModel>(new Tuple<QuotationsModel, Partner, List<ProductQuotationModel>>(Quotation, Customer, OrderItemsSource.ToList()));
+                if (OrderItemsSource.All((arg) => arg.OrderStatusIndex != 0))
+                    await CoreMethods.PushPageModel<QuotationSignPageModel>(new Tuple<QuotationsModel, Partner, List<ProductQuotationModel>>(Quotation, Customer, OrderItemsSource.ToList()));
+                else
+                    await CoreMethods.DisplayAlert(AppResources.Alert, AppResources.SelectStatus, AppResources.Ok);
             }
             else
             {
