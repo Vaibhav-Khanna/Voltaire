@@ -8,6 +8,10 @@ using Lottie.Forms.iOS.Renderers;
 using Plugin.CrossPlatformTintedImage.iOS;
 using SegmentedControl.FormsPlugin.iOS;
 using KeyboardOverlap.Forms.Plugin.iOSUnified;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Distribute;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace voltaire.iOS
 {
@@ -43,6 +47,7 @@ namespace voltaire.iOS
             AppCenter.Start("3d0ef256-3c90-4860-b789-63ff7e930523",
                                typeof(Distribute), typeof(Analytics), typeof(Crashes));
             Distribute.DontCheckForUpdatesInDebug();
+
 #endif
             SfListViewRenderer.Init();
             LoadApplication(new App());
